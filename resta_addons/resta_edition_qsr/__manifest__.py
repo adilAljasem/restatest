@@ -4,7 +4,7 @@
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
     "author": "Basic Solution",
-    "website": "https://resta.sa",
+    "website": "https://restaerp.com",
     "license": "OPL-1",
     "depends": ["resta_saas_base", "pos_order_tracking_display", "pos_self_order_preparation_display"],
     "data": [

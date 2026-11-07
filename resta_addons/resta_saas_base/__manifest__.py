@@ -4,7 +4,7 @@
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
     "author": "Basic Solution",
-    "website": "https://resta.sa",
+    "website": "https://restaerp.com",
     "license": "OPL-1",
     "depends": [
         # Core apps of the Resta SaaS

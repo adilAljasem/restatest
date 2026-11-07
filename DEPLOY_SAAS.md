@@ -3,12 +3,12 @@
 ## الفكرة
 
 ```
-resta.sa ──────────────► قاعدة "resta" (المنصة)  ← resta_saas_master
+restaerp.com ──────────────► قاعدة "restaerp" (المنصة)  ← resta_saas_master
    الموقع التسويقي · التسجيل · الدخول برقم الحساب · الإدارة · الاشتراكات · التحديثات
         │ تجهيز تلقائي (CREATE DATABASE … TEMPLATE)
         ▼
-r100002.resta.sa ──────► قاعدة "r100002" (مطعم)  ← النسخة + resta_saas_tenant
-r100003.resta.sa ──────► قاعدة "r100003" (مطعم)
+r100002.restaerp.com ──────► قاعدة "r100002" (مطعم)  ← النسخة + resta_saas_tenant
+r100003.restaerp.com ──────► قاعدة "r100003" (مطعم)
         ▲  مزامنة كل 30 دقيقة، وعند فتح النظام إذا مضت 10 دقائق:
         └─ الحالة، مدير الحساب، التحديثات ⇄ الاستخدام، التقييمات، الاقتراحات
 ```
@@ -22,16 +22,18 @@ r100003.resta.sa ──────► قاعدة "r100003" (مطعم)
 **Odoo.sh لا يسمح بإنشاء قواعد بيانات تلقائياً**، فالمنصة تحتاج خادماً خاصاً بكم (VPS أو سحابة):
 - Ubuntu 24.04، و PostgreSQL 16، و Python 3.12+، و Odoo 19 من هذه الحزمة.
 - مستخدم PostgreSQL للمنصة بصلاحية `CREATEDB`.
-- DNS: سجل wildcard `*.resta.sa` يشير للخادم، مع `resta.sa`.
-- شهادة SSL wildcard لـ `*.resta.sa` (Let's Encrypt بتحقق DNS أو Cloudflare).
+- DNS: سجل wildcard `*.restaerp.com` يشير للخادم، مع `restaerp.com`.
+- شهادة SSL wildcard لـ `*.restaerp.com` (Let's Encrypt بتحقق DNS أو Cloudflare).
 
 ## odoo.conf
+
+للتثبيت القائم وبيانات العملاء، اتبع [خطوات نقل النطاق في DOKPLOY.md](DOKPLOY.md) أولاً. للتشغيل خارج Docker، مرّر `RESTA_DOMAIN=restaerp.com` و`RESTA_MASTER_DB` باسم قاعدة المنصة الحالية كمتغيرات بيئة لعملية Odoo إذا اختلف اسم القاعدة عن `restaerp`.
 
 ```ini
 [options]
 addons_path = /opt/resta/odoo/addons,/opt/resta/enterprise,/opt/resta/resta_addons,/opt/resta/bs_addons
 db_user = resta
-dbfilter = ^%d$            ; أول جزء من النطاق = اسم القاعدة (resta.sa → resta، r100002.resta.sa → r100002)
+dbfilter = ^%d$            ; أول جزء من النطاق = اسم القاعدة (restaerp.com → restaerp، r100002.restaerp.com → r100002)
 list_db = False            ; إخفاء مدير قواعد البيانات
 proxy_mode = True
 workers = 9                ; تقريباً (2 × الأنوية) + 1
@@ -46,7 +48,7 @@ db_maxconn = 64
 ```nginx
 server {
     listen 443 ssl http2;
-    server_name resta.sa *.resta.sa;
+    server_name restaerp.com *.restaerp.com;
     ssl_certificate     /etc/ssl/resta/fullchain.pem;
     ssl_certificate_key /etc/ssl/resta/privkey.pem;
     client_max_body_size 64m;
@@ -58,15 +60,15 @@ server {
         proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection "upgrade"; }
     location / { proxy_pass http://127.0.0.1:8069; proxy_read_timeout 720s; }
 }
-server { listen 80; server_name resta.sa *.resta.sa; return 301 https://$host$request_uri; }
-server { listen 443 ssl; server_name www.resta.sa; return 301 https://resta.sa$request_uri; }
+server { listen 80; server_name restaerp.com *.restaerp.com; return 301 https://$host$request_uri; }
+server { listen 443 ssl; server_name www.restaerp.com; return 301 https://restaerp.com$request_uri; }
 ```
 
 ## الإعداد لأول مرة
 
 ```bash
 # 1) المنصة
-odoo -c odoo.conf -d resta -i resta_saas_master,l10n_sa --without-demo=all --load-language=ar_001 --stop-after-init
+odoo -c odoo.conf -d restaerp -i resta_saas_master,l10n_sa --without-demo=all --load-language=ar_001 --stop-after-init
 
 # 2) القالبان (كل نسخة + موديول الربط)
 odoo -c odoo.conf -d resta_tpl_dinein -i resta_edition_dinein,resta_saas_tenant --without-demo=all --load-language=ar_001 --stop-after-init
@@ -76,8 +78,8 @@ psql -c "ALTER DATABASE resta_tpl_qsr    WITH IS_TEMPLATE true"
 ```
 
 3) من **منصة ريستا ← الإعدادات ← إعدادات المنصة**:
-- رابط المطعم: `https://{db}.resta.sa`
-- رابط المنصة: `https://resta.sa`
+- رابط المطعم: `https://{db}.restaerp.com`
+- رابط المنصة: `https://restaerp.com`
 - أرقام الدعم وواتساب.
 
 4) أضف موظفي خدمة العملاء لمجموعة **منصة ريستا / مدير حساب**. يوزَّع العملاء الجدد بالتناوب على الأقل حملاً.

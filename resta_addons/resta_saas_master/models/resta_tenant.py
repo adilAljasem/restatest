@@ -116,7 +116,7 @@ class RestaTenant(models.Model):
 
     def _compute_url(self):
         pattern = self.env["ir.config_parameter"].sudo().get_param(
-            "resta.tenant_url_pattern", "https://{db}.resta.sa")
+            "resta.tenant_url_pattern", "https://{db}.restaerp.com")
         for t in self:
             t.url = pattern.format(db=t.db_name) if t.db_name else False
 

@@ -1,11 +1,11 @@
 {
     "name": "Resta SaaS - Restaurant Client",
     "summary": "Links a restaurant database to the Resta platform: subscription status, account manager, "
-               "updates & messages panel, feedback, sign-in from resta.sa",
+               "updates & messages panel, feedback, sign-in from restaerp.com",
     "version": "19.0.1.0.0",
     "category": "Hidden",
     "author": "Basic Solution",
-    "website": "https://resta.sa",
+    "website": "https://restaerp.com",
     "license": "OPL-1",
     "depends": ["web", "mail", "point_of_sale", "resta_saas_base"],
     "data": [

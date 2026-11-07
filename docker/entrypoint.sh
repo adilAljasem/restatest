@@ -31,7 +31,7 @@ db_user = ${DB_USER}
 db_password = ${DB_PASSWORD}
 db_maxconn = ${ODOO_DB_MAXCONN}
 admin_passwd = ${ODOO_MASTER_PASSWORD}
-; one database per sub-domain: resta.sa -> "resta", r100002.resta.sa -> "r100002"
+; apex -> RESTA_MASTER_DB (default "restaerp"); test1.restaerp.com -> "test1"
 dbfilter = ^%d\$
 list_db = False
 proxy_mode = True

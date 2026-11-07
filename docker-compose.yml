@@ -1,6 +1,6 @@
 # Resta SaaS on Dokploy: PostgreSQL + Odoo 19 platform (all restaurants) + backups.
-# Domains: deemo.resta.sa (platform) and *.deemo.resta.sa (one sub-domain per restaurant) are routed
-# by the Traefik labels below. Change "deemo.resta.sa" in the labels if you use another domain.
+# Domains: restaerp.com (platform) and *.restaerp.com (one sub-domain per restaurant) are routed
+# by the Traefik labels below. Change "restaerp.com" in the labels if you use another domain.
 
 x-resta-build: &resta-build
   context: .
@@ -54,7 +54,7 @@ services:
       retries: 5
     restart: unless-stopped
 
-  # Odoo 19 - platform (deemo.resta.sa) and every restaurant (r100002.deemo.resta.sa, ...)
+  # Odoo 19 - platform (restaerp.com) and every restaurant (r100002.restaerp.com, ...)
   odoo:
     build: *resta-build
     image: resta/odoo:19
@@ -65,7 +65,8 @@ services:
     environment:
       <<: *resta-env
       ODOO_MASTER_PASSWORD: ${ODOO_MASTER_PASSWORD:?set ODOO_MASTER_PASSWORD}
-      RESTA_DOMAIN: deemo.resta.sa
+      RESTA_DOMAIN: ${RESTA_DOMAIN:-restaerp.com}
+      RESTA_MASTER_DB: ${RESTA_MASTER_DB:-}
       RESTA_AUTO_INIT: ${RESTA_AUTO_INIT:-true}
       ODOO_WORKERS: ${ODOO_WORKERS:-4}
       ODOO_CRON_THREADS: ${ODOO_CRON_THREADS:-2}
@@ -85,19 +86,19 @@ services:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
       # HTTP -> HTTPS
-      - 'traefik.http.routers.resta-http.rule=Host(`deemo.resta.sa`) || HostRegexp(`^[a-z0-9-]+\.deemo\.resta\.sa$$`)'
+      - 'traefik.http.routers.resta-http.rule=Host(`restaerp.com`) || HostRegexp(`^[a-z0-9-]+\.restaerp\.com$$`)'
       - traefik.http.routers.resta-http.entrypoints=web
       - traefik.http.routers.resta-http.middlewares=resta-https
       - traefik.http.middlewares.resta-https.redirectscheme.scheme=https
       - traefik.http.middlewares.resta-https.redirectscheme.permanent=true
       # Web (port 8069)
-      - 'traefik.http.routers.resta-web.rule=Host(`deemo.resta.sa`) || HostRegexp(`^[a-z0-9-]+\.deemo\.resta\.sa$$`)'
+      - 'traefik.http.routers.resta-web.rule=Host(`restaerp.com`) || HostRegexp(`^[a-z0-9-]+\.restaerp\.com$$`)'
       - traefik.http.routers.resta-web.entrypoints=websecure
       - traefik.http.routers.resta-web.tls=true
       - traefik.http.routers.resta-web.service=resta-web
       - traefik.http.services.resta-web.loadbalancer.server.port=8069
       # Live notifications / POS sync (websocket, port 8072)
-      - 'traefik.http.routers.resta-ws.rule=(Host(`deemo.resta.sa`) || HostRegexp(`^[a-z0-9-]+\.deemo\.resta\.sa$$`)) && PathPrefix(`/websocket`)'
+      - 'traefik.http.routers.resta-ws.rule=(Host(`restaerp.com`) || HostRegexp(`^[a-z0-9-]+\.restaerp\.com$$`)) && PathPrefix(`/websocket`)'
       - traefik.http.routers.resta-ws.entrypoints=websecure
       - traefik.http.routers.resta-ws.tls=true
       - traefik.http.routers.resta-ws.service=resta-ws
@@ -106,8 +107,8 @@ services:
       # Cloudflare DNS resolver configured - see DOKPLOY.md). Leave commented when
       # using a Cloudflare Origin Certificate uploaded in Dokploy > Certificates.
       # - traefik.http.routers.resta-web.tls.certresolver=letsencrypt-dns
-      # - traefik.http.routers.resta-web.tls.domains[0].main=deemo.resta.sa
-      # - traefik.http.routers.resta-web.tls.domains[0].sans=*.deemo.resta.sa
+      # - traefik.http.routers.resta-web.tls.domains[0].main=restaerp.com
+      # - traefik.http.routers.resta-web.tls.domains[0].sans=*.restaerp.com
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS -m 5 http://localhost:8069/web/health || exit 1"]
       interval: 30s

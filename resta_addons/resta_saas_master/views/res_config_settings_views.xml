@@ -8,7 +8,7 @@
             <xpath expr="//form" position="inside">
                 <app data-string="منصة ريستا" string="منصة ريستا" name="resta_saas_master" groups="resta_saas_master.group_resta_manager">
                     <block title="قواعد بيانات المطاعم">
-                        <setting string="رابط نظام المطعم" help="{db} يُستبدل باسم قاعدة البيانات، مثال https://{db}.resta.sa">
+                        <setting string="رابط نظام المطعم" help="{db} يُستبدل باسم قاعدة البيانات، مثال https://{db}.restaerp.com">
                             <field name="resta_tenant_url_pattern"/>
                         </setting>
                         <setting string="رابط المنصة" help="تستخدمه أنظمة المطاعم للمزامنة">

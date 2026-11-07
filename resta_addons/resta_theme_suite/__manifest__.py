@@ -5,7 +5,7 @@
     "version": "19.0.1.0.0",
     "category": "Themes/Backend",
     "author": "Basic Solution",
-    "website": "https://resta.sa",
+    "website": "https://restaerp.com",
     "license": "LGPL-3",
     "depends": ["resta_sidebar_theme", "point_of_sale", "pos_self_order", "pos_enterprise", "portal", "website"],
     "assets": {

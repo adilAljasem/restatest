@@ -45,7 +45,7 @@
                 <div>
                     <h6>تواصل معنا</h6>
                     <a t-att-href="'tel:%s' % support_phone"><t t-out="support_phone"/></a>
-                    <a href="mailto:support@resta.sa">support@resta.sa</a>
+                    <a href="mailto:support@restaerp.com">support@restaerp.com</a>
                 </div>
             </div>
             <div class="rs-container rs-copy">© ريستا · بيسك سلوشن</div>

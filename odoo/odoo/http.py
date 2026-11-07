@@ -409,6 +409,12 @@ def db_filter(dbs, host=None):
         host = host.partition(':')[0]
         if host.startswith('www.'):
             host = host[4:]
+        # Keep the existing Resta platform database when its public domain changes.
+        # Tenant hosts still use the normal %d database selection below.
+        resta_domain = os.environ.get('RESTA_DOMAIN', '').lower()
+        resta_master_db = os.environ.get('RESTA_MASTER_DB', '')
+        if resta_domain and resta_master_db and host.lower() == resta_domain:
+            return [db for db in dbs if db == resta_master_db]
         domain = host.partition('.')[0]
 
         dbfilter_re = re.compile(

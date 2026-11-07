@@ -5,7 +5,7 @@
     "version": "19.0.1.0.0",
     "category": "Services/SaaS",
     "author": "Basic Solution",
-    "website": "https://resta.sa",
+    "website": "https://restaerp.com",
     "license": "OPL-1",
     "depends": ["website", "mail", "account", "resta_sidebar_theme"],
     "data": [

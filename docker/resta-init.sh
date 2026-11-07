@@ -8,7 +8,7 @@ set -euo pipefail
 
 ODOO_ROOT="${ODOO_ROOT:-/opt/odoo}"
 ODOO_RC="${ODOO_RC:-/etc/odoo/odoo.conf}"
-: "${RESTA_DOMAIN:?RESTA_DOMAIN is required (e.g. resta.sa)}"
+: "${RESTA_DOMAIN:?RESTA_DOMAIN is required (e.g. restaerp.com)}"
 MASTER_DB="${RESTA_MASTER_DB:-${RESTA_DOMAIN%%.*}}"
 TPL_DINEIN="${RESTA_TEMPLATE_DINEIN:-resta_tpl_dinein}"
 TPL_QSR="${RESTA_TEMPLATE_QSR:-resta_tpl_qsr}"
@@ -19,6 +19,13 @@ ODOO=("${ODOO_BIN[@]}" -c "$ODOO_RC" --no-http --stop-after-init --load-language
 db_exists() {
     [ "$(psql -d postgres -Atc "SELECT 1 FROM pg_database WHERE datname = '$1'")" = "1" ]
 }
+
+# A migration override must point to a real platform, never create an empty one
+# because the old database name was mistyped.
+if [ -n "${RESTA_MASTER_DB:-}" ] && ! db_exists "$MASTER_DB"; then
+    echo "[resta-init] RESTA_MASTER_DB=$MASTER_DB does not exist; set the current platform database (leave empty only for a fresh install)" >&2
+    exit 1
+fi
 
 install_db() {  # $1 = database, $2 = modules
     if db_exists "$1"; then
@@ -50,6 +57,23 @@ done
 echo "[resta-init] platform settings for ${SCHEME}://${RESTA_DOMAIN}"
 "${ODOO_BIN[@]}" shell -c "$ODOO_RC" -d "$MASTER_DB" --no-http --log-level=error <<PY >/dev/null
 ICP = env['ir.config_parameter'].sudo()
+# Existing tenants store both their public URL and the platform API URL. Update
+# them before marking the platform domain changed, so a failed migration can retry.
+master_url = '${SCHEME}://${RESTA_DOMAIN}'
+previous_url = ICP.get_param('resta.master_url') or ICP.get_param('web.base.url')
+if previous_url != master_url:
+    import odoo
+    existing_dbs = env['resta.tenant']._pg_databases()
+    for tenant in env['resta.tenant'].search([('db_name', '!=', False)]):
+        if tenant.db_name not in existing_dbs:
+            continue  # Provisioning may not have created this database yet.
+        with odoo.sql_db.db_connect(tenant.db_name).cursor() as tenant_cr:
+            tenant_env = odoo.api.Environment(tenant_cr, odoo.SUPERUSER_ID, {})
+            params = tenant_env['ir.config_parameter'].sudo()
+            params.set_param('resta.master_url', master_url)
+            params.set_param('web.base.url', '${SCHEME}://' + tenant.db_name + '.${RESTA_DOMAIN}')
+            params.set_param('web.base.url.freeze', 'True')
+            tenant_cr.commit()
 ICP.set_param('resta.tenant_url_pattern', '${SCHEME}://{db}.${RESTA_DOMAIN}')
 ICP.set_param('resta.master_url', '${SCHEME}://${RESTA_DOMAIN}')
 ICP.set_param('web.base.url', '${SCHEME}://${RESTA_DOMAIN}')

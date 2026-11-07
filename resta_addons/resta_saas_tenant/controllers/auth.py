@@ -1,7 +1,7 @@
 """Sign-in coming from the Resta platform login page (account number + email + password).
 
 The platform signs (account, timestamp) with this restaurant's token, so only a
-form produced by resta.sa within the last 5 minutes is accepted here.
+form produced by restaerp.com within the last 5 minutes is accepted here.
 """
 import hashlib
 import hmac

@@ -183,7 +183,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     resta_tenant_url_pattern = fields.Char("رابط المطعم", config_parameter="resta.tenant_url_pattern",
-                                           help="مثال: https://{db}.resta.sa")
+                                           help="مثال: https://{db}.restaerp.com")
     resta_master_url = fields.Char("رابط المنصة (للمزامنة)", config_parameter="resta.master_url")
     resta_db_prefix = fields.Char("بادئة قواعد البيانات", config_parameter="resta.db_prefix")
     resta_trial_days = fields.Integer("أيام التجربة", config_parameter="resta.trial_days")
