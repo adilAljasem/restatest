@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_modifier_group_company_rule" model="ir.rule">
+        <field name="name">Modifier Groups by company</field>
+        <field name="model_id" ref="model_pos_modifier_group"/>
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+
+    <record id="pos_modifier_option_company_rule" model="ir.rule">
+        <field name="name">Modifier Options by company</field>
+        <field name="model_id" ref="model_pos_modifier_option"/>
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+
+    <record id="pos_product_modifier_group_line_company_rule" model="ir.rule">
+        <field name="name">Product Modifier Group Lines by company</field>
+        <field name="model_id" ref="model_pos_product_modifier_group_line"/>
+        <field name="domain_force">
+            [('company_id', 'in', company_ids)]
+        </field>
+    </record>
+</odoo>

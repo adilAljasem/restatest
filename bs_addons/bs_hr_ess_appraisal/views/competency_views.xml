@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_competency_list" model="ir.ui.view">
+        <field name="name">bs.hr.appraisal.competency.list</field>
+        <field name="model">bs.hr.appraisal.competency</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="description"/>
+                <field name="active" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_competency_search" model="ir.ui.view">
+        <field name="name">bs.hr.appraisal.competency.search</field>
+        <field name="model">bs.hr.appraisal.competency</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_category" string="Category" context="{'group_by': 'category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_competency" model="ir.actions.act_window">
+        <field name="name">Competencies</field>
+        <field name="res_model">bs.hr.appraisal.competency</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

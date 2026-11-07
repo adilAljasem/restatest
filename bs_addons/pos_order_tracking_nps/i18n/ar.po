@@ -1,0 +1,1001 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_order_tracking_nps
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-23 20:45+0000\n"
+"PO-Revision-Date: 2026-10-23 20:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_order_nps__nps_value
+msgid ""
+"+100 for promoters, 0 for passives, -100 for detractors. The average of this"
+" column is the Net Promoter Score."
+msgstr ""
+"+100 للمروّجين، و0 للمحايدين، و-100 للمنتقدين. متوسط هذا العمود هو مؤشر صافي"
+" الترويج (NPS)."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "<span class=\"trk-dot\"/><span data-i18n=\"step_preparing\">قيد التحضير</span>"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "<span class=\"trk-dot\"/><span data-i18n=\"step_ready\">جاهز</span>"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "<span class=\"trk-dot\"/><span data-i18n=\"step_received\">استلمنا طلبك</span>"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid ""
+"<span data-i18n=\"nps_low\">غير محتمل</span><span "
+"data-i18n=\"nps_high\">محتمل جداً</span>"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "All cashiers"
+msgstr "كل الكاشيرات"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "All order types"
+msgstr "كل أنواع الطلبات"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "All preparation screens of this POS"
+msgstr "كل شاشات التحضير المرتبطة بنقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Ask for rating after (min)"
+msgstr "اطلب التقييم بعد (دقيقة)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_nps_enabled
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_nps_enabled
+msgid ""
+"Ask the customer to rate the visit (0-10) and store the answer in Odoo."
+msgstr "اسأل العميل يقيّم الزيارة من 0 إلى 10 واحفظ الإجابة في أودو."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order__tracking_state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Cashiers"
+msgstr "الكاشيرات"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__category
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "Category"
+msgstr "التصنيف"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "Change language"
+msgstr "تغيير اللغة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__comment
+msgid "Comment"
+msgstr "التعليق"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid ""
+"Counted from when the order is ready, or from the payment when the pager is "
+"off."
+msgstr "تُحسب من وقت جاهزية الطلب، أو من وقت الدفع إذا كان البيجر مقفلاً."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__create_uid
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__create_uid
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__create_date
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__create_date
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__partner_id
+msgid "Customer"
+msgstr "العميل"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_form
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_list
+msgid "Customer Feedback"
+msgstr "تقييمات العملاء"
+
+#. module: pos_order_tracking_nps
+#: model:ir.actions.act_window,name:pos_order_tracking_nps.action_pos_order_nps
+#: model:ir.ui.menu,name:pos_order_tracking_nps.menu_pos_order_nps
+msgid "Customer Feedback (NPS)"
+msgstr "تقييمات العملاء (NPS)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_ready_ack
+msgid "Customer Saw Ready Alert"
+msgstr "العميل شاف تنبيه الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_state
+msgid "Customer Status"
+msgstr "حالة الطلب للعميل"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_order__nps_score
+msgid "Customer answer (0-10), -1 when not answered."
+msgstr "إجابة العميل (0-10)، و ‎-1 إذا لم يقيّم."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.actions.act_window,help:pos_order_tracking_nps.action_pos_order_nps
+msgid ""
+"Customers rate their experience from the order tracking page opened with the QR code on their receipt.\n"
+"               In the pivot, the average of the <b>NPS</b> measure is your Net Promoter Score (from -100 to +100)."
+msgstr ""
+"يقيّم العملاء تجربتهم من صفحة تتبع الطلب التي تفتح من الباركود المطبوع على الفاتورة.\n"
+"               في الجدول المحوري، متوسط مقياس <b>NPS</b> هو مؤشر صافي الترويج (من ‎-100 إلى ‎+100)."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__date
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order_nps__category__detractor
+msgid "Detractor"
+msgstr "منتقد"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "Detractors (0-6)"
+msgstr "المنتقدون (0-6)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_prep_order__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_prep_state__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "EN"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__endpoint
+msgid "Endpoint"
+msgstr "عنوان الإرسال"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_google_review_url
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_google_review_url
+msgid "Google Review Link"
+msgstr "رابط التقييم في قوقل"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Google review link"
+msgstr "رابط التقييم في قوقل"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_tracking_push__urgency__high
+msgid "High"
+msgstr "عالية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_alert_repeat
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_alert_repeat
+msgid ""
+"How many times the 'order ready' notification is sent (one minute apart) "
+"until the customer opens the page."
+msgstr ""
+"كم مرة يُرسل إشعار جاهزية الطلب (بفارق دقيقة) إلى أن يفتح العميل الصفحة."
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_order.py:0
+msgid "How was your order?"
+msgstr "كيف كانت تجربتك معنا؟"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_prep_order__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_prep_state__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_tracking_subscription__keys
+msgid "JSON with the browser p256dh and auth keys"
+msgstr "مفاتيح المتصفح (p256dh و auth) بصيغة JSON"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__keys
+msgid "Keys"
+msgstr "المفاتيح"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_prep_display_id
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_prep_display_id
+msgid ""
+"Kitchen / preparation screen that drives the customer status. When the order"
+" reaches the 'Ready' stage of this screen the customer is notified. Leave "
+"empty to follow every preparation screen linked to this point of sale (the "
+"order is ready when all of them are)."
+msgstr ""
+"شاشة المطبخ/التحضير التي تحدد حالة الطلب للعميل. عندما يصل الطلب إلى مرحلة "
+"\"جاهز\" في هذه الشاشة يصل التنبيه للعميل. اتركها فارغة لمتابعة كل شاشات "
+"التحضير المرتبطة بنقطة البيع (يكون الطلب جاهزاً عندما يجهز فيها كلها)."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__lang
+msgid "Lang"
+msgstr "اللغة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__write_uid
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__write_uid
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__write_date
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__write_date
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_pager_enabled
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_pager_enabled
+msgid ""
+"Live order status on the customer's phone with an alert (sound, vibration, "
+"notification) when the order is ready."
+msgstr ""
+"حالة الطلب مباشرة على جوال العميل مع تنبيه (صوت واهتزاز وإشعار) عند جاهزية "
+"الطلب."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.view_pos_pos_form_tracking
+msgid "Mark as Picked Up"
+msgstr "تم الاستلام"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.view_pos_pos_form_tracking
+msgid "Mark as Ready"
+msgstr "جاهز للاستلام"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_nps_delay
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_nps_delay
+msgid ""
+"Minutes after the order is ready before the customer is asked to rate the "
+"experience."
+msgstr "عدد الدقائق بعد جاهزية الطلب قبل سؤال العميل عن تقييمه."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_order_nps__preparation_minutes
+msgid "Minutes between the order and the moment it was ready."
+msgstr "الدقائق من وقت الطلب حتى أصبح جاهزاً."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__nps_value
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_graph
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_pivot
+msgid "NPS"
+msgstr "NPS"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__nps_score
+msgid "NPS Score"
+msgstr "تقييم NPS"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_nps_delay
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_nps_delay
+msgid "NPS Survey Delay (min)"
+msgstr "تأخير استبيان NPS (دقيقة)"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_form
+msgid "No comment"
+msgstr "بدون تعليق"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.actions.act_window,help:pos_order_tracking_nps.action_pos_order_nps
+msgid "No customer ratings yet"
+msgstr "لا توجد تقييمات بعد"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_tracking_push__urgency__normal
+msgid "Normal"
+msgstr "عادية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_preset_ids
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_preset_ids
+msgid ""
+"Only orders of these types (e.g. Dine In) get the tracking QR. Leave empty "
+"for all order types."
+msgstr ""
+"الباركود يُطبع فقط لهذه الأنواع من الطلبات (مثل: محلي). اتركها فارغة لكل "
+"الأنواع."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_user_ids
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_user_ids
+msgid ""
+"Only orders taken by these cashiers get the tracking QR. Leave empty for all"
+" cashiers."
+msgstr "الباركود يُطبع فقط لطلبات هؤلاء الكاشيرات. اتركها فارغة للجميع."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.view_pos_pos_form_tracking
+msgid "Open Customer Page"
+msgstr "فتح صفحة العميل"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__order_id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_subscription__order_id
+msgid "Order"
+msgstr "الطلب"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__order_number
+msgid "Order Number"
+msgstr "رقم الطلب"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.view_pos_pos_form_tracking
+msgid "Order Tracking"
+msgstr "تتبع الطلب"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Order Tracking & Customer Feedback"
+msgstr "تتبع الطلب وتقييم العملاء"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_enabled
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_enabled
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Order Tracking QR"
+msgstr "باركود تتبع الطلب"
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_order.py:0
+msgid "Order tracking is not enabled on %s."
+msgstr "تتبع الطلب غير مفعّل في %s."
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_config.py:0
+msgid "Order tracking needs the pager, the rating (NPS), or both."
+msgstr "فعّل البيجر أو التقييم (NPS) أو الاثنين."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Order types"
+msgstr "أنواع الطلبات"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_order_nps
+msgid "POS Customer NPS Feedback"
+msgstr "تقييمات NPS لعملاء نقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_tracking_push
+msgid "POS Order Tracking Push Queue"
+msgstr "طابور إشعارات تتبع الطلب"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_tracking_subscription
+msgid "POS Order Tracking Web Push Subscription"
+msgstr "اشتراك إشعارات تتبع الطلب"
+
+#. module: pos_order_tracking_nps
+#: model:ir.actions.server,name:pos_order_tracking_nps.ir_cron_tracking_nps_reminder_ir_actions_server
+msgid "POS Order Tracking: NPS survey reminder"
+msgstr "تتبع الطلب: تذكير استبيان NPS"
+
+#. module: pos_order_tracking_nps
+#: model:ir.actions.server,name:pos_order_tracking_nps.ir_cron_tracking_ready_repeat_ir_actions_server
+msgid "POS Order Tracking: repeat the ready alert"
+msgstr "تتبع الطلب: تكرار تنبيه الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.actions.server,name:pos_order_tracking_nps.ir_cron_tracking_push_ir_actions_server
+msgid "POS Order Tracking: send web push notifications"
+msgstr "تتبع الطلب: إرسال إشعارات المتصفح"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Page color"
+msgstr "لون الصفحة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_pager_enabled
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_pager_enabled
+msgid "Pager"
+msgstr "البيجر"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Pager: live status and an alert with sound when the order is ready"
+msgstr "البيجر: حالة الطلب مباشرة وتنبيه بصوت عند الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order_nps__category__passive
+msgid "Passive"
+msgstr "محايد"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "Passives (7-8)"
+msgstr "المحايدون (7-8)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__payload
+msgid "Payload"
+msgstr "المحتوى"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_completed_date
+msgid "Picked Up At"
+msgstr "وقت الاستلام"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order__tracking_state__completed
+msgid "Picked up"
+msgstr "تم الاستلام"
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_order.py:0
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Please pick it up at the counter. Enjoy!"
+msgstr "تفضّل استلمه من الكاونتر. بالعافية!"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__config_id
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "Point of Sale"
+msgstr "نقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_prep_order
+msgid "Pos Preparation Order"
+msgstr "طلب التجهيز في نقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model,name:pos_order_tracking_nps.model_pos_prep_state
+msgid "Pos Preparation State"
+msgstr "حالة التجهيز في نقطة البيع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order__tracking_state__preparing
+msgid "Preparing"
+msgstr "قيد التحضير"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_enabled
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_enabled
+msgid ""
+"Print a QR code on the customer receipt that opens a live order-status page."
+msgstr "طباعة باركود على فاتورة العميل يفتح صفحة حية لحالة الطلب."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid ""
+"Print a QR code on the receipt. The customer follows the order on the phone,"
+" gets an alert with sound when it is ready, then rates the visit (NPS)."
+msgstr ""
+"طباعة باركود على الفاتورة: يتابع العميل طلبه من جواله، ويوصله تنبيه بصوت أول"
+" ما يجهز، ثم يقيّم الزيارة (NPS)."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order_nps__category__promoter
+msgid "Promoter"
+msgstr "مروّج"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "Promoters (9-10)"
+msgstr "المروّجون (9-10)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_google_review_url
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_google_review_url
+msgid ""
+"Promoters (score 9-10) are invited to review you on Google Maps with this "
+"link."
+msgstr "يُدعى المروّجون (تقييم 9-10) لتقييمكم في خرائط قوقل عبر هذا الرابط."
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "QR"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.view_pos_order_filter_tracking
+msgid "Rated by customer"
+msgstr "قيّمه العميل"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_nps_enabled
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_nps_enabled
+msgid "Rating (NPS)"
+msgstr "التقييم (NPS)"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Rating: ask the customer to rate the visit (NPS)"
+msgstr "التقييم: اسأل العميل يقيّم زيارته (NPS)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order__tracking_state__ready
+msgid "Ready"
+msgstr "جاهز"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_ready_date
+msgid "Ready At"
+msgstr "وقت الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_ready_message
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_ready_message
+msgid "Ready Message"
+msgstr "رسالة الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Ready message"
+msgstr "رسالة الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.view_pos_order_filter_tracking
+msgid "Ready, not picked up"
+msgstr "جاهز ولم يُستلم"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order__tracking_state__received
+msgid "Received"
+msgstr "تم الاستلام من العميل"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_alert_repeat
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_alert_repeat
+msgid "Ring Times"
+msgstr "عدد مرات الرنين"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Ring times"
+msgstr "عدد مرات الرنين"
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "Scan to rate your visit"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "Scan to track your order"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__score
+msgid "Score (0-10)"
+msgstr "التقييم (0-10)"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__employee_name
+msgid "Served by"
+msgstr "الموظف"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__session_id
+msgid "Session"
+msgstr "الجلسة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__subscription_id
+msgid "Subscription"
+msgstr "الاشتراك"
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_order.py:0
+msgid "Tap to rate %s in 5 seconds."
+msgstr "اضغط وقيّم %s في 5 ثوانٍ."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_ready_message
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_ready_message
+msgid ""
+"Text of the notification sent when the order is ready. Leave empty for the "
+"default text."
+msgstr "نص الإشعار عند جاهزية الطلب. اتركه فارغاً لاستخدام النص الافتراضي."
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_order_nps.py:0
+msgid "The NPS score must be between 0 and 10."
+msgstr "يجب أن يكون التقييم بين 0 و 10."
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_config.py:0
+msgid "The NPS survey delay cannot be negative."
+msgstr "لا يمكن أن يكون تأخير الاستبيان سالباً."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_order__tracking_ready_ack
+msgid ""
+"The customer opened the page (or stopped the alert) after the order was "
+"ready."
+msgstr "فتح العميل الصفحة (أو أوقف التنبيه) بعد جاهزية الطلب."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid ""
+"The order is shown as ready when it reaches the stage before the last one "
+"(\"Ready\") on this screen."
+msgstr ""
+"يظهر الطلب جاهزاً عندما يصل إلى المرحلة قبل الأخيرة (\"جاهز\") في هذه "
+"الشاشة."
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_config.py:0
+msgid "The ready alert can be sent between 1 and 10 times."
+msgstr "عدد مرات تنبيه الجاهزية يكون بين 1 و 10."
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid ""
+"The ready notification is sent again every minute until the customer opens "
+"the page."
+msgstr "يُعاد إرسال إشعار الجاهزية كل دقيقة إلى أن يفتح العميل الصفحة."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.constraint,message:pos_order_tracking_nps.constraint_pos_order_tracking_token_unique
+msgid "The tracking token must be unique."
+msgstr "رمز التتبع يجب أن يكون فريداً."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.constraint,message:pos_order_tracking_nps.constraint_pos_tracking_subscription_order_endpoint_unique
+msgid "This browser is already subscribed to the order."
+msgstr "هذا المتصفح مشترك مسبقاً في الطلب."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.constraint,message:pos_order_tracking_nps.constraint_pos_order_nps_order_unique
+msgid "This order has already been rated."
+msgstr "تم تقييم هذا الطلب مسبقاً."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__amount_total
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_user_ids
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_user_ids
+msgid "Tracking Cashiers"
+msgstr "الكاشيرات المشمولين"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_url
+msgid "Tracking Link"
+msgstr "رابط التتبع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_nps_reminder_sent
+msgid "Tracking Nps Reminder Sent"
+msgstr "تم إرسال تذكير التقييم"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_preset_ids
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_preset_ids
+msgid "Tracking Order Types"
+msgstr "أنواع الطلبات المشمولة"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_color
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_color
+msgid "Tracking Page Color"
+msgstr "لون صفحة التتبع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_ready_last_push
+msgid "Tracking Ready Last Push"
+msgstr "آخر إشعار جاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_ready_push_count
+msgid "Tracking Ready Push Count"
+msgstr "عدد إشعارات الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_prep_display_id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_prep_display_id
+msgid "Tracking Screen"
+msgstr "شاشة التتبع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order__tracking_token
+msgid "Tracking Token"
+msgstr "رمز التتبع"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Tracking screen"
+msgstr "شاشة التتبع"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__ttl
+msgid "Ttl"
+msgstr "مدة الصلاحية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_tracking_push__urgency
+msgid "Urgency"
+msgstr "الأولوية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_order_nps__preparation_minutes
+msgid "Wait (min)"
+msgstr "الانتظار (دقيقة)"
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "We'll alert you on your phone when it's ready"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.pos_order_nps_view_search
+msgid "With comment"
+msgstr "مع تعليق"
+
+#. module: pos_order_tracking_nps
+#. odoo-python
+#: code:addons/pos_order_tracking_nps/models/pos_order.py:0
+msgid "Your order #%s is ready!"
+msgstr "طلبك رقم %s جاهز!"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "https://g.page/r/.../review"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "أرسل التقييم"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "إيقاف التنبيه"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "السماح بالتنبيهات"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "امسح الكود لتتبّع طلبك"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "امسح الكود وقيّم تجربتك"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "بعد الضغط، وافق على طلب الإشعارات من المتصفح."
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "تفاصيل الطلب"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "خلّ جوالك يرن لما يجهز طلبك"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "رقم طلبك"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "شكراً لك!"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "فعّل التنبيه ونبلغك بصوت واهتزاز أول ما يجهز طلبك."
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "قيّمنا على خرائط قوقل"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "ليس الآن"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "نبّهني لما يجهز"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "وش أكثر شي عجبك، أو وش نقدر نحسّنه؟ (اختياري)"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "وصلنا تقييمك، ويساعدنا نخدمك أفضل."
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#. odoo-javascript
+#: code:addons/pos_order_tracking_nps/static/src/pos/order_receipt.xml:0
+msgid "ونبلغك على جوالك أول ما يجهز"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "يرن ويهتز حتى لو قفلت الشاشة"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.tracking_page
+msgid "يوصلك إشعار لو طلعت من الصفحة"
+msgstr ""
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_pos_config__tracking_ready_stage_id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_ready_stage_id
+msgid "Ready Stage"
+msgstr "مرحلة الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_pos_config__tracking_ready_stage_id
+#: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_ready_stage_id
+msgid ""
+"Stage of the tracking screen from which the order is shown as ready to the customer. "
+"Leave empty: the stage before the last one (3 stages or more) or the last stage "
+"(2 stages). The first stage is always 'preparing'."
+msgstr ""
+"المرحلة في شاشة التتبع اللي يظهر عندها الطلب للعميل «جاهز». اتركها فاضية: "
+"المرحلة قبل الأخيرة (3 مراحل أو أكثر) أو المرحلة الأخيرة (مرحلتين). المرحلة "
+"الأولى دائمًا «قيد التحضير»."
+
+#. module: pos_order_tracking_nps
+#: model:ir.model.fields,field_description:pos_order_tracking_nps.field_res_config_settings__pos_tracking_stage_ids
+msgid "Pos Tracking Stage"
+msgstr "مراحل شاشة التتبع"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Ready stage"
+msgstr "مرحلة الجاهزية"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid "Automatic"
+msgstr "تلقائي"
+
+#. module: pos_order_tracking_nps
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps.res_config_settings_view_form_tracking
+msgid ""
+"New orders are always shown as \"preparing\". The order is ready from the ready "
+"stage (automatic: the stage before the last one, or the last stage on a 2-stage "
+"screen) and picked up on the last stage after it. A single-stage screen cannot "
+"mark orders ready."
+msgstr ""
+"الطلب الجديد يظهر دائمًا «قيد التحضير». يصير «جاهز» من مرحلة الجاهزية "
+"(تلقائيًا: المرحلة قبل الأخيرة، أو الأخيرة في شاشة بمرحلتين)، و«مستلَم» في "
+"المرحلة الأخيرة بعدها. الشاشة ذات المرحلة الواحدة ما تقدر تعلّم الطلب جاهز."
+
+#. module: pos_order_tracking_nps
+#: code:addons/pos_order_tracking_nps/models/pos_config.py:0
+msgid "Choose the tracking screen before its ready stage."
+msgstr "اختر شاشة التتبع قبل تحديد مرحلة الجاهزية."
+
+#. module: pos_order_tracking_nps
+#: code:addons/pos_order_tracking_nps/models/pos_config.py:0
+msgid "The ready stage must belong to the tracking screen %s."
+msgstr "مرحلة الجاهزية لازم تكون من مراحل شاشة التتبع %s."
+
+#. module: pos_order_tracking_nps
+#: code:addons/pos_order_tracking_nps/models/pos_config.py:0
+msgid ""
+"The ready stage cannot be the first stage of the screen: new orders arrive on "
+"it."
+msgstr ""
+"مرحلة الجاهزية ما تكون المرحلة الأولى في الشاشة، لأن الطلبات الجديدة توصل "
+"عليها."

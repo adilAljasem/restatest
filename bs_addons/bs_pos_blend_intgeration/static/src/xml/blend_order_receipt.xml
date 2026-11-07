@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_blend_intgeration.OrderReceipt">
+        <t t-set="blendReceipt" t-value="blendReceiptData"/>
+        <t t-if="blendReceipt">
+            <div class="pos-receipt blend-receipt-wrapper">
+                <t t-call="point_of_sale.OrderReceipt"/>
+                <div class="blend-order-receipt border-top mt-2 pt-2 px-2 text-center" dir="auto"
+                     style="overflow-wrap: anywhere;">
+                    <div class="fw-bold text-center mb-1" t-esc="blendReceipt.title"/>
+                    <div t-foreach="blendReceipt.rows" t-as="row" t-key="row.key">
+                        <span t-esc="row.label"/>:
+                        <bdi t-esc="row.value"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <t t-else="">
+            <t t-call="point_of_sale.OrderReceipt"/>
+        </t>
+    </t>
+</templates>

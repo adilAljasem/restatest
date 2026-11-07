@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kitchen_flow_log_view_list" model="ir.ui.view">
+        <field name="name">bs.pos.kitchen.flow.log.list</field>
+        <field name="model">bs.pos.kitchen.flow.log</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false"
+                  decoration-success="status == 'success'"
+                  decoration-warning="status == 'warning'"
+                  decoration-danger="status == 'failed'">
+                <field name="started_at"/>
+                <field name="order_reference"/>
+                <field name="config_id"/>
+                <field name="session_id" optional="show"/>
+                <field name="user_id" optional="show"/>
+                <field name="priority"/>
+                <field name="status" widget="badge"/>
+                <field name="total_duration_ms" sum="Total"/>
+                <field name="device_identifier" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="kitchen_flow_log_view_form" model="ir.ui.view">
+        <field name="name">bs.pos.kitchen.flow.log.form</field>
+        <field name="model">bs.pos.kitchen.flow.log</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false" delete="false">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="order_id"/>
+                            <field name="order_reference"/>
+                            <field name="order_uuid"/>
+                            <field name="config_id"/>
+                            <field name="session_id"/>
+                        </group>
+                        <group>
+                            <field name="status" widget="badge"/>
+                            <field name="priority"/>
+                            <field name="started_at"/>
+                            <field name="completed_at"/>
+                            <field name="total_duration_ms"/>
+                            <field name="user_id"/>
+                            <field name="device_identifier"/>
+                        </group>
+                    </group>
+                    <field name="error_message" invisible="not error_message"/>
+                    <notebook>
+                        <page string="Timed Operations" name="steps">
+                            <field name="step_ids" nolabel="1">
+                                <list create="false" edit="false" delete="false"
+                                      decoration-success="status == 'success'"
+                                      decoration-danger="status == 'error'"
+                                      decoration-muted="status == 'skipped'">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="category" optional="show"/>
+                                    <field name="status" widget="badge"/>
+                                    <field name="duration_ms" sum="Total"/>
+                                    <field name="started_at" optional="hide"/>
+                                    <field name="completed_at" optional="hide"/>
+                                    <field name="parent_code" optional="hide"/>
+                                    <field name="details_json" optional="hide"/>
+                                    <field name="error_message" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Client Summary" name="summary">
+                            <field name="client_summary" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kitchen_flow_log_view_search" model="ir.ui.view">
+        <field name="name">bs.pos.kitchen.flow.log.search</field>
+        <field name="model">bs.pos.kitchen.flow.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="order_reference"/>
+                <field name="config_id"/>
+                <field name="session_id"/>
+                <field name="user_id"/>
+                <field name="device_identifier"/>
+                <filter name="failed" string="Failed" domain="[('status', '=', 'failed')]"/>
+                <filter name="warnings" string="Warnings" domain="[('status', '=', 'warning')]"/>
+                <separator/>
+                <filter name="group_config" string="Point of Sale" context="{'group_by': 'config_id'}"/>
+                <filter name="group_status" string="Status" context="{'group_by': 'status'}"/>
+                <filter name="group_priority" string="Priority" context="{'group_by': 'priority'}"/>
+                <filter name="group_day" string="Day" context="{'group_by': 'started_at:day'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="kitchen_flow_log_action" model="ir.actions.act_window">
+        <field name="name">Kitchen Flow Diagnostics</field>
+        <field name="res_model">bs.pos.kitchen.flow.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="kitchen_flow_log_view_search"/>
+        <field name="context">{'search_default_group_day': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No kitchen delivery traces yet.</p>
+            <p>Send an order from a restaurant Point of Sale to inspect every timed operation.</p>
+        </field>
+    </record>
+
+    <menuitem id="kitchen_flow_log_menu"
+              name="Kitchen Flow Diagnostics"
+              parent="point_of_sale.menu_point_rep"
+              action="kitchen_flow_log_action"
+              sequence="30"/>
+
+    <record id="kitchen_flow_log_menu" model="ir.ui.menu">
+        <field name="group_ids" eval="[Command.set([ref('base.group_system')])]"/>
+    </record>
+</odoo>

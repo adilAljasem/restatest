@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_restaurant_combo_modifiers.ModifierGroups">
+        <div class="o_pcm_groups d-flex flex-column gap-2">
+            <section t-foreach="this.modifierGroupLines(productTemplate)"
+                     t-as="groupLine" t-key="targetKey + '-' + groupLine.id"
+                     class="o_pcm_group_card"
+                     t-att-class="{'is-complete': this.isModifierGroupValid(targetKey, groupLine.modifier_group_id)}">
+                <t t-set="group" t-value="groupLine.modifier_group_id"/>
+                <button type="button" class="o_pcm_group_header"
+                        t-on-click="() => this.toggleGroup(targetKey, groupLine)">
+                    <span class="o_pcm_status_icon"
+                          t-att-class="this.isModifierGroupValid(targetKey, group) ? 'is-complete' : 'is-pending'">
+                        <i t-att-class="this.isModifierGroupValid(targetKey, group) ? 'fa fa-check' : 'fa fa-sliders'"/>
+                    </span>
+                    <span class="o_pcm_header_copy">
+                        <span class="o_pcm_header_title">
+                            <strong t-esc="group.name"/>
+                            <span t-if="group.min_qty &gt; 0" class="o_pcm_requirement is-required">Required</span>
+                            <span t-else="" class="o_pcm_requirement">Optional</span>
+                        </span>
+                        <small t-if="!this.isGroupExpanded(targetKey, groupLine) and this.modifierSelectionSummary(targetKey, group)"
+                               class="o_pcm_selection_summary"
+                               t-esc="this.modifierSelectionSummary(targetKey, group)"/>
+                    </span>
+                    <span class="o_pcm_header_actions">
+                        <span class="o_pcm_counter">
+                            <t t-esc="this.modifierGroupQuantity(targetKey, group)"/> / <t t-esc="group.max_qty"/>
+                        </span>
+                        <i t-att-class="this.isGroupExpanded(targetKey, groupLine) ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"/>
+                    </span>
+                </button>
+                <div t-if="this.isGroupExpanded(targetKey, groupLine)" class="o_pcm_group_body">
+                    <div t-att-class="this.modifierDisplayType(group) === 'list' ? 'd-flex flex-column gap-2' : 'row g-2'">
+                        <div t-foreach="this.sortedModifierOptions(group, targetKey)" t-as="option" t-key="option.id"
+                             t-att-class="this.modifierDisplayType(group) === 'list' ? '' : 'col-12 col-md-6 col-xl-4'">
+                            <div class="o_pcm_choice"
+                                 t-att-class="{'is-selected': this.modifierQuantity(targetKey, option) &gt; 0}">
+                                <img t-if="this.showImages and option.product_id"
+                                     t-att-src="option.product_id.getImageUrl()"
+                                     class="o_pcm_image" t-att-alt="option.name"/>
+                                <button type="button" class="o_pcm_choice_main"
+                                        t-on-click="() => this.increaseModifier(targetKey, group, option)">
+                                    <span class="o_pcm_choice_check">
+                                        <i t-att-class="this.modifierQuantity(targetKey, option) &gt; 0 ? 'fa fa-check' : 'fa fa-plus'"/>
+                                    </span>
+                                    <span class="o_pcm_choice_copy">
+                                        <span class="o_pcm_choice_name" t-esc="option.name"/>
+                                        <small t-if="option.description" class="o_pcm_choice_description" t-esc="option.description"/>
+                                    </span>
+                                    <span t-if="this.formattedModifierPrice(option)" class="o_pcm_price"
+                                          t-esc="this.formattedModifierPrice(option)"/>
+                                </button>
+                                <div t-if="group.selection_type === 'multiple'" class="o_pcm_stepper">
+                                    <button type="button" class="o_pcm_stepper_button"
+                                            aria-label="Decrease quantity"
+                                            t-on-click="() => this.decreaseModifier(targetKey, group, option)"
+                                            t-att-disabled="this.modifierQuantity(targetKey, option) === 0">−</button>
+                                    <input type="text" inputmode="decimal" class="o_pcm_stepper_value o_pcm_quantity_input"
+                                           t-att-aria-label="'Quantity for ' + option.name"
+                                           t-att-value="this.modifierQuantity(targetKey, option)"
+                                           t-on-change="(event) => this.setModifierQuantity(targetKey, group, option, event.target.value, event.target)"/>
+                                    <button type="button" class="o_pcm_stepper_button is-add"
+                                            aria-label="Increase quantity"
+                                            t-on-click="() => this.increaseModifier(targetKey, group, option)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div t-if="state.limitMessages['modifier-' + targetKey + '-' + group.id]"
+                         class="o_pcm_message is-warning" role="alert">
+                        <i class="fa fa-exclamation-triangle"/>
+                        <span t-esc="state.limitMessages['modifier-' + targetKey + '-' + group.id]"/>
+                    </div>
+                    <div t-if="!this.isModifierGroupValid(targetKey, group)" class="o_pcm_message is-error">
+                        <i class="fa fa-info-circle"/>
+                        <span t-esc="this.modifierValidationMessage(group, targetKey)"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </t>
+
+    <t t-name="pos_restaurant_combo_modifiers.ComboModifierConfiguratorPopup">
+        <Dialog title="this.productName(props.productTemplate)" size="'xl'"
+                contentClass="'o_pcm_configurator'" bodyClass="'p-0'">
+            <div class="o_pcm_shell">
+                <header class="o_pcm_intro">
+                    <span class="o_pcm_intro_icon"><i class="fa fa-magic"/></span>
+                    <span class="o_pcm_intro_copy">
+                        <strong>Customize your order</strong>
+                        <small>Choose the options you want, then add the item to the order.</small>
+                    </span>
+                    <span class="o_pcm_progress">
+                        <i class="fa fa-check-circle"/>
+                        <span t-esc="this.progressText"/>
+                    </span>
+                </header>
+
+                <main class="o_pcm_sections">
+                    <section t-if="this.modifierGroupLines(props.productTemplate).length"
+                             class="o_pcm_section o_pcm_root_modifiers">
+                        <div class="o_pcm_section_heading">
+                            <span class="o_pcm_step_number"><i class="fa fa-sliders"/></span>
+                            <span>
+                                <strong>Product options</strong>
+                                <small>Customize this product before adding it.</small>
+                            </span>
+                        </div>
+                        <t t-set="productTemplate" t-value="props.productTemplate"/>
+                        <t t-set="targetKey" t-value="this.targetKey()"/>
+                        <t t-call="pos_restaurant_combo_modifiers.ModifierGroups"/>
+                    </section>
+
+                    <section t-foreach="this.sortedCombos" t-as="combo" t-key="combo.id"
+                             class="o_pcm_section"
+                             t-att-class="{'is-complete': this.isComboValid(combo)}">
+                        <button type="button" class="o_pcm_section_header"
+                                t-on-click="() => this.toggleCombo(combo)">
+                            <span class="o_pcm_step_number" t-esc="combo_index + 1"/>
+                            <span class="o_pcm_header_copy">
+                                <span class="o_pcm_header_title">
+                                    <strong t-esc="this.comboName(combo)"/>
+                                    <span t-if="combo.qty_min &gt; 0" class="o_pcm_requirement is-required">Required</span>
+                                    <span t-else="" class="o_pcm_requirement">Optional</span>
+                                </span>
+                                <small t-if="!this.isComboExpanded(combo) and this.comboSelectionSummary(combo)"
+                                       class="o_pcm_selection_summary"
+                                       t-esc="this.comboSelectionSummary(combo)"/>
+                            </span>
+                            <span class="o_pcm_header_actions">
+                                <span class="o_pcm_counter"
+                                      t-att-class="{'is-complete': this.isComboValid(combo)}">
+                                    <t t-esc="this.totalQuantityForCombo(combo.id)"/> / <t t-esc="combo.qty_max"/>
+                                </span>
+                                <i t-att-class="this.isComboExpanded(combo) ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"/>
+                            </span>
+                        </button>
+
+                        <div t-if="this.isComboExpanded(combo)" class="o_pcm_section_body">
+                            <div t-att-class="combo.display_type === 'list' ? 'd-flex flex-column gap-2' : 'row g-2'">
+                                <div t-foreach="combo.combo_item_ids" t-as="comboItem" t-key="comboItem.id"
+                                     t-if="comboItem.product_id"
+                                     t-att-class="combo.display_type === 'list' ? '' : 'col-12 col-md-6 col-xl-4'">
+                                    <t t-set="product" t-value="comboItem.product_id"/>
+                                    <div class="o_pcm_choice"
+                                         t-att-class="{'is-selected': state.qty[combo.id][comboItem.id] &gt; 0}">
+                                        <img t-if="this.showImages" t-att-src="product.getImageUrl()"
+                                             class="o_pcm_image" t-att-alt="this.productName(product)"/>
+                                        <button type="button" class="o_pcm_choice_main"
+                                                t-on-click="() => this.onClickProduct(product, comboItem)">
+                                            <span class="o_pcm_choice_check">
+                                                <i t-att-class="state.qty[combo.id][comboItem.id] &gt; 0 ? 'fa fa-check' : 'fa fa-plus'"/>
+                                            </span>
+                                            <span class="o_pcm_choice_name" t-esc="this.productName(product)"/>
+                                            <span t-if="this.formattedComboPrice(comboItem)" class="o_pcm_price"
+                                                  t-esc="this.formattedComboPrice(comboItem)"/>
+                                        </button>
+                                        <div t-if="combo.qty_max &gt; 1" class="o_pcm_stepper">
+                                            <button type="button" class="o_pcm_stepper_button"
+                                                    aria-label="Decrease quantity"
+                                                    t-on-click="() => this.setQuantity(comboItem, state.qty[combo.id][comboItem.id] - 1)"
+                                                    t-att-disabled="state.qty[combo.id][comboItem.id] === 0">−</button>
+                                            <span class="o_pcm_stepper_value" t-esc="state.qty[combo.id][comboItem.id]"/>
+                                            <button type="button" class="o_pcm_stepper_button is-add"
+                                                    aria-label="Increase quantity"
+                                                    t-on-click="() => this.setQuantity(comboItem, state.qty[combo.id][comboItem.id] + 1)"
+                                                    t-att-disabled="this.isItemPlusDisabled(comboItem)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div t-if="state.limitMessages['combo-' + combo.id]"
+                                 class="o_pcm_message is-warning" role="alert">
+                                <i class="fa fa-exclamation-triangle"/>
+                                <span t-esc="state.limitMessages['combo-' + combo.id]"/>
+                            </div>
+
+                            <div t-foreach="this.selectedComboItems(combo)" t-as="selectedItem"
+                                 t-key="'modifiers-' + selectedItem.id"
+                                 t-if="this.modifierGroupLines(selectedItem.product_id.product_tmpl_id).length"
+                                 class="o_pcm_nested_modifiers">
+                                <div class="o_pcm_nested_heading">
+                                    <i class="fa fa-sliders"/>
+                                    <strong t-esc="this.modifierSectionTitle(selectedItem.product_id)"/>
+                                </div>
+                                <t t-set="productTemplate" t-value="selectedItem.product_id.product_tmpl_id"/>
+                                <t t-set="targetKey" t-value="this.targetKey(selectedItem)"/>
+                                <t t-call="pos_restaurant_combo_modifiers.ModifierGroups"/>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+
+            <t t-set-slot="footer">
+                <div class="o_pcm_footer">
+                    <div class="o_pcm_totals">
+                        <span><small>Extras</small><strong t-esc="this.formattedExtraTotal"/></span>
+                        <span class="o_pcm_grand_total"><small>Total</small><strong t-esc="this.formattedGrandTotal"/></span>
+                    </div>
+                    <div class="o_pcm_footer_hint" t-att-class="{'is-ready': this.canConfirmUnified}">
+                        <i t-att-class="this.canConfirmUnified ? 'fa fa-check-circle' : 'fa fa-info-circle'"/>
+                        <span t-esc="this.confirmationHint"/>
+                    </div>
+                    <div class="o_pcm_footer_actions">
+                        <button type="button" class="btn btn-light btn-lg" t-on-click="props.close">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-lg o_pcm_confirm"
+                                t-att-disabled="!this.canConfirmUnified" t-on-click="confirm"
+                                t-esc="this.confirmButtonLabel"/>
+                    </div>
+                </div>
+            </t>
+        </Dialog>
+    </t>
+</templates>

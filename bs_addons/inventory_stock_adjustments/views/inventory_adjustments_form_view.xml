@@ -1,0 +1,169 @@
+<odoo>
+
+    <record id="inventory_adjustments_search_view" model="ir.ui.view">
+        <field name="name">inventory.adjustments.search_view</field>
+        <field name="model">stock.inventory</field>
+        <field name="arch" type="xml">
+            <search string="Stock Inventory">
+                <field name="name" />
+                <field name="location_id" />
+                <filter name="my_inventory" string="My Inventory" domain="[('user_id', '=', uid)]"/>
+                <filter name="inventory_date" string="Inventory Date" date="date"/>
+                <group>
+                    <filter string="Inventory Date" name="date" domain="[]" context="{'group_by': 'date'}"/>
+                    <filter string="Location" name="location_id" domain="[]" context="{'group_by': 'location_id'}"/>
+                    <filter string="State" name="state" domain="[]" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="inventory_adjustments_list_view" model="ir.ui.view">
+        <field name="name">inventory.adjustments.views.list</field>
+        <field name="model">stock.inventory</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="write_uid"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="inventory_adjustments_form_view" model="ir.ui.view">
+        <field name="name">Inventory Adjustments</field>
+        <field name="model">stock.inventory</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="prepare_inventory_stock_counting" invisible="state != 'draft'" string="Start Counting" type="object" class="oe_highlight" groups="inventory_stock_adjustments.group_stock_adjustments_user"/>
+                    <button name="action_send_for_approval" invisible="state != 'confirm'" string="Send For Approval" type="object" class="oe_highlight" groups="inventory_stock_adjustments.group_stock_adjustments_user"/>
+                    <button name="action_count_with_back_date" invisible="state != 'confirm' or not force_counting_date" string="Count with Back Date" type="object" class="btn-primary" groups="inventory_stock_adjustments.group_stock_adjustments_user"/>
+                    <button name="action_approved" invisible="state != 'wait_for_approval'" string="Approved" type="object" class="oe_highlight" groups="inventory_stock_adjustments.group_stock_adjustments_manager"/>
+                    <button name="action_done" invisible="state != 'approved'" string="Validate Inventory" type="object" class="oe_highlight"/>
+                    <button name="action_cancel_draft" invisible="state != 'cancel'"  string="Set to Draft" type="object"/>
+                    <button name="action_cancel_draft" invisible="state != 'confirm'"  string="Cancel Inventory" type="object"/>
+                    <button name="action_cancel_draft" invisible="state != 'wait_for_approval'"  string="Cancel Inventory" type="object"/>
+                    <button name="action_cancel_draft" invisible="state != 'approved'"  string="Cancel Inventory" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,wait_for_approval,done"/>
+                </header>
+                <sheet>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name" readonly="state != 'draft'" placeholder="e.g. Annual inventory"/></h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="location_id" string="Inventoried Location" readonly="state != 'draft'"/>
+                        <field name="filter" string="Inventory of" widget='radio' readonly="state != 'draft'"/>
+                        <field name="template_id" invisible="filter != 'template'"
+                               required="filter == 'template'" readonly="state != 'draft'"
+                               domain="[('is_active', '=', True), ('company_id', '=', company_id)]"
+                               context="{'default_company_id': company_id}"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="date" string="Inventory Date" readonly="state in ('done', 'cancel')"/>
+                        <field name="force_counting_date" readonly="state != 'draft'"/>
+                        <field name="counting_date" invisible="not force_counting_date" readonly="state not in ('draft', 'confirm')"/>
+                        <field name="accounting_date" string="Force Accounting Date" readonly="state != 'draft'"/>
+                        <field name="analytic_distribution" string="Analytic Distribution"
+                               widget="analytic_distribution"
+                               groups="analytic.group_analytic_accounting"
+                               readonly="state in ('done', 'cancel')"/>
+                        <field name="sent_for_approval_date" readonly="1" force_save="1" invisible="state != 'draft'"/>
+                        <field name="company_id" options="{'no_create': True}" />
+                        <field name="product_id" readonly="state != 'draft'" domain="[('is_storable', '=', True), ('type','=','consu')]" invisible="filter not in ('product', 'product_owner')" required="filter in ('product', 'product_owner')" />
+                        <field name="category_id" readonly="state != 'draft'" invisible="filter != 'category'" required="filter == 'category'" options="{'no_create': True}"/>
+                        <field name="lot_id" invisible="filter != 'lot'" required="filter == 'lot'" />
+                        <field name="partner_id" readonly="state != 'draft'" invisible="filter not in ('owner', 'product_owner')" required="filter in ('owner', 'product_owner')" />
+                        <field name="package_id"  invisible="filter != 'pack'" required="filter == 'pack'" />
+                        <field name="add_onhand_zero" readonly="state != 'draft'" invisible="filter == 'template'"/>
+                        <button name="set_product_serial_type_quantity" type="object" string="SET QTY FOR Serial NUMBER" invisible="state != 'confirm'" class="btn btn-primary"/>
+                    </group>
+                </group>
+                <notebook invisible="state == 'draft'">
+                    <page string="Inventory Details" >
+                        <field name="line_ids" string="Current Stock Details" context="{'default_location_id': location_id,  'default_product_id': product_id, 'default_prod_lot_id': lot_id, 'default_package_id': package_id, 'default_partner_id': partner_id}" mode="list" readonly="state != 'confirm'">
+                            <list string="Inventory Details" editable="bottom" >
+                                <!-- Field order per AC #4: Product, UoM, On Hand, Reserved, Available, Counted Quantity, Different, Diff. Valuation -->
+                                <field name="product_id" domain="[('is_storable', '=', True), ('type','=','consu')]" optional="show"/>
+                                <field name="product_uom_id" string="UoM" optional="show"/>
+
+                                <!-- On Hand: dynamically computed from the inventoried location only -->
+                                <field name="location_quantity" string="On Hand" optional="show"/>
+
+                                <!-- Reserved: dynamically computed from the inventoried location -->
+                                <field name="reserved_quantity" string="Reserved" optional="show"/>
+                                <button name="do_unreserve_product_qty" type="object" string="UNRESERVE" width="1" invisible="reserved_quantity == 0" />
+
+                                <!-- Available: dynamically computed from the inventoried location -->
+                                <field name="available_quantity" string="Available" optional="show"/>
+
+                                <!-- Counted Quantity: static, set by user, does not auto-change -->
+                                <field name="inventory_quantity" readonly="force_counting_date" decoration-danger="inventory_quantity &lt; location_quantity" decoration-success="inventory_quantity &gt; location_quantity" optional="show"/>
+
+                                <!-- Different = Counted Quantity - On Hand (auto-recalculates) -->
+                                <field name="different" decoration-danger="different &lt; 0" decoration-success="different &gt; 0" optional="show"/>
+
+                                <!-- Diff. Valuation (auto-recalculates based on Different) -->
+                                <field name="currency_id" column_invisible="True"/>
+                                <field name="price_value" string="Diff. Valuation" decoration-danger="different &lt; 0" decoration-success="different &gt; 0" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Total Value" optional="show"/>
+
+                                <!-- Lot/Serial support fields -->
+                                <field name="location_id" domain="[('id', 'child_of', parent.location_id)]" groups="stock.group_stock_multi_locations" column_invisible="True"/>
+                                <field name="prod_lot_id" domain="[('product_id', '=', product_id)]" context="{'default_product_id': product_id}" groups="stock.group_production_lot" required="lot_serial" column_invisible="True"/>
+                                <field name="package_id" groups="stock.group_tracking_lot" column_invisible="True"/>
+                                <field name="lot_id" column_invisible="True"/>
+                                <field name="lot_serial" column_invisible="True"/>
+                                <button name="select_stock_inventory_line" type="object" icon="fa-list" title="Open serial number Popup" width="0.1" invisible="not lot_id and not lot_serial"/>
+
+                                <!-- Owner -->
+                                <field name="partner_id" groups="stock.group_tracking_owner" column_invisible="True"/>
+
+                                <!-- Hidden: make_it_zero (Set Zero) per AC #5 -->
+                                <field name="make_it_zero" column_invisible="True" force_save="1"/>
+
+                                <!-- Backdating fields -->
+                                <field name="real_time_counted_quantity" column_invisible="not parent.force_counting_date" optional="show"/>
+                                <field name="qty_after_counting_date" column_invisible="not parent.force_counting_date" force_save="1" optional="show"/>
+
+                                <!-- Hidden utility fields -->
+                                <field name="quantity" column_invisible="True"/>
+                                <field name="state" optional="show"/>
+                                <field name="force_counting_date" column_invisible="True"/>
+                            </list>
+                        </field>
+                        <p></p>
+                        <h3>Important Note</h3>
+                        <group name="note_group" col="6" class="mt-2 mt-md-0">
+                            <group colspan="4">
+                                <field colspan="2" name="note" nolabel="1" placeholder="Add notes Here...."/>
+                            </group>
+                        </group>
+                        <h3 class="oe_grey">Notes</h3>
+                        <ul>
+                            <li>Inventory adjustments are based on a comparison of the **Available Quantity**, **Quantity On Hand**, and the **Counted Quantity**.</li>
+                            <li>You have the option to **delete lines** to skip specific products from the adjustment.</li>
+                            <li>Should a product be in the wrong location, simply **create a new line** to record its correct placement.</li>
+                        </ul>
+                    </page>
+                </notebook>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_view_inventory_adjustments_form" model="ir.actions.act_window">
+        <field name="name">Stock Adjustments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.inventory</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="view_id" ref="inventory_stock_adjustments.inventory_adjustments_list_view"/>
+        <field name="context">{'search_default_my_inventory': 1}</field>
+    </record>
+
+    <menuitem id="menu_action_inventory_form" name="Stock Adjustments" parent="stock.menu_stock_warehouse_mgmt" sequence="11" action="action_view_inventory_adjustments_form" groups="inventory_stock_adjustments.group_stock_adjustments_user" />
+</odoo>

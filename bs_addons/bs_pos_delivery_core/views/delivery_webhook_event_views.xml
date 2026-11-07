@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_webhook_event_form" model="ir.ui.view">
+        <field name="name">bs.delivery.webhook.event.form</field>
+        <field name="model">bs.delivery.webhook.event</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Webhook Event"
+                  create="false"
+                  edit="false"
+                  delete="false">
+                <header>
+                    <button name="action_retry"
+                            type="object"
+                            string="Retry"
+                            class="btn-primary"
+                            invisible="state != 'failed'"/>
+                    <button name="action_ignore"
+                            type="object"
+                            string="Ignore"
+                            confirm="This event will not be processed automatically. Continue?"
+                            invisible="state not in ('queued', 'retry', 'failed')"/>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="queued,processing,retry,done,failed,ignored"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_logs"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-list-alt">
+                            <field name="log_count" widget="statinfo" string="Logs"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="event_id"/>
+                        <h1><field name="event_id"/></h1>
+                    </div>
+                    <group>
+                        <group string="Event">
+                            <field name="provider_id"/>
+                            <field name="connection_id"/>
+                            <field name="store_binding_id"/>
+                            <field name="delivery_order_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="event_type"/>
+                            <field name="external_id"/>
+                            <field name="correlation_id"/>
+                            <field name="binding_id"/>
+                            <field name="signature_verified"/>
+                            <field name="client_ip"/>
+                        </group>
+                        <group string="Processing">
+                            <field name="processed"/>
+                            <field name="received_at"/>
+                            <field name="attempt_count"/>
+                            <field name="max_attempts"/>
+                            <field name="last_attempt_at"/>
+                            <field name="next_attempt_at"/>
+                            <field name="processed_at"/>
+                        </group>
+                    </group>
+                    <group string="Integrity">
+                        <group>
+                            <field name="idempotency_key"/>
+                            <field name="payload_digest"/>
+                        </group>
+                        <group>
+                            <field name="payload_size"/>
+                            <field name="error_type"/>
+                        </group>
+                    </group>
+                    <group string="Last Error" invisible="not last_error">
+                        <field name="last_error" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Sanitized Payload" name="payload_preview">
+                            <field name="payload_preview" nolabel="1" class="font-monospace"/>
+                        </page>
+                        <page string="Sanitized Headers" name="request_headers">
+                            <field name="request_headers" nolabel="1" class="font-monospace"/>
+                        </page>
+                        <page string="Raw Payload"
+                              name="raw_payload"
+                              groups="base.group_system">
+                            <field name="raw_payload" nolabel="1" class="font-monospace"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_webhook_event_list" model="ir.ui.view">
+        <field name="name">bs.delivery.webhook.event.list</field>
+        <field name="model">bs.delivery.webhook.event</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Webhook Events"
+                  create="false"
+                  edit="false"
+                  delete="false">
+                <field name="received_at" string="Created on"/>
+                <field name="provider_id" string="Platform"/>
+                <field name="external_id" string="Platform Ref" optional="show"/>
+                <field name="event_type"/>
+                <field name="state"
+                       string="Status"
+                       widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'queued'"
+                       decoration-warning="state in ('processing', 'retry')"
+                       decoration-danger="state == 'failed'"
+                       decoration-muted="state == 'ignored'"/>
+                <field name="signature_verified"
+                       string="Signature OK"
+                       widget="boolean_toggle"
+                       optional="show"/>
+                <field name="processed" widget="boolean_toggle" optional="show"/>
+                <field name="last_error" string="Error Message" optional="show"/>
+                <field name="delivery_order_id" string="Food Order" optional="show"/>
+                <field name="client_ip" optional="show"/>
+                <field name="connection_id" optional="hide"/>
+                <field name="store_binding_id" optional="hide"/>
+                <field name="event_id" optional="hide"/>
+                <field name="correlation_id" optional="hide"/>
+                <field name="binding_id" optional="hide"/>
+                <field name="attempt_count" optional="hide"/>
+                <field name="next_attempt_at" optional="hide"/>
+                <field name="processed_at" optional="hide"/>
+                <field name="error_type" optional="hide"/>
+                <field name="company_id"
+                       groups="base.group_multi_company"
+                       optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_webhook_event_search" model="ir.ui.view">
+        <field name="name">bs.delivery.webhook.event.search</field>
+        <field name="model">bs.delivery.webhook.event</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="event_id"/>
+                <field name="event_type"/>
+                <field name="external_id"/>
+                <field name="correlation_id"/>
+                <field name="client_ip"/>
+                <field name="delivery_order_id"/>
+                <field name="provider_id"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <filter name="queued"
+                        string="Queued"
+                        domain="[('state', 'in', ('queued', 'retry'))]"/>
+                <filter name="failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="received_today"
+                        string="Received Today"
+                        date="received_at"/>
+                <group>
+                    <filter name="group_provider"
+                            string="Provider"
+                            context="{'group_by': 'provider_id'}"/>
+                    <filter name="group_connection"
+                            string="Connection"
+                            context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_store"
+                            string="Remote Store"
+                            context="{'group_by': 'store_binding_id'}"/>
+                    <filter name="group_event_type"
+                            string="Event Type"
+                            context="{'group_by': 'event_type'}"/>
+                    <filter name="group_state"
+                            string="State"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_company"
+                            string="Company"
+                            context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_webhook_event" model="ir.actions.act_window">
+        <field name="name">Delivery Webhook Events</field>
+        <field name="res_model">bs.delivery.webhook.event</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_webhook_event_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No webhook events received yet.</p>
+            <p>Authenticated events are queued here and processed asynchronously.</p>
+        </field>
+    </record>
+</odoo>

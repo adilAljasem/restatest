@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================ HOME ============================ -->
+    <template id="ess_home" name="ESS Home">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_active" t-value="'home'"/>
+            <section class="ess-hero">
+                <img class="ess-avatar" t-attf-src="/my/hr/avatar/#{employee.id}" alt=""/>
+                <div class="flex-grow-1">
+                    <div class="ess-hello">Hello <t t-out="employee.name.split(' ')[0]"/></div>
+                    <div class="ess-sub">
+                        <t t-out="employee.job_title or employee.job_id.name"/>
+                        <t t-if="employee.work_location_id"> · <t t-out="employee.work_location_id.name"/></t>
+                    </div>
+                    <div class="ess-date">
+                        <t t-out="ess_fdate(ess_today)"/> · <t t-out="ess_hijri(ess_today)"/>
+                    </div>
+                </div>
+            </section>
+
+            <div id="ess_home_top"/>
+
+            <div class="ess-cards">
+                <t t-foreach="cards" t-as="card">
+                    <a t-att-href="card.get('url') or '#'" t-attf-class="ess-card ess-tone-#{card.get('tone', 'info')}">
+                        <div class="ess-card-icon"><i t-attf-class="fa #{card.get('icon', 'fa-circle')}"/></div>
+                        <div class="ess-card-value" t-out="card.get('value')"/>
+                        <div class="ess-card-title" t-out="card.get('title')"/>
+                        <div class="ess-card-sub" t-if="card.get('subtitle')" t-out="card.get('subtitle')"/>
+                    </a>
+                </t>
+            </div>
+
+            <h6 class="ess-section-title">Services</h6>
+            <div class="ess-grid">
+                <t t-foreach="ess_menu" t-as="item">
+                    <a t-if="item['key'] != 'home'" t-att-href="item['url']" class="ess-tile">
+                        <i t-attf-class="fa #{item['icon']}"/>
+                        <span t-out="item['title']"/>
+                    </a>
+                </t>
+            </div>
+
+            <t t-if="notifications">
+                <h6 class="ess-section-title">Latest updates</h6>
+                <div class="ess-list">
+                    <a t-foreach="notifications" t-as="n" t-attf-href="/my/hr/notification/#{n.id}"
+                       t-attf-class="ess-list-item #{'' if n.is_read else 'unread'}">
+                        <div class="fw-semibold" t-out="n.title"/>
+                        <div class="text-muted small text-truncate" t-out="n.body"/>
+                    </a>
+                </div>
+            </t>
+            <div id="ess_home_bottom"/>
+            <div class="text-center mt-4">
+                <a href="/web/session/logout?redirect=/my/hr" class="small text-muted">Sign out</a>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ NEW REQUEST CATALOG ============================ -->
+    <template id="ess_new" name="ESS New request">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">New request</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-grid">
+                <a t-foreach="items" t-as="item" t-att-href="item['url']" class="ess-tile">
+                    <i t-attf-class="fa #{item['icon']}"/>
+                    <span t-out="item['title']"/>
+                </a>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ MY REQUESTS ============================ -->
+    <template id="ess_requests" name="ESS My requests">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_active" t-value="'requests'"/>
+            <t t-set="ess_title">My requests</t>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/requests?state=open" t-attf-class="#{'active' if state == 'open' else ''}">Open</a>
+                <a href="/my/hr/requests?state=all" t-attf-class="#{'active' if state != 'open' else ''}">All</a>
+            </div>
+            <div class="ess-list" t-if="records">
+                <a t-foreach="records" t-as="rec" t-att-href="rec._ess_portal_url()" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold" t-out="ess_model_label(rec)"/>
+                            <div class="small text-muted text-truncate" t-out="rec._ess_portal_summary()"/>
+                            <div class="small text-muted"><t t-out="rec.name"/> · <t t-out="ess_display(rec, 'create_date')"/></div>
+                        </div>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="rec"/></t>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty">
+                <i class="fa fa-inbox"/>
+                <p>No request yet.</p>
+                <a href="/my/hr/new" class="btn btn-primary">New request</a>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ GENERIC REQUEST DETAIL ============================ -->
+    <template id="ess_request_detail" name="ESS Request detail">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title" t-value="ess_model_label(record)"/>
+            <t t-set="ess_back" t-value="'/my/hr/requests'"/>
+            <div class="ess-panel">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong t-out="record.name"/>
+                    <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="record"/></t>
+                </div>
+                <div class="text-muted small mb-2" t-out="record._ess_portal_summary()"/>
+                <dl class="ess-dl">
+                    <t t-foreach="detail_fields" t-as="fname">
+                        <t t-set="val" t-value="ess_display(record, fname)"/>
+                        <t t-if="val not in ('', False, None)">
+                            <dt t-out="ess_field_label(record, fname)"/>
+                            <dd t-out="val"/>
+                        </t>
+                    </t>
+                    <t t-if="record.employee_note">
+                        <dt>Notes</dt><dd t-out="record.employee_note"/>
+                    </t>
+                    <t t-if="record.rejection_reason">
+                        <dt>Rejection reason</dt><dd class="text-danger" t-out="record.rejection_reason"/>
+                    </t>
+                </dl>
+                <t t-out="ess_extra_html or ''"/>
+            </div>
+
+            <div id="ess_request_detail_extra"/>
+
+            <h6 class="ess-section-title" t-if="lines">Approval progress</h6>
+            <t t-call="bs_hr_ess_base.ess_approval_timeline"/>
+
+            <h6 class="ess-section-title" t-if="attachments">Attachments</h6>
+            <div class="ess-list" t-if="attachments">
+                <a t-foreach="attachments" t-as="att" class="ess-list-item"
+                   t-attf-href="/web/content/#{att.id}?download=true&amp;access_token=#{att.sudo().generate_access_token()[0]}">
+                    <i class="fa fa-paperclip me-2"/><t t-out="att.name"/>
+                </a>
+            </div>
+
+            <h6 class="ess-section-title">Messages</h6>
+            <div class="ess-list mb-2" t-if="messages">
+                <div t-foreach="messages" t-as="msg" class="ess-list-item">
+                    <div class="small text-muted"><t t-out="msg.author_id.name"/> · <t t-out="ess_display(msg, 'date')"/></div>
+                    <div t-out="msg.body"/>
+                </div>
+            </div>
+            <form t-attf-action="/my/hr/request/#{record._name}/#{record.id}/comment" method="post"
+                  enctype="multipart/form-data" class="ess-panel">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <textarea name="body" class="form-control mb-2" rows="2" placeholder="Write a message to HR..."/>
+                <div class="d-flex gap-2">
+                    <input type="file" name="attachments" class="form-control form-control-sm" multiple="multiple"/>
+                    <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                </div>
+            </form>
+
+            <form t-if="record.state in ('draft', 'submitted', 'in_approval')" class="mt-3"
+                  t-attf-action="/my/hr/request/#{record._name}/#{record.id}/cancel" method="post"
+                  onsubmit="return confirm(this.dataset.confirm);" data-confirm="Cancel this request?">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <button type="submit" class="btn btn-outline-danger w-100">Cancel request</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============================ PROFILE ============================ -->
+    <template id="ess_profile" name="ESS Profile">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_active" t-value="'profile'"/>
+            <t t-set="ess_title">My profile</t>
+            <section class="ess-hero">
+                <img class="ess-avatar" t-attf-src="/my/hr/avatar/#{employee.id}" alt=""/>
+                <div>
+                    <div class="ess-hello" t-out="employee.name"/>
+                    <div class="ess-sub" t-out="employee.job_title or employee.job_id.name"/>
+                </div>
+            </section>
+            <div class="ess-panel">
+                <h6>Work information</h6>
+                <dl class="ess-dl">
+                    <dt>Employee number</dt><dd t-out="employee.barcode or employee.id"/>
+                    <dt>Department</dt><dd t-out="employee.department_id.name"/>
+                    <dt>Branch</dt><dd t-out="employee.work_location_id.name"/>
+                    <dt>Manager</dt><dd t-out="employee.parent_id.name"/>
+                    <dt>Work phone</dt><dd t-out="employee.mobile_phone or employee.work_phone"/>
+                    <dt>Work e-mail</dt><dd t-out="employee.work_email"/>
+                    <t t-if="service_start">
+                        <dt>Joining date</dt>
+                        <dd><t t-out="ess_fdate(service_start)"/> · <t t-out="ess_hijri(service_start)"/></dd>
+                    </t>
+                </dl>
+            </div>
+            <div class="ess-panel">
+                <h6>Personal information</h6>
+                <dl class="ess-dl">
+                    <dt>Nationality</dt><dd t-out="employee.country_id.name"/>
+                    <dt>ID / Iqama number</dt><dd t-out="employee.identification_id"/>
+                    <dt>Passport</dt><dd t-out="employee.passport_id"/>
+                    <dt>Private phone</dt><dd t-out="employee.private_phone"/>
+                    <dt>Private e-mail</dt><dd t-out="employee.private_email"/>
+                    <dt>Address</dt><dd><t t-out="employee.private_street"/> <t t-out="employee.private_city"/></dd>
+                    <dt>Emergency contact</dt><dd><t t-out="employee.emergency_contact"/> <t t-out="employee.emergency_phone"/></dd>
+                    <dt>Bank account</dt><dd t-out="employee.primary_bank_account_id.acc_number"/>
+                </dl>
+            </div>
+            <div id="ess_profile_extra"/>
+            <a href="/my/hr/profile/change" class="btn btn-primary w-100 mb-2"><i class="fa fa-pencil me-1"/> Request an update</a>
+            <a href="/my/security" class="btn btn-outline-secondary w-100 mb-2"><i class="fa fa-lock me-1"/> Password &amp; security</a>
+            <a t-if="not request.env.user.share" href="/odoo" class="btn btn-outline-secondary w-100 mb-2"><i class="fa fa-th me-1"/> Back to Odoo</a>
+            <a href="/web/session/logout?redirect=/my/hr" class="btn btn-link w-100 text-danger">Sign out</a>
+        </t>
+    </template>
+
+    <template id="ess_profile_change" name="ESS Profile change">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Update my details</t>
+            <t t-set="ess_back" t-value="'/my/hr/profile'"/>
+            <p class="text-muted small">Changes are applied after HR verification. Fill only what changes.</p>
+            <form action="/my/hr/profile/change" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label>Mobile number</label>
+                <input type="tel" name="new_mobile" class="form-control" placeholder="05XXXXXXXX"/>
+                <label>Private e-mail</label>
+                <input type="email" name="new_private_email" class="form-control"/>
+                <label>Address</label>
+                <input type="text" name="new_private_street" class="form-control"/>
+                <label>City</label>
+                <input type="text" name="new_private_city" class="form-control"/>
+                <label>Emergency contact name</label>
+                <input type="text" name="new_emergency_contact" class="form-control"/>
+                <label>Emergency contact phone</label>
+                <input type="tel" name="new_emergency_phone" class="form-control"/>
+                <label>IBAN</label>
+                <input type="text" name="new_iban" class="form-control" placeholder="SA0000000000000000000000" dir="ltr"/>
+                <label>Bank name</label>
+                <input type="text" name="new_bank_name" class="form-control"/>
+                <label>Supporting document (IBAN certificate...)</label>
+                <input type="file" name="attachments" class="form-control" multiple="multiple"/>
+                <label>Notes</label>
+                <textarea name="employee_note" class="form-control" rows="2"/>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send to HR</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============================ NOTIFICATIONS ============================ -->
+    <template id="ess_notifications" name="ESS Notifications">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Notifications</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <form t-if="ess_unread" action="/my/hr/notifications/read_all" method="post" class="text-end mb-2">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <button class="btn btn-link btn-sm" type="submit">Mark all as read</button>
+            </form>
+            <div class="ess-list" t-if="notifications">
+                <a t-foreach="notifications" t-as="n" t-attf-href="/my/hr/notification/#{n.id}"
+                   t-attf-class="ess-list-item #{'' if n.is_read else 'unread'}">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-semibold" t-out="n.title"/>
+                        <span class="small text-muted" t-out="ess_display(n, 'create_date')"/>
+                    </div>
+                    <div class="small text-muted" t-out="n.body"/>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-bell-slash-o"/><p>No notification.</p></div>
+        </t>
+    </template>
+
+    <!-- ============================ TEAM (MANAGERS) ============================ -->
+    <template id="ess_team" name="ESS Team">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My team</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <h6 class="ess-section-title">Waiting for my approval (<t t-out="len(pending)"/>)</h6>
+            <div t-if="not pending" class="ess-empty small"><i class="fa fa-check-circle"/><p>All caught up.</p></div>
+            <div t-foreach="pending" t-as="item" class="ess-panel ess-approval">
+                <t t-set="rec" t-value="item[0]"/>
+                <t t-set="line" t-value="item[1]"/>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="fw-semibold"><t t-out="rec.employee_id.name"/></div>
+                        <div class="small text-muted"><t t-out="ess_model_label(rec)"/> · <t t-out="rec.name"/></div>
+                    </div>
+                    <span class="small text-muted" t-out="line.step_id.name or line.name"/>
+                </div>
+                <div class="my-2" t-out="rec._ess_portal_summary()"/>
+                <dl class="ess-dl small">
+                    <t t-foreach="rec._ess_portal_detail_fields()" t-as="fname">
+                        <t t-set="val" t-value="ess_display(rec, fname)"/>
+                        <t t-if="val not in ('', False, None)">
+                            <dt t-out="ess_field_label(rec, fname)"/><dd t-out="val"/>
+                        </t>
+                    </t>
+                </dl>
+                <form action="/my/hr/team/decide" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="model" t-att-value="rec._name"/>
+                    <input type="hidden" name="rec_id" t-att-value="rec.id"/>
+                    <t t-foreach="rec._ess_portal_approval_fields()" t-as="fname">
+                        <t t-set="fld" t-value="rec._fields[fname]"/>
+                        <label class="small" t-out="ess_field_label(rec, fname)"/>
+                        <select t-if="fld.type == 'selection'" t-attf-name="fld_#{fname}" class="form-select form-select-sm mb-2">
+                            <t t-foreach="fld._description_selection(rec.env)" t-as="opt">
+                                <option t-att-value="opt[0]" t-att-selected="opt[0] == rec[fname]" t-out="opt[1]"/>
+                            </t>
+                        </select>
+                        <input t-elif="fld.type == 'date'" type="date" t-attf-name="fld_#{fname}" class="form-control form-control-sm mb-2" t-att-value="rec[fname] or ''"/>
+                        <input t-elif="fld.type in ('float', 'monetary', 'integer')" type="number" step="any" t-attf-name="fld_#{fname}" class="form-control form-control-sm mb-2" t-att-value="rec[fname] or ''"/>
+                        <input t-else="" type="text" t-attf-name="fld_#{fname}" class="form-control form-control-sm mb-2" t-att-value="rec[fname] or ''"/>
+                    </t>
+                    <textarea name="comment" class="form-control form-control-sm mb-2" rows="1" placeholder="Comment (required to reject)"/>
+                    <div class="d-flex gap-2">
+                        <button type="submit" name="decision" value="approve" class="btn btn-success flex-fill">
+                            <i class="fa fa-check"/> Approve</button>
+                        <button type="submit" name="decision" value="reject" class="btn btn-outline-danger flex-fill">
+                            <i class="fa fa-times"/> Reject</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="ess_team_extra"/>
+            <h6 class="ess-section-title">Team members (<t t-out="len(team)"/>)</h6>
+            <div class="ess-list">
+                <div t-foreach="team" t-as="member" class="ess-list-item d-flex align-items-center gap-2">
+                    <img class="ess-avatar-sm" t-attf-src="/my/hr/avatar/#{member.id}" alt=""/>
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="fw-semibold text-truncate" t-out="member.name"/>
+                        <div class="small text-muted text-truncate" t-out="member.job_title or member.job_id.name"/>
+                    </div>
+                    <div class="text-end small">
+                        <t t-foreach="team_extra.get(member.id, [])" t-as="info">
+                            <div><span t-attf-class="ess-badge ess-badge-#{info[2] if len(info) &gt; 2 else 'info'}" t-out="info[1]"/></div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ END OF SERVICE ============================ -->
+    <template id="ess_eos" name="ESS End of service calculator">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">End of service calculator</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/eos?reason=termination" t-attf-class="#{'active' if reason != 'resignation' else ''}">Contract end / termination</a>
+                <a href="/my/hr/eos?reason=resignation" t-attf-class="#{'active' if reason == 'resignation' else ''}">Resignation</a>
+            </div>
+            <div class="ess-panel text-center">
+                <div class="text-muted small">Estimated end of service award</div>
+                <div class="ess-big-number"><t t-out="'{:,.2f}'.format(result['amount'])"/> <small t-out="employee.company_id.currency_id.symbol"/></div>
+                <dl class="ess-dl text-start mt-3">
+                    <dt>Joining date</dt><dd t-out="ess_fdate(start) if start else '-'"/>
+                    <dt>Years of service</dt><dd t-out="result['years']"/>
+                    <dt>Wage used</dt><dd t-out="'{:,.2f}'.format(wage)"/>
+                    <dt>Full award</dt><dd t-out="'{:,.2f}'.format(result['full_amount'])"/>
+                    <dt>Applied ratio</dt><dd><t t-out="int(round(result['ratio'] * 100))"/> %</dd>
+                </dl>
+            </div>
+            <p class="small text-muted">
+                Estimate based on the Saudi Labor Law (articles 84 and 85): half a month per year for the first
+                five years, then a full month per year. On resignation: nothing before 2 years, one third
+                between 2 and 5 years, two thirds between 5 and 10 years, full award after 10 years.
+                The final amount is computed by payroll on the basis of your last wage.
+            </p>
+        </t>
+    </template>
+</odoo>

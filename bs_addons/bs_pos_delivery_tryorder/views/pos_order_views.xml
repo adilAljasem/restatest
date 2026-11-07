@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_tree_tryorder" model="ir.ui.view">
+        <field name="name">pos.order.list.delivery.tryorder</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='pos_reference']" position="after">
+                <field name="tryorder_external_order_id" optional="show"/>
+                <field name="tryorder_status" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_filter_tryorder" model="ir.ui.view">
+        <field name="name">pos.order.search.delivery.tryorder</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='pos_reference']" position="after">
+                <field name="tryorder_external_order_id"/>
+            </xpath>
+            <xpath expr="//search/filter[@name='cancelled']" position="after">
+                <separator/>
+                <filter name="tryorder_orders" string="TryOrder Orders"
+                        domain="[('tryorder_delivery_order_id', '!=', False)]"/>
+                <separator/>
+                <filter name="tryorder_received" string="TryOrder Received"
+                        domain="[('tryorder_delivery_order_id', '!=', False), ('tryorder_status', '=', 'received')]"/>
+                <filter name="tryorder_in_progress" string="TryOrder In Progress"
+                        domain="[('tryorder_delivery_order_id', '!=', False), ('tryorder_status', 'in', ['accepted', 'preparing', 'ready', 'picked_up'])]"/>
+                <filter name="tryorder_delivered" string="TryOrder Delivered"
+                        domain="[('tryorder_delivery_order_id', '!=', False), ('tryorder_status', '=', 'delivered')]"/>
+                <filter name="tryorder_cancelled" string="TryOrder Cancelled / Rejected"
+                        domain="[('tryorder_delivery_order_id', '!=', False), ('tryorder_status', 'in', ['cancelled', 'rejected'])]"/>
+            </xpath>
+            <xpath expr="//search/group/filter[@name='config_id']" position="after">
+                <filter name="group_tryorder_status" string="TryOrder Status"
+                        context="{'group_by': 'tryorder_status'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

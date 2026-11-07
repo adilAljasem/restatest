@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_activity_document_expiry" model="mail.activity.type">
+        <field name="name">Document expiry</field>
+        <field name="icon">fa-id-card-o</field>
+        <field name="res_model">bs.hr.document</field>
+        <field name="category">default</field>
+        <field name="delay_count">0</field>
+    </record>
+    <record id="mail_activity_end_of_service" model="mail.activity.type">
+        <field name="name">End of service / clearance</field>
+        <field name="icon">fa-sign-out</field>
+        <field name="res_model">bs.hr.contract.renewal</field>
+        <field name="category">default</field>
+        <field name="delay_count">0</field>
+    </record>
+</odoo>

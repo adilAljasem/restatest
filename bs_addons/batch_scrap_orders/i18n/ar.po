@@ -1,0 +1,275 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * batch_scrap_orders
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: batch_scrap_orders
+#: model:ir.actions.act_window,name:batch_scrap_orders.batch_scrap_order_action
+#: model:ir.ui.menu,name:batch_scrap_orders.menu_batch_scrap_orders
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_list_view
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Batch Scrap Orders"
+msgstr "أوامر الهالك المجمعة"
+
+#. module: batch_scrap_orders
+#: model:ir.model,name:batch_scrap_orders.model_batch_scrap_order
+#: model:ir.sequence,name:batch_scrap_orders.seq_batch_scrap_order
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+#: code:addons/batch_scrap_orders/models/stock_scrap.py:0
+msgid "Batch Scrap Order"
+msgstr "أمر هالك مجمع"
+
+#. module: batch_scrap_orders
+#: model:ir.model,name:batch_scrap_orders.model_batch_scrap_order_line
+msgid "Batch Scrap Order Line"
+msgstr "سطر أمر هالك مجمع"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_stock_scrap__batch_scrap_line_id
+msgid "Batch Scrap Line"
+msgstr "سطر الهالك المجمع"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__name
+msgid "Batch Number"
+msgstr "رقم الأمر المجمع"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_stock_scrap__batch_reference
+msgid "Batch Reference"
+msgstr "مرجع الأمر المجمع"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__source_document
+msgid "Source Document"
+msgstr "المستند المصدر"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__reference
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__location_id
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Source Location"
+msgstr "الموقع المصدر"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__scrap_location_id
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Scrap Location"
+msgstr "موقع الهالك"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__line_ids
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+msgid "Scrap Lines"
+msgstr "سطور الهالك"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__scrap_ids
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__scrap_ids
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+msgid "Scrap Orders"
+msgstr "أوامر الهالك"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__scrap_count
+msgid "Scrap Order Count"
+msgstr "عدد أوامر الهالك"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__product_is_kit
+msgid "Product Is Kit"
+msgstr "المنتج طقم"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__quantity
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__product_uom_id
+msgid "Unit"
+msgstr "الوحدة"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__should_replenish
+msgid "Replenish Quantities"
+msgstr "تجديد الكميات"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__scrap_reason_tag_ids
+msgid "Scrap Reason"
+msgstr "سبب الهالك"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__state
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Status"
+msgstr "الحالة"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields.selection,name:batch_scrap_orders.selection__batch_scrap_order__state__draft
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields.selection,name:batch_scrap_orders.selection__batch_scrap_order__state__done
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Done"
+msgstr "تم"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields.selection,name:batch_scrap_orders.selection__batch_scrap_order__state__cancel
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_search_view
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: batch_scrap_orders
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+msgid "Validate"
+msgstr "اعتماد"
+
+#. module: batch_scrap_orders
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order__company_id
+#: model:ir.model.fields,field_description:batch_scrap_orders.field_batch_scrap_order_line__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "New"
+msgstr "جديد"
+
+#. module: batch_scrap_orders
+#: model_terms:ir.actions.act_window,help:batch_scrap_orders.batch_scrap_order_action
+msgid "Create your first Batch Scrap Order"
+msgstr "أنشئ أول أمر هالك مجمع"
+
+#. module: batch_scrap_orders
+#: model_terms:ir.actions.act_window,help:batch_scrap_orders.batch_scrap_order_action
+msgid "Create and validate multiple Scrap Orders from one batch."
+msgstr "أنشئ واعتمد عدة أوامر هالك من أمر مجمع واحد."
+
+#. module: batch_scrap_orders
+#: model_terms:ir.ui.view,arch_db:batch_scrap_orders.batch_scrap_order_form_view
+msgid "Are you sure you want to cancel this batch?"
+msgstr "هل أنت متأكد من إلغاء هذا الأمر المجمع؟"
+
+#. module: batch_scrap_orders
+#: model:ir.model.constraint,message:batch_scrap_orders.constraint_batch_scrap_order_name_company_unique
+msgid "The Batch Number must be unique per company."
+msgstr "يجب أن يكون رقم الأمر المجمع فريدًا لكل شركة."
+
+#. module: batch_scrap_orders
+#: model:ir.model.constraint,message:batch_scrap_orders.constraint_batch_scrap_order_line_positive_quantity
+msgid "Quantity must be greater than zero."
+msgstr "يجب أن تكون الكمية أكبر من صفر."
+
+#. module: batch_scrap_orders
+#: model:ir.model.constraint,message:batch_scrap_orders.constraint_stock_scrap_batch_scrap_line_unique
+msgid "A Scrap Order has already been created for this batch line."
+msgstr "تم إنشاء أمر هالك لهذا السطر بالفعل."
+
+#. module: batch_scrap_orders
+#: model:ir.model.fields,help:batch_scrap_orders.field_batch_scrap_order_line__should_replenish
+msgid "Trigger replenishment for scrapped products"
+msgstr "تشغيل إعادة التزويد للمنتجات التالفة"
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Only Draft batches can be validated."
+msgstr "يمكن اعتماد الأوامر المجمعة الموجودة في حالة المسودة فقط."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Scrap Orders have already been created for this batch."
+msgstr "تم إنشاء أوامر الهالك لهذا الأمر المجمع بالفعل."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Source Location and Scrap Location are required."
+msgstr "الموقع المصدر وموقع الهالك مطلوبان."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Add at least one scrap line before validating the batch."
+msgstr "أضف سطر هالك واحدًا على الأقل قبل اعتماد الأمر المجمع."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Every scrap line must have a Product, a Unit, and a Quantity greater than zero."
+msgstr "يجب أن يحتوي كل سطر هالك على منتج ووحدة وكمية أكبر من صفر."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+#, python-format
+msgid "Scrap %(scrap)s could not be completed automatically. Check the available quantity and any lot or serial requirements, then validate the batch again."
+msgstr "تعذر إكمال أمر الهالك %(scrap)s تلقائيًا. تحقق من الكمية المتاحة ومتطلبات الدفعة أو الرقم التسلسلي ثم اعتمد الأمر المجمع مرة أخرى."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "The batch cannot be completed until every Scrap Order is Done."
+msgstr "لا يمكن إكمال الأمر المجمع حتى تصبح جميع أوامر الهالك في حالة تم."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Only Draft batches can be cancelled."
+msgstr "يمكن إلغاء الأوامر المجمعة الموجودة في حالة المسودة فقط."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "A batch with generated Scrap Orders cannot be cancelled."
+msgstr "لا يمكن إلغاء أمر مجمع تم إنشاء أوامر هالك منه."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "A batch linked to generated Scrap Orders cannot be deleted."
+msgstr "لا يمكن حذف أمر مجمع مرتبط بأوامر هالك تم إنشاؤها."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Scrap lines can only be added in Draft."
+msgstr "يمكن إضافة سطور الهالك في حالة المسودة فقط."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Validated scrap lines cannot be changed."
+msgstr "لا يمكن تعديل سطور الهالك بعد الاعتماد."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Validated scrap lines cannot be deleted."
+msgstr "لا يمكن حذف سطور الهالك بعد الاعتماد."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/stock_scrap.py:0
+msgid "This Scrap Order was not created from a batch."
+msgstr "لم يتم إنشاء أمر الهالك هذا من أمر هالك مجمع."
+
+#. module: batch_scrap_orders
+#: code:addons/batch_scrap_orders/models/batch_scrap_order.py:0
+msgid "Product %(product)s is a Kit with no available Kit BoM. Create or unarchive its BoM (Type = Kit) before scrapping it."
+msgstr "المنتج %(product)s معرف كطقم (Kit) دون قائمة مواد طقم متاحة. يجب إنشاء قائمة المواد (النوع = طقم) أو إلغاء أرشفتها قبل تنفيذ الهالك."

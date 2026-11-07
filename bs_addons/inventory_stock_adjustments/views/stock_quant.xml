@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_quant_tree_editable" model="ir.ui.view">
+        <field name="name">stock.quant.tree.editable.inherit.expiry_date</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/button[1]" position="replace"/>
+        </field>
+    </record>
+
+    <record id="product_product_stock_tree" model="ir.ui.view">
+        <field name="name">product.product.stock.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/button[1]" position="replace"/>
+        </field>
+    </record>
+
+    <record id="product_product_stock_tree" model="ir.ui.view">
+        <field name="name">product.product.stock.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_available']" position="replace">
+                <field name="qty_available" invisible="not is_storable" string="On Hand" optional="show" decoration-danger="virtual_available &lt; 0" decoration-warning="virtual_available == 0" decoration-bf="1" groups="stock.group_stock_user" sum="Total On Hand" readonly="1" force_save="1"/>
+
+            </xpath>
+            <xpath expr="//field[@name='virtual_available']" position="replace">
+                <field name="virtual_available" invisible="not is_storable" string="Forecasted" optional="show" decoration-danger="virtual_available &lt; 0" decoration-warning="virtual_available == 0" groups="stock.group_stock_user" sum="Total Forecasted"  readonly="1" force_save="1"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record model="ir.actions.server" id="stock.action_view_set_quants_tree">
+        <field name="name">Set to quantity on hand</field>
+        <field name="binding_view_types"></field>
+        <field name="code">
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="stock.action_view_set_to_zero_quants_tree">
+        <field name="name">Set to 0</field>
+        <field name="binding_view_types"></field>
+        <field name="code">
+        </field>
+    </record>
+
+
+    <record id="view_stock_quant_tree_editable_expiry" model="ir.ui.view">
+        <field name="name">stock.quant.inherit.form</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"/>
+        <field name="arch" type="xml">
+            <button name="action_apply_all" position="attributes">
+                <attribute name="groups">inventory_stock_adjustments.group_stock_adjustments_manager</attribute>
+                <attribute name="invisible">1</attribute>
+            </button>
+
+            <xpath expr="//button[@name='action_apply_inventory']" position="replace">
+                <button name="action_apply_inventory" groups="inventory_stock_adjustments.group_stock_adjustments_manager" invisible="1" type="object" string="Apply" class="btn btn-link" icon="fa-save"/>
+            </xpath>
+            <xpath expr="//field[@name='inventory_quantity']" position="attributes">
+                <attribute name="groups">inventory_stock_adjustments.group_stock_adjustments_manager</attribute>
+                <attribute name="force_save">1</attribute>
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_stock_quant_tree_editable_auto" model="ir.ui.view">
+        <field name="name">stock.quant.inherit.form</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='inventory_quantity_auto_apply']" position="replace">
+                <field name="inventory_quantity_auto_apply" string="On Hand Quantity" groups="inventory_stock_adjustments.group_stock_adjustments_manager" readonly="1" sum="Total On Hand"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

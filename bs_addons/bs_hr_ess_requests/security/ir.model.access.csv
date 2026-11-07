@@ -1,0 +1,26 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_loan_type_user,loan type user,model_bs_hr_loan_type,base.group_user,1,0,0,0
+access_loan_type_manager,loan type manager,model_bs_hr_loan_type,bs_hr_ess_base.group_ess_hr_manager,1,1,1,1
+access_loan_user,loan user,model_bs_hr_loan,base.group_user,1,1,1,0
+access_loan_hr,loan hr,model_bs_hr_loan,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_loan_line_user,loan line user,model_bs_hr_loan_line,base.group_user,1,0,0,0
+access_loan_line_hr,loan line hr,model_bs_hr_loan_line,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_loan_postpone_user,loan postpone user,model_bs_hr_loan_postpone,base.group_user,1,1,1,0
+access_loan_postpone_hr,loan postpone hr,model_bs_hr_loan_postpone,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_leave_blackout_user,leave blackout user,model_bs_hr_leave_blackout,base.group_user,1,0,0,0
+access_leave_blackout_manager,leave blackout manager,model_bs_hr_leave_blackout,bs_hr_ess_base.group_ess_hr_manager,1,1,1,1
+access_leave_request_user,leave request user,model_bs_hr_leave_request,base.group_user,1,1,1,0
+access_leave_request_hr,leave request hr,model_bs_hr_leave_request,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_custody_request_user,custody request user,model_bs_hr_custody_request,base.group_user,1,1,1,0
+access_custody_request_hr,custody request hr,model_bs_hr_custody_request,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_custody_request_line_user,custody request line user,model_bs_hr_custody_request_line,base.group_user,1,1,1,1
+access_custody_holding_user,custody holding user,model_bs_hr_custody_holding,base.group_user,1,0,0,0
+access_custody_holding_hr,custody holding hr,model_bs_hr_custody_holding,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_request_type_user,request type user,model_bs_hr_request_type,base.group_user,1,0,0,0
+access_request_type_manager,request type manager,model_bs_hr_request_type,bs_hr_ess_base.group_ess_hr_manager,1,1,1,1
+access_request_type_field_user,request type field user,model_bs_hr_request_type_field,base.group_user,1,0,0,0
+access_request_type_field_manager,request type field manager,model_bs_hr_request_type_field,bs_hr_ess_base.group_ess_hr_manager,1,1,1,1
+access_request_user,request user,model_bs_hr_request,base.group_user,1,1,1,0
+access_request_hr,request hr,model_bs_hr_request,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_clearance_hr,clearance hr,model_bs_hr_clearance,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_clearance_blocker_hr,clearance blocker hr,model_bs_hr_clearance_blocker,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1

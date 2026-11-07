@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_collection_pos_user,Collection POS read,model_bs_pos_collection_component,point_of_sale.group_pos_user,1,0,0,0
+access_collection_account_read,Collection accounting read,model_bs_pos_collection_component,account.group_account_readonly,1,0,0,0
+access_collection_account_invoice,Collection accountant read,model_bs_pos_collection_component,account.group_account_invoice,1,0,0,0

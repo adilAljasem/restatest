@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="product_modifiers.OrderChangeReceiptLineModifierRouting"
+       t-inherit="point_of_sale.OrderChangeReceiptLine"
+       t-inherit-mode="extension">
+        <xpath expr="//div[contains(@t-attf-class, 'orderline')]" position="attributes">
+            <attribute name="t-attf-class">orderline #{line.combo_parent_uuid || line.isModifierChild ? 'ms-5 px-2' : 'mx-1'}</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'd-flex')]" position="attributes">
+            <attribute name="t-att-style">line.isModifierChild ? 'padding-inline-start: 24px;' : ''</attribute>
+        </xpath>
+        <xpath expr="//span[contains(@class, 'product-name')]" position="before">
+            <span t-if="line.isModifierChild"
+                  aria-hidden="true"
+                  style="direction: ltr; unicode-bidi: isolate; margin-inline-end: 8px;">&#9492;&#9472;&#9472;</span>
+        </xpath>
+    </t>
+</templates>

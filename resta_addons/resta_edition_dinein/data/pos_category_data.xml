@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="categ_appetizers" model="pos.category">
+            <field name="name">مقبلات</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="categ_salads" model="pos.category">
+            <field name="name">سلطات</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="categ_mains" model="pos.category">
+            <field name="name">أطباق رئيسية</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="categ_grills" model="pos.category">
+            <field name="name">مشويات</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="categ_desserts" model="pos.category">
+            <field name="name">حلويات</field>
+            <field name="sequence">50</field>
+        </record>
+        <record id="categ_drinks" model="pos.category">
+            <field name="name">مشروبات باردة</field>
+            <field name="sequence">60</field>
+        </record>
+        <record id="categ_hot_drinks" model="pos.category">
+            <field name="name">مشروبات ساخنة</field>
+            <field name="sequence">70</field>
+        </record>
+    </data>
+</odoo>

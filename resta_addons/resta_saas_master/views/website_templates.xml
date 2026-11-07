@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================
+         Shell: Resta header / footer (own markup, website header hidden)
+         ================================================================ -->
+    <template id="resta_topbar" name="Resta top bar">
+        <div class="rs-topbar">
+            <span>المملكة العربية السعودية</span>
+            <a t-att-href="'tel:%s' % support_phone" class="rs-phone"><i class="fa fa-phone"/> <t t-out="support_phone"/></a>
+            <span class="rs-sep">|</span>
+            <span>جرّب ريستا مجاناً لمدة <t t-out="trial_days"/> يوماً بدون بطاقة</span>
+        </div>
+    </template>
+
+    <template id="resta_nav" name="Resta navigation">
+        <nav class="rs-nav">
+            <a href="/resta" class="rs-logo"><img src="/resta_sidebar_theme/static/img/resta-wordmark-default.svg" alt="ريستا"/></a>
+            <div class="rs-links">
+                <a href="/resta#solutions">حلول ريستا</a>
+                <a href="/resta#editions">أنواع المطاعم</a>
+                <a href="/resta#dash">لوحة البيانات</a>
+                <a href="/resta#pricing">الأسعار</a>
+                <a href="/resta#faq">الأسئلة الشائعة</a>
+            </div>
+            <div class="rs-actions">
+                <a href="/resta/demo" class="rs-btn rs-btn-primary">اطلب عرض للنظام</a>
+                <a href="/resta/login" class="rs-btn rs-btn-dark">الدخول</a>
+            </div>
+        </nav>
+    </template>
+
+    <template id="resta_footer" name="Resta footer">
+        <footer class="rs-footer">
+            <div class="rs-container rs-footer-grid">
+                <div>
+                    <img src="/resta_sidebar_theme/static/img/resta-wordmark-default-dark.svg" alt="ريستا" class="rs-footer-logo"/>
+                    <p>نظام المطاعم المتكامل: نقاط البيع، المطبخ، المخزون، المحاسبة والموارد البشرية في منصة واحدة، بالعربية ومتوافق مع فاتورة.</p>
+                </div>
+                <div>
+                    <h6>المنصة</h6>
+                    <a href="/resta/signup">ابدأ التجربة المجانية</a>
+                    <a href="/resta/demo">اطلب عرضاً</a>
+                    <a href="/resta/login">الدخول إلى حسابك</a>
+                </div>
+                <div>
+                    <h6>تواصل معنا</h6>
+                    <a t-att-href="'tel:%s' % support_phone"><t t-out="support_phone"/></a>
+                    <a href="mailto:support@resta.sa">support@resta.sa</a>
+                </div>
+            </div>
+            <div class="rs-container rs-copy">© ريستا · بيسك سلوشن</div>
+        </footer>
+    </template>
+
+    <!-- ================================================================
+         Landing page
+         ================================================================ -->
+    <template id="page_landing" name="Resta - Landing">
+        <t t-call="website.layout">
+            <t t-set="pageName" t-value="'resta_landing'"/>
+            <div id="wrap" class="rs-site">
+                <t t-call="resta_saas_master.resta_topbar"/>
+                <t t-call="resta_saas_master.resta_nav"/>
+
+                <section class="rs-hero">
+                    <div class="rs-container">
+                        <h1>نظام المطاعم المتكامل<br/><span>من الكاشير إلى القوائم المالية</span></h1>
+                        <p class="rs-lead">نقطة بيع للمطاعم، شاشة مطبخ، طلب ذاتي من الطاولة، مخزون ووصفات، محاسبة متوافقة مع فاتورة، موارد بشرية ولوحة بيانات تجمع كل شيء.</p>
+                        <div class="rs-hero-cta">
+                            <a href="/resta/demo" class="rs-btn rs-btn-primary rs-btn-lg">اطلب عرض النظام</a>
+                            <a href="/resta/signup" class="rs-btn rs-btn-outline rs-btn-lg">جرّب ريستا مجاناً</a>
+                        </div>
+                        <div class="rs-collage">
+                            <img src="/resta_saas_master/static/src/img/shot_pos.jpg" alt="نقطة البيع والطاولات" class="rs-shot rs-shot-a"/>
+                            <img src="/resta_saas_master/static/src/img/shot_dash.jpg" alt="لوحة البيانات" class="rs-shot rs-shot-b"/>
+                            <img src="/resta_saas_master/static/src/img/shot_ess.jpg" alt="بوابة الموظف" class="rs-shot rs-shot-c"/>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rs-trust">
+                    <div class="rs-container rs-trust-row">
+                        <span><i class="fa fa-check-circle"/> متوافق مع فاتورة (زاتكا)</span>
+                        <span><i class="fa fa-wifi"/> الكاشير يعمل بدون إنترنت</span>
+                        <span><i class="fa fa-motorcycle"/> ربط تطبيقات التوصيل</span>
+                        <span><i class="fa fa-language"/> عربي بالكامل</span>
+                        <span><i class="fa fa-cloud"/> سحابي، من أي جهاز</span>
+                    </div>
+                </section>
+
+                <section id="solutions" class="rs-section">
+                    <div class="rs-container">
+                        <h2>كل ما يحتاجه مطعمك في نظام واحد</h2>
+                        <p class="rs-sub">بدل خمسة أنظمة منفصلة لا تتكلم مع بعضها</p>
+                        <div class="rs-grid rs-grid-4">
+                            <div class="rs-card"><i class="fa fa-cutlery"/><h3>نقطة بيع للمطاعم</h3><p>طاولات وصالات، محلي وسفري وتوصيل، تقسيم الفاتورة، مودفايرز وكومبو، صلاحيات الكاشير.</p></div>
+                            <div class="rs-card"><i class="fa fa-fire"/><h3>شاشة المطبخ</h3><p>شاشة لكل قسم (المطبخ، المشروبات)، مؤقت التحضير، تنبيه صوتي وشاشة أرقام الطلبات للعملاء.</p></div>
+                            <div class="rs-card"><i class="fa fa-qrcode"/><h3>الطلب الذاتي</h3><p>QR على الطاولة يطلب منه العميل ويدفع، أو كشك طلبات للوجبات السريعة، مع تتبع حالة الطلب.</p></div>
+                            <div class="rs-card"><i class="fa fa-cubes"/><h3>المخزون والوصفات</h3><p>تكلفة الطبق من الوصفة، الهدر، الجرد، المطبخ المركزي والإنتاج، وطلبات الفروع.</p></div>
+                            <div class="rs-card"><i class="fa fa-shopping-cart"/><h3>المشتريات</h3><p>أوامر الشراء، استلام الموردين، اتفاقيات الشراء الدورية وفواتير الموردين.</p></div>
+                            <div class="rs-card"><i class="fa fa-book"/><h3>المحاسبة وفاتورة</h3><p>شجرة حسابات سعودية، ضريبة القيمة المضافة، الربط مع زاتكا، وقوائم مالية لكل فرع.</p></div>
+                            <div class="rs-card"><i class="fa fa-users"/><h3>الموارد البشرية</h3><p>حضور بالوجه من الجوال، إجازات وسلف وطلبات الموظفين، وتكلفة العمالة من المبيعات.</p></div>
+                            <div class="rs-card"><i class="fa fa-bar-chart"/><h3>لوحة البيانات</h3><p>المبيعات بالساعة، هندسة القائمة، نقطة التعادل، عمولات التطبيقات وكل التطبيقات في شاشة واحدة.</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="editions" class="rs-section rs-alt">
+                    <div class="rs-container">
+                        <h2>جاهز حسب نوع مطعمك</h2>
+                        <p class="rs-sub">اختر نوع نشاطك عند التسجيل ونجهّز لك النظام بإعداداته</p>
+                        <div class="rs-grid rs-grid-2">
+                            <div class="rs-edition">
+                                <div class="rs-badge">مطاعم الجلسات</div>
+                                <h3>مطعم (داين إن)</h3>
+                                <ul>
+                                    <li>صالات العوائل والأفراد وخريطة الطاولات</li>
+                                    <li>الطلب من الطاولة عبر QR والدفع بعد الوجبة</li>
+                                    <li>شاشة المطبخ وبار المشروبات</li>
+                                    <li>نقل الطاولات بين الكاشيرات وطباعة الفاتورة قبل الدفع</li>
+                                </ul>
+                                <a href="/resta/signup?type=dinein" class="rs-btn rs-btn-primary">ابدأ التجربة</a>
+                            </div>
+                            <div class="rs-edition">
+                                <div class="rs-badge">الخدمة السريعة</div>
+                                <h3>وجبات سريعة ومقاهي</h3>
+                                <ul>
+                                    <li>كاشير سريع وسفري وطلبات السيارة</li>
+                                    <li>شاشة أرقام الطلبات وتتبع الطلب مع تقييم العميل</li>
+                                    <li>قائمة الفطور حسب الوقت وبار القهوة</li>
+                                    <li>كنكت لتطبيقات التوصيل والكول سنتر</li>
+                                </ul>
+                                <a href="/resta/signup?type=qsr" class="rs-btn rs-btn-primary">ابدأ التجربة</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="dash" class="rs-section">
+                    <div class="rs-container rs-split">
+                        <div>
+                            <h2>لوحة بيانات تعرف مطعمك</h2>
+                            <p>أرقام اليوم التشغيلي، أكثر الأصناف ربحية، تكلفة الوصفة الفعلية مقابل المفترضة، نقطة التعادل، والمخزون والمشتريات والمحاسبة والموظفين في تبويبات، لكل الفروع أو لفرع واحد.</p>
+                            <a href="/resta/signup" class="rs-btn rs-btn-primary">جرّبها على بياناتك</a>
+                        </div>
+                        <img src="/resta_saas_master/static/src/img/shot_ops.jpg" alt="العمليات في لوحة البيانات" class="rs-shot"/>
+                    </div>
+                </section>
+
+                <section id="pricing" class="rs-section rs-alt">
+                    <div class="rs-container">
+                        <h2>أسعار واضحة</h2>
+                        <p class="rs-sub">الأسعار قبل الضريبة · خصم عند الاشتراك السنوي</p>
+                        <div class="rs-grid rs-grid-3">
+                            <t t-foreach="plans" t-as="plan">
+                                <div t-attf-class="rs-plan #{'rs-plan-hl' if plan.highlighted else ''}">
+                                    <div t-if="plan.highlighted" class="rs-badge">الأكثر طلباً</div>
+                                    <h3 t-out="plan.name"/>
+                                    <p class="rs-muted" t-out="plan.tagline"/>
+                                    <div class="rs-price"><span t-out="'{:,.0f}'.format(plan.price_monthly)"/> <small>ر.س / شهرياً</small></div>
+                                    <div class="rs-muted small">أو <t t-out="'{:,.0f}'.format(plan.price_yearly)"/> ر.س سنوياً · حتى <t t-out="plan.max_branches"/> فرع</div>
+                                    <ul><li t-foreach="plan.feature_list()" t-as="f" t-out="f"/></ul>
+                                    <a href="/resta/signup" class="rs-btn rs-btn-primary w-100">ابدأ التجربة المجانية</a>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="faq" class="rs-section">
+                    <div class="rs-container rs-faq">
+                        <h2>الأسئلة الشائعة</h2>
+                        <details><summary>هل أحتاج بطاقة للتجربة؟</summary><p>لا. سجّل بياناتك ونجهّز نظامك خلال دقيقة، والتجربة مجانية <t t-out="trial_days"/> يوماً.</p></details>
+                        <details><summary>هل النظام متوافق مع فاتورة (زاتكا)؟</summary><p>نعم، الفاتورة الإلكترونية المبسطة والضريبية من نقطة البيع والمحاسبة متوافقة مع المرحلة الثانية.</p></details>
+                        <details><summary>هل يعمل الكاشير عند انقطاع الإنترنت؟</summary><p>نعم، يستمر البيع وتُرسل الطلبات تلقائياً عند عودة الاتصال.</p></details>
+                        <details><summary>هل تنقلون بياناتي من نظامي الحالي؟</summary><p>نعم، مدير حسابك يساعدك في نقل الأصناف والوصفات والعملاء ويدرّب فريقك.</p></details>
+                    </div>
+                </section>
+
+                <section class="rs-cta">
+                    <div class="rs-container">
+                        <h2>جاهز تشغّل مطعمك بذكاء؟</h2>
+                        <div class="rs-hero-cta">
+                            <a href="/resta/signup" class="rs-btn rs-btn-light rs-btn-lg">جرّب ريستا مجاناً</a>
+                            <a href="/resta/demo" class="rs-btn rs-btn-outline-light rs-btn-lg">اطلب عرضاً</a>
+                        </div>
+                    </div>
+                </section>
+                <t t-call="resta_saas_master.resta_footer"/>
+            </div>
+        </t>
+    </template>
+
+    <!-- ================================================================
+         Auth card pages (signup / login / demo / status)
+         ================================================================ -->
+    <template id="resta_auth_card" name="Resta auth card">
+        <t t-call="website.layout">
+            <div id="wrap" class="rs-site rs-auth">
+                <a href="/resta" class="rs-auth-logo"><img src="/resta_sidebar_theme/static/img/resta-wordmark-default.svg" alt="ريستا"/></a>
+                <h1 class="rs-auth-title" t-out="title"/>
+                <div class="rs-auth-card"><t t-out="0"/></div>
+                <div class="rs-auth-links"><t t-out="links or ''"/></div>
+            </div>
+        </t>
+    </template>
+
+    <template id="field_error" name="Resta field error">
+        <div t-if="errors.get(key)" class="rs-err" t-out="errors.get(key)"/>
+    </template>
+
+    <template id="page_signup" name="Resta - Signup">
+        <t t-call="resta_saas_master.resta_auth_card">
+            <t t-set="title">جرّب ريستا مجاناً لمدة <t t-out="trial_days"/> يوماً</t>
+            <form method="post" action="/resta/signup" class="rs-form" novalidate="1">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="text" name="website_url" class="rs-hp" tabindex="-1" autocomplete="off"/>
+                <div t-if="errors.get('form')" class="rs-alert" t-out="errors.get('form')"/>
+                <label>الاسم</label>
+                <input name="name" t-att-value="post.get('name')" required="1" autocomplete="name"/>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'name'"/></t>
+
+                <label>رقم الجوال</label>
+                <div class="rs-row">
+                    <select name="dial" class="rs-dial">
+                        <t t-foreach="countries" t-as="c">
+                            <option t-att-value="c[1]" t-att-selected="post.get('dial', '966') == c[1]"><t t-out="c[2]"/> (+<t t-out="c[1]"/>)</option>
+                        </t>
+                    </select>
+                    <input name="phone" t-att-value="post.get('phone')" inputmode="tel" placeholder="5xxxxxxxx" required="1" dir="ltr"/>
+                </div>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'phone'"/></t>
+
+                <label>البريد الإلكتروني</label>
+                <input name="email" type="email" t-att-value="post.get('email')" required="1" dir="ltr" autocomplete="email"/>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'email'"/></t>
+
+                <label>كلمة المرور</label>
+                <div class="rs-pw">
+                    <input name="password" type="password" required="1" minlength="8" dir="ltr" autocomplete="new-password"/>
+                    <button type="button" class="rs-pw-toggle" aria-label="إظهار"><i class="fa fa-eye"/></button>
+                </div>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'password'"/></t>
+
+                <label>اسم النشاط</label>
+                <input name="business_name" t-att-value="post.get('business_name')" required="1"/>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'business_name'"/></t>
+
+                <label>نوع النشاط</label>
+                <select name="business_type" required="1">
+                    <option value="">اختر…</option>
+                    <t t-foreach="business_types" t-as="bt">
+                        <option t-att-value="bt[0]" t-att-selected="(post.get('business_type') or request.params.get('type')) == bt[0]" t-out="bt[1]"/>
+                    </t>
+                </select>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'business_type'"/></t>
+
+                <label>موقع النشاط</label>
+                <select name="country">
+                    <t t-foreach="countries" t-as="c">
+                        <option t-att-value="c[0]" t-att-selected="post.get('country', 'SA') == c[0]" t-out="c[2]"/>
+                    </t>
+                </select>
+
+                <label class="rs-check">
+                    <input type="checkbox" name="terms" value="1" t-att-checked="post.get('terms')"/>
+                    أوافق على <a href="/resta/terms" target="_blank">الشروط والأحكام</a>
+                </label>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'terms'"/></t>
+
+                <button type="submit" class="rs-btn rs-btn-primary rs-btn-block">ابدأ التجربة المجانية <t t-out="trial_days"/> يوماً</button>
+            </form>
+            <t t-set="links">لديك حساب؟ <a href="/resta/login">سجّل الدخول</a></t>
+        </t>
+    </template>
+
+    <template id="page_signup_status" name="Resta - Provisioning status">
+        <t t-call="resta_saas_master.resta_auth_card">
+            <t t-set="title">نجهّز نظام <t t-out="tenant.name"/></t>
+            <div class="rs-status" t-att-data-token="token">
+                <div class="rs-steps">
+                    <div class="rs-step is-done" data-step="1"><i class="fa fa-check"/> استلمنا طلبك</div>
+                    <div class="rs-step is-active" data-step="2"><i class="fa fa-database"/> إنشاء قاعدة بيانات مطعمك</div>
+                    <div class="rs-step" data-step="3"><i class="fa fa-sliders"/> تجهيز الإعدادات والمستخدم</div>
+                    <div class="rs-step" data-step="4"><i class="fa fa-rocket"/> نظامك جاهز</div>
+                </div>
+                <p class="rs-muted rs-status-text">يستغرق ذلك أقل من دقيقة…</p>
+                <div class="rs-ready d-none">
+                    <div class="rs-muted">رقم حسابك</div>
+                    <div class="rs-account"/>
+                    <p class="rs-muted">احفظه، ستحتاجه مع بريدك وكلمة المرور للدخول. أرسلناه أيضاً إلى بريدك.</p>
+                    <a class="rs-btn rs-btn-primary rs-btn-block rs-go" href="#">الدخول إلى نظامك</a>
+                </div>
+                <div class="rs-alert d-none rs-failed">تعذّر تجهيز النظام. فريقنا تلقى تنبيهاً وسيتواصل معك قريباً.</div>
+            </div>
+        </t>
+    </template>
+
+    <template id="page_login" name="Resta - Login">
+        <t t-call="resta_saas_master.resta_auth_card">
+            <t t-set="title">الدخول إلى حسابك</t>
+            <form class="rs-form rs-login" method="post" action="#" novalidate="1">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="rs-alert" t-att-class="'rs-alert' if error else 'rs-alert d-none'" t-out="error or ''"/>
+                <label>رقم الحساب</label>
+                <input name="account" t-att-value="account" inputmode="numeric" required="1" dir="ltr"/>
+                <label>البريد الإلكتروني</label>
+                <input name="login" type="email" t-att-value="email" required="1" dir="ltr" placeholder="address@restaurant.com" autocomplete="username"/>
+                <label>كلمة المرور</label>
+                <div class="rs-pw">
+                    <input name="password" type="password" required="1" dir="ltr" autocomplete="current-password"/>
+                    <button type="button" class="rs-pw-toggle" aria-label="إظهار"><i class="fa fa-eye"/></button>
+                </div>
+                <button type="submit" class="rs-btn rs-btn-primary rs-btn-block">الدخول</button>
+            </form>
+            <t t-set="links">
+                <a href="#" class="rs-forgot">نسيت كلمة المرور؟</a>
+                <span>ليس لديك حساب؟ <a href="/resta/signup">جرّب ريستا مجاناً</a></span>
+            </t>
+        </t>
+    </template>
+
+    <template id="page_demo" name="Resta - Demo request">
+        <t t-call="resta_saas_master.resta_auth_card">
+            <t t-set="title">اطلب عرضاً للنظام</t>
+            <form method="post" action="/resta/demo" class="rs-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="text" name="website_url" class="rs-hp" tabindex="-1" autocomplete="off"/>
+                <div t-if="errors.get('form')" class="rs-alert" t-out="errors.get('form')"/>
+                <label>الاسم</label>
+                <input name="name" t-att-value="post.get('name')" required="1"/>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'name'"/></t>
+                <label>رقم الجوال</label>
+                <input name="phone" t-att-value="post.get('phone')" required="1" dir="ltr" inputmode="tel"/>
+                <t t-call="resta_saas_master.field_error"><t t-set="key" t-value="'phone'"/></t>
+                <label>البريد الإلكتروني</label>
+                <input name="email" type="email" t-att-value="post.get('email')" dir="ltr"/>
+                <label>اسم النشاط</label>
+                <input name="business_name" t-att-value="post.get('business_name')"/>
+                <div class="rs-row">
+                    <div>
+                        <label>نوع النشاط</label>
+                        <select name="business_type">
+                            <option value="">اختر…</option>
+                            <t t-foreach="business_types" t-as="bt"><option t-att-value="bt[0]" t-out="bt[1]"/></t>
+                        </select>
+                    </div>
+                    <div>
+                        <label>عدد الفروع</label>
+                        <input name="branches" type="number" min="1" t-att-value="post.get('branches') or 1"/>
+                    </div>
+                </div>
+                <label>المدينة</label>
+                <input name="city" t-att-value="post.get('city')"/>
+                <label>ملاحظات</label>
+                <textarea name="message" rows="3" t-out="post.get('message') or ''"/>
+                <button type="submit" class="rs-btn rs-btn-primary rs-btn-block">أرسل الطلب</button>
+            </form>
+            <t t-set="links">تفضّل التجربة بنفسك؟ <a href="/resta/signup">ابدأ التجربة المجانية</a></t>
+        </t>
+    </template>
+
+    <template id="page_demo_thanks" name="Resta - Demo thanks">
+        <t t-call="resta_saas_master.resta_auth_card">
+            <t t-set="title">شكراً لك</t>
+            <p class="text-center">استلمنا طلبك وسيتواصل معك مدير حساب خلال يوم عمل.</p>
+            <a href="/resta/signup" class="rs-btn rs-btn-primary rs-btn-block">ابدأ التجربة المجانية الآن</a>
+        </t>
+    </template>
+
+    <template id="page_terms" name="Resta - Terms">
+        <t t-call="website.layout">
+            <div id="wrap" class="rs-site">
+                <t t-call="resta_saas_master.resta_nav"/>
+                <section class="rs-section">
+                    <div class="rs-container oe_structure rs-terms">
+                        <h1>الشروط والأحكام</h1>
+                        <p>تُضاف هنا شروط استخدام منصة ريستا وسياسة الخصوصية ومعالجة البيانات. يمكن تعديل هذه الصفحة من محرر الموقع.</p>
+                    </div>
+                </section>
+                <t t-call="resta_saas_master.resta_footer"/>
+            </div>
+        </t>
+    </template>
+</odoo>

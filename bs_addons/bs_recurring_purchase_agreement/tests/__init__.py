@@ -1,0 +1,1 @@
+from . import test_recurring_purchase_agreement as test_recurring_purchase_agreement

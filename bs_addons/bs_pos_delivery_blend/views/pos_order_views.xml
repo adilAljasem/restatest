@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_tree_blend" model="ir.ui.view">
+        <field name="name">pos.order.list.delivery.blend</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='pos_reference']" position="after">
+                <field name="blend_aggregator" string="Channel" optional="show"/>
+                <field name="blend_aggregator_order_id" optional="show"/>
+                <field name="blend_status" optional="show"/>
+                <field name="blend_order_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_filter_blend" model="ir.ui.view">
+        <field name="name">pos.order.search.delivery.blend</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='pos_reference']" position="after">
+                <field name="blend_aggregator_order_id" string="External Order ID"
+                       filter_domain="['|', '|', ('blend_aggregator_order_id', 'ilike', self), ('blend_partner_reference', 'ilike', self), ('blend_order_id', 'ilike', self)]"/>
+                <field name="blend_aggregator" string="Delivery Channel"/>
+            </xpath>
+            <xpath expr="//search/filter[@name='cancelled']" position="after">
+                <separator/>
+                <filter name="blend_orders" string="Blend Orders"
+                        domain="[('blend_order_id', '!=', False)]"/>
+                <separator/>
+                <filter name="blend_pending" string="Blend Pending"
+                        domain="[('blend_order_id', '!=', False), ('blend_status', '=', 'pending')]"/>
+                <filter name="blend_in_progress" string="Blend In Progress"
+                        domain="[('blend_order_id', '!=', False), ('blend_status', 'in', ['accepted', 'preparing', 'prepared', 'assigned', 'at_pick_up', 'on_the_way'])]"/>
+                <filter name="blend_delivered" string="Blend Delivered"
+                        domain="[('blend_order_id', '!=', False), ('blend_status', '=', 'delivered')]"/>
+                <filter name="blend_cancelled" string="Blend Cancelled / Rejected"
+                        domain="[('blend_order_id', '!=', False), ('blend_status', 'in', ['cancelled', 'rejected', 'time_out'])]"/>
+            </xpath>
+            <xpath expr="//search/group/filter[@name='config_id']" position="after">
+                <filter name="group_blend_channel" string="Delivery Channel"
+                        context="{'group_by': 'blend_aggregator'}"/>
+                <filter name="group_blend_status" string="Blend Status"
+                        context="{'group_by': 'blend_status'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_pos_form_blend" model="ir.ui.view">
+        <field name="name">pos.order.form.delivery.blend</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_blend_send_delivery_status"
+                        type="object"
+                        string="Send Blend Status"
+                        groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                        invisible="not blend_delivery_status"/>
+                <button name="action_blend_retry"
+                        type="object"
+                        string="Retry Blend"
+                        groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+            </xpath>
+            <xpath expr="//page[@name='extra']" position="inside">
+                <group string="Blend Integration"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager">
+                    <field name="blend_aggregator" readonly="1"/>
+                    <field name="blend_aggregator_order_id" readonly="1"/>
+                    <field name="blend_partner_reference" readonly="1"/>
+                    <field name="blend_order_id" readonly="1"/>
+                    <field name="blend_status" readonly="1"/>
+                    <field name="blend_delivery_status"/>
+                    <field name="blend_car_color"/>
+                    <field name="blend_car_plate_number"/>
+                    <field name="blend_car_plate_letters"/>
+                    <field name="blend_car_brand"/>
+                    <field name="blend_payload" widget="json" readonly="1" colspan="2"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

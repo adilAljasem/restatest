@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_pos_settlement" model="ir.ui.view">
+        <field name="name">account.move.form.pos.settlement</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="bs_pos_settlement_ids" invisible="1"/>
+                <button name="action_bs_open_pos_settlement" type="object" class="oe_stat_button"
+                        icon="fa-exchange" invisible="not bs_pos_settlement_ids" string="POS Settlements"/>
+            </xpath>
+            <xpath expr="//group[@id='other_tab_entry_group']/group[field[@name='fiscal_position_id']]" position="inside">
+                <field name="bs_pos_source_move_id" invisible="not bs_pos_source_move_id"/>
+                <field name="bs_pos_source_line_id" invisible="not bs_pos_source_line_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

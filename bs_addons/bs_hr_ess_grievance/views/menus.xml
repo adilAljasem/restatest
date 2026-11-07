@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_grievance" name="Grievances" parent="bs_hr_ess_base.menu_ess_root" sequence="35"
+              groups="bs_hr_ess_base.group_ess_grievance_committee" action="action_grievance"/>
+    <menuitem id="menu_ess_disciplinary" name="Disciplinary Actions" parent="bs_hr_ess_base.menu_ess_employees"
+              sequence="50" action="action_disciplinary" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_violation_types" name="Violation Types" parent="bs_hr_ess_base.menu_ess_config"
+              sequence="40" action="action_violation_type"/>
+</odoo>

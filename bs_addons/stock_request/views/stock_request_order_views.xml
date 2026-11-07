@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="stock_request_order_tree">
+        <field name="name">stock.request.order.tree</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Request Number" />
+                <field name="requested_by" />
+                <field name="request_date" />
+                <field name="expected_date" optional="show" />
+                <field name="priority" widget="priority" optional="show" />
+                <field name="source_warehouse_id" optional="show" />
+                <field name="warehouse_id" optional="show" />
+                <field name="transfer_flow" optional="hide" />
+                <field
+                    name="next_action"
+                    widget="badge"
+                    decoration-info="next_action in ('submit_request', 'review_request')"
+                    decoration-warning="next_action in ('transfer_products', 'transfer_remaining', 'deliver_products', 'deliver_remaining', 'receive_products', 'receive_remaining')"
+                    decoration-muted="next_action == 'no_action'"
+                />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state in ('draft', 'submitted', 'ready', 'in_transit')"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state == 'rejected'"
+                    decoration-muted="state == 'cancelled'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_request_order_form">
+        <field name="name">stock.request.order.form</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_submit"
+                        string="Submit Request"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="operation_type != 'request' or state != 'draft' or not is_requester"
+                    />
+                    <button
+                        name="action_confirm"
+                        string="Accept Request"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="operation_type != 'request' or state != 'submitted' or not is_source_warehouse_responsible"
+                    />
+                    <button
+                        name="action_reject"
+                        string="Reject Request"
+                        type="object"
+                        invisible="operation_type != 'request' or state != 'submitted' or not is_source_warehouse_responsible"
+                    />
+                    <button
+                        name="action_confirm"
+                        string="Confirm Transfer"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="operation_type != 'transfer' or state != 'draft' or not is_source_warehouse_responsible"
+                    />
+                    <button
+                        name="action_transfer_products"
+                        string="Transfer Products"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="transfer_flow != 'one_step' or state not in ('ready', 'in_transit') or not has_pending_delivery or not is_source_warehouse_responsible"
+                    />
+                    <button
+                        name="action_deliver_products"
+                        string="Deliver Products"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="transfer_flow not in ('two_step', 'two_step_no_transit') or state not in ('ready', 'in_transit') or not has_pending_delivery or not is_source_warehouse_responsible"
+                    />
+                    <button
+                        name="action_receive_products"
+                        string="Receive Products"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="transfer_flow not in ('two_step', 'two_step_no_transit') or state != 'in_transit' or not has_pending_receipt or not is_destination_warehouse_responsible"
+                    />
+                    <button
+                        name="action_close_remaining_receipt"
+                        string="Close Remaining Receipt"
+                        type="object"
+                        invisible="not can_close_remaining_receipt or not is_destination_warehouse_responsible"
+                    />
+                    <button
+                        name="action_cancel"
+                        invisible="state != 'draft' or not is_requester"
+                        type="object"
+                        string="Cancel"
+                    />
+                    <button
+                        name="action_cancel"
+                        invisible="state in ('draft', 'done', 'rejected', 'cancelled')"
+                        type="object"
+                        string="Cancel Operation"
+                        groups="stock_request.group_stock_request_manager"
+                    />
+                    <button
+                        name="action_print_stock_request"
+                        string="Print Stock Request"
+                        type="object"
+                        icon="fa-print"
+                        groups="stock_request.group_stock_request_user"
+                        invisible="not is_requester and not is_source_warehouse_responsible and not is_destination_warehouse_responsible"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,submitted,ready,in_transit,done,rejected,cancelled"
+                        invisible="operation_type != 'request' or transfer_flow not in ('two_step', 'two_step_no_transit')"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,ready,in_transit,done,cancelled"
+                        invisible="operation_type != 'transfer' or transfer_flow not in ('two_step', 'two_step_no_transit')"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,submitted,ready,done,rejected,cancelled"
+                        invisible="operation_type != 'request' or transfer_flow != 'one_step'"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,ready,done,cancelled"
+                        invisible="operation_type != 'transfer' or transfer_flow != 'one_step'"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            type="object"
+                            name="action_view_source_request"
+                            class="oe_stat_button"
+                            icon="fa-file-text-o"
+                            invisible="operation_type != 'transfer' or not source_request_id"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Source Request</span>
+                            </div>
+                        </button>
+                        <button
+                            type="object"
+                            name="action_view_direct_transfers"
+                            class="oe_stat_button"
+                            icon="fa-exchange"
+                            invisible="operation_type != 'request'"
+                        >
+                            <field
+                                name="direct_transfer_count"
+                                widget="statinfo"
+                                string="Direct Transfers"
+                            />
+                        </button>
+                        <button
+                            type="object"
+                            name="action_view_transfers"
+                            class="oe_stat_button"
+                            icon="fa-exchange"
+                            invisible="transfer_picking_count == 0"
+                            groups="stock.group_stock_user"
+                        >
+                            <field
+                                name="transfer_picking_count"
+                                widget="statinfo"
+                                string="Transfer"
+                            />
+                        </button>
+                        <button
+                            type="object"
+                            name="action_view_deliveries"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            invisible="delivery_picking_count == 0"
+                            groups="stock.group_stock_user"
+                        >
+                            <field
+                                name="delivery_picking_count"
+                                widget="statinfo"
+                                string="Delivery"
+                            />
+                        </button>
+                        <button
+                            type="object"
+                            name="action_view_receipts"
+                            class="oe_stat_button"
+                            icon="fa-download"
+                            invisible="receipt_picking_count == 0"
+                            groups="stock.group_stock_user"
+                        >
+                            <field
+                                name="receipt_picking_count"
+                                widget="statinfo"
+                                string="Receipt"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="Request Number" />
+                        <h1><field name="name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="requested_by" readonly="state != 'draft'" />
+                            <field name="request_date" readonly="state != 'draft'" />
+                            <field name="expected_date" readonly="state != 'draft'" />
+                            <field
+                                name="priority"
+                                widget="priority"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="source_request_id"
+                                string="Source Document"
+                                invisible="operation_type != 'transfer'"
+                                readonly="state != 'draft'"
+                                options="{'no_create': True}"
+                                domain="[('operation_type', '=', 'request'), ('company_id', '=', company_id)]"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="source_warehouse_id"
+                                required="1"
+                                readonly="state != 'draft'"
+                                options="{'no_create': True, 'no_open': True}"
+                                domain="[('company_id', '=', company_id)]"
+                            />
+                            <field
+                                name="warehouse_id"
+                                required="1"
+                                readonly="state != 'draft'"
+                                options="{'no_create': True, 'no_open': True}"
+                                domain="[('company_id', '=', company_id)]"
+                            />
+                            <field
+                                name="template_id"
+                                readonly="state != 'draft'"
+                                options="{'no_create': True}"
+                            />
+                            <button
+                                name="action_load_template"
+                                string="Load Template"
+                                type="object"
+                                class="btn-secondary"
+                                icon="fa-download"
+                                invisible="state != 'draft' or not template_id"
+                            />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                                readonly="state != 'draft'"
+                            />
+                        </group>
+                    </group>
+                    <!-- Technical fields are derived from the warehouses. -->
+                    <field name="company_id" invisible="1" />
+                    <field name="location_id" invisible="1" />
+                    <field name="source_location_id" invisible="1" />
+                    <field name="transit_location_id" invisible="1" />
+                    <field name="route_id" invisible="1" />
+                    <field name="route_ids" invisible="1" />
+                    <field name="operation_type" invisible="1" />
+                    <field name="transfer_flow" invisible="1" />
+                    <field name="procurement_group_id" invisible="1" />
+                    <field name="move_ids" invisible="1" />
+                    <field name="source_responsible_user_ids" invisible="1" />
+                    <field
+                        name="destination_responsible_user_ids"
+                        invisible="1"
+                    />
+                    <field name="is_source_warehouse_responsible" invisible="1" />
+                    <field name="is_requester" invisible="1" />
+                    <field name="can_requester_edit_no_transit_lines" invisible="1" />
+                    <field name="has_pending_delivery" invisible="1" />
+                    <field name="has_pending_receipt" invisible="1" />
+                    <field name="can_close_remaining_receipt" invisible="1" />
+                    <field name="show_available_qty" invisible="1" />
+                    <field
+                        name="is_destination_warehouse_responsible"
+                        invisible="1"
+                    />
+
+                    <notebook>
+                        <page name="items" string="Items">
+                            <field
+                                name="stock_request_ids"
+                                context="{
+                                    'default_expected_date': expected_date,
+                                    'default_warehouse_id': warehouse_id,
+                                    'default_location_id': location_id,
+                                    'default_source_location_id': source_location_id,
+                                    'default_route_id': route_id,
+                                    'default_procurement_group_id': procurement_group_id,
+                                    'default_company_id': company_id,
+                                    'default_requested_by': requested_by,
+                                    'default_state': 'draft'
+                                }"
+                                readonly="not can_requester_edit_no_transit_lines and state != 'draft' and (state != 'submitted' or not is_source_warehouse_responsible)"
+                            >
+                                <list editable="bottom">
+                                    <control>
+                                        <create
+                                            string="Add a line"
+                                            invisible="not parent.can_requester_edit_no_transit_lines and parent.state != 'draft' and (parent.state != 'submitted' or not parent.is_source_warehouse_responsible)"
+                                        />
+                                        <delete invisible="not parent.can_requester_edit_no_transit_lines and parent.state != 'draft'" />
+                                    </control>
+                                    <field
+                                        name="product_id"
+                                        context="{'stock_request_company_id': parent.company_id, 'stock_request_hide_kits': True}"
+                                        domain="[('type', 'in', ['product', 'consu']), ('stock_request_is_kit', '=', False)]"
+                                        readonly="not parent.can_requester_edit_no_transit_lines and parent.state != 'draft' and (id or parent.state != 'submitted' or not parent.is_source_warehouse_responsible)"
+                                    />
+                                    <field
+                                        name="allowed_uom_categ_id"
+                                        column_invisible="1"
+                                    />
+                                    <field
+                                        name="product_uom_id"
+                                        options="{'no_open': True, 'no_create': True}"
+                                        groups="uom.group_uom"
+                                        readonly="not parent.can_requester_edit_no_transit_lines and parent.state != 'draft' and (id or parent.state != 'submitted' or not parent.is_source_warehouse_responsible)"
+                                    />
+                                    <field
+                                        name="available_qty"
+                                        string="Available Qty"
+                                        optional="show"
+                                        readonly="1"
+                                        column_invisible="not parent.show_available_qty"
+                                    />
+                                    <field
+                                        name="product_uom_qty"
+                                        string="Requested Quantity"
+                                        readonly="not parent.can_requester_edit_no_transit_lines and parent.state != 'draft' and (parent.state != 'submitted' or not parent.is_source_warehouse_responsible)"
+                                    />
+                                    <field
+                                        name="delivered_qty"
+                                        column_invisible="parent.state in ('draft', 'submitted')"
+                                    />
+                                    <field
+                                        name="received_qty"
+                                        column_invisible="parent.state in ('draft', 'submitted')"
+                                    />
+                                    <field
+                                        name="cancelled_receipt_qty"
+                                        column_invisible="parent.state in ('draft', 'submitted')"
+                                    />
+                                    <field
+                                        name="remaining_delivery_qty"
+                                        column_invisible="parent.state in ('draft', 'submitted')"
+                                    />
+                                    <field
+                                        name="remaining_receipt_qty"
+                                        column_invisible="parent.state in ('draft', 'submitted')"
+                                    />
+                                    <field
+                                        name="fulfillment_status"
+                                        widget="badge"
+                                        column_invisible="parent.state in ('draft', 'submitted')"
+                                        decoration-info="fulfillment_status == 'pending'"
+                                        decoration-warning="fulfillment_status == 'partially_received'"
+                                        decoration-success="fulfillment_status == 'fully_received'"
+                                        decoration-danger="fulfillment_status == 'not_fulfilled'"
+                                    />
+
+                                    <!-- Technical line fields stay available to the ORM. -->
+                                    <field name="name" column_invisible="1" />
+                                    <field name="expected_date" column_invisible="1" />
+                                    <field name="warehouse_id" column_invisible="1" />
+                                    <field name="location_id" column_invisible="1" />
+                                    <field
+                                        name="source_location_id"
+                                        column_invisible="1"
+                                    />
+                                    <field name="route_id" column_invisible="1" />
+                                    <field name="route_ids" column_invisible="1" />
+                                    <field
+                                        name="procurement_group_id"
+                                        column_invisible="1"
+                                    />
+                                    <field name="company_id" column_invisible="1" />
+                                    <field name="move_ids" column_invisible="1" />
+                                    <field name="allocation_ids" column_invisible="1" />
+                                </list>
+                            </field>
+                            <group>
+                                <field
+                                    name="reason"
+                                    colspan="2"
+                                    placeholder="Explain why these products are needed..."
+                                    readonly="state != 'draft'"
+                                />
+                                <field
+                                    name="rejection_reason"
+                                    colspan="2"
+                                    placeholder="Explain why this request is rejected..."
+                                    invisible="operation_type != 'request' or state not in ('submitted', 'rejected')"
+                                    readonly="state != 'submitted' or not is_source_warehouse_responsible"
+                                />
+                            </group>
+                        </page>
+                        <page
+                            name="transfer_execution"
+                            string="Transfer Execution"
+                            invisible="not delivered_by_id and not received_by_id"
+                        >
+                            <group>
+                                <group>
+                                    <field
+                                        name="delivered_by_id"
+                                        readonly="1"
+                                        options="{'no_create': True, 'no_open': True}"
+                                    />
+                                    <field name="delivery_date" readonly="1" />
+                                </group>
+                                <group>
+                                    <field
+                                        name="received_by_id"
+                                        readonly="1"
+                                        options="{'no_create': True, 'no_open': True}"
+                                    />
+                                    <field name="receipt_date" readonly="1" />
+                                </group>
+                            </group>
+                        </page>
+                        <page
+                            name="other_information"
+                            string="Other Information"
+                            groups="stock_request.group_stock_request_manager"
+                            invisible="transfer_flow != 'two_step'"
+                        >
+                            <group>
+                                <field
+                                    name="transit_location_id"
+                                    readonly="1"
+                                    options="{'no_create': True, 'no_open': True}"
+                                />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_request_order_work_queue_tree">
+        <field name="name">stock.request.order.work.queue.tree</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false" delete="false">
+                <field name="name" string="Request Number" />
+                <field name="operation_type" widget="badge" />
+                <field name="requested_by" />
+                <field name="expected_date" />
+                <field name="priority" widget="priority" />
+                <field name="source_warehouse_id" />
+                <field name="warehouse_id" />
+                <field name="transfer_flow" optional="show" />
+                <field
+                    name="next_action"
+                    widget="badge"
+                    decoration-info="next_action in ('submit_request', 'review_request')"
+                    decoration-warning="next_action in ('transfer_products', 'transfer_remaining', 'deliver_products', 'deliver_remaining', 'receive_products', 'receive_remaining')"
+                    decoration-muted="next_action == 'no_action'"
+                />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state in ('submitted', 'ready', 'in_transit')"
+                    decoration-success="state == 'done'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_request_order_search">
+        <field name="name">stock.request.order.search</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Stock Requests" />
+                <field name="requested_by" />
+                <field name="request_date" />
+                <field name="state" />
+                <field name="source_warehouse_id" />
+                <field name="warehouse_id" />
+                <field name="transfer_flow" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <separator />
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]" />
+                <filter
+                    string="Waiting for Source Warehouse"
+                    name="submitted"
+                    domain="[('state', '=', 'submitted')]"
+                />
+                <filter
+                    string="Ready to Deliver"
+                    name="ready"
+                    domain="[('state', '=', 'ready')]"
+                />
+                <filter
+                    string="In Transit"
+                    name="in_transit"
+                    domain="[('state', '=', 'in_transit')]"
+                />
+                <filter string="Received" name="done" domain="[('state', '=', 'done')]" />
+                <filter
+                    string="Cancelled"
+                    name="cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+                <filter
+                    string="Rejected"
+                    name="rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_order_action">
+        <field name="name">Stock Requests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="path">stock-requests</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[("operation_type", "=", "request")]</field>
+        <field name="context">{"default_operation_type": "request"}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a stock request containing one or more products.
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_direct_transfer_action">
+        <field name="name">Direct Transfers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="path">stock-request-direct-transfers</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_tree" />
+        <field name="domain">[("operation_type", "=", "transfer")]</field>
+        <field name="context">{"default_operation_type": "transfer"}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a direct transfer containing one or more products.
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_my_requests_action">
+        <field name="name">My Requests</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_tree" />
+        <field name="domain">[("operation_type", "=", "request"), ("requested_by", "=", uid)]</field>
+        <field name="context">{"default_operation_type": "request", "default_requested_by": uid}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_to_review_action">
+        <field name="name">To Review</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_work_queue_tree" />
+        <field name="domain">[("source_warehouse_id.stock_request_responsible_user_ids", "in", [uid]), ("operation_type", "=", "request"), ("state", "=", "submitted")]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_to_transfer_action">
+        <field name="name">To Transfer</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_work_queue_tree" />
+        <field name="domain">[("source_warehouse_id.stock_request_responsible_user_ids", "in", [uid]), ("transfer_flow", "=", "one_step"), ("state", "in", ["ready", "in_transit"]), ("has_pending_delivery", "=", True)]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_to_deliver_action">
+        <field name="name">To Deliver</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_work_queue_tree" />
+        <field name="domain">[("source_warehouse_id.stock_request_responsible_user_ids", "in", [uid]), ("transfer_flow", "in", ["two_step", "two_step_no_transit"]), ("state", "in", ["ready", "in_transit"]), ("has_pending_delivery", "=", True)]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_to_receive_action">
+        <field name="name">To Receive</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_work_queue_tree" />
+        <field name="domain">[("warehouse_id.stock_request_responsible_user_ids", "in", [uid]), ("transfer_flow", "in", ["two_step", "two_step_no_transit"]), ("has_pending_receipt", "=", True)]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_all_requests_action">
+        <field name="name">All Requests</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_work_queue_tree" />
+        <field name="domain">[("operation_type", "=", "request")]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="stock_request_all_operations_action">
+        <field name="name">All Operations</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_order_work_queue_tree" />
+        <field name="domain">[]</field>
+        <field name="context">{"default_operation_type": "request"}</field>
+    </record>
+
+</odoo>

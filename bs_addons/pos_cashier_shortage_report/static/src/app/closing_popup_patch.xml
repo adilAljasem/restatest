@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_cashier_shortage_report.ClosePosPopup"
+       t-inherit="point_of_sale.ClosePosPopup"
+       t-inherit-mode="extension">
+        <xpath expr="//div[@t-foreach='props.non_cash_payment_methods']/t[@t-set='_showDiff']"
+               position="attributes">
+            <attribute name="t-value">(pm.type === 'bank' and pm.number !== 0) or pm.type === 'cash'</attribute>
+        </xpath>
+    </t>
+</templates>

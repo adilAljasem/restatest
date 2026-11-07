@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_document_type_user,document type user,model_bs_hr_document_type,base.group_user,1,0,0,0
+access_document_type_hr,document type hr,model_bs_hr_document_type,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_document_user,document user,model_bs_hr_document,base.group_user,1,0,0,0
+access_document_hr,document hr,model_bs_hr_document,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_document_renewal_user,document renewal user,model_bs_hr_document_renewal,base.group_user,1,1,1,0
+access_document_renewal_hr,document renewal hr,model_bs_hr_document_renewal,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_contract_renewal_user,contract renewal approver,model_bs_hr_contract_renewal,base.group_user,1,1,0,0
+access_contract_renewal_hr,contract renewal hr,model_bs_hr_contract_renewal,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1

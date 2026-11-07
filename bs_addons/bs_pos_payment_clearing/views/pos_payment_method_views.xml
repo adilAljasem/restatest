@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_payment_method_form_clearing" model="ir.ui.view">
+        <field name="name">pos.payment.method.form.clearing</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+        <field name="arch" type="xml">
+            <field name="split_transactions" position="after">
+                <field name="partner_id" invisible="not split_transactions" required="split_transactions and type != 'pay_later'"/>
+            </field>
+            <field name="outstanding_account_id" position="after">
+                <field name="bs_branch_cash_account_id" invisible="type != 'cash'"/>
+            </field>
+            <field name="outstanding_account_id" position="attributes">
+                <attribute name="invisible">type not in ('cash', 'bank')</attribute>
+                <attribute name="required">type in ('cash', 'bank')</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="pos_payment_method_list_clearing" model="ir.ui.view">
+        <field name="name">pos.payment.method.list.clearing</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="outstanding_account_id" position="attributes">
+                <attribute name="invisible">type not in ('cash', 'bank')</attribute>
+                <attribute name="required">type in ('cash', 'bank')</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

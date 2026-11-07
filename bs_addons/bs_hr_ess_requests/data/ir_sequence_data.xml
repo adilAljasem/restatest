@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_ess_loan" model="ir.sequence">
+        <field name="name">ESS Loan</field>
+        <field name="code">bs.hr.loan</field>
+        <field name="prefix">LOAN/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_ess_loan_postpone" model="ir.sequence">
+        <field name="name">ESS Loan Postpone</field>
+        <field name="code">bs.hr.loan.postpone</field>
+        <field name="prefix">LPP/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_ess_leave_request" model="ir.sequence">
+        <field name="name">ESS Leave Request</field>
+        <field name="code">bs.hr.leave.request</field>
+        <field name="prefix">LVR/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_ess_custody_request" model="ir.sequence">
+        <field name="name">ESS Custody Request</field>
+        <field name="code">bs.hr.custody.request</field>
+        <field name="prefix">CUS/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_ess_generic_request" model="ir.sequence">
+        <field name="name">ESS Generic Request</field>
+        <field name="code">bs.hr.generic.request</field>
+        <field name="prefix">HRQ/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

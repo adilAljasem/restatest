@@ -1,0 +1,663 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* resta_sidebar_theme
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 07:52+0000\n"
+"PO-Revision-Date: 2026-10-10 07:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Administration"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.view_rs_sidebar_sections_list
+msgid "App"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_icon_style
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_icon_style
+msgid "App Icon Style"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "App Icons"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__approve
+msgid "Approve"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__apps
+msgid "Apps"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.view_rs_sidebar_sections_list
+msgid "Automatic"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__bag
+msgid "Bag"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__barcode
+msgid "Barcode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__book
+msgid "Book"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__box
+msgid "Box"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__calendar
+msgid "Calendar"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__car
+msgid "Car"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__cart
+msgid "Cart"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__chat
+msgid "Chat"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__chef
+msgid "Chef"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__clock
+msgid "Clock"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Close menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Collapse menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_sidebar_default__collapsed
+msgid "Collapsed"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_logo_mark
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_logo_mark
+msgid "Collapsed Sidebar Mark"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Collapsed mark"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Color Mode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model,name:resta_sidebar_theme.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model,name:resta_sidebar_theme.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__contacts
+msgid "Contacts"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_default_scheme__dark
+msgid "Dark"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_logo_dark_treatment
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_logo_dark_treatment
+msgid "Dark Mode Logo Treatment"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Dark mode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_default_scheme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_default_scheme
+msgid "Default Color Mode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid ""
+"Default mode for users who have not picked one yet. Each user can switch "
+"with the sun/moon button."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__dining
+msgid "Dining"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_http__display_name
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_ui_menu__display_name
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__display_name
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Edit app sections"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__erp
+msgid "Erp"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Expand menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_sidebar_default__expanded
+msgid "Expanded"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__factory
+msgid "Factory"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Finance"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__folder
+msgid "Folder"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_default_scheme__system
+msgid "Follow device"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid ""
+"Full wordmark for light and dark modes, plus the small mark shown when the "
+"sidebar is collapsed. Reload the page after saving."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_company__rs_logo_light
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_config_settings__rs_logo_light
+msgid "Full wordmark shown at the top of the sidebar in light mode."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__gift
+msgid "Gift"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.actions.act_window,help:resta_sidebar_theme.action_rs_sidebar_sections
+msgid ""
+"Give apps the same section name to group them in the sidebar.\n"
+"               Drag rows to change the order of apps. Reload the page to see changes."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__globe
+msgid "Globe"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_group_sections
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_group_sections
+msgid "Group Apps into Sections"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model,name:resta_sidebar_theme.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__headset
+msgid "Headset"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Home"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__hourglass
+msgid "Hourglass"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_http__id
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_ui_menu__id
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__id
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid ""
+"Initial state of the side menu and whether apps are grouped under section "
+"titles."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_logo_dark_treatment__smart
+msgid "Invert dark parts, keep brand colors"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__kanban
+msgid "Kanban"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__kpi
+msgid "Kpi"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__learn
+msgid "Learn"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__ledger
+msgid "Ledger"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__lifebuoy
+msgid "Lifebuoy"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_default_scheme__light
+msgid "Light"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Light mode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_company__rs_logo_dark
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_config_settings__rs_logo_dark
+msgid ""
+"Light-colored version of the wordmark for dark mode. If empty, the light "
+"logo is adapted automatically."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Logo"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__mail
+msgid "Mail"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Main menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_logo_dark_treatment__white
+msgid "Make the logo fully white"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__megaphone
+msgid "Megaphone"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model,name:resta_sidebar_theme.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "No matching menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/webclient/webclient_patch.xml:0
+msgid "Open menu"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Operations"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_icon_style__odoo
+msgid "Original app icons"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Overview"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__pay
+msgid "Pay"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__people
+msgid "People"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__planning
+msgid "Planning"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__pos
+msgid "Pos"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__receipt
+msgid "Receipt"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__recruit
+msgid "Recruit"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__repeat
+msgid "Repeat"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Resta Theme"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_ir_ui_menu__rs_icon
+msgid "Resta line icon used for this app. Leave empty for automatic."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_icon_style__resta
+msgid "Resta line icons (black & white)"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid ""
+"Resta line icons follow the theme: black in light mode, white in dark mode. "
+"Pick a different icon per app in Edit app sections."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Sales & Marketing"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Search menus"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.xml:0
+msgid "Search menus…"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_ui_menu__rs_section_sequence
+msgid "Section Order"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_ir_ui_menu__rs_section_sequence
+msgid "Sections are sorted by the smallest order of their apps."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__settings
+msgid "Settings"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__sheet
+msgid "Sheet"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__shield
+msgid "Shield"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__res_company__rs_logo_dark_treatment__none
+msgid "Show as is"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Sidebar"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_sidebar_default
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_sidebar_default
+msgid "Sidebar Default State"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_ui_menu__rs_icon
+msgid "Sidebar Icon"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_logo_dark
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_logo_dark
+msgid "Sidebar Logo (Dark Mode)"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_company__rs_logo_light
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_res_config_settings__rs_logo_light
+msgid "Sidebar Logo (Light Mode)"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.res_config_settings_view_form_resta_theme
+msgid "Sidebar Logos"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,field_description:resta_sidebar_theme.field_ir_ui_menu__rs_section
+msgid "Sidebar Section"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.actions.act_window,name:resta_sidebar_theme.action_rs_sidebar_sections
+#: model_terms:ir.ui.view,arch_db:resta_sidebar_theme.view_rs_sidebar_sections_list
+msgid "Sidebar Sections"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__sign
+msgid "Sign"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_company__rs_logo_mark
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_config_settings__rs_logo_mark
+msgid "Small square mark shown when the sidebar is collapsed."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__smart
+msgid "Smart"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__sun
+msgid "Sun"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__survey
+msgid "Survey"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/theme_toggle/theme_toggle.js:0
+msgid "Switch to dark mode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/theme_toggle/theme_toggle.js:0
+msgid "Switch to light mode"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__target
+msgid "Target"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__ticket
+msgid "Ticket"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__todo
+msgid "Todo"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_ir_ui_menu__rs_section
+msgid ""
+"Top-level apps sharing the same section are grouped together in the sidebar."
+" Leave empty to use the automatic grouping."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_company__rs_logo_dark_treatment
+#: model:ir.model.fields,help:resta_sidebar_theme.field_res_config_settings__rs_logo_dark_treatment
+msgid "Used only when no dark-mode logo is uploaded."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__vision
+msgid "Vision"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/sidebar/sidebar.js:0
+msgid "Workspace"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__wrench
+msgid "Wrench"
+msgstr ""

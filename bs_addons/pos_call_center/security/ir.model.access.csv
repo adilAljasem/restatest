@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_call_center_pos_user,pos.call.center pos user,model_pos_call_center,point_of_sale.group_pos_user,1,0,0,0
+access_pos_call_center_manager,pos.call.center manager,model_pos_call_center,group_call_center_manager,1,1,1,1
+access_pos_call_zone_pos_user,pos.call.zone pos user,model_pos_call_zone,point_of_sale.group_pos_user,1,0,0,0
+access_pos_call_zone_manager,pos.call.zone manager,model_pos_call_zone,group_call_center_manager,1,1,1,1

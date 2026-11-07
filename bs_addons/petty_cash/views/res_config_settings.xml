@@ -1,0 +1,16 @@
+<odoo>
+    <record id="res_config_settings_view_form_inherit_petty_cash" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.petty.cash</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='bank_cash']" position="inside">
+                <setting string="Petty Cash"
+                    company_dependent="1"
+                    help="Select the receivable account used as Petty Cash.">
+                    <field name="petty_cash_account_id" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

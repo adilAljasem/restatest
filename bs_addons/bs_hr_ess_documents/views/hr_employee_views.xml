@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_ess_documents" model="ir.ui.view">
+        <field name="name">hr.employee.form.ess.documents</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_ess_open_documents" type="object" class="oe_stat_button" icon="fa-id-card-o"
+                        groups="hr.group_hr_user">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="ess_document_count"/></span>
+                        <span class="o_stat_text">Documents</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="view_employee_form_ess_documents_page" model="ir.ui.view">
+        <field name="name">hr.employee.form.ess.documents.page</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.view_employee_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='ess']/separator" position="before">
+                <separator string="Documents"/>
+                <field name="ess_document_ids" context="{'default_employee_id': id}">
+                    <list editable="bottom" decoration-danger="state == 'expired'" decoration-warning="state == 'expiring'">
+                        <field name="type_id"/>
+                        <field name="number"/>
+                        <field name="issue_date" optional="hide"/>
+                        <field name="expiry_date"/>
+                        <field name="expiry_date_hijri"/>
+                        <field name="state" widget="badge"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

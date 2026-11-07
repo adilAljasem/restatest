@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="product_modifiers.PreparationDisplayOrderlineModifierRouting"
+       t-inherit="pos_preparation_display.Orderline"
+       t-inherit-mode="extension">
+        <xpath expr="//section[contains(@class, 'o_preparation_display_orderline')]" position="attributes">
+            <attribute name="t-att-class">{ 'o_pdis_modifier_child': this.props.orderline.isModifierChild }</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'o_pdis_product-name')]" position="replace">
+            <div
+                class="o_pdis_product-name flex-grow-1 d-flex align-items-start"
+                t-att-class="{ 'o_pdis_orderline--done opacity-25 text-decoration-line-through text-muted': this.props.orderline.todo === false }"
+            >
+                <span t-if="this.props.orderline.isModifierChild"
+                      class="o_pdis_modifier_branch flex-shrink-0"
+                      aria-hidden="true">&#9492;&#9472;&#9472;</span>
+                <span t-esc="this.props.orderline.productName"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="violation_lateness" model="bs.hr.violation.type">
+        <field name="name">Lateness</field>
+        <field name="code">LATE</field>
+        <field name="sequence">1</field>
+        <field name="first_action">written_warning</field>
+        <field name="second_action">deduction_days</field>
+        <field name="second_value">0.5</field>
+        <field name="third_action">deduction_days</field>
+        <field name="third_value">1</field>
+    </record>
+    <record id="violation_absence" model="bs.hr.violation.type">
+        <field name="name">Absence without notice</field>
+        <field name="code">ABS</field>
+        <field name="sequence">2</field>
+        <field name="first_action">deduction_days</field>
+        <field name="first_value">1</field>
+        <field name="second_action">deduction_days</field>
+        <field name="second_value">2</field>
+        <field name="third_action">deduction_days</field>
+        <field name="third_value">3</field>
+    </record>
+    <record id="violation_hygiene" model="bs.hr.violation.type">
+        <field name="name">Hygiene / food safety breach</field>
+        <field name="code">HYG</field>
+        <field name="sequence">3</field>
+        <field name="first_action">written_warning</field>
+        <field name="second_action">deduction_days</field>
+        <field name="second_value">1</field>
+        <field name="third_action">deduction_days</field>
+        <field name="third_value">3</field>
+    </record>
+    <record id="violation_uniform" model="bs.hr.violation.type">
+        <field name="name">Uniform policy breach</field>
+        <field name="code">UNI</field>
+        <field name="sequence">4</field>
+        <field name="first_action">verbal_warning</field>
+        <field name="second_action">written_warning</field>
+        <field name="third_action">deduction_amount</field>
+        <field name="third_value">50</field>
+    </record>
+    <record id="violation_customer_misconduct" model="bs.hr.violation.type">
+        <field name="name">Misconduct with customers</field>
+        <field name="code">CUST</field>
+        <field name="sequence">5</field>
+        <field name="first_action">written_warning</field>
+        <field name="second_action">deduction_days</field>
+        <field name="second_value">2</field>
+        <field name="third_action">suspension</field>
+        <field name="third_value">3</field>
+    </record>
+</odoo>

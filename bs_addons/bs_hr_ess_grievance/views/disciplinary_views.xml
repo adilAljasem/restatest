@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Violation types (penalty regulation) -->
+    <record id="view_violation_type_list" model="ir.ui.view">
+        <field name="name">bs.hr.violation.type.list</field>
+        <field name="model">bs.hr.violation.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="first_action"/>
+                <field name="second_action"/>
+                <field name="third_action"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_violation_type_form" model="ir.ui.view">
+        <field name="name">bs.hr.violation.type.form</field>
+        <field name="model">bs.hr.violation.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="deduction_value"/>
+                        </group>
+                    </group>
+                    <group string="Penalty ladder (within 180 days)">
+                        <group>
+                            <field name="first_action"/>
+                            <field name="second_action"/>
+                            <field name="third_action"/>
+                        </group>
+                        <group>
+                            <field name="first_value" invisible="first_action not in ('deduction_days', 'deduction_amount', 'suspension')"/>
+                            <field name="second_value" invisible="second_action not in ('deduction_days', 'deduction_amount', 'suspension')"/>
+                            <field name="third_value" invisible="third_action not in ('deduction_days', 'deduction_amount', 'suspension')"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Article of the work regulation..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_violation_type" model="ir.actions.act_window">
+        <field name="name">Violation Types</field>
+        <field name="res_model">bs.hr.violation.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Disciplinary actions -->
+    <record id="view_disciplinary_form" model="ir.ui.view">
+        <field name="name">bs.hr.disciplinary.form</field>
+        <field name="model">bs.hr.disciplinary</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_notify_employee" type="object" string="Notify employee" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state not in ('draft', 'notified')"
+                            class="btn-primary" confirm="Confirm this disciplinary action? A payroll deduction is created when applicable."/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'cancelled'"/>
+                    <button name="action_reset_draft" type="object" string="Reset to draft" invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,notified,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <div class="alert alert-warning" role="alert" invisible="state != 'appealed'">
+                        The employee appealed this action: it waits for the grievance committee decision.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'draft'"/>
+                            <field name="violation_type_id" readonly="state != 'draft'"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="occurrence" readonly="state != 'draft'"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="action" readonly="state not in ('draft', 'notified')"/>
+                            <field name="deduction_value" readonly="state not in ('draft', 'notified')"
+                                   invisible="action not in ('deduction_days', 'deduction_amount', 'suspension')"/>
+                            <field name="deduction_amount" readonly="state not in ('draft', 'notified')"
+                                   invisible="action not in ('deduction_days', 'deduction_amount')"/>
+                            <field name="appeal_deadline"/>
+                            <field name="employee_ack_date"/>
+                            <field name="adjustment_id" invisible="not adjustment_id"/>
+                        </group>
+                    </group>
+                    <field name="description" readonly="state not in ('draft',)" placeholder="Facts..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_disciplinary_list" model="ir.ui.view">
+        <field name="name">bs.hr.disciplinary.list</field>
+        <field name="model">bs.hr.disciplinary</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="work_location_id" optional="show"/>
+                <field name="violation_type_id"/>
+                <field name="occurrence" optional="show"/>
+                <field name="action"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="deduction_amount" sum="Total" optional="show"/>
+                <field name="state" widget="badge" decoration-warning="state in ('notified', 'appealed')"
+                       decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_disciplinary_search" model="ir.ui.view">
+        <field name="name">bs.hr.disciplinary.search</field>
+        <field name="model">bs.hr.disciplinary</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="violation_type_id"/>
+                <field name="work_location_id"/>
+                <filter name="open" string="Not final" domain="[('state', 'in', ('draft', 'notified', 'appealed'))]"/>
+                <filter name="appealed" string="Appealed" domain="[('state', '=', 'appealed')]"/>
+                <group>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_type" string="Violation" context="{'group_by': 'violation_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_disciplinary" model="ir.actions.act_window">
+        <field name="name">Disciplinary Actions</field>
+        <field name="res_model">bs.hr.disciplinary</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

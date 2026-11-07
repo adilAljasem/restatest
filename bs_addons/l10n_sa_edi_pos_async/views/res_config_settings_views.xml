@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_zatca_async" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.l10n_sa_edi_pos_async</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_accounting_section']" position="inside">
+                <setting id="l10n_sa_zatca_async_setting"
+                         string="ZATCA reporting in background"
+                         help="Print the receipt instantly: simplified (B2C) invoices are signed and get their QR code at checkout, then are reported to ZATCA in the background. B2B invoices still use real-time clearance.">
+                    <field name="pos_l10n_sa_zatca_async"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

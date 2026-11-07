@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree view: add Business Date column next to Date -->
+    <record id="view_pos_order_tree_business_date" model="ir.ui.view">
+        <field name="name">pos.order.tree.business.date</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                <field name="business_date" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Form view: add Business Date near Date -->
+    <record id="view_pos_pos_form_business_date" model="ir.ui.view">
+        <field name="name">pos.order.form.business.date</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                <field name="business_date"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Search view: allow filtering / grouping by Business Date -->
+    <record id="view_pos_order_filter_business_date" model="ir.ui.view">
+        <field name="name">pos.order.search.business.date</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                <field name="business_date"/>
+            </field>
+            <xpath expr="//search" position="inside">
+                <group>
+                    <filter name="group_by_business_date" string="Business Date"
+                            context="{'group_by': 'business_date'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

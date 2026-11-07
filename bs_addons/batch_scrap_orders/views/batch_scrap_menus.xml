@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_batch_scrap_orders"
+              name="Batch Scrap Orders"
+              parent="stock.menu_stock_adjustments"
+              action="batch_scrap_order_action"
+              sequence="98"
+              groups="stock.group_stock_user"/>
+</odoo>

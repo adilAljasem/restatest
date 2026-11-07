@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_pos_form_inherit_pino_session_handover" model="ir.ui.view">
+        <field name="name">pos.order.form.inherit.pino.session.handover</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='order_fields']/field[@name='session_id']" position="after">
+                <field name="pino_is_session_transferred" readonly="1"/>
+                <field name="pino_handover_state" readonly="1" invisible="not pino_is_session_transferred"/>
+                <field name="pino_handover_source" readonly="1" invisible="not pino_is_session_transferred"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='extra']" position="after">
+                <page string="Opened / Closed" name="pino_opener_closer">
+                    <group>
+                        <group string="Opened">
+                            <field name="pino_opened_employee_id"/>
+                            <field name="pino_opened_by_name" invisible="pino_opened_employee_id"/>
+                            <field name="pino_opened_session_id"/>
+                            <field name="pino_opened_config_id"/>
+                            <field name="pino_opened_at"/>
+                        </group>
+                        <group string="Closed">
+                            <field name="pino_closed_employee_id"/>
+                            <field name="pino_closed_by_name" invisible="pino_closed_employee_id"/>
+                            <field name="pino_closed_session_id"/>
+                            <field name="pino_closed_config_id"/>
+                            <field name="pino_closed_at"/>
+                            <field name="pino_closed_by_other"/>
+                            <field name="pino_stay_duration" widget="float_time" invisible="not pino_stay_duration"/>
+                        </group>
+                        <group string="Bill">
+                            <field name="pino_bill_printed"/>
+                            <field name="pino_bill_printed_employee_id" invisible="not pino_bill_printed"/>
+                            <field name="pino_bill_printed_by_name" invisible="not pino_bill_printed or pino_bill_printed_employee_id"/>
+                            <field name="pino_bill_printed_at" invisible="not pino_bill_printed"/>
+                            <field name="pino_bill_print_count" invisible="not pino_bill_printed"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Session Handover" name="pino_session_handover" invisible="not pino_is_session_transferred">
+                    <group>
+                        <group string="Old Session">
+                            <field name="pino_handover_from_session_id"/>
+                            <field name="pino_old_session_cashier_id"/>
+                            <field name="pino_old_session_cashier_name" invisible="pino_old_session_cashier_id"/>
+                            <field name="pino_handover_source"/>
+                            <field name="pino_handover_requested_at"/>
+                            <field name="pino_handover_requested_by_id"/>
+                        </group>
+                        <group string="New Session">
+                            <field name="pino_handover_to_session_id"/>
+                            <field name="pino_new_session_cashier_id"/>
+                            <field name="pino_new_session_cashier_name" invisible="pino_new_session_cashier_id"/>
+                            <field name="pino_handover_completed_at"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_tree_inherit_pino_session_handover" model="ir.ui.view">
+        <field name="name">pos.order.list.inherit.pino.session.handover</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='session_id']" position="after">
+                <field name="pino_opened_by_name" optional="show"/>
+                <field name="pino_closed_by_name" optional="show"/>
+                <field name="pino_closed_by_other" optional="hide"/>
+                <field name="pino_bill_printed_by_name" optional="hide"/>
+                <field name="pino_stay_duration" widget="float_time" optional="show"/>
+                <field name="pino_is_session_transferred" optional="hide"/>
+                <field name="pino_handover_state" optional="hide"/>
+                <field name="pino_handover_source" optional="hide"/>
+                <field name="pino_old_session_cashier_id" optional="hide"/>
+                <field name="pino_new_session_cashier_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_search_inherit_pino_session_handover" model="ir.ui.view">
+        <field name="name">pos.order.search.inherit.pino.session.handover</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter name="pino_transferred" string="Transferred Between Sessions" domain="[('pino_is_session_transferred', '=', True)]"/>
+                <filter name="pino_handover_pending" string="Pending Handover" domain="[('pino_handover_state', '=', 'pending')]"/>
+                <filter name="pino_handover_done" string="Handover Done" domain="[('pino_handover_state', '=', 'done')]"/>
+                <filter name="pino_handover_manual" string="Manual POS Handover" domain="[('pino_handover_source', '=', 'manual')]"/>
+                <filter name="pino_handover_closing" string="Closing Handover" domain="[('pino_handover_source', '=', 'closing')]"/>
+                <separator/>
+                <filter name="pino_closed_by_other" string="Closed By Another Cashier" domain="[('pino_closed_by_other', '=', True)]"/>
+                <filter name="pino_has_stay" string="Table Orders Closed" domain="[('table_id', '!=', False), ('pino_closed_at', '!=', False)]"/>
+                <filter name="pino_bill_waiting" string="Bill Printed, Waiting Payment" domain="[('pino_bill_printed', '=', True), ('state', '=', 'draft')]"/>
+                <group>
+                    <filter name="pino_group_old_session" string="Old Session" context="{'group_by': 'pino_handover_from_session_id'}"/>
+                    <filter name="pino_group_new_session" string="New Session" context="{'group_by': 'pino_handover_to_session_id'}"/>
+                    <filter name="pino_group_source" string="Source" context="{'group_by': 'pino_handover_source'}"/>
+                    <filter name="pino_group_old_cashier" string="Old Cashier" context="{'group_by': 'pino_old_session_cashier_id'}"/>
+                    <filter name="pino_group_new_cashier" string="New Cashier" context="{'group_by': 'pino_new_session_cashier_id'}"/>
+                    <filter name="pino_group_opened_by" string="Opened By" context="{'group_by': 'pino_opened_employee_id'}"/>
+                    <filter name="pino_group_closed_by" string="Closed By" context="{'group_by': 'pino_closed_employee_id'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

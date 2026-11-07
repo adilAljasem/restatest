@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_pos_form_tracking" model="ir.ui.view">
+        <field name="name">pos.order.form.tracking</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Order Tracking" name="order_tracking">
+                    <group>
+                        <group>
+                            <field name="tracking_state"/>
+                            <field name="tracking_ready_date"/>
+                            <field name="tracking_completed_date"/>
+                            <field name="tracking_url" widget="url"/>
+                        </group>
+                        <group>
+                            <field name="nps_score" invisible="nps_score &lt; 0"/>
+                            <div class="d-flex gap-2" colspan="2">
+                                <button name="action_tracking_mark_ready" type="object" string="Mark as Ready" class="btn-primary"
+                                        invisible="tracking_state not in ('received', 'preparing')" groups="point_of_sale.group_pos_user"/>
+                                <button name="action_tracking_mark_completed" type="object" string="Mark as Picked Up" class="btn-secondary"
+                                        invisible="tracking_state in ('completed', 'cancelled')" groups="point_of_sale.group_pos_user"/>
+                                <button name="action_open_tracking_page" type="object" string="Open Customer Page" class="btn-link"/>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_filter_tracking" model="ir.ui.view">
+        <field name="name">pos.order.search.tracking</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="tracking_ready" string="Ready, not picked up" domain="[('tracking_state', '=', 'ready')]"/>
+                <filter name="tracking_rated" string="Rated by customer" domain="[('nps_score', '&gt;=', 0)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

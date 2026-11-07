@@ -1,0 +1,447 @@
+/* ==========================================================================
+   Pino POS – custom sales receipt & kitchen ticket
+
+   IMPORTANT: Odoo runs `rtlcss` over every stylesheet of a bundle when the
+   user language is right-to-left, which mirrors `text-align`, `padding-right`,
+   `margin-left`, ... This layout is already authored for RTL, so mirroring it
+   a second time breaks it. The whole file is therefore excluded from that
+   transformation.
+
+   All sizes are relative (em / %) so the layout scales correctly between the
+   on-screen preview, the web print (14px) and the thermal render (30px).
+   ========================================================================== */
+
+/*rtl:begin:ignore*/
+.pino-receipt,
+.pino-kot {
+    font-family: "Tajawal", "Cairo", "Noto Kufi Arabic", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.35;
+    color: #000;
+    text-align: right;
+}
+
+/* ------------------------------ Header ---------------------------------- */
+.pino-receipt .pino-logo {
+    display: block;
+    margin: 0 auto;
+    width: 45%;
+    max-width: 45%;
+}
+
+.pino-receipt .pino-org {
+    text-align: center;
+    font-size: 70%;
+    margin-top: 0.9em;
+}
+
+.pino-receipt .pino-org-line {
+    margin: 0.15em 0;
+}
+
+/* ------------------------------ Boxes ----------------------------------- */
+.pino-receipt .pino-box {
+    border: 1px solid #000;
+    border-radius: 0.6em;
+    padding: 0.5em 0.7em;
+    margin-top: 0.9em;
+}
+
+.pino-receipt .pino-title-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+
+.pino-receipt .pino-title {
+    font-weight: 700;
+    font-size: 76%;
+    white-space: nowrap;
+}
+
+.pino-receipt .pino-ref {
+    border: 1px solid #000;
+    border-radius: 0.5em;
+    padding: 0.1em 0.5em;
+    font-weight: 700;
+    font-size: 74%;
+    white-space: nowrap;
+}
+
+/* --------------------------- Order details ------------------------------ */
+.pino-receipt .pino-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.6em;
+    margin-top: 0.85em;
+}
+
+.pino-receipt .pino-meta-cell {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 72%;
+    text-align: center;
+}
+
+.pino-receipt .pino-meta-end {
+    text-align: center;
+}
+
+.pino-receipt .pino-meta-label {
+    color: #000;
+}
+
+.pino-receipt .pino-meta-value {
+    font-weight: 700;
+    font-size: 118%;
+}
+
+/* ------------------------------ Lines ----------------------------------- */
+.pino-receipt .pino-lines {
+    margin-top: 0.7em;
+}
+
+.pino-receipt .pino-line {
+    border-top: 1px solid #000;
+    padding: 0.55em 0;
+}
+
+.pino-receipt .pino-line-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6em;
+}
+
+.pino-receipt .pino-qty {
+    border: 1px solid #000;
+    border-radius: 0.4em;
+    min-width: 1.8em;
+    padding: 0.05em 0.3em;
+    text-align: center;
+    font-weight: 700;
+    font-size: 80%;
+}
+
+.pino-receipt .pino-name {
+    flex: 1;
+    text-align: right;
+    font-weight: 700;
+    font-size: 85%;
+}
+
+.pino-receipt .pino-name-latin {
+    display: block;
+    font-weight: 400;
+    font-size: 82%;
+    color: #000;
+}
+
+.pino-receipt .pino-price {
+    font-weight: 700;
+    font-size: 85%;
+    white-space: nowrap;
+    min-width: 5.4em;
+    text-align: left;
+    flex: none;
+}
+
+.pino-receipt .pino-line-sub {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    padding-right: 2.3em;
+    font-size: 80%;
+    margin-top: 0.2em;
+}
+
+.pino-receipt .pino-line-sub .pino-name {
+    font-weight: 400;
+}
+
+.pino-receipt .pino-note .pino-name {
+    color: #000;
+}
+
+/* ------------------------------ Totals ---------------------------------- */
+.pino-receipt .pino-total-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+    font-size: 78%;
+    padding: 0.12em 0;
+}
+
+.pino-receipt .pino-grand-total {
+    border-top: 1px solid #000;
+    margin-top: 0.45em;
+    padding-top: 0.5em;
+    font-weight: 700;
+    font-size: 100%;
+}
+
+/* ------------------------------- QR ------------------------------------- */
+.pino-receipt .pino-qr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8em;
+}
+
+.pino-receipt .pino-qr-text {
+    font-size: 70%;
+    text-align: right;
+}
+
+.pino-receipt .pino-qr-title {
+    font-weight: 700;
+    margin-bottom: 0.3em;
+}
+
+.pino-receipt .pino-qr-img {
+    width: 32%;
+    max-width: 7em;
+    height: auto;
+    margin: 0;
+}
+
+/* ----------------------------- Barcode ---------------------------------- */
+.pino-receipt .pino-barcode {
+    text-align: center;
+    margin-top: 1.1em;
+}
+
+.pino-receipt .pino-barcode img {
+    width: 75%;
+    height: auto;
+    display: inline-block;
+}
+
+.pino-receipt .pino-barcode-caption {
+    font-size: 62%;
+    letter-spacing: 0.08em;
+    margin-top: 0.25em;
+    color: #000;
+}
+
+/* ------------------------------ Footer ---------------------------------- */
+.pino-receipt .pino-footer {
+    text-align: center;
+    margin-top: 1.1em;
+}
+
+.pino-receipt .pino-slogan {
+    font-weight: 700;
+    font-size: 88%;
+}
+
+.pino-receipt .pino-footer-note {
+    font-size: 70%;
+    color: #000;
+    margin-top: 0.4em;
+}
+
+.pino-receipt .pino-website {
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: #000;
+    margin-top: 0.2em;
+}
+
+.pino-receipt .pino-thanks {
+    font-weight: 700;
+    font-size: 82%;
+    margin-top: 0.7em;
+}
+
+/* ==========================================================================
+   Kitchen ticket (KOT)
+   ========================================================================== */
+.pino-kot {
+    padding: 0.5em 0.2em;
+}
+
+.pino-kot .pino-kot-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.pino-kot .pino-kot-title {
+    font-weight: 700;
+    font-size: 95%;
+}
+
+.pino-kot .pino-kot-tag {
+    font-size: 62%;
+    letter-spacing: 0.18em;
+    color: #000;
+}
+
+.pino-kot .pino-kot-rule-strong {
+    border-top: 0.16em solid #000;
+    margin: 0.45em 0;
+}
+
+.pino-kot .pino-kot-rule {
+    border-top: 1px solid #000;
+    margin: 0.55em 0;
+}
+
+.pino-kot .pino-kot-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+
+.pino-kot .pino-kot-label {
+    font-size: 68%;
+    color: #000;
+}
+
+.pino-kot .pino-kot-pill {
+    border: 1px solid #000;
+    border-radius: 2em;
+    padding: 0.15em 0.95em;
+    font-weight: 700;
+    font-size: 78%;
+    white-space: nowrap;
+}
+
+.pino-kot .pino-kot-identity {
+    align-items: flex-start;
+    margin-top: 0.6em;
+}
+
+.pino-kot .pino-kot-number-value {
+    font-size: 210%;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.pino-kot .pino-kot-context {
+    text-align: left;
+    font-size: 78%;
+}
+
+.pino-kot .pino-kot-context-main {
+    font-weight: 700;
+}
+
+.pino-kot .pino-kot-context-time {
+    font-size: 88%;
+    color: #000;
+}
+
+.pino-kot .pino-kot-note-box {
+    border: 1px solid #000;
+    border-radius: 0.5em;
+    padding: 0.5em 0.7em;
+    margin-top: 0.8em;
+}
+
+.pino-kot .pino-kot-note-text {
+    font-weight: 700;
+    font-size: 90%;
+    margin-top: 0.2em;
+}
+
+.pino-kot .pino-kot-lines {
+    margin-top: 0.7em;
+}
+
+.pino-kot .pino-kot-group {
+    font-weight: 700;
+    font-size: 80%;
+    border-bottom: 1px solid #000;
+    margin-top: 0.6em;
+    padding-bottom: 0.15em;
+}
+
+.pino-kot .pino-kot-line {
+    border-top: 1px solid #000;
+    padding: 0.55em 0;
+}
+
+.pino-kot .pino-kot-line-sub {
+    padding-right: 2.4em;
+}
+
+.pino-kot .pino-kot-line-modifier {
+    position: relative;
+    margin-right: 1.2em;
+    border-top: 1px dashed #000;
+    padding: 0.35em 2.6em 0.55em 0;
+    font-size: 92%;
+}
+
+.pino-kot .pino-kot-line-modifier::before {
+    position: absolute;
+    top: 0.45em;
+    right: 0.3em;
+    content: "\21B3";
+    direction: ltr;
+    font-size: 125%;
+    font-weight: 800;
+}
+
+.pino-kot .pino-kot-line-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.pino-kot .pino-kot-qty {
+    border: 1px solid #000;
+    border-radius: 0.4em;
+    min-width: 2em;
+    padding: 0.1em 0.3em;
+    text-align: center;
+    font-weight: 700;
+    font-size: 85%;
+}
+
+.pino-kot .pino-kot-name {
+    text-align: right;
+}
+
+.pino-kot .pino-kot-name-ar {
+    display: block;
+    font-weight: 700;
+    font-size: 105%;
+}
+
+.pino-kot .pino-kot-name-latin {
+    display: block;
+    font-weight: 700;
+    font-size: 92%;
+    letter-spacing: 0.08em;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.pino-kot .pino-kot-line-note {
+    text-align: right;
+    padding-right: 3.4em;
+    font-size: 82%;
+    font-weight: 700;
+    margin-top: 0.25em;
+}
+
+.pino-kot .pino-kot-bullet {
+    color: #000;
+    margin-left: 0.3em;
+}
+
+.pino-kot .pino-kot-total {
+    font-weight: 800;
+    font-size: 108%;
+}
+
+.pino-kot .pino-kot-foot {
+    font-size: 68%;
+    color: #000;
+    margin-top: 0.45em;
+}
+
+/*rtl:end:ignore*/

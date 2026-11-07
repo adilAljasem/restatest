@@ -1,0 +1,30 @@
+// Branch: floating "Call Center" button
+.o_pos_callcenter_btn {
+    position: fixed;
+    right: 16px; /*rtl:ignore*/
+    bottom: 16px;
+    z-index: 1050;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.o_pos_callcenter_pulse {
+    animation: o_pos_callcenter_pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes o_pos_callcenter_pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+    50% { box-shadow: 0 0 0 14px rgba(255, 193, 7, 0); }
+}
+
+.o_pos_callcenter_card .card-header {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+// Call center POS: no payment / kitchen buttons, only "Send to Branch"
+.actionpad.o_cc_terminal {
+    > .validation,
+    > div.flex-fill {
+        display: none !important;
+    }
+}

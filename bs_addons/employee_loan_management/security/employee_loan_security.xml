@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_employee_loans" model="ir.module.category">
+        <field name="name">Employee Loans</field>
+        <field name="description">Employee loan request and collection permissions</field>
+        <field name="sequence">35</field>
+    </record>
+
+    <record id="res_groups_privilege_employee_loans" model="res.groups.privilege">
+        <field name="name">Employee Loans</field>
+        <field name="sequence">35</field>
+        <field name="category_id" ref="module_category_employee_loans"/>
+    </record>
+
+    <record id="group_employee_loan_user" model="res.groups">
+        <field name="name">Employee Loan User</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_employee_loans"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_employee_loan_approver" model="res.groups">
+        <field name="name">Employee Loan Approver</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_employee_loans"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_employee_loan_user'))]"/>
+    </record>
+
+    <record id="group_employee_loan_manager" model="res.groups">
+        <field name="name">Employee Loan Manager</field>
+        <field name="sequence">30</field>
+        <field name="privilege_id" ref="res_groups_privilege_employee_loans"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_employee_loan_approver'))]"/>
+    </record>
+
+    <record id="base.user_root" model="res.users">
+        <field name="group_ids" eval="[Command.link(ref('group_employee_loan_manager'))]"/>
+    </record>
+
+    <record id="base.user_admin" model="res.users">
+        <field name="group_ids" eval="[Command.link(ref('group_employee_loan_manager'))]"/>
+    </record>
+
+    <record id="employee_loan_user_rule" model="ir.rule">
+        <field name="name">Employee loans: own requests</field>
+        <field name="model_id" ref="model_employee_loan"/>
+        <field name="domain_force">['|', ('applicant_id', '=', user.id), ('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="employee_loan_approver_rule" model="ir.rule">
+        <field name="name">Employee loans: approver access</field>
+        <field name="model_id" ref="model_employee_loan"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_employee_loan_approver'))]"/>
+    </record>
+
+    <record id="employee_loan_accounting_rule" model="ir.rule">
+        <field name="name">Employee loans: accounting access</field>
+        <field name="model_id" ref="model_employee_loan"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('account.group_account_user'))]"/>
+    </record>
+
+    <record id="employee_loan_manager_rule" model="ir.rule">
+        <field name="name">Employee loans: manager access</field>
+        <field name="model_id" ref="model_employee_loan"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_employee_loan_manager'))]"/>
+    </record>
+
+    <record id="employee_loan_company_rule" model="ir.rule">
+        <field name="name">Employee loans: multi-company</field>
+        <field name="model_id" ref="model_employee_loan"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="employee_loan_installment_user_rule" model="ir.rule">
+        <field name="name">Employee loan installments: own requests</field>
+        <field name="model_id" ref="model_employee_loan_installment"/>
+        <field name="domain_force">['|', ('loan_id.applicant_id', '=', user.id), ('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="employee_loan_installment_approver_rule" model="ir.rule">
+        <field name="name">Employee loan installments: approver access</field>
+        <field name="model_id" ref="model_employee_loan_installment"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_employee_loan_approver'))]"/>
+    </record>
+
+    <record id="employee_loan_installment_accounting_rule" model="ir.rule">
+        <field name="name">Employee loan installments: accounting access</field>
+        <field name="model_id" ref="model_employee_loan_installment"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('account.group_account_user'))]"/>
+    </record>
+
+    <record id="employee_loan_installment_manager_rule" model="ir.rule">
+        <field name="name">Employee loan installments: manager access</field>
+        <field name="model_id" ref="model_employee_loan_installment"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[Command.link(ref('group_employee_loan_manager'))]"/>
+    </record>
+
+    <record id="employee_loan_installment_company_rule" model="ir.rule">
+        <field name="name">Employee loan installments: multi-company</field>
+        <field name="model_id" ref="model_employee_loan_installment"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

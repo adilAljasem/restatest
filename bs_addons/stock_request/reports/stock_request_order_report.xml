@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_stock_request_order" model="ir.actions.report">
+        <field name="name">Stock Request / Internal Transfer</field>
+        <field name="model">stock.request.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">stock_request.report_stock_request_order_document</field>
+        <field name="report_file">stock_request.report_stock_request_order_document</field>
+        <field name="print_report_name">'Stock Request - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_stock_request_order_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-set="transit_location" t-value="o._get_effective_transit_location()" />
+                    <div class="page">
+                        <h2 class="text-center mb-4">
+                            <span t-if="o.operation_type == 'transfer'">Direct Transfer</span>
+                            <span t-else="">Stock Request</span>
+                        </h2>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <th class="w-50">Request Number</th>
+                                            <td><span t-field="o.name" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Operation Type</th>
+                                            <td><span t-field="o.operation_type" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Transfer Flow</th>
+                                            <td><span t-field="o.transfer_flow" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td><span t-field="o.state" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Request Date</th>
+                                            <td><span t-field="o.request_date" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Expected Date</th>
+                                            <td><span t-field="o.expected_date" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <th class="w-50">Requested By</th>
+                                            <td><span t-field="o.requested_by" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Source Warehouse</th>
+                                            <td><span t-field="o.source_warehouse_id" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Destination Warehouse</th>
+                                            <td><span t-field="o.warehouse_id" /></td>
+                                        </tr>
+                                        <tr t-if="o.transfer_flow == 'two_step'">
+                                            <th>Transit Location</th>
+                                            <td>
+                                                <span t-if="transit_location" t-esc="transit_location.display_name" />
+                                                <span t-else="">-</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mb-4" t-if="o.reason">
+                            <strong>Reason / Notes</strong>
+                            <div class="border rounded p-2 mt-1">
+                                <span t-field="o.reason" />
+                            </div>
+                        </div>
+
+                        <table class="table table-sm table-bordered o_main_table mb-4">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>UOM</th>
+                                    <th class="text-end">Requested Quantity</th>
+                                    <th class="text-end">Delivered Quantity</th>
+                                    <th class="text-end">Received Quantity</th>
+                                    <th class="text-end">Remaining Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.stock_request_ids" t-as="line">
+                                    <td><span t-field="line.product_id" /></td>
+                                    <td><span t-field="line.product_uom_id" /></td>
+                                    <td class="text-end"><span t-field="line.product_uom_qty" /></td>
+                                    <td class="text-end"><span t-field="line.delivered_qty" /></td>
+                                    <td class="text-end"><span t-field="line.received_qty" /></td>
+                                    <td class="text-end">
+                                        <span t-esc="line.remaining_delivery_qty + line.in_transit_qty" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 class="mb-3">Transfer Execution</h4>
+                        <div class="row mb-5">
+                            <div class="col-4">
+                                <strong>Accepted By</strong><span>: </span>
+                                <span t-field="o.accepted_by_id" t-if="o.accepted_by_id" />
+                                <span t-else="">-</span>
+                            </div>
+                            <div class="col-4">
+                                <strong>Ready Date</strong><span>: </span>
+                                <span t-field="o.ready_date" t-if="o.ready_date" />
+                                <span t-else="">-</span>
+                            </div>
+                            <div class="col-4" />
+                            <div class="col-6 mt-2">
+                                <strong>Delivered By</strong><span>: </span>
+                                <span t-field="o.delivered_by_id" t-if="o.delivered_by_id" />
+                                <span t-else="">-</span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <strong>Delivery Date</strong><span>: </span>
+                                <span t-field="o.delivery_date" t-if="o.delivery_date" />
+                                <span t-else="">-</span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <strong>Received By</strong><span>: </span>
+                                <span t-field="o.received_by_id" t-if="o.received_by_id" />
+                                <span t-else="">-</span>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <strong>Receipt Date</strong><span>: </span>
+                                <span t-field="o.receipt_date" t-if="o.receipt_date" />
+                                <span t-else="">-</span>
+                            </div>
+                        </div>
+
+                        <div class="row text-center mt-5" style="page-break-inside: avoid;">
+                            <div class="col-4">
+                                <strong>Requested By</strong>
+                                <div style="height: 55px;" />
+                                <div class="border-top pt-1">Signature</div>
+                            </div>
+                            <div class="col-4">
+                                <strong>Delivered By</strong>
+                                <div style="height: 55px;" />
+                                <div class="border-top pt-1">Signature</div>
+                            </div>
+                            <div class="col-4">
+                                <strong>Received By</strong>
+                                <div style="height: 55px;" />
+                                <div class="border-top pt-1">Signature</div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

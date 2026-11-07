@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_document_alerts" model="ir.cron">
+        <field name="name">ESS: document expiry states and alerts</field>
+        <field name="model_id" ref="model_bs_hr_document"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_expiry_alerts()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+    <record id="ir_cron_contract_renewals" model="ir.cron">
+        <field name="name">ESS: open contract renewals</field>
+        <field name="model_id" ref="model_bs_hr_contract_renewal"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_open_renewals()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+</odoo>

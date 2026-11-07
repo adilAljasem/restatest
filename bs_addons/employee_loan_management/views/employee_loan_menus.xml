@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_employee_loan_root"
+        name="Loans &amp; Advances"
+        sequence="45"
+        web_icon="employee_loan_management,static/description/icon.png"
+        groups="base.group_user"
+    />
+    <menuitem
+        id="menu_employee_loan_requests"
+        name="Loan Requests"
+        parent="menu_employee_loan_root"
+        action="action_employee_loan_requests"
+        sequence="10"
+        groups="base.group_user"
+    />
+    <menuitem
+        id="menu_accounting_employee_loans"
+        name="Employee Loans"
+        parent="accountant.account_assets_liabilities_menu"
+        action="action_accounting_employee_loans"
+        sequence="25"
+        groups="account.group_account_user"
+    />
+</odoo>

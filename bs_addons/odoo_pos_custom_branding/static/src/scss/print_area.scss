@@ -1,0 +1,26 @@
+// Print area direction (taken from maeen_pos_custom_receipt).
+//
+// Odoo builds every printed ticket - kitchen / preparation tickets included -
+// inside `.render-container` and converts it to an image. In the Arabic
+// (right-to-left) POS that area is right-to-left and kitchen tickets came out
+// cut on the right (quantities and the start of the product names missing).
+// maeen_pos_custom_receipt kept this area left-to-right; it stopped loading
+// when the old `odoo-pos-custom-branding` module it depends on was renamed, so
+// the rule lives here now. Receipts that are Arabic (the Puls receipt has
+// dir="rtl" on its root) keep their own direction.
+.render-container-parent,
+.render-container {
+    /*rtl:ignore*/
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+}
+
+@media print {
+    .o-main-components-container,
+    .render-container-parent,
+    .render-container {
+        /*rtl:ignore*/
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+    }
+}

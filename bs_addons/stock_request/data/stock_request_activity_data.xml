@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="mail_activity_type_stock_request_review"
+        model="mail.activity.type"
+    >
+        <field name="name">Stock Request Review</field>
+        <field name="summary">New stock request requires review.</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="icon">fa-clipboard</field>
+        <field name="decoration_type">warning</field>
+    </record>
+
+    <record
+        id="mail_activity_type_stock_request_receipt"
+        model="mail.activity.type"
+    >
+        <field name="name">Stock Request Receipt</field>
+        <field name="summary">Stock transfer is ready to receive.</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="icon">fa-download</field>
+    </record>
+</odoo>

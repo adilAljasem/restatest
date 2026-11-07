@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="dk_pos_employee_access_rights.ClosePosPopup"
+       t-inherit="point_of_sale.ClosePosPopup"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('total-orders')]" position="attributes">
+            <attribute name="t-if">pos.getCashier()?.sbl_show_pos_closing_register_details</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-methods-overview')]" position="attributes">
+            <attribute name="t-if">!pos.config.module_pos_hr and pos.getCashier()?.sbl_show_pos_closing_register_details</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-methods-overview')]/following-sibling::t[@t-if='pos.config.module_pos_hr'][1]" position="attributes">
+            <attribute name="t-if">pos.config.module_pos_hr and pos.getCashier()?.sbl_show_pos_closing_register_details</attribute>
+        </xpath>
+        <xpath expr="//div[label[normalize-space()='Cash Count']]/preceding-sibling::hr[1]" position="attributes">
+            <attribute name="t-if">pos.config.cash_control</attribute>
+        </xpath>
+        <xpath expr="//div[label[normalize-space()='Cash Count']]" position="attributes">
+            <attribute name="t-if">pos.config.cash_control</attribute>
+        </xpath>
+        <xpath expr="//button[@t-on-click='autoFillCashCount']" position="attributes">
+            <attribute name="t-if">pos.getCashier()?.sbl_show_pos_closing_register_details</attribute>
+        </xpath>
+        <xpath expr="//div[@t-foreach='props.non_cash_payment_methods' and t[@t-set='_showDiff']]" position="attributes">
+            <attribute name="t-if">pos.getCashier()?.sbl_show_pos_closing_register_details</attribute>
+        </xpath>
+    </t>
+</templates>

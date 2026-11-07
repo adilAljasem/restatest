@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_form_blend" model="ir.ui.view">
+        <field name="name">product.template.form.blend</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <group name="pos" position="inside">
+                <separator string="Blend" groups="base.group_system"/>
+                <field name="blend_config_id" groups="base.group_system"/>
+                <field name="blend_external_id" groups="base.group_system"/>
+                <field name="blend_is_available" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+                <field name="blend_menu_active" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_pos_category_form_blend" model="ir.ui.view">
+        <field name="name">pos.category.form.blend</field>
+        <field name="model">pos.category</field>
+        <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="blend_config_id" groups="base.group_system"/>
+                <field name="blend_external_id" groups="base.group_system"/>
+                <field name="blend_menu_active" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_pos_category_list_blend" model="ir.ui.view">
+        <field name="name">pos.category.list.blend</field>
+        <field name="model">pos.category</field>
+        <field name="inherit_id" ref="point_of_sale.product_pos_category_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="display_name" position="after">
+                <field name="blend_external_id" optional="show" groups="base.group_system"/>
+                <field name="blend_config_id" optional="hide" groups="base.group_system"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_modifiers_groups_form_blend" model="ir.ui.view">
+        <field name="name">modifiers.groups.form.blend</field>
+        <field name="model">modifiers.groups</field>
+        <field name="inherit_id" ref="product_modifiers.view_modifiers_groups_form"/>
+        <field name="arch" type="xml">
+            <field name="modifier_ids" position="after">
+                <separator string="Blend" groups="base.group_system"/>
+                <field name="blend_config_id" groups="base.group_system"/>
+                <field name="blend_external_id" groups="base.group_system"/>
+                <field name="blend_menu_active" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+                <field name="blend_is_required" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+                <field name="blend_min_selection" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+                <field name="blend_max_selection" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+                <field name="blend_max_per_quantity" groups="base.group_system"
+                       invisible="not blend_external_id"/>
+                <field name="blend_item_external_ids_json" widget="json"
+                       groups="base.group_system" invisible="not blend_external_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_modifiers_groups_list_blend" model="ir.ui.view">
+        <field name="name">modifiers.groups.list.blend</field>
+        <field name="model">modifiers.groups</field>
+        <field name="inherit_id" ref="product_modifiers.view_modifiers_groups_list"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="blend_external_id" optional="show" groups="base.group_system"/>
+                <field name="blend_config_id" optional="hide" groups="base.group_system"/>
+                <field name="blend_menu_active" optional="show" groups="base.group_system"/>
+                <field name="blend_min_selection" optional="hide" groups="base.group_system"/>
+                <field name="blend_max_selection" optional="hide" groups="base.group_system"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="rule_loan_user" model="ir.rule">
+            <field name="name">ESS loan: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_loan"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_loan_hr" model="ir.rule">
+            <field name="name">ESS loan: HR</field>
+            <field name="model_id" ref="model_bs_hr_loan"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_loan_postpone_user" model="ir.rule">
+            <field name="name">ESS loan postponement: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_loan_postpone"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_loan_postpone_hr" model="ir.rule">
+            <field name="name">ESS loan postponement: HR</field>
+            <field name="model_id" ref="model_bs_hr_loan_postpone"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_leave_request_user" model="ir.rule">
+            <field name="name">ESS leave request: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_leave_request"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_leave_request_hr" model="ir.rule">
+            <field name="name">ESS leave request: HR</field>
+            <field name="model_id" ref="model_bs_hr_leave_request"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_custody_request_user" model="ir.rule">
+            <field name="name">ESS custody request: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_custody_request"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_custody_request_hr" model="ir.rule">
+            <field name="name">ESS custody request: HR</field>
+            <field name="model_id" ref="model_bs_hr_custody_request"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_request_user" model="ir.rule">
+            <field name="name">ESS generic request: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_request"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_request_hr" model="ir.rule">
+            <field name="name">ESS generic request: HR</field>
+            <field name="model_id" ref="model_bs_hr_request"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_loan_line_user" model="ir.rule">
+            <field name="name">ESS loan installment: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_loan_line"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('loan_id.current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_loan_line_hr" model="ir.rule">
+            <field name="name">ESS loan installment: HR</field>
+            <field name="model_id" ref="model_bs_hr_loan_line"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_custody_holding_user" model="ir.rule">
+            <field name="name">ESS custody holding: own</field>
+            <field name="model_id" ref="model_bs_hr_custody_holding"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        </record>
+        <record id="rule_custody_holding_hr" model="ir.rule">
+            <field name="name">ESS custody holding: HR</field>
+            <field name="model_id" ref="model_bs_hr_custody_holding"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_clearance_company" model="ir.rule">
+            <field name="name">ESS clearance: company</field>
+            <field name="model_id" ref="model_bs_hr_clearance"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_loan_type_company" model="ir.rule">
+            <field name="name">ESS loan type: company</field>
+            <field name="model_id" ref="model_bs_hr_loan_type"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+        <record id="rule_request_type_company" model="ir.rule">
+            <field name="name">ESS request type: company</field>
+            <field name="model_id" ref="model_bs_hr_request_type"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+        <record id="rule_leave_blackout_company" model="ir.rule">
+            <field name="name">ESS leave blackout: company</field>
+            <field name="model_id" ref="model_bs_hr_leave_blackout"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_workforce_report_pivot" model="ir.ui.view">
+        <field name="name">bs.hr.ess.workforce.report.pivot</field>
+        <field name="model">bs.hr.ess.workforce.report</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="work_location_id" type="row"/>
+                <field name="nationality_group" type="col"/>
+                <field name="headcount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_workforce_report_graph" model="ir.ui.view">
+        <field name="name">bs.hr.ess.workforce.report.graph</field>
+        <field name="model">bs.hr.ess.workforce.report</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="True">
+                <field name="work_location_id"/>
+                <field name="nationality_group"/>
+                <field name="headcount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_workforce_report_list" model="ir.ui.view">
+        <field name="name">bs.hr.ess.workforce.report.list</field>
+        <field name="model">bs.hr.ess.workforce.report</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="work_location_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="country_id"/>
+                <field name="nationality_group"/>
+                <field name="contract_start"/>
+                <field name="seniority_years"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_workforce_report_search" model="ir.ui.view">
+        <field name="name">bs.hr.ess.workforce.report.search</field>
+        <field name="model">bs.hr.ess.workforce.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="work_location_id"/>
+                <filter name="saudi" string="Saudis" domain="[('nationality_group', '=', 'saudi')]"/>
+                <filter name="non_saudi" string="Non-Saudis" domain="[('nationality_group', '=', 'non_saudi')]"/>
+                <filter name="group_branch" string="Branch" context="{'group_by': 'work_location_id'}"/>
+                <filter name="group_nationality" string="Nationality" context="{'group_by': 'country_id'}"/>
+                <filter name="group_job" string="Job" context="{'group_by': 'job_id'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_workforce_report" model="ir.actions.act_window">
+        <field name="name">Workforce &amp; Saudization</field>
+        <field name="res_model">bs.hr.ess.workforce.report</field>
+        <field name="view_mode">pivot,graph,list</field>
+    </record>
+    <menuitem id="menu_workforce_report" name="Workforce &amp; Saudization" parent="bs_hr_ess_base.menu_ess_reporting"
+              sequence="5" action="action_workforce_report"/>
+</odoo>

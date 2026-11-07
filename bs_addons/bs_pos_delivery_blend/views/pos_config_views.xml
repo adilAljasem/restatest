@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_blend" model="ir.ui.view">
+        <field name="name">pos.config.form.delivery.blend</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="bs_pos_delivery_core.view_pos_config_delivery_payment_mapping"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='delivery_connect']" position="inside">
+                <group name="blend_integration" string="Blend"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager">
+                    <group string="Branch Mapping">
+                        <field name="blend_branch_id"/>
+                        <field name="blend_brand_id"/>
+                        <field name="blend_last_menu_sync_at" readonly="1"/>
+                        <field name="blend_webhook_url" readonly="1" widget="CopyClipboardChar"/>
+                    </group>
+                    <group string="Authentication &amp; Security">
+                        <field name="blend_login_user_id" options="{'no_create': True}"/>
+                        <field name="blend_login_token_issued_at" readonly="1"/>
+                        <div colspan="2" invisible="not blend_login_token_issued_at">
+                            <button name="action_revoke_blend_login_token"
+                                    type="object"
+                                    string="Revoke Login Token"
+                                    class="btn-secondary"/>
+                        </div>
+                        <field name="blend_inbound_token" password="True"
+                               placeholder="Optional pre-shared Bearer token"/>
+                    </group>
+                    <group string="Blend API Endpoints (for Blend configuration)" colspan="2">
+                        <field name="blend_login_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_menu_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_branches_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_orders_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_order_update_api_url" readonly="1" widget="CopyClipboardChar"/>
+                    </group>
+                    <group string="Last Received Branch Schedule" colspan="2">
+                        <field name="blend_schedule_json" widget="json" readonly="1" nolabel="1"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

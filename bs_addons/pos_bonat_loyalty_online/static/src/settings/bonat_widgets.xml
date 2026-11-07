@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        Templates for the two settings-page widgets that replace the on-premise
+        type="object" buttons. `this.` prefixes throughout, for Owl 3.
+    -->
+
+    <t t-name="pos_bonat_loyalty_online.BonatApiKeyField">
+        <div class="o_field_bonat_api_key d-flex align-items-center flex-grow-1">
+            <input class="o_input flex-grow-1"
+                   t-att-type="this.inputType"
+                   t-att-id="this.props.id"
+                   t-att-value="this.value"
+                   t-att-placeholder="this.props.placeholder"
+                   t-att-readonly="this.props.readonly or undefined"
+                   autocomplete="off"
+                   t-on-change="(ev) => this.onChange(ev)"/>
+            <button type="button"
+                    class="btn btn-link ms-1 p-0"
+                    t-att-title="this.toggleTitle"
+                    t-att-aria-label="this.toggleTitle"
+                    t-on-click="() => this.toggleReveal()">
+                <i class="fa" t-att-class="this.toggleIcon"/>
+            </button>
+        </div>
+    </t>
+
+    <t t-name="pos_bonat_loyalty_online.BonatTestConnection">
+        <button t-if="this.visible"
+                type="button"
+                class="btn btn-secondary ms-2"
+                title="Ping the Bonat API with the current key"
+                t-att-disabled="this.state.running or undefined"
+                t-on-click="() => this.onClick()">
+            <i t-if="this.state.running" class="fa fa-spinner fa-spin me-1"/>
+            Test Connection
+        </button>
+    </t>
+
+</templates>

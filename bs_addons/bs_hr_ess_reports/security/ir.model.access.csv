@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_workforce_report_hr,workforce report,model_bs_hr_ess_workforce_report,bs_hr_ess_base.group_ess_hr_officer,1,0,0,0

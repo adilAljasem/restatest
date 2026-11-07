@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_kitchen_bilingual.OrderChangeReceiptLine"
+       t-inherit="point_of_sale.OrderChangeReceiptLine"
+       t-inherit-mode="extension">
+        <xpath expr="//span[hasclass('product-name')]" position="replace">
+            <span class="product-name o_kitchen_bilingual_product">
+                <span class="o_kitchen_name_ar" dir="rtl" lang="ar"
+                      t-esc="line.product_name_ar || line.basic_name"/>
+                <span t-if="line.product_name_en &amp;&amp; line.product_name_en !== line.product_name_ar"
+                      class="o_kitchen_name_en" dir="ltr" lang="en"
+                      t-esc="line.product_name_en"/>
+            </span>
+        </xpath>
+        <xpath expr="//div[@t-if='line.attribute_value_names?.length']" position="replace">
+            <div t-if="line.kitchen_attribute_names?.length || line.attribute_value_names?.length"
+                 class="o_kitchen_bilingual_attributes ms-5" style="font-size: 91%;">
+                <t t-foreach="line.kitchen_attribute_names || []" t-as="attribute" t-key="attribute_index">
+                    <p class="o_kitchen_name_ar p-0 m-0" dir="rtl" lang="ar">
+                        - <t t-esc="attribute.ar"/>
+                    </p>
+                    <p t-if="attribute.en &amp;&amp; attribute.en !== attribute.ar"
+                       class="o_kitchen_name_en p-0 m-0" dir="ltr" lang="en">
+                        - <t t-esc="attribute.en"/>
+                    </p>
+                </t>
+                <t t-if="!line.kitchen_attribute_names?.length"
+                   t-foreach="line.attribute_value_names || []" t-as="name" t-key="name_index">
+                    <p class="p-0 m-0">- <t t-esc="name"/></p>
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<record id="view_account_journal_form_inherit_petty_cash" model="ir.ui.view">
+    <field name="name">account.journal.form.petty.cash</field>
+    <field name="model">account.journal</field>
+    <field name="inherit_id" ref="account.view_account_journal_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//page[@name='advanced_settings']" position="inside">
+            <group string="Petty Cash Settings">
+                <field name="petty_cash_checkbox"/>
+                <field name="temporary_petty_cash"/>
+            </group>
+        </xpath>
+
+    </field>
+</record>
+</odoo>

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_category_binding_list" model="ir.ui.view">
+        <field name="name">bs.delivery.category.binding.list</field>
+        <field name="model">bs.delivery.category.binding</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Category Mapping" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id" optional="show"/>
+                <field name="provider_id" optional="show"/>
+                <field name="external_category_id"/>
+                <field name="external_parent_id" optional="hide"/>
+                <field name="external_name" optional="show"/>
+                <field name="external_name_en" optional="hide"/>
+                <field name="external_name_ar" optional="hide"/>
+                <field name="pos_category_id"/>
+                <field name="last_sync_date" optional="hide"/>
+                <field name="last_sync_error" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_category_binding_form" model="ir.ui.view">
+        <field name="name">bs.delivery.category.binding.form</field>
+        <field name="model">bs.delivery.category.binding</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Category Mapping">
+                <sheet>
+                    <field name="company_id" invisible="1"/>
+                    <group>
+                        <group string="Platform">
+                            <field name="connection_id" options="{'no_create': True}"/>
+                            <field name="store_binding_id"
+                                   domain="[('connection_id', '=', connection_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="provider_id" readonly="1"/>
+                            <field name="external_category_id"/>
+                            <field name="external_parent_id"/>
+                        </group>
+                        <group string="Odoo">
+                            <field name="pos_category_id"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Platform Names">
+                        <field name="external_name"/>
+                        <field name="external_name_en"/>
+                        <field name="external_name_ar"/>
+                    </group>
+                    <group string="Synchronization">
+                        <field name="payload_hash" readonly="1"/>
+                        <field name="last_sync_date" readonly="1"/>
+                        <field name="last_sync_error" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_category_binding_search" model="ir.ui.view">
+        <field name="name">bs.delivery.category.binding.search</field>
+        <field name="model">bs.delivery.category.binding</field>
+        <field name="arch" type="xml">
+            <search string="Search Category Mapping">
+                <field name="external_category_id"/>
+                <field name="external_name"/>
+                <field name="external_name_en"/>
+                <field name="external_name_ar"/>
+                <field name="pos_category_id"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <filter name="unmapped" string="Unmapped" domain="[('pos_category_id', '=', False)]"/>
+                <filter name="sync_errors" string="Sync Errors" domain="[('last_sync_error', '!=', False)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_store" string="Store" context="{'group_by': 'store_binding_id'}"/>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_category_binding" model="ir.actions.act_window">
+        <field name="name">Category Mapping</field>
+        <field name="res_model">bs.delivery.category.binding</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_category_binding_search"/>
+        <field name="context">{'active_test': True}</field>
+    </record>
+
+    <record id="view_bs_delivery_modifier_binding_list" model="ir.ui.view">
+        <field name="name">bs.delivery.modifier.binding.list</field>
+        <field name="model">bs.delivery.modifier.binding</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Modifier Mapping" multi_edit="1">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id" optional="show"/>
+                <field name="provider_id" optional="show"/>
+                <field name="external_modifier_id"/>
+                <field name="external_group_id" optional="hide"/>
+                <field name="external_name" optional="show"/>
+                <field name="external_name_en" optional="hide"/>
+                <field name="external_name_ar" optional="hide"/>
+                <field name="product_id"/>
+                <field name="platform_price"/>
+                <field name="last_sync_date" optional="hide"/>
+                <field name="last_sync_error" optional="hide"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_modifier_binding_form" model="ir.ui.view">
+        <field name="name">bs.delivery.modifier.binding.form</field>
+        <field name="model">bs.delivery.modifier.binding</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Modifier Mapping">
+                <sheet>
+                    <field name="company_id" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <group>
+                        <group string="Platform">
+                            <field name="connection_id" options="{'no_create': True}"/>
+                            <field name="store_binding_id"
+                                   domain="[('connection_id', '=', connection_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="provider_id" readonly="1"/>
+                            <field name="external_modifier_id"/>
+                            <field name="external_group_id"/>
+                        </group>
+                        <group string="Odoo">
+                            <field name="product_id"/>
+                            <field name="platform_price"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Platform Names">
+                        <field name="external_name"/>
+                        <field name="external_name_en"/>
+                        <field name="external_name_ar"/>
+                    </group>
+                    <group string="Synchronization">
+                        <field name="payload_hash" readonly="1"/>
+                        <field name="last_sync_date" readonly="1"/>
+                        <field name="last_sync_error" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_modifier_binding_search" model="ir.ui.view">
+        <field name="name">bs.delivery.modifier.binding.search</field>
+        <field name="model">bs.delivery.modifier.binding</field>
+        <field name="arch" type="xml">
+            <search string="Search Modifier Mapping">
+                <field name="external_modifier_id"/>
+                <field name="external_group_id"/>
+                <field name="external_name"/>
+                <field name="product_id"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <filter name="sync_errors" string="Sync Errors" domain="[('last_sync_error', '!=', False)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_store" string="Store" context="{'group_by': 'store_binding_id'}"/>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_modifier_binding" model="ir.actions.act_window">
+        <field name="name">Modifier Mapping</field>
+        <field name="res_model">bs.delivery.modifier.binding</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_modifier_binding_search"/>
+        <field name="context">{'active_test': True}</field>
+    </record>
+
+    <record id="view_bs_delivery_payment_binding_list" model="ir.ui.view">
+        <field name="name">bs.delivery.payment.binding.list</field>
+        <field name="model">bs.delivery.payment.binding</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Payment Mapping" multi_edit="1">
+                <field name="connection_id"/>
+                <field name="store_binding_id" optional="show"/>
+                <field name="provider_id" optional="show"/>
+                <field name="external_source"/>
+                <field name="external_payment_code"/>
+                <field name="external_name" optional="show"/>
+                <field name="collector_scope"/>
+                <field name="payment_method_id"/>
+                <field name="income_account_id" optional="show"/>
+                <field name="is_prepaid"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_payment_binding_form" model="ir.ui.view">
+        <field name="name">bs.delivery.payment.binding.form</field>
+        <field name="model">bs.delivery.payment.binding</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Payment Mapping">
+                <sheet>
+                    <field name="company_id" invisible="1"/>
+                    <group>
+                        <group string="Platform">
+                            <field name="connection_id" options="{'no_create': True}"/>
+                            <field name="store_binding_id"
+                                   domain="[('connection_id', '=', connection_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="provider_id" readonly="1"/>
+                            <field name="external_source"/>
+                            <field name="external_payment_code"/>
+                            <field name="external_name"/>
+                            <field name="collector_scope"/>
+                        </group>
+                        <group string="Odoo">
+                            <field name="payment_method_id"/>
+                            <field name="income_account_id"/>
+                            <field name="is_prepaid"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_payment_binding_search" model="ir.ui.view">
+        <field name="name">bs.delivery.payment.binding.search</field>
+        <field name="model">bs.delivery.payment.binding</field>
+        <field name="arch" type="xml">
+            <search string="Search Payment Mapping">
+                <field name="external_source"/>
+                <field name="external_payment_code"/>
+                <field name="collector_scope"/>
+                <field name="external_name"/>
+                <field name="payment_method_id"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <filter name="collector_setup" string="Needs Collector Setup" domain="[('collector_scope', '=', 'unassigned')]"/>
+                <filter name="prepaid" string="Prepaid" domain="[('is_prepaid', '=', True)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_store" string="Store" context="{'group_by': 'store_binding_id'}"/>
+                    <filter name="group_source" string="Payment Source" context="{'group_by': 'external_source'}"/>
+                    <filter name="group_collector" string="Collector" context="{'group_by': 'collector_scope'}"/>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_payment_binding" model="ir.actions.act_window">
+        <field name="name">Payment Mapping</field>
+        <field name="res_model">bs.delivery.payment.binding</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_payment_binding_search"/>
+        <field name="context">{'active_test': True}</field>
+    </record>
+
+    <record id="view_bs_delivery_menu_version_list" model="ir.ui.view">
+        <field name="name">bs.delivery.menu.version.list</field>
+        <field name="model">bs.delivery.menu.version</field>
+        <field name="arch" type="xml">
+            <list string="Menu Synchronizations" create="true" delete="false">
+                <field name="name"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id" optional="show"/>
+                <field name="provider_id" optional="show"/>
+                <field name="direction" widget="badge"/>
+                <field name="added_count"/>
+                <field name="updated_count"/>
+                <field name="removed_count" optional="show"/>
+                <field name="conflict_count"/>
+                <field name="started_at" optional="show"/>
+                <field name="completed_at" optional="show"/>
+                <field name="state" widget="badge"
+                       decoration-info="state in ('draft', 'preview')"
+                       decoration-warning="state in ('queued', 'processing')"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'failed'"
+                       decoration-muted="state == 'cancelled'"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_menu_version_form" model="ir.ui.view">
+        <field name="name">bs.delivery.menu.version.form</field>
+        <field name="model">bs.delivery.menu.version</field>
+        <field name="arch" type="xml">
+            <form string="Menu Synchronization" delete="false">
+                <header>
+                    <button name="action_run_now"
+                            type="object"
+                            string="Run Synchronization"
+                            class="btn-primary"
+                            invisible="state not in ('draft', 'preview', 'failed')"/>
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            invisible="state not in ('draft', 'preview', 'queued', 'failed')"/>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,preview,queued,processing,done"/>
+                </header>
+                <sheet>
+                    <field name="company_id" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="state not in ('draft', 'preview')"/></h1>
+                    </div>
+                    <group>
+                        <group string="Scope">
+                            <field name="connection_id"
+                                   readonly="state not in ('draft', 'preview')"
+                                   options="{'no_create': True}"/>
+                            <field name="store_binding_id"
+                                   readonly="state not in ('draft', 'preview')"
+                                   domain="[('connection_id', '=', connection_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="provider_id" readonly="1"/>
+                            <field name="direction"
+                                   widget="radio"
+                                   readonly="state not in ('draft', 'preview')"/>
+                        </group>
+                        <group string="Result">
+                            <field name="added_count" readonly="1"/>
+                            <field name="updated_count" readonly="1"/>
+                            <field name="removed_count" readonly="1"/>
+                            <field name="conflict_count" readonly="1"/>
+                            <field name="started_at" readonly="1"/>
+                            <field name="completed_at" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Technical Result">
+                        <field name="payload_hash" readonly="1"/>
+                        <field name="last_error" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_menu_version_search" model="ir.ui.view">
+        <field name="name">bs.delivery.menu.version.search</field>
+        <field name="model">bs.delivery.menu.version</field>
+        <field name="arch" type="xml">
+            <search string="Search Menu Synchronizations">
+                <field name="name"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <field name="provider_id"/>
+                <filter name="queued" string="Queued" domain="[('state', 'in', ('queued', 'processing'))]"/>
+                <filter name="failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
+                <group>
+                    <filter name="group_direction" string="Direction" context="{'group_by': 'direction'}"/>
+                    <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_menu_version" model="ir.actions.act_window">
+        <field name="name">Menu Synchronizations</field>
+        <field name="res_model">bs.delivery.menu.version</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_menu_version_search"/>
+        <field name="context">{}</field>
+    </record>
+</odoo>

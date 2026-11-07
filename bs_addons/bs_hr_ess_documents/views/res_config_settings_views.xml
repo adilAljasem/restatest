@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ess_documents" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ess.documents</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.res_config_settings_view_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='ess_approvals']" position="before">
+                <block title="Documents and contracts" name="ess_documents">
+                    <setting string="Block check-in on expired health certificate"
+                             help="Refuse the self-service check-in when a document critical for attendance is expired. When disabled, the supervisor is notified instead.">
+                        <field name="ess_block_expired_health"/>
+                    </setting>
+                    <setting string="Contract renewal notice"
+                             help="A renewal workflow (manager, HR, management) is opened before the contract end.">
+                        <field name="ess_contract_alert_days"/> days
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Buttons: reusable block -->
+    <t t-name="bs_pos_kitchen_resend.ResendButtons">
+        <div class="bs-resend-btns d-flex gap-2 justify-content-end align-items-center">
+            <button t-if="pos.bsHasKitchenDisplay()"
+                    class="btn btn-outline-primary bs-resend-btn"
+                    t-att-disabled="order.uiState.bsBusy"
+                    title="Send to kitchen display"
+                    t-on-click.stop="() => this.bsOnResendDisplay(order)">
+                <i class="fa fa-desktop" aria-hidden="true"/>
+                <span class="ms-1">Screen</span>
+            </button>
+            <button t-if="pos.bsHasKitchenPrinters()"
+                    class="btn btn-outline-secondary bs-resend-btn"
+                    t-att-disabled="order.uiState.bsBusy"
+                    title="Kitchen print"
+                    t-on-click.stop="() => this.bsOnResendPrint(order)">
+                <i t-attf-class="fa {{ order.uiState.bsBusy ? 'fa-circle-o-notch fa-spin' : 'fa-print' }}" aria-hidden="true"/>
+                <span class="ms-1">Print</span>
+            </button>
+        </div>
+    </t>
+
+    <t t-name="bs_pos_kitchen_resend.TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
+        <!-- Desktop table row -->
+        <xpath expr="//td[@name='delete-column']" position="before">
+            <td class="align-middle text-end bs-resend-column" t-on-click.stop="">
+                <t t-if="bsShowResendButtons(order)" t-call="bs_pos_kitchen_resend.ResendButtons"/>
+            </td>
+        </xpath>
+        <!-- Mobile list -->
+        <xpath expr="//div[hasclass('mobileOrderList')]/div[@name='delete-column']" position="before">
+            <div class="d-flex align-items-center mx-1" t-if="bsShowResendButtons(order)" t-on-click.stop="">
+                <t t-call="bs_pos_kitchen_resend.ResendButtons"/>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- Kitchen ticket: RESEND banner -->
+    <t t-name="bs_pos_kitchen_resend.OrderChangeReceipt" t-inherit="point_of_sale.OrderChangeReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('receipt-header')]" position="before">
+            <div t-if="data.bs_resend" class="bs-resend-banner text-center mb-3"
+                 style="border: 4px solid black; padding: 6px 4px; font-weight: 900;">
+                <div style="font-size: 190%;">*** إعادة إرسال ***</div>
+                <div style="font-size: 130%;">RESEND<t t-if="data.bs_resend_count"> #<t t-esc="data.bs_resend_count"/></t></div>
+            </div>
+        </xpath>
+        <xpath expr="//t[@t-if='data.reprint']" position="attributes">
+            <attribute name="t-if">data.reprint and !data.bs_resend</attribute>
+        </xpath>
+    </t>
+
+</templates>

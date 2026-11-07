@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_attendance" name="ESS Attendance">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_active" t-value="'attendance'"/>
+            <t t-set="ess_title">Attendance</t>
+            <div class="o_ess_attendance" t-att-data-config="config_json">
+                <div class="ess-panel text-center ess-punch-panel">
+                    <div class="ess-clock" data-ess-clock="1">--:--</div>
+                    <div class="text-muted small mb-1">
+                        <t t-out="ess_fdate(ess_today)"/> · <t t-out="ess_hijri(ess_today)"/>
+                    </div>
+                    <div class="small mb-3" t-if="config['branch']">
+                        <i class="fa fa-map-marker"/> <t t-out="config['branch']"/>
+                    </div>
+                    <div class="ess-methods mb-3">
+                        <span t-if="config['geo']" class="ess-method-chip"><i class="fa fa-location-arrow"/> Location</span>
+                        <span t-if="config['qr']" class="ess-method-chip"><i class="fa fa-qrcode"/> QR code</span>
+                        <span t-if="config['face']" class="ess-method-chip"><i class="fa fa-smile-o"/> Face</span>
+                        <span t-if="config['logic'] == 'any' and (config['geo'] + config['qr'] + config['face']) &gt; 1" class="small text-muted d-block mt-1">Choose one method</span>
+                    </div>
+
+                    <t t-if="not (config['geo'] or config['qr'] or config['face'])">
+                        <div class="alert alert-warning">Self-service check-in is not enabled for your branch.</div>
+                    </t>
+                    <t t-elif="config['face'] and not config['face_enrolled'] and config['logic'] == 'all'">
+                        <div class="alert alert-warning">
+                            Your face is not enrolled yet.
+                            <a href="/my/hr/attendance/face">Enroll my face</a>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <t t-if="config['logic'] == 'any' and (config['geo'] + config['qr'] + config['face']) &gt; 1">
+                            <div class="d-grid gap-2">
+                                <button t-if="config['geo']" type="button" class="btn btn-lg ess-punch-alt" data-ess-punch="geo">
+                                    <i class="fa fa-location-arrow"/> <t t-if="config['checked_in']">Check out</t><t t-else="">Check in</t> by location</button>
+                                <button t-if="config['qr']" type="button" class="btn btn-lg ess-punch-alt" data-ess-punch="qr">
+                                    <i class="fa fa-qrcode"/> <t t-if="config['checked_in']">Check out</t><t t-else="">Check in</t> with QR</button>
+                                <button t-if="config['face']" type="button" class="btn btn-lg ess-punch-alt" data-ess-punch="face">
+                                    <i class="fa fa-smile-o"/> <t t-if="config['checked_in']">Check out</t><t t-else="">Check in</t> with face</button>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <button type="button" data-ess-punch="all"
+                                    t-attf-class="ess-punch-btn #{'is-out' if config['checked_in'] else 'is-in'}">
+                                <i t-attf-class="fa #{'fa-sign-out' if config['checked_in'] else 'fa-sign-in'}"/>
+                                <span t-if="config['checked_in']">Check out</span>
+                                <span t-else="">Check in</span>
+                            </button>
+                        </t>
+                    </t>
+                    <div class="ess-punch-status mt-3" data-ess-status="1"/>
+                </div>
+
+                <!-- camera overlay (QR scan / face) -->
+                <div class="ess-camera d-none" data-ess-camera="1">
+                    <div class="ess-camera-box">
+                        <div class="ess-camera-title" data-ess-camera-title="1"/>
+                        <div class="ess-camera-view">
+                            <video playsinline="playsinline" muted="muted" autoplay="autoplay"/>
+                            <canvas class="d-none"/>
+                            <div class="ess-camera-frame"/>
+                        </div>
+                        <div class="ess-camera-hint" data-ess-camera-hint="1"/>
+                        <button type="button" class="btn btn-light w-100 mt-2" data-ess-camera-close="1">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <h6 class="ess-section-title">Today</h6>
+            <div class="ess-list" t-if="today">
+                <div t-foreach="today" t-as="att" class="ess-list-item d-flex justify-content-between">
+                    <span>
+                        <i class="fa fa-sign-in text-success"/> <t t-out="local(att.check_in).strftime('%H:%M')"/>
+                        <t t-if="att.check_out"> → <i class="fa fa-sign-out text-danger"/> <t t-out="local(att.check_out).strftime('%H:%M')"/></t>
+                    </span>
+                    <span class="small text-muted">
+                        <t t-if="att.ess_late_minutes"><span class="ess-badge ess-badge-warning">Late <t t-out="att.ess_late_minutes"/> min</span></t>
+                        <t t-out="'%.2f h' % att.worked_hours"/>
+                    </span>
+                </div>
+            </div>
+            <div t-else="" class="ess-empty small"><i class="fa fa-clock-o"/><p>No attendance today.</p></div>
+
+            <h6 class="ess-section-title">Last 14 days</h6>
+            <div class="ess-list" t-if="history">
+                <div t-foreach="history" t-as="att" class="ess-list-item">
+                    <div class="d-flex justify-content-between">
+                        <strong t-out="ess_day(local(att.check_in))"/>
+                        <span class="small"><t t-out="'%.2f' % att.worked_hours"/> <t t-if="request.env.lang.startswith('ar')">س</t><t t-else="">h</t></span>
+                    </div>
+                    <div class="small text-muted">
+                        <t t-out="local(att.check_in).strftime('%H:%M')"/> -
+                        <t t-out="local(att.check_out).strftime('%H:%M') if att.check_out else '…'"/>
+                        <t t-if="att.ess_location_id"> · <t t-out="att.ess_location_id.name"/></t>
+                        <t t-if="att.ess_late_minutes"> · <span class="text-warning">Late <t t-out="att.ess_late_minutes"/> min</span></t>
+                        <t t-if="att.ess_early_minutes"> · <span class="text-warning">Left <t t-out="att.ess_early_minutes"/> min early</span></t>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2 mt-3">
+                <a href="/my/hr/attendance/correction" class="btn btn-outline-secondary"><i class="fa fa-history"/> Request a correction</a>
+                <a t-if="config['face']" href="/my/hr/attendance/face" class="btn btn-link btn-sm">Face enrollment</a>
+            </div>
+        </t>
+    </template>
+
+    <template id="ess_face_enroll" name="ESS Face enrollment">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Face enrollment</t>
+            <t t-set="ess_back" t-value="'/my/hr/attendance'"/>
+            <div t-if="not allowed" class="ess-panel text-center">
+                <i class="fa fa-lock fa-2x text-muted mb-2"/>
+                <p>Face enrollment is done in front of HR or your branch supervisor. Ask them to unlock it for you.</p>
+                <p t-if="employee.ess_face_enrolled" class="text-success small">Your face is already enrolled.</p>
+            </div>
+            <div t-else="" class="o_ess_face_enroll" t-att-data-models-url="models_url">
+                <div class="ess-panel">
+                    <h6>Consent to biometric processing</h6>
+                    <p class="small">
+                        To check in with your face, a mathematical signature of your face (not a photo) is computed
+                        on your phone and stored encrypted by your employer, only for attendance. You can ask HR to
+                        delete it at any time. A small photo may be kept as evidence for each check-in for a limited
+                        period. (Saudi Personal Data Protection Law)
+                    </p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="ess_consent" data-ess-consent="1"/>
+                        <label class="form-check-label" for="ess_consent">I agree to the processing of my biometric data for attendance.</label>
+                    </div>
+                </div>
+                <div class="ess-camera-view ess-camera-inline mb-2">
+                    <video playsinline="playsinline" muted="muted" autoplay="autoplay"/>
+                    <canvas class="d-none"/>
+                    <div class="ess-camera-frame"/>
+                </div>
+                <div class="text-center small mb-2" data-ess-hint="1">Look straight at the camera, in good light.</div>
+                <div class="progress mb-3" style="height: 8px;"><div class="progress-bar" data-ess-progress="1" style="width: 0%"/></div>
+                <button type="button" class="btn btn-primary w-100" data-ess-start="1">Start</button>
+            </div>
+        </t>
+    </template>
+
+    <template id="ess_correction" name="ESS Attendance correction">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Attendance correction</t>
+            <t t-set="ess_back" t-value="'/my/hr/attendance'"/>
+            <form action="/my/hr/attendance/correction" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label>What happened?</label>
+                <select name="correction_type" class="form-select">
+                    <option t-foreach="types" t-as="opt" t-att-value="opt[0]" t-out="opt[1]"/>
+                </select>
+                <label>Real check-in</label>
+                <input type="datetime-local" name="check_in" class="form-control"/>
+                <label>Real check-out</label>
+                <input type="datetime-local" name="check_out" class="form-control"/>
+                <label>Reason</label>
+                <textarea name="reason" class="form-control" rows="3" required="required"/>
+                <label>Proof (optional)</label>
+                <input type="file" name="attachments" class="form-control" multiple="multiple"/>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send</button>
+            </form>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ess_att" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ess.attendance</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.res_config_settings_view_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='ess_approvals']" position="before">
+                <block title="Attendance" name="ess_attendance">
+                    <setting string="Lateness grace period" help="Minutes tolerated after the scheduled start.">
+                        <field name="ess_late_grace_minutes"/> min
+                    </setting>
+                    <setting string="Bind employees to their phone" help="A new phone needs HR approval (no punching for a colleague).">
+                        <field name="ess_device_binding"/>
+                    </setting>
+                    <setting string="Face recognition" help="Match threshold (lower = stricter) and evidence photos.">
+                        <div class="row"><label for="ess_face_threshold" class="col-lg-6 o_light_label"/><field name="ess_face_threshold"/></div>
+                        <div class="row"><label for="ess_face_photo_fallback" class="col-lg-6 o_light_label"/><field name="ess_face_photo_fallback"/></div>
+                        <div class="row"><label for="ess_face_keep_photo" class="col-lg-6 o_light_label"/><field name="ess_face_keep_photo"/></div>
+                        <div class="row" invisible="not ess_face_keep_photo"><label for="ess_face_photo_days" class="col-lg-6 o_light_label"/><field name="ess_face_photo_days"/></div>
+                    </setting>
+                    <setting string="Fake GPS detection" help="Flag punches implying an impossible travel speed.">
+                        <field name="ess_max_speed_kmh"/> km/h
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_grievance_committee,grievance committee,model_bs_hr_grievance,bs_hr_ess_base.group_ess_grievance_committee,1,1,1,0
+access_grievance_message_committee,grievance message committee,model_bs_hr_grievance_message,bs_hr_ess_base.group_ess_grievance_committee,1,0,1,0
+access_grievance_access_log_committee,grievance access log committee,model_bs_hr_grievance_access_log,bs_hr_ess_base.group_ess_grievance_committee,1,0,0,0
+access_violation_type_user,violation type user,model_bs_hr_violation_type,base.group_user,1,0,0,0
+access_violation_type_hr,violation type hr,model_bs_hr_violation_type,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_disciplinary_hr,disciplinary hr,model_bs_hr_disciplinary,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_disciplinary_committee,disciplinary committee,model_bs_hr_disciplinary,bs_hr_ess_base.group_ess_grievance_committee,1,0,0,0

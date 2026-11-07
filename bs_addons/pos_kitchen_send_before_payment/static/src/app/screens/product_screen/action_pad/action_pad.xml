@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_kitchen_send_before_payment.ActionpadWidget"
+       t-inherit="point_of_sale.ActionpadWidget" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('validation')]//button[hasclass('pay-order-button')]" position="before">
+            <t t-if="showKitchenSendButton">
+                <t t-set="kitchenCount" t-value="kitchenCategoryCount"/>
+                <button class="kitchen-send-button button btn btn-lg py-3 d-flex align-items-center justify-content-between gap-2 flex-fill"
+                        t-att-class="{'col-3': showFastPaymentMethods, 'btn-warning': kitchenCount.length, 'btn-secondary': !kitchenCount.length}"
+                        t-att-disabled="doKitchenSubmit.status === 'loading'"
+                        t-on-click="() => doKitchenSubmit.call()">
+                    <span><i class="fa fa-cutlery me-2" aria-hidden="true"/>Send</span>
+                    <span t-if="kitchenCount.length" class="d-flex flex-column align-items-end small">
+                        <t t-foreach="kitchenCount.slice(0, 3)" t-as="cat" t-key="cat_index">
+                            <span class="text-truncate">
+                                <t t-esc="cat.name"/>
+                                <span class="rounded px-1 ms-1" style="background-color: rgba(0,0,0,0.2);"
+                                      t-esc="this.env.utils.formatProductQty(cat.count, false)"/>
+                            </span>
+                        </t>
+                        <span t-if="kitchenCount.length > 3">...</span>
+                    </span>
+                </button>
+            </t>
+        </xpath>
+    </t>
+</templates>

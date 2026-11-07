@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============ Closing report settings (per Point of Sale) ============ -->
+    <record id="pos_config_closing_report_view_list" model="ir.ui.view">
+        <field name="name">pos.config.closing.report.list</field>
+        <field name="model">pos.config</field>
+        <field name="priority">111</field>
+        <field name="arch" type="xml">
+            <list string="Closing Report" create="0" delete="0">
+                <field name="name"/>
+                <field name="pcr_language"/>
+                <field name="pcr_use_kitchen_style" widget="boolean_toggle"/>
+                <field name="pcr_cashier_auto_print" widget="boolean_toggle"/>
+                <field name="pcr_day_scope"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="pos_config_closing_report_view_form" model="ir.ui.view">
+        <field name="name">pos.config.closing.report.form</field>
+        <field name="model">pos.config</field>
+        <field name="priority">111</field>
+        <field name="arch" type="xml">
+            <form string="Closing Report" create="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Two reports: the cashier report (one session, printed when the register is closed) and the branch manager report (the whole business day: every session from the Business Day Start Hour to the same hour the next day). Reload the Point of Sale after saving.
+                    </div>
+                    <group>
+                        <group string="Printing">
+                            <field name="pcr_language" widget="radio"/>
+                            <field name="pcr_use_kitchen_style" widget="boolean_toggle"/>
+                            <div colspan="2" class="text-muted" invisible="not pcr_use_kitchen_style">
+                                Font size, printer width and black printing from Kitchen Ticket:
+                            </div>
+                            <field name="kt_font_size" string="Font Size" readonly="1" invisible="not pcr_use_kitchen_style"/>
+                            <field name="kt_print_width" string="Printer Width" readonly="1" invisible="not pcr_use_kitchen_style"/>
+                        </group>
+                        <group string="Business Day">
+                            <field name="pcr_day_scope" widget="radio"/>
+                            <field name="pcr_business_day_start_hour" widget="float_time"/>
+                            <div colspan="2" class="text-muted small">
+                                The business day starts at this hour and ends at the same hour the next day (Point of Sale > Configuration > Business Day Settings).
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Cashier Report (one session)">
+                            <field name="pcr_cashier_auto_print" widget="boolean_toggle"/>
+                            <field name="pcr_cashier_show_summary" string="Sales Summary" widget="boolean_toggle"/>
+                            <field name="pcr_cashier_show_items" string="Sold Items" widget="boolean_toggle"/>
+                            <field name="pcr_cashier_show_refunds" string="Refunds" widget="boolean_toggle"/>
+                            <field name="pcr_cashier_show_cancellations" string="Cancellations" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Branch Manager Report (business day)">
+                            <field name="pcr_day_in_pos" widget="boolean_toggle"/>
+                            <field name="pcr_day_user_ids" widget="many2many_tags" options="{'no_create': True}"
+                                   placeholder="Empty: POS managers"/>
+                            <field name="pcr_day_auto_print" widget="boolean_toggle"/>
+                            <field name="pcr_day_show_sessions" string="Sessions Detail" widget="boolean_toggle"/>
+                            <field name="pcr_day_show_summary" string="Sales Summary" widget="boolean_toggle"/>
+                            <field name="pcr_day_show_items" string="Sold Items" widget="boolean_toggle"/>
+                            <field name="pcr_day_show_refunds" string="Refunds" widget="boolean_toggle"/>
+                            <field name="pcr_day_show_cancellations" string="Cancellations" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_config_closing_report" model="ir.actions.act_window">
+        <field name="name">Closing Report Settings</field>
+        <field name="res_model">pos.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('pos_config_closing_report_view_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('pos_config_closing_report_view_form')})]"/>
+    </record>
+
+    <menuitem id="menu_pos_config_closing_report"
+              name="Closing Report"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_pos_config_closing_report"
+              groups="point_of_sale.group_pos_manager"
+              sequence="5"/>
+
+    <!-- ============ Branch manager report wizard ============ -->
+    <record id="view_pos_business_day_closing_wizard_form" model="ir.ui.view">
+        <field name="name">pos.business.day.closing.wizard.form</field>
+        <field name="model">pos.business.day.closing.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Business Day Report">
+                <p class="text-muted">
+                    Every session of the business day: from the Business Day Start Hour of the company to the same hour the next day. Sales after midnight and before that hour belong to the previous business day.
+                </p>
+                <group>
+                    <group>
+                        <field name="config_id" options="{'no_create': True}"/>
+                        <field name="business_date"/>
+                    </group>
+                    <group>
+                        <field name="scope" widget="radio"/>
+                        <field name="lang_mode" widget="radio"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print" type="object" string="Print" class="btn-primary" icon="fa-print"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_business_day_closing_wizard" model="ir.actions.act_window">
+        <field name="name">Business Day Report</field>
+        <field name="res_model">pos.business.day.closing.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_pos_business_day_closing_report" name="Business Day Report (Branch Manager)"
+              parent="menu_pos_closing_report_root" action="action_pos_business_day_closing_wizard" sequence="3"/>
+    <menuitem id="menu_pos_closing_report_settings" name="Settings"
+              parent="menu_pos_closing_report_root" action="action_pos_config_closing_report" sequence="10"/>
+</odoo>

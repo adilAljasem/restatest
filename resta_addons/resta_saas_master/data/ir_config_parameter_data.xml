@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="param_url_pattern" model="ir.config_parameter"><field name="key">resta.tenant_url_pattern</field><field name="value">https://{db}.resta.sa</field></record>
+    <record id="param_db_prefix" model="ir.config_parameter"><field name="key">resta.db_prefix</field><field name="value">r</field></record>
+    <record id="param_trial_days" model="ir.config_parameter"><field name="key">resta.trial_days</field><field name="value">14</field></record>
+    <record id="param_tpl_dinein" model="ir.config_parameter"><field name="key">resta.template_dinein</field><field name="value">resta_tpl_dinein</field></record>
+    <record id="param_tpl_qsr" model="ir.config_parameter"><field name="key">resta.template_qsr</field><field name="value">resta_tpl_qsr</field></record>
+    <record id="param_signup_per_ip" model="ir.config_parameter"><field name="key">resta.signup_per_ip</field><field name="value">3</field></record>
+    <record id="param_support_phone" model="ir.config_parameter"><field name="key">resta.support_phone</field><field name="value">920000000</field></record>
+    <record id="param_support_whatsapp" model="ir.config_parameter"><field name="key">resta.support_whatsapp</field><field name="value">966500000000</field></record>
+    <record id="param_support_email" model="ir.config_parameter"><field name="key">resta.support_email</field><field name="value">support@resta.sa</field></record>
+</odoo>

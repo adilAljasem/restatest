@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_flow_user,flow user,model_bs_hr_approval_flow,base.group_user,1,0,0,0
+access_flow_manager,flow manager,model_bs_hr_approval_flow,group_ess_hr_manager,1,1,1,1
+access_flow_step_user,flow step user,model_bs_hr_approval_flow_step,base.group_user,1,0,0,0
+access_flow_step_manager,flow step manager,model_bs_hr_approval_flow_step,group_ess_hr_manager,1,1,1,1
+access_line_user,approval line user,model_bs_hr_approval_line,base.group_user,1,0,0,0
+access_line_hr,approval line hr,model_bs_hr_approval_line,group_ess_hr_officer,1,1,1,0
+access_line_manager,approval line manager,model_bs_hr_approval_line,group_ess_hr_manager,1,1,1,1
+access_delegation_user,delegation user,model_bs_hr_approval_delegation,base.group_user,1,1,1,1
+access_adjustment_hr,adjustment hr,model_bs_hr_payroll_adjustment,group_ess_hr_officer,1,0,0,0
+access_adjustment_payroll,adjustment payroll,model_bs_hr_payroll_adjustment,group_ess_payroll_officer,1,1,1,1
+access_notification_hr,notification hr,model_bs_hr_notification,group_ess_hr_officer,1,1,1,1
+access_profile_change_user,profile change user,model_bs_hr_profile_change,base.group_user,1,1,1,0
+access_profile_change_hr,profile change hr,model_bs_hr_profile_change,group_ess_hr_officer,1,1,1,1
+access_otp_system,otp system,model_bs_hr_ess_otp,base.group_system,1,0,0,0
+access_invite_hr,invite wizard,model_bs_hr_ess_invite,group_ess_hr_officer,1,1,1,0
+access_decision_wizard,decision wizard,model_bs_hr_ess_decision_wizard,base.group_user,1,1,1,0

@@ -1,0 +1,67 @@
+// Resta line icons: monochrome tiles (black in light mode, white in dark).
+.rs_glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    color: var(--rs-text);
+    background: var(--rs-surface);
+    border: 1px solid var(--rs-border);
+    border-radius: 9px;
+    transition: background-color .15s, color .15s, border-color .15s;
+
+    svg {
+        display: block;
+        width: 62%;
+        height: 62%;
+    }
+}
+
+// Sidebar app tiles
+.rs_app_icon.rs_glyph {
+    width: 32px;
+    height: 32px;
+    overflow: visible;
+}
+
+.rs_app:hover .rs_glyph {
+    border-color: var(--rs-text-subtle);
+}
+
+// Current app: tile inverts (black tile / white icon, and the reverse in dark)
+.rs_app.rs_current {
+    color: var(--rs-text);
+    font-weight: 700;
+
+    .rs_app_icon.rs_glyph {
+        background: var(--rs-text);
+        border-color: var(--rs-text);
+        color: var(--rs-sidebar-bg);
+        box-shadow: none;
+    }
+}
+
+// Settings page app tabs
+.o_web_client .settings_tab .tab {
+    // Odoo sets the original icon as an inline background and d-md-block
+    .rs_settings_glyph {
+        display: inline-flex !important;
+        flex: 0 0 28px;
+        width: 28px !important;
+        height: 28px !important;
+        background-image: none !important;
+        background-color: var(--rs-surface) !important;
+        margin-inline-end: 8px;
+        vertical-align: middle;
+
+        @include media-breakpoint-down(md) {
+            display: none !important;
+        }
+    }
+
+    &.selected .rs_settings_glyph {
+        background-color: var(--rs-text) !important;
+        border-color: var(--rs-text);
+        color: var(--rs-surface);
+    }
+}

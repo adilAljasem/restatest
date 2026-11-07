@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ess_grievance" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ess.grievance</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.res_config_settings_view_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='ess_approvals']" position="after">
+                <block title="Grievances and discipline" name="ess_grievance">
+                    <setting string="Appeal period" help="Days an employee has to appeal a decision or a disciplinary action.">
+                        <field name="ess_appeal_days"/> days
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_request_letter" model="ir.actions.report">
+        <field name="name">HR Letter</field>
+        <field name="model">bs.hr.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bs_hr_ess_requests.report_request_letter</field>
+        <field name="report_file">bs_hr_ess_requests.report_request_letter</field>
+        <field name="print_report_name">'%s - %s' % (object.type_id.name, object.name)</field>
+        <field name="binding_model_id" eval="False"/>
+    </record>
+
+    <template id="report_request_letter_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="doc"/>
+            <div class="page">
+                <div class="d-flex justify-content-between mb-4">
+                    <div>
+                        <div><strong>Reference:</strong> <span t-out="doc.name"/></div>
+                        <div><strong>Date:</strong> <span t-out="doc._ess_placeholder_values()['today']"/>
+                            (<span t-out="doc._ess_placeholder_values()['hijri_today']"/>)</div>
+                    </div>
+                </div>
+                <h3 class="text-center mb-4" t-out="doc.type_id.name"/>
+                <div class="o_ess_letter_body" t-out="doc._ess_render_letter_body()"/>
+                <table class="table table-borderless mt-5" style="width:100%;">
+                    <tr>
+                        <td style="vertical-align:top;">
+                            <p><strong t-out="doc.company_id.name"/></p>
+                            <p>Human Resources Department</p>
+                            <p class="small text-muted">
+                                This letter was generated electronically and does not require a signature.
+                                Scan the QR code to verify its validity.
+                            </p>
+                        </td>
+                        <td style="width:160px; text-align:right; vertical-align:top;">
+                            <img t-att-src="doc._ess_qr_src()" style="width:140px;height:140px;" alt="QR"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_request_letter">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="bs_hr_ess_requests.report_request_letter_document"
+                   t-lang="doc.employee_id.sudo().user_id.lang or doc.company_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

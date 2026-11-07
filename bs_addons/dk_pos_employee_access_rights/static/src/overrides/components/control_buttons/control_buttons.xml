@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="dk_pos_employee_access_rights.ControlButtons" t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension">
+        <xpath expr="//SelectPartnerButton" position="before">
+            <t t-set="current_employee" t-value="pos.getCashier()"/>
+        </xpath>
+        <xpath expr="//SelectPartnerButton" position="attributes">
+            <attribute name="t-if">!current_employee?.sbl_hide_pos_customer_selection_button and !props.showRemainingButtons</attribute>
+        </xpath>
+        <xpath expr="//button[@t-on-click='props.onClickMore']" position="attributes">
+            <attribute name="t-if">!current_employee?.sbl_hide_pos_actions_button and !props.showRemainingButtons and !ui.isSmall and props.onClickMore</attribute>
+        </xpath>
+
+        <!-- Hide General Note Button (InternalNoteButton in Odoo 19) -->
+        <xpath expr="//InternalNoteButton" position="attributes">
+            <attribute name="t-if">!current_employee?.sbl_hide_pos_action_general_note</attribute>
+        </xpath>
+
+        <!-- Hide Customer Note Button (NoteButton in Odoo 19) -->
+        <xpath expr="//NoteButton[@icon=&quot;'fa fa-sticky-note'&quot;]" position="attributes">
+            <attribute name="t-if">!current_employee?.sbl_hide_pos_action_customer_note</attribute>
+        </xpath>
+
+        <!-- Hide Pricelist Button -->
+        <xpath expr="//button[hasclass('o_pricelist_button')]" position="attributes">
+            <attribute name="t-if">this.pos.cashier._role != 'minimal' and !current_employee?.sbl_hide_pos_action_pricelist</attribute>
+        </xpath>
+
+        <!-- Hide Refund Button -->
+        <xpath expr="//button[@t-on-click='() =&gt; this.clickRefund()']" position="attributes">
+            <attribute name="t-if">this.pos.cashier._role != 'minimal' and !current_employee?.sbl_hide_pos_action_refund</attribute>
+        </xpath>
+
+        <!-- Hide Fiscal Position Button (preserve original conditional) -->
+        <xpath expr="//button[hasclass('o_fiscal_position_button')]" position="attributes">
+            <attribute name="t-if">this.pos.config.fiscal_position_ids.length and this.pos.cashier._role != 'minimal' and !current_employee?.sbl_hide_pos_action_fiscal_position</attribute>
+        </xpath>
+
+        <!-- Hide Product Info Button (the product card tag was removed in Odoo 19) -->
+        <xpath expr="//button[@t-if='this.displayProductInfoBtn()']" position="attributes">
+            <attribute name="t-if">this.displayProductInfoBtn() and !current_employee?.sbl_hide_pos_action_product_info</attribute>
+        </xpath>
+
+    </t>
+</templates>

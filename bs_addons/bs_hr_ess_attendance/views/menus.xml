@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_attendance" name="Attendance" parent="bs_hr_ess_base.menu_ess_root" sequence="5"/>
+    <menuitem id="menu_ess_attendance_live" name="Present now" parent="menu_ess_attendance" sequence="1" action="action_ess_attendance_live"/>
+    <menuitem id="menu_ess_attendance_all" name="All attendances" parent="menu_ess_attendance" sequence="5" action="hr_attendance.hr_attendance_action"/>
+    <menuitem id="menu_ess_correction" name="Corrections" parent="menu_ess_attendance" sequence="10" action="action_correction"/>
+    <menuitem id="menu_ess_attendance_late" name="Lateness" parent="menu_ess_attendance" sequence="20" action="action_ess_attendance_late"/>
+    <menuitem id="menu_ess_attendance_suspicious" name="Suspicious check-ins" parent="menu_ess_attendance" sequence="30" action="action_ess_attendance_suspicious" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_attempt" name="Check-in attempts" parent="menu_ess_attendance" sequence="40" action="action_attempt" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_device" name="Employee devices" parent="menu_ess_attendance" sequence="50" action="action_ess_device" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+</odoo>

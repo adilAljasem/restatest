@@ -1,0 +1,158 @@
+// Clear, dark print of the Puls receipt (idea of pos_kitchen_ticket_custom).
+//
+// Thermal printers print black dots only. Thin letters and small sizes came
+// out grey and faded: the printer image is converted with dithering and the
+// thin, anti-aliased strokes turn into scattered dots. Here:
+// - a plain, bold font (Tahoma / Arial) like the kitchen ticket;
+// - no text smaller than ~80% of the base size, thicker rules;
+// - fixed pixel sizes on the printer image, chosen for its width
+//   (Receipt Settings > Printer Print Width / Print Font Size);
+// - print_wait_images.js turns the image pure black and white before it is
+//   sent (Receipt Settings > Sharp Black Print).
+/*rtl:begin:ignore*/
+.pos-receipt.pos-receipt.pino-receipt {
+    font-family: Tahoma, Arial, "Helvetica Neue", Helvetica, "Geeza Pro", sans-serif;
+    color: #000;
+    line-height: 1.3;
+}
+
+.pos-receipt.pino-receipt * {
+    color: #000;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-head,
+.pos-receipt.pino-receipt .pino-delivery-head * {
+    color: #fff;
+}
+
+/* ------------------------- Minimum text sizes ---------------------------- */
+.pos-receipt.pino-receipt .pino-org { font-size: 85%; }
+.pos-receipt.pino-receipt .pino-title { font-size: 100%; }
+.pos-receipt.pino-receipt .pino-ref { font-size: 95%; }
+.pos-receipt.pino-receipt .pino-order-label { font-size: 85%; }
+.pos-receipt.pino-receipt .pino-order-num { font-size: 230%; line-height: 1.05; }
+.pos-receipt.pino-receipt .pino-meta-cell { font-size: 85%; }
+.pos-receipt.pino-receipt .pino-meta-value { font-size: 112%; }
+.pos-receipt.pino-receipt .pino-line-head { font-size: 78%; }
+.pos-receipt.pino-receipt .pino-qty { font-size: 92%; }
+.pos-receipt.pino-receipt .pino-name { font-size: 98%; }
+.pos-receipt.pino-receipt .pino-unit { font-size: 90%; }
+.pos-receipt.pino-receipt .pino-price { font-size: 98%; }
+.pos-receipt.pino-receipt .pino-line-sub { font-size: 88%; }
+.pos-receipt.pino-receipt .pino-name-latin,
+.pos-receipt.pino-receipt .pino-total-en,
+.pos-receipt.pino-receipt .pino-head-en { font-size: 86%; }
+.pos-receipt.pino-receipt .pino-total-row { font-size: 95%; }
+.pos-receipt.pino-receipt .pino-grand-total { font-size: 112%; }
+.pos-receipt.pino-receipt .pino-slogan { font-size: 95%; }
+.pos-receipt.pino-receipt .pino-footer-note { font-size: 80%; }
+.pos-receipt.pino-receipt .pino-powered { font-size: 70%; }
+
+/* Secondary lines stay regular weight but never light. */
+.pos-receipt.pino-receipt .pino-line-sub .pino-name,
+.pos-receipt.pino-receipt .pino-name-latin,
+.pos-receipt.pino-receipt .pino-total-en,
+.pos-receipt.pino-receipt .pino-head-en,
+.pos-receipt.pino-receipt .pino-meta-label {
+    font-weight: 400;
+}
+
+/* --------------------------- Thicker rules -------------------------------- */
+.pos-receipt.pino-receipt .pino-line,
+.pos-receipt.pino-receipt .pino-totals,
+.pos-receipt.pino-receipt .pino-payments,
+.pos-receipt.pino-receipt .pino-grand-total {
+    border-top-width: 2px;
+}
+
+.pos-receipt.pino-receipt .pino-qty {
+    border-width: 2px;
+}
+
+.pos-receipt.pino-receipt .pino-order-box {
+    border-width: 4px;
+}
+
+/* ------------------- Items: sub lines under the item --------------------- */
+/* Attribute values, modifiers and notes are printed under the main item,
+   indented under its name, with their price in the price column. */
+.pos-receipt.pino-receipt .pino-line-sub {
+    padding-right: 13%;
+}
+
+.pos-receipt.pino-receipt .pino-line-sub > .pino-price {
+    flex: 0 0 21%;
+    min-width: 0;
+    font-weight: 700;
+    font-size: 100%;
+}
+
+.pos-receipt.pino-receipt .pino-modifier-row .pino-name {
+    font-weight: 700;
+}
+
+.pos-receipt.pino-receipt .pino-child-extra {
+    padding-right: 20%;
+}
+
+/* ------------------- Printer image: fixed pixel sizes -------------------- */
+/* 576-dot image (80 mm): Normal is a little smaller than the kitchen ticket
+   (31px) because the receipt has four columns. */
+.pos-receipt.pino-receipt.pos-receipt-print {
+    font-size: 24px !important;
+}
+.pos-receipt.pino-receipt.pino-size-small.pos-receipt-print { font-size: 21px !important; }
+.pos-receipt.pino-receipt.pino-size-large.pos-receipt-print { font-size: 27px !important; }
+
+.pos-receipt.pino-receipt.pino-w-512.pos-receipt-print { font-size: 21.5px !important; }
+.pos-receipt.pino-receipt.pino-w-512.pino-size-small.pos-receipt-print { font-size: 19px !important; }
+.pos-receipt.pino-receipt.pino-w-512.pino-size-large.pos-receipt-print { font-size: 24px !important; }
+
+.pos-receipt.pino-receipt.pino-w-420.pos-receipt-print { font-size: 17.5px !important; }
+.pos-receipt.pino-receipt.pino-w-420.pino-size-small.pos-receipt-print { font-size: 15.5px !important; }
+.pos-receipt.pino-receipt.pino-w-420.pino-size-large.pos-receipt-print { font-size: 19.5px !important; }
+
+@media print {
+    /* Browser / driver printing: Odoo forces 14px on the print container. */
+    .render-container .pos-receipt.pino-receipt.pino-size-small { font-size: 12.5px !important; }
+    .render-container .pos-receipt.pino-receipt.pino-size-large { font-size: 15.5px !important; }
+    .render-container .pos-receipt.pino-receipt * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+/*rtl:end:ignore*/
+
+/* --------------------- Delivery app card (Connect) ----------------------- */
+/*rtl:begin:ignore*/
+.pos-receipt.pino-receipt .pino-delivery {
+    border-width: 3px;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-head {
+    font-size: 95%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-caption {
+    font-size: 80%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-platform-name {
+    font-size: 135%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-main {
+    font-size: 90%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-big {
+    font-size: 190%;
+}
+
+@media print {
+    /* Odoo removes backgrounds in browser printing: keep the head readable. */
+    .render-container .pos-receipt.pino-receipt .pino-delivery-head {
+        border-bottom: 3px solid #000;
+    }
+}
+/*rtl:end:ignore*/

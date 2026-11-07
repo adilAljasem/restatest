@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_request_warehouse_setup_list" model="ir.ui.view">
+        <field name="name">stock.request.warehouse.setup.list</field>
+        <field name="model">stock.warehouse</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <list string="Warehouse Setup" create="false" delete="false">
+                <field name="name" string="Warehouse" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field
+                    name="stock_request_responsible_user_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True, 'no_open': True}"
+                />
+                <field
+                    name="default_stock_request_source_warehouse_id"
+                    options="{'no_create': True, 'no_open': True}"
+                />
+                <field
+                    name="stock_request_receiving_transit_location_id"
+                    options="{'no_create': True, 'no_open': True}"
+                />
+                <field
+                    name="stock_request_transit_mode"
+                    widget="badge"
+                    decoration-success="stock_request_transit_mode in ('custom', 'odoo_default')"
+                    decoration-danger="stock_request_transit_mode == 'missing'"
+                />
+                <field
+                    name="stock_request_configuration_status"
+                    widget="badge"
+                    decoration-success="stock_request_configuration_status == 'ready'"
+                    decoration-warning="stock_request_configuration_status == 'missing_source'"
+                    decoration-danger="stock_request_configuration_status in ('missing_responsible', 'missing_transit')"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_request_warehouse_setup_form" model="ir.ui.view">
+        <field name="name">stock.request.warehouse.setup.form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <form string="Warehouse Setup" create="false" delete="false">
+                <header>
+                    <button
+                        name="action_create_stock_request_receiving_transit_location"
+                        string="Create Receiving Transit Location"
+                        type="object"
+                        class="btn-primary"
+                        groups="stock_request.group_stock_request_manager"
+                        invisible="stock_request_receiving_transit_location_id"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Warehouse" />
+                        <h1><field name="name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" readonly="1" />
+                            <field
+                                name="stock_request_responsible_user_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True, 'no_open': True}"
+                                groups="stock_request.group_stock_request_manager"
+                            />
+                            <field
+                                name="stock_request_responsible_user_ids"
+                                widget="many2many_tags"
+                                readonly="1"
+                                groups="stock_request.group_stock_request_warehouse_responsible,!stock_request.group_stock_request_manager"
+                            />
+                            <field
+                                name="default_stock_request_source_warehouse_id"
+                                groups="stock_request.group_stock_request_manager"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field
+                                name="default_stock_request_source_warehouse_id"
+                                readonly="1"
+                                groups="stock_request.group_stock_request_warehouse_responsible,!stock_request.group_stock_request_manager"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="stock_request_receiving_transit_location_id"
+                                groups="stock_request.group_stock_request_manager"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field
+                                name="stock_request_receiving_transit_location_id"
+                                readonly="1"
+                                groups="stock_request.group_stock_request_warehouse_responsible,!stock_request.group_stock_request_manager"
+                            />
+                            <field
+                                name="stock_request_transit_mode"
+                                widget="badge"
+                                readonly="1"
+                            />
+                            <field
+                                name="stock_request_configuration_status"
+                                widget="badge"
+                                readonly="1"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_request_warehouse_setup_action" model="ir.actions.act_window">
+        <field name="name">Warehouse Setup</field>
+        <field name="res_model">stock.warehouse</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="stock_request_warehouse_setup_list" />
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Configure Stock Request responsibilities, defaults, and transit locations for each warehouse.</p>
+        </field>
+    </record>
+
+    <record id="stock_request_warehouse_setup_action_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="stock_request_warehouse_setup_list" />
+        <field name="act_window_id" ref="stock_request_warehouse_setup_action" />
+    </record>
+
+    <record id="stock_request_warehouse_setup_action_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="stock_request_warehouse_setup_form" />
+        <field name="act_window_id" ref="stock_request_warehouse_setup_action" />
+    </record>
+
+</odoo>

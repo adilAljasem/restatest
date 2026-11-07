@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_kds_sound_settings_form" model="ir.ui.view">
+        <field name="name">pos.kds.sound.settings.form</field>
+        <field name="model">pos.kds.sound.settings</field>
+        <field name="arch" type="xml">
+            <form string="صوت شاشة المطبخ">
+                <header>
+                    <button name="action_rescan_bundles" type="object"
+                            string="إعادة ربط الصوت بشاشة المطبخ" class="btn-secondary"/>
+                    <button name="action_reset_selectors" type="object"
+                            string="استعادة المحددات الافتراضية" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="الصوت">
+                            <field name="enabled"/>
+                            <field name="tone"/>
+                            <field name="custom_sound" filename="custom_sound_name"
+                                   invisible="tone != 'custom'"/>
+                            <field name="custom_sound_name" invisible="1"/>
+                            <field name="volume"/>
+                            <field name="repeat"/>
+                            <field name="repeat_interval"/>
+                        </group>
+                        <group string="متقدم">
+                            <field name="card_selector"/>
+                            <field name="root_selector"/>
+                            <field name="extra_bundles"
+                                   placeholder="مثال: pos_enterprise.assets_prep_display"/>
+                            <field name="bundles_info"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        بعد فتح شاشة المطبخ اضغط على زر الجرس 🔔 أسفل الشاشة مرة واحدة لتفعيل الصوت
+                        (المتصفحات تمنع تشغيل الصوت قبل أول ضغطة).
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_kds_sound_settings" model="ir.actions.server">
+        <field name="name">صوت شاشة المطبخ</field>
+        <field name="model_id" ref="model_pos_kds_sound_settings"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_open_settings()</field>
+    </record>
+
+    <menuitem id="menu_pos_kds_sound_settings"
+              name="صوت شاشة المطبخ"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_pos_kds_sound_settings"
+              groups="point_of_sale.group_pos_manager"
+              sequence="90"/>
+</odoo>

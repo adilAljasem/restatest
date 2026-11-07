@@ -1,0 +1,45 @@
+.order-container .orderline {
+    &.o_pcm_modifier_parent {
+        background: color-mix(in srgb, var(--o-brand-primary, #FF5A1F) 7%, white);
+        border-inline-start: 3px solid var(--o-brand-primary, #FF5A1F);
+        border-radius: 0.45rem 0.45rem 0 0;
+        font-weight: 650;
+    }
+
+    &.o_pcm_modifier_line {
+        width: calc(100% - 1.15rem);
+        margin-inline-start: 1.15rem;
+        background: #FFF4EF;
+        border-inline-start: 2px solid #bba8b6;
+        border-bottom: 1px solid #e8e1e6;
+        font-size: 0.88rem;
+        cursor: default;
+        pointer-events: none;
+
+        .product-name::before {
+            content: "↳";
+            margin-inline-end: 0.4rem;
+            color: var(--o-brand-primary, #FF5A1F);
+            font-weight: 800;
+        }
+    }
+}
+
+.o_rtl .order-container .orderline.o_pcm_modifier_line .product-name::before {
+    content: "↲";
+}
+
+.pos-receipt {
+    .o_pos_receipt_modifier,
+    .o_pos_receipt_instruction {
+        margin-inline-start: 0.45rem;
+        padding: 0.18rem 0.35rem 0.18rem 0.65rem;
+        border-inline-start: 2px solid #444;
+        line-height: 1.4;
+    }
+
+    .o_pos_receipt_instruction {
+        margin-inline-start: 0.9rem;
+        font-style: italic;
+    }
+}

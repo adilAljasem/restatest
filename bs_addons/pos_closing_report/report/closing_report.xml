@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_pos_closing" model="ir.actions.report">
+        <field name="name">POS Closing Report</field>
+        <field name="model">pos.closing.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_closing_report.report_pos_closing</field>
+        <field name="report_file">pos_closing_report.report_pos_closing</field>
+        <field name="print_report_name">'Closing - %s - %s' % (object.cashier_name, object.name)</field>
+        <field name="binding_model_id" ref="model_pos_closing_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_pos_business_day" model="ir.actions.report">
+        <field name="name">Business Day Report</field>
+        <field name="model">pos.business.day.closing.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_closing_report.report_pos_business_day</field>
+        <field name="report_file">pos_closing_report.report_pos_business_day</field>
+        <field name="print_report_name">'Business Day - %s - %s' % (object.config_id.name, object.business_date)</field>
+    </record>
+
+    <!-- Label in the report language (English under the Arabic one with "Arabic and English") -->
+    <template id="report_closing_label">
+        <span t-esc="L[k]"/><t t-if="L2.get(k)"><br/><small class="text-muted" t-esc="L2[k]"/></t>
+    </template>
+
+    <template id="report_closing_money">
+        <span t-esc="v" t-options="{'widget': 'monetary', 'display_currency': currency}"/>
+    </template>
+
+    <!-- Body shared by the cashier report and the business day report; `d` is the report data -->
+    <template id="report_closing_body">
+        <t t-set="L" t-value="d['labels']"/>
+        <t t-set="L2" t-value="d['labels2']"/>
+        <t t-set="show" t-value="d['show']"/>
+        <div class="page pcr-pdf" t-att-dir="d['direction']" t-attf-style="direction: {{ d['direction'] }}; text-align: {{ 'right' if d['direction'] == 'rtl' else 'left' }};">
+            <h3 class="mb-1">
+                <t t-esc="L['day_title'] if d['kind'] == 'day' else L['cashier_title']"/>
+                <small t-if="L2" class="text-muted"> / <t t-esc="L2['day_title'] if d['kind'] == 'day' else L2['cashier_title']"/></small>
+            </h3>
+            <table class="table table-sm table-borderless mb-3">
+                <tr>
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'branches' if d['kind'] == 'day' else 'branch'"/></t></strong></td>
+                    <td t-esc="d['branch']"/>
+                    <t t-if="d['kind'] == 'cashier'">
+                        <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'employee'"/></t></strong></td>
+                        <td t-esc="d['cashier']"/>
+                    </t>
+                    <t t-else="">
+                        <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'business_date'"/></t></strong></td>
+                        <td><strong t-esc="d['business_date']"/></td>
+                    </t>
+                </tr>
+                <tr t-if="d['kind'] == 'cashier'">
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'session'"/></t></strong></td>
+                    <td t-esc="d['session']"/>
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'status'"/></t></strong></td>
+                    <td><strong t-esc="d['status_label']"/></td>
+                </tr>
+                <tr t-if="d['kind'] == 'cashier'">
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'opening_date'"/></t></strong></td>
+                    <td dir="ltr" t-esc="d['start_at']"/>
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'closing_date'"/></t></strong></td>
+                    <td dir="ltr" t-esc="d['stop_at']"/>
+                </tr>
+                <tr t-if="d['kind'] == 'day'">
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'period'"/></t></strong></td>
+                    <td dir="ltr"><t t-esc="d['period_from']"/> → <t t-esc="d['period_to']"/></td>
+                    <td><strong><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'sessions_count'"/></t></strong></td>
+                    <td t-esc="d['sessions_count']"/>
+                </tr>
+            </table>
+
+            <!-- Cashier: closing count -->
+            <t t-if="d['kind'] == 'cashier'">
+                <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'cash_count'"/></t></h5>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'payment_method'"/></t></th>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'type'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'expected'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'counted'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'difference'"/></t></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="d['lines']" t-as="l">
+                            <td><t t-esc="l['name']"/><t t-if="not l['diff_known']"> *</t><t t-if="l['name2']"><br/><small class="text-muted" t-esc="l['name2']"/></t></td>
+                            <td t-esc="l['type_label']"/>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="l['expected']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="l['counted']"/></t></td>
+                            <td t-att-class="'text-end text-danger' if l['difference'] &lt; 0 else 'text-end'"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="l['difference']"/></t></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="fw-bold">
+                            <td colspan="2"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'total'"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['expected_total']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['counted_total']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['difference_total']"/></t></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p t-if="d['has_retro']" class="text-muted small" t-esc="L['retro_note']"/>
+            </t>
+
+            <!-- Day: sessions -->
+            <t t-if="d['kind'] == 'day' and show['sessions']">
+                <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'sessions'"/></t></h5>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'session'"/></t></th>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'employee'"/></t></th>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'opening_date'"/></t></th>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'closing_date'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'expected'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'counted'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'cash_difference'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'bank_difference'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'difference'"/></t></th>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'status'"/></t></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-if="not d['sessions']"><td colspan="10" class="text-center text-muted" t-esc="L['none']"/></tr>
+                        <tr t-foreach="d['sessions']" t-as="s">
+                            <td><t t-esc="s['name']"/><t t-if="s['branch'] != d['branch']"><br/><small class="text-muted" t-esc="s['branch']"/></t></td>
+                            <td t-esc="s['cashier']"/>
+                            <td dir="ltr" t-esc="s['start_at']"/>
+                            <td dir="ltr" t-esc="s['stop_at']"/>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="s['expected_total']"/></t></td>
+                            <t t-if="s['counted_known']">
+                                <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="s['counted_total']"/></t></td>
+                                <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="s['cash_difference']"/></t></td>
+                                <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="s['bank_difference']"/></t></td>
+                                <td t-att-class="'text-end fw-bold text-danger' if s['difference_total'] &lt; 0 else 'text-end fw-bold'"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="s['difference_total']"/></t></td>
+                            </t>
+                            <td t-else="" colspan="4" class="text-center text-muted small" t-esc="L['open_note']"/>
+                            <td t-esc="s['status_label']"/>
+                        </tr>
+                    </tbody>
+                    <tfoot t-if="d['sessions']">
+                        <tr class="fw-bold">
+                            <td colspan="4"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'total'"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['expected_total']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['counted_total']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['cash_difference']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['bank_difference']"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['difference_total']"/></t></td>
+                            <td/>
+                        </tr>
+                    </tfoot>
+                </table>
+            </t>
+
+            <div class="row">
+                <!-- Day: payments -->
+                <div t-if="d['kind'] == 'day' and show['payments']" class="col-6">
+                    <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'payments'"/></t></h5>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'payment_method'"/></t></th>
+                                <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'count'"/></t></th>
+                                <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'amount'"/></t></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-if="not d['payments']"><td colspan="3" class="text-center text-muted" t-esc="L['none']"/></tr>
+                            <tr t-foreach="d['payments']" t-as="p">
+                                <td><t t-esc="p['name']"/><t t-if="p['name2']"><br/><small class="text-muted" t-esc="p['name2']"/></t></td>
+                                <td class="text-end" t-esc="p['count']"/>
+                                <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="p['amount']"/></t></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="fw-bold">
+                                <td colspan="2"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'total'"/></t></td>
+                                <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['payments_total']"/></t></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Sales summary -->
+                <div t-if="show['summary']" class="col-6">
+                    <t t-set="sm" t-value="d['summary']"/>
+                    <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'sales_summary'"/></t></h5>
+                    <table class="table table-sm table-bordered">
+                        <tr><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'orders_count'"/></t></td><td class="text-end" t-esc="sm['orders_count']"/></tr>
+                        <tr><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'gross_sales'"/></t></td><td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="sm['gross_sales']"/></t></td></tr>
+                        <tr t-if="show['refunds']"><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'refunds_total'"/></t></td><td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="sm['refunds_total']"/></t></td></tr>
+                        <tr class="fw-bold"><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'net_sales'"/></t></td><td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="sm['net_sales']"/></t></td></tr>
+                        <tr><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'taxes'"/></t></td><td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="sm['taxes']"/></t></td></tr>
+                        <tr><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'average_ticket'"/></t></td><td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="sm['average_ticket']"/></t></td></tr>
+                        <tr t-if="sm['guests']"><td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'guests'"/></t></td><td class="text-end" t-esc="sm['guests']"/></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sold items -->
+            <t t-if="show['items']">
+                <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'sold_items'"/></t></h5>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'item'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'qty'"/></t></th>
+                            <th class="text-end"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'amount'"/></t></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-if="not d['items']"><td colspan="3" class="text-center text-muted" t-esc="L['none']"/></tr>
+                        <tr t-foreach="d['items']" t-as="i">
+                            <td><t t-esc="i['name']"/><t t-if="i['name2']"><br/><small class="text-muted" t-esc="i['name2']"/></t></td>
+                            <td class="text-end" t-esc="'%g' % i['qty']"/>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="i['amount']"/></t></td>
+                        </tr>
+                    </tbody>
+                    <tfoot t-if="d['items']">
+                        <tr class="fw-bold">
+                            <td><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'items_total'"/></t></td>
+                            <td class="text-end" t-esc="'%g' % d['items_qty']"/>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['items_total']"/></t></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </t>
+
+            <div class="row">
+                <!-- Refunds -->
+                <div t-if="show['refunds']" class="col-6">
+                    <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'refunds'"/></t>
+                        <small>(<t t-esc="d['summary']['refunds_count']"/>)</small></h5>
+                    <table class="table table-sm table-bordered">
+                        <tr t-if="not d['refund_items'] and not d['refund_orders']"><td colspan="3" class="text-center text-muted" t-esc="L['none']"/></tr>
+                        <tr t-foreach="d['refund_items']" t-as="i">
+                            <td><t t-esc="i['name']"/><t t-if="i['name2']"><br/><small class="text-muted" t-esc="i['name2']"/></t></td>
+                            <td class="text-end" t-esc="'%g' % i['qty']"/>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="i['amount']"/></t></td>
+                        </tr>
+                        <tr t-foreach="d['refund_orders']" t-as="o" class="small">
+                            <td><t t-esc="o['ref']"/><t t-if="o['origin']"> ← <t t-esc="o['origin']"/></t></td>
+                            <td><t t-esc="o['time']"/> <t t-esc="o['employee']"/></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="o['amount']"/></t></td>
+                        </tr>
+                        <tr class="fw-bold">
+                            <td colspan="2"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'total'"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="-d['summary']['refunds_total']"/></t></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Cancellations -->
+                <div t-if="show['cancellations']" class="col-6">
+                    <h5><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'cancellations'"/></t>
+                        <small>(<t t-esc="d['summary']['cancelled_count']"/>)</small></h5>
+                    <table class="table table-sm table-bordered">
+                        <tr t-if="not d['cancelled_orders']"><td colspan="3" class="text-center text-muted" t-esc="L['none']"/></tr>
+                        <tr t-foreach="d['cancelled_orders']" t-as="o" class="small">
+                            <td t-esc="o['ref']"/>
+                            <td><t t-esc="o['time']"/> <t t-esc="o['employee']"/></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="o['amount']"/></t></td>
+                        </tr>
+                        <tr class="fw-bold">
+                            <td colspan="2"><t t-call="pos_closing_report.report_closing_label"><t t-set="k" t-value="'total'"/></t></td>
+                            <td class="text-end"><t t-call="pos_closing_report.report_closing_money"><t t-set="v" t-value="d['summary']['cancelled_total']"/></t></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p class="text-muted small mt-2">
+                <t t-esc="L['printed_at']"/>: <span dir="ltr" t-esc="d['printed_at']"/> · <t t-esc="L['printed_by']"/>: <t t-esc="d['printed_by']"/>
+            </p>
+            <div class="row mt-5">
+                <div class="col-6" t-if="d['kind'] == 'cashier'"><t t-esc="L['employee_signature']"/>: ..................</div>
+                <div class="col-6"><t t-esc="L['manager_signature']"/>: ..................</div>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_pos_closing">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-set="company" t-value="doc.company_id"/>
+                    <t t-set="currency" t-value="doc.currency_id or doc.company_id.currency_id"/>
+                    <t t-set="d" t-value="doc.get_receipt_data()"/>
+                    <t t-call="pos_closing_report.report_closing_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_pos_business_day">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-set="company" t-value="doc.config_id.company_id"/>
+                    <t t-set="currency" t-value="doc.config_id.currency_id or doc.config_id.company_id.currency_id"/>
+                    <t t-set="d" t-value="doc._get_report_data()"/>
+                    <t t-call="pos_closing_report.report_closing_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

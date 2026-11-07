@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Health certificates: one expired, some expiring, others valid -->
+    <record id="demo_doc_health_03" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_03"/>
+        <field name="type_id" ref="doc_type_health"/>
+        <field name="number">HC-100203</field>
+        <field name="issue_date" eval="(DateTime.today() - relativedelta(years=1, days=5)).strftime('%Y-%m-%d')"/>
+        <field name="expiry_date" eval="(DateTime.today() - relativedelta(days=5)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="demo_doc_health_05" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_05"/>
+        <field name="type_id" ref="doc_type_health"/>
+        <field name="number">HC-100205</field>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=12)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="demo_doc_health_09" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_09"/>
+        <field name="type_id" ref="doc_type_health"/>
+        <field name="number">HC-100209</field>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=200)).strftime('%Y-%m-%d')"/>
+    </record>
+    <!-- Iqamas of non-Saudi employees -->
+    <record id="demo_doc_iqama_04" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_04"/>
+        <field name="type_id" ref="doc_type_iqama"/>
+        <field name="number">2412345604</field>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=25)).strftime('%Y-%m-%d')"/>
+        <field name="renewal_cost">650</field>
+    </record>
+    <record id="demo_doc_iqama_07" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_07"/>
+        <field name="type_id" ref="doc_type_iqama"/>
+        <field name="number">2412345607</field>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=300)).strftime('%Y-%m-%d')"/>
+        <field name="renewal_cost">650</field>
+    </record>
+    <record id="demo_doc_passport_09" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_09"/>
+        <field name="type_id" ref="doc_type_passport"/>
+        <field name="number">P9876543</field>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=55)).strftime('%Y-%m-%d')"/>
+    </record>
+    <!-- Driving license of a driver -->
+    <record id="demo_doc_driving_03" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_03"/>
+        <field name="type_id" ref="doc_type_driving"/>
+        <field name="number">DL-55003</field>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=400)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="demo_doc_insurance_03" model="bs.hr.document">
+        <field name="employee_id" ref="bs_hr_ess_base.emp_03"/>
+        <field name="type_id" ref="doc_type_insurance"/>
+        <field name="expiry_date" eval="(DateTime.today() + relativedelta(days=90)).strftime('%Y-%m-%d')"/>
+    </record>
+</odoo>

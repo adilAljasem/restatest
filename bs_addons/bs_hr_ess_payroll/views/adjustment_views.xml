@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_adjustment_form_payroll" model="ir.ui.view">
+        <field name="name">bs.hr.payroll.adjustment.form.payroll</field>
+        <field name="model">bs.hr.payroll.adjustment</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.view_adjustment_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_open_payslip" type="object" class="oe_stat_button" icon="fa-money"
+                        invisible="not payslip_id" string="Payslip"/>
+            </div>
+            <field name="applied_date" position="after">
+                <field name="payslip_id" invisible="not payslip_id"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_adjustment_list_payroll" model="ir.ui.view">
+        <field name="name">bs.hr.payroll.adjustment.list.payroll</field>
+        <field name="model">bs.hr.payroll.adjustment</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.view_adjustment_list"/>
+        <field name="arch" type="xml">
+            <field name="source_ref" position="after">
+                <field name="payslip_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>

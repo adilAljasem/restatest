@@ -1,0 +1,9 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ar\n"
+
+#. module: pos_ticket_partner_phone
+#: code:addons/pos_ticket_partner_phone/static/src/app/screens/ticket_screen/ticket_screen.js:0
+msgid "Customer Phone"
+msgstr "جوال العميل"

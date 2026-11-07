@@ -1,0 +1,23 @@
+// Make room for the fixed sidebar on the "start" side (right in Arabic).
+.o_web_client {
+    font-family: $o-font-family-sans-serif;
+    background-color: var(--rs-page-bg);
+
+    &.rs_has_sidebar {
+        transition: padding-inline-start .22s var(--rs-ease);
+
+        @include media-breakpoint-up(lg) {
+            padding-inline-start: var(--rs-sidebar-w);
+
+            &.rs_sidebar_collapsed {
+                padding-inline-start: var(--rs-sidebar-w-collapsed);
+            }
+        }
+    }
+}
+
+// Theme switch: avoid a white flash between reloads.
+html.rs_switching_scheme body {
+    opacity: .6;
+    transition: opacity .15s;
+}

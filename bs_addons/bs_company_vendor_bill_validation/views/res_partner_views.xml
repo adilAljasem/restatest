@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_mandatory_company_fields" model="ir.ui.view">
+        <field name="name">res.partner.form.mandatory.company.fields</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//span[@name='address_name']/following-sibling::div[hasclass('o_address_format')]//field[@name='street']"
+                position="attributes"
+            >
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath
+                expr="//span[@name='address_name']/following-sibling::div[hasclass('o_address_format')]//field[@name='street2']"
+                position="attributes"
+            >
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath
+                expr="//span[@name='address_name']/following-sibling::div[hasclass('o_address_format')]//field[@name='city']"
+                position="attributes"
+            >
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath
+                expr="//span[@name='address_name']/following-sibling::div[hasclass('o_address_format')]//field[@name='state_id']"
+                position="attributes"
+            >
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath
+                expr="//span[@name='address_name']/following-sibling::div[hasclass('o_address_format')]//field[@name='zip']"
+                position="attributes"
+            >
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath
+                expr="//span[@name='address_name']/following-sibling::div[hasclass('o_address_format')]//field[@name='country_id']"
+                position="attributes"
+            >
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record
+        id="localized_partner_address_form_mandatory_company_fields"
+        model="ir.ui.view"
+    >
+        <field name="name">localized.partner.form.address.mandatory.company.fields</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_sa_edi.sa_partner_address_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='street']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='street2']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='city']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='zip']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="attributes">
+                <attribute name="required">is_company</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='l10n_sa_edi_building_number']"
+                position="attributes"
+            >
+                <attribute name="required">
+                    is_company and country_code == 'SA'
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='l10n_sa_edi_plot_identification']"
+                position="attributes"
+            >
+                <attribute name="required">
+                    is_company and country_code == 'SA'
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

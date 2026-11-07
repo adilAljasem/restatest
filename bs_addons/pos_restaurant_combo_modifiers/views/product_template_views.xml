@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_modifiers" model="ir.ui.view">
+        <field name="name">product.template.form.modifiers</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Modifiers" name="modifiers" groups="point_of_sale.group_pos_user">
+                    <field name="is_pos_modifier_product" invisible="True"/>
+                    <field name="modifier_option_editor_changes" invisible="True"/>
+                    <group>
+                        <group>
+                            <field name="allow_modifiers"/>
+                        </group>
+                    </group>
+                    <group invisible="not allow_modifiers">
+                        <field name="modifier_group_line_ids" widget="modifier_group_options" nolabel="1" context="{'default_product_tmpl_id': id}">
+                            <list editable="bottom" default_order="sequence,id">
+                                <field name="sequence" widget="handle"/>
+                                <field name="company_id" column_invisible="True"/>
+                                <field name="modifier_group_id" options="{'no_create_edit': True}"/>
+                                <field name="auto_open"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Advanced Settings"
+                           invisible="not allow_modifiers and not is_pos_modifier_product">
+                        <field name="hide_from_pos_screen"
+                               invisible="not is_pos_modifier_product"
+                               help="Useful for products sold only as modifier choices."/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

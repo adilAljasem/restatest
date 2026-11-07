@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_ess_open_portal" model="ir.actions.act_url">
+        <field name="name">My Self-Service</field>
+        <field name="url">/my/hr</field>
+        <field name="target">self</field>
+    </record>
+    <menuitem id="menu_ess_my_portal" name="My Self-Service" sequence="75" action="action_ess_open_portal"
+              web_icon="bs_hr_ess_base,static/description/icon_me.png" groups="base.group_user"/>
+
+    <menuitem id="menu_ess_root" name="Self-Service" sequence="76"
+              web_icon="bs_hr_ess_base,static/description/icon.png"
+              groups="bs_hr_ess_base.group_ess_branch_supervisor"/>
+
+    <menuitem id="menu_ess_approvals" name="My Approvals" parent="menu_ess_root" sequence="1"
+              action="action_my_approvals"/>
+
+    <menuitem id="menu_ess_requests" name="Requests" parent="menu_ess_root" sequence="10"/>
+    <menuitem id="menu_ess_profile_change" name="Profile Updates" parent="menu_ess_requests" sequence="90"
+              action="action_profile_change"/>
+
+    <menuitem id="menu_ess_employees" name="Employees" parent="menu_ess_root" sequence="40"/>
+    <menuitem id="menu_ess_payroll" name="Payroll" parent="menu_ess_root" sequence="50"
+              groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_adjustment" name="Payroll Adjustments" parent="menu_ess_payroll" sequence="90"
+              action="action_adjustment"/>
+
+    <menuitem id="menu_ess_reporting" name="Reporting" parent="menu_ess_root" sequence="80"
+              groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_report_approvals" name="Approvals Analysis" parent="menu_ess_reporting"
+              sequence="90" action="action_all_approvals"/>
+
+    <menuitem id="menu_ess_config" name="Configuration" parent="menu_ess_root" sequence="100"
+              groups="bs_hr_ess_base.group_ess_hr_manager"/>
+    <menuitem id="menu_ess_settings" name="Settings" parent="menu_ess_config" sequence="1"
+              action="action_ess_settings"/>
+    <menuitem id="menu_ess_flows" name="Approval Flows" parent="menu_ess_config" sequence="10"
+              action="action_approval_flow"/>
+    <menuitem id="menu_ess_delegations" name="Delegations" parent="menu_ess_config" sequence="20"
+              action="action_delegation"/>
+    <menuitem id="menu_ess_branches" name="Branches" parent="menu_ess_config" sequence="30"
+              action="action_ess_branches"/>
+</odoo>

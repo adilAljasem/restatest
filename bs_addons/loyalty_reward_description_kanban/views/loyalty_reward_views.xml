@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="loyalty_reward_view_kanban_description" model="ir.ui.view">
+        <field name="name">loyalty.reward.view.kanban.description</field>
+        <field name="model">loyalty.reward</field>
+        <field name="inherit_id" ref="loyalty.loyalty_reward_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/templates/t[@t-name='card']/div[@name='reward_info']" position="inside">
+                <div name="reward_description" t-if="record.description.raw_value" class="mt-2 fw-semibold text-wrap">
+                    <field name="description"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

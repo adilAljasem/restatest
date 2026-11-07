@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_users_form_stock_request" model="ir.ui.view">
+        <field name="name">res.users.form.stock.request</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='preferences']//group[@name='other_preferences']"
+                position="inside"
+            >
+                <field name="company_id" invisible="1" />
+                <field
+                    name="default_stock_request_warehouse_id"
+                    domain="[('company_id', '=', company_id)]"
+                    options="{'no_create': True, 'no_open': True}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_users_preferences_stock_request" model="ir.ui.view">
+        <field name="name">res.users.preferences.stock.request</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='preferences_page']//group[@name='other_preferences']"
+                position="inside"
+            >
+                <field name="company_id" invisible="1" />
+                <field
+                    name="default_stock_request_warehouse_id"
+                    domain="[('company_id', '=', company_id)]"
+                    options="{'no_create': True, 'no_open': True}"
+                    readonly="0"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

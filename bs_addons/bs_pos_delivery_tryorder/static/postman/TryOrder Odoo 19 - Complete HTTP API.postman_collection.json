@@ -1,0 +1,2800 @@
+{
+  "info": {
+    "_postman_id": "5db1ca62-2ee0-4765-add8-1bd65bd54b54",
+    "name": "TryOrder Odoo 19 - Complete HTTP API",
+    "description": "# TryOrder / Odoo 19 HTTP API\n\nImport this file in Postman. `db` defaults to the staging `bunbastic-stg-39985581` database. Each protected request already sends `X-Api-Key: {{apiKey}}`; the supplied staging test key is included in the Collection variable `apiKey`. Use the SAME key value previously stored in `order_connector.api_key`; configure that value as the TryOrder connection Inbound Secret (`webhook_secret`) in Core. Rotate the staging test key before sharing this collection outside the test team. The header remains `X-Api-Key`; the inbound paths remain `/order_connector/*`.\n\nConfigure the TryOrder branch binding and payment mappings. For a legacy POS response, open the mapped POS session and configure automatic acceptance plus an invoice customer. Run Ping, Branches and Catalog first. Catalog suggests `branchId`, `productTemplateId`, `unitPrice`, and an `imageUrl`; verify the selected IDs and prices. The image request is skipped when the catalog has no pictured product.\n\nA successfully created POS order returns the old external response fields: `success`, `order_id` (the `pos.order.id` as a string), `order_name` (Odoo POS name), `state` (Odoo POS state), and `kind=pos`. Use that returned `orderId` in status routes. The status response reports the same ID, current Odoo POS `state`, and the incoming `status`. The provider_order_id in a request is TryOrder's own unique ID, not an Odoo ID. Run Cash create, Exact replay, then Conflicting replay in that order; other create examples generate distinct provider IDs. Run folder 05 in order: it creates separate orders for rejected and canceled. A delivered order cannot transition to either status.\n\nThe current Core integration can still return `kind=core` with a Core ID when POS is pending. That is a known difference from the old module, which used a Sale order fallback. Coupon and loyalty discounts use separate untaxed negative POS lines while Core stores their breakdown; wallet remains a payment. The discount may not exceed the order total. Run these examples with a product price greater than the discount amounts. Product image URLs are signed and branch-scoped, unlike the old public-by-ID URLs. The POS-waiting and signed-image differences are intentional and remain documented.\n\nA nonzero delivery fee requires an untaxed fee product on the branch. Wallet is a payment, not a discount. Odoo computes product tax; any supplied `total` must equal product + modifier + tax + fee minus coupon/loyalty discounts. Use `expectedOrderState` only if you know the actual Odoo POS state. POS frontend and Kitchen display need separate visual verification. Requests include `?db={{db}}` and `X-Odoo-Database` for the staging Odoo database. Outbound gateway calls are outside this inbound HTTP collection.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "25859280"
+  },
+  "item": [
+    {
+      "name": "01 Connection and catalog",
+      "item": [
+        {
+          "name": "GET ping",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Connection metadata\", function () { pm.expect(data).to.have.property(\"version\"); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/ping?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "ping"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Validates X-Api-Key against an active connected TryOrder Core connection."
+          },
+          "response": []
+        },
+        {
+          "name": "GET branches",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Branches array\", function () { pm.expect(data.branches).to.be.an(\"array\"); });",
+                  "if (pm.response.code === 200 && data.branches && data.branches.length && !pm.collectionVariables.get(\"branchId\")) { pm.collectionVariables.set(\"branchId\", data.branches[0].id); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/branches?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "branches"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Lists active POS store bindings. IDs are pos.config IDs, not Core store binding IDs."
+          },
+          "response": []
+        },
+        {
+          "name": "GET catalog",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.unset(\"imageUrl\");",
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Catalog arrays\", function () { pm.expect(data.items).to.be.an(\"array\"); pm.expect(data.categories).to.be.an(\"array\"); });",
+                  "if (pm.response.code === 200 && data.items) {",
+                  "  const simple = data.items.find(function (item) { return item.type !== \"combo\" && !(item.add_on || []).some(function (a) { return Number(a.modifierCategory && a.modifierCategory.min_selection) > 0; }); });",
+                  "  if (simple && !pm.collectionVariables.get(\"productTemplateId\")) { pm.collectionVariables.set(\"productTemplateId\", simple._id); }",
+                  "  const chosen = data.items.find(function (item) { return String(item._id) === String(pm.collectionVariables.get(\"productTemplateId\")); });",
+                  "  if (chosen && !pm.collectionVariables.get(\"unitPrice\")) { pm.collectionVariables.set(\"unitPrice\", chosen.price); }",
+                  "  const pictured = data.items.find(function (item) { return !!item.image_url; });",
+                  "  if (pictured) { const path = pictured.image_url.replace(/^https?:\\/\\/[^/]+/, \"\"); pm.collectionVariables.set(\"imageUrl\", pm.collectionVariables.get(\"baseUrl\").replace(/\\/$/, \"\") + path); }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/catalog?branch_id={{branchId}}&db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "catalog"
+              ],
+              "query": [
+                {
+                  "key": "branch_id",
+                  "value": "{{branchId}}"
+                },
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Inspect items[].add_on[].modifier._id for posmod-ID and items[].combos[].items[].id for comboitem-ID. Select the correct parent product for each option. The script suggests a basic product and captures a signed image URL."
+          },
+          "response": []
+        },
+        {
+          "name": "GET signed product image",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (!pm.collectionVariables.get(\"imageUrl\")) { pm.execution.skipRequest(); }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Image HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "pm.test(\"Image MIME type\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.match(/^image\\/(png|jpeg|webp|gif|bmp|tiff)$/i); });",
+                  "pm.test(\"Image has bytes\", function () { pm.expect(pm.response.size().body).to.be.above(0); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{imageUrl}}&db={{db}}",
+              "host": [
+                "{{imageUrl}}&db={{db}}"
+              ]
+            },
+            "description": "Run Catalog first. Catalog refreshes imageUrl from a product that actually has an image. This request is skipped when the catalog contains none. A signed URL is valid for a connected TryOrder branch or an opted-in Test Draft branch. The response MIME type must match the stored image."
+          },
+          "response": []
+        }
+      ],
+      "description": "Start here. These requests are read-only."
+    },
+    {
+      "name": "02 Cash, replay, conflict",
+      "item": [
+        {
+          "name": "POST cash delivery order",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"cashProviderOrderId\", \"TRY-PM-CASH-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"orderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.response.code === 200 && data.order_id) { pm.collectionVariables.set(\"cashOrderId\", data.order_id); }",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{cashProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Creates a Core delivery order. Its accepted POS order and kitchen job depend on Core acceptance setup and an open POS session."
+          },
+          "response": []
+        },
+        {
+          "name": "POST exact replay - same POS order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Same POS order ID\", function () { pm.expect(data.order_id).to.eql(pm.collectionVariables.get(\"cashOrderId\")); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{cashProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Identical body and provider_order_id as the previous request; should return the existing POS order."
+          },
+          "response": []
+        },
+        {
+          "name": "POST conflicting replay - 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 409\", function () { pm.response.to.have.status(409); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{cashProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 2,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Same provider_order_id with changed quantity. The Core conflict response must prevent changing the original order."
+          },
+          "response": []
+        }
+      ],
+      "description": "Run these three requests in order. Replay sends exactly the same JSON. Conflict changes quantity under the same provider_order_id."
+    },
+    {
+      "name": "03 Order variants",
+      "item": [
+        {
+          "name": "POST online card delivery",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-CARD-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"online\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"payment_reference\": \"PM-CARD-REFERENCE\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Card is collected by aggregator; map TryOrder credit_visa/card in Core."
+          },
+          "response": []
+        },
+        {
+          "name": "POST cash pickup",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-PICKUP-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"pickup\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Checks pickup fulfillment mapping."
+          },
+          "response": []
+        },
+        {
+          "name": "POST cash dine-in",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-DINEIN-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"dine_in\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Checks dine_in fulfillment mapping."
+          },
+          "response": []
+        },
+        {
+          "name": "POST matching declared total",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-TOTALOK-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"total\": 11\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Set expectedTotal to the exact product plus Odoo tax amount. A matching declared total is accepted without changing product price or tax."
+          },
+          "response": []
+        },
+        {
+          "name": "POST wallet plus untaxed delivery fee",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-WALLET-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"delivery_fee\": {{deliveryFee}},\n    \"wallet_amount\": {{walletAmount}},\n    \"wallet_payment_reference\": \"PM-WALLET-REFERENCE\",\n    \"discounts\": [\n      {\n        \"label\": \"Wallet\",\n        \"amount\": {{walletAmount}}\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Requires wallet payment mapping and tax-free fee product. Wallet is part of tender, not a product discount. Do not send total until tax-inclusive expected value is known."
+          },
+          "response": []
+        },
+        {
+          "name": "POST native product modifier",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-MOD-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 32,\n        \"qty\": 1,\n        \"price\": 23,\n        \"modifiers\": [\n          {\n            \"id\": \"posmod-13\",\n            \"qty\": 1,\n            \"price\": 2,\n            \"note\": \"Modifier note\"\n          }\n        ]\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Use a product-type option from this parent item's add_on list. Set unitPrice to this parent's intended incoming price. For required groups, include enough modifiers manually."
+          },
+          "response": []
+        },
+        {
+          "name": "POST native instruction modifier",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-INSTR-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 32,\n        \"qty\": 1,\n        \"price\": 23,\n        \"modifiers\": [\n          {\n            \"id\": \"posmod-46\",\n            \"qty\": 1,\n            \"price\": 0,\n            \"note\": \"No onions\"\n          }\n        ]\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Use instruction-type option from this parent item's add_on list. Price must be zero. Instructions appear as structured kitchen data without a fake product."
+          },
+          "response": []
+        },
+        {
+          "name": "POST native combo choice",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-COMBO-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 1483,\n        \"qty\": 1,\n        \"price\": 96,\n        \"modifiers\": [\n          {\n            \"id\": \"comboitem-8\",\n            \"qty\": 1,\n            \"price\": 0\n          }\n        ]\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Use combo parent item and choice ID from its combos[].items[]. Set all required combo choices manually when multiple groups have a minimum. Taxes and total remain calculated by Odoo/Core."
+          },
+          "response": []
+        },
+        {
+          "name": "POST legacy ptav modifier",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-MOD-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.variables.get(\"expectedOrderState\")) { pm.test(\"Expected order state\", function () { pm.expect(data.state).to.eql(pm.variables.get(\"expectedOrderState\")); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 1509,\n        \"qty\": 1,\n        \"price\": 10,\n        \"modifiers\": [\n          {\n            \"id\": \"ptav-5\",\n            \"qty\": 1,\n            \"price\": 1,\n            \"note\": \"Modifier note\"\n          }\n        ]\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Select an attribute value from Catalog `add_on` (ID `ptav-...`) on the same product. The adapter creates an untaxed/taxed service child line according to the parent product taxes; verify the product and tax totals."
+          },
+          "response": []
+        },
+        {
+          "name": "POST coupon discount",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-DISCOUNT-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"discounts\": [\n      {\n        \"label\": \"Coupon\",\n        \"amount\": {{couponAmount}}\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Legacy coupon becomes a separate untaxed POS/invoice line. Open a POS session and configure automatic acceptance before running."
+          },
+          "response": []
+        },
+        {
+          "name": "POST coupon plus loyalty discount",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-LOYALTY-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Legacy POS order ID and kind\", function () { pm.expect(data.order_id).to.be.a(\"string\"); pm.expect(data.kind).to.eql(\"pos\"); pm.expect(data.order_name).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"variantOrderId\", data.order_id); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"discounts\": [\n      {\n        \"label\": \"Coupon\",\n        \"amount\": {{couponAmount}}\n      },\n      {\n        \"label\": \"Loyalty\",\n        \"amount\": {{loyaltyAmount}}\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Coupon and loyalty each become separate untaxed negative lines; product tax is preserved."
+          },
+          "response": []
+        }
+      ],
+      "description": "Each request creates an order with a new provider_order_id. Set the needed Collection variables and payment/fee mappings first."
+    },
+    {
+      "name": "04 Status updates",
+      "item": [
+        {
+          "name": "PUT accepted",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Legacy status response\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"accepted\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Provider confirmed/accepted state. Depending on Core policy, order may already be accepted."
+          },
+          "response": []
+        },
+        {
+          "name": "POST preparing (alternative method)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "POST and PUT use the same status route. Run this after accepted and before ready on the same order."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT preparing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Advance the selected order to preparing."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT preparing exact replay",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Still preparing\", function () { pm.expect(data.status).to.eql(\"preparing\"); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Repeat the preceding preparing update with identical payload. Core should return the same state without a second transition."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT ready",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"ready\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Advance the selected order to ready."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT picked_up",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"picked_up\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Advance the selected order to picked_up."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT completed (delivered)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"orderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Maps completed to Core delivered; terminal transition."
+          },
+          "response": []
+        }
+      ],
+      "description": "Use orderId from a successful create response. Run accepted, POST preparing, PUT preparing and its replay, ready, picked_up, then completed. Completed is terminal; folder 05 creates separate orders for rejected and canceled."
+    },
+    {
+      "name": "05 Alternative status outcomes",
+      "item": [
+        {
+          "name": "POST new order for rejection",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.unset(\"rejectOrderId\");",
+                  "pm.collectionVariables.set(\"rejectProviderOrderId\", \"TRY-PM-REJECT-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"New rejection order ID\", function () { pm.expect(data.order_id).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"rejectOrderId\", data.order_id); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{rejectProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Creates an independent order for the following terminal status request. Run this first."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT rejected",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"rejectOrderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"rejected\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{rejectOrderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{rejectOrderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Run POST new order for rejection immediately before this request. The status uses its own order ID."
+          },
+          "response": []
+        },
+        {
+          "name": "POST new order for cancellation",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.unset(\"cancelOrderId\");",
+                  "pm.collectionVariables.set(\"cancelProviderOrderId\", \"TRY-PM-CANCEL-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"New cancellation order ID\", function () { pm.expect(data.order_id).to.be.a(\"string\").and.not.empty; });",
+                  "if (pm.response.code === 200 && data.success && data.order_id) { pm.collectionVariables.set(\"cancelOrderId\", data.order_id); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{cancelProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Creates an independent order for the following terminal status request. Run this first."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT canceled",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=true\", function () { pm.expect(data.success).to.eql(true); });",
+                  "pm.test(\"Returned order ID\", function () { pm.expect(data.order_id).to.eql(String(pm.variables.get(\"cancelOrderId\"))); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"canceled\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{cancelOrderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{cancelOrderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Run POST new order for cancellation immediately before this request. The status uses its own order ID."
+          },
+          "response": []
+        }
+      ],
+      "description": "Each terminal outcome gets a fresh order. Run this folder in order: create for rejection, reject, create for cancellation, cancel. A delivered order must return 409 for either terminal change."
+    },
+    {
+      "name": "06 Validation and authorization errors",
+      "item": [
+        {
+          "name": "GET ping wrong API key - 401",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 401\", function () { pm.response.to.have.status(401); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "invalid-postman-key",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/ping?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "ping"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Authentication rejection."
+          },
+          "response": []
+        },
+        {
+          "name": "GET catalog unbound branch - 403",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 403\", function () { pm.response.to.have.status(403); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/catalog?branch_id={{unboundBranchId}}&db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "catalog"
+              ],
+              "query": [
+                {
+                  "key": "branch_id",
+                  "value": "{{unboundBranchId}}"
+                },
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Authenticated connection cannot see an unrelated POS branch. Choose an actually unbound ID."
+          },
+          "response": []
+        },
+        {
+          "name": "GET signed image wrong token - 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Image rejected with HTTP 404\", function () { pm.response.to.have.status(404); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/public/product/image/{{productTemplateId}}?branch_id={{branchId}}&token=invalid&db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "public",
+                "product",
+                "image",
+                "{{productTemplateId}}"
+              ],
+              "query": [
+                {
+                  "key": "branch_id",
+                  "value": "{{branchId}}"
+                },
+                {
+                  "key": "token",
+                  "value": "invalid"
+                },
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Image access requires a valid 64-character HMAC catalog token."
+          },
+          "response": []
+        },
+        {
+          "name": "POST missing order object - 422",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Expected shape is {order:{...}}."
+          },
+          "response": []
+        },
+        {
+          "name": "POST unknown product - 422",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-BADPRODUCT-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 0,\n        \"qty\": 1,\n        \"price\": 11\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Product ID 0 is not a valid POS product template."
+          },
+          "response": []
+        },
+        {
+          "name": "POST discount exceeds order total - 422",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-EXCESS-DISCOUNT-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"discounts\": [\n      {\n        \"label\": \"Coupon\",\n        \"amount\": {{excessDiscountAmount}}\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Excessive order discount is rejected before Core creates an order."
+          },
+          "response": []
+        },
+        {
+          "name": "POST mismatched total - 422",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set(\"variantProviderOrderId\", \"TRY-PM-TOTAL-\" + Date.now() + \"-\" + Math.floor(Math.random() * 1000000));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"branch_id\": 1,\n    \"provider_order_id\": \"{{variantProviderOrderId}}\",\n    \"items\": [\n      {\n        \"product_id\": 35,\n        \"qty\": 1,\n        \"price\": 11,\n        \"note\": \"Postman item note\"\n      }\n    ],\n    \"payment_type\": \"cash\",\n    \"order_type\": \"delivery\",\n    \"customer\": {\n      \"name\": \"Postman TryOrder Test\",\n      \"phone\": \"01000000000\",\n      \"address\": \"Local test address\"\n    },\n    \"note\": \"Created from Postman\",\n    \"total\": 0\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Declared total 0 disagrees with positive product/tax amount. Ensure unitPrice > 0."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT unsupported status - 422",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 422\", function () { pm.response.to.have.status(422); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"not_a_real_status\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/{{orderId}}/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "Requires a valid Core order ID from a successful create; unknown status is rejected."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT missing order - 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+                  "var data;",
+                  "try { data = pm.response.json(); } catch (e) { data = {}; }",
+                  "pm.test(\"success=false\", function () { pm.expect(data.success).to.eql(false); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-Odoo-Database",
+                "value": "{{db}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order_connector/orders/999999999/status?db={{db}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "order_connector",
+                "orders",
+                "999999999",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "db",
+                  "value": "{{db}}"
+                }
+              ]
+            },
+            "description": "A valid credential cannot update a nonexistent Core order."
+          },
+          "response": []
+        }
+      ],
+      "description": "These should not create valid orders. Run after setup; conflict case is in folder 02."
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://bunbastic-stg-39985581.dev.odoo.com",
+      "description": "TryOrder staging Odoo URL."
+    },
+    {
+      "key": "db",
+      "value": "bunbastic-stg-39985581",
+      "description": "TryOrder staging database used by these examples."
+    },
+    {
+      "key": "apiKey",
+      "value": "123123",
+      "description": "X-Api-Key value for the TryOrder staging test connection."
+    },
+    {
+      "key": "branchId",
+      "value": "1",
+      "description": "TryOrder staging POS branch ID from GET branches."
+    },
+    {
+      "key": "productTemplateId",
+      "value": "",
+      "description": "Non-combo product.template ID from catalog. The catalog test fills a simple candidate if empty."
+    },
+    {
+      "key": "unitPrice",
+      "value": "",
+      "description": "Unit price sent by TryOrder. Catalog test fills product list_price if empty; verify it before ordering."
+    },
+    {
+      "key": "expectedTotal",
+      "value": "",
+      "description": "Exact order total including product tax for the declared-total success example. Set from the product and Odoo tax result; do not guess."
+    },
+    {
+      "key": "modifierProductTemplateId",
+      "value": "",
+      "description": "Parent product.template with a product-type native modifier."
+    },
+    {
+      "key": "modifierOptionId",
+      "value": "",
+      "description": "Native product modifier ID, numeric suffix of add_on[].modifier._id (posmod-ID)."
+    },
+    {
+      "key": "modifierPrice",
+      "value": "",
+      "description": "Price for selected product modifier, usually catalog add_on[].modifier.price."
+    },
+    {
+      "key": "instructionProductTemplateId",
+      "value": "",
+      "description": "Parent product.template with an instruction-type native modifier."
+    },
+    {
+      "key": "instructionOptionId",
+      "value": "",
+      "description": "Numeric suffix of instruction posmod-ID; instruction price must be zero."
+    },
+    {
+      "key": "comboProductTemplateId",
+      "value": "",
+      "description": "Combo parent product.template ID from catalog."
+    },
+    {
+      "key": "comboItemId",
+      "value": "",
+      "description": "Numeric suffix of combos[].items[].id (comboitem-ID)."
+    },
+    {
+      "key": "comboPrice",
+      "value": "",
+      "description": "Combo parent's incoming unit price."
+    },
+    {
+      "key": "comboChoicePrice",
+      "value": "",
+      "description": "Selected combo option's incoming extra price."
+    },
+    {
+      "key": "walletAmount",
+      "value": "5",
+      "description": "Wallet tender amount; must not exceed order total."
+    },
+    {
+      "key": "deliveryFee",
+      "value": "3",
+      "description": "Delivery fee; store needs an untaxed fee product."
+    },
+    {
+      "key": "cashProviderOrderId",
+      "value": "",
+      "description": "Generated by Create cash order; reused unchanged by replay and conflict requests."
+    },
+    {
+      "key": "cashOrderId",
+      "value": "",
+      "description": "Captured from cash order response."
+    },
+    {
+      "key": "orderId",
+      "value": "",
+      "description": "Captured from the cash order in folder 02; folder 04 updates this POS order, not a later variant."
+    },
+    {
+      "key": "variantOrderId",
+      "value": "",
+      "description": "Latest order created in folder 03, for inspection only."
+    },
+    {
+      "key": "imageUrl",
+      "value": "",
+      "description": "Signed catalog image URL, captured from first catalog item with an image."
+    },
+    {
+      "key": "unboundBranchId",
+      "value": "999999999",
+      "description": "POS config ID not linked to this connection, for 403 case."
+    },
+    {
+      "key": "expectedOrderState",
+      "value": "",
+      "description": "Optional assertion for every successful create. Set to accepted when Core auto-accept and POS are configured; leave blank for manual acceptance."
+    },
+    {
+      "key": "variantProviderOrderId",
+      "value": ""
+    },
+    {
+      "key": "legacyAttributeValueId",
+      "value": ""
+    },
+    {
+      "key": "couponAmount",
+      "value": "0.50",
+      "description": "Positive untaxed coupon amount; choose an order priced above this amount."
+    },
+    {
+      "key": "loyaltyAmount",
+      "value": "0.25",
+      "description": "Positive untaxed loyalty amount; total discount must stay below order total."
+    },
+    {
+      "key": "excessDiscountAmount",
+      "value": "9999999",
+      "description": "Amount above order total for the 422 validation case."
+    },
+    {
+      "key": "rejectProviderOrderId",
+      "value": "",
+      "description": "Generated by POST new order for rejection."
+    },
+    {
+      "key": "rejectOrderId",
+      "value": "",
+      "description": "Captured from the fresh rejection order response."
+    },
+    {
+      "key": "cancelProviderOrderId",
+      "value": "",
+      "description": "Generated by POST new order for cancellation."
+    },
+    {
+      "key": "cancelOrderId",
+      "value": "",
+      "description": "Captured from the fresh cancellation order response."
+    }
+  ]
+}

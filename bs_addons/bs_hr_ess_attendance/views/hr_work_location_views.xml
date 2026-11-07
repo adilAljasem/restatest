@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_work_location_form_view_ess_att" model="ir.ui.view">
+        <field name="name">hr.work.location.form.ess.attendance</field>
+        <field name="model">hr.work.location</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.hr_work_location_form_view_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[@name='ess_notebook']" position="inside">
+                <page name="ess_attendance" string="Attendance check-in">
+                    <group>
+                        <group string="Methods">
+                            <field name="ess_use_geo"/>
+                            <field name="ess_use_qr"/>
+                            <field name="ess_use_face"/>
+                            <field name="ess_method_logic" widget="radio"/>
+                        </group>
+                        <group string="Geofence" invisible="not ess_use_geo">
+                            <field name="ess_latitude"/>
+                            <field name="ess_longitude"/>
+                            <field name="ess_radius"/>
+                            <field name="ess_max_accuracy"/>
+                        </group>
+                    </group>
+                    <field name="ess_point_ids" invisible="not ess_use_geo">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="radius"/>
+                        </list>
+                    </field>
+                    <group string="Branch QR screen" invisible="not ess_use_qr">
+                        <group>
+                            <field name="ess_qr_period"/>
+                            <field name="ess_kiosk_url" widget="url"/>
+                            <field name="ess_kiosk_key" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                        </group>
+                        <group>
+                            <button name="action_ess_open_kiosk" type="object" string="Open the QR screen" class="btn-primary"/>
+                            <button name="action_ess_regenerate_secrets" type="object" string="Regenerate keys"
+                                    confirm="All branch screens will have to be activated again. Continue?"
+                                    groups="bs_hr_ess_base.group_ess_hr_manager"/>
+                        </group>
+                    </group>
+                    <div class="text-muted small" invisible="not ess_use_qr">
+                        Open the QR screen URL on a tablet in the branch and enter the activation key once.
+                        The code changes every few seconds; a photo of it is useless after that.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

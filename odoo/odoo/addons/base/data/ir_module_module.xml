@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+
+        <record model="ir.module.module" id="base.module_accountant">
+            <field name="name">accountant</field>
+            <field name="sequence">30</field>
+            <field name="shortdesc">Accounting</field>
+            <field name="category_id" ref="base.module_category_accounting_accounting"/>
+            <field name="application" eval="True"/>
+            <field name="summary">Accounting, Taxes, Budgets, Assets...</field>
+            <field name="license">OEEL-1</field>
+            <field name="author">Odoo S.A.</field>
+            <field name="to_buy" eval="True"/>
+            <field name="icon">/base/static/img/icons/account_accountant.png</field>
+            <field name="website">https://www.odoo.com/app/accounting?utm_source=db&amp;utm_medium=module</field>
+        </record>
+
+        <record model="ir.module.module" id="base.module_stock_barcode">
+            <field name="name">stock_barcode</field>
+            <field name="shortdesc">Barcode</field>
+            <field name="sequence">255</field>
+            <field name="category_id" ref="base.module_category_supply_chain"/>
+            <field name="application" eval="True"/>
+            <field name="summary">Barcode scanner for warehouses</field>
+            <field name="license">OEEL-1</field>
+            <field name="author">Odoo S.A.</field>
+            <field name="to_buy" eval="True"/>
+            <field name="icon">/base/static/img/icons/stock_barcode.png</field>
+            <field name="website">https://www.odoo.com/app/inventory?utm_source=db&amp;utm_medium=module</field>
+        </record>
+
+        <record model="ir.module.module" id="base.module_web_mobile">
+            <field name="name">web_mobile</field>
+            <field name="sequence">220</field>
+            <field name="shortdesc">Android &amp; iPhone</field>
+            <field name="category_id" ref="base.module_category_administration_administration"/>
+            <field name="application" eval="True"/>
+            <field name="summary">Support for Android &amp; iOS Apps</field>
+            <field name="license">OEEL-1</field>
+            <field name="author">Odoo S.A.</field>
+            <field name="to_buy" eval="True"/>
+            <field name="icon">/base/static/img/icons/web_mobile.png</field>
+            <field name="website">https://play.google.com/store/apps/details?id=com.odoo.mobile</field>
+        </record>
+
+        </data>
+</odoo>

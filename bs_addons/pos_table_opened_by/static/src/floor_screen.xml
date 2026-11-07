@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_table_opened_by.FloorScreen" t-inherit="pos_restaurant.FloorScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('info')]" position="inside">
+            <t t-set="tobOrder" t-value="isOccupied ? table.getOrder() : false"/>
+            <div t-if="tobOrder and tobOrder.getOpenedByName()"
+                 class="tob-opened-by position-absolute start-50 translate-middle-x text-center text-truncate px-1 fw-bold"
+                 t-esc="tobOrder.getOpenedByName()"/>
+        </xpath>
+    </t>
+</templates>

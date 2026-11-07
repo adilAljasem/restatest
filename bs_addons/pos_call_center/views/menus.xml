@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The app icon opens the orders list (not the POS), so the configuration stays reachable -->
+    <menuitem id="menu_call_center_root" name="Call Center" sequence="21"
+              web_icon="pos_call_center,static/description/icon.png"
+              action="action_cc_pos_orders"
+              groups="group_call_center_agent"/>
+
+    <menuitem id="menu_call_center_take_orders" name="Take Orders" parent="menu_call_center_root"
+              action="action_open_my_terminal" sequence="20"/>
+    <menuitem id="menu_call_center_orders" name="Orders" parent="menu_call_center_root"
+              action="action_cc_pos_orders" sequence="5"/>
+
+    <menuitem id="menu_call_center_config" name="Configuration" parent="menu_call_center_root"
+              sequence="90" groups="group_call_center_manager"/>
+    <menuitem id="menu_call_center" name="Call Centers" parent="menu_call_center_config"
+              action="action_pos_call_center" sequence="10"/>
+</odoo>

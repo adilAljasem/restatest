@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_blend_delivery_order_form_kitchen_retry" model="ir.ui.view">
+        <field name="name">bs.delivery.order.form.blend.kitchen.retry</field>
+        <field name="model">bs.delivery.order</field>
+        <field name="inherit_id" ref="bs_pos_delivery_core.view_bs_delivery_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_retry_pos_processing']" position="after">
+                <field name="blend_kitchen_can_retry" invisible="1"/>
+                <button name="action_retry_blend_kitchen_print"
+                        type="object"
+                        string="Retry Kitchen Print"
+                        groups="bs_pos_delivery_core.group_delivery_manager"
+                        confirm="Check that this ticket was not already printed before retrying. Retry kitchen printing now?"
+                        invisible="not blend_kitchen_can_retry"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

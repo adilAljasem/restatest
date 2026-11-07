@@ -1,0 +1,783 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_closing_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-16 22:24+0000\n"
+"PO-Revision-Date: 2026-10-16 22:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_closing_report
+#: model:ir.actions.report,print_report_name:pos_closing_report.action_report_pos_business_day
+msgid ""
+"'Business Day - %s - %s' % (object.config_id.name, object.business_date)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.actions.report,print_report_name:pos_closing_report.action_report_pos_closing
+msgid "'Closing - %s - %s' % (object.cashier_name, object.name)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.constraint,message:pos_closing_report.constraint_pos_closing_report_session_unique
+msgid "A closing report already exists for this session."
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.actions.act_window,help:pos_closing_report.action_pos_closing_report
+msgid ""
+"A report is created automatically every time a session is closed. Use "
+"\"Generate Retroactively\" to create reports for older sessions."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_config__pcr_day_scope__company
+msgid "All Points of Sale of the Branch (Company)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_business_day_closing_wizard__lang_mode__ar
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_config__pcr_language__ar
+msgid "Arabic"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_business_day_closing_wizard__lang_mode__both
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_config__pcr_language__both
+msgid "Arabic and English"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_business_day_closing_wizard__lang_mode__config
+msgid "As set on the Point of Sale"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report__source__live
+msgid "Automatic (at closing)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report__status__balanced
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Balanced"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report_line__method_type__bank
+msgid "Bank"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__bank_counted
+msgid "Bank Counted"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__bank_difference
+msgid "Bank Difference"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__bank_expected
+msgid "Bank Expected"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Branch Manager Report (business day)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__business_date
+msgid "Business Date"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Business Day"
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-javascript
+#: code:addons/pos_closing_report/static/src/app/hide_print_report.xml:0
+#: code:addons/pos_closing_report/static/src/app/navbar_patch.js:0
+#: model:ir.actions.act_window,name:pos_closing_report.action_pos_business_day_closing_wizard
+#: model:ir.actions.report,name:pos_closing_report.action_report_pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_business_day_closing_wizard_form
+msgid "Business Day Report"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.ui.menu,name:pos_closing_report.menu_pos_business_day_closing_report
+msgid "Business Day Report (Branch Manager)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_access
+msgid "Business Day Report Access"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__scope
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_scope
+msgid "Business Day Report Covers"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_show_cancellations
+msgid "Business Day Report: Cancellations"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_show_refunds
+msgid "Business Day Report: Refunds"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_show_summary
+msgid "Business Day Report: Sales Summary"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_show_sessions
+msgid "Business Day Report: Sessions Detail"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_show_items
+msgid "Business Day Report: Sold Items"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_business_day_start_hour
+msgid "Business Day Start Hour"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_business_day_closing_wizard_form
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_generate_form
+msgid "Cancel"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Cancellations"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report_line__method_type__cash
+msgid "Cash"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__cash_counted
+msgid "Cash Counted"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__cash_difference
+msgid "Cash Difference"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__cash_expected
+msgid "Cash Expected"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.ui.menu,name:pos_closing_report.menu_pos_closing_report_root
+msgid "Cashier Closing"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Cashier Report (one session)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_cashier_show_cancellations
+msgid "Cashier Report: Cancellations"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_cashier_show_refunds
+msgid "Cashier Report: Refunds"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_cashier_show_summary
+msgid "Cashier Report: Sales Summary"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_cashier_show_items
+msgid "Cashier Report: Sold Items"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__stop_at
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Closing Date"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__report_id
+#: model:ir.ui.menu,name:pos_closing_report.menu_pos_config_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_list
+msgid "Closing Report"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.actions.act_window,name:pos_closing_report.action_pos_config_closing_report
+msgid "Closing Report Settings"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.actions.act_window,name:pos_closing_report.action_pos_closing_report
+#: model:ir.ui.menu,name:pos_closing_report.menu_pos_closing_report
+msgid "Closing Reports"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__company_id
+msgid "Company"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__counted
+msgid "Counted"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__diff_known
+msgid "Counted by Cashier"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__create_uid
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__create_uid
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__create_uid
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__create_date
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__create_date
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__create_date
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_generate_form
+msgid ""
+"Creates a closing report for every closed session that does not have one "
+"yet. Cash expected and counted amounts are read from the session. For Bank "
+"payment methods of old sessions, the counted amount is assumed equal to the "
+"expected amount because Odoo does not store what the cashier entered."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__currency_id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-javascript
+#: code:addons/pos_closing_report/static/src/app/navbar_patch.js:0
+msgid "Current business day (%s)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Day"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__line_ids
+msgid "Details"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__difference
+msgid "Difference"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__display_name
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__display_name
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_data__display_name
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__display_name
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__display_name
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_session__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__cashier_name
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Employee"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_graph
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_pivot
+msgid "Employee Differences"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Empty: POS managers"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_business_day_closing_wizard__lang_mode__en
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_config__pcr_language__en
+msgid "English"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_business_day_closing_wizard_form
+msgid ""
+"Every session of the business day: from the Business Day Start Hour of the "
+"company to the same hour the next day. Sales after midnight and before that "
+"hour belong to the previous business day."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__expected
+msgid "Expected"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Font Size"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Font size, printer width and black printing from Kitchen Ticket:"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__date_from
+msgid "From Date"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_generate_form
+msgid "Generate"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_generate_form
+msgid "Generate Closing Reports Retroactively"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model,name:pos_closing_report.model_pos_closing_report_generate
+msgid "Generate POS Closing Reports Retroactively"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.actions.act_window,name:pos_closing_report.action_pos_closing_report_generate
+#: model:ir.ui.menu,name:pos_closing_report.menu_pos_closing_report_generate
+msgid "Generate Retroactively"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_data__id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_session__id
+msgid "ID"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_language
+msgid "Language of the closing reports when they are printed."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_config__pcr_language__user
+msgid "Language of the user printing"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__write_uid
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__write_uid
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__write_uid
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__write_date
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__write_date
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__write_date
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_closing_report_generate__config_ids
+msgid "Leave empty for all points of sale"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_closing_report_generate__user_ids
+msgid "Leave empty for all users"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_day_user_ids
+msgid ""
+"Leave empty: POS managers. Otherwise only these users can print the business"
+" day report from the POS (with employee login, the user linked to the "
+"employee)."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__name
+msgid "Method Name"
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-python
+#: code:addons/pos_closing_report/wizard/generate_wizard.py:0
+msgid "No closed sessions match the selected filters."
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.actions.act_window,help:pos_closing_report.action_pos_closing_report
+msgid "No closing reports yet"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__opening
+msgid "Opening Balance"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__start_at
+msgid "Opening Date"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model,name:pos_closing_report.model_pos_business_day_closing_wizard
+msgid "POS Business Day Closing Report"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.actions.report,name:pos_closing_report.action_report_pos_closing
+#: model:ir.model,name:pos_closing_report.model_pos_closing_report
+msgid "POS Closing Report"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model,name:pos_closing_report.model_pos_closing_report_data
+msgid "POS Closing Report Data"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model,name:pos_closing_report.model_pos_closing_report_line
+msgid "POS Closing Report Line"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__session_id
+msgid "POS Session"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__payment_method_id
+msgid "Payment Method"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__config_id
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__branch_name
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Point of Sale"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model,name:pos_closing_report.model_pos_config
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__config_id
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model,name:pos_closing_report.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__config_ids
+msgid "Points of Sale"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_business_day_closing_wizard_form
+msgid "Print"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_in_pos
+msgid "Print From the POS (Managers)"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_form
+msgid "Print PDF"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_cashier_auto_print
+msgid "Print When Closing the Register"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_auto_print
+msgid "Print When a Manager Closes the Register"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_cashier_auto_print
+msgid ""
+"Print the cashier closing report automatically after the register is closed."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_use_kitchen_style
+msgid ""
+"Print the closing reports with the font size, printer width and the crisp "
+"black printing set in Point of Sale > Configuration > Kitchen Ticket."
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Printer Width"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Printing"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Refunds"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__regenerate
+msgid "Regenerate existing retroactive reports"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_business_day_closing_wizard__lang_mode
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_language
+msgid "Report Language"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report__source__retro
+msgid "Retroactive"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Sales Summary"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__name
+msgid "Session"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__user_id
+msgid "Session User"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__user_ids
+msgid "Session Users"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Sessions Detail"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_business_day_closing_wizard__scope
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_day_scope
+msgid "Sessions included in the branch manager report of a business day."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.ui.menu,name:pos_closing_report.menu_pos_closing_report_settings
+msgid "Settings"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report__status__shortage
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Shortage"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_day_in_pos
+msgid "Show 'Business Day Report' in the POS menu for managers."
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid "Sold Items"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__source
+msgid "Source"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__status
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Status"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_closing_report__status__surplus
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_search
+msgid "Surplus"
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-python
+#: code:addons/pos_closing_report/models/report_data.py:0
+msgid ""
+"The Business Day module (pos_business_day) is required for this report."
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-javascript
+#: code:addons/pos_closing_report/static/src/app/navbar_patch.js:0
+msgid "The business day report could not be printed."
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-javascript
+#: code:addons/pos_closing_report/static/src/app/navbar_patch.js:0
+msgid "The business day report needs a connection to the server."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_business_day_closing_wizard__business_date
+msgid ""
+"The business day starts at the 'Business Day Start Hour' of the company and "
+"ends at the same hour the next day."
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid ""
+"The business day starts at this hour and ends at the same hour the next day "
+"(Point of Sale &gt; Configuration &gt; Business Day Settings)."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_business_day_start_hour
+msgid ""
+"The hour of the day (0-24) at which a new 'business day' starts for this company. Example: if your shift runs from 6:00 AM to 2:00 AM the next calendar day, set this to 6.0. Any POS order or stock move that happens between midnight and this hour will be attributed to the previous business day in reports.\n"
+"ساعة بداية يوم العمل التشغيلي. مثال: دوام من 6 صباحاً حتى 2 صباحاً اليوم التالي => ضع القيمة 6.0. أي عملية بيع أو حركة مخزون تحدث بين منتصف الليل وهذه الساعة تُنسب إلى يوم العمل السابق في التقارير."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields.selection,name:pos_closing_report.selection__pos_config__pcr_day_scope__config
+msgid "This Point of Sale"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_generate__date_to
+msgid "To Date"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.view_pos_closing_report_list
+msgid "Total"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__counted_total
+msgid "Total Counted"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__difference_total
+msgid "Total Difference"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report__expected_total
+msgid "Total Expected"
+msgstr ""
+
+#. module: pos_closing_report
+#: model_terms:ir.ui.view,arch_db:pos_closing_report.pos_config_closing_report_view_form
+msgid ""
+"Two reports: the cashier report (one session, printed when the register is "
+"closed) and the branch manager report (the whole business day: every session"
+" from the Business Day Start Hour to the same hour the next day). Reload the"
+" Point of Sale after saving."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_closing_report_line__method_type
+msgid "Type"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_use_kitchen_style
+msgid "Use Kitchen Ticket Print Settings"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,field_description:pos_closing_report.field_pos_config__pcr_day_user_ids
+msgid "Users Allowed to Print the Business Day Report"
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_day_auto_print
+msgid ""
+"When a manager closes the register, also print the business day report."
+msgstr ""
+
+#. module: pos_closing_report
+#: model:ir.model.fields,help:pos_closing_report.field_pos_config__pcr_day_access
+msgid "Who can print the business day report, read by the POS (JSON)."
+msgstr ""
+
+#. module: pos_closing_report
+#. odoo-python
+#: code:addons/pos_closing_report/models/report_data.py:0
+msgid "You are not allowed to print the business day report."
+msgstr ""

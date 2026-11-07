@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="user_delivery_api" model="res.users" context="{'no_reset_password': True}">
+            <field name="name">Connect API User</field>
+            <field name="login">connect_api</field>
+            <field name="group_ids" eval="[Command.set([ref('base.group_user')])]"/>
+        </record>
+    </data>
+</odoo>

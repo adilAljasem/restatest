@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_inventory_template_list_view" model="ir.ui.view">
+        <field name="name">stock.inventory.template.list</field>
+        <field name="model">stock.inventory.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="is_active"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_inventory_template_form_view" model="ir.ui.view">
+        <field name="name">stock.inventory.template.form</field>
+        <field name="model">stock.inventory.template</field>
+        <field name="arch" type="xml">
+            <form string="Inventory Template">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="is_active"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <field name="line_ids" context="{'default_company_id': company_id}">
+                        <list editable="bottom">
+                            <field name="company_id" column_invisible="True"/>
+                            <field name="product_id" options="{'no_create': True}"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_inventory_template_search_view" model="ir.ui.view">
+        <field name="name">stock.inventory.template.search</field>
+        <field name="model">stock.inventory.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="line_ids" string="Product"/>
+                <separator/>
+                <filter name="inactive" string="Inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_inventory_template" model="ir.actions.act_window">
+        <field name="name">Inventory Templates</field>
+        <field name="res_model">stock.inventory.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="stock_inventory_template_search_view"/>
+    </record>
+
+    <menuitem id="menu_stock_inventory_template" name="Inventory Templates"
+              parent="stock.menu_stock_config_settings" sequence="30"
+              action="action_stock_inventory_template" groups="stock.group_stock_manager"/>
+</odoo>

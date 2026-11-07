@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_kiosk_activate" name="ESS Kiosk activation">
+        <t t-call="portal.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="o_bs_ess">
+                <div class="container py-5" style="max-width: 420px;">
+                    <h4 class="text-center mb-3"><t t-out="location.name"/></h4>
+                    <p class="text-muted text-center">Enter the kiosk activation key (Self-Service &gt; Configuration &gt; Branches) to turn this screen into the branch attendance QR display.</p>
+                    <div t-if="error" class="alert alert-danger" t-out="error"/>
+                    <form method="post" class="ess-form">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="text" name="key" inputmode="numeric" class="form-control form-control-lg text-center" dir="ltr" required="required" autocomplete="off"/>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Activate</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="ess_kiosk" name="ESS Kiosk QR">
+        <t t-call="portal.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="o_ess_kiosk" t-att-data-token="token" t-att-data-period="period"
+                 t-attf-style="--ess-primary: #{location.company_id.ess_brand_color or '#FF5A1F'};">
+                <div class="ess-kiosk-head">
+                    <img t-attf-src="/web/image/res.company/#{location.company_id.id}/logo/128x128" alt=""/>
+                    <div>
+                        <div class="ess-kiosk-branch" t-out="location.name"/>
+                        <div class="ess-kiosk-clock" data-ess-clock="1">--:--</div>
+                    </div>
+                </div>
+                <div class="ess-kiosk-qr">
+                    <img data-ess-qr="1" alt="QR"/>
+                    <div class="ess-kiosk-bar"><div data-ess-bar="1"/></div>
+                </div>
+                <div class="ess-kiosk-help">
+                    <div>Scan with your phone to check in / out</div>
+                    <div dir="rtl">امسح الرمز بجوالك لتسجيل الحضور أو الانصراف</div>
+                </div>
+                <div class="ess-kiosk-foot">
+                    <span data-ess-present="1"/> <span class="ess-kiosk-dot" data-ess-online="1"/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

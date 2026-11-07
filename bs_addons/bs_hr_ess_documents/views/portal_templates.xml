@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_document_badge" name="ESS document state badge">
+        <span t-attf-class="ess-badge ess-badge-#{'info' if doc.state == 'missing' else doc.state}"
+              t-out="ess_state_label(doc)"/>
+    </template>
+
+    <!-- ============================ MY DOCUMENTS ============================ -->
+    <template id="ess_documents" name="ESS My documents">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My documents</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-list" t-if="documents">
+                <div t-foreach="documents" t-as="doc" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <a t-attf-href="/my/hr/document/#{doc.id}" class="min-w-0 text-reset text-decoration-none">
+                            <div class="fw-semibold" t-out="doc.type_id.name"/>
+                            <div class="small text-muted" t-if="doc.number" t-out="doc.number"/>
+                            <div class="small" t-if="doc.expiry_date">
+                                <span class="text-muted">Expires</span>
+                                <t t-out="ess_fdate(doc.expiry_date)"/> · <t t-out="ess_hijri(doc.expiry_date)"/>
+                            </div>
+                        </a>
+                        <t t-call="bs_hr_ess_documents.ess_document_badge"/>
+                    </div>
+                    <div class="mt-2" t-if="doc.id in pending">
+                        <span class="small text-muted"><i class="fa fa-hourglass-half me-1"/>Renewal under review</span>
+                    </div>
+                    <a t-elif="doc.state in ('expiring', 'expired', 'missing')"
+                       t-attf-href="/my/hr/document/#{doc.id}/renew" class="btn btn-sm btn-primary mt-2">
+                        <i class="fa fa-upload me-1"/> Upload the renewed document
+                    </a>
+                </div>
+            </div>
+            <div t-else="" class="ess-empty">
+                <i class="fa fa-id-card-o"/>
+                <p>No document registered yet.</p>
+            </div>
+            <t t-if="missing_types">
+                <h6 class="ess-section-title">Missing documents</h6>
+                <div class="ess-panel small">
+                    <p class="text-muted mb-1">Please give a copy of these documents to HR:</p>
+                    <ul class="mb-0">
+                        <li t-foreach="missing_types" t-as="mtype" t-out="mtype.name"/>
+                    </ul>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============================ DOCUMENT DETAIL ============================ -->
+    <template id="ess_document_detail" name="ESS Document detail">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title" t-value="document.type_id.name"/>
+            <t t-set="ess_back" t-value="'/my/hr/documents'"/>
+            <div class="ess-panel">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong t-out="document.type_id.name"/>
+                    <t t-call="bs_hr_ess_documents.ess_document_badge"><t t-set="doc" t-value="document"/></t>
+                </div>
+                <dl class="ess-dl">
+                    <dt>Number</dt><dd t-out="document.number or '-'"/>
+                    <t t-if="document.issue_date">
+                        <dt>Issue date</dt>
+                        <dd><t t-out="ess_fdate(document.issue_date)"/> · <t t-out="ess_hijri(document.issue_date)"/></dd>
+                    </t>
+                    <t t-if="document.expiry_date">
+                        <dt>Expiry date</dt>
+                        <dd><t t-out="ess_fdate(document.expiry_date)"/> · <t t-out="ess_hijri(document.expiry_date)"/></dd>
+                        <dt>Days left</dt>
+                        <dd t-attf-class="#{'text-danger' if document.days_to_expiry &lt; 0 else ''}" t-out="document.days_to_expiry"/>
+                    </t>
+                </dl>
+            </div>
+            <t t-if="document.attachment_ids">
+                <h6 class="ess-section-title">Files</h6>
+                <div class="ess-list">
+                    <a t-foreach="document.attachment_ids" t-as="att" class="ess-list-item"
+                       t-attf-href="/my/hr/document/#{document.id}/file/#{att.id}">
+                        <i class="fa fa-paperclip me-2"/><t t-out="att.name"/>
+                    </a>
+                </div>
+            </t>
+            <t t-if="renewals">
+                <h6 class="ess-section-title">Renewal requests</h6>
+                <div class="ess-list">
+                    <a t-foreach="renewals" t-as="rec" t-att-href="rec._ess_portal_url()" class="ess-list-item d-flex justify-content-between">
+                        <span><t t-out="rec.name"/> · <t t-out="ess_fdate(rec.new_expiry_date)"/></span>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="rec"/></t>
+                    </a>
+                </div>
+            </t>
+            <a t-attf-href="/my/hr/document/#{document.id}/renew" class="btn btn-primary w-100 mt-3">
+                <i class="fa fa-upload me-1"/> Upload the renewed document
+            </a>
+        </t>
+    </template>
+
+    <!-- ============================ RENEWAL FORM ============================ -->
+    <template id="ess_document_renew" name="ESS Document renewal form">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Renew a document</t>
+            <t t-set="ess_back" t-value="'/my/hr/documents'"/>
+            <div class="ess-panel small">
+                <strong t-out="document.type_id.name"/>
+                <div class="text-muted" t-if="document.expiry_date">
+                    Current expiry: <t t-out="ess_fdate(document.expiry_date)"/> · <t t-out="ess_hijri(document.expiry_date)"/>
+                </div>
+            </div>
+            <form t-attf-action="/my/hr/document/#{document.id}/renew" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label>Document number</label>
+                <input type="text" name="new_number" class="form-control" dir="ltr" t-att-value="document.number or ''"/>
+                <label>Issue date</label>
+                <input type="date" name="new_issue_date" class="form-control"/>
+                <label>New expiry date *</label>
+                <input type="date" name="new_expiry_date" class="form-control" required="required"/>
+                <label>Copy of the renewed document *</label>
+                <input type="file" name="attachments" class="form-control" multiple="multiple" required="required"
+                       accept="image/*,application/pdf" capture="environment"/>
+                <label>Notes</label>
+                <textarea name="employee_note" class="form-control" rows="2"/>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send to HR</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============================ MY CONTRACT ============================ -->
+    <template id="ess_contract" name="ESS My contract">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My contract</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div t-foreach="to_ack" t-as="renewal" class="ess-panel border border-warning">
+                <h6><i class="fa fa-file-text-o me-1"/> New contract to acknowledge</h6>
+                <dl class="ess-dl">
+                    <dt>Start</dt>
+                    <dd><t t-out="ess_fdate(renewal.new_version_id.contract_date_start)"/> · <t t-out="ess_hijri(renewal.new_version_id.contract_date_start)"/></dd>
+                    <dt>End</dt>
+                    <dd><t t-out="ess_fdate(renewal.new_contract_date_end)"/> · <t t-out="ess_hijri(renewal.new_contract_date_end)"/></dd>
+                    <t t-if="renewal.new_wage">
+                        <dt>Wage</dt>
+                        <dd><t t-out="'{:,.2f}'.format(renewal.new_wage)"/> <t t-out="renewal.currency_id.symbol"/></dd>
+                    </t>
+                </dl>
+                <form t-attf-action="/my/hr/contract/#{renewal.id}/acknowledge" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required="required" t-attf-id="ack_#{renewal.id}"/>
+                        <label class="form-check-label small" t-attf-for="ack_#{renewal.id}">
+                            I have read the new contract terms and I accept them.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">I acknowledge the new contract</button>
+                </form>
+            </div>
+
+            <div class="ess-panel">
+                <h6>Current contract</h6>
+                <dl class="ess-dl">
+                    <dt>Start</dt>
+                    <dd t-if="version.contract_date_start"><t t-out="ess_fdate(version.contract_date_start)"/> · <t t-out="ess_hijri(version.contract_date_start)"/></dd>
+                    <dd t-else="">-</dd>
+                    <dt>End</dt>
+                    <dd t-if="version.contract_date_end"><t t-out="ess_fdate(version.contract_date_end)"/> · <t t-out="ess_hijri(version.contract_date_end)"/></dd>
+                    <dd t-else="">Unlimited</dd>
+                    <t t-if="version.trial_date_end">
+                        <dt>End of trial period</dt><dd t-out="ess_fdate(version.trial_date_end)"/>
+                    </t>
+                    <t t-if="version.contract_type_id">
+                        <dt>Contract type</dt><dd t-out="version.contract_type_id.name"/>
+                    </t>
+                </dl>
+                <div t-if="in_progress" class="small text-muted">
+                    <i class="fa fa-hourglass-half me-1"/> The renewal of your contract is being reviewed.
+                </div>
+            </div>
+
+            <t t-if="future_versions">
+                <h6 class="ess-section-title">Upcoming contract</h6>
+                <div class="ess-list">
+                    <div t-foreach="future_versions" t-as="fv" class="ess-list-item small">
+                        <t t-out="ess_fdate(fv.contract_date_start or fv.date_version)"/> →
+                        <t t-out="ess_fdate(fv.contract_date_end) if fv.contract_date_end else '-'"/>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="history">
+                <h6 class="ess-section-title">Renewals</h6>
+                <div class="ess-list">
+                    <div t-foreach="history" t-as="renewal" class="ess-list-item d-flex justify-content-between small">
+                        <span><t t-out="renewal.name"/> · <t t-out="ess_fdate(renewal.new_contract_date_end)"/></span>
+                        <span t-if="renewal.employee_ack_date" class="ess-badge ess-badge-done">Acknowledged</span>
+                        <span t-else="" class="ess-badge ess-badge-pending">To acknowledge</span>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

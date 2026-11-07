@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="resta_subscription_wizard_form" model="ir.ui.view">
+        <field name="name">resta.subscription.wizard.form</field>
+        <field name="model">resta.subscription.wizard</field>
+        <field name="arch" type="xml">
+            <form string="تفعيل الاشتراك">
+                <group>
+                    <group>
+                        <field name="tenant_id" readonly="1"/>
+                        <field name="plan_id"/>
+                        <field name="billing" widget="radio" options="{'horizontal': true}"/>
+                        <field name="periods"/>
+                        <field name="branches"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="amount"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="create_invoice"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="تفعيل" class="btn-primary"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_resta_subscription_wizard" model="ir.actions.act_window">
+        <field name="name">تفعيل / تجديد الاشتراك</field>
+        <field name="res_model">resta.subscription.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

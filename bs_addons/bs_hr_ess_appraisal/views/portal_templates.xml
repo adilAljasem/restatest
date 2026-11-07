@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- shared: result block (score, rating, KPIs) -->
+    <template id="ess_appraisal_result" name="ESS appraisal result">
+        <div class="ess-panel text-center">
+            <div class="text-muted small">Final score</div>
+            <div class="ess-big-number"><t t-out="'%.0f' % record.final_score"/> <small>/ 100</small></div>
+            <span t-if="record.rating" t-attf-class="ess-badge ess-badge-#{'success' if record.rating in ('exceptional', 'exceeds') else ('info' if record.rating == 'meets' else 'danger')}" t-out="rating_label"/>
+        </div>
+        <div class="ess-panel">
+            <h6>Objective indicators</h6>
+            <dl class="ess-dl">
+                <dt>Attendance rate</dt><dd><t t-out="'%.1f' % record.attendance_rate"/> % (<t t-out="record.attended_days"/> / <t t-out="record.expected_days"/>)</dd>
+                <dt>Late arrivals</dt><dd t-out="record.late_count"/>
+                <dt>Disciplinary actions</dt><dd t-out="record.disciplinary_count"/>
+            </dl>
+        </div>
+    </template>
+
+    <!-- ============================ MY APPRAISALS ============================ -->
+    <template id="ess_appraisals" name="ESS My appraisals">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My appraisals</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/appraisals" class="active">Appraisals</a>
+                <a href="/my/hr/goals">Goals</a>
+                <a href="/my/hr/kudos">Kudos</a>
+            </div>
+            <div class="ess-list" t-if="records">
+                <a t-foreach="records" t-as="rec" t-att-href="rec._ess_portal_url()" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold" t-out="rec.cycle_id.name or (rec.is_probation and 'Probation review') or 'Appraisal'"/>
+                            <div class="small text-muted"><t t-out="ess_fdate(rec.date_from)"/> - <t t-out="ess_fdate(rec.date_to)"/></div>
+                            <div class="small" t-if="rec.state in ('done', 'appealed')">
+                                <t t-out="'%.0f' % rec.final_score"/> / 100 · <t t-out="ess_display(rec, 'rating')"/>
+                            </div>
+                        </div>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="rec"/></t>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-star-o"/><p>No appraisal yet.</p></div>
+        </t>
+    </template>
+
+    <!-- ============================ APPRAISAL (EMPLOYEE) ============================ -->
+    <template id="ess_appraisal" name="ESS Appraisal">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Appraisal</t>
+            <div class="ess-panel">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <strong t-out="record.cycle_id.name or (record.is_probation and 'Probation review') or 'Appraisal'"/>
+                    <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="record"/></t>
+                </div>
+                <dl class="ess-dl small mb-0">
+                    <dt>Period</dt><dd><t t-out="ess_fdate(record.date_from)"/> - <t t-out="ess_fdate(record.date_to)"/></dd>
+                    <dt>Manager</dt><dd t-out="record.manager_id.name or '-'"/>
+                    <t t-if="record.deadline and record.state == 'self_review'"><dt>Deadline</dt><dd t-out="ess_fdate(record.deadline)"/></t>
+                </dl>
+            </div>
+
+            <!-- self review form -->
+            <form t-if="record.state == 'self_review'" t-att-action="record._ess_portal_url()" method="post" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <p class="text-muted small">Rate yourself from 1 (needs improvement) to 5 (excellent) on each competency.</p>
+                <div t-foreach="record.line_ids" t-as="line" class="ess-panel">
+                    <div class="d-flex justify-content-between">
+                        <strong t-out="line.competency_id.name"/>
+                        <span class="small text-muted"><t t-out="'%g' % line.weight"/> %</span>
+                    </div>
+                    <div class="small text-muted mb-2" t-if="line.description" t-out="line.description"/>
+                    <div class="btn-group w-100 mb-2" role="group">
+                        <t t-foreach="['1', '2', '3', '4', '5']" t-as="s">
+                            <input type="radio" class="btn-check" t-attf-name="score_#{line.id}" t-attf-id="s_#{line.id}_#{s}"
+                                   t-att-value="s" t-att-checked="line.self_score == s" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" t-attf-for="s_#{line.id}_#{s}" t-out="s"/>
+                        </t>
+                    </div>
+                    <input type="text" t-attf-name="comment_#{line.id}" class="form-control form-control-sm"
+                           placeholder="Example / comment (optional)" t-att-value="line.self_comment or ''"/>
+                </div>
+                <label>General comment</label>
+                <textarea name="self_comment" class="form-control" rows="3" t-out="record.self_comment or ''"/>
+                <div class="d-flex gap-2 mt-3">
+                    <button type="submit" name="action" value="save" class="btn btn-outline-secondary flex-fill">Save draft</button>
+                    <button type="submit" name="action" value="submit" class="btn btn-primary flex-fill">Submit to manager</button>
+                </div>
+            </form>
+
+            <div t-elif="record.state == 'manager_review'" class="ess-empty">
+                <i class="fa fa-hourglass-half"/>
+                <p>Your self review was submitted. Your manager is now reviewing it.</p>
+            </div>
+
+            <t t-else="">
+                <t t-call="bs_hr_ess_appraisal.ess_appraisal_result"/>
+                <h6 class="ess-section-title">Competencies</h6>
+                <div class="ess-list">
+                    <div t-foreach="record.line_ids" t-as="line" class="ess-list-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-semibold" t-out="line.competency_id.name"/>
+                            <span>
+                                <span class="small text-muted">Self <t t-out="line.self_score or '-'"/></span> ·
+                                <strong>Manager <t t-out="line.manager_score or '-'"/></strong>
+                            </span>
+                        </div>
+                        <div class="small text-muted" t-if="line.comment" t-out="line.comment"/>
+                    </div>
+                </div>
+                <div class="ess-panel mt-3" t-if="record.manager_comment">
+                    <h6>Manager comment</h6>
+                    <div t-out="record.manager_comment"/>
+                </div>
+                <div class="ess-panel" t-if="record.is_probation and record.probation_decision">
+                    <dl class="ess-dl mb-0"><dt>Probation decision</dt><dd t-out="ess_display(record, 'probation_decision')"/></dl>
+                </div>
+
+                <form t-if="record.state == 'done' and not record.employee_ack_date" t-att-action="record._ess_portal_url()" method="post" class="mb-2">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <button type="submit" name="action" value="acknowledge" class="btn btn-primary w-100">
+                        <i class="fa fa-check me-1"/> I have read my appraisal</button>
+                </form>
+                <div t-if="record.employee_ack_date" class="small text-muted text-center mb-2">
+                    Acknowledged on <t t-out="ess_display(record, 'employee_ack_date')"/>
+                </div>
+
+                <details t-if="record.can_appeal" class="ess-panel">
+                    <summary class="fw-semibold">Appeal this result (until <t t-out="ess_fdate(record.appeal_deadline)"/>)</summary>
+                    <form t-att-action="record._ess_portal_url()" method="post" class="mt-2">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <textarea name="appeal_reason" class="form-control mb-2" rows="3" required="required"
+                                  placeholder="Explain why you disagree with this appraisal"/>
+                        <button type="submit" name="action" value="appeal" class="btn btn-outline-danger w-100">Send appeal</button>
+                    </form>
+                </details>
+                <div t-if="record.state == 'appealed'" class="alert alert-warning">
+                    Your appeal was sent to HR on <t t-out="ess_display(record, 'appeal_date')"/>.
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============================ TEAM APPRAISALS (MANAGER) ============================ -->
+    <template id="ess_team_appraisals" name="ESS Team appraisals">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Team appraisals</t>
+            <t t-set="ess_back" t-value="'/my/hr/team'"/>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/team/appraisals?state=todo" t-attf-class="#{'active' if state == 'todo' else ''}">To review</a>
+                <a href="/my/hr/team/appraisals?state=all" t-attf-class="#{'active' if state != 'todo' else ''}">All</a>
+            </div>
+            <div class="ess-list" t-if="records">
+                <a t-foreach="records" t-as="rec" t-att-href="rec._ess_team_portal_url()" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold" t-out="rec.employee_id.name"/>
+                            <div class="small text-muted text-truncate">
+                                <t t-out="rec.cycle_id.name or (rec.is_probation and 'Probation review') or 'Appraisal'"/>
+                                <t t-if="rec.is_probation and rec.probation_end_date"> · <t t-out="ess_fdate(rec.probation_end_date)"/></t>
+                            </div>
+                        </div>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="rec"/></t>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-check-circle"/><p>Nothing to review.</p></div>
+        </t>
+    </template>
+
+    <template id="ess_team_appraisal" name="ESS Team appraisal review">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title" t-value="record.employee_id.name"/>
+            <div class="ess-panel">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <strong t-out="record.cycle_id.name or (record.is_probation and 'Probation review') or 'Appraisal'"/>
+                    <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="record"/></t>
+                </div>
+                <dl class="ess-dl small mb-0">
+                    <dt>Period</dt><dd><t t-out="ess_fdate(record.date_from)"/> - <t t-out="ess_fdate(record.date_to)"/></dd>
+                    <t t-if="record.is_probation"><dt>End of probation</dt><dd t-out="ess_fdate(record.probation_end_date)"/></t>
+                    <dt>Attendance rate</dt><dd><t t-out="'%.1f' % record.attendance_rate"/> % (<t t-out="record.attended_days"/> / <t t-out="record.expected_days"/>)</dd>
+                    <dt>Late arrivals</dt><dd t-out="record.late_count"/>
+                    <dt>Disciplinary actions</dt><dd t-out="record.disciplinary_count"/>
+                </dl>
+            </div>
+
+            <form t-if="record.state == 'manager_review'" t-att-action="record._ess_team_portal_url()" method="post" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="text-end mb-2">
+                    <button type="submit" name="action" value="refresh" class="btn btn-link btn-sm" formnovalidate="formnovalidate">
+                        <i class="fa fa-refresh me-1"/>Refresh KPIs</button>
+                </div>
+                <div t-if="record.self_comment" class="ess-panel">
+                    <h6>Employee comment</h6><div t-out="record.self_comment"/>
+                </div>
+                <div t-foreach="record.line_ids" t-as="line" class="ess-panel">
+                    <div class="d-flex justify-content-between">
+                        <strong t-out="line.competency_id.name"/>
+                        <span class="small text-muted"><t t-out="'%g' % line.weight"/> % · Self <t t-out="line.self_score or '-'"/></span>
+                    </div>
+                    <div class="small text-muted mb-2" t-if="line.self_comment" t-out="line.self_comment"/>
+                    <div class="btn-group w-100 mb-2" role="group">
+                        <t t-foreach="['1', '2', '3', '4', '5']" t-as="s">
+                            <input type="radio" class="btn-check" t-attf-name="score_#{line.id}" t-attf-id="m_#{line.id}_#{s}"
+                                   t-att-value="s" t-att-checked="line.manager_score == s" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" t-attf-for="m_#{line.id}_#{s}" t-out="s"/>
+                        </t>
+                    </div>
+                    <input type="text" t-attf-name="comment_#{line.id}" class="form-control form-control-sm"
+                           placeholder="Comment" t-att-value="line.comment or ''"/>
+                </div>
+                <t t-if="record.is_probation">
+                    <label>Probation decision</label>
+                    <select name="probation_decision" class="form-select">
+                        <option value="">-</option>
+                        <t t-foreach="record._fields['probation_decision']._description_selection(record.env)" t-as="opt">
+                            <option t-att-value="opt[0]" t-att-selected="opt[0] == record.probation_decision" t-out="opt[1]"/>
+                        </t>
+                    </select>
+                </t>
+                <label>Manager comment</label>
+                <textarea name="manager_comment" class="form-control" rows="3" t-out="record.manager_comment or ''"/>
+                <div class="d-flex gap-2 mt-3">
+                    <button type="submit" name="action" value="save" class="btn btn-outline-secondary flex-fill">Save draft</button>
+                    <button type="submit" name="action" value="done" class="btn btn-primary flex-fill">Complete review</button>
+                </div>
+            </form>
+            <div t-elif="record.state == 'self_review'" class="ess-empty">
+                <i class="fa fa-hourglass-half"/><p>Waiting for the employee's self review.</p>
+            </div>
+            <t t-else="">
+                <t t-call="bs_hr_ess_appraisal.ess_appraisal_result"/>
+                <div class="ess-list">
+                    <div t-foreach="record.line_ids" t-as="line" class="ess-list-item d-flex justify-content-between">
+                        <span t-out="line.competency_id.name"/>
+                        <span>Self <t t-out="line.self_score or '-'"/> · <strong>Manager <t t-out="line.manager_score or '-'"/></strong></span>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============================ GOALS ============================ -->
+    <template id="ess_goals" name="ESS Goals">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My goals</t>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/appraisals">Appraisals</a>
+                <a href="/my/hr/goals" class="active">Goals</a>
+                <a href="/my/hr/kudos">Kudos</a>
+            </div>
+            <div t-foreach="goals" t-as="goal" class="ess-panel">
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                    <div class="min-w-0">
+                        <div class="fw-semibold" t-out="goal.name"/>
+                        <div class="small text-muted" t-if="goal.target_date">Target: <t t-out="ess_fdate(goal.target_date)"/></div>
+                    </div>
+                    <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="goal"/></t>
+                </div>
+                <div class="small text-muted my-1" t-if="goal.description" t-out="goal.description"/>
+                <div class="progress my-2" role="progressbar" t-att-aria-valuenow="goal.progress" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" t-attf-style="width: #{goal.progress}%"><t t-out="goal.progress"/>%</div>
+                </div>
+                <form t-if="goal.state == 'open'" action="/my/hr/goals" method="post" class="d-flex gap-2 align-items-center">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="goal_id" t-att-value="goal.id"/>
+                    <input type="number" name="progress" min="0" max="100" step="5" class="form-control form-control-sm"
+                           style="max-width: 90px;" t-att-value="goal.progress"/>
+                    <input type="text" name="note" class="form-control form-control-sm" placeholder="What did you do?"/>
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                </form>
+            </div>
+            <div t-if="not goals" class="ess-empty"><i class="fa fa-bullseye"/><p>No goal assigned yet.</p></div>
+        </t>
+    </template>
+
+    <!-- ============================ KUDOS ============================ -->
+    <template id="ess_kudos" name="ESS Kudos">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Kudos</t>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/kudos?tab=received" t-attf-class="#{'active' if tab == 'received' else ''}">Received</a>
+                <a href="/my/hr/kudos?tab=sent" t-attf-class="#{'active' if tab == 'sent' else ''}">Sent</a>
+                <a href="/my/hr/kudos?tab=send" t-attf-class="#{'active' if tab == 'send' else ''}">Send kudos</a>
+            </div>
+            <t t-if="tab == 'send'">
+                <form action="/my/hr/kudos" method="post" class="ess-form">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <p class="small text-muted">You can still send <t t-out="remaining"/> kudos today.</p>
+                    <label>Colleague</label>
+                    <select name="to_employee_id" class="form-select" required="required">
+                        <option value="">-</option>
+                        <option t-foreach="colleagues" t-as="c" t-att-value="c.id">
+                            <t t-out="c.name"/><t t-if="c.work_location_id"> · <t t-out="c.work_location_id.name"/></t>
+                        </option>
+                    </select>
+                    <label>Badge</label>
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <t t-foreach="badges" t-as="b">
+                            <input type="radio" class="btn-check" name="badge" t-attf-id="badge_#{b[0]}" t-att-value="b[0]"
+                                   t-att-checked="b_index == 0" autocomplete="off"/>
+                            <label class="btn btn-outline-primary btn-sm" t-attf-for="badge_#{b[0]}">
+                                <i t-attf-class="fa #{badge_icons.get(b[0])} me-1"/><t t-out="b[1]"/></label>
+                        </t>
+                    </div>
+                    <label>Message</label>
+                    <textarea name="message" class="form-control" rows="3" maxlength="1000" required="required"
+                              placeholder="Thank your colleague for something specific"/>
+                    <button type="submit" class="btn btn-primary w-100 mt-3" t-att-disabled="not remaining">Send</button>
+                </form>
+            </t>
+            <t t-else="">
+                <t t-set="items" t-value="received if tab == 'received' else sent"/>
+                <div class="ess-list" t-if="items">
+                    <div t-foreach="items" t-as="k" class="ess-list-item d-flex gap-2">
+                        <i t-attf-class="fa #{k._badge_icon()} fa-lg mt-1" style="color: var(--ess-primary);"/>
+                        <div class="min-w-0">
+                            <div class="fw-semibold">
+                                <t t-out="k._badge_label()"/> ·
+                                <t t-if="tab == 'received'" t-out="k.from_employee_id.name"/>
+                                <t t-else="" t-out="k.to_employee_id.name"/>
+                            </div>
+                            <div t-out="k.message"/>
+                            <div class="small text-muted" t-out="ess_display(k, 'date')"/>
+                        </div>
+                    </div>
+                </div>
+                <div t-else="" class="ess-empty">
+                    <i class="fa fa-thumbs-o-up"/>
+                    <p>No kudos yet.</p>
+                    <a href="/my/hr/kudos?tab=send" class="btn btn-primary">Send kudos</a>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_store_binding_list" model="ir.ui.view">
+        <field name="name">bs.delivery.store.binding.list</field>
+        <field name="model">bs.delivery.store.binding</field>
+        <field name="arch" type="xml">
+            <list string="Aggregator Stores" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="provider_id"/>
+                <field name="name" optional="hide"/>
+                <field name="connection_id"/>
+                <field name="pos_config_id"/>
+                <field name="remote_store_id"/>
+                <field name="remote_vendor_id" optional="hide"/>
+                <field name="is_sandbox" string="Sandbox"/>
+                <field name="is_paused" string="Paused"/>
+                <field name="sound_alert" optional="hide"/>
+                <field name="currency_id" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="active" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_store_binding_form" model="ir.ui.view">
+        <field name="name">bs.delivery.store.binding.form</field>
+        <field name="model">bs.delivery.store.binding</field>
+        <field name="arch" type="xml">
+            <form string="Aggregator Store">
+                <header>
+                    <button name="pause_receiving"
+                            type="object"
+                            string="Pause Receiving"
+                            class="btn-warning"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="is_paused"/>
+                    <button name="resume_receiving"
+                            type="object"
+                            string="Resume Receiving"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="not is_paused"/>
+                </header>
+                <sheet>
+                    <field name="is_paused" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="provider_id" invisible="1"/>
+                    <widget name="web_ribbon"
+                            title="Receiving Paused"
+                            bg_color="text-bg-warning"
+                            invisible="not is_paused"/>
+                    <widget name="web_ribbon"
+                            title="Archived"
+                            bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="remote_store_id"/>
+                        <h1><field name="remote_store_id" placeholder="Platform store ID"/></h1>
+                        <field name="name" readonly="1" class="text-muted"/>
+                    </div>
+                    <group>
+                        <group string="Platform Mapping">
+                            <field name="connection_id"
+                                   options="{'no_create': True}"
+                                   readonly="id"/>
+                            <field name="provider_id" readonly="1"/>
+                            <field name="company_id"
+                                   readonly="1"
+                                   groups="base.group_multi_company"/>
+                            <field name="pos_config_id"
+                                   domain="[('company_id', '=', company_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="remote_store_id"/>
+                            <field name="remote_vendor_id"/>
+                            <field name="remote_integration_id"/>
+                            <field name="is_sandbox" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="POS Operations">
+                            <field name="warehouse_id"/>
+                            <field name="pricelist_id"/>
+                            <field name="fiscal_position_id"/>
+                            <field name="timezone"/>
+                            <field name="currency_id"/>
+                            <field name="default_payment_method_id"/>
+                            <field name="late_threshold_minutes"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Behaviour">
+                            <field name="sound_alert"/>
+                            <field name="auto_print_kitchen"/>
+                            <field name="available_preset_ids" invisible="1"/>
+                            <field name="delivery_preset_id"
+                                   domain="[('id', 'in', available_preset_ids), ('is_return', '=', False)]"
+                                   options="{'no_create': True}"/>
+                            <field name="pickup_preset_id"
+                                   domain="[('id', 'in', available_preset_ids), ('is_return', '=', False)]"
+                                   options="{'no_create': True}"/>
+                            <field name="dine_in_preset_id"
+                                   domain="[('id', 'in', available_preset_ids), ('is_return', '=', False)]"
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group string="POS Products">
+                            <field name="delivery_fee_product_id"/>
+                            <field name="service_fee_product_id"/>
+                            <field name="adjustment_product_id"/>
+                            <field name="tip_product_id"/>
+                        </group>
+                    </group>
+
+                    <group string="Work Time">
+                        <group>
+                            <field name="work_time_enabled" widget="boolean_toggle"/>
+                            <label for="work_start_time" string="Shift 1" invisible="not work_time_enabled"/>
+                            <div class="o_row" invisible="not work_time_enabled">
+                                <field name="work_start_time" widget="float_time" nolabel="1"/>
+                                <span>to</span>
+                                <field name="work_end_time" widget="float_time" nolabel="1"/>
+                            </div>
+                            <field name="second_shift_enabled" widget="boolean_toggle"
+                                   invisible="not work_time_enabled"/>
+                            <label for="work_start_time_2" string="Shift 2"
+                                   invisible="not work_time_enabled or not second_shift_enabled"/>
+                            <div class="o_row" invisible="not work_time_enabled or not second_shift_enabled">
+                                <field name="work_start_time_2" widget="float_time" nolabel="1"/>
+                                <span>to</span>
+                                <field name="work_end_time_2" widget="float_time" nolabel="1"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="is_open_now"/>
+                            <field name="last_availability_sync_at" string="Last Sent"/>
+                        </group>
+                    </group>
+
+                    <group string="Rush-hour Pause">
+                        <group>
+                            <field name="paused"/>
+                            <field name="paused_until" invisible="not paused"/>
+                        </group>
+                        <group invisible="not paused">
+                            <field name="pause_reject_reason_id"
+                                   domain="[('active', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id), '|', ('provider_id', '=', False), ('provider_id', '=', provider_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="pause_reason"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_store_binding_search" model="ir.ui.view">
+        <field name="name">bs.delivery.store.binding.search</field>
+        <field name="model">bs.delivery.store.binding</field>
+        <field name="arch" type="xml">
+            <search string="Search Aggregator Stores">
+                <field name="name"/>
+                <field name="remote_store_id"/>
+                <field name="remote_vendor_id"/>
+                <field name="provider_id"/>
+                <field name="connection_id"/>
+                <field name="pos_config_id"/>
+                <filter name="paused" string="Paused" domain="[('paused', '=', True)]"/>
+                <filter name="sandbox" string="Sandbox" domain="[('is_sandbox', '=', True)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_pos" string="POS Branch" context="{'group_by': 'pos_config_id'}"/>
+                    <filter name="group_company"
+                            string="Company"
+                            context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_store_binding" model="ir.actions.act_window">
+        <field name="name">Aggregator Stores</field>
+        <field name="res_model">bs.delivery.store.binding</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_store_binding_search"/>
+        <field name="context">{'active_test': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Map a platform store to an Odoo POS branch.</p>
+            <p>Remote store IDs route incoming orders to the correct branch and session.</p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ess_requests" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ess.requests</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.res_config_settings_view_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='ess_approvals']" position="after">
+                <block title="Time off" name="ess_leaves">
+                    <setting string="Concurrent leaves warning"
+                             help="Warn approvers when this number of colleagues of the same branch and job are already on leave (0 = disabled).">
+                        <field name="ess_leave_max_concurrent"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

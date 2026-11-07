@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_order_tracking_nps_hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-23 20:08+0000\n"
+"PO-Revision-Date: 2026-10-23 20:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_order_tracking_nps_hr
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps_hr.res_config_settings_view_form_tracking_hr
+msgid "All employees"
+msgstr "كل الموظفين"
+
+#. module: pos_order_tracking_nps_hr
+#: model_terms:ir.ui.view,arch_db:pos_order_tracking_nps_hr.res_config_settings_view_form_tracking_hr
+msgid "Cashiers"
+msgstr "الكاشيرات"
+
+#. module: pos_order_tracking_nps_hr
+#: model:ir.model,name:pos_order_tracking_nps_hr.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات"
+
+#. module: pos_order_tracking_nps_hr
+#: model:ir.model.fields,field_description:pos_order_tracking_nps_hr.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_order_tracking_nps_hr.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: pos_order_tracking_nps_hr
+#: model:ir.model.fields,field_description:pos_order_tracking_nps_hr.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_order_tracking_nps_hr.field_res_config_settings__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: pos_order_tracking_nps_hr
+#: model:ir.model.fields,help:pos_order_tracking_nps_hr.field_pos_config__tracking_employee_ids
+#: model:ir.model.fields,help:pos_order_tracking_nps_hr.field_res_config_settings__pos_tracking_employee_ids
+msgid ""
+"Only orders taken by these employees get the tracking QR. Leave empty for "
+"all employees."
+msgstr "الباركود يُطبع فقط لطلبات هؤلاء الموظفين. اتركها فارغة للجميع."
+
+#. module: pos_order_tracking_nps_hr
+#: model:ir.model,name:pos_order_tracking_nps_hr.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع"
+
+#. module: pos_order_tracking_nps_hr
+#: model:ir.model.fields,field_description:pos_order_tracking_nps_hr.field_pos_config__tracking_employee_ids
+#: model:ir.model.fields,field_description:pos_order_tracking_nps_hr.field_res_config_settings__pos_tracking_employee_ids
+msgid "Tracking Employees"
+msgstr "الموظفون المشمولون"

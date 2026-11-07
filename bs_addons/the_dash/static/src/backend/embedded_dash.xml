@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="the_dash.Embedded">
+        <div class="o_the_dash_embedded h-100 w-100">
+            <iframe t-ref="frame" t-att-src="src" title="لوحة البيانات" class="border-0 w-100 h-100"/>
+        </div>
+    </t>
+</templates>

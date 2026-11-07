@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_pos_kitchen_flow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: bs_pos_kitchen_flow
+msgid "Kitchen Flow Diagnostics"
+msgstr "تشخيص إرسال طلبات المطبخ"
+
+#. module: bs_pos_kitchen_flow
+msgid "Kitchen Sending Notifications"
+msgstr "إشعارات إرسال المطبخ"
+
+#. module: bs_pos_kitchen_flow
+msgid "Kitchen Sending Status"
+msgstr "حالة إرسال الطلب للمطبخ"
+
+#. module: bs_pos_kitchen_flow
+msgid "Kitchen Delivery Priority"
+msgstr "أولوية إرسال الطلب للمطبخ"
+
+#. module: bs_pos_kitchen_flow
+msgid "Kitchen Printers First"
+msgstr "طابعات المطبخ أولًا"
+
+#. module: bs_pos_kitchen_flow
+msgid "Kitchen Display First"
+msgstr "شاشة المطبخ أولًا"
+
+#. module: bs_pos_kitchen_flow
+msgid "Display and Printers in Parallel"
+msgstr "الشاشة والطابعات بالتوازي"
+
+#. module: bs_pos_kitchen_flow
+#. odoo-javascript
+msgid "The order is already being sent to the kitchen…"
+msgstr "الطلب قيد الإرسال إلى المطبخ بالفعل…"
+
+#. module: bs_pos_kitchen_flow
+#. odoo-javascript
+msgid "Sending order to the kitchen…"
+msgstr "جاري إرسال الطلب للمطبخ…"
+
+#. module: bs_pos_kitchen_flow
+#. odoo-javascript
+msgid "Order sent to the kitchen successfully."
+msgstr "تم الإرسال"
+
+#. module: bs_pos_kitchen_flow
+#. odoo-javascript
+msgid "The order could not be sent to the kitchen."
+msgstr "تعذر إرسال الطلب إلى المطبخ."
+
+#. module: bs_pos_kitchen_flow
+msgid "Timed Operations"
+msgstr "العمليات المقاسة زمنيًا"
+
+#. module: bs_pos_kitchen_flow
+msgid "Total Duration (ms)"
+msgstr "المدة الإجمالية (مللي ثانية)"
+
+#. module: bs_pos_kitchen_flow
+msgid "Completed with Warnings"
+msgstr "اكتمل مع تحذيرات"
+

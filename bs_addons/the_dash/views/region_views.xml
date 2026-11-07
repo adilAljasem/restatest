@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="the_dash_region_view_list" model="ir.ui.view">
+        <field name="name">the.dash.region.list</field>
+        <field name="model">the.dash.region</field>
+        <field name="arch" type="xml">
+            <list string="Regions" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="config_ids" widget="many2many_tags" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="the_dash_region_view_form" model="ir.ui.view">
+        <field name="name">the.dash.region.form</field>
+        <field name="model">the.dash.region</field>
+        <field name="arch" type="xml">
+            <form string="Region">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active" invisible="1"/>
+                        <field name="config_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                    <div class="text-muted">
+                        Choose the region of each point of sale in Point of Sale &gt;
+                        Configuration &gt; Settings, field "Region (The Dash)".
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_the_dash_region" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="res_model">the.dash.region</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

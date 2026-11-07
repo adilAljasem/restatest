@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo noupdate="1">
+
+    <record id="payment_provider_aps" model="payment.provider">
+        <field name="name">Amazon Payment Services</field>
+        <field name="image_128" type="base64" file="payment_aps/static/description/icon.png"/>
+        <field name="module_id" ref="base.module_payment_aps"/>
+        <!-- https://paymentservices.amazon.com/docs/EN/24.html -->
+        <field name="payment_method_ids" eval="[Command.set([                          ref('payment.payment_method_card'),                          ref('payment.payment_method_mada'),                          ref('payment.payment_method_knet'),                          ref('payment.payment_method_meeza'),                          ref('payment.payment_method_naps'),                          ref('payment.payment_method_omannet'),                          ref('payment.payment_method_benefit'),                      ])]"/>
+    </record>
+
+    <record id="payment_provider_paymob" model="payment.provider">
+        <field name="name">Paymob</field>
+        <field name="image_128" type="base64" file="payment_paymob/static/description/icon.png"/>
+        <field name="module_id" ref="base.module_payment_paymob"/>
+        <!-- For each country available payment methods are different but card is common for all-->
+        <!-- https://developers.paymob.com/egypt/payment-methods -->
+        <field name="payment_method_ids" eval="[Command.set([                     ref('payment_method_aman'),                     ref('payment.payment_method_card'),                     ref('payment_method_contact'),                     ref('payment_method_forsa'),                     ref('payment_method_halan'),                     ref('payment_method_installments_eg'),                     ref('payment_method_kiosk'),                     ref('payment_method_mobile_wallet_eg'),                     ref('payment_method_omannet'),                     ref('payment_method_premium_card'),                     ref('payment_method_souhoola'),                     ref('payment_method_stcpay'),                     ref('payment_method_sympl'),                     ref('payment_method_tabby'),                     ref('payment_method_tamara'),                     ref('payment_method_valu'),                 ])]"/>
+    </record>
+
+    <record id="payment_provider_transfer" model="payment.provider">
+        <field name="name">Wire Transfer</field>
+        <field name="sequence">30</field>
+        <field name="image_128" type="base64" file="payment_custom/static/description/icon.png"/>
+        <field name="module_id" ref="base.module_payment_custom"/>
+    </record>
+
+    </odoo>

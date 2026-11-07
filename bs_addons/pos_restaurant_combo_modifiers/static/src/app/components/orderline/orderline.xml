@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_restaurant_combo_modifiers.OrderlineReceiptDetails"
+       t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension">
+        <xpath expr="//ul[hasclass('info-list')]/t[@t-slot='default']" position="before">
+            <t t-if="vals.isReceipt and !line.is_modifier_line">
+                <li t-foreach="line.modifierReceiptDetails"
+                    t-as="modifier"
+                    t-key="modifier.key"
+                    class="o_pos_receipt_modifier d-flex justify-content-between gap-2">
+                    <span class="text-wrap">
+                        - <t t-esc="modifier.name"/>
+                        <t t-if="modifier.quantity !== 1"> ×<t t-esc="modifier.quantity"/></t>
+                    </span>
+                    <span t-if="modifier.formattedPrice and !props.basic_receipt"
+                          class="font-monospace text-nowrap"
+                          t-esc="modifier.formattedPrice"/>
+                </li>
+                <li t-foreach="line.modifierReceiptInstructions"
+                    t-as="instruction"
+                    t-key="instruction.key"
+                    class="o_pos_receipt_instruction text-wrap">
+                    <span class="fw-semibold" t-if="instruction.groupName">
+                        <t t-esc="instruction.groupName"/>:
+                    </span>
+                    <t t-esc="instruction.name"/>
+                    <t t-if="instruction.quantity !== 1"> ×<t t-esc="instruction.quantity"/></t>
+                </li>
+            </t>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,114 @@
+// Paper-safe horizontal space for the two legacy designs and Pino.
+// Bilingual thermal has its own print/raster sizing rules.
+.pos-receipt.branding-paper,
+.pos-receipt.pino-receipt {
+    box-sizing: border-box !important;
+    width: 76mm !important;
+    max-width: 76mm !important;
+    min-width: 0 !important;
+    padding-left: 1mm !important;
+    padding-right: 1mm !important;
+}
+
+// The hardware printer rasterizes at Odoo's fixed 512px width. These designs
+// had no raster side padding, so do not add a new margin to that path.
+.pos-receipt.branding-paper.pos-receipt-print {
+    width: 512px !important;
+    max-width: 512px !important;
+    min-width: 512px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+// Printer raster width (Receipt Settings > Printer Print Width).
+// 576 (default since 19.0.1.6.0): the printable width of 80mm Epson printers,
+// the receipt fills the paper with equal 16-dot margins (like the kitchen
+// ticket). 512: Odoo's width. 420: 58mm printers.
+.pos-receipt.pino-receipt.pos-receipt-print {
+    box-sizing: border-box !important;
+    width: 512px !important;
+    max-width: 512px !important;
+    min-width: 512px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+.pos-receipt.pino-receipt.pino-wide.pos-receipt-print,
+.pos-receipt.pino-receipt.pino-w-576.pos-receipt-print {
+    width: 576px !important;
+    max-width: 576px !important;
+    min-width: 576px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+// 58mm printers: 420 dots (like the kitchen ticket).
+.pos-receipt.pino-receipt.pino-w-420.pos-receipt-print {
+    width: 420px !important;
+    max-width: 420px !important;
+    min-width: 420px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+@media print {
+    // Odoo's browser print rule sets .render-container .pos-receipt to 266px.
+    .render-container .pos-receipt.branding-paper,
+    .render-container .pos-receipt.pino-receipt,
+    .render-container .pos-receipt.branding-paper.pos-receipt-print,
+    .render-container .pos-receipt.pino-receipt.pos-receipt-print {
+        width: 76mm !important;
+        max-width: 76mm !important;
+        min-width: 0 !important;
+        padding-left: 1mm !important;
+        padding-right: 1mm !important;
+    }
+
+    // Browser / printer-driver printing. 80mm thermal drivers print only
+    // ~72mm; anything wider is cut off on the right (dates, the quantity
+    // column, the start of the Arabic labels). Standard keeps the receipt
+    // inside 72mm (the printable width of 80mm printers).
+    .render-container .pos-receipt.pino-receipt,
+    .render-container .pos-receipt.pino-receipt.pos-receipt-print {
+        width: 72mm !important;
+        max-width: 72mm !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    // 576 dots are exactly 72mm at 203 dpi: 72mm above is the full printable
+    // width, so the 576 and 512 settings print the same through the browser.
+
+    .render-container .pos-receipt.pino-receipt.pino-w-420,
+    .render-container .pos-receipt.pino-receipt.pino-w-420.pos-receipt-print {
+        width: 48mm !important;
+        max-width: 48mm !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+// A second `.pos-receipt` wrapped around our design by another module
+// (bs_pos_blend_intgeration < 19.0.1.37.0 on delivery app orders). Odoo's
+// print sizes (512px raster, 266px browser print) would land on the wrapper
+// and squeeze the design to half the paper: let the design size itself.
+.pos-receipt:has(> .pos-receipt.pino-receipt),
+.pos-receipt:has(> .pos-receipt.bilingual-receipt),
+.pos-receipt:has(> .pos-receipt.branding-paper) {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    font-size: inherit !important;
+}
+
+@media print {
+    .render-container .pos-receipt:has(> .pos-receipt.pino-receipt),
+    .render-container .pos-receipt:has(> .pos-receipt.bilingual-receipt),
+    .render-container .pos-receipt:has(> .pos-receipt.branding-paper) {
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+    }
+}

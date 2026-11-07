@@ -1,0 +1,1552 @@
+{
+  "info": {
+    "name": "Blend Odoo 19 - Bunbastic STG - Complete HTTP API",
+    "description": "Core-backed Blend HTTP contract for bunbastic STG. This collection uses the Blend connection's Odoo User login method: POST /api/login with email/password returns access_token, then inbound requests use it as a Bearer token. The Odoo User selected on the connection is admin; the supplied test password is admin. The connection must pass Test Connection and be Connected before login. Run GET Branches to populate branch_id and brand_id; verify product 32 with GET Menu by Product ID before placing an order. The example for product 32 uses the local dump price 23.00 = subtotal 20.00 + VAT 3.00; update amounts if the STG menu, pricelist, or taxes differ. Configure a branch mapping, active menu pricelist, POS session, and keeta/cash payment mapping before enabling order writes. Mutating requests are skipped by default; explicitly set enable_orders, enable_webhooks, or enable_outbound_examples to true for their folders. Outbound webhook examples target Blend-owned URLs and are not inbound Odoo tests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.variables.set('event_time', new Date().toISOString());",
+          "pm.variables.set('request_id', pm.variables.replaceIn('{{$guid}}'));"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "odoo_domain",
+      "value": "https://bunbastic-stg-39985581.dev.odoo.com",
+      "type": "string",
+      "description": "Bunbastic staging Odoo domain; no trailing slash."
+    },
+    {
+      "key": "pos_login_email",
+      "value": "admin",
+      "type": "string"
+    },
+    {
+      "key": "pos_login_password",
+      "value": "admin",
+      "type": "secret",
+      "description": "Password supplied for the selected Odoo Login User on the Blend connection. This exported JSON contains its literal value."
+    },
+    {
+      "key": "odoo_inbound_token",
+      "value": "",
+      "type": "secret",
+      "description": "Session access_token populated automatically by POST /api/login and used as Bearer for inbound Blend requests."
+    },
+    {
+      "key": "blend_outbound_token",
+      "value": "",
+      "type": "secret"
+    },
+    {
+      "key": "branch_id",
+      "value": "1",
+      "type": "string",
+      "description": "Blend remote branch ID. GET Branches fills this after successful authentication; do not enter POS config ID 1 here."
+    },
+    {
+      "key": "brand_id",
+      "value": "1",
+      "type": "string",
+      "description": "Blend remote brand ID. GET Branches fills this after successful authentication."
+    },
+    {
+      "key": "category_id",
+      "value": "",
+      "type": "string",
+      "description": "Set a real Blend category ID from GET Menu before enabling category-specific events."
+    },
+    {
+      "key": "item_id",
+      "value": "32",
+      "type": "string",
+      "description": "Existing Smash Burger template ID in the local bunbastic snapshot. GET Menu by Product ID must confirm its actual Blend API ID on STG."
+    },
+    {
+      "key": "modifier_group_id",
+      "value": "",
+      "type": "string",
+      "description": "Set a real Blend modifier group ID from GET Menu before enabling modifier events."
+    },
+    {
+      "key": "modifier_id",
+      "value": "13",
+      "type": "string",
+      "description": "Example modifier option from prior TryOrder data; verify numeric Blend modifier ID from GET Menu before enabling modifier webhooks."
+    },
+    {
+      "key": "is_available",
+      "value": "true",
+      "type": "string"
+    },
+    {
+      "key": "pos_partner_reference",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "order_type",
+      "value": "delivery",
+      "type": "string"
+    },
+    {
+      "key": "aggregator",
+      "value": "keeta",
+      "type": "string",
+      "description": "Requires the corresponding Blend payment mapping."
+    },
+    {
+      "key": "aggregator_order_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pos_created_order_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "odoo_order_id",
+      "value": "",
+      "type": "string",
+      "description": "Outbound example only: set to the Odoo order identity being sent to Blend."
+    },
+    {
+      "key": "blend_to_odoo_status",
+      "value": "accepted",
+      "type": "string"
+    },
+    {
+      "key": "delivery_status",
+      "value": "assigned",
+      "type": "string"
+    },
+    {
+      "key": "pos_order_status",
+      "value": "ACCEPTED",
+      "type": "string"
+    },
+    {
+      "key": "menu_entity_type",
+      "value": "product",
+      "type": "string"
+    },
+    {
+      "key": "menu_entity_id",
+      "value": "32",
+      "type": "string",
+      "description": "Example existing product 32; verify in GET Menu."
+    },
+    {
+      "key": "blend_order_created_url",
+      "value": "",
+      "type": "string",
+      "description": "Set only when testing Blend-owned callbacks; not an Odoo domain."
+    },
+    {
+      "key": "blend_order_status_url",
+      "value": "",
+      "type": "string",
+      "description": "Set only when testing Blend-owned callbacks; not an Odoo domain."
+    },
+    {
+      "key": "blend_menu_event_url",
+      "value": "",
+      "type": "string",
+      "description": "Set only when testing Blend-owned callbacks; not an Odoo domain."
+    },
+    {
+      "key": "blend_outbound_webhook_url",
+      "value": "",
+      "type": "string",
+      "description": "Set only when testing Blend-owned callbacks; not an Odoo domain."
+    },
+    {
+      "key": "event_time",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "request_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "db",
+      "value": "bunbastic-stg-39985581",
+      "type": "string",
+      "description": "Odoo staging database used in TryOrder tests."
+    },
+    {
+      "key": "pos_config_id",
+      "value": "1",
+      "type": "string",
+      "description": "Existing Alreem POS config ID from the bunbastic snapshot. This is NOT Blend branch_id and is not sent to Blend."
+    },
+    {
+      "key": "image_product_id",
+      "value": "32",
+      "type": "string",
+      "description": "Existing Smash Burger template with an image attachment in the local bunbastic snapshot."
+    },
+    {
+      "key": "order_subtotal",
+      "value": "20.00",
+      "type": "string",
+      "description": "Example for product 32 in the local snapshot: net amount. Verify STG price/taxes before enabling writes."
+    },
+    {
+      "key": "order_tax",
+      "value": "3.00",
+      "type": "string",
+      "description": "Example 15% VAT for product 32. Verify STG taxes before enabling writes."
+    },
+    {
+      "key": "order_total",
+      "value": "23.00",
+      "type": "string",
+      "description": "Example gross price of product 32 in the local snapshot. Verify STG menu and pricelist."
+    },
+    {
+      "key": "payment_type",
+      "value": "cash",
+      "type": "string",
+      "description": "Requires a Blend connection payment mapping for keeta / Cash."
+    },
+    {
+      "key": "sync_category_id",
+      "value": "900001",
+      "type": "string",
+      "description": "Reserved QA-only menu sync example; disabled by default."
+    },
+    {
+      "key": "sync_item_id",
+      "value": "900002",
+      "type": "string",
+      "description": "Reserved QA-only menu sync example; disabled by default."
+    },
+    {
+      "key": "sync_modifier_group_id",
+      "value": "900003",
+      "type": "string",
+      "description": "Reserved QA-only menu sync example; disabled by default."
+    },
+    {
+      "key": "sync_modifier_id",
+      "value": "900004",
+      "type": "string",
+      "description": "Reserved QA-only menu sync example; disabled by default."
+    },
+    {
+      "key": "enable_login",
+      "value": "true",
+      "type": "string",
+      "description": "Run POST /api/login first using the Odoo User selected on the Connected Blend connection; each successful login rotates the session token."
+    },
+    {
+      "key": "enable_orders",
+      "value": "false",
+      "type": "string",
+      "description": "Set true to create and update actual STG orders after checking branch, menu, tax, payment mapping, and POS session."
+    },
+    {
+      "key": "enable_webhooks",
+      "value": "false",
+      "type": "string",
+      "description": "Set true to run inbound events that change menu, availability, or order status."
+    },
+    {
+      "key": "enable_outbound_examples",
+      "value": "false",
+      "type": "string",
+      "description": "Set true only after supplying real Blend-owned callback URLs; these are outbound examples, not Odoo endpoints."
+    }
+  ],
+  "item": [
+    {
+      "name": "00 - Authorization (Required)",
+      "description": "Blend authenticates with the Odoo Login User selected on the Connected Blend connection. POST /api/login returns access_token, which is saved automatically for subsequent Bearer requests.",
+      "item": [
+        {
+          "name": "00 - Login with Email & Password",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_login')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Response is JSON', function () { pm.response.to.be.json; });",
+                  "const body = pm.response.json();",
+                  "pm.test('access_token exists', function () { pm.expect(body.access_token).to.be.a('string').and.not.empty; });",
+                  "if (body.access_token) { pm.collectionVariables.set('odoo_inbound_token', body.access_token); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{pos_login_email}}\",\n  \"password\": \"{{pos_login_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/login?db={{db}}",
+            "description": "يرسل admin/admin إلى /api/login وفق Odoo User المحدد على اتصال Blend. نجاح الطلب يرجع access_token ويحفظه تلقائيًا في odoo_inbound_token. يلزم أن يكون الاتصال Connected."
+          },
+          "description": "Odoo User login for the selected Administrator account on the Blend connection. The returned token is held in a collection variable for this test session."
+        }
+      ]
+    },
+    {
+      "name": "01 - Blend to Odoo (Required)",
+      "description": "Inbound Blend events. They change STG data and are skipped until enable_webhooks=true. Menu Sync uses distinct QA IDs so it does not overwrite existing product 32.",
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{odoo_inbound_token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response is JSON', function () { pm.response.to.be.json; });",
+              "const body = pm.response.json();",
+              "pm.test('status = success', function () { pm.expect(body.status).to.eql('success'); });",
+              "pm.test('trace_id exists', function () { pm.expect(body.trace_id).to.be.a('string').and.not.empty; });"
+            ]
+          }
+        }
+      ],
+      "item": [
+        {
+          "name": "00 - Check Connection & Auth",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"branch_availability\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"branch_id\": \"{{branch_id}}\",\n    \"is_available\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "description": "ابدأ بهذا الطلب. HTTP 200 يعني أن URL والتوكن والفرع مضبوطين."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "01 - Menu Sync",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"menu_sync\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"categories\": [{\n      \"id\": \"{{sync_category_id}}\",\n      \"name\": {\"ar\": \"البيتزا\", \"en\": \"Pizza\"},\n      \"description\": {\"ar\": \"قسم البيتزا\", \"en\": \"Pizza category\"},\n      \"schedule_time\": {},\n      \"items\": [\"{{sync_item_id}}\"]\n    }],\n    \"items\": [{\n      \"id\": \"{{sync_item_id}}\",\n      \"name\": {\"ar\": \"بيتزا مارجريتا\", \"en\": \"Margherita Pizza\"},\n      \"description\": {\"ar\": \"صلصة طماطم وجبن\", \"en\": \"Tomato sauce and cheese\"},\n      \"price\": 150.0,\n      \"is_available\": true,\n      \"categories\": [\"{{sync_category_id}}\"],\n      \"images\": [],\n      \"schedule_time\": {}\n    }],\n    \"toppings\": [{\n      \"id\": \"{{sync_modifier_group_id}}\",\n      \"name\": {\"ar\": \"الإضافات\", \"en\": \"Add-ons\"},\n      \"is_required\": true,\n      \"min\": 1,\n      \"max\": 2,\n      \"max_per_quantity\": 2,\n      \"options\": [{\n        \"id\": \"{{sync_modifier_id}}\",\n        \"name\": {\"ar\": \"جبن إضافي\", \"en\": \"Extra Cheese\"},\n        \"price\": 10.0\n      }],\n      \"items\": [\"{{sync_item_id}}\"]\n    }],\n    \"branch_schedule_time\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "description": "شغّله أولًا لإنشاء الـ Menu والمنتجات والـ Modifiers داخل Odoo."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "02 - Item Availability",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"item_availability\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"item_id\": \"{{item_id}}\",\n    \"is_available\": {{is_available}}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "description": "غيّر is_available في Variables إلى false للإخفاء أو true للإظهار."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "03 - Modifier Availability",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"modifier_availability\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"modifier_id\": \"{{modifier_id}}\",\n    \"is_available\": {{is_available}}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "description": "يمكن وضع modifier_group_id بدل modifier_id لاختبار المجموعة كاملة."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "04 - Branch Availability",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"branch_availability\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"branch_id\": \"{{branch_id}}\",\n    \"is_available\": {{is_available}}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "description": "false يعمل Pause، وtrue يعيد تشغيل الفرع."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "05 - Order Status (Blend to Odoo)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"order_updated\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"order_id\": \"{{odoo_order_id}}\",\n    \"status\": \"{{blend_to_odoo_status}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "description": "ضع Blend Order ID لطلب موجود. الحالات الأساسية: accepted, rejected, cancelled, prepared."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 - Blend calls Manual POS APIs (Required)",
+      "description": "الـManual POS endpoints المنشورة في Blend: GET /api/menu، GET /api/branches، POST /api/orders، PUT /api/order/update.",
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{odoo_inbound_token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "item": [
+        {
+          "name": "01 - Get Branches",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Blend branches array is available', function () { pm.expect(body.branches).to.be.an('array').and.not.empty; });",
+                  "const branches = Array.isArray(body.branches) ? body.branches : [];",
+                  "const preferred = String(pm.collectionVariables.get('branch_id') || '');",
+                  "const selected = branches.find(b => String(b.id) === preferred) || branches.find(b => b.status === true) || branches[0];",
+                  "if (selected) { pm.collectionVariables.set('branch_id', String(selected.id)); pm.collectionVariables.set('brand_id', String(selected.brand_id || '')); }",
+                  "pm.test('Selected branch has Blend IDs', function () { pm.expect(selected).to.be.an('object'); pm.expect(String(selected.id)).to.not.be.empty; pm.expect(String(selected.brand_id || '')).to.not.be.empty; });",
+                  "pm.test('Selected Blend branch is available', function () { pm.expect(selected.status).to.eql(true); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": "{{odoo_domain}}/api/branches?db={{db}}",
+            "description": "يرجع id/name/status/brand_id/location للفروع المرتبطة بنفس Login User."
+          },
+          "description": "Run first with a Blend Bearer token. Selects the configured branch if present, otherwise an available branch, and saves the remote branch_id and brand_id. POS config ID 1 is not a substitute."
+        },
+        {
+          "name": "02 - Get Menu Page 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Response is JSON', function () { pm.response.to.be.json; });",
+                  "const body = pm.response.json();",
+                  "pm.test('categories and pagination exist', function () { pm.expect(body.categories).to.be.an('array'); pm.expect(body.pagination).to.be.an('object'); });",
+                  "pm.test('page contains at most per products', function () { const products = body.categories.flatMap((category) => category.products || []); pm.expect(products.length).to.be.at.most(Number(pm.request.url.query.get('per') || 25)); });",
+                  "pm.test('pagination describes page range', function () { const pagination = body.pagination; pm.expect(pagination.per).to.eql(Number(pm.request.url.query.get('per') || 25)); pm.expect(pagination.current).to.eql(Number(pm.request.url.query.get('page') || 1)); pm.expect(pagination.from).to.eql(pagination.total ? 1 : 0); pm.expect(pagination.to).to.eql(pagination.total); });",
+                  "pm.test('all modifier maximums are positive', function () { const groups = body.categories.flatMap((category) => category.products || []).flatMap((product) => product.modifier_groups || []); groups.forEach((group) => { pm.expect(group.max_selection, 'max_selection for group ' + group.id).to.be.a('number').and.above(0); }); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": "{{odoo_domain}}/api/menu?page=1&per=25&db={{db}}",
+            "description": "يرجع أول 25 منتجًا بحد أقصى، مجمعة حسب التصنيف. لجلب الباقي غيّر page إلى 2 ثم 3 حتى pagination.total. pagination.from و pagination.to هما أول وآخر رقم صفحة، و current رقم الصفحة الحالية."
+          },
+          "description": "Requires one authorized Blend connection with an active Menu Pricelist. Prices and product IDs are the API source of truth."
+        },
+        {
+          "name": "03 - Get Menu by Product ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Response is JSON', function () { pm.response.to.be.json; });",
+                  "const body = pm.response.json();",
+                  "pm.test('categories and pagination exist', function () { pm.expect(body.categories).to.be.an('array'); pm.expect(body.pagination).to.be.an('object'); });",
+                  "pm.test('filtered product exists and has a numeric ID', function () { const products = body.categories.flatMap((category) => category.products || []); const product = products.find((entry) => String(entry.id) === String(pm.variables.get('item_id'))); pm.expect(product, 'filtered product id').to.be.an('object'); pm.expect(product.id).to.be.a('number'); });",
+                  "pm.test('all modifier maximums are positive', function () { const groups = body.categories.flatMap((category) => category.products || []).flatMap((product) => product.modifier_groups || []); groups.forEach((group) => { pm.expect(group.max_selection, 'max_selection for group ' + group.id).to.be.a('number').and.above(0); }); });",
+                  "const selectedProduct = (body.categories || []).flatMap(category => category.products || []).find(product => String(product.id) === String(pm.variables.get('item_id')));",
+                  "if (selectedProduct) { const group = (selectedProduct.modifier_groups || []).find(entry => (entry.modifiers || []).some(option => option.status)); if (group) { pm.collectionVariables.set('modifier_group_id', String(group.id)); const option = group.modifiers.find(entry => entry.status); pm.collectionVariables.set('modifier_id', String(option.id)); } }",
+                  "pm.test('Example price matches STG menu', function () { pm.expect(selectedProduct, 'product in Blend menu').to.be.an('object'); pm.expect(Number(selectedProduct.price)).to.eql(Number(pm.variables.get('order_total'))); });",
+                  "pm.test('Example item available in selected branch', function () { pm.expect(((selectedProduct && selectedProduct.available_branches) || []).some(entry => String(entry.branch_id) === String(pm.variables.get('branch_id')) && entry.is_stock === true)).to.eql(true); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": "{{odoo_domain}}/api/menu?page=1&per=25&filter['product_id']={{item_id}}&db={{db}}",
+            "description": "يسحب صفحة من القائمة بعد فلترتها برقم المنتج الموجود في المتغير item_id."
+          },
+          "description": "Verifies existing bunbastic product 32 from the prior TryOrder dataset is present as this numeric Blend API ID. If not, choose a real product ID returned by GET Full Menu and update item_id and the monetary variables."
+        },
+        {
+          "name": "04 - Get Product Image",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{odoo_domain}}/api/blend/products/{{image_product_id}}/image?db={{db}}",
+            "description": "Public Blend product image for product.template 32 in the bunbastic snapshot. Requires the product to be visible in the Blend menu and have an image."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Image HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Image MIME type', function () { pm.expect(pm.response.headers.get('Content-Type') || '').to.match(/^image\\//i); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "05 - Create Keeta cash test order in POS",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_orders')) !== 'true') {",
+                  "  pm.execution.skipRequest();",
+                  "} else {",
+                  "  ['branch_id', 'brand_id', 'item_id', 'odoo_inbound_token'].forEach(k => { if (!pm.variables.get(k)) { throw new Error('Set ' + k + ' after GET Branches / GET Menu'); } });",
+                  "  if (Math.abs(Number(pm.variables.get('order_subtotal')) + Number(pm.variables.get('order_tax')) - Number(pm.variables.get('order_total'))) > 0.001) { throw new Error('Order subtotal + tax must equal total'); }",
+                  "  const aggregatorOrderId = 'BLEND-STG-' + Date.now();",
+                  "  pm.collectionVariables.set('aggregator_order_id', aggregatorOrderId);",
+                  "  pm.collectionVariables.set('pos_partner_reference', String(pm.variables.get('aggregator')) + ': ' + aggregatorOrderId);",
+                  "}"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Create HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Blend order created: ' + pm.variables.get('aggregator_order_id'), function () { pm.expect(body.success).to.eql(true); pm.expect(body.order_id).to.be.a('string').and.not.empty; });",
+                  "if (pm.response.code === 200 && body.success && body.order_id) { pm.collectionVariables.set('pos_created_order_id', body.order_id); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_id\": \"{{branch_id}}\",\n  \"brand_id\": \"{{brand_id}}\",\n  \"partner_reference\": \"{{pos_partner_reference}}\",\n  \"aggregator\": \"{{aggregator}}\",\n  \"aggregator_order_id\": \"{{aggregator_order_id}}\",\n  \"order_type\": \"delivery\",\n  \"payment_type\": \"{{payment_type}}\",\n  \"note\": \"Postman Blend STG test\",\n  \"subtotal\": {{order_subtotal}},\n  \"tax\": {{order_tax}},\n  \"total\": {{order_total}},\n  \"status\": \"PENDING\",\n  \"customer\": {\n    \"name\": \"Blend Postman QA\",\n    \"phone\": \"0500000000\"\n  },\n  \"products\": [\n    {\n      \"id\": \"{{item_id}}\",\n      \"quantity\": 1,\n      \"total\": {{order_total}},\n      \"modifiers\": []\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/orders?db={{db}}",
+            "description": "مطابق لعقد Blend المنشور، ويشمل order_type وaggregator وaggregator_order_id. يحتاج POS Session مفتوحة، ويحفظ order_id تلقائيًا لطلب Update Order التالي."
+          },
+          "description": "Writes an actual STG order. Requires enable_orders=true, a valid Blend branch/brand, product ID and 23.00 gross price verified on STG, cash payment mapping for keeta, and an open POS session. partner_reference is the parent identity; aggregator_order_id is the aggregator reference."
+        },
+        {
+          "name": "06 - Exact Replay - Same POS Order",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_orders')) !== 'true' || !pm.variables.get('pos_created_order_id')) { pm.execution.skipRequest(); }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Replay HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Same Blend POS order ID', function () { pm.expect(body.success).to.eql(true); pm.expect(body.order_id).to.eql(pm.variables.get('pos_created_order_id')); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_id\": \"{{branch_id}}\",\n  \"brand_id\": \"{{brand_id}}\",\n  \"partner_reference\": \"{{pos_partner_reference}}\",\n  \"aggregator\": \"{{aggregator}}\",\n  \"aggregator_order_id\": \"{{aggregator_order_id}}\",\n  \"order_type\": \"delivery\",\n  \"payment_type\": \"{{payment_type}}\",\n  \"note\": \"Postman Blend STG test\",\n  \"subtotal\": {{order_subtotal}},\n  \"tax\": {{order_tax}},\n  \"total\": {{order_total}},\n  \"status\": \"PENDING\",\n  \"customer\": {\n    \"name\": \"Blend Postman QA\",\n    \"phone\": \"0500000000\"\n  },\n  \"products\": [\n    {\n      \"id\": \"{{item_id}}\",\n      \"quantity\": 1,\n      \"total\": {{order_total}},\n      \"modifiers\": []\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/orders?db={{db}}",
+            "description": "مطابق لعقد Blend المنشور، ويشمل order_type وaggregator وaggregator_order_id. يحتاج POS Session مفتوحة، ويحفظ order_id تلقائيًا لطلب Update Order التالي."
+          },
+          "description": "Reuses the exact partner_reference and aggregator_order_id from the preceding request. Must return the same Blend API order_id."
+        },
+        {
+          "name": "07 - Update Order in POS",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_orders')) !== 'true' || !pm.variables.get('pos_created_order_id')) { pm.execution.skipRequest(); }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Response is JSON', function () { pm.response.to.be.json; });",
+                  "const body = pm.response.json();",
+                  "pm.test('order updated', function () { pm.expect(body.success).to.eql(true); pm.expect(body.status).to.eql(pm.variables.get('pos_order_status')); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": \"{{pos_created_order_id}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"brand_id\": \"{{brand_id}}\",\n  \"status\": \"{{pos_order_status}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/order/update?db={{db}}",
+            "description": "الحالات: ACCEPTED، PREPARING، CANCELED، REJECTED، TIME_OUT."
+          },
+          "description": "Updates the Blend order_id returned by Create Order. Default status ACCEPTED; requires the created order variable and Core/POS acceptance prerequisites."
+        },
+        {
+          "name": "08 - Ninja payload on Bunbastic STG",
+          "description": "Ninja order with the supplied financial amounts unchanged. Product IDs 859/851 from the original database map to STG products 32/35. Original remote branch/brand IDs 1300024/1300011 do not exist on STG, so this request uses STG Blend branch_id/brand_id 1/1. The request always runs in a collection run. It requires the Blend included-VAT fix on the target server before it can create a 141.40 POS order with 18.44 VAT.",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "const body = pm.response.json();",
+                  "pm.test('success=true', function () { pm.expect(body.success, body.message || 'Blend rejected the order').to.eql(true); });",
+                  "pm.test('Blend order_id returned', function () { pm.expect(body.order_id).to.be.a('string').and.not.empty; });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{odoo_inbound_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tax\": \"0.00\",\n  \"note\": null,\n  \"total\": \"141.40\",\n  \"status\": \"PENDING\",\n  \"brand_id\": \"1\",\n  \"customer\": {\"name\": \"NINJA\", \"phone\": \"555550005\"},\n  \"products\": [\n    {\"id\": \"32\", \"note\": null, \"total\": 126, \"quantity\": 2, \"modifiers\": []},\n    {\"id\": \"35\", \"note\": null, \"total\": 76, \"quantity\": 1, \"modifiers\": []}\n  ],\n  \"subtotal\": \"202.00\",\n  \"branch_id\": \"1\",\n  \"aggregator\": \"ninja\",\n  \"order_type\": \"delivery\",\n  \"partner_reference\": \"ninja: 201346117\",\n  \"aggregator_order_id\": \"201346117\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{odoo_domain}}/api/orders?db={{db}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Safe Validation and Auth Errors",
+      "description": "Read-only/rejected checks: no valid order or menu update is created. They run without a Blend connection, using the STG database selector.",
+      "item": [
+        {
+          "name": "01 - Branches without Bearer - 401",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{odoo_domain}}/api/branches?db={{db}}",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 401', function () { pm.response.to.have.status(401); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Authentication denied', function () { pm.expect(body.success).to.eql(false); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "02 - Unsupported Order Field - 422",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{odoo_domain}}/api/orders?db={{db}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"unsupported_field\":true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 422', function () { pm.response.to.have.status(422); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Validation error returned', function () { pm.expect(body.success).to.eql(false); pm.expect(body.message).to.include('supported JSON fields'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "03 - Unsupported Status Field - 422",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{odoo_domain}}/api/order/update?db={{db}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"unsupported_field\":true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 422', function () { pm.response.to.have.status(422); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Validation error returned', function () { pm.expect(body.success).to.eql(false); pm.expect(body.message).to.include('supported JSON fields'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "04 - Invalid Webhook JSON - 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', function () { pm.response.to.have.status(400); });",
+                  "const body = pm.response.json();",
+                  "pm.test('Malformed payload rejected', function () { pm.expect(body.status).to.eql('failed'); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "05 - Missing Image - 404",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{odoo_domain}}/api/blend/products/999999999/image?db={{db}}",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', function () { pm.response.to.have.status(404); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 - Legacy Odoo to Blend (Separate Contract)",
+      "description": "Separate Odoo-to-Blend callback contract examples. Odoo does not serve these URLs. Skipped unless enable_outbound_examples=true and the Blend-owned URLs are supplied.",
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{blend_outbound_token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP status is 2xx', function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+            ]
+          }
+        }
+      ],
+      "item": [
+        {
+          "name": "01 - Order Created",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_outbound_examples')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Response is JSON', function () { pm.response.to.be.json; });",
+                  "const body = pm.response.json();",
+                  "pm.test('status = success', function () { pm.expect(body.status).to.eql('success'); });",
+                  "pm.test('order_id exists', function () { pm.expect(body.order_id).to.be.a('string').and.not.empty; });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-ID",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"order_created\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"id\": \"{{odoo_order_id}}\",\n    \"payment_method\": \"cash\",\n    \"order_type\": \"DELIVERY\",\n    \"note\": \"Blend Postman STG example\",\n    \"subtotal\": 20.0,\n    \"tax\": 3.0,\n    \"discount\": 0.0,\n    \"total\": 23.0,\n    \"is_schedule\": 0,\n    \"schedule_date\": null,\n    \"car_data\": null,\n    \"items\": [\n      {\n        \"id\": \"{{item_id}}\",\n        \"quantity\": 1,\n        \"price\": 20.0,\n        \"note\": \"\",\n        \"options\": []\n      }\n    ],\n    \"customer\": {\n      \"name\": \"Blend Postman QA\",\n      \"phone\": \"0500000000\",\n      \"address\": \"Riyadh\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{blend_order_created_url}}",
+            "description": "Expected: {\"order_id\":\"55\",\"status\":\"success\"}."
+          }
+        },
+        {
+          "name": "02 - Order Status (Odoo to Blend)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"order_updated\",\n  \"event_time\": \"{{event_time}}\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"payload\": {\n    \"order_id\": \"{{odoo_order_id}}\",\n    \"status\": \"{{delivery_status}}\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{blend_order_status_url}}",
+            "description": "الحالات: assigned, at_pick_up, on_the_way, cancelled, delivered. استخدم Odoo Order ID الأصلي."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (String(pm.collectionVariables.get('enable_outbound_examples')) !== 'true') { pm.execution.skipRequest(); }"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 - Alternate POS Webhooks",
+      "description": "Alternate Blend-to-Odoo inbound event examples and Odoo-to-Blend outbound callback examples. Inbound mutations require enable_webhooks=true; outbound examples require enable_outbound_examples=true and Blend-owned URLs.",
+      "item": [
+        {
+          "name": "A - Blend to Odoo",
+          "description": "Authorization: Bearer {{odoo_inbound_token}}",
+          "auth": {
+            "type": "bearer",
+            "bearer": [
+              {
+                "key": "token",
+                "value": "{{odoo_inbound_token}}",
+                "type": "string"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+                  "const body = pm.response.json();",
+                  "pm.test('status = success', function () { pm.expect(body.status).to.eql('success'); });"
+                ]
+              }
+            }
+          ],
+          "item": [
+            {
+              "name": "01 - Item Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"item.updated\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"product_id\": {{item_id}},\n  \"is_stock\": {{is_available}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}"
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "02 - Store Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"store.updated\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"status\": {{is_available}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}"
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "03 - Order Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"order.updated\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"order_id\": \"{{odoo_order_id}}\",\n  \"status\": \"{{pos_order_status}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{odoo_domain}}/api/blend/webhook?db={{db}}",
+                "description": "PENDING, ACCEPTED PREPARING CANCELED REJECTED TIME_OUT"
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_webhooks')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "B - Unified Outbound Webhook (Odoo to Blend)",
+          "description": "All four events POST their complete JSON payload to blend_outbound_webhook_url. Set it to the URL supplied by Blend. Use blend_outbound_token only if Blend requires Bearer authentication; it is not the Odoo login token. Legacy order_created remains separate.",
+          "auth": {
+            "type": "bearer",
+            "bearer": [
+              {
+                "key": "token",
+                "value": "{{blend_outbound_token}}",
+                "type": "string"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 2xx', function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ],
+          "item": [
+            {
+              "name": "01 - Order Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"order.updated\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"order_id\": \"{{odoo_order_id}}\",\n  \"status\": \"{{pos_order_status}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{blend_outbound_webhook_url}}"
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_outbound_examples')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "02 - Menu Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"menu.updated\",\n  \"entity\": {\n    \"type\": \"{{menu_entity_type}}\",\n    \"id\": \"{{menu_entity_id}}\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{blend_outbound_webhook_url}}"
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_outbound_examples')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "03 - Item Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"item.updated\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"product_id\": \"{{item_id}}\",\n  \"is_stock\": {{is_available}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{blend_outbound_webhook_url}}",
+                "description": "is_available must be true or false without quotes. This request updates product availability at the selected branch."
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_outbound_examples')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "04 - Store Updated",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"brand_id\": \"{{brand_id}}\",\n  \"event_time\": \"{{event_time}}\",\n  \"event\": \"store.updated\",\n  \"branch_id\": \"{{branch_id}}\",\n  \"status\": {{is_available}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "{{blend_outbound_webhook_url}}",
+                "description": "status is a Boolean, not an order status string."
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (String(pm.collectionVariables.get('enable_outbound_examples')) !== 'true') { pm.execution.skipRequest(); }"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

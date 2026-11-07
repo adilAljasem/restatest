@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Approval lines: an internal user sees the lines he must decide, lines of his team and
+             his own requests; HR sees everything of its companies. -->
+        <record id="rule_approval_line_user" model="ir.rule">
+            <field name="name">ESS approval line: own / to approve</field>
+            <field name="model_id" ref="model_bs_hr_approval_line"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', '|', ('approver_ids', 'in', [user.id]), ('decided_by_id', '=', user.id),
+                ('employee_id.user_id', '=', user.id)]</field>
+        </record>
+        <record id="rule_approval_line_hr" model="ir.rule">
+            <field name="name">ESS approval line: HR</field>
+            <field name="model_id" ref="model_bs_hr_approval_line"/>
+            <field name="groups" eval="[(4, ref('group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+
+        <record id="rule_profile_change_user" model="ir.rule">
+            <field name="name">ESS profile change: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_profile_change"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_profile_change_hr" model="ir.rule">
+            <field name="name">ESS profile change: HR</field>
+            <field name="model_id" ref="model_bs_hr_profile_change"/>
+            <field name="groups" eval="[(4, ref('group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="rule_adjustment_company" model="ir.rule">
+            <field name="name">ESS adjustment: company</field>
+            <field name="model_id" ref="model_bs_hr_payroll_adjustment"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="rule_delegation_own" model="ir.rule">
+            <field name="name">ESS delegation: own</field>
+            <field name="model_id" ref="model_bs_hr_approval_delegation"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('user_id', '=', user.id), ('delegate_id', '=', user.id)]</field>
+        </record>
+        <record id="rule_delegation_hr" model="ir.rule">
+            <field name="name">ESS delegation: HR manager</field>
+            <field name="model_id" ref="model_bs_hr_approval_delegation"/>
+            <field name="groups" eval="[(4, ref('group_ess_hr_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Bonat discount product on pos.config.
+
+        On-premise equivalent: models/pos_config.py
+            bonat_discount_percentage_product_id = fields.Many2one('product.product', ...)
+
+        On-premise, product_template._load_pos_data_domain() force-includes this
+        product in the POS load so promo_code_button.js can resolve it out of
+        pos.models["product.product"], even though the product is deliberately
+        kept available_in_pos=False to hide it from the cashier's grid.
+
+        That override needs Python. The Online build instead pulls the product
+        into the POS registry on demand from the client, using the standard
+        pos.data.loadProductFromPos(templateIds) entry point. See
+        static/src/app/bonat_store.js -> loadBonatDiscountProduct().
+
+        Net effect is the same and the product still stays out of the grid.
+    -->
+    <record id="field_pos_config_bonat_discount_product" model="ir.model.fields">
+        <field name="name">x_bonat_discount_product_id</field>
+        <field name="model">pos.config</field>
+        <field name="model_id" ref="point_of_sale.model_pos_config"/>
+        <field name="field_description">Bonat Discount Product</field>
+        <field name="ttype">many2one</field>
+        <field name="relation">product.product</field>
+        <field name="state">manual</field>
+        <field name="help">Product used to carry whole-order (type 1) Bonat discounts as a negative order line. Keep it available_in_pos = False so it stays hidden from the product grid; it is loaded into the POS on demand.</field>
+    </record>
+
+    <!--
+        Bonat voucher payment method on pos.config.
+
+        Voucher parity with Odoo 17/self-hosted 19.0 needs a real pos.payment.method
+        record to attach as a payment line at checkout. This build cannot create one
+        through server-side code (no models/ORM writes are possible for an importable
+        module, per README.md) — and, per BON-2579, it must not create one at all:
+        the merchant creates their own non-cash payment method under Point of Sale >
+        Payment Methods, adds it to a POS's payment methods, and selects it here,
+        exactly like classic 19 (no automatic linking, per ADR 0002).
+        static/src/app/payment_screen.js reads this field to auto-apply/cap/lock/hide
+        it exactly like the on-premise builds do.
+
+        domain matches the on-premise field (pos_config.py:
+        bonat_voucher_payment_method_id): a cash method here would remove the
+        cashier's ability to manually tender cash. payment_method_type = 'none'
+        also excludes terminal / QR methods (Review B1 on PR #81): their
+        payment line never reports "done" in core (pos_order.js addPaymentline
+        sets payment_status "pending"), so it never counts toward amountPaid,
+        the voucher cap gets stuck at 0, and Validate is permanently blocked.
+        Do NOT filter on use_payment_terminal: core removed that field in
+        saas~19.3 (point_of_sale/models/pos_payment_method.py, saas-19.3 and
+        saas-19.4), where payment_method_type ('none', 'terminal',
+        'external_qr', 'cash_machine', 'bank_qr_code') is the only discriminator
+        (:28-36, :85). Both leaves are plain comodel fields with no
+        sibling-field reference, so — unlike ("id", "in", payment_method_ids)
+        below — they are safe here.
+
+        Deliberately does NOT also restrict to ("id", "in", payment_method_ids)
+        here: ir.model.fields.domain on a manual field is safe_eval()'d ONCE at
+        field instantiation (base/models/ir_model.py, _instanciate_attrs), with
+        no record in scope — referencing a sibling field name raises a bare
+        NameError there and breaks loading every field on this model. Verified
+        live against production-odoo19's actual safe_eval (Challenge's own
+        self-test standard, BON-935): `safe_eval("[(1, 2, payment_method_ids)]")`
+        raises `NameError: name 'payment_method_ids' is not defined`. The
+        equivalent restriction is a VIEW-level domain instead (dynamic,
+        evaluated client-side against the current form's fields) — see the
+        field tag in views/bonat_settings_view.xml.
+    -->
+    <record id="field_pos_config_bonat_voucher_payment_method" model="ir.model.fields">
+        <field name="name">x_bonat_voucher_payment_method_id</field>
+        <field name="model">pos.config</field>
+        <field name="model_id" ref="point_of_sale.model_pos_config"/>
+        <field name="field_description">Bonat Voucher Payment Method</field>
+        <field name="ttype">many2one</field>
+        <field name="relation">pos.payment.method</field>
+        <field name="state">manual</field>
+        <field name="domain">[("is_cash_count", "=", False), ("payment_method_type", "=", "none")]</field>
+        <field name="help">Payment method used to redeem Bonat vouchers as a POS payment line. Must be a non-cash method already linked to this POS config — create one under Point of Sale &gt; Payment Methods, add it to this config's payment methods, then select it here. The POS hides this method from the manual payment list and locks it against numpad edits once selected here.</field>
+    </record>
+</odoo>

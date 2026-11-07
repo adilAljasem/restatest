@@ -1,0 +1,1425 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_grievance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "%(ref)s - %(type)s"
+msgstr "%(ref)s - %(type)s"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid ""
+".\n"
+"                    The appeal is reviewed by a higher level of the committee."
+msgstr ""
+".\n"
+"                    تُراجَع الاعتراضات من مستوى أعلى في اللجنة."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__first_action
+msgid "1st occurrence"
+msgstr "المرة الأولى"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__first_value
+msgid "1st value"
+msgstr "القيمة الأولى"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__second_action
+msgid "2nd occurrence"
+msgstr "المرة الثانية"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__second_value
+msgid "2nd value"
+msgstr "القيمة الثانية"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__third_action
+msgid "3rd occurrence and more"
+msgstr "المرة الثالثة فأكثر"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__third_value
+msgid "3rd value"
+msgstr "القيمة الثالثة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances
+msgid "<i class=\"fa fa-plus me-1\"/> New complaint or suggestion"
+msgstr "<i class=\"fa fa-plus me-1\"/> شكوى أو اقتراح جديد"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "<i class=\"fa fa-user me-1\"/>You"
+msgstr "<i class=\"fa fa-user me-1\"/>أنت"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid ""
+"<i class=\"fa fa-user-secret me-1\"/> Anonymous case: the identity of the author is not stored.\n"
+"                        Reply through the \"Messages\" tab, the author reads the answers in the portal."
+msgstr ""
+"<i class=\"fa fa-user-secret me-1\"/> حالة بدون اسم (سرية): لا تُحفظ هوية مقدّمها.\n"
+"                        ردّ عبر تبويب \"الرسائل\"، وسيقرأ مقدّمها الردود في البوابة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "<i class=\"fa fa-user-secret\"/> Yes"
+msgstr "<i class=\"fa fa-user-secret\"/> نعم"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "<i class=\"fa fa-users me-1\"/>Committee"
+msgstr "<i class=\"fa fa-users me-1\"/>اللجنة"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "A decision has been taken on your case."
+msgstr "تم اتخاذ قرار بشأن حالتك."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "A disciplinary action (%(action)s) has been issued. You may appeal until %(date)s."
+msgstr "صدر إجراء تأديبي (%(action)s). يمكنك الاعتراض حتى %(date)s."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "A secret tracking code is shown once after sending: keep it to open your case again."
+msgstr "يظهر رمز متابعة سري مرة واحدة بعد الإرسال: احتفظ به لفتح حالتك لاحقًا."
+
+#. module: bs_hr_ess_grievance
+#: model:bs.hr.violation.type,name:bs_hr_ess_grievance.violation_absence
+msgid "Absence without notice"
+msgstr "الغياب دون إشعار"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__access_log_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Access log"
+msgstr "سجل الوصول"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Acknowledged"
+msgstr "تم الإقرار"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__employee_ack_date
+msgid "Acknowledged by the employee"
+msgstr "أقرّ الموظف بالاستلام"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Acknowledged by the employee from the portal."
+msgstr "أقرّ الموظف بالاستلام من البوابة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "Acknowledgement recorded."
+msgstr "تم تسجيل الإقرار."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__action model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__action
+msgid "Action"
+msgstr "الإجراء"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__adjustment_id
+msgid "Adjustment"
+msgstr "التسوية"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0 model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__anonymous model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Anonymous"
+msgstr "بدون اسم (سري)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__grievance_id model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Appeal"
+msgstr "الاعتراض"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Appeal (level 2)"
+msgstr "الاعتراض (المستوى 2)"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Appeal (level 2) on grievance %s"
+msgstr "اعتراض (المستوى 2) على التظلم %s"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__appeal_date
+msgid "Appeal Date"
+msgstr "تاريخ الاعتراض"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__appeal_deadline
+msgid "Appeal Deadline"
+msgstr "آخر موعد للاعتراض"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__appeal_reason
+msgid "Appeal Reason"
+msgstr "سبب الاعتراض"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Appeal accepted by the committee: action cancelled."
+msgstr "قبلت اللجنة الاعتراض: تم إلغاء الإجراء."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Appeal against %(ref)s (%(type)s)"
+msgstr "اعتراض على %(ref)s (%(type)s)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__appeal_decision
+msgid "Appeal against a decision"
+msgstr "تظلم على قرار"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__appeal_disciplinary
+msgid "Appeal against a disciplinary action"
+msgstr "تظلم على إجراء تأديبي"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__appeal_appraisal
+msgid "Appeal against an appraisal"
+msgstr "تظلم على تقييم"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.res_config_settings_view_form_ess_grievance
+msgid "Appeal period"
+msgstr "مهلة الاعتراض"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Appeal rejected by the committee: the action can be confirmed."
+msgstr "رفضت اللجنة الاعتراض: يمكن تأكيد الإجراء."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Appeal the decision"
+msgstr "الاعتراض على القرار"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Appeal this action"
+msgstr "الاعتراض على هذا الإجراء"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__appeal_deadline model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Appeal until"
+msgstr "الاعتراض حتى"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__state__appealed model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__state__appealed model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__appealed model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_search
+msgid "Appealed"
+msgstr "تم الاعتراض"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Appeals (level 2)"
+msgstr "الاعتراضات (المستوى 2)"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_violation_type_form
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_violation_type_form
+msgid "Article of the work regulation..."
+msgstr "مادة لائحة تنظيم العمل..."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Assigned to me"
+msgstr "المسندة إليّ"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__employee_id
+msgid "Author"
+msgstr "الكاتب"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__author_type
+msgid "Author Type"
+msgstr "نوع المقدّم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__body
+msgid "Body"
+msgstr "المحتوى"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__work_location_id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__work_location_id model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_grievance__work_location_id
+msgid "Branch concerned. For anonymous cases it is never the author's branch unless a concerned employee works there."
+msgstr "الفرع المعني. في الحالات السرية لا يكون فرع مقدّم الحالة أبدًا إلا إذا كان أحد الموظفين المعنيين يعمل فيه."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_submitted
+msgid "Case received"
+msgstr "تم استلام الحالة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__state__closed model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__closed
+msgid "Closed"
+msgstr "مغلقة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_message__author_type__committee
+msgid "Committee"
+msgstr "اللجنة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__author_user_id
+msgid "Committee member"
+msgstr "عضو اللجنة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__company_id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__company_id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__complaint_colleague
+msgid "Complaint about a colleague"
+msgstr "شكوى على زميل"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__complaint_supervisor
+msgid "Complaint about a supervisor"
+msgstr "شكوى على مشرف"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/hr_employee.py:0
+msgid "Complaints & suggestions"
+msgstr "الشكاوى والاقتراحات"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances
+msgid "Complaints &amp; suggestions"
+msgstr "الشكاوى والاقتراحات"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Concerned"
+msgstr "المعنيون"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "Concerned colleagues (optional)"
+msgstr "الزملاء المعنيون (اختياري)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__against_employee_ids
+msgid "Concerned employees"
+msgstr "الموظفون المعنيون"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/hr_employee.py:0
+msgid "Confidential complaint"
+msgstr "شكوى سرية"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Confirm %s (appeal rejected)"
+msgstr "تأكيد %s (تم رفض الاعتراض)"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "Confirm this disciplinary action? A payroll deduction is created when applicable."
+msgstr "تأكيد هذا الإجراء التأديبي؟ يُنشأ خصم من الراتب عند الاقتضاء."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__state__confirmed
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__occurrence
+msgid "Confirmed violations of the same type in the last 180 days + 1."
+msgstr "المخالفات المؤكدة من نفس النوع خلال آخر 180 يومًا + 1."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__create_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__create_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__create_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__create_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__create_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__create_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__create_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__create_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__date
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_violation_type__deduction_value
+msgid "Days (deduction in days) or amount (fixed deduction) used when the step has no value."
+msgstr "الأيام (خصم بالأيام) أو المبلغ (خصم ثابت) المستخدم عندما لا تكون للمرحلة قيمة."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__deduction_value
+msgid "Days / amount"
+msgstr "الأيام / المبلغ"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.res_config_settings_view_form_ess_grievance
+msgid "Days an employee has to appeal a decision or a disciplinary action."
+msgstr "عدد الأيام المتاحة للموظف للاعتراض على قرار أو إجراء تأديبي."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_violation_type__first_value
+msgid "Days or amount for a deduction."
+msgstr "الأيام أو المبلغ للخصم."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__decision_date
+msgid "Decision Date"
+msgstr "تاريخ القرار"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Decision of the committee"
+msgstr "قرار اللجنة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Decision of the committee (required to resolve or reject). Visible to the author."
+msgstr "قرار اللجنة (مطلوب للحل أو الرفض). يظهر لمقدّم الحالة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Deduction"
+msgstr "خصم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__action__deduction_days model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__first_action__deduction_days model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__second_action__deduction_days model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__third_action__deduction_days
+msgid "Deduction (days of wage)"
+msgstr "خصم (أيام من الراتب)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__action__deduction_amount model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__first_action__deduction_amount model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__second_action__deduction_amount model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__third_action__deduction_amount
+msgid "Deduction (fixed amount)"
+msgstr "خصم (مبلغ ثابت)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__deduction_amount
+msgid "Deduction Amount"
+msgstr "مبلغ الخصم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__deduction_value
+msgid "Default deduction"
+msgstr "الخصم الافتراضي"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__description model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__description model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__description model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Description"
+msgstr "الوصف"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.actions.act_window,name:bs_hr_ess_grievance.action_disciplinary model:ir.ui.menu,name:bs_hr_ess_grievance.menu_ess_disciplinary
+msgid "Disciplinary Actions"
+msgstr "الإجراءات التأديبية"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_bs_hr_disciplinary
+msgid "Disciplinary action"
+msgstr "إجراء تأديبي"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/hr_employee.py:0
+msgid "Disciplinary actions"
+msgstr "الإجراءات التأديبية"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_hr_employee__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_res_company__display_name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_res_company__ess_appeal_days model:ir.model.fields,field_description:bs_hr_ess_grievance.field_res_config_settings__ess_appeal_days
+msgid "ESS: Appeal period (days)"
+msgstr "الخدمة الذاتية: مهلة الاعتراض (أيام)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_hr_employee model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__employee_id model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_message__author_type__employee model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_grievance.action_grievance
+msgid ""
+"Employees submit complaints, suggestions and appeals from the self-service portal,\n"
+"                optionally anonymously. Only the members of the grievance committee who are not a party see them."
+msgstr ""
+"يقدّم الموظفون الشكاوى والاقتراحات والتظلمات من بوابة الخدمة الذاتية،\n"
+"                مع إمكانية تقديمها بدون اسم. ولا يطّلع عليها إلا أعضاء لجنة التظلمات غير الأطراف فيها."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_grievance__employee_id
+msgid "Empty for anonymous cases."
+msgstr "فارغ في الحالات السرية."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__excluded_user_ids
+msgid "Excluded users"
+msgstr "المستخدمون المستبعدون"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "Facts..."
+msgstr "الوقائع..."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances
+msgid "Follow up with a tracking code"
+msgstr "المتابعة برمز المتابعة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_bs_hr_grievance model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__grievance_id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__grievance_id
+msgid "Grievance"
+msgstr "تظلم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_bs_hr_grievance_access_log
+msgid "Grievance access log"
+msgstr "سجل الوصول إلى التظلمات"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_bs_hr_grievance_message
+msgid "Grievance message"
+msgstr "رسالة التظلم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.actions.act_window,name:bs_hr_ess_grievance.action_grievance model:ir.ui.menu,name:bs_hr_ess_grievance.menu_ess_grievance
+msgid "Grievances"
+msgstr "التظلمات"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.res_config_settings_view_form_ess_grievance
+msgid "Grievances and discipline"
+msgstr "التظلمات والانضباط"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Grievances cannot be deleted; close them instead."
+msgstr "لا يمكن حذف التظلمات؛ أغلقها بدلًا من ذلك."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__handler_ids
+msgid "Handled by"
+msgstr "المسؤول عن المعالجة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: bs_hr_ess_grievance
+#: model:bs.hr.violation.type,name:bs_hr_ess_grievance.violation_hygiene
+msgid "Hygiene / food safety breach"
+msgstr "مخالفة النظافة / سلامة الغذاء"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "I acknowledge receipt"
+msgstr "أقرّ بالاستلام"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_hr_employee__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_res_company__id model:ir.model.fields,field_description:bs_hr_ess_grievance.field_res_config_settings__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تتطلب انتباهك."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_has_error model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فهناك رسائل بها خطأ في التسليم."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__investigating
+msgid "Investigation started"
+msgstr "بدأ التحقيق"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__write_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__write_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__write_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__write_uid model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__write_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__write_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__write_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_message__write_date model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bs_hr_ess_grievance
+#: model:bs.hr.violation.type,name:bs_hr_ess_grievance.violation_lateness
+msgid "Lateness"
+msgstr "التأخير"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_violation_type__company_id
+msgid "Leave empty to share it between companies."
+msgstr "اتركه فارغًا لمشاركته بين الشركات."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__level model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Level"
+msgstr "المستوى"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__level__1
+msgid "Level 1"
+msgstr "المستوى 1"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__level__2
+msgid "Level 2 (appeal)"
+msgstr "المستوى 2 (اعتراض)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__message
+msgid "Message"
+msgstr "رسالة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_ids model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__message_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Messages cannot be modified."
+msgstr "لا يمكن تعديل الرسائل."
+
+#. module: bs_hr_ess_grievance
+#: model:bs.hr.violation.type,name:bs_hr_ess_grievance.violation_customer_misconduct
+msgid "Misconduct with customers"
+msgstr "سوء التعامل مع العملاء"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "My disciplinary actions"
+msgstr "إجراءاتي التأديبية"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "New complaint or suggestion"
+msgstr "شكوى أو اقتراح جديد"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "New grievance %(name)s (%(type)s)"
+msgstr "تظلم جديد %(name)s (%(type)s)"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "No case of yours matches this tracking code."
+msgstr "لا توجد حالة خاصة بك تطابق رمز المتابعة هذا."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "No disciplinary action. Keep it up!"
+msgstr "لا توجد إجراءات تأديبية. استمر على ذلك!"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_grievance.action_grievance
+msgid "No grievance to handle"
+msgstr "لا توجد تظلمات للمعالجة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_search
+msgid "Not final"
+msgstr "غير نهائي"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Not satisfied with the decision?"
+msgstr "غير راضٍ عن القرار؟"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__state__notified
+msgid "Notified"
+msgstr "تم الإشعار"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__notified_date
+msgid "Notified Date"
+msgstr "تاريخ الإشعار"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "Notify employee"
+msgstr "إشعار الموظف"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_res_company__ess_appeal_days model:ir.model.fields,help:bs_hr_ess_grievance.field_res_config_settings__ess_appeal_days
+msgid "Number of days an employee has to appeal a grievance decision or a disciplinary action."
+msgstr "عدد الأيام المتاحة للموظف للاعتراض على قرار تظلم أو إجراء تأديبي."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__occurrence model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Occurrence"
+msgstr "التكرار"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Only draft actions can be notified."
+msgstr "لا يمكن الإشعار إلا بالإجراءات المسودة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Only draft or cancelled disciplinary actions can be deleted."
+msgstr "لا يمكن حذف إلا الإجراءات التأديبية المسودة أو الملغاة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Only draft or notified actions can be confirmed (an appealed action waits for the committee decision)."
+msgstr "لا يمكن تأكيد إلا الإجراءات المسودة أو المُشعَر بها (الإجراء المعترض عليه ينتظر قرار اللجنة)."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Only received or appealed cases can be investigated."
+msgstr "لا يمكن التحقيق إلا في الحالات المستلمة أو المعترض عليها."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Only resolved or rejected cases can be closed."
+msgstr "لا يمكن إغلاق إلا الحالات المحلولة أو المرفوضة."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_grievance_message__author_user_id
+msgid "Only set for committee messages; never shown to the employee."
+msgstr "يُعبأ فقط لرسائل اللجنة؛ ولا يظهر للموظف أبدًا."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Only the grievance committee can process grievances."
+msgstr "لا يعالج التظلمات إلا لجنة التظلمات."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_submitted
+msgid "Open my case"
+msgstr "فتح حالتي"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Open the case"
+msgstr "فتح الحالة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__read
+msgid "Opened"
+msgstr "مفتوحة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__owner_hash
+msgid "Owner Hash"
+msgstr "تجزئة المالك"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Penalty"
+msgstr "الجزاء"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_violation_type_form
+msgid "Penalty ladder (within 180 days)"
+msgstr "سلم الجزاءات (خلال 180 يومًا)"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Please explain the reason of the rejection in the resolution."
+msgstr "يرجى توضيح سبب الرفض في القرار."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Please explain why you appeal the decision."
+msgstr "يرجى توضيح سبب اعتراضك على القرار."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "Please explain why you appeal this disciplinary action."
+msgstr "يرجى توضيح سبب اعتراضك على هذا الإجراء التأديبي."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "Please fill the type, the subject and the description."
+msgstr "يرجى تعبئة النوع والموضوع والوصف."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Please write the resolution before resolving the case."
+msgstr "يرجى كتابة القرار قبل حل الحالة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Reason of the appeal"
+msgstr "سبب الاعتراض"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__state__received
+msgid "Received"
+msgstr "مستلمة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_list
+msgid "Received on"
+msgstr "تاريخ الاستلام"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__name model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__related_ref
+msgid "Related document"
+msgstr "المستند المرتبط"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__related_res_id
+msgid "Related document ID"
+msgstr "معرّف المستند المرتبط"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__related_res_model
+msgid "Related document model"
+msgstr "نموذج المستند المرتبط"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "Reset to draft"
+msgstr "إعادة إلى مسودة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__resolution model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Resolution"
+msgstr "القرار"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Resolve"
+msgstr "حل"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__state__resolved model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance_access_log__action__resolved
+msgid "Resolved"
+msgstr "محلولة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Send"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Send the appeal to the committee"
+msgstr "إرسال الاعتراض إلى اللجنة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "Send to the committee"
+msgstr "إرسال إلى اللجنة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Sent on"
+msgstr "تاريخ الإرسال"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_violation_type__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_form
+msgid "Start investigation"
+msgstr "بدء التحقيق"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__state model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مضى\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0 model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__subject model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "Subject"
+msgstr "الموضوع"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "Submit anonymously"
+msgstr "الإرسال بدون اسم (سري)"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0 model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__author_display
+msgid "Submitted by"
+msgstr "مقدّم من"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__suggestion
+msgid "Suggestion"
+msgstr "اقتراح"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__action__suspension model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__first_action__suspension model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__second_action__suspension model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__third_action__suspension
+msgid "Suspension"
+msgstr "إيقاف عن العمل"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__action__termination model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__first_action__termination model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__second_action__termination model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__third_action__termination
+msgid "Termination"
+msgstr "إنهاء العقد"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "The appeal period is over or this case cannot be appealed."
+msgstr "انتهت مهلة الاعتراض أو لا يمكن الاعتراض على هذه الحالة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "The appeal period of this disciplinary action is over."
+msgstr "انتهت مهلة الاعتراض على هذا الإجراء التأديبي."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "The author of a grievance cannot be changed."
+msgstr "لا يمكن تغيير مقدّم التظلم."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.constraint,message:bs_hr_ess_grievance.constraint_bs_hr_violation_type_code_uniq
+msgid "The code must be unique per company."
+msgstr "يجب أن يكون الرمز فريدًا لكل شركة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "The committee cannot contact you outside of this case, so give enough details."
+msgstr "لا تستطيع اللجنة التواصل معك خارج هذه الحالة، لذا قدّم تفاصيل كافية."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "The committee replied to your case."
+msgstr "ردّت اللجنة على حالتك."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "The deduction of %s has already been applied on a payslip."
+msgstr "تم تطبيق خصم %s على قسيمة راتب مسبقًا."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "The disciplinary action %s is now final."
+msgstr "أصبح الإجراء التأديبي %s نهائيًا."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/disciplinary.py:0
+msgid "The employee appealed this action. Case:"
+msgstr "اعترض الموظف على هذا الإجراء. الحالة:"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_form
+msgid "The employee appealed this action: it waits for the grievance committee decision."
+msgstr "اعترض الموظف على هذا الإجراء: وهو بانتظار قرار لجنة التظلمات."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_grievance__anonymous
+msgid "The identity of the author is not stored."
+msgstr "لا تُحفظ هوية مقدّم الحالة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "This case cannot be rejected in its current state."
+msgstr "لا يمكن رفض هذه الحالة في وضعها الحالي."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "This case cannot be resolved in its current state."
+msgstr "لا يمكن حل هذه الحالة في وضعها الحالي."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "This case is closed."
+msgstr "هذه الحالة مغلقة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/hr_employee.py:0
+msgid "To acknowledge"
+msgstr "بانتظار الإقرار"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_list
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__tracking_code
+msgid "Tracking Code"
+msgstr "رمز المتابعة"
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0 model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance__grievance_type model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_grievance_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__state__investigating
+msgid "Under investigation"
+msgstr "قيد التحقيق"
+
+#. module: bs_hr_ess_grievance
+#: model:bs.hr.violation.type,name:bs_hr_ess_grievance.violation_uniform
+msgid "Uniform policy breach"
+msgstr "مخالفة سياسة الزي الموحد"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_grievance_access_log__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_grievance__excluded_user_ids
+msgid "Users who are a party (concerned employees, their managers, their branch manager, the decision maker): they can never see the case."
+msgstr "المستخدمون الأطراف (الموظفون المعنيون ومدراؤهم ومدير فرعهم وصاحب القرار): لا يمكنهم الاطلاع على الحالة أبدًا."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__action__verbal_warning model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__first_action__verbal_warning model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__second_action__verbal_warning model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__third_action__verbal_warning
+msgid "Verbal warning"
+msgstr "إنذار شفهي"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.view_disciplinary_search
+msgid "Violation"
+msgstr "المخالفة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__violation_type_id
+msgid "Violation Type"
+msgstr "نوع المخالفة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.actions.act_window,name:bs_hr_ess_grievance.action_violation_type model:ir.ui.menu,name:bs_hr_ess_grievance.menu_ess_violation_types
+msgid "Violation Types"
+msgstr "أنواع المخالفات"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__date
+msgid "Violation date"
+msgstr "تاريخ المخالفة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model,name:bs_hr_ess_grievance.model_bs_hr_violation_type
+msgid "Violation type"
+msgstr "نوع المخالفة"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,field_description:bs_hr_ess_grievance.field_bs_hr_disciplinary__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields,help:bs_hr_ess_grievance.field_bs_hr_disciplinary__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "What happened, when and where..."
+msgstr "ماذا حدث، ومتى، وأين..."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_grievance__grievance_type__whistleblowing
+msgid "Whistleblowing (report a violation)"
+msgstr "بلاغ مخالفة"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_disciplinary
+msgid "Why do you contest this action?"
+msgstr "لماذا تعترض على هذا الإجراء؟"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "Write a message to the committee..."
+msgstr "اكتب رسالة إلى اللجنة..."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_submitted
+msgid "Write it down or take a screenshot. Do not share it."
+msgstr "دوّنه أو التقط صورة للشاشة. لا تشاركه مع أحد."
+
+#. module: bs_hr_ess_grievance
+#: model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_disciplinary__action__written_warning model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__first_action__written_warning model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__second_action__written_warning model:ir.model.fields.selection,name:bs_hr_ess_grievance.selection__bs_hr_violation_type__third_action__written_warning
+msgid "Written warning"
+msgstr "إنذار كتابي"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances
+msgid "XXXXX-XXXXX"
+msgstr "XXXXX-XXXXX"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_detail
+msgid "You can appeal until"
+msgstr "يمكنك الاعتراض حتى"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances
+msgid "You have not submitted any case."
+msgstr "لم تقدّم أي حالة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "You will still find the case in \"Complaints &amp; suggestions\" and follow the answers of the committee."
+msgstr "ستجد الحالة في \"الشكاوى والاقتراحات\" ويمكنك متابعة ردود اللجنة."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "Your appeal was sent to the committee (level 2)."
+msgstr "تم إرسال اعتراضك إلى اللجنة (المستوى 2)."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "Your appeal was sent to the grievance committee."
+msgstr "تم إرسال اعتراضك إلى لجنة التظلمات."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_submitted
+msgid "Your case"
+msgstr "حالتك"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid ""
+"Your case is handled only by the grievance committee. It is never sent to the\n"
+"                persons concerned, nor to their managers."
+msgstr ""
+"تعالج لجنة التظلمات وحدها حالتك. ولا تُرسل أبدًا إلى\n"
+"                الأشخاص المعنيين ولا إلى مدرائهم."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/models/grievance.py:0
+msgid "Your case is under investigation."
+msgstr "حالتك قيد التحقيق."
+
+#. module: bs_hr_ess_grievance
+#. odoo-python
+#: code:addons/bs_hr_ess_grievance/controllers/main.py:0
+msgid "Your message was sent to the committee."
+msgstr "تم إرسال رسالتك إلى اللجنة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_new
+msgid "Your name is not saved with the case: nobody, not even HR or the committee, can see who sent it."
+msgstr "لا يُحفظ اسمك مع الحالة: لا يمكن لأحد، ولا حتى الموارد البشرية أو اللجنة، معرفة مرسلها."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_submitted
+msgid "Your secret tracking code (shown only once):"
+msgstr "رمز المتابعة السري الخاص بك (يظهر مرة واحدة فقط):"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.res_config_settings_view_form_ess_grievance
+msgid "days"
+msgstr "أيام"
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievance_submitted
+msgid "was sent to the committee."
+msgstr "تم إرسالها إلى اللجنة."
+
+#. module: bs_hr_ess_grievance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_grievance.ess_grievances
+msgid "· <i class=\"fa fa-user-secret\"/> Anonymous"
+msgstr "· <i class=\"fa fa-user-secret\"/> بدون اسم (سري)"

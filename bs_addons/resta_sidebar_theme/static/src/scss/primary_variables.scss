@@ -1,0 +1,99 @@
+// ============================================================================
+// Resta brand — light values (source: resta.sa stylesheet)
+// Prepended to web._assets_primary_variables so these win over Odoo defaults.
+// The dark bundle prepends primary_variables.dark.scss before this file.
+// Only plain values here: this file is compiled before Bootstrap helpers.
+// ============================================================================
+
+// --- Raw brand palette ------------------------------------------------------
+$rs-orange: #FF5A1F !default;          // --orange
+$rs-orange-dark: #E9430A !default;     // --orange-dark
+$rs-orange-light: #FF7443 !default;    // --orange-light
+$rs-orange-tint: #FFE0D5 !default;
+$rs-orange-text: #C2410C !default;     // derived: AA-safe orange for small text
+$rs-black: #161616 !default;           // --black
+$rs-dark: #171717 !default;            // --dark
+$rs-warm: #F9F7F3 !default;            // --warm
+$rs-paper: #F6F3EF !default;           // --paper
+$rs-muted: #706D69 !default;           // --muted
+$rs-border-color: #DED9D3 !default;    // --border
+$rs-success: #20A578 !default;         // --success
+
+// --- Semantic tokens (light) --------------------------------------------------
+$rs-scheme: light !default;
+$rs-page-bg: $rs-warm !default;
+$rs-surface: #FFFFFF !default;
+$rs-surface-2: $rs-paper !default;
+$rs-surface-3: #E9E4DF !default;
+$rs-text: $rs-black !default;
+$rs-text-muted: $rs-muted !default;
+$rs-text-subtle: #8E8984 !default;
+$rs-border: $rs-border-color !default;
+$rs-border-soft: #E9E4DF !default;
+$rs-primary: $rs-orange !default;
+$rs-primary-hover: $rs-orange-dark !default;
+$rs-primary-fg: $rs-orange-text !default;       // orange used as text/icon color
+$rs-active-bg: rgba(#FF5A1F, .08) !default;
+$rs-hover-bg: rgba(#161616, .04) !default;
+$rs-focus-ring: rgba(#FF5A1F, .12) !default;
+$rs-sidebar-bg: #FFFFFF !default;
+$rs-topbar-bg: rgba(#F9F7F3, .82) !default;
+$rs-shadow-sm: 0 1px 2px rgba(#161616, .06) !default;
+$rs-shadow-md: 0 8px 24px rgba(#161616, .08) !default;
+$rs-shadow-btn: 0 6px 16px rgba(#FF5A1F, .22) !default;
+$rs-backdrop: rgba(#000000, .35) !default;
+
+// --- Odoo variables ------------------------------------------------------------
+$o-white: #FFFFFF !default;
+$o-black: $rs-black !default;
+
+$o-gray-100: $rs-warm !default;
+$o-gray-200: $rs-paper !default;
+$o-gray-300: #E9E4DF !default;
+$o-gray-400: $rs-border-color !default;
+$o-gray-500: #ACA7A2 !default;
+$o-gray-600: #8E8984 !default;
+$o-gray-700: $rs-muted !default;
+$o-gray-800: #4C4946 !default;
+$o-gray-900: $rs-black !default;
+
+$o-community-color: $rs-orange !default;
+$o-enterprise-color: $rs-orange !default;
+$o-enterprise-action-color: $rs-orange-dark !default;
+$o-brand-odoo: $rs-orange !default;
+$o-brand-primary: $rs-orange !default;
+$o-action: $rs-orange-dark !default;
+$o-main-link-color: $rs-orange-text !default;
+
+$o-success: $rs-success !default;
+$o-info: #3B82C4 !default;
+$o-warning: #E8A317 !default;
+$o-danger: #D93636 !default;
+
+$o-main-code-color: $rs-orange-text !default;
+$o-main-favorite-color: #F2B705 !default;
+
+// Contextual text colors (text-primary, text-info, …): Odoo's are purple/teal
+$o-theme-text-colors: (
+    "primary": $rs-orange-text,
+    "success": #17845F,
+    "info": #2F6FAE,
+    "warning": #9A6B01,
+    "danger": #C62828,
+) !default;
+
+$o-view-background-color: #FFFFFF !default;
+$o-webclient-background-color: $rs-warm !default;
+
+$o-system-fonts: ("IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji") !default;
+$o-headings-font-family: ("IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif) !default;
+
+// Top bar (Odoo navbar) — white bar instead of the purple one
+$o-navbar-height: 56px !default;
+$o-navbar-background: $rs-surface !default;
+$o-navbar-border-bottom: 1px solid $rs-border-soft !default;
+$o-navbar-entry-color: #4C4946 !default;
+$o-navbar-entry-color--hover: $rs-black !default;
+$o-navbar-entry-bg--hover: rgba(#161616, .05) !default;
+$o-navbar-brand-color: $rs-black !default;
+$o-navbar-entry-border-radius: 8px !default;

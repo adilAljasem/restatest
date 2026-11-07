@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_contract_renewal_form" model="ir.ui.view">
+        <field name="name">bs.hr.contract.renewal.form</field>
+        <field name="model">bs.hr.contract.renewal</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Submit" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_ess_approve" type="object" string="Approve" class="btn-primary" invisible="not can_ess_approve"/>
+                    <button name="action_ess_reject_wizard" type="object" string="Reject" invisible="not can_ess_approve"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state not in ('draft', 'submitted', 'in_approval')"/>
+                    <button name="action_reset_draft" type="object" string="Reset to draft" invisible="state not in ('rejected', 'cancelled')" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <button name="action_qiwa_documented" type="object" string="Documented on Qiwa"
+                            invisible="state != 'done' or qiwa_state == 'documented' or not new_version_id"
+                            groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_approval,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_new_version" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                                string="New contract" invisible="not new_version_id" groups="hr.group_hr_user"/>
+                    </div>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group string="Current contract">
+                            <field name="employee_id" readonly="state != 'draft'"/>
+                            <field name="version_id" groups="hr.group_hr_user"/>
+                            <field name="contract_date_start"/>
+                            <field name="contract_date_end"/>
+                            <field name="current_wage" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="current_approver_ids" widget="many2many_tags" invisible="state != 'in_approval'"/>
+                            <field name="can_ess_approve" invisible="1"/>
+                        </group>
+                        <group string="Decision">
+                            <field name="manager_decision" readonly="state not in ('draft', 'submitted', 'in_approval')"/>
+                            <field name="new_contract_date_end" invisible="manager_decision == 'not_renew'"
+                                   readonly="state not in ('draft', 'submitted', 'in_approval')"/>
+                            <field name="new_wage" invisible="manager_decision == 'not_renew'"
+                                   readonly="state not in ('draft', 'submitted', 'in_approval')"
+                                   groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                            <field name="notes" readonly="state not in ('draft', 'submitted', 'in_approval')"/>
+                            <field name="new_version_id" invisible="not new_version_id" groups="hr.group_hr_user"/>
+                        </group>
+                    </group>
+                    <group invisible="manager_decision == 'not_renew'">
+                        <group string="Qiwa">
+                            <field name="qiwa_state"/>
+                            <field name="qiwa_number"/>
+                        </group>
+                        <group string="Employee">
+                            <field name="employee_ack_date"/>
+                            <field name="submit_date"/>
+                            <field name="decision_date"/>
+                            <field name="rejection_reason" invisible="not rejection_reason"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Approvals" name="approvals">
+                            <field name="approval_line_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="approver_ids" widget="many2many_tags"/>
+                                    <field name="state" widget="badge"/>
+                                    <field name="decided_by_id"/>
+                                    <field name="decided_on"/>
+                                    <field name="comment"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_contract_renewal_list" model="ir.ui.view">
+        <field name="name">bs.hr.contract.renewal.list</field>
+        <field name="model">bs.hr.contract.renewal</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="work_location_id" optional="show"/>
+                <field name="contract_date_end"/>
+                <field name="manager_decision"/>
+                <field name="new_contract_date_end" optional="show"/>
+                <field name="qiwa_state" optional="show"/>
+                <field name="employee_ack_date" optional="hide"/>
+                <field name="current_approver_ids" widget="many2many_tags"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_contract_renewal_search" model="ir.ui.view">
+        <field name="name">bs.hr.contract.renewal.search</field>
+        <field name="model">bs.hr.contract.renewal</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <filter name="to_approve" string="To approve" domain="[('current_approver_ids', 'in', [uid])]"/>
+                <filter name="open" string="Open" domain="[('state', 'in', ('draft', 'submitted', 'in_approval'))]"/>
+                <filter name="qiwa_pending" string="To document on Qiwa"
+                        domain="[('state', '=', 'done'), ('new_version_id', '!=', False), ('qiwa_state', '=', 'pending')]"/>
+                <filter name="not_acknowledged" string="Not acknowledged"
+                        domain="[('state', '=', 'done'), ('new_version_id', '!=', False), ('employee_ack_date', '=', False)]"/>
+                <group>
+                    <filter name="group_decision" string="Decision" context="{'group_by': 'manager_decision'}"/>
+                    <filter name="group_branch" string="Branch" context="{'group_by': 'work_location_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_contract_renewal" model="ir.actions.act_window">
+        <field name="name">Contract Renewals</field>
+        <field name="res_model">bs.hr.contract.renewal</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+    </record>
+</odoo>

@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * pos_cashier_shortage_report
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.actions.act_window,name:pos_cashier_shortage_report.pos_cashier_shortage_report_action
+#: model:ir.ui.menu,name:pos_cashier_shortage_report.menu_pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_list
+msgid "Cashier Shortage Report"
+msgstr "تقرير عجز الكاشير"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_pivot
+msgid "Cashier Shortage Analysis"
+msgstr "تحليل عجز الكاشير"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__session_id
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Session"
+msgstr "الجلسة"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__config_id
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Point of Sale"
+msgstr "نقطة البيع"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__employee_id
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__opening_date
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Opening Date"
+msgstr "تاريخ الفتح"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__closing_date
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Closing Date"
+msgstr "تاريخ الإغلاق"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__payment_method_id
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__journal_id
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Cash Journal"
+msgstr "الخزينة النقدية"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__closing_expected
+msgid "Closing Expected"
+msgstr "الرصيد المتوقع عند الإغلاق"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__closing_counted
+msgid "Closing Counted"
+msgstr "الرصيد الفعلي المجرد"
+
+#. module: pos_cashier_shortage_report
+#: model:ir.model.fields,field_description:pos_cashier_shortage_report.field_pos_cashier_shortage_report__closing_difference
+msgid "Closing Difference"
+msgstr "فرق الإغلاق"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Cash Shortage"
+msgstr "عجز نقدي"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Cash Overage"
+msgstr "زيادة نقدية"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "No Difference"
+msgstr "بدون فرق"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "This Week"
+msgstr "هذا الأسبوع"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "This Month"
+msgstr "هذا الشهر"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.ui.view,arch_db:pos_cashier_shortage_report.pos_cashier_shortage_report_view_search
+msgid "Custom Period"
+msgstr "فترة مخصصة"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.actions.act_window,help:pos_cashier_shortage_report.pos_cashier_shortage_report_action
+msgid "No cashier cash differences yet"
+msgstr "لا توجد فروقات نقدية للكاشير حتى الآن"
+
+#. module: pos_cashier_shortage_report
+#: model_terms:ir.actions.act_window,help:pos_cashier_shortage_report.pos_cashier_shortage_report_action
+msgid "Cash counts are captured separately for every cash journal when a POS session closes."
+msgstr "يتم حفظ جرد مستقل لكل خزينة نقدية عند إغلاق جلسة نقطة البيع."

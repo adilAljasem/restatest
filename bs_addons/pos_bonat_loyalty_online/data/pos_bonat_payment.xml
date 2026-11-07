@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        The Bonat_Voucher payment method, seeded exactly as classic 19 does
+        (odoo 19/data/pos_bonat_payment.xml, BON-1835 / ADR 0002):
+        pos.payment.method records are plain data, so an importable module can
+        create them the same way — proven live by the 17 Online build's
+        zip-import verification. PR #81's assumption that this build "cannot
+        create a pos.payment.method" was about server-side Python (models,
+        ORM writes), which is indeed impossible; a data record is not.
+
+        Like classic 19 — and unlike classic 17 — the record is NOT linked to
+        any pos.config's payment_method_ids here or by any hook: the merchant
+        adds it to a POS's payment methods and selects it in the Bonat settings
+        manually, same as any other payment method (the ADR forbids
+        create()/write() lifecycle linking on 19; see BON-479/480/484).
+
+        noupdate="1": a merchant may rename or reconfigure the method; a module
+        update must not clobber that.
+    -->
+    <data noupdate="1">
+        <record id="bonat_voucher_payment_method" model="pos.payment.method">
+            <field name="name">Bonat_Voucher</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="is_cash_count" eval="False"/>
+            <field name="split_transactions" eval="False"/>
+        </record>
+    </data>
+</odoo>

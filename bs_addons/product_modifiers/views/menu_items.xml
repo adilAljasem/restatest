@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_modifiers_groups" model="ir.actions.act_window">
+            <field name="name">Modifiers Groups</field>
+            <field name="res_model">modifiers.groups</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="product_template_action_pos_modifier_product" model="ir.actions.act_window">
+            <field name="name">Modifiers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context"
+                eval="{'search_default_filter_to_availabe_pos': 1, 'default_use_as_modifier': True}" />
+            <field name="domain" eval="[('use_as_modifier', '=', True)]" />
+        </record>
+
+        <menuitem id="pos_config_menu_action_product_modifiers"
+            name="Modifiers"
+            parent="point_of_sale.pos_config_menu_catalog"
+            action="product_template_action_pos_modifier_product"
+            sequence="15" />
+
+        <menuitem id="menu_modifiers_groups" parent="point_of_sale.pos_config_menu_catalog"
+            action="action_modifiers_groups" sequence="16" />
+
+    </data>
+</odoo>

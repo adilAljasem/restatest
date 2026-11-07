@@ -1,0 +1,13 @@
+// Website, portal (incl. HR self-service) and other frontend pages.
+body {
+    font-family: "IBM Plex Sans Arabic", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .btn, .form-control, .form-select {
+    font-family: inherit;
+}
+.o_portal, .o_portal_wrap, #wrapwrap {
+    .btn { border-radius: var(--rs-radius-sm, 8px); }
+    .card { border-radius: var(--rs-radius-md, 12px); border-color: var(--rs-border-soft); }
+    a:not(.btn) { color: var(--rs-primary-fg); }
+    .form-control:focus, .form-select:focus { border-color: var(--rs-primary); box-shadow: 0 0 0 .2rem var(--rs-focus-ring); }
+}

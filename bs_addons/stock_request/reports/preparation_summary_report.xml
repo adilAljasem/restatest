@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="preparation_summary_paperformat" model="report.paperformat">
+        <field name="name">Preparation Summary</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">12</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="preparation_summary_pdf_action" model="ir.actions.report">
+        <field name="name">Preparation Summary</field>
+        <field name="model">stock.request.preparation.summary</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">stock_request.preparation_summary_pdf</field>
+        <field name="report_file">stock_request.preparation_summary_pdf</field>
+        <field name="paperformat_id" ref="preparation_summary_paperformat"/>
+        <field name="group_ids" eval="[(4, ref('stock_request.group_stock_request_warehouse_responsible'))]"/>
+    </record>
+    <template id="preparation_summary_pdf">
+        <t t-call="web.basic_layout">
+                <div class="page" t-att-dir="'rtl' if rtl else 'ltr'" style="font-family: DejaVu Sans, sans-serif; font-size: 10px;">
+                    <h2 t-out="title"/>
+                    <p><span t-out="generated"/></p>
+                    <p t-out="filters"/>
+                    <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                        <colgroup>
+                            <col style="width: 15%"/><col style="width: 17%"/><col style="width: 25%"/>
+                            <col style="width: 13%"/><col style="width: 10%"/><col style="width: 13%"/><col style="width: 7%"/>
+                        </colgroup>
+                        <thead style="display: table-header-group;">
+                            <tr><th t-foreach="headers" t-as="heading" style="overflow-wrap: break-word;" t-out="heading"/></tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="rows" t-as="row" style="page-break-inside: avoid;">
+                                <td t-foreach="['company_id', 'source_warehouse_id', 'product_id']" t-as="name"
+                                    style="overflow-wrap: break-word;" t-out="row[name][1]"/>
+                                <td dir="ltr" style="overflow-wrap: break-word;" t-out="row['code']"/>
+                                <td t-out="row['product_uom_id'][1]"/>
+                                <td t-out="row['quantity']" t-options="{'widget': 'float', 'precision': row['digits']}"/>
+                                <td t-out="row['order_count']"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </t>
+    </template>
+</odoo>

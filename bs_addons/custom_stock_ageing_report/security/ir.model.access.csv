@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_ageing_report_wizard_manager,stock.ageing.report.wizard manager,model_stock_ageing_report_wizard,stock.group_stock_manager,1,1,1,1
+access_stock_ageing_report_download_manager,stock.ageing.report.download manager,model_stock_ageing_report_download,stock.group_stock_manager,1,1,1,1

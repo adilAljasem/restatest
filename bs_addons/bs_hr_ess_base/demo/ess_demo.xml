@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Portal user for an employee so the portal can be tested: login demo.cook / demo -->
+    <record id="user_demo_cook" model="res.users">
+        <field name="name">Faisal Demo</field>
+        <field name="login">demo.cook</field>
+        <field name="password">demo</field>
+        <field name="email">faisal.demo@resta.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_portal')])]"/>
+    </record>
+    <record id="ess_demo_company_partner" model="res.partner">
+        <field name="name">Resta Restaurants - HQ</field>
+        <field name="is_company" eval="True"/>
+        <field name="city">Riyadh</field>
+        <field name="country_id" ref="base.sa"/>
+    </record>
+    <record id="job_cashier" model="hr.job"><field name="name">Cashier</field></record>
+    <record id="job_cook" model="hr.job"><field name="name">Cook</field></record>
+    <record id="job_waiter" model="hr.job"><field name="name">Waiter</field></record>
+    <record id="job_driver" model="hr.job"><field name="name">Driver</field></record>
+    <record id="job_supervisor" model="hr.job"><field name="name">Branch Supervisor</field></record>
+    <record id="branch_olaya_partner" model="res.partner">
+        <field name="name">Olaya Branch</field>
+        <field name="parent_id" ref="ess_demo_company_partner"/>
+        <field name="type">other</field>
+    </record>
+    <record id="branch_olaya" model="hr.work.location">
+        <field name="name">Olaya Branch</field>
+        <field name="location_type">office</field>
+        <field name="address_id" ref="branch_olaya_partner"/>
+    </record>
+    <record id="branch_tahlia_partner" model="res.partner">
+        <field name="name">Tahlia Branch</field>
+        <field name="parent_id" ref="ess_demo_company_partner"/>
+        <field name="type">other</field>
+    </record>
+    <record id="branch_tahlia" model="hr.work.location">
+        <field name="name">Tahlia Branch</field>
+        <field name="location_type">office</field>
+        <field name="address_id" ref="branch_tahlia_partner"/>
+    </record>
+    <record id="branch_khobar_partner" model="res.partner">
+        <field name="name">Khobar Branch</field>
+        <field name="parent_id" ref="ess_demo_company_partner"/>
+        <field name="type">other</field>
+    </record>
+    <record id="branch_khobar" model="hr.work.location">
+        <field name="name">Khobar Branch</field>
+        <field name="location_type">office</field>
+        <field name="address_id" ref="branch_khobar_partner"/>
+    </record>
+    <record id="emp_00" model="hr.employee">
+        <field name="name">Ahmed Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_supervisor"/>
+        <field name="job_title">Branch Supervisor</field>
+        
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0553464097</field>
+        <field name="work_email">ahmed.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=6)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=20)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4500</field>
+    </record>
+    <record id="emp_01" model="hr.employee">
+        <field name="name">Mohammed Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_supervisor"/>
+        <field name="job_title">Branch Supervisor</field>
+        
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0562992312</field>
+        <field name="work_email">mohammed.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=10)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=29)).strftime('%Y-%m-%d')"/>
+        <field name="wage">9000</field>
+    </record>
+    <record id="emp_02" model="hr.employee">
+        <field name="name">Khalid Demo</field>
+        <field name="work_location_id" ref="branch_khobar"/>
+        <field name="job_id" ref="job_supervisor"/>
+        <field name="job_title">Branch Supervisor</field>
+        
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0516480894</field>
+        <field name="work_email">khalid.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=14)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=38)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_03" model="hr.employee">
+        <field name="user_id" ref="user_demo_cook"/>
+        <field name="name">Faisal Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_driver"/>
+        <field name="job_title">Driver</field>
+        <field name="parent_id" ref="emp_00"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0581924865</field>
+        <field name="work_email">faisal.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=18)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=47)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_04" model="hr.employee">
+        <field name="name">Omar Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_cashier"/>
+        <field name="job_title">Cashier</field>
+        <field name="parent_id" ref="emp_01"/>
+        <field name="country_id" ref="base.eg"/>
+        <field name="mobile_phone">0559081935</field>
+        <field name="work_email">omar.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=22)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=56)).strftime('%Y-%m-%d')"/>
+        <field name="wage">7500</field>
+    </record>
+    <record id="emp_05" model="hr.employee">
+        <field name="name">Sara Demo</field>
+        <field name="work_location_id" ref="branch_khobar"/>
+        <field name="job_id" ref="job_cook"/>
+        <field name="job_title">Cook</field>
+        <field name="parent_id" ref="emp_02"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0517784483</field>
+        <field name="work_email">sara.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=26)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=65)).strftime('%Y-%m-%d')"/>
+        <field name="wage">7500</field>
+    </record>
+    <record id="emp_06" model="hr.employee">
+        <field name="name">Noura Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_waiter"/>
+        <field name="job_title">Waiter</field>
+        <field name="parent_id" ref="emp_00"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0538816302</field>
+        <field name="work_email">noura.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=30)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=74)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_07" model="hr.employee">
+        <field name="name">Rashid Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_driver"/>
+        <field name="job_title">Driver</field>
+        <field name="parent_id" ref="emp_01"/>
+        <field name="country_id" ref="base.pk"/>
+        <field name="mobile_phone">0521535642</field>
+        <field name="work_email">rashid.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=34)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=83)).strftime('%Y-%m-%d')"/>
+        <field name="wage">6000</field>
+    </record>
+    <record id="emp_08" model="hr.employee">
+        <field name="name">Imran Demo</field>
+        <field name="work_location_id" ref="branch_khobar"/>
+        <field name="job_id" ref="job_cashier"/>
+        <field name="job_title">Cashier</field>
+        <field name="parent_id" ref="emp_02"/>
+        <field name="country_id" ref="base.pk"/>
+        <field name="mobile_phone">0566126116</field>
+        <field name="work_email">imran.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=38)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=92)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_09" model="hr.employee">
+        <field name="name">Ravi Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_cook"/>
+        <field name="job_title">Cook</field>
+        <field name="parent_id" ref="emp_00"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="mobile_phone">0542301241</field>
+        <field name="work_email">ravi.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=42)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=101)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_10" model="hr.employee">
+        <field name="name">Jose Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_waiter"/>
+        <field name="job_title">Waiter</field>
+        <field name="parent_id" ref="emp_01"/>
+        <field name="country_id" ref="base.ph"/>
+        <field name="mobile_phone">0583960310</field>
+        <field name="work_email">jose.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=46)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=110)).strftime('%Y-%m-%d')"/>
+        <field name="wage">6000</field>
+    </record>
+    <record id="emp_11" model="hr.employee">
+        <field name="name">Maria Demo</field>
+        <field name="work_location_id" ref="branch_khobar"/>
+        <field name="job_id" ref="job_driver"/>
+        <field name="job_title">Driver</field>
+        <field name="parent_id" ref="emp_02"/>
+        <field name="country_id" ref="base.ph"/>
+        <field name="mobile_phone">0517933677</field>
+        <field name="work_email">maria.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=50)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=119)).strftime('%Y-%m-%d')"/>
+        <field name="wage">7500</field>
+    </record>
+    <record id="emp_12" model="hr.employee">
+        <field name="name">Hassan Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_cashier"/>
+        <field name="job_title">Cashier</field>
+        <field name="parent_id" ref="emp_00"/>
+        <field name="country_id" ref="base.eg"/>
+        <field name="mobile_phone">0526616417</field>
+        <field name="work_email">hassan.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=54)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=128)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4500</field>
+    </record>
+    <record id="emp_13" model="hr.employee">
+        <field name="name">Ali Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_cook"/>
+        <field name="job_title">Cook</field>
+        <field name="parent_id" ref="emp_01"/>
+        <field name="country_id" ref="base.ye"/>
+        <field name="mobile_phone">0594641177</field>
+        <field name="work_email">ali.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=58)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=137)).strftime('%Y-%m-%d')"/>
+        <field name="wage">9000</field>
+    </record>
+    <record id="emp_14" model="hr.employee">
+        <field name="name">Bilal Demo</field>
+        <field name="work_location_id" ref="branch_khobar"/>
+        <field name="job_id" ref="job_waiter"/>
+        <field name="job_title">Waiter</field>
+        <field name="parent_id" ref="emp_02"/>
+        <field name="country_id" ref="base.pk"/>
+        <field name="mobile_phone">0588248519</field>
+        <field name="work_email">bilal.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=62)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=146)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_15" model="hr.employee">
+        <field name="name">Kamal Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_driver"/>
+        <field name="job_title">Driver</field>
+        <field name="parent_id" ref="emp_00"/>
+        <field name="country_id" ref="base.bd"/>
+        <field name="mobile_phone">0587457446</field>
+        <field name="work_email">kamal.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=66)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=155)).strftime('%Y-%m-%d')"/>
+        <field name="wage">7500</field>
+    </record>
+    <record id="emp_16" model="hr.employee">
+        <field name="name">Nasser Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_cashier"/>
+        <field name="job_title">Cashier</field>
+        <field name="parent_id" ref="emp_01"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0563241552</field>
+        <field name="work_email">nasser.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=70)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=164)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_17" model="hr.employee">
+        <field name="name">Yousef Demo</field>
+        <field name="work_location_id" ref="branch_khobar"/>
+        <field name="job_id" ref="job_cook"/>
+        <field name="job_title">Cook</field>
+        <field name="parent_id" ref="emp_02"/>
+        <field name="country_id" ref="base.jo"/>
+        <field name="mobile_phone">0539673100</field>
+        <field name="work_email">yousef.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=74)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=173)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4000</field>
+    </record>
+    <record id="emp_18" model="hr.employee">
+        <field name="name">Abdullah Demo</field>
+        <field name="work_location_id" ref="branch_olaya"/>
+        <field name="job_id" ref="job_waiter"/>
+        <field name="job_title">Waiter</field>
+        <field name="parent_id" ref="emp_00"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0584714297</field>
+        <field name="work_email">abdullah.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=78)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=182)).strftime('%Y-%m-%d')"/>
+        <field name="wage">4500</field>
+    </record>
+    <record id="emp_19" model="hr.employee">
+        <field name="name">Majed Demo</field>
+        <field name="work_location_id" ref="branch_tahlia"/>
+        <field name="job_id" ref="job_driver"/>
+        <field name="job_title">Driver</field>
+        <field name="parent_id" ref="emp_01"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="mobile_phone">0548870700</field>
+        <field name="work_email">majed.demo@resta.example</field>
+        <field name="contract_date_start" eval="(DateTime.today() - relativedelta(months=82)).strftime('%Y-%m-%d')"/>
+        <field name="contract_date_end" eval="(DateTime.today() + relativedelta(days=191)).strftime('%Y-%m-%d')"/>
+        <field name="wage">6000</field>
+    </record>
+</odoo>

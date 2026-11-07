@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="privilege_bs_delivery_integration" model="res.groups.privilege">
+        <field name="name">Delivery Integrations</field>
+        <field name="sequence">40</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+    <record id="group_delivery_viewer" model="res.groups">
+        <field name="name">Viewer</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="privilege_bs_delivery_integration"/>
+        <field name="implied_ids" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+
+    <record id="group_delivery_operator" model="res.groups">
+        <field name="name">Operator</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="privilege_bs_delivery_integration"/>
+        <field name="implied_ids" eval="[(4, ref('group_delivery_viewer'))]"/>
+    </record>
+
+    <record id="group_delivery_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="sequence">30</field>
+        <field name="privilege_id" ref="privilege_bs_delivery_integration"/>
+        <field name="implied_ids" eval="[(4, ref('group_delivery_operator')), (4, ref('point_of_sale.group_pos_manager'))]"/>
+    </record>
+
+    <record id="group_delivery_integration_manager" model="res.groups">
+        <field name="name">Integration Administrator</field>
+        <field name="sequence">40</field>
+        <field name="privilege_id" ref="privilege_bs_delivery_integration"/>
+        <field name="implied_ids" eval="[(4, ref('group_delivery_manager'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <data noupdate="1">
+        <record id="rule_bs_delivery_connection_company" model="ir.rule">
+            <field name="name">Delivery Connections: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_connection"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_order_binding_company" model="ir.rule">
+            <field name="name">Delivery Order Bindings: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_order_binding"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_product_binding_company" model="ir.rule">
+            <field name="name">Delivery Product Bindings: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_product_binding"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_sync_log_company" model="ir.rule">
+            <field name="name">Delivery Synchronization Logs: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_sync_log"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_outbox_company" model="ir.rule">
+            <field name="name">Delivery Outgoing Jobs: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_outbox"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_webhook_event_company" model="ir.rule">
+            <field name="name">Delivery Webhook Events: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_webhook_event"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_store_binding_company" model="ir.rule">
+            <field name="name">Delivery Stores: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_store_binding"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_reject_reason_company" model="ir.rule">
+            <field name="name">Delivery Rejection Reasons: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_reject_reason"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_category_binding_company" model="ir.rule">
+            <field name="name">Delivery Category Mappings: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_category_binding"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_modifier_binding_company" model="ir.rule">
+            <field name="name">Delivery Modifier Mappings: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_modifier_binding"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_payment_binding_company" model="ir.rule">
+            <field name="name">Delivery Payment Mappings: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_payment_binding"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_pos_payment_mapping_company" model="ir.rule">
+            <field name="name">POS Aggregator Payments: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_pos_payment_mapping"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_payment_allocation_company" model="ir.rule">
+            <field name="name">Delivery Payment Allocations: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_payment_allocation"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_menu_version_company" model="ir.rule">
+            <field name="name">Delivery Menu Versions: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_menu_version"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_order_company" model="ir.rule">
+            <field name="name">Delivery Orders: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_order"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_order_line_company" model="ir.rule">
+            <field name="name">Delivery Order Lines: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_order_line"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_bs_delivery_order_transition_company" model="ir.rule">
+            <field name="name">Delivery Order Transitions: allowed companies</field>
+            <field name="model_id" ref="model_bs_delivery_order_transition"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

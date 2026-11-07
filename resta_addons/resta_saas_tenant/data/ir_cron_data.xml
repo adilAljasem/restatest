@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_resta_sync" model="ir.cron">
+        <field name="name">Resta: المزامنة مع المنصة</field>
+        <field name="model_id" ref="model_resta_update"/>
+        <field name="state">code</field>
+        <field name="code">env['resta.saas.client'].sync()</field>
+        <field name="interval_number">30</field>
+        <field name="interval_type">minutes</field>
+    </record>
+</odoo>

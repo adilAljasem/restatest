@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        res.config.settings mirror fields.
+
+        On-premise equivalent: models/res_config_settings.py, which declares
+        related=... fields so the Bonat block can live on the standard
+        Point of Sale settings page.
+
+        ir.model.fields supports a "related" path on manual fields, so the same
+        arrangement is reproduced here without Python.
+
+        store="False" is REQUIRED on every one of them and must not be dropped.
+        ir.model.fields.store defaults to True, and Odoo does NOT derive it from
+        the presence of "related". Left at the default, each field becomes a real
+        stored column on the transient table instead of a computed-related field:
+        the form then renders empty regardless of the company's value, because
+        default_get has nothing to populate it from. Verified on a live Odoo
+        Online database, where the whole Bonat block stayed hidden behind
+        invisible="not x_bonat_enabled" for exactly this reason.
+
+        Two on-premise members have no field here:
+
+          * bonat_show_api_key, a transient UI-only boolean driving the
+            show/hide masking of the API key. Replaced by the
+            "bonat_api_key" field widget, which owns its own reveal state in
+            the browser. See static/src/settings/bonat_api_key_field.js.
+
+          * action_bonat_toggle_api_key_visibility() and
+            action_bonat_test_connection(), which were type="object" buttons.
+            Python methods cannot exist here; both are reimplemented in JS.
+            See static/src/settings/.
+
+        x_bonat_discount_product_id is new: on-premise the pos.config field has
+        no settings UI at all, even though promo_code_button.js tells the user to
+        "set one in Point of Sale > Configuration > Bonat Discount Product".
+        Exposing it here closes that gap.
+    -->
+    <record id="field_settings_bonat_enabled" model="ir.model.fields">
+        <field name="name">x_bonat_enabled</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Enable Bonat Integration</field>
+        <field name="ttype">boolean</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_enabled</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="field_settings_bonat_api_key" model="ir.model.fields">
+        <field name="name">x_bonat_api_key</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat API Key</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_api_key</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="field_settings_bonat_merchant_id" model="ir.model.fields">
+        <field name="name">x_bonat_merchant_id</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat Merchant ID</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_merchant_id</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="field_settings_bonat_merchant_name" model="ir.model.fields">
+        <field name="name">x_bonat_merchant_name</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat Merchant Name</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_merchant_name</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="field_settings_bonat_demo_mode" model="ir.model.fields">
+        <field name="name">x_bonat_demo_mode</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat Demo Mode</field>
+        <field name="ttype">boolean</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_demo_mode</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <!--
+        Selection type: ir.model.fields.selection rows are keyed on THIS record's
+        own field_id, not inherited from the related target — verified live
+        against odoo19_prod's ir_model.py (_instanciate_attrs always queries
+        ir_model_fields_selection by the field's own id, selection ttype or not,
+        the same way x_bonat_discount_product_id above must redeclare its own
+        "relation" instead of inheriting pos_config_id's). So the two options are
+        declared again below, against this settings field's own id.
+    -->
+    <record id="field_settings_bonat_menu_sync_mode" model="ir.model.fields">
+        <field name="name">x_bonat_menu_sync_mode</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat Menu Sync Mode</field>
+        <field name="ttype">selection</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_menu_sync_mode</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="selection_field_settings_bonat_menu_sync_mode_variant" model="ir.model.fields.selection">
+        <field name="field_id" ref="field_settings_bonat_menu_sync_mode"/>
+        <field name="value">variant</field>
+        <field name="name">Variant-level</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="selection_field_settings_bonat_menu_sync_mode_template" model="ir.model.fields.selection">
+        <field name="field_id" ref="field_settings_bonat_menu_sync_mode"/>
+        <field name="value">template</field>
+        <field name="name">Template-level</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="field_settings_bonat_api_url" model="ir.model.fields">
+        <field name="name">x_bonat_api_url</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat API URL</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_api_url</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="field_settings_bonat_api_url_staging" model="ir.model.fields">
+        <field name="name">x_bonat_api_url_staging</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat API URL (Staging)</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="related">company_id.x_bonat_api_url_staging</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <record id="field_settings_bonat_discount_product" model="ir.model.fields">
+        <field name="name">x_bonat_discount_product_id</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat Discount Product</field>
+        <field name="ttype">many2one</field>
+        <field name="relation">product.product</field>
+        <field name="state">manual</field>
+        <field name="related">pos_config_id.x_bonat_discount_product_id</field>
+        <field name="store" eval="False"/>
+    </record>
+
+    <!--
+        Per-POS-config, same pattern as x_bonat_discount_product_id above.
+
+        No domain of its own: Odoo copies the pos.config-level field's static
+        domain ([("is_cash_count", "=", False), ("payment_method_type", "=",
+        "none")]) onto this related field
+        automatically (odoo/orm/fields.py's _related_domain), and that copy is
+        safe because it has no sibling-field reference to break. The additional
+        "only methods already linked to this POS" restriction is a VIEW-level
+        domain instead (see views/bonat_settings_view.xml) — ir.model.fields.domain
+        on a manual field is safe_eval()'d once at field instantiation with no
+        record in scope, so it cannot reference another field by name (verified
+        live: safe_eval("[(1, 2, pos_payment_method_ids)]") raises NameError).
+    -->
+    <record id="field_settings_bonat_voucher_payment_method" model="ir.model.fields">
+        <field name="name">x_bonat_voucher_payment_method_id</field>
+        <field name="model">res.config.settings</field>
+        <field name="model_id" ref="base.model_res_config_settings"/>
+        <field name="field_description">Bonat Voucher Payment Method</field>
+        <field name="ttype">many2one</field>
+        <field name="relation">pos.payment.method</field>
+        <field name="state">manual</field>
+        <field name="related">pos_config_id.x_bonat_voucher_payment_method_id</field>
+        <field name="store" eval="False"/>
+    </record>
+</odoo>

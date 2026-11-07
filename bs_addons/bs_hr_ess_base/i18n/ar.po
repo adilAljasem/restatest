@@ -1,0 +1,2015 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "%s approved."
+msgstr "تم اعتماد %s."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "%s rejected."
+msgstr "تم رفض %s."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: already has a user (%s)"
+msgstr "%s: لديه مستخدم بالفعل (%s)"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: portal access created (login %s)"
+msgstr "%s: تم إنشاء صلاحية الدخول للبوابة (اسم الدخول %s)"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: skipped - login %s is already used"
+msgstr "%s: تم التخطي - اسم الدخول %s مستخدم مسبقًا"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: skipped - no e-mail and no mobile number"
+msgstr "%s: تم التخطي - لا يوجد بريد إلكتروني ولا رقم جوال"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow_step__sla_hours
+msgid "0 = no deadline / no escalation."
+msgstr "0 = بدون موعد نهائي / بدون تصعيد."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "05XXXXXXXX"
+msgstr "05XXXXXXXX"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "<i class=\"fa fa-check\"/> Approve"
+msgstr "<i class=\"fa fa-check\"/> اعتماد"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "<i class=\"fa fa-lock me-1\"/> Password &amp; security"
+msgstr "<i class=\"fa fa-lock me-1\"/> كلمة المرور والأمان"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "<i class=\"fa fa-pencil me-1\"/> Request an update"
+msgstr "<i class=\"fa fa-pencil me-1\"/> طلب تحديث"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "<i class=\"fa fa-th me-1\"/> Back to Odoo"
+msgstr "<i class=\"fa fa-th me-1\"/> العودة إلى أودو"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "<i class=\"fa fa-times\"/> Reject"
+msgstr "<i class=\"fa fa-times\"/> رفض"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/profile_change.py:0
+msgid "A Saudi IBAN is SA followed by 22 digits."
+msgstr "الآيبان (IBAN) السعودي يبدأ بـ SA متبوعًا بـ 22 رقمًا."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_ess_invite_form
+msgid ""
+"A portal user is created for each employee. The login is the work / private e-mail,\n"
+"                    or the mobile number (format 9665XXXXXXXX) when there is no e-mail: those employees\n"
+"                    sign in with an SMS code when \"Login with mobile + OTP\" is enabled."
+msgstr ""
+"يُنشأ مستخدم بوابة لكل موظف. اسم الدخول هو البريد الإلكتروني للعمل أو الشخصي،\n"
+"                    أو رقم الجوال (بالصيغة 9665XXXXXXXX) عند عدم وجود بريد إلكتروني: ويسجّل هؤلاء الموظفون\n"
+"                    الدخول برمز يُرسل عبر رسالة نصية عند تفعيل \"الدخول برقم الجوال + رمز التحقق\"."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Access"
+msgstr "الصلاحية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__active model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_state model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__escalation__users
+msgid "Add escalation users"
+msgstr "إضافة مستخدمين للتصعيد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__adj_type__addition
+msgid "Addition"
+msgstr "إضافة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Additions"
+msgstr "الإضافات"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Address"
+msgstr "العنوان"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "All"
+msgstr "الكل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "All caught up."
+msgstr "لا يوجد جديد."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_res_company__ess_otp_login model:ir.model.fields,help:bs_hr_ess_base.field_res_config_settings__ess_otp_login
+msgid "Allow employees to sign in to the self-service portal with their mobile number and a one-time code sent by SMS."
+msgstr "السماح للموظفين بالدخول إلى بوابة الخدمة الذاتية برقم الجوال ورمز لمرة واحدة يُرسل عبر رسالة نصية."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__allowance
+msgid "Allowance"
+msgstr "بدل"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__amount
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "App name and color"
+msgstr "اسم التطبيق ولونه"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__state__applied model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Applied"
+msgstr "مطبّق"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__applied_date
+msgid "Applied Date"
+msgstr "تاريخ التطبيق"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/adjustment.py:0
+msgid "Applied adjustments cannot be cancelled."
+msgstr "لا يمكن إلغاء التسويات المطبّقة."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Applied ratio"
+msgstr "النسبة المطبّقة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__condition_domain
+msgid "Applies when"
+msgstr "يُطبّق عندما"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_delegation
+msgid "Approval Delegations"
+msgstr "تفويضات الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_approval_flow model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_flows
+msgid "Approval Flows"
+msgstr "مسارات الاعتماد"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Approval needed: %s"
+msgstr "مطلوب اعتماد: %s"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Approval progress"
+msgstr "تقدّم الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__approval_line_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__approval_line_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Approvals"
+msgstr "الاعتمادات"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_all_approvals model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_report_approvals
+msgid "Approvals Analysis"
+msgstr "تحليل الاعتمادات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_ess_decision_wizard__decision__approve model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__approved model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__approved
+msgid "Approved"
+msgstr "معتمد"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Approved requests can only be cancelled by HR."
+msgstr "لا يمكن إلغاء الطلبات المعتمدة إلا من قِبل الموارد البشرية."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Approved:"
+msgstr "معتمد:"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__user_id
+msgid "Approver"
+msgstr "المعتمِد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__approver_type
+msgid "Approver Type"
+msgstr "نوع المعتمِد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__user_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__approver_ids
+msgid "Approvers"
+msgstr "المعتمِدون"
+
+#. module: bs_hr_ess_base
+#: model:res.groups,comment:bs_hr_ess_base.group_ess_branch_supervisor
+msgid "Approves requests and follows attendance of the branches / teams they manage."
+msgstr "يعتمد الطلبات ويتابع حضور الفروع / الفرق التي يديرها."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__attempts
+msgid "Attempts"
+msgstr "المحاولات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__attendance
+msgid "Attendance"
+msgstr "الحضور"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.portal_my_home_ess
+msgid "Attendance, requests, payslips and HR news"
+msgstr "الحضور والطلبات وقسائم الراتب وأخبار الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_layout
+msgid "Back"
+msgstr "رجوع"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Bank account"
+msgstr "الحساب البنكي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_bank_name model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Bank name"
+msgstr "اسم البنك"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__body
+msgid "Body"
+msgstr "المحتوى"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__work_location_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__work_location_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__work_location_id model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__ess_manager_id
+msgid "Branch Manager"
+msgstr "مدير الفرع"
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_supervisor model:res.groups,name:bs_hr_ess_base.group_ess_branch_supervisor
+msgid "Branch Supervisor"
+msgstr "مشرف الفرع"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__branch
+msgid "Branch manager"
+msgstr "مدير الفرع"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_ess_branches model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_branches
+msgid "Branches"
+msgstr "الفروع"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__can_ess_approve model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__can_ess_approve
+msgid "Can Ess Approve"
+msgstr "يمكنه الاعتماد في الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Cancel request"
+msgstr "إلغاء الطلب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__cancelled model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_cashier
+msgid "Cashier"
+msgstr "الكاشير"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__category model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Category"
+msgstr "الفئة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Changes are applied after HR verification. Fill only what changes."
+msgstr "تُطبّق التغييرات بعد تحقق الموارد البشرية. عبّئ الحقول المتغيرة فقط."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_offline
+msgid "Check your connection and try again."
+msgstr "تحقق من اتصالك وحاول مرة أخرى."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "City"
+msgstr "المدينة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_ess_invite_form
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__coach
+msgid "Coach"
+msgstr "المدرب"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Code"
+msgstr "الرمز"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__code_hash
+msgid "Code Hash"
+msgstr "تجزئة الرمز"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__comment
+msgid "Comment"
+msgstr "التعليق"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "Comment (required to reject)"
+msgstr "التعليق (مطلوب عند الرفض)"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__comment
+msgid "Comment / Reason"
+msgstr "التعليق / السبب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__company_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__company_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__company_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__company_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_config
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_decision_wizard_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Contract end / termination"
+msgstr "انتهاء العقد / إنهاء العقد"
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_cook
+msgid "Cook"
+msgstr "طباخ"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__create_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__create_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__custody
+msgid "Custody (lost / damaged)"
+msgstr "عهدة (مفقودة / تالفة)"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__date_from
+msgid "Date From"
+msgstr "من تاريخ"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__date_to
+msgid "Date To"
+msgstr "إلى تاريخ"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__deadline
+msgid "Deadline"
+msgstr "الموعد النهائي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__decided_on
+msgid "Decided On"
+msgstr "تاريخ القرار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__decided_by_id
+msgid "Decided by"
+msgstr "صاحب القرار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__decision
+msgid "Decision"
+msgstr "القرار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__decision_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__decision_date
+msgid "Decision Date"
+msgstr "تاريخ القرار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__adj_type__deduction
+msgid "Deduction"
+msgstr "خصم"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Deductions"
+msgstr "الخصومات"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Default SLA"
+msgstr "مهلة الاعتماد الافتراضية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_default_sla_hours model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_default_sla_hours
+msgid "Default approval SLA (hours)"
+msgstr "مهلة الاعتماد الافتراضية (بالساعات)"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_approval_flow
+msgid "Define who approves each type of request"
+msgstr "حدّد من يعتمد كل نوع من الطلبات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__delegate_id
+msgid "Delegate to"
+msgstr "التفويض إلى"
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_delegations
+msgid "Delegations"
+msgstr "التفويضات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__department_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__department_id model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Department"
+msgstr "القسم"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__department
+msgid "Department manager"
+msgstr "مدير القسم"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__name
+msgid "Description"
+msgstr "الوصف"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0 model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__manager
+msgid "Direct manager"
+msgstr "المدير المباشر"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_decision_wizard_form
+msgid "Discard"
+msgstr "تجاهل"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__disciplinary
+msgid "Disciplinary penalty"
+msgstr "جزاء تأديبي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__display_name model:ir.model.fields,field_description:bs_hr_ess_base.field_res_users__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__done model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__done
+msgid "Done"
+msgstr "منجز"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__draft model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_driver
+msgid "Driver"
+msgstr "سائق"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__duration_hours
+msgid "Duration Hours"
+msgstr "المدة (ساعات)"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_app_name model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_app_name
+msgid "ESS App Name"
+msgstr "اسم تطبيق الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_delegation
+msgid "ESS Approval Delegation"
+msgstr "تفويض الاعتماد - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_flow
+msgid "ESS Approval Flow"
+msgstr "مسار الاعتماد - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_flow_step
+msgid "ESS Approval Flow Step"
+msgstr "مرحلة مسار الاعتماد - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_line
+msgid "ESS Approval Line"
+msgstr "سطر الاعتماد - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_brand_color model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_brand_color
+msgid "ESS Brand Color"
+msgstr "لون هوية الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:res.groups,name:bs_hr_ess_base.group_ess_grievance_committee
+msgid "ESS Grievance Committee"
+msgstr "لجنة التظلمات - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_ess_otp
+msgid "ESS One-Time Login Code"
+msgstr "رمز الدخول لمرة واحدة - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_payroll_adjustment
+msgid "ESS Payroll Adjustment"
+msgstr "تسوية الراتب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:res.groups,name:bs_hr_ess_base.group_ess_payroll_officer
+msgid "ESS Payroll Officer"
+msgstr "موظف الرواتب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_notification
+msgid "ESS Portal Notification"
+msgstr "إشعار بوابة الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_profile_change
+msgid "ESS Profile Update Request"
+msgstr "طلب تحديث البيانات - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_request_mixin
+msgid "ESS Request"
+msgstr "طلب الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_ess_decision_wizard
+msgid "ESS approve / reject wizard"
+msgstr "معالج الاعتماد / الرفض - الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_otp_login model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_otp_login
+msgid "ESS: Login with mobile + OTP"
+msgstr "الخدمة الذاتية: الدخول برقم الجوال + رمز التحقق"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.server,name:bs_hr_ess_base.ir_cron_ess_notification_gc_ir_actions_server
+msgid "ESS: clean old portal notifications"
+msgstr "الخدمة الذاتية: حذف إشعارات البوابة القديمة"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.server,name:bs_hr_ess_base.ir_cron_ess_escalate_ir_actions_server
+msgid "ESS: escalate overdue approvals"
+msgstr "الخدمة الذاتية: تصعيد الاعتمادات المتأخرة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Emergency contact"
+msgstr "جهة الاتصال للطوارئ"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Emergency contact name"
+msgstr "اسم جهة الاتصال للطوارئ"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Emergency contact phone"
+msgstr "هاتف جهة الاتصال للطوارئ"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_hr_employee model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__employee_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__employee_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__employee_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__employee_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__employee_id model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0 model:res.groups.privilege,name:bs_hr_ess_base.res_groups_privilege_ess model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login model_terms:ir.ui.view,arch_db:bs_hr_ess_base.portal_my_home_ess
+msgid "Employee Self-Service"
+msgstr "الخدمة الذاتية للموظفين"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Employee number"
+msgstr "الرقم الوظيفي"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Employee portal"
+msgstr "بوابة الموظفين"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__employee_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__ess_employee_count model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_employees
+msgid "Employees"
+msgstr "الموظفون"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_portal_landing model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_portal_landing
+msgid "Employees land on Self-Service"
+msgstr "توجيه الموظفين إلى الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.login_ess_link
+msgid "Employees: sign in with your mobile number"
+msgstr "الموظفون: سجّل الدخول برقم جوالك"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "End of service calculator"
+msgstr "حاسبة مكافأة نهاية الخدمة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__escalation_user_ids
+msgid "Escalate to"
+msgstr "التصعيد إلى"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__escalated
+msgid "Escalated"
+msgstr "تم التصعيد"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Escalated approval: %s"
+msgstr "اعتماد مُصعَّد: %s"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/approval.py:0
+msgid "Escalated automatically (SLA exceeded)"
+msgstr "تم التصعيد تلقائيًا (تجاوز مهلة الاعتماد)"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__escalation
+msgid "Escalation"
+msgstr "التصعيد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__ess_notification_ids
+msgid "Ess Notification"
+msgstr "إشعار الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid ""
+"Estimate based on the Saudi Labor Law (articles 84 and 85): half a month per year for the first\n"
+"                five years, then a full month per year. On resignation: nothing before 2 years, one third\n"
+"                between 2 and 5 years, two thirds between 5 and 10 years, full award after 10 years.\n"
+"                The final amount is computed by payroll on the basis of your last wage."
+msgstr ""
+"تقدير مبني على نظام العمل السعودي (المادتان 84 و85): أجر نصف شهر عن كل سنة من السنوات\n"
+"                الخمس الأولى، ثم أجر شهر كامل عن كل سنة. عند الاستقالة: لا شيء قبل سنتين، والثلث\n"
+"                بين سنتين و5 سنوات، والثلثان بين 5 و10 سنوات، والمكافأة كاملة بعد 10 سنوات.\n"
+"                يُحتسب المبلغ النهائي من قِبل الرواتب بناءً على آخر راتب لك."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Estimated end of service award"
+msgstr "مكافأة نهاية الخدمة التقديرية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__expire_at
+msgid "Expire At"
+msgstr "ينتهي في"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/profile_change.py:0
+msgid "Fill at least one field to update."
+msgstr "عبّئ حقلًا واحدًا على الأقل للتحديث."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__flow_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__flow_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__flow_id
+msgid "Flow"
+msgstr "المسار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__step_id
+msgid "Flow step"
+msgstr "مرحلة المسار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_type_icon model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "For employees without an e-mail. Requires the SMS module."
+msgstr "للموظفين الذين ليس لديهم بريد إلكتروني. يتطلب تطبيق الرسائل النصية (SMS)."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Full award"
+msgstr "المكافأة كاملة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_ess_invite
+msgid "Grant ESS portal access"
+msgstr "منح صلاحية بوابة الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_ess_invite_form
+msgid "Grant access"
+msgstr "منح الصلاحية"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model:ir.actions.server,name:bs_hr_ess_base.action_server_ess_invite model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Grant self-service access"
+msgstr "منح صلاحية الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__group_id
+msgid "Group"
+msgstr "المجموعة"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0 model:res.groups,name:bs_hr_ess_base.group_ess_hr_manager
+msgid "HR Manager"
+msgstr "مدير الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model:res.groups,name:bs_hr_ess_base.group_ess_hr_officer
+msgid "HR Officer"
+msgstr "موظف الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__hr
+msgid "HR officers"
+msgstr "موظفو الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_base.flow_profile_change_step_hr
+msgid "HR verification"
+msgstr "تحقق الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__has_message model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__has_message model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+msgid "Hello"
+msgstr "مرحبًا"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Home"
+msgstr "الرئيسية"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Human Resources"
+msgstr "الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "IBAN"
+msgstr "الآيبان (IBAN)"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__id model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__id model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__id model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__id model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__id model:ir.model.fields,field_description:bs_hr_ess_base.field_res_users__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "ID / Iqama number"
+msgstr "رقم الهوية / الإقامة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تتطلب انتباهك."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فهناك رسائل بها خطأ في التسليم."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "If this number is registered, an SMS code has been sent."
+msgstr "إذا كان هذا الرقم مسجلًا، فقد أُرسل رمز عبر رسالة نصية."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__in_approval model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__in_approval
+msgid "In Approval"
+msgstr "قيد الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Internal note"
+msgstr "ملاحظة داخلية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__internal
+msgid "Internal user"
+msgstr "مستخدم داخلي"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/otp_login.py:0
+msgid "Invalid or expired code."
+msgstr "الرمز غير صحيح أو منتهي الصلاحية."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__ip_address
+msgid "Ip Address"
+msgstr "عنوان IP"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__is_read
+msgid "Is Read"
+msgstr "مقروء"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Joining date"
+msgstr "تاريخ المباشرة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__write_uid model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__write_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+msgid "Latest updates"
+msgstr "آخر المستجدات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow__company_id
+msgid "Leave empty to use the flow in all companies."
+msgstr "اتركه فارغًا لاستخدام المسار في جميع الشركات."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__loan
+msgid "Loan installment"
+msgstr "قسط سلفة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_adjustment
+msgid ""
+"Loan installments, custody deductions, penalties and objection settlements land here and are\n"
+"                pushed to the next payslip."
+msgstr ""
+"تظهر هنا أقساط السلف وخصومات العهد والجزاءات وتسويات الاعتراضات، وتُرحَّل\n"
+"                إلى قسيمة الراتب التالية."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Login with mobile + SMS code"
+msgstr "الدخول برقم الجوال + رمز الرسالة النصية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Manager"
+msgstr "المدير"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__manager_2
+msgid "Manager's manager"
+msgstr "مدير المدير"
+
+#. module: bs_hr_ess_base
+#: model:res.groups,comment:bs_hr_ess_base.group_ess_payroll_officer
+msgid "Manages payroll adjustments, loans and payslip objections."
+msgstr "يدير تسويات الرواتب والسلف والاعتراضات على قسائم الراتب."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_notifications
+msgid "Mark all as read"
+msgstr "تعليم الكل كمقروء"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Mark as applied"
+msgstr "تعليم كمطبّق"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Mobile number"
+msgstr "رقم الجوال"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Month"
+msgstr "الشهر"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__escalation__next
+msgid "Move to next step"
+msgstr "الانتقال إلى المرحلة التالية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_my_approvals model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_approvals
+msgid "My Approvals"
+msgstr "اعتماداتي"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_url,name:bs_hr_ess_base.action_ess_open_portal model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_my_portal
+msgid "My Self-Service"
+msgstr "خدمتي الذاتية"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "My profile"
+msgstr "ملفي"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "My requests"
+msgstr "طلباتي"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "My team"
+msgstr "فريقي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Nationality"
+msgstr "الجنسية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_list
+msgid "Net"
+msgstr "الصافي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_iban
+msgid "New IBAN"
+msgstr "الآيبان (IBAN) الجديد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_private_street
+msgid "New address"
+msgstr "العنوان الجديد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_private_city
+msgid "New city"
+msgstr "المدينة الجديدة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_emergency_contact
+msgid "New emergency contact"
+msgstr "جهة الاتصال للطوارئ الجديدة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_emergency_phone
+msgid "New emergency phone"
+msgstr "هاتف الطوارئ الجديد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_mobile
+msgid "New mobile"
+msgstr "رقم الجوال الجديد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_private_email
+msgid "New private email"
+msgstr "البريد الشخصي الجديد"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_layout model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_new model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "New request"
+msgstr "طلب جديد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_summary model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "No"
+msgstr "لا"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__none
+msgid "No access"
+msgstr "بدون صلاحية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_notifications
+msgid "No notification."
+msgstr "لا توجد إشعارات."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_adjustment
+msgid "No payroll adjustment"
+msgstr "بدون تسوية راتب"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "No request yet."
+msgstr "لا توجد طلبات بعد."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__note model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__note model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__note
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__employee_note model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__employee_note model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_my_approvals
+msgid "Nothing waiting for you"
+msgstr "لا يوجد ما ينتظرك"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_layout model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_notifications
+msgid "Notifications"
+msgstr "الإشعارات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Only draft or cancelled requests can be deleted."
+msgstr "لا يمكن حذف إلا الطلبات المسودة أو الملغاة."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Only draft requests can be submitted."
+msgstr "لا يمكن إرسال إلا الطلبات المسودة."
+
+#. module: bs_hr_ess_base
+#: model:res.groups,comment:bs_hr_ess_base.group_ess_grievance_committee
+msgid "Only members of this group can read complaints and grievances."
+msgstr "لا يطّلع على الشكاوى والتظلمات إلا أعضاء هذه المجموعة."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Only rejected or cancelled requests can be reset."
+msgstr "لا يمكن إعادة تعيين إلا الطلبات المرفوضة أو الملغاة."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__condition_domain
+msgid "Only when"
+msgstr "فقط عندما"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_search
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Open Self-Service after login"
+msgstr "فتح الخدمة الذاتية بعد تسجيل الدخول"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_list
+msgid "Open request"
+msgstr "فتح الطلب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow__condition_domain
+msgid "Optional domain evaluated on the request: the first matching flow (by sequence) is used."
+msgstr "شرط اختياري (domain) يُقيَّم على الطلب: يُستخدم أول مسار مطابق (حسب الترتيب)."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Passport"
+msgstr "جواز السفر"
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_payroll
+msgid "Payroll"
+msgstr "الرواتب"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_adjustment model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__ess_adjustment_ids model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_adjustment
+msgid "Payroll Adjustments"
+msgstr "تسويات الرواتب"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Payroll adjustments"
+msgstr "تسويات الرواتب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__date
+msgid "Payroll date"
+msgstr "تاريخ الراتب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__objection
+msgid "Payslip objection"
+msgstr "اعتراض على قسيمة الراتب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__pending model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__state__pending model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Pending requests"
+msgstr "الطلبات قيد الانتظار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__date_pending
+msgid "Pending since"
+msgstr "قيد الانتظار منذ"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Personal information"
+msgstr "البيانات الشخصية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_no_employee
+msgid "Please contact Human Resources."
+msgstr "يرجى التواصل مع الموارد البشرية."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Please give a reason for the rejection."
+msgstr "يرجى ذكر سبب الرفض."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__portal_source model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__portal_source
+msgid "Portal Source"
+msgstr "مصدر البوابة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_res_company__ess_portal_landing model:ir.model.fields,help:bs_hr_ess_base.field_res_config_settings__ess_portal_landing
+msgid "Portal employees (also in the Odoo iOS / Android app) open their self-service home after login."
+msgstr "يفتح موظفو البوابة (وكذلك في تطبيق أودو على iOS / Android) الصفحة الرئيسية للخدمة الذاتية بعد تسجيل الدخول."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Portal employees land on /my/hr, in the browser and in the Odoo iOS / Android app."
+msgstr "يُوجَّه موظفو البوابة إلى /my/hr في المتصفح وفي تطبيق أودو على iOS / Android."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__portal
+msgid "Portal user"
+msgstr "مستخدم البوابة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Private e-mail"
+msgstr "البريد الشخصي"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Private phone"
+msgstr "الهاتف الشخصي"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_profile_change model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_profile_change
+msgid "Profile Updates"
+msgstr "تحديثات البيانات"
+
+#. module: bs_hr_ess_base
+#: model:bs.hr.approval.flow,name:bs_hr_ess_base.flow_profile_change
+msgid "Profile update"
+msgstr "تحديث البيانات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__name model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0 model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_ess_decision_wizard__decision__reject model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__rejected model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__rejection_reason model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__rejection_reason
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Rejection reason"
+msgstr "سبب الرفض"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__escalation__none
+msgid "Remind only"
+msgstr "تذكير فقط"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__reminder_sent
+msgid "Reminder Sent"
+msgstr "تم إرسال التذكير"
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_reporting
+msgid "Reporting"
+msgstr "التقارير"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__request_name
+msgid "Request Name"
+msgstr "اسم الطلب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__res_model
+msgid "Request Type"
+msgstr "نوع الطلب"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Request approved"
+msgstr "تم اعتماد الطلب"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Request cancelled."
+msgstr "تم إلغاء الطلب."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Request rejected"
+msgstr "تم رفض الطلب"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__portal_source model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__portal_source
+msgid "Request submitted from the employee portal"
+msgstr "طلب مُرسَل من بوابة الموظفين"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Request type"
+msgstr "نوع الطلب"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Requested changes"
+msgstr "التغييرات المطلوبة"
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_requests
+msgid "Requests"
+msgstr "الطلبات"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__res_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__res_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__res_id
+msgid "Res"
+msgstr "معرّف السجل"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__res_model model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__res_model model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__res_model
+msgid "Res Model"
+msgstr "نموذج السجل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Reset to draft"
+msgstr "إعادة إلى مسودة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Reset to pending"
+msgstr "إعادة إلى قيد الانتظار"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Resignation"
+msgstr "استقالة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__result
+msgid "Result"
+msgstr "النتيجة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_offline
+msgid "Retry"
+msgstr "إعادة المحاولة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "SA0000000000000000000000"
+msgstr "SA0000000000000000000000"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__sla_hours
+msgid "SLA (hours)"
+msgstr "مهلة الاعتماد (بالساعات)"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "SLA breached"
+msgstr "تجاوز مهلة الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_root model_terms:ir.ui.view,arch_db:bs_hr_ess_base.hr_work_location_form_view_ess model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Self-Service"
+msgstr "الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__ess_access
+msgid "Self-Service Access"
+msgstr "صلاحية الخدمة الذاتية"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Send"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__send_invitation
+msgid "Send Invitation"
+msgstr "إرسال الدعوة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Send code"
+msgstr "إرسال الرمز"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_ess_invite__send_invitation
+msgid "Send the sign-up e-mail to employees having an e-mail."
+msgstr "إرسال بريد التسجيل للموظفين الذين لديهم بريد إلكتروني."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Send to HR"
+msgstr "إرسال إلى الموارد البشرية"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__sequence model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__sequence model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+msgid "Services"
+msgstr "الخدمات"
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_ess_settings model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_settings
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Shown on the employees' phones (installable app)."
+msgstr "يظهر على جوالات الموظفين (تطبيق قابل للتثبيت)."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Sign in"
+msgstr "تسجيل الدخول"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Sign in with e-mail and password"
+msgstr "تسجيل الدخول بالبريد الإلكتروني وكلمة المرور"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_no_employee model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Sign out"
+msgstr "تسجيل الخروج"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__signed_amount
+msgid "Signed Amount"
+msgstr "المبلغ بالإشارة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__skipped
+msgid "Skipped"
+msgstr "تم التخطي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__sla_breached
+msgid "Sla Breached"
+msgstr "تجاوز مهلة الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__source_ref model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Source"
+msgstr "المصدر"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__source_id
+msgid "Source ID"
+msgstr "معرّف المصدر"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__source_model
+msgid "Source Model"
+msgstr "نموذج المصدر"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__users
+msgid "Specific users"
+msgstr "مستخدمون محددون"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__state model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__state model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__state model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_state model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مضى\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__name
+msgid "Step"
+msgstr "المرحلة"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__step_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid "Steps"
+msgstr "المراحل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid ""
+"Steps without any approver (e.g. no manager set) are skipped automatically.\n"
+"                                An employee can never approve his own request.\n"
+"                                Step conditions use a domain on the request, e.g. [(\"amount\", \"&gt;\", 5000)]."
+msgstr ""
+"تُتخطّى المراحل التي ليس لها معتمِد (مثل عدم تحديد مدير) تلقائيًا.\n"
+"                                لا يمكن للموظف أبدًا اعتماد طلبه بنفسه.\n"
+"                                تستخدم شروط المراحل شرط domain على الطلب، مثل [(\"amount\", \"&gt;\", 5000)]."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__submit_date model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__submit_date
+msgid "Submit Date"
+msgstr "تاريخ الإرسال"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__submitted model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__submitted
+msgid "Submitted"
+msgstr "مُرسَل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Supporting document (IBAN certificate...)"
+msgstr "مستند داعم (شهادة الآيبان...)"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "Team members ("
+msgstr "أعضاء الفريق ("
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__date
+msgid "The adjustment is picked up by the first payslip ending on or after this date."
+msgstr "تُضاف التسوية إلى أول قسيمة راتب تنتهي في هذا التاريخ أو بعده."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.constraint,message:bs_hr_ess_base.constraint_bs_hr_payroll_adjustment_amount_positive
+msgid "The amount must be positive."
+msgstr "يجب أن يكون المبلغ موجبًا."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.constraint,message:bs_hr_ess_base.constraint_bs_hr_approval_delegation_check_dates
+msgid "The end date must be after the start date."
+msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "The file %s is larger than 10 MB."
+msgstr "حجم الملف %s أكبر من 10 ميجابايت."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow_step__condition_domain
+msgid "The step is skipped when the request does not match this domain (e.g. [(\"amount\", \">\", 5000)])."
+msgstr "تُتخطّى المرحلة عندما لا يطابق الطلب هذا الشرط (مثل [(\"amount\", \">\", 5000)])."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "There is nothing to approve on %s."
+msgstr "لا يوجد ما يُعتمد في %s."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "There is nothing to reject on %s."
+msgstr "لا يوجد ما يُرفض في %s."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "This request can no longer be cancelled."
+msgstr "لم يعد بالإمكان إلغاء هذا الطلب."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "This request cannot be cancelled."
+msgstr "لا يمكن إلغاء هذا الطلب."
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__title
+msgid "Title"
+msgstr "العنوان"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_search
+msgid "To approve"
+msgstr "بانتظار الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "To approve by me"
+msgstr "بانتظار اعتمادي"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/otp.py:0
+msgid "Too many codes requested. Please try again later."
+msgstr "تم طلب رموز كثيرة. يرجى المحاولة لاحقًا."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_list
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__adj_type
+msgid "Type"
+msgstr "النوع"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Unread"
+msgstr "غير مقروء"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Update my details"
+msgstr "تحديث بياناتي"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__url
+msgid "Url"
+msgstr "الرابط"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Use another number"
+msgstr "استخدام رقم آخر"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__used
+msgid "Used"
+msgstr "مستخدم"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_hr_work_location__ess_manager_id
+msgid "Used by approval flows with the \"Branch manager\" approver type."
+msgstr "يُستخدم في مسارات الاعتماد ذات نوع المعتمِد \"مدير الفرع\"."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Used when a flow step has no SLA of its own."
+msgstr "يُستخدم عندما لا تكون لمرحلة المسار مهلة اعتماد خاصة بها."
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_res_users model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__group
+msgid "Users of a group"
+msgstr "مستخدمو مجموعة"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Wage used"
+msgstr "الراتب المعتمد في الحساب"
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_waiter
+msgid "Waiter"
+msgstr "نادل"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__waiting
+msgid "Waiting"
+msgstr "بالانتظار"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__current_approver_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__current_approver_ids
+msgid "Waiting for"
+msgstr "بانتظار"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Waiting for approval"
+msgstr "بانتظار الاعتماد"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "Waiting for my approval ("
+msgstr "بانتظار اعتمادي ("
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__website_message_ids model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__website_message_ids model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_approval_flow
+msgid "Without a flow, requests go to the direct manager and then to HR."
+msgstr "في حال عدم وجود مسار، تُرسل الطلبات إلى المدير المباشر ثم إلى الموارد البشرية."
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_hr_work_location model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__work_location_id
+msgid "Work Location"
+msgstr "موقع العمل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Work e-mail"
+msgstr "بريد العمل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Work information"
+msgstr "بيانات العمل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Work phone"
+msgstr "هاتف العمل"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Write a message to HR..."
+msgstr "اكتب رسالة إلى الموارد البشرية..."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Years of service"
+msgstr "سنوات الخدمة"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Yes"
+msgstr "نعم"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "You are not an approver of %s."
+msgstr "لست من المعتمِدين لـ %s."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_offline
+msgid "You are offline"
+msgstr "أنت غير متصل بالإنترنت"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_no_employee
+msgid "Your account is not linked to an employee."
+msgstr "حسابك غير مرتبط بموظف."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Your request %(name)s has been rejected. %(reason)s"
+msgstr "تم رفض طلبك %(name)s. %(reason)s"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Your request %s has been approved."
+msgstr "تم اعتماد طلبك %s."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/otp.py:0
+msgid "Your self-service login code is %(code)s. It expires in %(min)s minutes."
+msgstr "رمز الدخول للخدمة الذاتية هو %(code)s. تنتهي صلاحيته خلال %(min)s دقائق."
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Your update request was sent to HR."
+msgstr "تم إرسال طلب التحديث إلى الموارد البشرية."
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid "e.g. Loans above 5,000"
+msgstr "مثال: السلف التي تزيد عن 5,000"
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "hours"
+msgstr "ساعات"

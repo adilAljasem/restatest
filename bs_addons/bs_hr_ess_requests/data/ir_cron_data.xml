@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_ess_leave_return" model="ir.cron">
+        <field name="name">ESS: check return from time off</field>
+        <field name="model_id" ref="model_bs_hr_leave_request"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_check_return()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+    <record id="ir_cron_ess_custody_renewal" model="ir.cron">
+        <field name="name">ESS: custody renewal reminders</field>
+        <field name="model_id" ref="model_bs_hr_custody_holding"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_renewal_reminder()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+    <record id="ir_cron_ess_loan_sync" model="ir.cron">
+        <field name="name">ESS: update loan balances from payroll</field>
+        <field name="model_id" ref="model_bs_hr_loan"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_sync_loans()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+</odoo>

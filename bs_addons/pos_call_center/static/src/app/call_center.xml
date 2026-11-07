@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Call center POS: replace the payment / kitchen buttons by "Send to Branch" -->
+    <t t-name="pos_call_center.ActionpadWidget" t-inherit="point_of_sale.ActionpadWidget" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('actionpad')]" position="attributes">
+            <attribute name="t-att-class">{'o_cc_terminal': pos.config.cc_is_terminal}</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('actionpad')]" position="inside">
+            <button t-if="pos.config.cc_is_terminal and currentOrder"
+                    class="o_cc_dispatch_btn btn btn-primary btn-lg py-3 w-100 d-flex align-items-center justify-content-center"
+                    t-att-disabled="currentOrder.isEmpty()"
+                    t-on-click="() => pos.ccDispatch(currentOrder)">
+                <i class="fa fa-paper-plane me-2"/>
+                <span>Send to Branch</span>
+            </button>
+        </xpath>
+    </t>
+
+    <t t-name="pos_call_center.CCDispatchDialog">
+        <Dialog title.translate="Send to Branch" size="'md'">
+            <div class="mb-3 p-2 rounded bg-light">
+                <div t-if="partner" class="fw-bold"><i class="fa fa-user me-2"/><t t-esc="partner.name"/></div>
+                <div t-if="partner and partner.phone"><i class="fa fa-phone me-2"/><t t-esc="partner.phone"/></div>
+                <div t-if="props.order.preset_id"><i class="fa fa-tag me-2"/><t t-esc="props.order.preset_id.name"/></div>
+                <div class="fs-5 fw-bold mt-1"><t t-esc="total"/></div>
+            </div>
+            <div t-if="zones.length" class="mb-3">
+                <label class="form-label fw-bold">Zone</label>
+                <select class="form-select form-select-lg" t-on-change="selectZone">
+                    <option value="">All zones</option>
+                    <option t-foreach="zones" t-as="zone" t-key="zone.id" t-att-value="zone.id"
+                            t-att-selected="zone.id === state.zoneId" t-esc="zone.name"/>
+                </select>
+            </div>
+            <label class="form-label fw-bold">Open branches</label>
+            <div t-if="!branches.length" class="alert alert-warning">No open branch serves this zone right now.</div>
+            <div class="d-grid gap-2">
+                <button t-foreach="branches" t-as="branch" t-key="branch.id"
+                        class="btn btn-lg text-start d-flex justify-content-between align-items-center"
+                        t-att-class="branch.id === state.configId ? 'btn-primary' : 'btn-outline-secondary'"
+                        t-on-click="() => this.selectBranch(branch)">
+                    <span><i class="fa fa-cutlery me-2"/><t t-esc="branch.name"/></span>
+                    <i t-if="branch.id === state.configId" class="fa fa-check"/>
+                </button>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg" t-att-disabled="!state.configId" t-on-click="confirm">
+                    <i class="fa fa-paper-plane me-2"/>Send
+                </button>
+                <button class="btn btn-secondary btn-lg" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <t t-name="pos_call_center.CCBranchButton">
+        <button t-if="visible" type="button"
+                class="o_pos_callcenter_btn btn btn-lg shadow"
+                t-att-class="count ? 'btn-warning o_pos_callcenter_pulse' : 'btn-secondary'"
+                t-on-click="openDialog" title="Call Center Orders">
+            <i class="fa fa-phone me-2"/>
+            <span>Call Center</span>
+            <span t-if="count" class="badge rounded-pill text-bg-danger ms-2" t-esc="count"/>
+        </button>
+    </t>
+
+    <t t-name="pos_call_center.CCOrdersDialog">
+        <Dialog title.translate="Call Center Orders – waiting for payment" size="'lg'">
+            <div t-if="!orders.length" class="text-center text-muted p-5">
+                <i class="fa fa-inbox fa-3x mb-3"/>
+                <div>No call center order is waiting in this branch.</div>
+            </div>
+            <div t-foreach="orders" t-as="order" t-key="order.uuid" class="card mb-3 o_pos_callcenter_card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong t-esc="order.cc_ref"/>
+                        <span class="badge text-bg-dark ms-2">#<t t-esc="order.tracking_number"/></span>
+                        <span t-if="order.preset_id" class="badge text-bg-info ms-1" t-esc="order.preset_id.name"/>
+                        <span t-if="isSentToKitchen(order)" class="badge text-bg-success ms-1">
+                            <i class="fa fa-cutlery me-1"/>Sent to kitchen
+                        </span>
+                        <span t-else="" class="badge text-bg-warning ms-1">Not sent to kitchen</span>
+                    </div>
+                    <div class="fw-bold fs-5" t-esc="total(order)"/>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div t-if="order.getPartner()"><i class="fa fa-user me-2"/><t t-esc="order.getPartner().name"/></div>
+                            <div t-if="phone(order)"><i class="fa fa-phone me-2"/><t t-esc="phone(order)"/></div>
+                            <div t-if="address(order)"><i class="fa fa-map-marker me-2"/><t t-esc="address(order)"/></div>
+                        </div>
+                        <div class="col-md-5 text-muted small">
+                            <div><i class="fa fa-headphones me-2"/><t t-esc="order.cc_call_center_name"/></div>
+                            <div t-if="order.preset_time"><i class="fa fa-clock-o me-2"/><t t-esc="presetTime(order)"/></div>
+                            <div><i class="fa fa-list me-2"/><t t-esc="order.lines.length"/> line(s)</div>
+                        </div>
+                    </div>
+                    <div t-if="ui.transferFor === order.id" class="mt-2 d-flex gap-2">
+                        <select class="form-select" t-model="ui.target">
+                            <option t-foreach="ui.targets" t-as="target" t-key="target.id"
+                                    t-att-value="target.id" t-esc="target.name"/>
+                        </select>
+                        <button class="btn btn-primary text-nowrap" t-att-disabled="ui.busy" t-on-click="() => this.confirmTransfer(order)">Transfer</button>
+                        <button class="btn btn-light" t-on-click="() => this.ui.transferFor = false">Back</button>
+                    </div>
+                    <div t-else="" class="mt-2 d-flex gap-2">
+                        <button class="btn btn-success btn-lg flex-grow-1" t-on-click="() => this.open(order)">
+                            <i class="fa fa-money me-1"/> Open for Payment
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg" t-on-click="() => this.showTransfer(order)">
+                            <i class="fa fa-exchange me-1"/> Transfer
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <button class="btn btn-secondary" t-on-click="props.close">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

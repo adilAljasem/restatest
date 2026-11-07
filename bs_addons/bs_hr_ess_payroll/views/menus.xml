@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_payslip_objections" name="Payslip Objections" parent="bs_hr_ess_base.menu_ess_payroll"
+              sequence="20" action="action_payslip_objection"/>
+    <menuitem id="menu_ess_payslip_objections_requests" name="Payslip Objections"
+              parent="bs_hr_ess_base.menu_ess_requests" sequence="70" action="action_payslip_objection"/>
+</odoo>

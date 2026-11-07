@@ -1,0 +1,81 @@
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+import pytz
+
+from odoo import api, models
+from odoo.fields import Domain
+
+
+class HrVersion(models.Model):
+    _inherit = 'hr.version'
+    _description = 'Employee Contract'
+
+    # override to add work_entry_type from leave
+    def _get_leave_work_entry_type(self, leave):
+        if leave.holiday_id:
+            return leave.holiday_id.holiday_status_id.work_entry_type_id
+        else:
+            return leave.work_entry_type_id
+
+    def _get_more_vals_leave_interval(self, interval, leaves):
+        result = super()._get_more_vals_leave_interval(interval, leaves)
+        holiday = self.env['hr.leave']
+        for leave in leaves:
+            if interval[0] >= leave[0] and interval[1] <= leave[1]:
+                for rcleave in leave[2]:
+                    if rcleave.holiday_id and (not holiday or rcleave.holiday_id.id > holiday.id):
+                        holiday = rcleave.holiday_id
+        if holiday:
+            result.append(('leave_id', holiday.id))
+        return result
+
+    def _get_interval_leave_work_entry_type(self, interval, leaves, bypassing_codes):
+        # returns the work entry time related to the leave that
+        # includes the whole interval.
+        # Overriden in hr_work_entry_holiday to select the
+        # global time off first (eg: Public Holiday > Home Working)
+        self.ensure_one()
+        if 'work_entry_type_id' in interval[2]:
+            work_entry_types = interval[2].work_entry_type_id
+            if work_entry_types and work_entry_types[:1].code in bypassing_codes:
+                return work_entry_types[:1]
+            if interval[2]._name == 'resource.calendar.attendance' and interval[2] and not any(a._is_work_period() for a in interval[2]):
+                return work_entry_types[:1]
+
+        interval_start = interval[0].astimezone(pytz.utc).replace(tzinfo=None)
+        interval_stop = interval[1].astimezone(pytz.utc).replace(tzinfo=None)
+        including_rcleaves = [
+            rcleave
+            for leave in leaves
+            for rcleave in leave[2]
+            if interval_start >= rcleave.date_from and interval_stop <= rcleave.date_to
+        ]
+        including_global_rcleaves = [l for l in including_rcleaves if not l.holiday_id]
+        including_holiday_rcleaves = [l for l in including_rcleaves if l.holiday_id]
+        rc_leave = False
+
+        # Example: In CP200: Long term sick > Public Holidays (which is global)
+        if bypassing_codes:
+            bypassing_rc_leave = [l for l in including_holiday_rcleaves if l.holiday_id.holiday_status_id.work_entry_type_id.code in bypassing_codes]
+        else:
+            bypassing_rc_leave = []
+
+        if bypassing_rc_leave:
+            rc_leave = bypassing_rc_leave[0]
+        elif including_global_rcleaves:
+            rc_leave = including_global_rcleaves[0]
+        elif including_holiday_rcleaves:
+            # A later employee time off overlays an earlier one when both are kept.
+            rc_leave = max(including_holiday_rcleaves, key=lambda leave: leave.id)
+        if rc_leave:
+            return self._get_leave_work_entry_type_dates(rc_leave, interval_start, interval_stop, self.employee_id)
+        return self.env.ref('hr_work_entry.work_entry_type_leave')
+
+    def _get_sub_leave_domain(self):
+        # see https://github.com/odoo/enterprise/pull/15091
+        return super()._get_sub_leave_domain() | Domain('holiday_id.employee_id', 'in', self.employee_id.ids)
+
+    @api.model
+    def _generate_work_entries_postprocess_adapt_to_calendar(self, vals):
+        res = super()._generate_work_entries_postprocess_adapt_to_calendar(vals)
+        return res or (not 'work_entry_type_id' not in vals and vals.get('leave_id'))

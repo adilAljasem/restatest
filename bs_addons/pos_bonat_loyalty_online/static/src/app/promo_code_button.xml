@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        The "Use Bonat Coupon" control button.
+
+        Owl 3 requires the `this.` prefix on component members. The on-premise
+        template reads
+            t-if="pos.config.company_id?.enable_bonat_integration or pos.company?.enable_bonat_integration"
+        which resolves to nothing here for two separate reasons: the missing
+        `this.`, and the fact that the Bonat company fields are manual x_ fields
+        that Odoo does not preload into the POS payload. Both are handled by
+        `this.bonatEnabled`, backed by the startup read in bonat_store.js.
+    -->
+    <t t-name="pos_bonat_loyalty_online.BonatCodeButton">
+        <button t-if="this.bonatEnabled"
+                type="button"
+                t-att-class="this.buttonClass"
+                t-on-click="() => this.fetch_bonat_code()">
+            <i class="fa fa-barcode me-1" role="img" aria-hidden="true"/>
+            <t t-esc="this.buttonLabel"/>
+        </button>
+    </t>
+
+    <!--
+        Odoo 19 no longer registers control buttons through
+        ProductScreen.addControlButton, so the button is injected into the core
+        ControlButtons template. Verified against saas~19.4: the
+        .control-buttons-modal anchor is still present.
+    -->
+    <t t-name="pos_bonat_loyalty_online.ControlButtonsBonat"
+       t-inherit="point_of_sale.ControlButtons"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('control-buttons-modal')]" position="inside">
+            <BonatCodeButton/>
+        </xpath>
+    </t>
+
+</templates>

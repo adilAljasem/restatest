@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="product_modifiers.SliceProductPopup">
+        <Dialog title="'Extra products'" footer="false">
+            <div t-ref="root" class="popup popup-text popup-lg slice-product-popup">
+                <header class="title modal-header justify-content-center">
+                    <h3><t t-esc="props.title" /></h3>
+                </header>
+                <main class="body col-lg-12 col-md-6 col-sm-12" style="display:flex;">
+                    <t t-foreach="this.props.products" t-as="modifer" t-key="modifer_index">
+                        <div class="product-list">
+                            <h3 class="sub-heading">
+                                <t t-esc="modifer.product.display_name" />
+                            </h3>
+                            <t t-foreach="modifer.attributes" t-as="attribute" t-key="attribute_index">
+                                <t t-foreach="attribute.values" t-as="value" t-key="value_index">
+                                    <t t-set="name" t-value="modifer.product.display_name + ' (' + value.name + ')'" />
+                                    <article t-att-data-product-id="modifer.product.id" t-att-data-attribute-value-id="value.id" t-att-data-attribute-value-name="value.name" t-att-data-attribute-price-extra="value.price_extra" class="product" t-on-click="addRemoveSlices">
+                                        <div class="product-img">
+                                            <img t-att-src="modifer.image_url" t-att-alt="name" />
+                                            <span t-if="value.price_extra" class="price-tag">
+                                                +
+                                                <t t-esc="env.utils.formatCurrency(value.price_extra)" />
+                                            </span>
+                                        </div>
+                                    </article>
+                                </t>
+                            </t>
+                            <t t-if="!modifer.attributes.length">
+                                <t t-set="name" t-value="modifer.product.display_name" />
+                                <article t-att-data-product-id="modifer.product.id" class="product" t-on-click="addRemoveSlices">
+                                    <div class="product-img">
+                                        <img t-att-src="modifer.image_url" t-att-alt="name" />
+                                    </div>
+                                </article>
+                            </t>
+                        </div>
+                    </t>
+                </main>
+                <footer class="footer modal-footer">
+                    <button type="button" class="btn btn-primary" t-on-click="confirm">Add Extra</button>
+
+                    <button type="button" class="btn btn-secondary cancel" t-on-click="cancel">
+                        Skip
+                    </button>
+                </footer>
+            </div>
+        </Dialog>
+    </t>
+</templates>

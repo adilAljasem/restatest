@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_zatca_total_override" model="ir.ui.view">
+        <field name="name">pos.order.form.blend.zatca.total.override</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="bs_pos_blend_intgeration.view_pos_pos_form_blend"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_blend_send_zatca_with_total_override"
+                        type="object" string="Send to ZATCA Despite Total Difference"
+                        groups="base.group_system"
+                        invisible="not blend_is_inbound or blend_total_matches or state != 'done' or not account_move"
+                        confirm="Authorize and send this invoice to ZATCA with the current Odoo and Blend totals? This authorization stops applying if either total changes."/>
+            </xpath>
+            <xpath expr="//group[@name='blend_order_decision']" position="inside">
+                <field name="blend_zatca_override_by" readonly="1" groups="base.group_system"/>
+                <field name="blend_zatca_override_at" readonly="1" groups="base.group_system"/>
+                <field name="blend_zatca_override_odoo_total" readonly="1" groups="base.group_system"/>
+                <field name="blend_zatca_override_blend_total" readonly="1" groups="base.group_system"/>
+                <field name="blend_zatca_override_invoice_id" readonly="1" groups="base.group_system"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

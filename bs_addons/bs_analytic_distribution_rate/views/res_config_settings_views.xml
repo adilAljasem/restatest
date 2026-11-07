@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.bs.analytic.rate</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="Analytic Distribution Rates"
+                       name="bs_analytic_distribution_rate_settings">
+                    <setting string="Automatic Analytic Distribution Rate Refresh"
+                             help="Refresh enabled analytic distribution models on a schedule.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="bs_analytic_rate_frequency"
+                                       class="col-lg-3 o_light_label"/>
+                                <field name="bs_analytic_rate_frequency"/>
+                            </div>
+                            <div class="row mt16"
+                                 invisible="bs_analytic_rate_frequency == 'manual'">
+                                <label for="bs_analytic_rate_next_run"
+                                       class="col-lg-3 o_light_label"/>
+                                <field name="bs_analytic_rate_next_run"
+                                       required="bs_analytic_rate_frequency != 'manual'"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

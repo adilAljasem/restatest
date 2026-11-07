@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main mobile-first layout used by every ESS page. -->
+    <template id="ess_layout" name="ESS Layout">
+        <t t-call="portal.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="head">
+                <link rel="manifest" href="/my/hr/manifest.webmanifest"/>
+                <meta name="theme-color" t-att-content="ess_color"/>
+                <meta name="mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-title" t-att-content="ess_app_name"/>
+                <link rel="apple-touch-icon" t-attf-href="/web/image/res.company/#{ess_company.id}/logo/180x180"/>
+            </t>
+            <div id="wrap" class="o_bs_ess" t-attf-style="--ess-primary: #{ess_color};">
+                <header class="ess-appbar">
+                    <div class="container ess-container d-flex align-items-center gap-2">
+                        <a t-if="ess_back" t-att-href="ess_back" class="ess-appbar-btn" aria-label="Back">
+                            <i class="fa fa-chevron-left ess-flip"/>
+                        </a>
+                        <a t-else="" href="/my/hr" class="ess-appbar-logo">
+                            <img t-attf-src="/web/image/res.company/#{ess_company.id}/logo/64x64" alt=""/>
+                        </a>
+                        <div class="ess-appbar-title flex-grow-1 text-truncate">
+                            <t t-if="ess_title" t-out="ess_title"/>
+                            <t t-else="" t-out="ess_app_name"/>
+                        </div>
+                        <a href="/my/hr/notifications" class="ess-appbar-btn position-relative" aria-label="Notifications">
+                            <i class="fa fa-bell-o"/>
+                            <span t-if="ess_unread" class="ess-dot" t-out="ess_unread"/>
+                        </a>
+                    </div>
+                </header>
+                <div class="container ess-container ess-content">
+                    <t t-call="bs_hr_ess_base.ess_flash"/>
+                    <t t-out="0"/>
+                </div>
+                <nav class="ess-bottom-nav">
+                    <t t-foreach="ess_nav" t-as="item">
+                        <a t-att-href="item['url']" t-attf-class="ess-nav-item #{'active' if item['key'] == ess_active else ''}">
+                            <i t-attf-class="fa #{item['icon']}"/>
+                            <span t-out="item['title']"/>
+                        </a>
+                        <a t-if="item_index == 1" href="/my/hr/new" class="ess-nav-item ess-nav-new" aria-label="New request">
+                            <span class="ess-nav-plus"><i class="fa fa-plus"/></span>
+                        </a>
+                    </t>
+                </nav>
+            </div>
+        </t>
+    </template>
+
+    <template id="ess_flash" name="ESS Flash message">
+        <div t-if="flash" t-attf-class="alert alert-#{flash.get('type', 'info')} ess-flash" role="alert">
+            <t t-out="flash.get('message')"/>
+        </div>
+    </template>
+
+    <template id="ess_state_badge" name="ESS state badge">
+        <t t-set="_st" t-value="rec.state"/>
+        <span t-attf-class="ess-badge ess-badge-#{_st}" t-out="ess_state_label(rec)"/>
+    </template>
+
+    <!-- Approval timeline shared by request pages -->
+    <template id="ess_approval_timeline" name="ESS approval timeline">
+        <ol class="ess-timeline" t-if="lines">
+            <li t-foreach="lines" t-as="line" t-attf-class="ess-tl-#{line.state}">
+                <div class="ess-tl-head">
+                    <strong t-out="line.step_id.name or line.name"/>
+                    <span class="ess-tl-state" t-out="ess_state_label(line)"/>
+                </div>
+                <div class="ess-tl-meta" t-if="line.decided_by_id">
+                    <t t-out="line.decided_by_id.name"/> -
+                    <t t-out="ess_display(line, 'decided_on')"/>
+                </div>
+                <div class="ess-tl-meta" t-elif="line.state == 'pending'">
+                    <t t-out="', '.join(line.approver_ids.mapped('name'))"/>
+                </div>
+                <div class="ess-tl-comment" t-if="line.comment" t-out="line.comment"/>
+            </li>
+        </ol>
+    </template>
+
+    <template id="ess_no_employee" name="ESS - no employee">
+        <t t-call="portal.frontend_layout">
+            <div class="container py-5 text-center o_bs_ess">
+                <i class="fa fa-id-badge fa-3x text-muted mb-3"/>
+                <h4>Your account is not linked to an employee.</h4>
+                <p class="text-muted">Please contact Human Resources.</p>
+                <a href="/web/session/logout" class="btn btn-outline-secondary">Sign out</a>
+            </div>
+        </t>
+    </template>
+
+    <template id="ess_offline" name="ESS offline">
+        <t t-call="portal.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="container py-5 text-center">
+                <i class="fa fa-wifi fa-3x text-muted mb-3"/>
+                <h4>You are offline</h4>
+                <p class="text-muted">Check your connection and try again.</p>
+                <a href="/my/hr" class="btn btn-primary">Retry</a>
+            </div>
+        </t>
+    </template>
+
+    <!-- Entry on /my -->
+    <template id="portal_my_home_ess" name="ESS entry on My Account" inherit_id="portal.portal_my_home" priority="5">
+        <xpath expr="//div[@id='portal_common_category']" position="before">
+            <div class="o_portal_category row g-2 mt-3" id="portal_ess_category">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/bs_hr_ess_base/static/description/icon.png'"/>
+                    <t t-set="title">Employee Self-Service</t>
+                    <t t-set="text">Attendance, requests, payslips and HR news</t>
+                    <t t-set="url" t-value="'/my/hr'"/>
+                    <t t-set="placeholder_count" t-value="'ess_count'"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>

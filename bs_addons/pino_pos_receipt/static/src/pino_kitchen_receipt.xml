@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        Same strategy as the sales receipt: the standard kitchen ticket stays in
+        place and is only hidden when the custom design is enabled.
+    -->
+    <t t-inherit="point_of_sale.OrderChangeReceipt" t-inherit-mode="extension">
+
+        <xpath expr="//div[hasclass('pos-receipt')]" position="attributes">
+            <attribute name="t-if">!(data.pino and data.pino.enabled)</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('pos-receipt')]" position="after">
+            <div t-if="data.pino and data.pino.enabled" class="pos-receipt pino-kot" dir="rtl">
+                <t t-set="p" t-value="data.pino"/>
+
+                <!-- ============ Header ============ -->
+                <div class="pino-kot-head">
+                    <span class="pino-kot-title" t-esc="p.title"/>
+                    <span class="pino-kot-tag">KOT</span>
+                </div>
+                <div class="pino-kot-rule-strong"/>
+
+                <!-- ============ Status ============ -->
+                <div class="pino-kot-row">
+                    <span class="pino-kot-label">حالة الطلب – STATUS</span>
+                    <span class="pino-kot-pill">
+                        <t t-if="data.changes.title"><t t-esc="data.changes.title"/></t>
+                        <t t-if="data.changes.title and p.statusLabel"> · </t>
+                        <t t-esc="p.statusLabel"/>
+                        <t t-if="data.reprint"> (نسخة)</t>
+                    </span>
+                </div>
+                <div class="pino-kot-rule-strong"/>
+
+                <!-- ============ Order number / type ============ -->
+                <div class="pino-kot-row pino-kot-identity">
+                    <div class="pino-kot-number">
+                        <div class="pino-kot-label">رقم الطلب</div>
+                        <div class="pino-kot-number-value" t-esc="p.trackingNumber or data.tracking_number"/>
+                    </div>
+                    <div class="pino-kot-context">
+                        <div t-if="p.presetName" class="pino-kot-context-main" t-esc="p.presetName"/>
+                        <div t-if="p.tableNumber" class="pino-kot-context-main">طاولة <t t-esc="p.tableNumber"/></div>
+                        <div class="pino-kot-context-time" t-esc="p.orderTime"/>
+                    </div>
+                </div>
+                <div class="pino-kot-rule-strong"/>
+
+                <!-- ============ General note ============ -->
+                <div t-if="p.blendReference" class="pino-kot-note-box text-center">
+                    <span>Blend: </span><bdi t-esc="p.blendReference"/>
+                </div>
+                <t t-set="generalNote" t-value="data.general_customer_note or data.internal_note"/>
+                <div t-if="generalNote" class="pino-kot-note-box">
+                    <div class="pino-kot-label">ملاحظة عامة على الطلب</div>
+                    <div class="pino-kot-note-text" t-esc="generalNote"/>
+                </div>
+
+                <!-- ============ Lines ============ -->
+                <div class="pino-kot-lines">
+                    <t t-if="data.changes.groupedData">
+                        <div t-foreach="data.changes.groupedData" t-as="group" t-key="group_index">
+                            <div class="pino-kot-group" t-esc="group.name"/>
+                            <div t-foreach="group.data" t-as="line" t-key="line_index">
+                                <t t-call="pino_pos_receipt.KotLine"/>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div t-foreach="data.changes.data" t-as="line" t-key="line_index">
+                            <t t-call="pino_pos_receipt.KotLine"/>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- ============ Footer ============ -->
+                <div class="pino-kot-rule"/>
+                <div class="pino-kot-row">
+                    <span class="pino-kot-label">إجمالي الأصناف</span>
+                    <span class="pino-kot-total" t-esc="p.totalQty"/>
+                </div>
+                <div class="pino-kot-row pino-kot-foot">
+                    <span t-if="p.cashier">الكاشير: <t t-esc="p.cashier"/></span>
+                    <span>طُبعت <t t-esc="p.printTime"/></span>
+                </div>
+            </div>
+        </xpath>
+
+    </t>
+
+    <t t-name="pino_pos_receipt.KotLine">
+        <div class="pino-kot-line"
+             t-att-class="{
+                 'pino-kot-line-sub': line.combo_parent_uuid || line.isModifierChild,
+                 'pino-kot-line-modifier': line.isModifierChild,
+             }">
+            <div class="pino-kot-line-main">
+                <span class="pino-kot-qty" t-esc="line.quantity"/>
+                <span class="pino-kot-name">
+                    <span class="pino-kot-name-ar" t-esc="line.basic_name"/>
+                    <span t-if="p.showLatin and line.pino_latin" class="pino-kot-name-latin" t-esc="line.pino_latin"/>
+                </span>
+            </div>
+            <div t-if="line.attribute_value_names and line.attribute_value_names.length" class="pino-kot-line-note">
+                <t t-foreach="line.attribute_value_names" t-as="attribute" t-key="attribute_index">
+                    <span class="pino-kot-bullet">•</span> <t t-esc="attribute"/>
+                </t>
+            </div>
+            <div t-if="line.note" class="pino-kot-line-note">
+                <span class="pino-kot-bullet">|</span> ملاحظة: <t t-esc="line.note.split('\n').join(' · ')"/>
+            </div>
+            <div t-if="line.customer_note" class="pino-kot-line-note">
+                <span class="pino-kot-bullet">|</span> ملاحظة: <t t-esc="line.customer_note"/>
+            </div>
+        </div>
+    </t>
+
+</templates>

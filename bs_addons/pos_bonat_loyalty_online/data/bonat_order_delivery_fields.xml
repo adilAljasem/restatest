@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="field_pos_order_bonat_sent_at" model="ir.model.fields">
+        <field name="name">x_bonat_sent_at</field>
+        <field name="model">pos.order</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="field_description">Bonat Sent At</field>
+        <field name="ttype">datetime</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_pos_order_bonat_last_attempt_at" model="ir.model.fields">
+        <field name="name">x_bonat_last_attempt_at</field>
+        <field name="model">pos.order</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="field_description">Bonat Last Attempt At</field>
+        <field name="ttype">datetime</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_pos_order_bonat_last_result" model="ir.model.fields">
+        <field name="name">x_bonat_last_result</field>
+        <field name="model">pos.order</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="field_description">Bonat Last Result</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_pos_order_bonat_attempt_count" model="ir.model.fields">
+        <field name="name">x_bonat_attempt_count</field>
+        <field name="model">pos.order</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="field_description">Bonat Attempt Count</field>
+        <field name="ttype">integer</field>
+        <field name="state">manual</field>
+    </record>
+</odoo>

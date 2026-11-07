@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_restaurant_combo_modifiers.KitchenPrintModifiers"
+       t-inherit="point_of_sale.OrderChangeReceiptLine"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('d-flex') and hasclass('medium')]" position="after">
+            <div t-if="line.modifier_print_details?.length"
+                 class="o_pcm_kitchen_print_modifiers"
+                 style="margin-inline-start: 2rem; padding-inline-start: 0.5rem; border-inline-start: 2px solid #000; font-size: 85%; line-height: 1.35;">
+                <div t-foreach="line.modifier_print_details" t-as="modifier" t-key="modifier.key || modifier_index"
+                     class="o_pcm_kitchen_print_modifier">
+                    <span>* </span>
+                    <span t-if="modifier.change_status === 'removed'">REMOVED </span>
+                    <span t-elif="modifier.change_status === 'updated'">UPDATED </span>
+                    <span t-elif="modifier.operation === 'remove'">NO </span>
+                    <span t-esc="modifier.name"/>
+                    <span t-if="modifier.quantity !== 1"> ×<t t-esc="modifier.quantity"/></span>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>

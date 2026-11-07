@@ -1,0 +1,2 @@
+.o_the_dash_embedded { min-height: calc(100vh - var(--o-navbar-height, 56px)); }
+.o_the_dash_embedded iframe { display: block; min-height: inherit; background: var(--rs-page-bg, #F9F7F3); }

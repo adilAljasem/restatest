@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ess_reports" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ess.reports</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.res_config_settings_view_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='ess_approvals']" position="after">
+                <block title="Reporting" name="ess_reporting">
+                    <setting string="Monthly HR report" help="PDF sent on the 1st of each month to HR managers and these contacts (owner, general manager).">
+                        <field name="ess_monthly_report_partner_ids" widget="many2many_tags"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

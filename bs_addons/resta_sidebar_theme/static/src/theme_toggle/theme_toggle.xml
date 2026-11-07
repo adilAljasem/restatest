@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_sidebar_theme.ThemeToggle">
+        <div class="o_nav_entry_wrap d-flex align-items-center">
+            <button class="rs_theme_toggle" t-on-click="onClick"
+                    t-att-title="label" t-att-aria-label="label" t-att-data-tooltip="label">
+                <i t-att-class="isDark ? 'fa fa-sun-o' : 'fa fa-moon-o'" aria-hidden="true"/>
+            </button>
+        </div>
+    </t>
+</templates>

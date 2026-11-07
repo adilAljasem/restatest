@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pino_pos_receipt.TicketScreenCustomerPhone"
+       t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
+        <xpath expr="//td/div[t[@t-esc='order.partner_id?.name']]" position="after">
+            <div t-if="order.partner_id?.phone" class="small text-muted">
+                <span dir="ltr" t-esc="order.partner_id.phone"/>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="pino_pos_receipt.ReceiptHeaderCustomerPhone"
+       t-inherit="point_of_sale.ReceiptHeader" t-inherit-mode="extension">
+        <xpath expr="//div[@t-if='order.partner_id.name']" position="after">
+            <div t-if="order.partner_id.phone">
+                <span dir="ltr" t-esc="order.partner_id.phone"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

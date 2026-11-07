@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_geofence_point_user,geofence point user,model_bs_hr_geofence_point,base.group_user,1,0,0,0
+access_geofence_point_hr,geofence point hr,model_bs_hr_geofence_point,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_device_hr,device hr,model_bs_hr_ess_device,bs_hr_ess_base.group_ess_hr_officer,1,1,0,1
+access_attempt_supervisor,attempt supervisor,model_bs_hr_attendance_attempt,bs_hr_ess_base.group_ess_branch_supervisor,1,0,0,0
+access_qr_use_system,qr use,model_bs_hr_attendance_qr_use,base.group_system,1,0,0,0
+access_correction_user,correction user,model_bs_hr_attendance_correction,base.group_user,1,1,1,0
+access_correction_hr,correction hr,model_bs_hr_attendance_correction,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1

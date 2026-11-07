@@ -1,0 +1,26 @@
+{
+    'name': 'ESS Appraisal - Performance, Goals, Kudos',
+    'summary': 'Restaurant-oriented appraisal cycles with self-review from the portal, manager review, '
+               'objective attendance KPIs, probation reviews, goals and peer kudos',
+    'version': '19.0.1.0.0',
+    'category': 'Human Resources/Appraisals',
+    'author': 'Basic Solution',
+    'website': 'https://resta.sa',
+    'license': 'LGPL-3',
+    'depends': ['bs_hr_ess_base', 'hr_attendance'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/appraisal_rules.xml',
+        'data/appraisal_data.xml',
+        'data/ir_cron_data.xml',
+        'views/competency_views.xml',
+        'views/template_views.xml',
+        'views/cycle_views.xml',
+        'views/appraisal_views.xml',
+        'views/goal_views.xml',
+        'views/kudos_views.xml',
+        'views/menus.xml',
+        'views/portal_templates.xml',
+    ],
+    'installable': True,
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_pcm" model="ir.ui.view">
+        <field name="name">res.config.settings.form.pos.cash.management</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_accounting_section']" position="inside">
+
+                <setting id="pcm_require_count_setting"
+                         string="Mandatory Cash Count"
+                         help="Blocks closing the register with a counted amount of zero while cash operations took place.">
+                    <field name="pos_pcm_require_count"/>
+                </setting>
+
+                <setting id="pcm_blind_count_setting"
+                         string="Blind Cash Count"
+                         help="Hides the theoretical balance, the live difference and the auto-fill button at closing.">
+                    <field name="pos_pcm_blind_count"/>
+                </setting>
+
+                <setting id="pcm_auto_transfer_setting"
+                         string="Transfer Cash to Bank on Closing"
+                         help="Books the counted cash as a cash out once the session is closed, leaving the drawer at zero.">
+                    <field name="pos_pcm_auto_transfer"/>
+                    <div class="content-group mt16" invisible="not pos_pcm_auto_transfer">
+                        <label for="pos_pcm_transfer_reason" class="o_light_label"/>
+                        <field name="pos_pcm_transfer_reason" class="o_light_label"/>
+                    </div>
+                </setting>
+
+                <setting id="pcm_difference_partner_setting"
+                         string="Cashier Partner on Cash Difference"
+                         help="Sets the work contact of the cashier as the partner of the cash difference journal item.">
+                    <field name="pos_pcm_difference_partner"/>
+                </setting>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

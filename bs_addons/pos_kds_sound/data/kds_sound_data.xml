@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kds_sound_settings_default" model="pos.kds.sound.settings">
+        <field name="name">إعدادات صوت شاشة المطبخ</field>
+    </record>
+</odoo>

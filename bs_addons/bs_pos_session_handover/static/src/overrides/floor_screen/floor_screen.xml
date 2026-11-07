@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_session_handover.FloorScreen"
+       t-inherit="pos_restaurant.FloorScreen"
+       t-inherit-mode="extension">
+        <xpath expr="//div[@t-ref='map']" position="attributes">
+            <attribute name="t-attf-style">--pino-bill-color: {{pos.config.pino_bill_printed_color or '#f59e0b'}};</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'floor-table')]" position="attributes">
+            <attribute name="t-att-data-pino-bill">pos.pinoGetBillPrintedOrder(table) ? 'printed' : ''</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'info')]" position="after">
+            <span t-if="table.getOrders().some((order) => order.pino_is_session_transferred)"
+                  class="position-absolute top-0 start-0 m-1 badge text-bg-warning z-2"
+                  title="Transferred from another POS session">
+                <i class="fa fa-exchange" role="img" aria-label="Transferred"/>
+            </span>
+            <t t-set="pinoTimer" t-value="pos.pinoFormatTableTimer(table, pinoClock.now)"/>
+            <span t-if="pinoTimer"
+                  class="pino-table-timer position-absolute start-50 translate-middle-x z-2"
+                  title="Guest stay">
+                <i class="fa fa-clock-o me-1" role="img" aria-label="Guest stay"/>
+                <t t-esc="pinoTimer"/>
+            </span>
+            <t t-set="pinoBillOrder" t-value="pos.pinoGetBillPrintedOrder(table)"/>
+            <span t-if="pinoBillOrder"
+                  class="pino-bill-badge position-absolute top-0 start-50 translate-middle-x mt-1 badge text-bg-dark z-2 text-truncate"
+                  t-att-title="pinoBillOrder.pino_bill_printed_by_name + ' ' + pos.pinoFormatBillTime(pinoBillOrder)">
+                <i class="fa fa-file-text-o me-1" role="img" aria-label="Bill printed"/>
+                <t t-esc="pinoBillOrder.pino_bill_printed_by_name"/>
+                <t t-set="pinoBillTime" t-value="pos.pinoFormatBillTime(pinoBillOrder)"/>
+                <t t-if="pinoBillTime"> · <t t-esc="pinoBillTime"/></t>
+            </span>
+            <t t-set="pinoTableOrder" t-value="table.getOrders().find((order) => order.pino_opened_by_name)"/>
+            <span t-if="pinoTableOrder"
+                  class="pino-table-opener position-absolute bottom-0 start-50 translate-middle-x mb-1 badge z-2 text-truncate"
+                  t-att-class="pos.pinoIsOwnOrder(pinoTableOrder) ? 'text-bg-light' : 'text-bg-info'"
+                  t-att-title="pinoTableOrder.pino_opened_by_name">
+                <i class="fa fa-user me-1" role="img" aria-label="Opened by"/>
+                <t t-esc="pinoTableOrder.pino_opened_by_name"/>
+            </span>
+        </xpath>
+    </t>
+</templates>

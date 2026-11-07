@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_form_kitchen_resend" model="ir.ui.view">
+        <field name="name">pos.order.form.kitchen.resend</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pos_reference']" position="after">
+                <field name="bs_kitchen_resend_count" invisible="not bs_kitchen_resend_count"/>
+                <field name="bs_kitchen_last_resend" invisible="not bs_kitchen_resend_count"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

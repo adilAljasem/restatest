@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="flow_attendance_correction" model="bs.hr.approval.flow">
+        <field name="name">Attendance correction</field>
+        <field name="res_model">bs.hr.attendance.correction</field>
+    </record>
+    <record id="flow_attendance_correction_step_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_attendance_correction"/>
+        <field name="sequence">1</field>
+        <field name="name">Direct manager</field>
+        <field name="approver_type">manager</field>
+        <field name="sla_hours">24</field>
+        <field name="escalation">next</field>
+    </record>
+    <record id="flow_attendance_correction_step_branch" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_attendance_correction"/>
+        <field name="sequence">2</field>
+        <field name="name">HR</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+</odoo>

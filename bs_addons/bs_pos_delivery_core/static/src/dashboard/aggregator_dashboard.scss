@@ -1,0 +1,464 @@
+.o_bs_aggregator_dashboard {
+    // Odoo recompiles these theme-aware variables for its dark asset bundle.
+    // Bootstrap table variables are explicitly scoped to avoid mixing themes.
+    --bs-delivery-panel-bg: #{$o-view-background-color};
+    --bs-delivery-muted: #{mix($o-main-text-color, $o-view-background-color, 78%)};
+    padding: clamp(0.85rem, 1.3vw, 1.5rem);
+    background: var(--#{$prefix}body-bg);
+    color: var(--#{$prefix}body-color);
+    font-variant-numeric: tabular-nums;
+
+    .text-muted {
+        color: var(--bs-delivery-muted) !important;
+    }
+
+    h2 {
+        font-size: 1.65rem;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+    }
+    h3 {
+        font-size: 1rem;
+        font-weight: 650;
+        margin-bottom: 0.8rem;
+    }
+    h3 small {
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+    .o_bs_dashboard_header,
+    .o_bs_scope_line,
+    .o_bs_attention {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .o_bs_dashboard_header {
+        margin-bottom: 1rem;
+    }
+    .o_bs_scope_line {
+        margin: 0.75rem 0;
+        font-size: 0.85rem;
+    }
+    .o_bs_dashboard_modes {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .o_bs_panel {
+        position: relative;
+        background: var(--bs-delivery-panel-bg);
+        border: 1px solid var(--#{$prefix}border-color);
+        border-radius: 12px;
+        padding: 0.9rem 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.025);
+    }
+    .o_bs_filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        label {
+            display: flex;
+            flex: 1 1 145px;
+            flex-direction: column;
+            gap: 0.35rem;
+            font-weight: 600;
+        }
+        select,
+        input {
+            font-weight: 400;
+            min-width: 0;
+        }
+    }
+    .o_bs_kpi_grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    .o_bs_kpi {
+        border: 0;
+        border-radius: 12px;
+        color: white;
+        padding: 1rem;
+        text-align: start;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-height: 108px;
+        small {
+            font-size: 0.73rem;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+        strong {
+            font-size: clamp(1.35rem, 1.7vw, 2rem);
+            line-height: 1.2;
+            overflow-wrap: anywhere;
+        }
+        span {
+            font-size: 0.78rem;
+        }
+    }
+    .o_bs_kpi--navy {
+        background: #18253b;
+    }
+    .o_bs_kpi--teal {
+        background: #08685f;
+    }
+    .o_bs_kpi--blue {
+        background: #2355a5;
+    }
+    .o_bs_kpi--slate {
+        background: #40506a;
+    }
+    button.o_bs_kpi:hover {
+        filter: brightness(1.08);
+    }
+    button:focus-visible,
+    summary:focus-visible {
+        outline: 3px solid var(--#{$prefix}primary);
+        outline-offset: 3px;
+    }
+    .o_bs_plain_button {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: inherit;
+        text-align: start;
+    }
+    .o_bs_plain_button:hover {
+        color: var(--#{$prefix}link-color);
+    }
+    .o_bs_attention {
+        margin-bottom: 1rem;
+        border-inline-start: 4px solid var(--#{$prefix}primary);
+    }
+    .o_bs_attention h3 {
+        margin-bottom: 0.25rem;
+    }
+    .o_bs_attention_actions {
+        display: flex;
+        gap: 0.65rem;
+        align-items: center;
+        flex-wrap: wrap;
+        strong {
+            margin-inline-start: 0.4rem;
+        }
+    }
+    .o_bs_empty_setup {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+        border-style: dashed;
+        > div {
+            flex: 1 1 280px;
+        }
+        h3 {
+            margin-bottom: 0.3rem;
+        }
+        p {
+            font-size: 0.85rem;
+        }
+    }
+    .o_bs_service_grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        > div,
+        > button {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        strong {
+            font-size: 1.5rem;
+            overflow-wrap: anywhere;
+        }
+        strong small {
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+        &--two {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    .o_bs_trend {
+        display: flex;
+        gap: 0.7rem;
+        margin-top: 1rem;
+    }
+    .o_bs_trend_day {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        > span {
+            font-size: 0.7rem;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+    }
+    .o_bs_trend_track {
+        height: 110px;
+        width: 70%;
+        display: flex;
+        align-items: end;
+    }
+    .o_bs_trend_bar {
+        width: 100%;
+        background: #128578;
+        border-radius: 4px 4px 0 0;
+    }
+    .o_bs_chart_empty {
+        min-height: 64px;
+        display: grid;
+        place-items: center;
+        color: var(--bs-delivery-muted);
+    }
+    .o_bs_inline_empty {
+        color: var(--bs-delivery-muted);
+        margin: 0.5rem 0 0;
+        font-size: 0.85rem;
+    }
+    .o_bs_state_row {
+        display: grid;
+        grid-template-columns: 100px 1fr 35px;
+        align-items: center;
+        width: 100%;
+        gap: 0.6rem;
+        margin-top: 0.65rem;
+    }
+    .o_bs_state_track {
+        height: 9px;
+        border-radius: 5px;
+        background: var(--#{$prefix}tertiary-bg);
+        overflow: hidden;
+        i {
+            display: block;
+            height: 100%;
+            background: #128578;
+        }
+    }
+    .o_bs_platform_chips {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        button {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+    }
+    .o_bs_platform_link {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        min-width: 110px;
+    }
+    .o_bs_platform_chips img,
+    .o_bs_platform_link img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        border-radius: 6px;
+        flex-shrink: 0;
+        background: #fff;
+    }
+    .o_bs_channel_mark,
+    .o_bs_branch_icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #fff;
+        background: #5f6b7d;
+    }
+    .o_bs_branch_icon {
+        color: var(--#{$prefix}body-color);
+        background: var(--#{$prefix}border-color);
+        font-weight: 400;
+    }
+    .o_bs_business_day_chip {
+        display: inline-flex;
+        align-items: center;
+        margin-inline-start: 0.5rem;
+        padding: 0.1rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        border: 1px solid var(--#{$prefix}border-color);
+    }
+    .o_bs_share {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        min-width: 110px;
+    }
+    .o_bs_share_track {
+        width: 60px;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--#{$prefix}border-color);
+        overflow: hidden;
+        i {
+            display: block;
+            height: 100%;
+            background: #08685f;
+        }
+    }
+    .o_bs_sales_table tfoot th {
+        border-top: 2px solid var(--#{$prefix}border-color);
+    }
+    .o_bs_queue_health.is-warning {
+        border-inline-start: 4px solid var(--#{$prefix}warning);
+    }
+    .table {
+        --#{$prefix}table-bg: var(--bs-delivery-panel-bg);
+        --#{$prefix}table-color: var(--#{$prefix}body-color);
+        --#{$prefix}table-border-color: var(--#{$prefix}border-color);
+        --#{$prefix}table-hover-bg: var(--#{$prefix}tertiary-bg);
+        --#{$prefix}table-hover-color: var(--#{$prefix}body-color);
+        th {
+            color: var(--#{$prefix}body-color);
+            background: var(--#{$prefix}tertiary-bg);
+            font-size: 0.8rem;
+            padding: 0.65rem;
+        }
+        td {
+            padding: 0.6rem 0.65rem;
+        }
+        .o_bs_table_empty {
+            text-align: center;
+            padding: 0.8rem 1rem;
+            color: var(--bs-delivery-muted);
+        }
+    }
+    .o_bs_state_badge {
+        display: inline-block;
+        background: var(--#{$prefix}tertiary-bg);
+        color: var(--#{$prefix}body-color);
+        padding: 0.3rem 0.6rem;
+        border: 1px solid var(--#{$prefix}border-color);
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+    // State text remains visible: colors are supplementary, not the only cue.
+    @each $state,
+        $tone
+            in (
+                received: info,
+                accepted: primary,
+                preparing: warning,
+                ready: success,
+                picked_up: primary,
+                delivered: success,
+                rejected: danger,
+                cancelled: secondary
+            )
+    {
+        .o_bs_state_badge[data-state="#{$state}"] {
+            color: var(--#{$prefix}#{$tone}-text-emphasis);
+            background: var(--#{$prefix}#{$tone}-bg-subtle);
+            border-color: var(--#{$prefix}#{$tone}-border-subtle);
+        }
+        .o_bs_state_row[data-state="#{$state}"] .o_bs_state_track i {
+            background: var(--#{$prefix}#{$tone});
+        }
+    }
+    .o_bs_order_late td:first-child {
+        border-inline-start: 3px solid var(--#{$prefix}warning);
+    }
+    .o_bs_late_badge {
+        display: inline-block;
+        margin-inline-start: 0.4rem;
+        padding: 0.25rem 0.45rem;
+        border-radius: 4px;
+        color: var(--#{$prefix}warning-text-emphasis);
+        background: var(--#{$prefix}warning-bg-subtle);
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+    .o_bs_help {
+        display: inline-block;
+        flex-shrink: 0;
+        margin-inline-start: 0.3rem;
+        vertical-align: middle;
+        summary {
+            list-style: none;
+            cursor: pointer;
+            color: var(--bs-delivery-muted);
+            padding: 0.2rem;
+            border-radius: 4px;
+            &::-webkit-details-marker {
+                display: none;
+            }
+        }
+        &[open] summary {
+            color: var(--#{$prefix}link-color);
+        }
+    }
+    .o_bs_help_text {
+        position: absolute;
+        z-index: 10;
+        inset-inline-end: 1rem;
+        top: 3rem;
+        width: 360px;
+        max-width: calc(100% - 2rem);
+        padding: 0.85rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        font-weight: 400;
+        color: var(--#{$prefix}body-color);
+        background: var(--bs-delivery-panel-bg);
+        border: 1px solid var(--#{$prefix}border-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .o_bs_section_heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+        h3 {
+            margin-bottom: 0;
+        }
+    }
+    .o_bs_dashboard_loading {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        min-height: 280px;
+    }
+    @media (max-width: 1000px) {
+        .o_bs_kpi_grid,
+        .o_bs_service_grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    @media (max-width: 480px) {
+        .o_bs_kpi_grid,
+        .o_bs_service_grid {
+            grid-template-columns: 1fr;
+        }
+        .o_bs_attention_actions > button {
+            flex: 1 1 100%;
+        }
+    }
+}

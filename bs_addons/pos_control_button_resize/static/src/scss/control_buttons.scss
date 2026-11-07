@@ -1,0 +1,84 @@
+/*
+    pos_control_button_resize — Odoo 19
+
+    في أودو 19 تغيّر بناء أزرار التحكم في نقطة البيع:
+      - الحاوية في شاشة المنتجات:  .control-buttons.d-flex ...
+      - الحاوية داخل نافذة "المزيد": .control-buttons.control-buttons-modal.d-grid ...
+      - الأزرار نفسها لم تعد تحمل الكلاس .control-button (باستثناء زر الوضع
+        الضريبي)، بل هي أزرار Bootstrap:  btn btn-secondary btn-lg ...
+    لذلك نستهدف .btn داخل .control-buttons بدل .control-button.
+
+    القيم أدناه (المتغيّرات) يمكن تعديلها بسهولة لتناسب الحجم المطلوب.
+*/
+
+$pos-cb-height: 32px !default;      // ارتفاع أزرار الشريط في شاشة المنتجات
+$pos-cb-font-size: 12px !default;   // حجم خط النص داخل الزر
+$pos-cb-icon-size: 13px !default;   // حجم الأيقونة داخل الزر
+$pos-cb-modal-height: 40px !default; // أقل ارتفاع لأزرار نافذة "المزيد"
+
+.pos .control-buttons,
+.control-buttons {
+
+    // شريط الأزرار نفسه: تقليل الفراغات حوله
+    &.d-flex {
+        padding-top: 4px !important;
+    }
+
+    .btn,
+    .control-button {
+        min-height: $pos-cb-height !important;
+        height: $pos-cb-height !important;
+        padding: 2px 8px !important;
+        line-height: 1.1 !important;
+        font-size: $pos-cb-font-size !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px;
+
+        // الأيقونات (Font Awesome أو أيقونات أودو)
+        .fa,
+        .oi,
+        i {
+            font-size: $pos-cb-icon-size !important;
+            margin: 0 !important;
+            line-height: 1 !important;
+        }
+
+        // النص داخل الزر
+        span,
+        .btn-text {
+            font-size: $pos-cb-font-size !important;
+            line-height: 1.1 !important;
+            white-space: nowrap;
+        }
+    }
+
+    // زر "المزيد" (More) يبقى بنفس الارتفاع حتى لا يكسر محاذاة الشريط
+    .more-btn {
+        min-height: $pos-cb-height !important;
+        height: $pos-cb-height !important;
+    }
+}
+
+/*
+    نافذة "المزيد" (More): الأزرار هناك تستخدم py-5 وتُعرض كشبكة،
+    تصغيرها لارتفاع الشريط يجعلها صغيرة جداً، لذلك نعطيها ارتفاعاً
+    مستقلاً أقل من الافتراضي مع السماح لها بالتمدد لو طال النص.
+*/
+.pos .control-buttons.control-buttons-modal,
+.control-buttons.control-buttons-modal {
+
+    .btn,
+    .control-button {
+        height: auto !important;
+        min-height: $pos-cb-modal-height !important;
+        padding: 6px 10px !important;
+        font-size: $pos-cb-font-size !important;
+
+        span,
+        .btn-text {
+            white-space: normal;
+        }
+    }
+}

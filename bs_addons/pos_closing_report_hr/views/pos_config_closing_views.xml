@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_closing_report_view_form_hr" model="ir.ui.view">
+        <field name="name">pos.config.closing.report.form.hr</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="pos_closing_report.pos_config_closing_report_view_form"/>
+        <field name="arch" type="xml">
+            <field name="pcr_day_user_ids" position="before">
+                <field name="pcr_day_employee_ids" widget="many2many_tags" options="{'no_create': True}"
+                       placeholder="Empty: POS managers"/>
+            </field>
+        </field>
+    </record>
+</odoo>

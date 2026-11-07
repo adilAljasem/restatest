@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_saas_tenant.Systray">
+        <div class="o_resta_systray d-flex align-items-center" t-if="data.linked">
+            <Dropdown state="dropdown" position="'bottom-end'" menuClass="'o_resta_panel p-0'">
+                <button class="o_resta_btn d-flex align-items-center gap-2" title="تحديثات ريستا">
+                    <span t-if="showPill" t-attf-class="o_resta_pill #{pillClass}" t-out="pillText"/>
+                    <span class="o_resta_bell position-relative">
+                        <i class="fa fa-bullhorn"/>
+                        <span t-if="unread" class="o_resta_badge" t-out="unread"/>
+                    </span>
+                </button>
+                <t t-set-slot="content">
+                    <div class="o_resta_head">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold fs-5">آخر التحديثات</span>
+                            <span class="opacity-75 small">رقم الحساب <t t-out="data.account"/></span>
+                        </div>
+                        <button class="o_resta_suggest_btn" t-on-click.stop="() => this.state.suggest = !this.state.suggest">
+                            <i class="fa fa-comment-o"/> اقترح ميزة | شاركنا اقتراحك
+                        </button>
+                        <div t-if="state.suggest" class="o_resta_suggest" t-on-click.stop="">
+                            <textarea rows="3" class="form-control" placeholder="ما الذي تتمنى إضافته أو تحسينه؟" t-model="state.suggestText"/>
+                            <button class="btn btn-light btn-sm mt-2" t-att-disabled="state.sending" t-on-click="sendSuggestion">إرسال الاقتراح</button>
+                        </div>
+                    </div>
+
+                    <div class="o_resta_sub">
+                        <div class="d-flex justify-content-between">
+                            <span>الاشتراك: <b t-out="data.state_label"/><t t-if="data.plan"> · <t t-out="data.plan"/></t></span>
+                            <span t-if="data.state === 'trial'">تنتهي التجربة <t t-out="data.trial_end"/></span>
+                            <span t-elif="data.subscription_end">حتى <t t-out="data.subscription_end"/></span>
+                        </div>
+                        <div t-if="data.manager and data.manager.name" class="o_resta_am">
+                            <span>مدير حسابك: <b t-out="data.manager.name"/></span>
+                            <a t-if="whatsapp" t-att-href="whatsapp" target="_blank" class="o_resta_link"><i class="fa fa-whatsapp"/> واتساب</a>
+                            <a t-if="data.manager.phone" t-attf-href="tel:#{data.manager.phone}" class="o_resta_link"><i class="fa fa-phone"/> اتصال</a>
+                            <a t-if="data.manager.email" t-attf-href="mailto:#{data.manager.email}" class="o_resta_link"><i class="fa fa-envelope-o"/> بريد</a>
+                        </div>
+                    </div>
+
+                    <div class="o_resta_list">
+                        <div t-if="!(data.updates or []).length" class="text-center text-muted p-4">لا توجد تحديثات بعد</div>
+                        <div t-foreach="data.updates or []" t-as="u" t-key="u.id" t-attf-class="o_resta_item #{u.unread ? 'is-unread' : ''}">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="d-flex gap-1">
+                                    <span t-attf-class="o_resta_kind o_resta_kind_#{u.kind}" t-out="kindLabels[u.kind] or u.kind"/>
+                                    <span t-if="u.tag" class="o_resta_tag" t-out="u.tag"/>
+                                </div>
+                                <span class="text-muted small" t-out="when(u)"/>
+                            </div>
+                            <div class="o_resta_title" t-out="u.title"/>
+                            <div class="o_resta_body" t-out="body(u)"/>
+                            <div class="o_resta_feedback" t-on-click.stop="">
+                                <div class="o_resta_emojis" t-if="!u.rated">
+                                    <button t-on-click="() => this.rate(u, 3)" title="راضٍ">😀</button>
+                                    <button t-on-click="() => this.rate(u, 2)" title="محايد">😐</button>
+                                    <button t-on-click="() => this.rate(u, 1)" title="غير راضٍ">😩</button>
+                                </div>
+                                <span t-else="" class="text-success small"><i class="fa fa-check"/> شكراً لتقييمك</span>
+                                <div class="o_resta_note">
+                                    <input class="form-control form-control-sm" placeholder="أرسل ملاحظتك" t-model="state.notes[u.id]"
+                                           t-on-keydown="(ev) => ev.key === 'Enter' and this.sendNote(u)"/>
+                                    <button class="btn btn-sm" t-on-click="() => this.sendNote(u)"><i class="fa fa-paper-plane"/></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </Dropdown>
+        </div>
+    </t>
+
+    <t t-name="resta_saas_tenant.NoticeDialog">
+        <Dialog title="props.title" size="'md'" withBodyPadding="true">
+            <div class="o_resta_notice" t-out="body"/>
+            <div t-if="props.manager and props.manager.name" class="mt-3">
+                مدير حسابك: <b t-out="props.manager.name"/>
+                <t t-if="props.manager.phone"> · <a t-attf-href="tel:#{props.manager.phone}" t-out="props.manager.phone"/></t>
+                <t t-if="props.manager.whatsapp"> · <a t-attf-href="https://wa.me/#{props.manager.whatsapp}" target="_blank">واتساب</a></t>
+            </div>
+            <t t-set-slot="footer">
+                <button t-if="!props.blocking" class="btn btn-primary" t-on-click="props.close">حسناً</button>
+                <span t-else="" class="text-muted">لا يمكن متابعة العمل حتى إعادة تفعيل الحساب.</span>
+            </t>
+        </Dialog>
+    </t>
+</templates>

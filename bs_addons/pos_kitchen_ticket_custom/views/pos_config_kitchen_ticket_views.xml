@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_kitchen_ticket_view_list" model="ir.ui.view">
+        <field name="name">pos.config.kitchen.ticket.list</field>
+        <field name="model">pos.config</field>
+        <field name="priority">110</field>
+        <field name="arch" type="xml">
+            <list string="Kitchen Ticket" create="0" delete="0">
+                <field name="name"/>
+                <field name="kt_enabled" widget="boolean_toggle"/>
+                <field name="kt_name_language"/>
+                <field name="kt_font_size"/>
+                <field name="kt_print_width"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="pos_config_kitchen_ticket_view_form" model="ir.ui.view">
+        <field name="name">pos.config.kitchen.ticket.form</field>
+        <field name="model">pos.config</field>
+        <field name="priority">110</field>
+        <field name="arch" type="xml">
+            <form string="Kitchen Ticket" create="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Applies to the tickets printed on the preparation (kitchen) printers. Reload the Point of Sale after saving.
+                    </div>
+                    <group>
+                        <field name="kt_enabled" widget="boolean_toggle"/>
+                    </group>
+                    <div invisible="not kt_enabled">
+                        <group>
+                            <group string="Header">
+                                <field name="kt_show_reference" widget="boolean_toggle"/>
+                                <field name="kt_show_order_number" widget="boolean_toggle"/>
+                                <field name="kt_header_text" placeholder="e.g. brand name"/>
+                                <field name="kt_show_printed_at" widget="boolean_toggle"/>
+                            </group>
+                            <group string="Order Details">
+                                <field name="kt_show_type" widget="boolean_toggle"/>
+                                <field name="kt_show_guests" widget="boolean_toggle"/>
+                                <field name="kt_show_table" widget="boolean_toggle"/>
+                                <field name="kt_show_device" widget="boolean_toggle"/>
+                                <field name="kt_show_date" widget="boolean_toggle"/>
+                                <field name="kt_show_time" widget="boolean_toggle"/>
+                                <field name="kt_show_employee" widget="boolean_toggle"/>
+                                <field name="kt_show_platform" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Items">
+                                <field name="kt_name_language" widget="radio"/>
+                                <field name="kt_show_attributes" widget="boolean_toggle"/>
+                                <field name="kt_show_combo_items" widget="boolean_toggle"/>
+                                <field name="kt_show_modifiers" widget="boolean_toggle"/>
+                                <field name="kt_show_notes" widget="boolean_toggle"/>
+                                <field name="kt_line_separators" widget="boolean_toggle"/>
+                            </group>
+                            <group string="Layout">
+                                <field name="kt_title_language" widget="radio"/>
+                                <field name="kt_font_size" widget="radio"/>
+                                <field name="kt_print_width" widget="radio"/>
+                            </group>
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_config_kitchen_ticket" model="ir.actions.act_window">
+        <field name="name">Kitchen Ticket</field>
+        <field name="res_model">pos.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('pos_config_kitchen_ticket_view_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('pos_config_kitchen_ticket_view_form')})]"/>
+    </record>
+
+    <menuitem id="menu_pos_config_kitchen_ticket"
+              name="Kitchen Ticket"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_pos_config_kitchen_ticket"
+              groups="point_of_sale.group_pos_manager"
+              sequence="4"/>
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_template_form_blend" model="ir.ui.view">
+        <field name="name">product.template.form.delivery.blend</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <group name="pos" position="inside">
+                <separator string="Blend"
+                           groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_config_id" groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_external_id"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_is_available"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_menu_active"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_pos_category_form_blend" model="ir.ui.view">
+        <field name="name">pos.category.form.delivery.blend</field>
+        <field name="model">pos.category</field>
+        <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="blend_config_id" groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_external_id"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_menu_active"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_pos_modifier_group_form_blend" model="ir.ui.view">
+        <field name="name">pos.modifier.group.form.delivery.blend</field>
+        <field name="model">pos.modifier.group</field>
+        <field name="inherit_id" ref="pos_restaurant_combo_modifiers.pos_modifier_group_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group string="Blend" groups="bs_pos_delivery_core.group_delivery_integration_manager">
+                    <group>
+                        <field name="blend_config_id"/>
+                        <field name="blend_external_id"/>
+                    </group>
+                    <group>
+                        <field name="blend_menu_active" invisible="not blend_external_id"/>
+                        <field name="blend_is_available" invisible="not blend_external_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_combo_form_blend" model="ir.ui.view">
+        <field name="name">product.combo.form.delivery.blend</field>
+        <field name="model">product.combo</field>
+        <field name="inherit_id" ref="point_of_sale.product_combo_view_form"/>
+        <field name="arch" type="xml">
+            <field name="combo_item_ids" position="after">
+                <separator string="Blend"
+                           groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_external_id"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+                <field name="blend_menu_active"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+                <field name="blend_is_required"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+                <field name="blend_min_selection"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+                <field name="blend_max_selection"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+                <field name="blend_max_per_quantity"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+                <field name="blend_item_external_ids_json"
+                       widget="json"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not blend_external_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

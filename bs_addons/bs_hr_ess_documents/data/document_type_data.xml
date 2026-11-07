@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="doc_type_iqama" model="bs.hr.document.type">
+        <field name="name">Iqama (residence permit)</field>
+        <field name="code">IQAMA</field>
+        <field name="sequence">1</field>
+        <field name="alert_days">60,30,15,7</field>
+        <field name="mandatory_for">non_saudi</field>
+    </record>
+    <record id="doc_type_passport" model="bs.hr.document.type">
+        <field name="name">Passport</field>
+        <field name="code">PASSPORT</field>
+        <field name="sequence">2</field>
+        <field name="alert_days">90,60,30</field>
+        <field name="mandatory_for">non_saudi</field>
+    </record>
+    <record id="doc_type_national_id" model="bs.hr.document.type">
+        <field name="name">National ID</field>
+        <field name="code">NID</field>
+        <field name="sequence">3</field>
+        <field name="alert_days">60,30,15</field>
+        <field name="mandatory_for">saudi</field>
+    </record>
+    <record id="doc_type_health" model="bs.hr.document.type">
+        <field name="name">Health certificate</field>
+        <field name="code">HEALTH</field>
+        <field name="sequence">4</field>
+        <field name="alert_days">60,30,15,7</field>
+        <field name="block_attendance" eval="True"/>
+        <field name="mandatory_for">all</field>
+        <field name="note">Municipality health card (البطاقة الصحية) required for every food handler.</field>
+    </record>
+    <record id="doc_type_driving" model="bs.hr.document.type">
+        <field name="name">Driving license</field>
+        <field name="code">DRIVING</field>
+        <field name="sequence">5</field>
+        <field name="alert_days">60,30,7</field>
+        <field name="mandatory_for">none</field>
+    </record>
+    <record id="doc_type_insurance" model="bs.hr.document.type">
+        <field name="name">Medical insurance</field>
+        <field name="code">INSURANCE</field>
+        <field name="sequence">6</field>
+        <field name="alert_days">30,15,7</field>
+        <field name="mandatory_for">all</field>
+    </record>
+    <record id="doc_type_food_safety" model="bs.hr.document.type">
+        <field name="name">Food safety training certificate</field>
+        <field name="code">FOODSAFETY</field>
+        <field name="sequence">7</field>
+        <field name="alert_days">60,30</field>
+        <field name="mandatory_for">none</field>
+    </record>
+    <record id="doc_type_work_permit" model="bs.hr.document.type">
+        <field name="name">Work permit</field>
+        <field name="code">WORKPERMIT</field>
+        <field name="sequence">8</field>
+        <field name="alert_days">60,30,15,7</field>
+        <field name="mandatory_for">non_saudi</field>
+    </record>
+</odoo>

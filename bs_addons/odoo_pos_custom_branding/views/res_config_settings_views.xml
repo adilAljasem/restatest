@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_bilingual_receipt" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.bilingual.pos.receipt</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_bills_and_receipts_section']" position="inside">
+                <setting id="bilingual_receipt_settings"
+                         string="Bilingual Custom Receipt"
+                         help="Configure the bilingual Arabic/English receipt, ZATCA QR and footer message.">
+                    <div class="content-group">
+                        <div class="mt8">
+                            <label for="pos_bilingual_receipt_brand_name" string="Receipt Brand Name" class="col-lg-3 o_light_label"/>
+                            <field name="pos_bilingual_receipt_brand_name" placeholder="RYVK CAFFE"/>
+                        </div>
+                        <div class="mt8">
+                            <label for="pos_bilingual_receipt_branch_display_name" string="Receipt Branch Name" class="col-lg-3 o_light_label"/>
+                            <field name="pos_bilingual_receipt_branch_display_name" placeholder="Riyadh - Al Nadheem"/>
+                        </div>
+                        <div class="mt8">
+                            <label string="Thank-you Message"
+                                   for="pos_receipt_thank_you_msg"
+                                   class="col-lg-3 o_light_label"/>
+                            <field name="pos_receipt_thank_you_msg"
+                                   placeholder="*** نسعد بخدمتكم ***"/>
+                        </div>
+                        <div class="mt8">
+                            <field name="pos_receipt_show_zatca_qr" class="oe_inline"/>
+                            <span class="oe_inline"><b>Show ZATCA QR Code</b></span>
+                        </div>
+                        <div class="mt8">
+                            <field name="pos_receipt_show_item_count" class="oe_inline"/>
+                            <span class="oe_inline"><b>Show Item Count</b></span>
+                        </div>
+                        <div class="mt8">
+                            <field name="pos_receipt_show_opened_by" class="oe_inline"/>
+                            <span class="oe_inline"><b>Show Cashier Who Opened the Order</b></span>
+                        </div>
+                        <div class="mt8">
+                            <field name="pos_receipt_show_closed_by" class="oe_inline"/>
+                            <span class="oe_inline"><b>Show Cashier Who Closed the Order</b></span>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

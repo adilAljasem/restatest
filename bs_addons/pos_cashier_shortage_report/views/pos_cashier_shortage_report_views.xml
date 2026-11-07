@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_cashier_shortage_report_view_list" model="ir.ui.view">
+        <field name="name">pos.cashier.shortage.report.list</field>
+        <field name="model">pos.cashier.shortage.report</field>
+        <field name="arch" type="xml">
+            <list string="Cashier Shortage Report"
+                  create="false" edit="false" delete="false"
+                  decoration-danger="closing_difference &lt; 0"
+                  decoration-success="closing_difference &gt; 0">
+                <field name="session_id"/>
+                <field name="config_id"/>
+                <field name="employee_id" widget="many2one_avatar_employee"/>
+                <field name="opening_date"/>
+                <field name="closing_date"/>
+                <field name="payment_method_id"/>
+                <field name="journal_id"/>
+                <field name="closing_expected" sum="Total Expected"/>
+                <field name="closing_counted" sum="Total Counted"/>
+                <field name="closing_difference" sum="Total Difference"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="pos_cashier_shortage_report_view_pivot" model="ir.ui.view">
+        <field name="name">pos.cashier.shortage.report.pivot</field>
+        <field name="model">pos.cashier.shortage.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Cashier Shortage Analysis" sample="1">
+                <field name="employee_id" type="row"/>
+                <field name="journal_id" type="row"/>
+                <field name="closing_date" interval="month" type="col"/>
+                <field name="closing_expected" type="measure"/>
+                <field name="closing_counted" type="measure"/>
+                <field name="closing_difference" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="pos_cashier_shortage_report_view_search" model="ir.ui.view">
+        <field name="name">pos.cashier.shortage.report.search</field>
+        <field name="model">pos.cashier.shortage.report</field>
+        <field name="arch" type="xml">
+            <search string="Search Cashier Shortages">
+                <field name="employee_id"/>
+                <field name="config_id"/>
+                <field name="session_id"/>
+                <field name="journal_id"/>
+                <field name="payment_method_id"/>
+                <field name="opening_date"/>
+                <field name="closing_date"/>
+                <filter name="cash_shortage" string="Cash Shortage"
+                        domain="[('closing_difference', '&lt;', 0)]"/>
+                <filter name="cash_overage" string="Cash Overage"
+                        domain="[('closing_difference', '&gt;', 0)]"/>
+                <filter name="no_difference" string="No Difference"
+                        domain="[('closing_difference', '=', 0)]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[
+                            ('closing_date', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0, 0, 0)).to_utc()),
+                            ('closing_date', '&lt;', datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0, 0, 0)).to_utc())
+                        ]"/>
+                <filter name="this_week" string="This Week"
+                        domain="[
+                            ('closing_date', '&gt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=-1, days=1, weekday=0), datetime.time(0, 0, 0)).to_utc()),
+                            ('closing_date', '&lt;', datetime.datetime.combine(context_today() + relativedelta(days=1, weekday=0), datetime.time(0, 0, 0)).to_utc())
+                        ]"/>
+                <filter name="this_month" string="This Month"
+                        domain="[
+                            ('closing_date', '&gt;=', datetime.datetime.combine(context_today() + relativedelta(day=1), datetime.time(0, 0, 0)).to_utc()),
+                            ('closing_date', '&lt;', datetime.datetime.combine(context_today() + relativedelta(months=1, day=1), datetime.time(0, 0, 0)).to_utc())
+                        ]"/>
+                <separator/>
+                <filter name="opening_date_filter" string="Opening Date" date="opening_date"/>
+                <filter name="closing_date_filter" string="Custom Period" date="closing_date"/>
+                <group>
+                    <filter name="group_employee" string="Employee"
+                            context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_pos" string="Point of Sale"
+                            context="{'group_by': 'config_id'}"/>
+                    <filter name="group_session" string="Session"
+                            context="{'group_by': 'session_id'}"/>
+                    <filter name="group_journal" string="Cash Journal"
+                            context="{'group_by': 'journal_id'}"/>
+                    <filter name="group_payment_method" string="Payment Method"
+                            context="{'group_by': 'payment_method_id'}"/>
+                    <separator/>
+                    <filter name="group_opening_date" string="Opening Date"
+                            context="{'group_by': 'opening_date:month'}"/>
+                    <filter name="group_closing_date" string="Closing Date"
+                            context="{'group_by': 'closing_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pos_cashier_shortage_report_action" model="ir.actions.act_window">
+        <field name="name">Cashier Shortage Report</field>
+        <field name="res_model">pos.cashier.shortage.report</field>
+        <field name="view_mode">list,pivot</field>
+        <field name="search_view_id" ref="pos_cashier_shortage_report_view_search"/>
+        <field name="context">{'search_default_cash_shortage': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No cashier cash differences yet</p>
+            <p>Cash counts are captured separately for every cash journal when a POS session closes.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_pos_cashier_shortage_report"
+              name="Cashier Shortage Report"
+              parent="point_of_sale.menu_point_rep"
+              action="pos_cashier_shortage_report_action"
+              sequence="6"
+              groups="point_of_sale.group_pos_manager"/>
+</odoo>

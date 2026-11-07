@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Beno module bundle (installed only when present in the addons path) -->
+        <record id="param_dinein_modules" model="ir.config_parameter">
+            <field name="key">resta.dinein_modules</field>
+            <field name="value">product_modifiers,bs_pos_blend_intgeration,bs_pos_blend_intgeration_zatca,bs_pos_session_handover,pos_shared_floor_sync,pos_table_opened_by,bs_pos_kitchen_flow,bs_pos_kitchen_bilingual,bs_pos_products_by_category_only,bs_pos_customer_search_autofill,bs_pos_refund_guard,pos_ticket_partner_phone,pos_hide_products,exclusive_customer_discount,loyalty_reward_description_kanban,pos_analytic_tag_custom,stock_quant_qty_guard,pos_bonat_loyalty_online</field>
+        </record>
+    </data>
+</odoo>

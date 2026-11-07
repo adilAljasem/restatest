@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        The original Odoo receipt is kept untouched (so other modules that
+        inherit it keep working) and simply hidden when the custom design is
+        enabled on the point of sale configuration.
+    -->
+    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+
+        <xpath expr="//div[hasclass('pos-receipt')]" position="attributes">
+            <attribute name="t-if">!order.config.pino_receipt_design or props.basic_receipt</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('pos-receipt')]" position="after">
+            <div t-if="order.config.pino_receipt_design and !props.basic_receipt" class="pos-receipt pino-receipt" dir="rtl">
+                <t t-set="p" t-value="pino"/>
+
+                <!-- ============ Header ============ -->
+                <img t-if="p.logo" t-att-src="p.logo" class="pino-logo" alt="Logo"/>
+
+                <div class="pino-org">
+                    <div t-if="p.headerText" class="pino-org-line" style="white-space:pre-line" t-esc="p.headerText"/>
+                    <div t-else="" class="pino-org-line" t-esc="p.companyName"/>
+                    <div t-if="p.phone" class="pino-org-line">
+                        خدمة العملاء: <span dir="ltr" t-esc="p.phone"/>
+                    </div>
+                    <div t-if="p.vat or p.registry" class="pino-org-line">
+                        <t t-if="p.vat">الرقم الضريبي <span dir="ltr" t-esc="p.vat"/></t>
+                        <t t-if="p.vat and p.registry"> · </t>
+                        <t t-if="p.registry">س.ت <span dir="ltr" t-esc="p.registry"/></t>
+                    </div>
+                </div>
+
+                <!-- ============ Invoice type + reference ============ -->
+                <div class="pino-box pino-title-box">
+                    <span class="pino-title" t-esc="p.title"/>
+                    <span class="pino-ref" dir="ltr" t-esc="p.reference"/>
+                </div>
+
+                <!-- ============ Order information ============ -->
+                <div class="pino-meta">
+                    <div class="pino-meta-cell">
+                        <div class="pino-meta-label">رقم الطلب</div>
+                        <div class="pino-meta-value">#<t t-esc="p.trackingNumber"/></div>
+                    </div>
+                    <div class="pino-meta-cell pino-meta-end">
+                        <div class="pino-meta-label">التاريخ / الوقت</div>
+                        <div class="pino-meta-value"><t t-esc="p.date"/> – <t t-esc="p.time"/></div>
+                    </div>
+                </div>
+                <div t-if="p.customer or p.customerPhone or pinoOrderTypeLabel" class="pino-meta">
+                    <div class="pino-meta-cell">
+                        <div class="pino-meta-label">العميل</div>
+                        <div class="pino-meta-value" t-esc="p.customer or '—'"/>
+                        <div t-if="p.customerPhone" class="pino-meta-value" dir="ltr" t-esc="p.customerPhone"/>
+                    </div>
+                    <div class="pino-meta-cell pino-meta-end">
+                        <div class="pino-meta-label">نوع الطلب / الطاولة</div>
+                        <div class="pino-meta-value" t-esc="pinoOrderTypeLabel or '—'"/>
+                    </div>
+                </div>
+
+                <!-- ============ Order lines ============ -->
+                <div class="pino-lines">
+                    <div t-foreach="pinoLines" t-as="item" t-key="item_index" class="pino-line">
+                        <div class="pino-line-main">
+                            <span class="pino-qty" t-esc="item.qty"/>
+                            <span class="pino-name">
+                                <t t-esc="item.name"/>
+                                <span t-if="p.showLatin and item.latin" class="pino-name-latin" t-esc="item.latin"/>
+                            </span>
+                            <span class="pino-price" dir="ltr" t-esc="item.price"/>
+                        </div>
+                        <div t-foreach="item.children" t-as="child" t-key="child_index" class="pino-line-sub">
+                            <span class="pino-name">
+                                + <t t-esc="child.name"/> × <t t-esc="child.qty"/>
+                                <span t-if="p.showLatin and child.latin" class="pino-name-latin" t-esc="child.latin"/>
+                            </span>
+                            <span class="pino-price" dir="ltr" t-esc="child.price"/>
+                        </div>
+                        <div t-if="item.attributes.length" class="pino-line-sub">
+                            <span class="pino-name" t-esc="item.attributes.join(' · ')"/>
+                        </div>
+                        <div t-if="item.note" class="pino-line-sub pino-note">
+                            <span class="pino-name">ملاحظة: <t t-esc="item.note"/></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ Totals ============ -->
+                <div class="pino-box pino-totals">
+                    <div class="pino-total-row">
+                        <span>مجموع الأصناف</span>
+                        <span dir="ltr" t-esc="p.subtotalNoDiscount"/>
+                    </div>
+                    <div t-if="p.discount" class="pino-total-row">
+                        <span>الخصم</span>
+                        <span dir="ltr">– <t t-esc="p.discount"/></span>
+                    </div>
+                    <div class="pino-total-row">
+                        <span>الإجمالي قبل الضريبة</span>
+                        <span dir="ltr" t-esc="p.priceExcl"/>
+                    </div>
+                    <div class="pino-total-row">
+                        <span t-esc="p.taxLabel"/>
+                        <span dir="ltr" t-esc="p.taxAmount"/>
+                    </div>
+                    <div class="pino-total-row pino-grand-total">
+                        <span>الإجمالي المستحق</span>
+                        <span dir="ltr" t-esc="p.total"/>
+                    </div>
+                </div>
+
+                <!-- ============ ZATCA QR code ============ -->
+                <div t-if="p.zatcaQr" class="pino-box pino-qr">
+                    <div class="pino-qr-text">
+                        <div class="pino-qr-title">رمز الاستجابة السريعة</div>
+                        <div>معتمد من هيئة الزكاة والضريبة والجمارك</div>
+                        <div>امسحه للتحقق من الفاتورة</div>
+                    </div>
+                    <img t-att-src="p.zatcaQr" class="pino-qr-img" alt="QR"/>
+                </div>
+
+                <!-- ============ Barcode ============ -->
+                <div t-if="p.barcode" class="pino-barcode">
+                    <img t-att-src="p.barcode" alt="Barcode"/>
+                    <div class="pino-barcode-caption" dir="ltr">
+                        <t t-esc="p.reference"/> · طُبعت <t t-esc="p.printTime"/>
+                    </div>
+                </div>
+
+                <!-- ============ Footer ============ -->
+                <div class="pino-footer">
+                    <div t-if="p.slogan" class="pino-slogan" t-esc="p.slogan"/>
+                    <div t-if="p.footer" class="pino-footer-note" style="white-space:pre-line" t-esc="p.footer"/>
+                    <div t-if="p.website" class="pino-footer-note">
+                        لمزيد من التفاصيل نسعد بزيارة موقعنا الإلكتروني
+                        <div class="pino-website" dir="ltr" t-esc="p.website"/>
+                    </div>
+                    <div t-if="p.thanks" class="pino-thanks" t-esc="p.thanks"/>
+                </div>
+            </div>
+        </xpath>
+
+    </t>
+
+</templates>

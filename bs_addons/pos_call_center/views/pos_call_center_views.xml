@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_call_center_list" model="ir.ui.view">
+        <field name="name">pos.call.center.list</field>
+        <field name="model">pos.call.center</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="terminal_config_ids" widget="many2many_tags"/>
+                <field name="scope_type"/>
+                <field name="open_config_count" string="Open Branches"/>
+                <field name="user_ids" widget="many2many_avatar_user"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pos_call_center_form" model="ir.ui.view">
+        <field name="name">pos.call.center.form</field>
+        <field name="model">pos.call.center</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_create_terminal" type="object" string="Create Call Center POS"
+                            class="btn-primary" invisible="terminal_config_ids or not id"/>
+                    <button name="action_open_terminal" type="object" string="Open Call Center POS"
+                            class="btn-primary" invisible="not terminal_config_ids"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning" role="alert" invisible="terminal_config_ids or not id">
+                        This call center has no POS for the agents yet. Click <strong>Create Call Center POS</strong>
+                        (or choose an existing POS in the field "Call Center POS") so agents can take orders.
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_orders" type="object" class="oe_stat_button" icon="fa-phone">
+                            <field name="order_count" widget="statinfo" string="Orders"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Jeddah Call Center"/></h1>
+                    </div>
+                    <group>
+                        <group string="Call Center POS">
+                            <field name="terminal_config_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   domain="[('company_id', '=', company_id), ('cc_terminal_center_id', 'in', [False, id])]"/>
+                            <div colspan="2" class="text-muted">
+                                The agents take the orders in this Point of Sale (products, combos,
+                                notes, customer, preset...). Its "Payment" button becomes "Send to Branch".
+                            </div>
+                        </group>
+                        <group string="Options">
+                            <field name="auto_send_kitchen"/>
+                            <field name="require_customer"/>
+                            <field name="allow_branch_transfer"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Scope (receiving branches)">
+                            <field name="scope_type" widget="radio"/>
+                            <field name="config_ids" widget="many2many_tags"
+                                   invisible="scope_type != 'selected'"
+                                   required="scope_type == 'selected'"/>
+                            <field name="open_config_ids" widget="many2many_tags" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Agents" name="agents">
+                            <field name="user_ids" widget="many2many_tags_avatar"/>
+                        </page>
+                        <page string="Zones" name="zones">
+                            <field name="zone_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="config_ids" widget="many2many_tags"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_call_center" model="ir.actions.act_window">
+        <field name="name">Call Centers</field>
+        <field name="res_model">pos.call.center</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first call center</p>
+            <p>Choose the POS used by the agents and the branches that can receive the orders.</p>
+        </field>
+    </record>
+
+    <record id="action_open_my_terminal" model="ir.actions.server">
+        <field name="name">Take Orders</field>
+        <field name="model_id" ref="model_pos_call_center"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_open_my_terminal()</field>
+    </record>
+</odoo>

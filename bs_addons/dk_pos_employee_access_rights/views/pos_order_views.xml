@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sbl_view_pos_order_form_inherit_refund_access" model="ir.ui.view">
+        <field name="name">pos.order.form.refund.access.rights</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='has_refundable_lines']" position="after">
+                <field name="sbl_can_refund_pos_order" invisible="1"/>
+            </xpath>
+            <xpath expr="//header/button[@name='refund']" position="attributes">
+                <attribute name="invisible">state == 'draft' or not has_refundable_lines or not sbl_can_refund_pos_order</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

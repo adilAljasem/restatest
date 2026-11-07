@@ -1,0 +1,510 @@
+/* Sales receipt styles adapted from pino_pos_receipt (LGPL-3). */
+/*rtl:begin:ignore*/
+.pos-receipt.pos-receipt.pino-receipt {
+    font-family: "Tajawal", "Cairo", "Noto Kufi Arabic", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.35;
+    color: #000;
+    text-align: right;
+}
+
+/* ------------------------------ Header ---------------------------------- */
+.pos-receipt.pino-receipt .pino-logo {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.pos-receipt.pino-receipt .pino-org {
+    text-align: center;
+    font-size: 70%;
+    margin-top: 0.9em;
+}
+
+.pos-receipt.pino-receipt .pino-org-line {
+    margin: 0.15em 0;
+}
+
+/* ------------------------------ Boxes ----------------------------------- */
+.pos-receipt.pino-receipt .pino-box {
+    border: 1px solid #000;
+    border-radius: 0.6em;
+    padding: 0.5em 0.7em;
+    margin-top: 0.9em;
+}
+
+/* --------------------------- Invoice head ------------------------------ */
+.pos-receipt.pino-receipt .pino-invoice-head {
+    text-align: center;
+    margin-top: 0.9em;
+}
+
+.pos-receipt.pino-receipt .pino-title {
+    font-weight: 700;
+    font-size: 85%;
+}
+
+.pos-receipt.pino-receipt .pino-title-en {
+    margin-right: 0.4em;
+}
+
+.pos-receipt.pino-receipt .pino-ref {
+    font-weight: 700;
+    font-size: 85%;
+    margin-top: 0.2em;
+    letter-spacing: 0.05em;
+}
+
+/* Large boxed order number, same idea as "Order# 25". */
+.pos-receipt.pino-receipt .pino-order-box {
+    display: table;
+    margin: 0.6em auto 0;
+    border: 3px solid #000;
+    padding: 0.2em 0.8em 0.25em;
+    text-align: center;
+    line-height: 1.15;
+}
+
+.pos-receipt.pino-receipt .pino-order-label {
+    display: block;
+    font-size: 70%;
+    font-weight: 700;
+}
+
+.pos-receipt.pino-receipt .pino-order-num {
+    display: block;
+    font-size: 150%;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* --------------------------- Order details ------------------------------ */
+.pos-receipt.pino-receipt .pino-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.6em;
+    margin-top: 0.85em;
+}
+
+.pos-receipt.pino-receipt .pino-meta-cell {
+    flex: 1 1 0;
+    min-width: 0;
+    font-size: 72%;
+    text-align: center;
+}
+
+.pos-receipt.pino-receipt .pino-meta-end {
+    text-align: center;
+}
+
+.pos-receipt.pino-receipt .pino-meta-label {
+    color: #000;
+}
+
+.pos-receipt.pino-receipt .pino-meta-value {
+    font-weight: 700;
+    font-size: 118%;
+}
+
+/* ------------------------------ Lines ----------------------------------- */
+.pos-receipt.pino-receipt .pino-lines {
+    margin-top: 0.7em;
+}
+
+.pos-receipt.pino-receipt .pino-line {
+    border-top: 1px solid #000;
+    padding: 0.55em 0;
+}
+
+.pos-receipt.pino-receipt .pino-line-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6em;
+}
+
+/* Column widths are percentages so the header and every row line up even
+   though each column uses a different font size. */
+.pos-receipt.pino-receipt .pino-line-head > .pino-qty,
+.pos-receipt.pino-receipt .pino-line-main > .pino-qty {
+    flex: 0 0 11%;
+    box-sizing: border-box;
+}
+
+.pos-receipt.pino-receipt .pino-line-head > .pino-unit,
+.pos-receipt.pino-receipt .pino-line-main > .pino-unit {
+    flex: 0 0 17%;
+}
+
+.pos-receipt.pino-receipt .pino-line-head > .pino-price,
+.pos-receipt.pino-receipt .pino-line-main > .pino-price {
+    flex: 0 0 21%;
+    min-width: 0;
+}
+
+.pos-receipt.pino-receipt .pino-line-head {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.6em;
+    padding-bottom: 0.35em;
+    font-size: 66%;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.pos-receipt.pino-receipt .pino-line-head > span {
+    font-size: 100%;
+    border: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.pos-receipt.pino-receipt .pino-line-head .pino-qty {
+    text-align: center;
+    min-width: 0;
+}
+
+.pos-receipt.pino-receipt .pino-line-head .pino-unit,
+.pos-receipt.pino-receipt .pino-line-head .pino-price {
+    text-align: left;
+}
+
+.pos-receipt.pino-receipt .pino-head-en {
+    display: block;
+    font-weight: 400;
+}
+
+.pos-receipt.pino-receipt .pino-qty {
+    border: 1px solid #000;
+    border-radius: 0.4em;
+    min-width: 1.8em;
+    padding: 0.05em 0.3em;
+    text-align: center;
+    font-weight: 700;
+    font-size: 80%;
+}
+
+.pos-receipt.pino-receipt .pino-name {
+    flex: 1;
+    min-width: 0;
+    text-align: right;
+    font-weight: 700;
+    font-size: 85%;
+}
+
+.pos-receipt.pino-receipt .pino-name-latin {
+    display: block;
+    font-weight: 400;
+    font-size: 82%;
+    color: #000;
+}
+
+.pos-receipt.pino-receipt .pino-unit {
+    font-size: 80%;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.pos-receipt.pino-receipt .pino-price {
+    font-weight: 700;
+    font-size: 85%;
+    white-space: nowrap;
+    min-width: 5.4em;
+    text-align: left;
+    flex: none;
+}
+
+.pos-receipt.pino-receipt .pino-line-sub {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    padding-right: 2.3em;
+    font-size: 80%;
+    margin-top: 0.2em;
+}
+
+.pos-receipt.pino-receipt .pino-line-sub .pino-name {
+    font-weight: 400;
+}
+
+.pos-receipt.pino-receipt .pino-note .pino-name {
+    color: #000;
+}
+
+/* ------------------------------ Totals ---------------------------------- */
+.pos-receipt.pino-receipt .pino-totals,
+.pos-receipt.pino-receipt .pino-payments {
+    border-top: 1px solid #000;
+    margin-top: 0.2em;
+    padding-top: 0.45em;
+}
+
+.pos-receipt.pino-receipt .pino-payments {
+    margin-top: 0.5em;
+}
+
+.pos-receipt.pino-receipt .pino-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5em;
+    font-size: 85%;
+    padding: 0.2em 0;
+}
+
+.pos-receipt.pino-receipt .pino-total-label {
+    flex: 1;
+    min-width: 0;
+    font-weight: 700;
+    text-align: right;
+}
+
+.pos-receipt.pino-receipt .pino-total-en {
+    display: block;
+    font-weight: 400;
+    font-size: 82%;
+    text-align: right;
+}
+
+.pos-receipt.pino-receipt .pino-total-amount {
+    font-weight: 700;
+    white-space: nowrap;
+    flex: none;
+    text-align: left;
+}
+
+.pos-receipt.pino-receipt .pino-grand-total {
+    border-top: 1px solid #000;
+    margin-top: 0.35em;
+    padding-top: 0.45em;
+    font-size: 100%;
+}
+
+/* ------------------------------- QR ------------------------------------- */
+.pos-receipt.pino-receipt .pino-qr {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.pos-receipt.pino-receipt .pino-qr-img {
+    display: block;
+    width: 60%;
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto;
+    image-rendering: pixelated;
+}
+
+/* ------------------------------ Footer ---------------------------------- */
+.pos-receipt.pino-receipt .pino-footer {
+    text-align: center;
+    margin-top: 1.1em;
+}
+
+.pos-receipt.pino-receipt .pino-slogan {
+    font-weight: 700;
+    font-size: 88%;
+}
+
+.pos-receipt.pino-receipt .pino-slogan + .pino-slogan {
+    margin-top: 0.45em;
+}
+
+.pos-receipt.pino-receipt .pino-footer-note {
+    font-size: 70%;
+    color: #000;
+    margin-top: 0.4em;
+}
+
+.pos-receipt.pino-receipt .pino-website {
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: #000;
+    margin-top: 0.2em;
+}
+
+.pos-receipt.pino-receipt .pino-thanks {
+    font-weight: 700;
+    font-size: 82%;
+    margin-top: 0.7em;
+}
+
+.pos-receipt.pino-receipt .pino-powered {
+    font-size: 62%;
+    margin-top: 0.8em;
+    text-align: center;
+}
+
+/*rtl:end:ignore*/
+
+/* -------------------------- Identity pattern ---------------------------- */
+.pos-receipt.pino-receipt .pino-pattern {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.pos-receipt.pino-receipt .pino-pattern-top {
+    margin-bottom: 0.8em;
+}
+
+.pos-receipt.pino-receipt .pino-pattern-bottom {
+    margin-top: 1em;
+}
+
+/* --------------------------- Delivery card ------------------------------ */
+/* Solid black header and thick frame so the card stands out when the
+   driver picks up the bag; black/white only, safe for thermal printers. */
+.pos-receipt.pino-receipt .pino-delivery {
+    border: 2px solid #000;
+    border-radius: 0.6em;
+    margin-top: 0.8em;
+    overflow: hidden;
+    text-align: right;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-head {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 85%;
+    padding: 0.3em 0.5em 0.35em;
+    letter-spacing: 0.02em;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-head-en {
+    display: block;
+    font-size: 70%;
+    letter-spacing: 0.25em;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-platform {
+    text-align: center;
+    padding: 0.45em 0.6em 0.4em;
+    border-bottom: 1px dashed #000;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-caption {
+    font-size: 66%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-platform-name {
+    font-size: 120%;
+    font-weight: 700;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.35em 0.6em;
+    font-size: 80%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-row + .pino-delivery-row {
+    border-top: 1px dashed #000;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-label {
+    flex: none;
+    font-weight: 700;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-en {
+    display: block;
+    font-weight: 400;
+    font-size: 82%;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-value {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    font-weight: 700;
+    word-break: break-all;
+}
+
+/* Platform order ID: label on top, large number on its own line. */
+.pos-receipt.pino-receipt .pino-delivery-main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.1em;
+    text-align: center;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-main .pino-delivery-label {
+    text-align: center;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-main .pino-delivery-en {
+    display: inline;
+    margin-right: 0.4em;
+}
+
+.pos-receipt.pino-receipt .pino-delivery-big {
+    text-align: center;
+    font-size: 150%;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    word-break: normal;
+}
+
+/* ------------------- Attribute values / branch / counts ------------------ */
+/* Attribute values under the item, with their extra price in the price
+   column (layout of the combo items). */
+.pos-receipt.pino-receipt .pino-attr-row .pino-name {
+    font-size: 88%;
+}
+
+.pos-receipt.pino-receipt .pino-branch {
+    font-weight: 700;
+    font-size: 115%;
+}
+
+.pos-receipt.pino-receipt .pino-counts {
+    margin-top: 0.6em;
+}
+
+
+/* Never let a row grow wider than the receipt (long notes, big print font):
+   cells may shrink and long words wrap instead of pushing past the edge. */
+.pos-receipt.pino-receipt * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.pos-receipt.pino-receipt .pino-line-main > .pino-price,
+.pos-receipt.pino-receipt .pino-line-head > .pino-price {
+    min-width: 0;
+}
+
+.pos-receipt.pino-receipt .pino-name,
+.pos-receipt.pino-receipt .pino-total-label,
+.pos-receipt.pino-receipt .pino-meta-value,
+.pos-receipt.pino-receipt .pino-org-line {
+    overflow-wrap: anywhere;
+}
+
+/* ---------------------- Top and bottom lines ------------------------------ */
+/* Plain dashed lines at the top and bottom of the receipt (like Foodics), in
+   place of the identity pattern band. Shown with the "Identity Pattern"
+   setting and its position (top / bottom / both). */
+.pos-receipt.pino-receipt .pino-rule {
+    border-top: 2px dashed #000;
+    height: 0;
+    width: 100%;
+}
+
+.pos-receipt.pino-receipt .pino-rule-top {
+    margin-bottom: 0.8em;
+}
+
+.pos-receipt.pino-receipt .pino-rule-bottom {
+    margin-top: 0.8em;
+}

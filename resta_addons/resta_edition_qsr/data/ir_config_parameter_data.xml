@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Bun Fastic / Puls module bundle (installed only when present in the addons path) -->
+        <record id="param_qsr_modules" model="ir.config_parameter">
+            <field name="key">resta.qsr_modules</field>
+            <field name="value">pos_restaurant_combo_modifiers,bs_pos_delivery_core,bs_pos_delivery_blend,bs_pos_delivery_tryorder,bs_pos_kitchen_resend,pos_kitchen_send_before_payment,pos_call_center,pos_disable_decimal,pos_order_tracking_nps,pos_order_tracking_nps_hr,pos_bonat_loyalty_online,pos_cash_management,pos_blind_closing,pos_cashier_shortage_report,bs_pos_payment_clearing,pos_deferred_invoice_pdf,batch_scrap_orders,mrp_enhancement,mrp_bom_consumption_adjustment,custom_stock_ageing_report,product_category_inventory_location,bs_recurring_purchase_agreement,bs_analytic_center_profit_loss,bs_analytic_distribution_rate,bs_company_vendor_bill_validation,petty_cash,employee_loan_management,uom_aretx</field>
+        </record>
+    </data>
+</odoo>

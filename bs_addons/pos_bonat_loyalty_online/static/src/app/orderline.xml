@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        Bonat discount explanation rows on an order line.
+
+        Injected into ul.info-list, which is where core keeps the per-line detail
+        rows (price per unit, discount, customer note, internal note). Anchoring
+        there rather than at the end of the <li class="orderline"> keeps the rows
+        styled like their neighbours with no extra CSS.
+
+        `vals` is the t-set local that core establishes at the top of
+        point_of_sale.Orderline (t-value="this.lineScreenValues"), so it is in
+        scope for anything nested inside the template. orderline.js adds
+        vals.bonatNotes to it.
+
+        Note the mandatory `this.` prefix on component members: Odoo Online runs
+        Owl 3, where template expressions no longer fall back to the component
+        instance. Bare `line.foo` or `bonatNotes` silently resolves to nothing,
+        which is exactly how the earlier feasibility spike was misread. Only
+        t-set and t-foreach locals may be referenced bare.
+    -->
+    <t t-name="pos_bonat_loyalty_online.OrderlineBonatNotes"
+       t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension">
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <li t-foreach="vals.bonatNotes or []"
+                t-as="bonatNote"
+                t-key="bonatNote_index"
+                class="price-per-unit bonat-discount-note">
+                <i class="fa fa-gift me-1" role="img" aria-label="Bonat reward"/>
+                <t t-esc="bonatNote"/>
+            </li>
+        </xpath>
+    </t>
+
+</templates>

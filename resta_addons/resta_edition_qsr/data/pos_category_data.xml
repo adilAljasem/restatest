@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Daypart menus (Toast-style): "breakfast" only shows 06:00-12:00 -->
+        <record id="categ_breakfast" model="pos.category">
+            <field name="name">فطور</field>
+            <field name="sequence">10</field>
+            <field name="hour_after">6.0</field>
+            <field name="hour_until">12.0</field>
+        </record>
+        <record id="categ_meals" model="pos.category">
+            <field name="name">وجبات</field>
+            <field name="sequence">20</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_burgers" model="pos.category">
+            <field name="name">برجر</field>
+            <field name="sequence">30</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_sandwiches" model="pos.category">
+            <field name="name">ساندويتشات</field>
+            <field name="sequence">40</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_sides" model="pos.category">
+            <field name="name">إضافات وجانبية</field>
+            <field name="sequence">50</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_desserts" model="pos.category">
+            <field name="name">حلويات</field>
+            <field name="sequence">60</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_hot_coffee" model="pos.category">
+            <field name="name">قهوة ساخنة</field>
+            <field name="sequence">70</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_iced_coffee" model="pos.category">
+            <field name="name">قهوة باردة</field>
+            <field name="sequence">80</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+        <record id="categ_cold_drinks" model="pos.category">
+            <field name="name">مشروبات باردة</field>
+            <field name="sequence">90</field>
+            <field name="hour_after">0</field>
+            <field name="hour_until">24</field>
+        </record>
+    </data>
+</odoo>

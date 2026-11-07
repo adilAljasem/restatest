@@ -1,0 +1,393 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_bonat_loyalty_online
+#
+# Carried over verbatim from pos_bonat_loyalty/i18n/ar.po. The msgid is
+# identical in both builds, so the existing Arabic translation applies
+# unchanged; only the module name and source path were retargeted.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Use Bonat Coupon"
+msgstr "استخدم كوبون بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Bonat reward not applied — combo selection was cancelled."
+msgstr "لم يتم تطبيق مكافأة بونات — تم إلغاء اختيار الكومبو."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Bonat reward not applied — selection was cancelled."
+msgstr "لم يتم تطبيق مكافأة بونات — تم إلغاء الاختيار."
+
+#. module: pos_bonat_loyalty_online
+#: model:ir.model.fields,field_description:pos_bonat_loyalty_online.field_res_company_bonat_menu_sync_mode
+#: model:ir.model.fields,field_description:pos_bonat_loyalty_online.field_settings_bonat_menu_sync_mode
+msgid "Bonat Menu Sync Mode"
+msgstr "وضع مزامنة قائمة بونات"
+
+#. module: pos_bonat_loyalty_online
+#: model:ir.model.fields.selection,name:pos_bonat_loyalty_online.selection_field_res_company_bonat_menu_sync_mode_variant
+#: model:ir.model.fields.selection,name:pos_bonat_loyalty_online.selection_field_settings_bonat_menu_sync_mode_variant
+msgid "Variant-level"
+msgstr "مستوى المتغير"
+
+#. module: pos_bonat_loyalty_online
+#: model:ir.model.fields.selection,name:pos_bonat_loyalty_online.selection_field_res_company_bonat_menu_sync_mode_template
+#: model:ir.model.fields.selection,name:pos_bonat_loyalty_online.selection_field_settings_bonat_menu_sync_mode_template
+msgid "Template-level"
+msgstr "مستوى القالب"
+
+#. module: pos_bonat_loyalty_online
+#: model_terms:ir.ui.view,arch_db:pos_bonat_loyalty_online.res_config_settings_view_form_inherit_bonat_online
+msgid "Menu Sync Mode"
+msgstr "وضع مزامنة القائمة"
+
+#. module: pos_bonat_loyalty_online
+#: model_terms:ir.ui.view,arch_db:pos_bonat_loyalty_online.res_config_settings_view_form_inherit_bonat_online
+msgid ""
+"Variant-level (default): no change to today's menu-sync or\n"
+"                                    redemption behavior. Template-level: menu-sync pushes product\n"
+"                                    templates and redemption opens Odoo's native variant picker —\n"
+"                                    a reward can no longer be restricted to a subset of a\n"
+"                                    template's variants."
+msgstr ""
+"المستوى الافتراضي (على مستوى المتغير): لا يغيّر أي شيء في سلوك مزامنة "
+"القائمة أو الاسترداد الحالي. المستوى على مستوى القالب: تدفع المزامنة قوالب "
+"المنتجات، ويفتح الاسترداد أداة اختيار المتغيرات الأصلية في أودو — ولم يعد "
+"بالإمكان تقييد المكافأة بمجموعة فرعية من متغيرات القالب."
+
+#. module: pos_bonat_loyalty_online
+#: model_terms:ir.ui.view,arch_db:pos_bonat_loyalty_online.res_config_settings_view_form_inherit_bonat_online
+msgid ""
+"<strong>Before switching an existing merchant's mode, recreate every active product-restricted reward:</strong>\n"
+"                                    variant and template IDs are separate, overlapping ID sequences\n"
+"                                    with no automatic migration between them. A reward created under\n"
+"                                    the old mode can silently discount the wrong product, corrupt its\n"
+"                                    own stored records, or collapse into an unrestricted whole-order\n"
+"                                    discount once the next menu sync runs (main branch's ADR 0003,\n"
+"                                    Decision 4). Also perform the switch itself with POS sessions\n"
+"                                    closed and no menu-sync push in flight on any till — this build's\n"
+"                                    push is unlocked and fire-and-forget, so a push started before\n"
+"                                    the switch can complete after one started after it and silently\n"
+"                                    revert the product-identity scheme with no error shown (main\n"
+"                                    branch's ADR 0003, Decision 2). On a multi-till merchant,\n"
+"                                    coordinate the switch across every till before resuming sales."
+msgstr ""
+"<strong>قبل تبديل وضع تاجر حالي، أعد إنشاء كل مكافأة نشطة مقيّدة بمنتج "
+"معيّن:</strong> معرّفات المتغيرات (variant) ومعرّفات القوالب (template) "
+"سلسلتان منفصلتان ومتداخلتان في القيم، ولا يوجد ترحيل تلقائي بينهما. قد تؤدي "
+"مكافأة أُنشئت في الوضع القديم إلى تطبيق الخصم على منتج خاطئ دون تنبيه، أو "
+"إتلاف بياناتها المخزّنة، أو تحوّلها إلى خصم غير مقيّد على كامل الطلب بمجرد "
+"تشغيل مزامنة القائمة التالية (ADR 0003 على فرع main، القرار 4). كما يجب "
+"إجراء عملية التبديل نفسها مع إغلاق جميع جلسات نقطة البيع وعدم وجود أي "
+"عملية إرسال لمزامنة القائمة قيد التنفيذ على أي جهاز كاشير — فآلية الإرسال "
+"في هذا الإصدار غير مُقفلة (unlocked) وتعمل بنمط الإرسال دون انتظار "
+"(fire-and-forget)، لذا قد تكتمل عملية إرسال بدأت قبل التبديل بعد عملية "
+"بدأت بعده، مما يعيد بصمت نظام تعريف المنتجات إلى القديم دون ظهور أي خطأ "
+"(ADR 0003 على فرع main، القرار 2). في حال وجود عدة أجهزة كاشير لدى التاجر، "
+"يجب تنسيق عملية التبديل عبر جميع الأجهزة قبل استئناف عمليات البيع."
+
+#. module: pos_bonat_loyalty_online
+#: model_terms:ir.ui.view,arch_db:pos_bonat_loyalty_online.res_config_settings_view_form_inherit_bonat_online
+msgid ""
+"Required for voucher reward codes. Create a non-cash payment\n"
+"                                    method under Point of Sale &gt; Payment Methods, add it to this\n"
+"                                    POS's payment methods, then select it here; only methods already\n"
+"                                    linked to this POS are selectable. Once set, a redeemed voucher\n"
+"                                    auto-applies as its own payment line at checkout, capped to the\n"
+"                                    amount due and hidden from manual selection. While unset, voucher\n"
+"                                    codes are declined at scan time on this POS (other reward types\n"
+"                                    are unaffected)."
+msgstr ""
+"مطلوبة لأكواد المكافآت من نوع القسيمة. أنشئ طريقة دفع غير نقدية ضمن نقطة "
+"البيع > طرق الدفع، أضفها إلى طرق الدفع الخاصة بنقطة البيع هذه، ثم اخترها "
+"هنا؛ يمكن اختيار الطرق المرتبطة بالفعل بنقطة البيع هذه فقط. بمجرد تعيينها، "
+"يتم تطبيق القسيمة المستردة تلقائيًا كسطر دفع مستقل عند الدفع، بحد أقصى "
+"يساوي المبلغ المستحق، وتكون مخفية عن الاختيار اليدوي. وإلى حين تعيينها، "
+"تُرفض أكواد القسائم عند المسح في نقطة البيع هذه (أنواع المكافآت الأخرى لا "
+"تتأثر)."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Bonat Code Already Applied"
+msgstr "تم تطبيق كود بونات مسبقًا"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Bonat Code Entry In Progress"
+msgstr "إدخال كود بونات قيد المعالجة"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid ""
+"A previous Bonat code entry on this order is still being processed. Please "
+"wait for it to finish before entering another."
+msgstr ""
+"لا يزال إدخال كود بونات سابق على هذا الطلب قيد المعالجة. يرجى الانتظار حتى "
+"ينتهي قبل إدخال كود آخر."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Code %s is already applied on this order."
+msgstr "الكود %s مطبّق مسبقًا على هذا الطلب."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Code %(code)s is already applied on another open order (%(order)s). Remove it there first."
+msgstr "الكود %(code)s مطبّق على طلب مفتوح آخر (%(order)s). احذفه من هناك أولًا."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat code %s applied. It is used with Bonat when the order is sent to the kitchen."
+msgstr "تم تطبيق كود بونات %s. يُستخدم الكود في بونات عند إرسال الطلب للمطبخ."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "The Bonat codes already applied cover the whole order."
+msgstr "أكواد بونات المطبّقة تغطي قيمة الطلب بالكامل."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat code %s was already used with Bonat; removing its items does not give the code back."
+msgstr "كود بونات %s مستخدم مسبقًا في بونات؛ حذف أصنافه لا يعيد الكود للعميل."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat could not be reached to use code %s. It will be tried again at payment."
+msgstr "تعذّر الاتصال ببونات لاستخدام الكود %s. ستتم المحاولة مرة أخرى عند الدفع."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat refused code %(code)s: %(error)s. Remove the code before payment."
+msgstr "رفضت بونات الكود %(code)s: %(error)s. احذف الكود قبل الدفع."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat code not confirmed"
+msgstr "لم يتم تأكيد كود بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "not confirmed by Bonat"
+msgstr "لم تؤكده بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat could not be reached to confirm these codes:\n%s\n\nCheck the internet and validate again, or remove the codes to continue without their discount."
+msgstr "تعذّر الاتصال ببونات لتأكيد هذه الأكواد:\n%s\n\nتحقق من الإنترنت وأعد إتمام الدفع، أو احذف الأكواد للمتابعة بدون خصمها."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat did not accept these codes:\n%s\n\nRemove them to continue without their discount."
+msgstr "لم تقبل بونات هذه الأكواد:\n%s\n\nاحذفها للمتابعة بدون خصمها."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Remove these codes"
+msgstr "حذف هذه الأكواد"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Back"
+msgstr "رجوع"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Remove which Bonat code?"
+msgstr "أي كود بونات تريد حذفه؟"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "All Bonat codes"
+msgstr "كل أكواد بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Code already used"
+msgstr "الكود مستخدم مسبقًا"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat code %s was already used with Bonat when the order was sent to the kitchen. Removing it from the order does not give the code back to the customer."
+msgstr "كود بونات %s استُخدم في بونات عند إرسال الطلب للمطبخ. حذفه من الطلب لا يعيد الكود للعميل."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Remove anyway"
+msgstr "احذف على أي حال"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Keep"
+msgstr "إبقاء"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "used"
+msgstr "مستخدم"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "not used yet"
+msgstr "لم يُستخدم بعد"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat unreachable"
+msgstr "بونات غير متاحة"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "refused by Bonat"
+msgstr "مرفوض من بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat code %(code)s: %(value)s%(amount)s"
+msgstr "كود بونات %(code)s: %(value)s%(amount)s"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "Bonat code %s"
+msgstr "كود بونات %s"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "%(price)s with a %(percent)s% discount on %(qty)s qty"
+msgstr "%(price)s بخصم %(percent)s% على كمية %(qty)s"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "%(price)s with a %(percent)s% discount on %(qty)s qty up to %(cap)s"
+msgstr "%(price)s بخصم %(percent)s% على كمية %(qty)s بحد أقصى %(cap)s"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/bonat_store.js:0
+msgid "This voucher's value was already used with Bonat when the order was sent to the kitchen — it cannot be recovered, so clearing it from this order does not refund it."
+msgstr "قيمة هذه القسيمة استُخدمت في بونات عند إرسال الطلب للمطبخ — لا يمكن استرجاعها، وحذفها من الطلب لا يعيد قيمتها."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Enter Bonat Code"
+msgstr "أدخل كود بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Bonat code"
+msgstr "كود بونات"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Select Linewise Discount"
+msgstr "اختر المنتجات المخصومة"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Apply"
+msgstr "تطبيق"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Invalid Code"
+msgstr "كود غير صالح"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Entered code is not valid."
+msgstr "الكود المدخل غير صالح."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Nothing to Discount"
+msgstr "لا يوجد ما يُخصم"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Add products to the order before applying this Bonat code."
+msgstr "أضف منتجات للطلب قبل تطبيق كود بونات."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "Bonat Voucher:"
+msgstr "قسيمة بونات:"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "applied."
+msgstr "مطبّقة."
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "DEMO — no real transactions"
+msgstr "تجريبي — لا توجد عمليات حقيقية"
+
+#. module: pos_bonat_loyalty_online
+#. odoo-javascript
+#: code:addons/pos_bonat_loyalty_online/static/src/app/promo_code_button.js:0
+msgid "%(price)s with a %(amount)s discount on %(qty)s qty"
+msgstr "%(price)s بخصم %(amount)s على كمية %(qty)s"

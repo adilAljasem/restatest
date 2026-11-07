@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <function
+        model="res.company"
+        name="create_missing_stock_request_transit_location"
+    />
+</odoo>

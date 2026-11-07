@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- A committee member who is a party (concerned employee, his manager, branch manager,
+             author of the appealed decision) never sees the case. -->
+        <record id="rule_grievance_committee" model="ir.rule">
+            <field name="name">ESS grievance: committee, not a party</field>
+            <field name="model_id" ref="model_bs_hr_grievance"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_grievance_committee'))]"/>
+            <field name="domain_force">[('excluded_user_ids', 'not in', [user.id])]</field>
+        </record>
+        <record id="rule_grievance_company" model="ir.rule">
+            <field name="name">ESS grievance: company</field>
+            <field name="model_id" ref="model_bs_hr_grievance"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_grievance_message_committee" model="ir.rule">
+            <field name="name">ESS grievance message: committee, not a party</field>
+            <field name="model_id" ref="model_bs_hr_grievance_message"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_grievance_committee'))]"/>
+            <field name="domain_force">[('grievance_id.excluded_user_ids', 'not in', [user.id]), ('grievance_id.company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_grievance_log_committee" model="ir.rule">
+            <field name="name">ESS grievance access log: committee, not a party</field>
+            <field name="model_id" ref="model_bs_hr_grievance_access_log"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_grievance_committee'))]"/>
+            <field name="domain_force">[('grievance_id.excluded_user_ids', 'not in', [user.id]), ('grievance_id.company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_disciplinary_company" model="ir.rule">
+            <field name="name">ESS disciplinary: company</field>
+            <field name="model_id" ref="model_bs_hr_disciplinary"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="rule_violation_type_company" model="ir.rule">
+            <field name="name">ESS violation type: company</field>
+            <field name="model_id" ref="model_bs_hr_violation_type"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+    </data>
+</odoo>

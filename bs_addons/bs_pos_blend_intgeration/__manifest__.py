@@ -1,0 +1,47 @@
+{
+    "name": "POS Blend Integration",
+    "version": "19.0.1.37.0",
+    "category": "Point of Sale",
+    "summary": "Secure Blend menu, availability, and order synchronization",
+    "author": "Basic Solutions",
+    "license": "LGPL-3",
+    "depends": [
+        "mail",
+        "point_of_sale",
+        "stock",
+        "pos_restaurant",
+        "pos_enterprise",
+        "product_modifiers",
+    ],
+    "data": [
+        "security/blend_security.xml",
+        "security/ir.model.access.csv",
+        "data/blend_user.xml",
+        "data/blend_discount_product.xml",
+        "data/ir_cron.xml",
+        "views/pos_config_views.xml",
+        "views/pos_order_views.xml",
+        "views/product_views.xml",
+        "views/blend_integration_log_views.xml",
+    ],
+    "assets": {
+        "pos_preparation_display.assets": [
+            "bs_pos_blend_intgeration/static/src/xml/blend_scheduled_kitchen.xml",
+        ],
+        "point_of_sale._assets_pos": [
+            "bs_pos_blend_intgeration/static/src/js/blend_pos_store.js",
+            "bs_pos_blend_intgeration/static/src/js/blend_discount_refund.js",
+            "bs_pos_blend_intgeration/static/src/js/blend_kitchen_worker.js",
+            "bs_pos_blend_intgeration/static/src/js/blend_kitchen_print.js",
+            "bs_pos_blend_intgeration/static/src/js/blend_modifier_limits.js",
+            "bs_pos_blend_intgeration/static/src/js/blend_order_receipt.js",
+            "bs_pos_blend_intgeration/static/src/xml/blend_order_receipt.xml",
+        ],
+        "web.assets_unit_tests": [
+            "bs_pos_blend_intgeration/static/tests/unit/**/*.test.js",
+        ],
+    },
+    "external_dependencies": {"python": ["requests"]},
+    "installable": True,
+    "application": False,
+}

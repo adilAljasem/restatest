@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_loans" name="ESS Loans">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Loans</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-panel text-center">
+                <div class="text-muted small">Remaining balance</div>
+                <div class="ess-big-number"><t t-out="'{:,.2f}'.format(remaining)"/> <small t-out="currency.symbol"/></div>
+            </div>
+            <a href="/my/hr/loan/new" class="btn btn-primary w-100 mb-3"><i class="fa fa-plus me-1"/> Request a loan</a>
+            <div class="ess-list" t-if="loans">
+                <a t-foreach="loans" t-as="loan" t-att-href="loan._ess_portal_url()" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold" t-out="loan.loan_type_id.name"/>
+                            <div class="small text-muted">
+                                <t t-out="'{:,.2f}'.format(loan.amount)"/> <t t-out="currency.symbol"/> ·
+                                <t t-out="loan.installment_count"/> x <t t-out="'{:,.2f}'.format(loan.installment_amount)"/>
+                            </div>
+                            <div class="small" t-if="loan.state == 'approved'">
+                                Remaining: <strong t-out="'{:,.2f}'.format(loan.remaining_amount)"/>
+                            </div>
+                            <div class="small text-muted" t-out="loan.name"/>
+                        </div>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="loan"/></t>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-money"/><p>No loan yet.</p></div>
+        </t>
+    </template>
+
+    <template id="ess_loan_new" name="ESS New loan">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Request a loan</t>
+            <t t-set="ess_back" t-value="'/my/hr/loans'"/>
+            <div t-if="not types" class="ess-empty"><i class="fa fa-money"/><p>No loan type is available.</p></div>
+            <t t-else="">
+                <t t-set="lim" t-value="limits.get(loan_type.id)"/>
+                <form action="/my/hr/loan/new" method="get" class="ess-segment mb-3">
+                    <t t-foreach="types" t-as="lt">
+                        <a t-attf-href="/my/hr/loan/new?loan_type_id=#{lt.id}" t-attf-class="#{'active' if lt == loan_type else ''}" t-out="lt.name"/>
+                    </t>
+                </form>
+                <div class="ess-panel">
+                    <div class="text-muted small">You can request up to</div>
+                    <div class="ess-big-number"><t t-out="'{:,.2f}'.format(lim['max_amount'])"/> <small t-out="currency.symbol"/></div>
+                    <div class="small text-muted">
+                        Up to <t t-out="lim['max_installments']"/> monthly installments ·
+                        <t t-out="lim['service_months']"/> months of service
+                    </div>
+                    <div t-if="loan_type.description" class="small mt-2" t-out="loan_type.description"/>
+                    <div t-foreach="lim['reasons']" t-as="reason" class="alert alert-warning small mt-2 mb-0" t-out="reason"/>
+                </div>
+                <form action="/my/hr/loan/new" method="post" class="ess-form">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="loan_type_id" t-att-value="loan_type.id"/>
+                    <label for="ess_loan_amount">Amount</label>
+                    <input id="ess_loan_amount" type="number" name="amount" class="form-control" min="1" step="any"
+                           t-att-max="lim['max_amount'] or None" t-att-value="values['amount'] or ''" required="required"/>
+                    <label for="ess_loan_count">Number of installments</label>
+                    <select id="ess_loan_count" name="installment_count" class="form-select">
+                        <t t-foreach="range(1, (lim['max_installments'] or 1) + 1)" t-as="n">
+                            <option t-att-value="n" t-att-selected="n == values['installment_count']" t-out="n"/>
+                        </t>
+                    </select>
+                    <label for="ess_loan_first">First installment</label>
+                    <input id="ess_loan_first" type="date" name="first_installment_date" class="form-control"
+                           t-att-value="values['first_installment_date']" t-att-min="ess_today"/>
+                    <label for="ess_loan_note">Reason / notes</label>
+                    <textarea id="ess_loan_note" name="employee_note" class="form-control" rows="2" t-out="values['employee_note']"/>
+                    <t t-if="schedule">
+                        <h6 class="ess-section-title">Expected repayment schedule</h6>
+                        <div class="ess-list mb-2">
+                            <div t-foreach="schedule" t-as="inst" class="ess-list-item d-flex justify-content-between">
+                                <span><t t-out="ess_fdate(inst[0])"/></span>
+                                <strong><t t-out="'{:,.2f}'.format(inst[1])"/> <t t-out="currency.symbol"/></strong>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" name="action" value="preview" class="btn btn-outline-primary flex-fill">
+                            <i class="fa fa-calendar me-1"/> Preview schedule</button>
+                        <button type="submit" name="action" value="submit" class="btn btn-primary flex-fill"
+                                t-att-disabled="None if lim['eligible'] else 'disabled'">Send request</button>
+                    </div>
+                </form>
+            </t>
+        </t>
+    </template>
+
+    <template id="ess_loan_detail" name="ESS Loan detail">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Loan</t>
+            <t t-set="ess_back" t-value="'/my/hr/loans'"/>
+            <div class="ess-panel">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong t-out="record.name"/>
+                    <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="record"/></t>
+                </div>
+                <dl class="ess-dl">
+                    <dt>Type</dt><dd t-out="record.loan_type_id.name"/>
+                    <dt>Amount</dt><dd><t t-out="'{:,.2f}'.format(record.amount)"/> <t t-out="currency.symbol"/></dd>
+                    <dt>Installments</dt><dd><t t-out="record.installment_count"/> x <t t-out="'{:,.2f}'.format(record.installment_amount)"/></dd>
+                    <dt>Paid</dt><dd t-out="'{:,.2f}'.format(record.paid_amount)"/>
+                    <dt>Remaining</dt><dd><strong t-out="'{:,.2f}'.format(record.remaining_amount)"/></dd>
+                    <t t-if="record.rejection_reason"><dt>Rejection reason</dt><dd class="text-danger" t-out="record.rejection_reason"/></t>
+                </dl>
+            </div>
+            <t t-if="record.line_ids">
+                <h6 class="ess-section-title">Installments</h6>
+                <div class="ess-list">
+                    <div t-foreach="record.line_ids" t-as="line" class="ess-list-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-semibold"><t t-out="ess_fdate(line.date)"/></div>
+                                <div class="small text-muted"><t t-out="'{:,.2f}'.format(line.amount)"/> <t t-out="currency.symbol"/></div>
+                            </div>
+                            <span t-attf-class="ess-badge ess-badge-#{line.state}" t-out="ess_state_label(line)"/>
+                        </div>
+                        <t t-if="record.state == 'approved' and line.state in ('pending', 'postponed') and (not line.adjustment_id or line.adjustment_id.state == 'pending')">
+                            <div t-if="line in pending_postpone" class="small text-muted mt-1">Postponement requested</div>
+                            <details t-else="" class="mt-1">
+                                <summary class="small text-primary">Request postponement</summary>
+                                <form t-attf-action="/my/hr/loan/line/#{line.id}/postpone" method="post" class="mt-2">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <textarea name="reason" class="form-control form-control-sm mb-2" rows="2" required="required" placeholder="Reason"/>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary w-100">Send</button>
+                                </form>
+                            </details>
+                        </t>
+                    </div>
+                </div>
+            </t>
+            <h6 class="ess-section-title" t-if="lines">Approval progress</h6>
+            <t t-call="bs_hr_ess_base.ess_approval_timeline"/>
+            <form t-if="record.state in ('draft', 'submitted', 'in_approval')" class="mt-3"
+                  t-attf-action="/my/hr/request/#{record._name}/#{record.id}/cancel" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <button type="submit" class="btn btn-outline-danger w-100">Cancel request</button>
+            </form>
+        </t>
+    </template>
+</odoo>

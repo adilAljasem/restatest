@@ -1,0 +1,808 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_pos_session_handover
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-23 01:05+0000\n"
+"PO-Revision-Date: 2026-07-23 01:05+0000\n"
+"Last-Translator: Pino\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "%s blocked"
+msgstr "%s محظور"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "%s open table order(s) were prepared for the next POS session."
+msgstr "تم تجهيز %s طلب/طلبات طاولة مفتوحة للسيشن التالية."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid ""
+"%s transferred table order(s) were received from the previous POS session."
+msgstr "تم استلام %s طلب/طلبات طاولة منقولة من سيشن POS السابقة."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "%s unpaid orders"
+msgstr "%s طلب/طلبات غير مدفوعة"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "1 blocked"
+msgstr "عنصر واحد محظور"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "1 unpaid order"
+msgstr "طلب واحد غير مدفوع"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields.selection,name:bs_pos_session_handover.selection__pos_order__pino_handover_source__backend_button
+msgid "Backend Button"
+msgstr "زر الباك إند"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "Cannot transfer table orders that already have payment lines: %s"
+msgstr "لا يمكن نقل طلبات الطاولات التي تحتوي بالفعل على بنود دفع: %s"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Closing Handover"
+msgstr "نقل عند الإغلاق"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Current"
+msgstr "الحالية"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Handover"
+msgstr "نقل العهدة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_completed_at
+msgid "Handover Completed At"
+msgstr "وقت اكتمال النقل"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Handover Done"
+msgstr "تم النقل"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_requested_at
+msgid "Handover Requested At"
+msgstr "وقت طلب النقل"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_requested_by_id
+msgid "Handover Requested By"
+msgstr "طلب النقل بواسطة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_source
+msgid "Handover Source"
+msgstr "مصدر النقل"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_session__pino_last_claimed_handover_count
+msgid "Last Claimed Table Orders"
+msgstr "آخر طلبات طاولات مستلمة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_session__pino_last_claimed_handover_at
+msgid "Last Claimed Table Orders At"
+msgstr "وقت آخر استلام لطلبات الطاولات"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields.selection,name:bs_pos_session_handover.selection__pos_order__pino_handover_source__manual
+msgid "Manual POS Button"
+msgstr "زر POS اليدوي"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Manual POS Handover"
+msgstr "نقل POS يدوي"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "New Cashier"
+msgstr "الكاشير الجديد"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_to_session_id
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "New Session"
+msgstr "السيشن الجديدة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_new_session_cashier_id
+msgid "New Session Cashier"
+msgstr "كاشير السيشن الجديدة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_new_session_cashier_name
+msgid "New Session Cashier Name"
+msgstr "اسم كاشير السيشن الجديدة"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "No unpaid draft table orders need a session handover."
+msgstr "لا توجد طلبات طاولات مسودة غير مدفوعة تحتاج إلى نقل سيشن."
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields.selection,name:bs_pos_session_handover.selection__pos_order__pino_handover_state__none
+msgid "Not Transferred"
+msgstr "لم يتم النقل"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Old Cashier"
+msgstr "الكاشير السابق"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_from_session_id
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "Old Session"
+msgstr "السيشن السابقة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_old_session_cashier_id
+msgid "Old Session Cashier"
+msgstr "كاشير السيشن السابقة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_old_session_cashier_name
+msgid "Old Session Cashier Name"
+msgstr "اسم كاشير السيشن السابقة"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "Only unpaid draft table orders from this session can be transferred."
+msgstr "يمكن نقل طلبات الطاولات المسودة غير المدفوعة من هذه السيشن فقط."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Open tables"
+msgstr "الطاولات المفتوحة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields.selection,name:bs_pos_session_handover.selection__pos_order__pino_handover_source__closing
+msgid "POS Closing"
+msgstr "إغلاق POS"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Payment lines"
+msgstr "بنود دفع"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Pending Handover"
+msgstr "نقل معلق"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields.selection,name:bs_pos_session_handover.selection__pos_order__pino_handover_state__pending
+msgid "Pending New Session"
+msgstr "بانتظار السيشن الجديدة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model,name:bs_pos_session_handover.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: bs_pos_session_handover
+#: model:ir.model,name:bs_pos_session_handover.model_pos_session
+msgid "Point of Sale Session"
+msgstr "سيشن نقطة البيع"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid ""
+"Prepared %s unpaid table order(s) for transfer to the next POS session."
+msgstr "تم تجهيز %s طلب/طلبات طاولة غير مدفوعة للنقل إلى سيشن POS التالية."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "Prepared %s unpaid table order(s) for transfer."
+msgstr "تم تجهيز %s طلب/طلبات طاولة غير مدفوعة للنقل."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "Received %s unpaid table order(s) from a previous POS session."
+msgstr "تم استلام %s طلب/طلبات طاولة غير مدفوعة من سيشن POS سابقة."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Remove or validate payment lines before transferring marked tables."
+msgstr "قم بحذف أو تأكيد بنود الدفع قبل نقل الطاولات المحددة."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.js:0
+msgid "Select tables"
+msgstr "اختر الطاولات"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "Session Handover"
+msgstr "نقل السيشن"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_handover_state
+msgid "Session Handover Status"
+msgstr "حالة نقل السيشن"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid ""
+"Some open table orders already have payment lines. Validate or remove those "
+"payments before transferring or closing the session."
+msgstr ""
+"بعض طلبات الطاولات المفتوحة تحتوي بالفعل على بنود دفع. قم بتأكيد هذه "
+"المدفوعات أو حذفها قبل النقل أو إغلاق السيشن."
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Source"
+msgstr "المصدر"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "Source: %s"
+msgstr "المصدر: %s"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Table %s"
+msgstr "طاولة %s"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Table Handover"
+msgstr "نقل الطاولات"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_session_form_inherit_pino_session_handover
+msgid "Table Transfers"
+msgstr "نقل الطاولات"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "The open table orders could not be transferred."
+msgstr "تعذر نقل طلبات الطاولات المفتوحة."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "The table handover could not be completed."
+msgstr "تعذر إكمال نقل الطاولات."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "There are no unpaid open table orders to transfer."
+msgstr "لا توجد طلبات طاولات مفتوحة غير مدفوعة للنقل."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "This POS is not configured as a restaurant."
+msgstr "نقطة البيع هذه غير معدة كمطعم."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "This table has no unpaid open orders to transfer."
+msgstr "لا تحتوي هذه الطاولة على طلبات مفتوحة غير مدفوعة للنقل."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Transfer"
+msgstr "نقل"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid ""
+"Transfer %s open order(s) from %s selected table(s) to the next POS session?"
+msgstr ""
+"هل تريد نقل %s طلب/طلبات مفتوحة من %s طاولة محددة إلى سيشن POS التالية؟"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Transfer %s open order(s) from table %s to the next POS session?"
+msgstr "هل تريد نقل %s طلب/طلبات مفتوحة من الطاولة %s إلى سيشن POS التالية؟"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Transfer %s open table order(s) to the next POS session?"
+msgstr "هل تريد نقل %s طلب/طلبات طاولة مفتوحة إلى سيشن POS التالية؟"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.js:0
+msgid "Transfer All (%s order(s))"
+msgstr "نقل الكل (%s طلب/طلبات)"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/navbar/navbar.xml:0
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_session_form_inherit_pino_session_handover
+msgid "Transfer Open Tables"
+msgstr "نقل الطاولات المفتوحة"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.js:0
+msgid "Transfer Selected (%s table(s), %s order(s))"
+msgstr "نقل المحدد (%s طاولة، %s طلب/طلبات)"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/floor_screen/floor_screen.xml:0
+#: model:ir.model.fields.selection,name:bs_pos_session_handover.selection__pos_order__pino_handover_state__done
+msgid "Transferred"
+msgstr "منقول"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_is_session_transferred
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Transferred Between Sessions"
+msgstr "منقول بين السيشنات"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_session__pino_handover_order_count
+msgid "Transferred Table Orders"
+msgstr "طلبات الطاولات المنقولة"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/floor_screen/floor_screen.xml:0
+msgid "Transferred from another POS session"
+msgstr "منقول من سيشن POS أخرى"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Unpaid orders"
+msgstr "طلبات غير مدفوعة"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "Unsupported table handover source."
+msgstr "مصدر نقل الطاولات غير مدعوم."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "You cannot transfer table orders from a closed POS session."
+msgstr "لا يمكنك نقل طلبات الطاولات من سيشن POS مغلقة."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "current table"
+msgstr "الطاولة الحالية"
+
+#. module: bs_pos_session_handover
+#: model:ir.module.module,shortdesc:bs_pos_session_handover.module_bs_pos_session_handover
+msgid "BS POS Session Handover"
+msgstr "BS نقل سيشن نقطة البيع"
+
+#. module: bs_pos_session_handover
+#: model:ir.module.module,summary:bs_pos_session_handover.module_bs_pos_session_handover
+msgid "Transfer unpaid restaurant table orders between POS cashier sessions."
+msgstr "نقل طلبات طاولات المطعم غير المدفوعة بين سيشنات كاشير نقطة البيع."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Open Tables Before Closing"
+msgstr "الطاولات المفتوحة قبل الإغلاق"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.js:0
+msgid "Transfer and Close"
+msgstr "النقل والإغلاق"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid ""
+"These open tables will be transferred to the next POS session before "
+"closing."
+msgstr "سيتم نقل هذه الطاولات المفتوحة إلى سيشن POS التالية قبل الإغلاق."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid ""
+"%(count)s table order(s) handed over from %(old)s to %(new)s (%(session)s)."
+msgstr ""
+"تم تسليم %(count)s طلب/طلبات طاولة من %(old)s إلى %(new)s (%(session)s)."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid "%(count)s table order(s) handed over to %(cashier)s."
+msgstr "تم تسليم %(count)s طلب/طلبات طاولة إلى %(cashier)s."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Cancel Orders"
+msgstr "إلغاء الطلبات"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "Closed"
+msgstr "الإغلاق"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_closed_at
+msgid "Closed At"
+msgstr "وقت الإغلاق"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_closed_employee_id
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Closed By"
+msgstr "أغلقها"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_closed_by_other
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Closed By Another Cashier"
+msgstr "أغلقها كاشير آخر"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_closed_by_name
+msgid "Closed By Name"
+msgstr "اسم من أغلقها"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_closed_config_id
+msgid "Closed In POS"
+msgstr "أُغلقت في نقطة البيع"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_closed_session_id
+msgid "Closed In Session"
+msgstr "أُغلقت في الجلسة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__display_name
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_session__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Error"
+msgstr "خطأ"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Hand over %s open order(s) to %s now?"
+msgstr "تسليم %s طلب/طلبات مفتوحة إلى %s الآن؟"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Hand over to"
+msgstr "التسليم إلى"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__id
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_session__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "Next session of this POS"
+msgstr "الجلسة القادمة لنقطة البيع هذه"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.xml:0
+msgid "No other cashier is open on this floor right now."
+msgstr "لا يوجد كاشير آخر مفتوح على هذا الدور حالياً."
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "Opened"
+msgstr "الفتح"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "Opened / Closed"
+msgstr "الفتح / الإغلاق"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_opened_at
+msgid "Opened At"
+msgstr "وقت الفتح"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_opened_employee_id
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Opened By"
+msgstr "فتحها"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_opened_by_name
+msgid "Opened By Name"
+msgstr "اسم من فتحها"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_opened_config_id
+msgid "Opened In POS"
+msgstr "فُتحت في نقطة البيع"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_opened_session_id
+msgid "Opened In Session"
+msgstr "فُتحت في الجلسة"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/floor_screen/floor_screen.xml:0
+msgid "Opened by"
+msgstr "فتحها"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_owner_session_id
+msgid "Owner Session ID"
+msgstr "معرّف جلسة المالك"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,help:bs_pos_session_handover.field_pos_order__pino_owner_session_id
+msgid ""
+"Plain integer copy of session_id, used by the POS UI to know who owns a "
+"table (the UI rewrites session_id locally on synced orders)."
+msgstr "نسخة رقمية من الجلسة تستخدمها واجهة نقطة البيع لمعرفة مالك الطاولة."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid "Review Orders"
+msgstr "مراجعة الطلبات"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_order.py:0
+msgid ""
+"Table order %(order)s already has a payment taken by %(cashier)s. Only that "
+"cashier can complete it (or remove the payment first)."
+msgstr ""
+"طلب الطاولة %(order)s عليه دفعة استلمها %(cashier)s. فقط هذا الكاشير يستطيع "
+"إكماله (أو احذف الدفعة أولاً)."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_order.py:0
+msgid "Table order taken over by %(cashier)s (%(session)s)."
+msgstr "استلم %(cashier)s طلب الطاولة (%(session)s)."
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_session.py:0
+msgid ""
+"The selected cashier session is no longer open or does not share a floor "
+"with this POS."
+msgstr ""
+"جلسة الكاشير المختارة لم تعد مفتوحة أو لا تشترك في الدور مع نقطة البيع هذه."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/table_handover_popup/table_handover_popup.js:0
+msgid "These open tables will be handed over to %s before closing."
+msgstr "سيتم تسليم هذه الطاولات المفتوحة إلى %s قبل الإغلاق."
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/pos_store/pos_session_handover.js:0
+msgid ""
+"This table already has a payment taken by %s. Only that cashier can complete"
+" it."
+msgstr "هذه الطاولة عليها دفعة استلمها %s. فقط هذا الكاشير يستطيع إكمالها."
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_pos_form_inherit_pino_session_handover
+msgid "Bill"
+msgstr "الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_bill_print_count
+msgid "Bill Print Count"
+msgstr "عدد مرات طباعة الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_bill_printed
+msgid "Bill Printed"
+msgstr "طُبعت الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_bill_printed_at
+msgid "Bill Printed At"
+msgstr "وقت طباعة الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_bill_printed_employee_id
+msgid "Bill Printed By"
+msgstr "طبع الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_bill_printed_by_name
+msgid "Bill Printed By Name"
+msgstr "اسم من طبع الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_bill_printed_session_id
+msgid "Bill Printed In Session"
+msgstr "طُبعت الفاتورة في الجلسة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_config__pino_bill_printed_color
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_res_config_settings__pos_pino_bill_printed_color
+msgid "Bill Printed Table Color"
+msgstr "لون الطاولة بعد طباعة الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Bill Printed, Waiting Payment"
+msgstr "فاتورة مطبوعة بانتظار الدفع"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/floor_screen/floor_screen.xml:0
+msgid "Bill printed"
+msgstr "طُبعت الفاتورة"
+
+#. module: bs_pos_session_handover
+#. odoo-python
+#: code:addons/bs_pos_session_handover/models/pos_order.py:0
+msgid "Bill printed by %(cashier)s."
+msgstr "طبع الفاتورة %(cashier)s."
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,help:bs_pos_session_handover.field_pos_config__pino_bill_printed_color
+#: model:ir.model.fields,help:bs_pos_session_handover.field_res_config_settings__pos_pino_bill_printed_color
+msgid "Color of a table whose bill was printed and is waiting for payment."
+msgstr "لون الطاولة التي طُبعت فاتورتها وتنتظر الدفع."
+
+#. module: bs_pos_session_handover
+#: model:ir.model,name:bs_pos_session_handover.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model,name:bs_pos_session_handover.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.res_config_settings_view_form_pino_bill_color
+msgid "Table color after printing the bill"
+msgstr "لون الطاولة بعد طباعة الفاتورة"
+
+#. module: bs_pos_session_handover
+#: model:ir.actions.act_window,name:bs_pos_session_handover.action_pino_guest_stay_analysis
+#: model:ir.ui.menu,name:bs_pos_session_handover.menu_pino_guest_stay_analysis
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pino_guest_stay_graph
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pino_guest_stay_list
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pino_guest_stay_pivot
+msgid "Guest Stay"
+msgstr "مدة بقاء الضيف"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_stay_minutes
+msgid "Guest Stay (Minutes)"
+msgstr "مدة بقاء الضيف (بالدقائق)"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_stay_duration
+msgid "Guest Stay Duration"
+msgstr "مدة بقاء الضيف"
+
+#. module: bs_pos_session_handover
+#. odoo-javascript
+#: code:addons/bs_pos_session_handover/static/src/overrides/floor_screen/floor_screen.xml:0
+msgid "Guest stay"
+msgstr "مدة بقاء الضيف"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.actions.act_window,help:bs_pos_session_handover.action_pino_guest_stay_analysis
+msgid "Guest stay is measured from opening the table until it is paid."
+msgstr "تُحسب مدة بقاء الضيف من فتح الطاولة حتى دفعها."
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.actions.act_window,help:bs_pos_session_handover.action_pino_guest_stay_analysis
+msgid "No closed table orders yet"
+msgstr "لا توجد طلبات طاولات مغلقة بعد"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,field_description:bs_pos_session_handover.field_pos_order__pino_split_from_uuid
+msgid "Split From Order"
+msgstr "مقسوم من الطلب"
+
+#. module: bs_pos_session_handover
+#: model_terms:ir.ui.view,arch_db:bs_pos_session_handover.view_pos_order_search_inherit_pino_session_handover
+msgid "Table Orders Closed"
+msgstr "طلبات طاولات مغلقة"
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,help:bs_pos_session_handover.field_pos_order__pino_stay_duration
+msgid "Time between opening the table and paying it, in hours."
+msgstr "المدة من فتح الطاولة حتى دفعها، بالساعات."
+
+#. module: bs_pos_session_handover
+#: model:ir.model.fields,help:bs_pos_session_handover.field_pos_order__pino_split_from_uuid
+msgid ""
+"UUID of the table order this one was split from (keeps the service start)."
+msgstr ""
+"معرّف طلب الطاولة الأصلي الذي قُسم منه هذا الطلب (يحتفظ بوقت بداية الخدمة)."

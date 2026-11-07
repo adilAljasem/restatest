@@ -1,0 +1,79 @@
+// ============================================================================
+// Resta brand — dark values
+// Prepended to web.assets_web_dark: compiled before the light file, so these
+// !default values take precedence in the dark bundle only.
+// Surfaces come from the dark sections of resta.sa (#141414 … #252525).
+// ============================================================================
+
+$rs-scheme: dark !default;
+$rs-page-bg: #141414 !default;
+$rs-surface: #1D1D1D !default;
+$rs-surface-2: #252525 !default;
+$rs-surface-3: #2E2E2E !default;
+$rs-text: #FFFFFF !default;
+$rs-text-muted: #ACA7A2 !default;
+$rs-text-subtle: #8E8984 !default;
+$rs-border: rgba(#FFFFFF, .10) !default;
+$rs-border-soft: rgba(#FFFFFF, .07) !default;
+$rs-primary: #FF5A1F !default;
+$rs-primary-hover: #FF7443 !default;
+$rs-primary-fg: #FF7443 !default;
+$rs-active-bg: rgba(#FF5A1F, .16) !default;
+$rs-hover-bg: rgba(#FFFFFF, .05) !default;
+$rs-focus-ring: rgba(#FF7443, .22) !default;
+$rs-sidebar-bg: #1A1A1A !default;
+$rs-topbar-bg: rgba(#171717, .86) !default;
+$rs-shadow-sm: 0 1px 2px rgba(#000000, .4) !default;
+$rs-shadow-md: 0 10px 28px rgba(#000000, .45) !default;
+$rs-shadow-btn: 0 6px 18px rgba(#FF5A1F, .25) !default;
+$rs-backdrop: rgba(#000000, .6) !default;
+
+// Odoo's dark mode works by inverting the neutral scale.
+$o-webclient-color-scheme: dark !default;
+$o-white: #1D1D1D !default;
+$o-black: #FFFFFF !default;
+
+$o-gray-100: #202020 !default;
+$o-gray-200: #252525 !default;
+$o-gray-300: #2E2E2E !default;
+$o-gray-400: #3A3836 !default;
+$o-gray-500: #5E5A57 !default;
+$o-gray-600: #8E8984 !default;
+$o-gray-700: #ACA7A2 !default;
+$o-gray-800: #D6D1CC !default;
+$o-gray-900: #F2EFEB !default;
+
+// Enterprise dark mode re-declares its purple/teal: pin every brand alias
+$o-community-color: #FF5A1F !default;
+$o-enterprise-color: #FF5A1F !default;
+$o-enterprise-action-color: #FF7443 !default;
+$o-brand-odoo: #FF5A1F !default;
+$o-brand-primary: #FF5A1F !default;
+$o-main-code-color: #FF9068 !default;
+$o-main-favorite-color: #FFD532 !default;
+
+$o-theme-text-colors: (
+    "primary": #FF7443,
+    "success": #2BBF8C,
+    "info": #5B9BD5,
+    "warning": #F0B43C,
+    "danger": #FF6B6B,
+) !default;
+
+$o-action: #FF7443 !default;
+$o-main-link-color: #FF7443 !default;
+$o-success: #2BBF8C !default;
+$o-info: #5B9BD5 !default;
+$o-warning: #F0B43C !default;
+$o-danger: #F05252 !default;
+
+$o-view-background-color: #1D1D1D !default;
+$o-webclient-background-color: #141414 !default;
+$o-shadow-color: #000000 !default;
+
+$o-navbar-background: #1A1A1A !default;
+$o-navbar-border-bottom: 1px solid rgba(#FFFFFF, .07) !default;
+$o-navbar-entry-color: #D6D1CC !default;
+$o-navbar-entry-color--hover: #FFFFFF !default;
+$o-navbar-entry-bg--hover: rgba(#FFFFFF, .06) !default;
+$o-navbar-brand-color: #FFFFFF !default;

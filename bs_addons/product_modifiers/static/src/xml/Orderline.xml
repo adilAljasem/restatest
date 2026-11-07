@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="product_modifiers.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//span[hasclass('text-wrap')]" position="inside">
+            <small t-if="line.portion" class="modifier-portion me-1">
+                (<t t-esc="line.portion"/>)
+            </small>
+        </xpath>
+    </t>
+</templates>

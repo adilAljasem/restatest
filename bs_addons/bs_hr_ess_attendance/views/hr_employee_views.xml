@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_ess_attendance" model="ir.ui.view">
+        <field name="name">hr.employee.form.ess.attendance</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="bs_hr_ess_base.view_employee_form_ess"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='ess_extra']" position="inside">
+                <field name="ess_allowed_location_ids" widget="many2many_tags"/>
+                <field name="ess_att_override"/>
+                <field name="ess_use_geo" invisible="not ess_att_override"/>
+                <field name="ess_use_qr" invisible="not ess_att_override"/>
+                <field name="ess_use_face" invisible="not ess_att_override"/>
+                <field name="ess_method_logic" invisible="not ess_att_override"/>
+            </xpath>
+            <xpath expr="//group[@name='ess_access']" position="inside">
+                <field name="ess_face_enrolled"/>
+                <field name="ess_face_enroll_allowed"/>
+                <field name="ess_face_consent_date" invisible="not ess_face_consent_date"/>
+                <button name="action_ess_face_reset" type="object" string="Reset face" invisible="not ess_face_enrolled"
+                        confirm="The encrypted face signature will be deleted. Continue?" colspan="2"/>
+            </xpath>
+            <xpath expr="//page[@name='ess']/separator" position="before">
+                <separator string="Attendance devices"/>
+                <field name="ess_device_ids">
+                    <list create="0" editable="bottom">
+                        <field name="name" readonly="1"/>
+                        <field name="state" readonly="1" widget="badge" decoration-success="state == 'active'" decoration-warning="state == 'pending'"/>
+                        <field name="last_used" readonly="1"/>
+                        <button name="action_approve" type="object" string="Approve" invisible="state == 'active'"/>
+                        <button name="action_revoke" type="object" string="Revoke" invisible="state == 'revoked'"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

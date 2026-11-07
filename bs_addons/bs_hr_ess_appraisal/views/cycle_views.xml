@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cycle_form" model="ir.ui.view">
+        <field name="name">bs.hr.appraisal.cycle.form</field>
+        <field name="model">bs.hr.appraisal.cycle</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_appraisals" type="object" string="Generate appraisals"
+                            class="btn-primary" invisible="state == 'closed'"/>
+                    <button name="action_close" type="object" string="Close" invisible="state != 'open'"/>
+                    <button name="action_reset_draft" type="object" string="Reset to draft" invisible="state != 'closed'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_appraisals" type="object" class="oe_stat_button" icon="fa-star-half-o">
+                            <field name="appraisal_count" widget="statinfo" string="Appraisals"/>
+                        </button>
+                    </div>
+                    <div class="oe_title"><h1><field name="name" placeholder="e.g. Annual appraisal 2026"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="cycle_type"/>
+                            <field name="template_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="self_review_deadline"/>
+                        </group>
+                    </group>
+                    <group string="Employees">
+                        <field name="selection_mode" widget="radio" options="{'horizontal': true}"/>
+                        <field name="work_location_ids" widget="many2many_tags" invisible="selection_mode != 'branches'"/>
+                        <field name="department_ids" widget="many2many_tags" invisible="selection_mode != 'departments'"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_cycle_list" model="ir.ui.view">
+        <field name="name">bs.hr.appraisal.cycle.list</field>
+        <field name="model">bs.hr.appraisal.cycle</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="cycle_type"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="template_id"/>
+                <field name="appraisal_count"/>
+                <field name="state" widget="badge" decoration-info="state == 'open'" decoration-muted="state == 'closed'"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_cycle" model="ir.actions.act_window">
+        <field name="name">Appraisal Cycles</field>
+        <field name="res_model">bs.hr.appraisal.cycle</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

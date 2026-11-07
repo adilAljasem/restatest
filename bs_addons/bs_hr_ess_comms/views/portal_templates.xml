@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================ HOME: pinned announcement ============================ -->
+    <template id="ess_home_pinned" name="ESS Home - pinned announcement" inherit_id="bs_hr_ess_base.ess_home">
+        <xpath expr="//div[@id='ess_home_top']" position="inside">
+            <a t-if="ess_pinned_announcement" t-attf-href="/my/hr/news/#{ess_pinned_announcement.id}"
+               class="ess-panel d-block text-reset text-decoration-none mb-3">
+                <div class="small text-muted"><i class="fa fa-thumb-tack me-1"/>Pinned</div>
+                <div class="fw-semibold" t-out="ess_pinned_announcement.name"/>
+                <div class="small text-muted text-truncate" t-if="ess_pinned_announcement.summary"
+                     t-out="ess_pinned_announcement.summary"/>
+            </a>
+        </xpath>
+    </template>
+
+    <template id="ess_announcement_item" name="ESS announcement list item">
+        <a t-attf-href="/my/hr/news/#{ann.id}"
+           t-attf-class="ess-list-item d-block #{'' if ann.id in read_ids else 'unread'}">
+            <div class="d-flex justify-content-between align-items-start gap-2">
+                <div class="min-w-0">
+                    <div class="fw-semibold">
+                        <i t-if="ann.pinned" class="fa fa-thumb-tack me-1 text-muted"/>
+                        <t t-out="ann.name"/>
+                    </div>
+                    <div class="small text-muted text-truncate" t-if="ann.summary" t-out="ann.summary"/>
+                    <div class="small text-muted">
+                        <t t-out="ess_display(ann, 'announcement_type')"/> ·
+                        <t t-out="ess_display(ann, 'date_publish')"/>
+                    </div>
+                </div>
+                <span t-if="ann.require_ack and ann.id not in acked_ids" class="ess-badge ess-badge-warning">To acknowledge</span>
+                <span t-elif="ann.require_ack" class="ess-badge ess-badge-success">Acknowledged</span>
+                <span t-elif="ann.id not in read_ids" class="ess-badge ess-badge-info">New</span>
+            </div>
+        </a>
+    </template>
+
+    <!-- ============================ NEWS FEED ============================ -->
+    <template id="ess_news" name="ESS News feed">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">News &amp; circulars</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/news?filter=all" t-attf-class="#{'active' if filter not in ('unread', 'to_ack') else ''}">All</a>
+                <a href="/my/hr/news?filter=unread" t-attf-class="#{'active' if filter == 'unread' else ''}">Unread</a>
+                <a href="/my/hr/news?filter=to_ack" t-attf-class="#{'active' if filter == 'to_ack' else ''}">To acknowledge</a>
+            </div>
+            <div class="ess-list" t-if="announcements">
+                <t t-foreach="announcements" t-as="ann">
+                    <t t-call="bs_hr_ess_comms.ess_announcement_item"/>
+                </t>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-bullhorn"/><p>No announcement.</p></div>
+            <div class="d-flex gap-2 mt-3">
+                <a href="/my/hr/policies" class="btn btn-outline-secondary flex-fill"><i class="fa fa-book me-1"/> Policies</a>
+                <a href="/my/hr/calendar" class="btn btn-outline-secondary flex-fill"><i class="fa fa-calendar me-1"/> Calendar</a>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ DETAIL ============================ -->
+    <template id="ess_news_detail" name="ESS Announcement">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title" t-value="ess_display(announcement, 'announcement_type')"/>
+            <t t-set="ess_back" t-value="back"/>
+            <div class="ess-panel">
+                <img t-if="announcement.image" t-attf-src="/my/hr/news/#{announcement.id}/image"
+                     class="img-fluid rounded mb-3 w-100" alt=""/>
+                <h5 class="mb-1" t-out="announcement.name"/>
+                <div class="small text-muted mb-3">
+                    <t t-out="ess_display(announcement, 'date_publish')"/>
+                    <t t-if="announcement.date_expire"> · Until <t t-out="ess_display(announcement, 'date_expire')"/></t>
+                </div>
+                <div class="ess-announcement-body" t-out="announcement.body"/>
+            </div>
+
+            <h6 class="ess-section-title" t-if="attachments">Attachments</h6>
+            <div class="ess-list mb-3" t-if="attachments">
+                <a t-foreach="attachments" t-as="att" class="ess-list-item d-block"
+                   t-attf-href="/web/content/#{att.id}?download=true&amp;access_token=#{tokens[att.id]}">
+                    <i class="fa fa-paperclip me-2"/><t t-out="att.name"/>
+                </a>
+            </div>
+
+            <t t-if="announcement.require_ack">
+                <div t-if="ack.ack_date" class="alert alert-success">
+                    <i class="fa fa-check-circle me-1"/>
+                    Acknowledged on <t t-out="ess_display(ack, 'ack_date')"/>
+                </div>
+                <form t-else="" t-attf-action="/my/hr/news/#{announcement.id}/ack" method="post" class="ess-panel">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <p class="small text-muted mb-2">By confirming, you declare that you have read this document,
+                        understood it and agree to comply with it.</p>
+                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-check me-1"/> I have read and agree</button>
+                </form>
+            </t>
+        </t>
+    </template>
+
+    <!-- ============================ POLICY LIBRARY ============================ -->
+    <template id="ess_policies" name="ESS Policy library">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Company policies</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-list" t-if="policies">
+                <a t-foreach="policies" t-as="pol" t-attf-href="/my/hr/news/#{pol.id}" class="ess-list-item d-block">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold"><i class="fa fa-book me-2 text-muted"/><t t-out="pol.name"/></div>
+                            <div class="small text-muted text-truncate" t-if="pol.summary" t-out="pol.summary"/>
+                        </div>
+                        <span t-if="pol.require_ack and pol.id not in acked_ids" class="ess-badge ess-badge-warning">To acknowledge</span>
+                        <span t-elif="pol.require_ack" class="ess-badge ess-badge-success">Acknowledged</span>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-book"/><p>No policy published yet.</p></div>
+        </t>
+    </template>
+
+    <!-- ============================ COMPANY CALENDAR ============================ -->
+    <template id="ess_calendar" name="ESS Company calendar">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Company calendar</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+
+            <h6 class="ess-section-title">Public holidays (next 90 days)</h6>
+            <div class="ess-list" t-if="holidays">
+                <div t-foreach="holidays" t-as="hol" class="ess-list-item">
+                    <t t-set="d_from" t-value="to_date(hol.date_from)"/>
+                    <t t-set="d_to" t-value="to_date(hol.date_to)"/>
+                    <div class="fw-semibold" t-out="hol.name or 'Public holiday'"/>
+                    <div class="small text-muted">
+                        <t t-out="ess_fdate(d_from)"/>
+                        <t t-if="d_to != d_from"> → <t t-out="ess_fdate(d_to)"/></t>
+                        · <t t-out="ess_hijri(d_from)"/>
+                    </div>
+                </div>
+            </div>
+            <div t-else="" class="ess-empty small"><i class="fa fa-calendar-o"/><p>No public holiday in the next 90 days.</p></div>
+
+            <t t-if="events">
+                <h6 class="ess-section-title">Events</h6>
+                <div class="ess-list">
+                    <a t-foreach="events" t-as="ev" t-attf-href="/my/hr/news/#{ev.id}" class="ess-list-item d-block">
+                        <div class="fw-semibold" t-out="ev.name"/>
+                        <div class="small text-muted" t-if="ev.summary" t-out="ev.summary"/>
+                    </a>
+                </div>
+            </t>
+
+            <t t-if="show_celebrations">
+                <h6 class="ess-section-title">Celebrations this month</h6>
+                <div class="ess-list" t-if="celebrations">
+                    <div t-foreach="celebrations" t-as="cel" class="ess-list-item d-flex align-items-center gap-2">
+                        <span class="ess-badge ess-badge-info" t-out="cel['day']"/>
+                        <i t-attf-class="fa #{'fa-birthday-cake' if cel['kind'] == 'birthday' else 'fa-star'} text-muted"/>
+                        <span class="flex-grow-1" t-out="cel['name']"/>
+                        <span class="small text-muted" t-if="cel['kind'] == 'birthday'">Birthday</span>
+                        <span class="small text-muted" t-else=""><t t-out="cel['years']"/> year(s) with us</span>
+                    </div>
+                </div>
+                <div t-else="" class="ess-empty small"><i class="fa fa-smile-o"/><p>Nothing to celebrate this month.</p></div>
+            </t>
+        </t>
+    </template>
+</odoo>

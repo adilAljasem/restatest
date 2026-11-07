@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        Bonat per-product discount picker.
+
+        Every component member is reached through `this.` because Odoo Online runs
+        Owl 3, where template scope no longer falls back to the component
+        instance. `this.props.x`, `this.state.x`, `this.getQty(...)`. Only the
+        t-foreach locals (product, product_index) are referenced bare.
+    -->
+    <t t-name="pos_bonat_loyalty_online.OrderlinePopup">
+        <Dialog title="this.dialogTitle" size="'md'">
+            <main class="modal-body">
+                <div class="summary-info row mb-2">
+                    <div class="col-4 bonat-border-right">
+                        <strong>Discount:</strong>
+                        <div>
+                            <strong>
+                                <t t-if="this.props.isPercentage">
+                                    <t t-esc="this.props.discountAmount"/> %
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="this.formatCurrency(this.props.discountAmount)"/>
+                                </t>
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="col-4 bonat-border-right">
+                        <strong>Max Quantity:</strong>
+                        <div>
+                            <strong><t t-esc="this.props.allowedQty"/> Qty</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <strong>Max Discount:</strong>
+                        <div>
+                            <strong><t t-esc="this.formatCurrency(this.props.maxDiscountAmt)"/></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bonat-separator-line"/>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><strong>Product</strong></th>
+                            <th><strong>Quantity</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="this.props.allowed_products"
+                            t-as="product"
+                            t-key="product.id"
+                            class="align-middle">
+                            <td><t t-esc="product.display_name"/></td>
+                            <td>
+                                <div class="quantity-control d-inline-flex align-middle">
+                                    <button type="button"
+                                            class="btn btn-link remove-one"
+                                            t-on-click="() => this.removeOne(product.id)"
+                                            t-att-disabled="this.getQty(product.id) === 0 or undefined"
+                                            aria-label="Remove one"
+                                            title="Remove one">
+                                        <i class="fa fa-minus"/>
+                                    </button>
+                                    <input type="text"
+                                           class="form-control disc_quantity text-center"
+                                           style="max-width: 80px;"
+                                           t-att-id="'qty_' + product.id"
+                                           t-att-value="this.getQty(product.id)"
+                                           t-on-input="(ev) => this.onInput(product.id, ev)"/>
+                                    <button type="button"
+                                            class="btn btn-link add-one"
+                                            t-on-click="() => this.addOne(product.id)"
+                                            t-att-disabled="this.atLimit or undefined"
+                                            aria-label="Add one"
+                                            title="Add one">
+                                        <i class="fa fa-plus"/>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-muted small" t-if="this.props.allowedQty">
+                    <t t-esc="this.totalQty"/> of <t t-esc="this.props.allowedQty"/> rewarded units selected.
+                </div>
+            </main>
+            <t t-set-slot="footer">
+                <button type="button"
+                        class="button confirm btn btn-lg btn-primary"
+                        t-on-click="() => this.confirmChanges()">
+                    <t t-esc="this.confirmLabel"/>
+                </button>
+                <button type="button"
+                        class="button cancel btn btn-lg btn-secondary"
+                        t-on-click="() => this.cancel()">
+                    <t t-esc="this.cancelLabel"/>
+                </button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

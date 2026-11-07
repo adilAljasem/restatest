@@ -1,0 +1,384 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_kitchen_ticket_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-14 19:54+0000\n"
+"PO-Revision-Date: 2026-10-14 19:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_show_platform
+msgid ""
+"Delivery app and its order number (Connect / FeedUs), e.g. \"Jahez\" and "
+"\"208307412\"."
+msgstr ""
+"تطبيق التوصيل ورقم الطلب في التطبيق (Connect / FeedUs)، مثل «جاهز» و "
+"«208307412»."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_show_order_number
+msgid "\"Order# 39\" (order tracking number)."
+msgstr "«Order# 39» (رقم تتبع الطلب)."
+
+#. module: pos_kitchen_ticket_custom
+#. odoo-javascript
+#: code:addons/pos_kitchen_ticket_custom/static/src/xml/kitchen_ticket.xml:0
+msgid "(DUPLICATE)"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_print_width__512
+msgid "512 dots (Odoo default)"
+msgstr "512 نقطة (افتراضي Odoo)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_print_width__420
+msgid "58 mm – 420 dots"
+msgstr "58 مم – 420 نقطة"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_print_width__576
+msgid "80 mm – 576 dots (Epson TM-T20III, TM-T82, TM-T88)"
+msgstr "80 مم – 576 نقطة (Epson TM-T20III و TM-T82 و TM-T88)"
+
+#. module: pos_kitchen_ticket_custom
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+msgid ""
+"Applies to the tickets printed on the preparation (kitchen) printers. Reload"
+" the Point of Sale after saving."
+msgstr ""
+"يُطبَّق على التذاكر المطبوعة في طابعات التحضير (المطبخ). أعد تحميل نقطة "
+"البيع بعد الحفظ."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_title_language__ar
+msgid "Arabic (جديد)"
+msgstr "عربي (جديد)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_product__kt_name_ar
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template__kt_name_ar
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template_attribute_value__kt_name_ar
+msgid "Arabic Name (Kitchen)"
+msgstr "الاسم العربي (المطبخ)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_name_language__both
+msgid "Arabic and English"
+msgstr "عربي وإنجليزي"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_name_language__ar
+msgid "Arabic only"
+msgstr "عربي فقط"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_title_language__both
+msgid "Both (جديد / New)"
+msgstr "الاثنين (جديد / New)"
+
+#. module: pos_kitchen_ticket_custom
+#. odoo-javascript
+#: code:addons/pos_kitchen_ticket_custom/static/src/js/kitchen_ticket.js:0
+msgid "CANCELLED"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_combo_items
+msgid "Combo Items"
+msgstr "مكونات الكومبو"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_platform
+msgid "Delivery Platform"
+msgstr "منصة التوصيل"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_device
+msgid "Device (POS Name)"
+msgstr "الجهاز (اسم نقطة البيع)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template__display_name
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template_attribute_value__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_title_language__en
+msgid "English (New)"
+msgstr "إنجليزي (New)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_product__kt_name_en
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template__kt_name_en
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template_attribute_value__kt_name_en
+msgid "English Name (Kitchen)"
+msgstr "الاسم الإنجليزي (المطبخ)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_name_language__en
+msgid "English only"
+msgstr "إنجليزي فقط"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_font_size
+msgid "Font Size"
+msgstr "حجم الخط"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_guests
+msgid "Guests"
+msgstr "عدد الضيوف"
+
+#. module: pos_kitchen_ticket_custom
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+msgid "Header"
+msgstr "الرأس"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_header_text
+msgid "Header Text"
+msgstr "نص الرأس"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template__id
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_product_template_attribute_value__id
+msgid "ID"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_name_language
+msgid "Item Names"
+msgstr "أسماء الأصناف"
+
+#. module: pos_kitchen_ticket_custom
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+msgid "Items"
+msgstr "الأصناف"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.actions.act_window,name:pos_kitchen_ticket_custom.action_pos_config_kitchen_ticket
+#: model:ir.ui.menu,name:pos_kitchen_ticket_custom.menu_pos_config_kitchen_ticket
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_list
+msgid "Kitchen Ticket"
+msgstr "تذكرة المطبخ"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_title_language
+msgid "Language of \"New\", \"Cancelled\", \"Note Update\"..."
+msgstr "لغة «جديد» و«ملغي» و«تعديل ملاحظة»..."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_font_size__large
+msgid "Large"
+msgstr "كبير"
+
+#. module: pos_kitchen_ticket_custom
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+msgid "Layout"
+msgstr "الشكل"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_line_separators
+msgid "Line Separators"
+msgstr "خطوط فاصلة بين الأصناف"
+
+#. module: pos_kitchen_ticket_custom
+#. odoo-javascript
+#: code:addons/pos_kitchen_ticket_custom/static/src/js/kitchen_ticket.js:0
+msgid "NEW"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#. odoo-javascript
+#: code:addons/pos_kitchen_ticket_custom/static/src/js/kitchen_ticket.js:0
+msgid "NOTE UPDATE"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_font_size__normal
+msgid "Normal"
+msgstr "عادي"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_notes
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_header_text
+msgid "Optional line under the order number, e.g. the brand name."
+msgstr "سطر اختياري تحت رقم الطلب، مثل اسم العلامة التجارية."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_attributes
+msgid "Options (Attributes)"
+msgstr "الخيارات (الخصائص)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_date
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#. module: pos_kitchen_ticket_custom
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+msgid "Order Details"
+msgstr "تفاصيل الطلب"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_order_number
+msgid "Order Number"
+msgstr "رقم الطلب"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_reference
+msgid "Order Reference"
+msgstr "مرجع الطلب"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_time
+msgid "Order Time"
+msgstr "وقت الطلب"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_type
+msgid "Order Type"
+msgstr "نوع الطلب"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_show_reference
+msgid "Order reference at the top (e.g. 238469)."
+msgstr "مرجع الطلب في أعلى التذكرة (مثل 238469)."
+
+#. module: pos_kitchen_ticket_custom
+#. odoo-javascript
+#: code:addons/pos_kitchen_ticket_custom/static/src/xml/kitchen_ticket.xml:0
+msgid "Order#"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model,name:pos_kitchen_ticket_custom.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_enabled
+msgid ""
+"Print kitchen / preparation tickets with this design. Off: the standard Odoo"
+" kitchen ticket."
+msgstr ""
+"طباعة تذاكر المطبخ / التحضير بهذا التصميم. عند الإيقاف تُطبع تذكرة Odoo "
+"الافتراضية."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_printed_at
+msgid "Printed At"
+msgstr "وقت الطباعة"
+
+#. module: pos_kitchen_ticket_custom
+#. odoo-javascript
+#: code:addons/pos_kitchen_ticket_custom/static/src/xml/kitchen_ticket.xml:0
+msgid "Printed At:"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_print_width
+msgid "Printer Width"
+msgstr "عرض الطابعة"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model,name:pos_kitchen_ticket_custom.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model,name:pos_kitchen_ticket_custom.model_product_template_attribute_value
+msgid "Product Template Attribute Value"
+msgstr ""
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields.selection,name:pos_kitchen_ticket_custom.selection__pos_config__kt_font_size__small
+msgid "Small"
+msgstr "صغير"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_table
+msgid "Table"
+msgstr "الطاولة"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_title_language
+msgid "Title Language"
+msgstr "لغة العنوان"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_enabled
+msgid "Use Kitchen Ticket Design"
+msgstr "استخدام تصميم تذكرة المطبخ"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_print_width
+msgid ""
+"Width of the ticket image sent to the kitchen printer. Use the printer "
+"printable width so the ticket is centered and nothing is cut."
+msgstr ""
+"عرض صورة التذكرة المرسلة لطابعة المطبخ. استخدم عرض الطباعة الفعلي للطابعة "
+"عشان تطلع التذكرة في المنتصف وما ينقص منها شيء."
+
+#. module: pos_kitchen_ticket_custom
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_ticket_custom.pos_config_kitchen_ticket_view_form
+msgid "e.g. brand name"
+msgstr "مثل اسم العلامة التجارية"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_config__kt_show_modifiers
+msgid "Modifiers"
+msgstr "الإضافات (Modifiers)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_config__kt_show_modifiers
+msgid ""
+"Modifiers (extras / instructions) of the item, printed under it. Works with "
+"product_modifiers and pos_restaurant_combo_modifiers."
+msgstr ""
+"إضافات الصنف (الإضافات / التعليمات) تنطبع تحته. تشتغل مع product_modifiers "
+"و pos_restaurant_combo_modifiers."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_order__kt_delivery_app
+msgid "Delivery App (Kitchen)"
+msgstr "تطبيق التوصيل (المطبخ)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_order__kt_delivery_app
+msgid "Delivery application of the order (Connect), printed on the kitchen ticket."
+msgstr "تطبيق التوصيل للطلب (Connect)، ينطبع على تذكرة المطبخ."
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,field_description:pos_kitchen_ticket_custom.field_pos_order__kt_delivery_ref
+msgid "App Order Number (Kitchen)"
+msgstr "رقم طلب التطبيق (المطبخ)"
+
+#. module: pos_kitchen_ticket_custom
+#: model:ir.model.fields,help:pos_kitchen_ticket_custom.field_pos_order__kt_delivery_ref
+msgid "Order number in the delivery application, printed on the kitchen ticket."
+msgstr "رقم الطلب في تطبيق التوصيل، ينطبع على تذكرة المطبخ."

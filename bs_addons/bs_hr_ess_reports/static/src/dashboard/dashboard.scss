@@ -1,0 +1,14 @@
+.o_ess_dashboard {
+    background: var(--o-view-background-color, #f8f9fa);
+    .o_ess_dash_tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+    .o_ess_tile {
+        background: var(--o-view-background-color, #fff); border: 1px solid var(--border-color, #dee2e6);
+        border-radius: 12px; padding: 14px 16px; border-inline-start: 4px solid #FF5A1F;
+        .o_ess_tile_value { font-size: 1.6rem; font-weight: 700; line-height: 1.2; small { font-size: .8rem; font-weight: 500; opacity: .7; } }
+        .o_ess_tile_label { opacity: .75; font-size: .85rem; }
+    }
+    .o_ess_tile_success { border-inline-start-color: #15803D; }
+    .o_ess_tile_warning { border-inline-start-color: #B45309; }
+    .o_ess_tile_danger { border-inline-start-color: #B91C1C; }
+    .o_ess_clickable { cursor: pointer; &:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, .06); } }
+}

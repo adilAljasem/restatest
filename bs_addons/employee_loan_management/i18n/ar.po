@@ -1,0 +1,419 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * employee_loan_management
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: employee_loan_management
+msgid "Loans & Advances"
+msgstr "السلف والقروض"
+
+#. module: employee_loan_management
+msgid "Loan Requests"
+msgstr "طلبات السلف"
+
+#. module: employee_loan_management
+msgid "Loan Request"
+msgstr "طلب سلفة"
+
+#. module: employee_loan_management
+msgid "Employee Loans"
+msgstr "سلف الموظفين"
+
+#. module: employee_loan_management
+msgid "Employee Loan"
+msgstr "سلفة موظف"
+
+#. module: employee_loan_management
+msgid "Employee Loan User"
+msgstr "مستخدم سلف الموظفين"
+
+#. module: employee_loan_management
+msgid "Employee Loan Approver"
+msgstr "معتمد سلف الموظفين"
+
+#. module: employee_loan_management
+msgid "Employee Loan Manager"
+msgstr "مدير سلف الموظفين"
+
+#. module: employee_loan_management
+msgid "Loan Reference"
+msgstr "مرجع السلفة"
+
+#. module: employee_loan_management
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: employee_loan_management
+msgid "Applicant"
+msgstr "مقدم الطلب"
+
+#. module: employee_loan_management
+msgid "Department"
+msgstr "القسم"
+
+#. module: employee_loan_management
+msgid "Job Position"
+msgstr "المسمى الوظيفي"
+
+#. module: employee_loan_management
+msgid "Request Date"
+msgstr "تاريخ الطلب"
+
+#. module: employee_loan_management
+msgid "Loan Amount"
+msgstr "مبلغ السلفة"
+
+#. module: employee_loan_management
+msgid "No. of Installments"
+msgstr "عدد الأقساط"
+
+#. module: employee_loan_management
+msgid "Payment Start Date"
+msgstr "تاريخ بدء السداد"
+
+#. module: employee_loan_management
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: employee_loan_management
+msgid "Waiting Approve"
+msgstr "بانتظار الموافقة"
+
+#. module: employee_loan_management
+msgid "Approved"
+msgstr "معتمدة"
+
+#. module: employee_loan_management
+msgid "Compute Installment"
+msgstr "احتساب الأقساط"
+
+#. module: employee_loan_management
+msgid "Send to Approve"
+msgstr "إرسال للموافقة"
+
+#. module: employee_loan_management
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: employee_loan_management
+msgid "Pay"
+msgstr "دفع"
+
+#. module: employee_loan_management
+msgid "Installments"
+msgstr "الأقساط"
+
+#. module: employee_loan_management
+msgid "Payment Date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: employee_loan_management
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: employee_loan_management
+msgid "Paid"
+msgstr "مسدد"
+
+#. module: employee_loan_management
+msgid "Salary Deduction"
+msgstr "الخصم من الراتب"
+
+#. module: employee_loan_management
+msgid "Not Sent"
+msgstr "لم ترسل"
+
+#. module: employee_loan_management
+msgid "Sent to Payroll"
+msgstr "مرسلة إلى الرواتب"
+
+#. module: employee_loan_management
+msgid "Deducted by Payroll"
+msgstr "تم خصمها عبر الرواتب"
+
+#. module: employee_loan_management
+msgid "Salary Adjustment"
+msgstr "تسوية الراتب"
+
+#. module: employee_loan_management
+msgid "Payroll Payslip"
+msgstr "قسيمة الراتب"
+
+#. module: employee_loan_management
+msgid "Total Amount"
+msgstr "إجمالي المبلغ"
+
+#. module: employee_loan_management
+msgid "Total Paid Amount"
+msgstr "إجمالي المبلغ المسدد"
+
+#. module: employee_loan_management
+msgid "Balance Amount"
+msgstr "الرصيد المتبقي"
+
+#. module: employee_loan_management
+msgid "Loan Payment"
+msgstr "دفعة السلفة"
+
+#. module: employee_loan_management
+msgid "Installment Payments"
+msgstr "دفعات الأقساط"
+
+#. module: employee_loan_management
+msgid "Paid to Employee"
+msgstr "تم الصرف للموظف"
+
+#. module: employee_loan_management
+msgid "Employee Loan Account"
+msgstr "حساب سلف الموظفين"
+
+#. module: employee_loan_management
+msgid "Loan Account"
+msgstr "حساب السلف"
+
+#. module: employee_loan_management
+msgid "Salary Input Type"
+msgstr "نوع مدخل الراتب"
+
+#. module: employee_loan_management
+msgid "Loan Salary Input Type"
+msgstr "نوع مدخل راتب السلف"
+
+#. module: employee_loan_management
+msgid "Account used for employee loan disbursements and collections."
+msgstr "الحساب المستخدم لصرف سلف الموظفين وتحصيلها."
+
+#. module: employee_loan_management
+msgid "Salary Adjustment input type used to deduct loan installments from payroll."
+msgstr "نوع تسوية الراتب المستخدم لخصم أقساط السلف من الرواتب."
+
+#. module: employee_loan_management
+msgid "Pay Loan"
+msgstr "صرف السلفة"
+
+#. module: employee_loan_management
+msgid "Pay Installment"
+msgstr "سداد القسط"
+
+#. module: employee_loan_management
+msgid "Loan Disbursement"
+msgstr "صرف السلفة"
+
+#. module: employee_loan_management
+msgid "Installment Repayment"
+msgstr "سداد القسط"
+
+#. module: employee_loan_management
+msgid "Amount To Pay"
+msgstr "المبلغ المطلوب دفعه"
+
+#. module: employee_loan_management
+msgid "Journal"
+msgstr "دفتر اليومية"
+
+#. module: employee_loan_management
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+#. module: employee_loan_management
+msgid "Create Payment"
+msgstr "إنشاء دفعة"
+
+#. module: employee_loan_management
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: employee_loan_management
+msgid "My Requests"
+msgstr "طلباتي"
+
+#. module: employee_loan_management
+msgid "Status"
+msgstr "الحالة"
+
+#. module: employee_loan_management
+msgid "Company"
+msgstr "الشركة"
+
+#. module: employee_loan_management
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: employee_loan_management
+msgid "Loan %(loan)s"
+msgstr "السلفة %(loan)s"
+
+#. module: employee_loan_management
+msgid "Loan %(loan)s - installment %(number)s"
+msgstr "السلفة %(loan)s - القسط %(number)s"
+
+#. module: employee_loan_management
+msgid "New"
+msgstr "جديد"
+
+#. module: employee_loan_management
+msgid "The loan must be Approved before creating a payment."
+msgstr "يجب اعتماد السلفة قبل إنشاء دفعة."
+
+#. module: employee_loan_management
+msgid "Loan Amount must be greater than zero."
+msgstr "يجب أن يكون مبلغ السلفة أكبر من صفر."
+
+#. module: employee_loan_management
+msgid "Number of Installments must be greater than zero."
+msgstr "يجب أن يكون عدد الأقساط أكبر من صفر."
+
+#. module: employee_loan_management
+msgid "The Loan Amount is too small for the selected number of installments."
+msgstr "مبلغ السلفة صغير جدًا بالنسبة لعدد الأقساط المحدد."
+
+#. module: employee_loan_management
+msgid "Installment Amount must be greater than zero."
+msgstr "يجب أن تكون قيمة القسط أكبر من صفر."
+
+#. module: employee_loan_management
+msgid "Approved or submitted loans cannot have their core values changed."
+msgstr "لا يمكن تغيير البيانات الأساسية للسلفة بعد إرسالها أو اعتمادها."
+
+#. module: employee_loan_management
+msgid "Use the workflow buttons to change the loan status."
+msgstr "استخدم أزرار سير العمل لتغيير حالة السلفة."
+
+#. module: employee_loan_management
+msgid "Total Paid Amount cannot exceed the Loan Amount."
+msgstr "لا يمكن أن يتجاوز إجمالي المبلغ المسدد مبلغ السلفة."
+
+#. module: employee_loan_management
+msgid "Installments can only be computed in Draft."
+msgstr "يمكن احتساب الأقساط في حالة المسودة فقط."
+
+#. module: employee_loan_management
+msgid "Installments already collected or sent to payroll cannot be recomputed."
+msgstr "لا يمكن إعادة احتساب أقساط تم تحصيلها أو إرسالها إلى الرواتب."
+
+#. module: employee_loan_management
+msgid "Set a Payment Start Date first."
+msgstr "حدد تاريخ بدء السداد أولًا."
+
+#. module: employee_loan_management
+msgid "Loan Amount and Number of Installments must be greater than zero."
+msgstr "يجب أن يكون مبلغ السلفة وعدد الأقساط أكبر من صفر."
+
+#. module: employee_loan_management
+msgid "Only Draft loans can be submitted."
+msgstr "يمكن إرسال السلف الموجودة في حالة المسودة فقط."
+
+#. module: employee_loan_management
+msgid "You are not allowed to approve employee loans."
+msgstr "ليست لديك صلاحية اعتماد سلف الموظفين."
+
+#. module: employee_loan_management
+msgid "Only loans waiting for approval can be approved."
+msgstr "يمكن اعتماد السلف التي تنتظر الموافقة فقط."
+
+#. module: employee_loan_management
+msgid "Compute the installment schedule before submitting the loan."
+msgstr "احتسب جدول الأقساط قبل إرسال السلفة."
+
+#. module: employee_loan_management
+msgid "The installment total must equal the Loan Amount."
+msgstr "يجب أن يساوي إجمالي الأقساط مبلغ السلفة."
+
+#. module: employee_loan_management
+msgid "A loan must be Approved before it can be paid."
+msgstr "يجب اعتماد السلفة قبل صرفها."
+
+#. module: employee_loan_management
+msgid "This loan has already been paid to the employee."
+msgstr "تم صرف هذه السلفة للموظف بالفعل."
+
+#. module: employee_loan_management
+msgid "Only Draft loans can be deleted."
+msgstr "يمكن حذف السلف الموجودة في حالة المسودة فقط."
+
+#. module: employee_loan_management
+msgid "Approved installments cannot be changed."
+msgstr "لا يمكن تغيير الأقساط المعتمدة."
+
+#. module: employee_loan_management
+msgid "Collected installments cannot change their deduction method."
+msgstr "لا يمكن تغيير طريقة خصم الأقساط التي تم تحصيلها."
+
+#. module: employee_loan_management
+msgid "The loan must be Approved first."
+msgstr "يجب اعتماد السلفة أولًا."
+
+#. module: employee_loan_management
+msgid "Pay the loan to the employee before collecting installments."
+msgstr "يجب صرف السلفة للموظف قبل تحصيل الأقساط."
+
+#. module: employee_loan_management
+msgid "This installment has already been paid."
+msgstr "تم سداد هذا القسط بالفعل."
+
+#. module: employee_loan_management
+msgid "This installment is already being processed by Payroll."
+msgstr "هذا القسط قيد المعالجة بالفعل من خلال الرواتب."
+
+#. module: employee_loan_management
+msgid "This installment has already been collected."
+msgstr "تم تحصيل هذا القسط بالفعل."
+
+#. module: employee_loan_management
+msgid "This installment was not sent to Payroll."
+msgstr "لم يتم إرسال هذا القسط إلى الرواتب."
+
+#. module: employee_loan_management
+msgid "Paid installments cannot be sent to Payroll."
+msgstr "لا يمكن إرسال الأقساط المسددة إلى الرواتب."
+
+#. module: employee_loan_management
+msgid "This installment has already been sent to Payroll."
+msgstr "تم إرسال هذا القسط إلى الرواتب بالفعل."
+
+#. module: employee_loan_management
+msgid "Configure the Loan Salary Input Type in Accounting Settings first."
+msgstr "قم بإعداد نوع مدخل راتب السلف في إعدادات المحاسبة أولًا."
+
+#. module: employee_loan_management
+msgid "The selected Salary Input Type must be available in Salary Adjustments."
+msgstr "يجب أن يكون نوع مدخل الراتب المحدد متاحًا في تسويات الرواتب."
+
+#. module: employee_loan_management
+msgid "Configure the Employee Loan Account in Accounting Settings first."
+msgstr "قم بإعداد حساب سلف الموظفين في إعدادات المحاسبة أولًا."
+
+#. module: employee_loan_management
+msgid "Select a Bank or Cash journal."
+msgstr "اختر دفتر يومية بنكي أو نقدي."
+
+#. module: employee_loan_management
+msgid "The selected Payment Method is not available for this journal."
+msgstr "طريقة الدفع المحددة غير متاحة لدفتر اليومية هذا."
+
+#. module: employee_loan_management
+msgid "Select a valid loan installment."
+msgstr "اختر قسط سلفة صحيحًا."
+
+#. module: employee_loan_management
+msgid "The employee must have a Work Contact before creating a payment."
+msgstr "يجب أن يكون للموظف جهة اتصال عمل قبل إنشاء الدفعة."
+
+#. module: employee_loan_management
+msgid "A loan can only be disbursed once."
+msgstr "لا يمكن صرف السلفة أكثر من مرة."
+
+#. module: employee_loan_management
+msgid "An installment can only be paid once."
+msgstr "لا يمكن سداد القسط أكثر من مرة."
+
+#. module: employee_loan_management
+msgid "An installment can only be sent to payroll once."
+msgstr "لا يمكن إرسال القسط إلى الرواتب أكثر من مرة."

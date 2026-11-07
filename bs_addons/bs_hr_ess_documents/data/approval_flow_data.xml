@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Document renewal: HR verifies the uploaded copy -->
+    <record id="flow_document_renewal" model="bs.hr.approval.flow">
+        <field name="name">Document renewal</field>
+        <field name="res_model">bs.hr.document.renewal</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_document_renewal_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_document_renewal"/>
+        <field name="name">HR verification</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+
+    <!-- Contract renewal: direct manager opinion -> HR -> HR management -->
+    <record id="flow_contract_renewal" model="bs.hr.approval.flow">
+        <field name="name">Contract renewal</field>
+        <field name="res_model">bs.hr.contract.renewal</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_contract_renewal_step_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_contract_renewal"/>
+        <field name="sequence">10</field>
+        <field name="name">Direct manager opinion</field>
+        <field name="approver_type">manager</field>
+        <field name="sla_hours">72</field>
+    </record>
+    <record id="flow_contract_renewal_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_contract_renewal"/>
+        <field name="sequence">20</field>
+        <field name="name">Human Resources</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">72</field>
+    </record>
+    <record id="flow_contract_renewal_step_management" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_contract_renewal"/>
+        <field name="sequence">30</field>
+        <field name="name">HR management</field>
+        <field name="approver_type">group</field>
+        <field name="group_id" ref="bs_hr_ess_base.group_ess_hr_manager"/>
+        <field name="sla_hours">72</field>
+    </record>
+</odoo>

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Request Analysis -->
+    <record id="stock_request_order_analysis_list" model="ir.ui.view">
+        <field name="name">stock.request.order.analysis.list</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <list string="Request Analysis" create="false" edit="false" delete="false">
+                <field name="name" string="Request Number" />
+                <field name="operation_type" />
+                <field name="source_warehouse_id" />
+                <field name="warehouse_id" string="Destination Warehouse" />
+                <field name="requested_by" />
+                <field name="delivered_by_id" />
+                <field name="received_by_id" />
+                <field name="state" />
+                <field name="request_date" />
+                <field name="submitted_date" />
+                <field name="ready_date" />
+                <field name="first_delivery_date" />
+                <field name="receipt_date" />
+                <field name="rejected_date" />
+                <field name="cancelled_date" />
+                <field name="requests_count" optional="hide" />
+                <field name="completed_requests_count" optional="hide" />
+                <field name="rejected_requests_count" optional="hide" />
+                <field name="cancelled_requests_count" optional="hide" />
+                <field name="review_time" digits="[16, 2]" />
+                <field name="preparation_time" digits="[16, 2]" />
+                <field name="transit_time" digits="[16, 2]" />
+                <field name="total_cycle_time" digits="[16, 2]" />
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_request_order_analysis_pivot" model="ir.ui.view">
+        <field name="name">stock.request.order.analysis.pivot</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <pivot string="Request Analysis">
+                <field name="request_date" interval="month" type="row" />
+                <field name="operation_type" type="col" />
+                <field name="requests_count" type="measure" />
+                <field name="completed_requests_count" type="measure" />
+                <field name="rejected_requests_count" type="measure" />
+                <field name="cancelled_requests_count" type="measure" />
+                <field name="review_time" type="measure" />
+                <field name="preparation_time" type="measure" />
+                <field name="transit_time" type="measure" />
+                <field name="total_cycle_time" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="stock_request_order_analysis_graph" model="ir.ui.view">
+        <field name="name">stock.request.order.analysis.graph</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <graph string="Request Analysis" type="bar">
+                <field name="request_date" interval="month" />
+                <field name="requests_count" type="measure" />
+                <field name="completed_requests_count" type="measure" />
+                <field name="rejected_requests_count" type="measure" />
+                <field name="cancelled_requests_count" type="measure" />
+                <field name="review_time" type="measure" />
+                <field name="preparation_time" type="measure" />
+                <field name="transit_time" type="measure" />
+                <field name="total_cycle_time" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="stock_request_order_analysis_search" model="ir.ui.view">
+        <field name="name">stock.request.order.analysis.search</field>
+        <field name="model">stock.request.order</field>
+        <field name="arch" type="xml">
+            <search string="Request Analysis">
+                <field name="name" string="Request Number" />
+                <field name="source_warehouse_id" />
+                <field name="warehouse_id" string="Destination Warehouse" />
+                <field name="requested_by" />
+                <field name="delivered_by_id" />
+                <field name="received_by_id" />
+                <field name="state" />
+                <field name="request_date" />
+                <separator />
+                <filter
+                    name="stock_requests"
+                    string="Stock Requests"
+                    domain="[('operation_type', '=', 'request')]"
+                />
+                <filter
+                    name="direct_transfers"
+                    string="Direct Transfers"
+                    domain="[('operation_type', '=', 'transfer')]"
+                />
+                <filter
+                    name="completed"
+                    string="Completed"
+                    domain="[('state', '=', 'done')]"
+                />
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
+                <filter
+                    name="cancelled"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+                <group>
+                    <filter
+                        name="group_operation_type"
+                        string="Operation Type"
+                        context="{'group_by': 'operation_type'}"
+                    />
+                    <filter
+                        name="group_source_warehouse"
+                        string="Source Warehouse"
+                        context="{'group_by': 'source_warehouse_id'}"
+                    />
+                    <filter
+                        name="group_destination_warehouse"
+                        string="Destination Warehouse"
+                        context="{'group_by': 'warehouse_id'}"
+                    />
+                    <filter
+                        name="group_requested_by"
+                        string="Requested By"
+                        context="{'group_by': 'requested_by'}"
+                    />
+                    <filter
+                        name="group_delivered_by"
+                        string="Delivered By"
+                        context="{'group_by': 'delivered_by_id'}"
+                    />
+                    <filter
+                        name="group_received_by"
+                        string="Received By"
+                        context="{'group_by': 'received_by_id'}"
+                    />
+                    <filter
+                        name="group_status"
+                        string="Status"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        name="group_request_month"
+                        string="Request Month"
+                        context="{'group_by': 'request_date:month'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="stock_request_order_analysis_action" model="ir.actions.act_window">
+        <field name="name">Request Analysis</field>
+        <field name="res_model">stock.request.order</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="search_view_id" ref="stock_request_order_analysis_search" />
+    </record>
+    <record id="stock_request_order_analysis_action_pivot" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="stock_request_order_analysis_pivot" />
+        <field name="act_window_id" ref="stock_request_order_analysis_action" />
+    </record>
+    <record id="stock_request_order_analysis_action_graph" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="stock_request_order_analysis_graph" />
+        <field name="act_window_id" ref="stock_request_order_analysis_action" />
+    </record>
+    <record id="stock_request_order_analysis_action_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="stock_request_order_analysis_list" />
+        <field name="act_window_id" ref="stock_request_order_analysis_action" />
+    </record>
+
+    <!-- Product Movement Analysis -->
+    <record id="stock_request_product_movement_list" model="ir.ui.view">
+        <field name="name">stock.request.product.movement.list</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <list string="Product Movement Analysis" create="false" edit="false" delete="false">
+                <field name="order_id" string="Request Number" />
+                <field name="request_date" />
+                <field name="operation_type" />
+                <field name="product_id" />
+                <field name="product_uom_id" string="UOM" />
+                <field name="product_category_id" />
+                <field name="source_warehouse_id" />
+                <field name="warehouse_id" string="Destination Warehouse" />
+                <field name="transit_location_id" />
+                <field name="product_uom_qty" string="Requested Quantity" />
+                <field name="delivered_qty" />
+                <field name="received_qty" />
+                <field name="in_transit_qty" />
+                <field name="remaining_delivery_qty" />
+                <field name="remaining_receipt_qty" />
+            </list>
+        </field>
+    </record>
+
+    <record id="stock_request_product_movement_pivot" model="ir.ui.view">
+        <field name="name">stock.request.product.movement.pivot</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <pivot string="Product Movement Analysis">
+                <field name="product_id" type="row" />
+                <field name="product_uom_id" type="row" />
+                <field name="product_uom_qty" type="measure" />
+                <field name="delivered_qty" type="measure" />
+                <field name="received_qty" type="measure" />
+                <field name="in_transit_qty" type="measure" />
+                <field name="remaining_delivery_qty" type="measure" />
+                <field name="remaining_receipt_qty" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="stock_request_product_movement_graph" model="ir.ui.view">
+        <field name="name">stock.request.product.movement.graph</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <graph string="Product Movement Analysis" type="bar">
+                <field name="product_id" />
+                <field name="product_uom_id" />
+                <field name="product_uom_qty" type="measure" />
+                <field name="delivered_qty" type="measure" />
+                <field name="received_qty" type="measure" />
+                <field name="in_transit_qty" type="measure" />
+                <field name="remaining_delivery_qty" type="measure" />
+                <field name="remaining_receipt_qty" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="stock_request_product_movement_search" model="ir.ui.view">
+        <field name="name">stock.request.product.movement.search</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <search string="Product Movement Analysis">
+                <field name="order_id" string="Request Number" />
+                <field name="product_id" />
+                <field name="product_uom_id" string="UOM" />
+                <field name="product_category_id" />
+                <field name="source_warehouse_id" />
+                <field name="warehouse_id" string="Destination Warehouse" />
+                <field name="transit_location_id" />
+                <field name="request_date" />
+                <separator />
+                <filter
+                    name="stock_requests"
+                    string="Stock Requests"
+                    domain="[('operation_type', '=', 'request')]"
+                />
+                <filter
+                    name="direct_transfers"
+                    string="Direct Transfers"
+                    domain="[('operation_type', '=', 'transfer')]"
+                />
+                <group>
+                    <filter
+                        name="group_product"
+                        string="Product"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        name="group_uom"
+                        string="UOM"
+                        context="{'group_by': 'product_uom_id'}"
+                    />
+                    <filter
+                        name="group_product_category"
+                        string="Product Category"
+                        context="{'group_by': 'product_category_id'}"
+                    />
+                    <filter
+                        name="group_source_warehouse"
+                        string="Source Warehouse"
+                        context="{'group_by': 'source_warehouse_id'}"
+                    />
+                    <filter
+                        name="group_destination_warehouse"
+                        string="Destination Warehouse"
+                        context="{'group_by': 'warehouse_id'}"
+                    />
+                    <filter
+                        name="group_transit_location"
+                        string="Transit Location"
+                        context="{'group_by': 'transit_location_id'}"
+                    />
+                    <filter
+                        name="group_request_month"
+                        string="Request Month"
+                        context="{'group_by': 'request_date:month'}"
+                    />
+                    <filter
+                        name="group_operation_type"
+                        string="Operation Type"
+                        context="{'group_by': 'operation_type'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="stock_request_product_movement_action" model="ir.actions.act_window">
+        <field name="name">Product Movement Analysis</field>
+        <field name="res_model">stock.request</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="search_view_id" ref="stock_request_product_movement_search" />
+        <field name="domain">[('order_id', '!=', False)]</field>
+    </record>
+    <record id="stock_request_product_movement_action_pivot" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="stock_request_product_movement_pivot" />
+        <field name="act_window_id" ref="stock_request_product_movement_action" />
+    </record>
+    <record id="stock_request_product_movement_action_graph" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="stock_request_product_movement_graph" />
+        <field name="act_window_id" ref="stock_request_product_movement_action" />
+    </record>
+    <record id="stock_request_product_movement_action_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="stock_request_product_movement_list" />
+        <field name="act_window_id" ref="stock_request_product_movement_action" />
+    </record>
+</odoo>

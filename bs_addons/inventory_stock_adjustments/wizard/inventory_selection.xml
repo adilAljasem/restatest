@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="inventory_selection_form_view" model="ir.ui.view">
+        <field name="name">inventory.selection.form.view</field>
+        <field name="model">inventory.selection</field>
+        <field name="arch" type="xml">
+            <form >
+                <group>
+                    <group>
+                        <field name="product_id" readonly="1"/>
+                        <field name="add_product_qty" />
+                    </group>
+                    <group>
+                        <button name="add_product_lines" type="object" string="ADD" class="btn btn-primary"/>
+                        <button name="set_product_qty" type="object" string="SET QTY" class="btn btn-primary"/>
+                    </group>
+                </group>
+                    <field name="selection_line_id" mode="list" widget="one2many" nolabel="1">
+                        <list editable="bottom">
+                            <field name="product_uom_id" />
+                            <field name="product_id" invisible="1"/>
+                            <field name="prod_lot_id" readonly="stock_inventory_line_id" context="{'default_product_id':product_id}"/>
+                            <field name="stock_inventory_line_id" invisible="1"/>
+                            <field name="lot_id" />
+                            <field name="lot_serial" />
+                            <field name="quantity" readonly="lot_serial" force_save="1"/>
+                            <field name="quantity_on_hand" />
+                        </list>
+                    </field>
+                <footer>
+                    <button type="object" string="Confirm" name="confirm_add_products" />
+                    <button special="cancel" string="Cancel" class="btn-default" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,9 @@
+.pos-receipt .pos-receipt-tracking {
+    border-top: 1px dashed currentColor;
+    margin-top: 12px;
+
+    .tracking-title { font-size: 105%; }
+    .tracking-title-en { font-size: 85%; }
+    .tracking-qr { width: 150px; height: 150px; image-rendering: pixelated; }
+    .tracking-hint { font-size: 75%; }
+}

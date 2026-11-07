@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_generic_request_new" name="ESS New HR request">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title" t-value="rtype.name"/>
+            <t t-set="ess_back" t-value="'/my/hr/new'"/>
+            <p t-if="rtype.description" class="text-muted small" t-out="rtype.description"/>
+            <form t-attf-action="/my/hr/request/new/#{rtype.id}" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <t t-foreach="rtype.field_ids" t-as="fld">
+                    <t t-set="fname" t-value="'f_%s' % fld.key"/>
+                    <t t-set="fid" t-value="'ess_f_%s' % fld.key"/>
+                    <t t-if="fld.field_type == 'boolean'">
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" t-att-name="fname" t-att-id="fid" value="1"/>
+                            <label class="form-check-label" t-att-for="fid" t-out="fld.name"/>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <label t-att-for="fid"><t t-out="fld.name"/><t t-if="fld.required"> *</t></label>
+                        <textarea t-if="fld.field_type == 'text'" t-att-name="fname" t-att-id="fid" class="form-control" rows="3"
+                                  t-att-required="'required' if fld.required else None"/>
+                        <input t-elif="fld.field_type == 'date'" type="date" t-att-name="fname" t-att-id="fid" class="form-control"
+                               t-att-required="'required' if fld.required else None"/>
+                        <input t-elif="fld.field_type == 'number'" type="number" step="any" t-att-name="fname" t-att-id="fid" class="form-control"
+                               t-att-required="'required' if fld.required else None"/>
+                        <select t-elif="fld.field_type == 'selection'" t-att-name="fname" t-att-id="fid" class="form-select"
+                                t-att-required="'required' if fld.required else None">
+                            <option value="">-</option>
+                            <t t-foreach="fld._option_list()" t-as="opt"><option t-att-value="opt" t-out="opt"/></t>
+                        </select>
+                        <input t-else="" type="text" t-att-name="fname" t-att-id="fid" class="form-control" maxlength="256"
+                               t-att-required="'required' if fld.required else None"/>
+                    </t>
+                    <div t-if="fld.help_text" class="small text-muted" t-out="fld.help_text"/>
+                </t>
+                <label for="ess_req_att">Attachments<t t-if="rtype.require_attachment"> *</t></label>
+                <input id="ess_req_att" type="file" name="attachments" class="form-control" multiple="multiple"
+                       t-att-required="'required' if rtype.require_attachment else None"/>
+                <label for="ess_req_note">Notes</label>
+                <textarea id="ess_req_note" name="employee_note" class="form-control" rows="2"/>
+                <p t-if="rtype.generate_letter" class="small text-muted mt-2">
+                    <i class="fa fa-file-pdf-o"/> The letter will be available here as a PDF once approved.
+                </p>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send request</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- Letter download on the generic request detail page -->
+    <template id="ess_request_detail_letter" inherit_id="bs_hr_ess_base.ess_request_detail" name="ESS letter download">
+        <xpath expr="//div[@id='ess_request_detail_extra']" position="inside">
+            <a t-if="record._name == 'bs.hr.request' and record.letter_attachment_id"
+               t-attf-href="/my/hr/letter/#{record.id}" class="btn btn-success w-100 mb-3">
+                <i class="fa fa-download me-1"/> Download the letter
+            </a>
+        </xpath>
+    </template>
+
+    <!-- Public verification page (QR code on letters) -->
+    <template id="ess_letter_verify" name="ESS letter verification">
+        <t t-call="web.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="container py-5" style="max-width: 520px;">
+                <div t-if="record" class="card border-success">
+                    <div class="card-body text-center">
+                        <i class="fa fa-check-circle fa-3x text-success mb-2"/>
+                        <h4>Valid document</h4>
+                        <p class="text-muted">This letter was issued by <strong t-out="record.company_id.name"/>.</p>
+                        <dl class="row text-start mb-0">
+                            <dt class="col-5">Employee</dt><dd class="col-7" t-out="record.employee_id.name"/>
+                            <dt class="col-5">Document</dt><dd class="col-7" t-out="record.type_id.name"/>
+                            <dt class="col-5">Reference</dt><dd class="col-7" t-out="record.name"/>
+                            <dt class="col-5">Issued on</dt><dd class="col-7" t-out="issued"/>
+                        </dl>
+                    </div>
+                </div>
+                <div t-else="" class="card border-danger">
+                    <div class="card-body text-center">
+                        <i class="fa fa-times-circle fa-3x text-danger mb-2"/>
+                        <h4>Unknown or revoked document</h4>
+                        <p class="text-muted mb-0">This verification code does not match any valid letter.</p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

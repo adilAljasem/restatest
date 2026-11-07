@@ -1,0 +1,32 @@
+{
+    'name': 'ESS Documents - Document Expiry & Contract Renewal',
+    'summary': 'Employee documents (Iqama, passport, health certificate...) with Hijri dates and staged '
+               'expiry alerts, renewal requests from the portal, contract renewal workflow on hr.version',
+    'version': '19.0.1.0.0',
+    'category': 'Human Resources/Employees',
+    'author': 'Basic Solution',
+    'website': 'https://resta.sa',
+    'license': 'LGPL-3',
+    'depends': ['bs_hr_ess_base', 'hr'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/document_rules.xml',
+        'data/ir_sequence_data.xml',
+        'data/mail_activity_type_data.xml',
+        'data/document_type_data.xml',
+        'data/approval_flow_data.xml',
+        'data/ir_cron_data.xml',
+        'views/document_type_views.xml',
+        'views/document_views.xml',
+        'views/document_renewal_views.xml',
+        'views/contract_renewal_views.xml',
+        'views/hr_employee_views.xml',
+        'views/res_config_settings_views.xml',
+        'views/menus.xml',
+        'views/portal_templates.xml',
+    ],
+    'demo': [
+        'demo/documents_demo.xml',
+    ],
+    'installable': True,
+}

@@ -1,0 +1,17 @@
+.pos-receipt .o_kitchen_bilingual_product {
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.pos-receipt .o_kitchen_name_ar {
+    text-align: right;
+    unicode-bidi: isolate;
+}
+
+.pos-receipt .o_kitchen_name_en {
+    text-align: left;
+    unicode-bidi: isolate;
+}
+

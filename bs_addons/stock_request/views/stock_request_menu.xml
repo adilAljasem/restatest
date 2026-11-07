@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="menu_stock_request_root"
+        name="Stock Transfer"
+        action="stock_request_one_step_transfer_action"
+        groups="stock_request.group_stock_request_user"
+        web_icon="stock_request,static/description/stock_transfer_icon.png"
+        sequence="100"
+    />
+    <menuitem
+        id="menu_stock_request_operations"
+        parent="menu_stock_request_root"
+        name="Stock Requests"
+        active="0"
+        sequence="10"
+    />
+    <menuitem
+        id="stock_request_order_menu"
+        name="My Requests"
+        parent="menu_stock_request_operations"
+        action="stock_request_my_requests_action"
+        groups="stock_request.group_stock_request_user"
+        sequence="20"
+    />
+    <menuitem
+        id="stock_request_to_review_menu"
+        name="To Review"
+        parent="menu_stock_request_operations"
+        action="stock_request_to_review_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        sequence="30"
+    />
+    <menuitem
+        id="stock_request_to_transfer_menu"
+        name="To Transfer"
+        parent="menu_stock_request_operations"
+        action="stock_request_to_transfer_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        active="0"
+        sequence="40"
+    />
+    <menuitem
+        id="stock_request_to_deliver_menu"
+        name="To Deliver"
+        parent="menu_stock_request_operations"
+        action="stock_request_to_deliver_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        active="0"
+        sequence="41"
+    />
+    <menuitem
+        id="stock_request_to_receive_menu"
+        name="To Receive"
+        parent="menu_stock_request_operations"
+        action="stock_request_to_receive_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        active="0"
+        sequence="50"
+    />
+    <menuitem
+        id="stock_request_all_requests_menu"
+        name="All Requests"
+        parent="menu_stock_request_operations"
+        action="stock_request_all_requests_action"
+        groups="stock_request.group_stock_request_manager"
+        sequence="60"
+    />
+    <menuitem
+        id="stock_request_direct_transfer_menu"
+        name="Direct Transfers"
+        parent="menu_stock_request_root"
+        action="stock_request_direct_transfer_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        active="0"
+        sequence="20"
+    />
+    <menuitem
+        id="stock_request_one_step_transfer_menu"
+        name="Transfer"
+        parent="menu_stock_request_root"
+        action="stock_request_one_step_transfer_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        active="1"
+        sequence="20"
+    />
+    <menuitem
+        id="stock_request_one_step_return_menu"
+        name="Returns"
+        parent="menu_stock_request_root"
+        action="stock_request_one_step_return_action"
+        groups="stock_request.group_stock_request_warehouse_responsible"
+        active="1"
+        sequence="25"
+    />
+    <menuitem
+        id="menu_stock_request_reporting"
+        parent="menu_stock_request_root"
+        name="Reporting"
+        groups="stock_request.group_stock_request_manager"
+        sequence="30"
+    />
+    <menuitem
+        id="stock_request_in_transit_menu"
+        name="In Transit"
+        parent="menu_stock_request_reporting"
+        action="stock_request_in_transit_action"
+        groups="stock_request.group_stock_request_manager"
+        active="0"
+        sequence="10"
+    />
+    <menuitem
+        id="stock_request_order_analysis_menu"
+        name="Request Analysis"
+        parent="menu_stock_request_reporting"
+        action="stock_request_order_analysis_action"
+        groups="stock_request.group_stock_request_manager"
+        sequence="20"
+    />
+    <menuitem
+        id="stock_request_product_movement_menu"
+        name="Product Movement Analysis"
+        parent="menu_stock_request_reporting"
+        action="stock_request_product_movement_action"
+        groups="stock_request.group_stock_request_manager"
+        sequence="30"
+    />
+    <menuitem
+        id="menu_stock_request_configuration"
+        parent="menu_stock_request_root"
+        name="Configuration"
+        groups="stock_request.group_stock_request_manager,base.group_system"
+        sequence="40"
+    />
+    <menuitem
+        id="stock_request_warehouse_setup_menu"
+        name="Warehouse Setup"
+        parent="menu_stock_request_configuration"
+        action="stock_request_warehouse_setup_action"
+        groups="stock_request.group_stock_request_manager"
+        active="0"
+        sequence="10"
+    />
+    <menuitem
+        id="stock_request_template_menu"
+        name="Templates"
+        parent="menu_stock_request_configuration"
+        action="stock_request_template_action"
+        groups="stock_request.group_stock_request_manager"
+        sequence="20"
+    />
+    <menuitem
+        id="stock_request_settings_menu"
+        name="Settings"
+        parent="menu_stock_request_configuration"
+        action="stock_request_settings_action"
+        groups="base.group_system"
+        sequence="5"
+    />
+</odoo>

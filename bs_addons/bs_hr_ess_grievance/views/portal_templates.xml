@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================ MY CASES ============================ -->
+    <template id="ess_grievances" name="ESS My grievances">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Complaints &amp; suggestions</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <a href="/my/hr/grievance/new" class="btn btn-primary w-100 mb-3"><i class="fa fa-plus me-1"/> New complaint or suggestion</a>
+            <div class="ess-list" t-if="grievances">
+                <a t-foreach="grievances" t-as="g" t-attf-href="/my/hr/grievance/#{g.id}" class="ess-list-item d-block">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold text-truncate" t-out="g.subject"/>
+                            <div class="small text-muted">
+                                <t t-out="ess_display(g, 'grievance_type')"/> · <t t-out="g.name"/>
+                                <t t-if="g.anonymous"> · <i class="fa fa-user-secret"/> Anonymous</t>
+                            </div>
+                        </div>
+                        <span t-attf-class="ess-badge ess-badge-#{'success' if g.state in ('resolved', 'closed') else ('danger' if g.state == 'rejected' else 'warning')}"
+                              t-out="ess_state_label(g)"/>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-commenting-o"/><p>You have not submitted any case.</p></div>
+
+            <h6 class="ess-section-title">Follow up with a tracking code</h6>
+            <form action="/my/hr/grievance/track" method="post" class="ess-panel d-flex gap-2">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="text" name="code" class="form-control" placeholder="XXXXX-XXXXX" dir="ltr" required="required" autocomplete="off"/>
+                <button type="submit" class="btn btn-outline-primary">Open</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============================ NEW ============================ -->
+    <template id="ess_grievance_new" name="ESS New grievance">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">New complaint or suggestion</t>
+            <t t-set="ess_back" t-value="'/my/hr/grievances'"/>
+            <p class="small text-muted">Your case is handled only by the grievance committee. It is never sent to the
+                persons concerned, nor to their managers.</p>
+            <form action="/my/hr/grievance/new" method="post" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label>Type</label>
+                <select name="grievance_type" class="form-select" required="required">
+                    <option t-foreach="types" t-as="opt" t-att-value="opt[0]" t-out="opt[1]"/>
+                </select>
+                <label>Subject</label>
+                <input type="text" name="subject" class="form-control" required="required" maxlength="200"/>
+                <label>Description</label>
+                <textarea name="description" class="form-control" rows="5" required="required"
+                          placeholder="What happened, when and where..."/>
+                <label>Concerned colleagues (optional)</label>
+                <select name="against_employee_ids" class="form-select" multiple="multiple" size="5">
+                    <option t-foreach="colleagues" t-as="col" t-att-value="col.id" t-out="col.name"/>
+                </select>
+                <div class="ess-panel mt-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="anonymous" value="1" id="ess_grv_anonymous"/>
+                        <label class="form-check-label fw-semibold" for="ess_grv_anonymous">Submit anonymously</label>
+                    </div>
+                    <ul class="small text-muted mb-0 mt-2">
+                        <li>Your name is not saved with the case: nobody, not even HR or the committee, can see who sent it.</li>
+                        <li>You will still find the case in "Complaints &amp; suggestions" and follow the answers of the committee.</li>
+                        <li>A secret tracking code is shown once after sending: keep it to open your case again.</li>
+                        <li>The committee cannot contact you outside of this case, so give enough details.</li>
+                    </ul>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send to the committee</button>
+            </form>
+        </t>
+    </template>
+
+    <template id="ess_grievance_submitted" name="ESS Grievance submitted">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Case received</t>
+            <t t-set="ess_back" t-value="'/my/hr/grievances'"/>
+            <div class="ess-panel text-center">
+                <i class="fa fa-check-circle fa-3x text-success mb-2"/>
+                <h5>Your case <t t-out="grievance.name"/> was sent to the committee.</h5>
+                <p class="text-muted small mb-1">Your secret tracking code (shown only once):</p>
+                <div class="ess-big-number" dir="ltr" t-out="tracking_code"/>
+                <p class="small text-muted mt-2">Write it down or take a screenshot. Do not share it.</p>
+            </div>
+            <a t-attf-href="/my/hr/grievance/#{grievance.id}" class="btn btn-primary w-100">Open my case</a>
+        </t>
+    </template>
+
+    <!-- ============================ DETAIL ============================ -->
+    <template id="ess_grievance_detail" name="ESS Grievance detail">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title" t-value="grievance.name"/>
+            <t t-set="ess_back" t-value="'/my/hr/grievances'"/>
+            <div class="ess-panel">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong t-out="grievance.subject"/>
+                    <span class="ess-badge ess-badge-info" t-out="ess_state_label(grievance)"/>
+                </div>
+                <dl class="ess-dl">
+                    <dt>Type</dt><dd t-out="ess_display(grievance, 'grievance_type')"/>
+                    <dt>Sent on</dt><dd t-out="ess_display(grievance, 'create_date')"/>
+                    <t t-if="grievance.anonymous"><dt>Anonymous</dt><dd><i class="fa fa-user-secret"/> Yes</dd></t>
+                    <t t-if="grievance.level == '2'"><dt>Level</dt><dd>Appeal (level 2)</dd></t>
+                    <t t-if="grievance.against_employee_ids">
+                        <dt>Concerned</dt><dd t-out="', '.join(grievance.against_employee_ids.mapped('name'))"/>
+                    </t>
+                </dl>
+                <div class="small" style="white-space: pre-wrap;" t-out="grievance.description"/>
+            </div>
+
+            <div class="ess-panel" t-if="grievance.resolution and grievance.state in ('resolved', 'rejected', 'closed', 'appealed')">
+                <h6>Decision of the committee</h6>
+                <div style="white-space: pre-wrap;" t-out="grievance.resolution"/>
+                <div class="small text-muted mt-1" t-if="grievance.decision_date" t-out="ess_display(grievance, 'decision_date')"/>
+            </div>
+
+            <h6 class="ess-section-title">Messages</h6>
+            <div class="ess-list mb-2" t-if="messages">
+                <div t-foreach="messages" t-as="msg" class="ess-list-item">
+                    <div class="small text-muted">
+                        <t t-if="msg.author_type == 'committee'"><i class="fa fa-users me-1"/>Committee</t>
+                        <t t-else=""><i class="fa fa-user me-1"/>You</t>
+                        · <t t-out="ess_display(msg, 'date')"/>
+                    </div>
+                    <div style="white-space: pre-wrap;" t-out="msg.body"/>
+                </div>
+            </div>
+            <form t-if="grievance.state != 'closed'" t-attf-action="/my/hr/grievance/#{grievance.id}/reply"
+                  method="post" class="ess-panel">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <textarea name="body" class="form-control mb-2" rows="2" required="required"
+                          placeholder="Write a message to the committee..."/>
+                <button type="submit" class="btn btn-primary btn-sm">Send</button>
+            </form>
+
+            <form t-if="can_appeal" t-attf-action="/my/hr/grievance/#{grievance.id}/appeal" method="post" class="ess-panel">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <h6>Not satisfied with the decision?</h6>
+                <p class="small text-muted">You can appeal until <t t-out="ess_fdate(grievance.appeal_deadline)"/>.
+                    The appeal is reviewed by a higher level of the committee.</p>
+                <textarea name="reason" class="form-control mb-2" rows="3" required="required" placeholder="Reason of the appeal"/>
+                <button type="submit" class="btn btn-outline-danger w-100">Appeal the decision</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ============================ DISCIPLINARY ============================ -->
+    <template id="ess_disciplinary" name="ESS My disciplinary actions">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My disciplinary actions</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div t-if="not actions" class="ess-empty"><i class="fa fa-smile-o"/><p>No disciplinary action. Keep it up!</p></div>
+            <div t-foreach="actions" t-as="act" class="ess-panel">
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                    <div>
+                        <div class="fw-semibold" t-out="act.violation_type_id.name"/>
+                        <div class="small text-muted"><t t-out="act.name"/> · <t t-out="ess_fdate(act.date)"/></div>
+                    </div>
+                    <span t-attf-class="ess-badge ess-badge-#{'warning' if act.state in ('notified', 'appealed') else ('success' if act.state == 'cancelled' else 'danger')}"
+                          t-out="ess_state_label(act)"/>
+                </div>
+                <dl class="ess-dl mt-2">
+                    <dt>Penalty</dt><dd t-out="ess_display(act, 'action')"/>
+                    <t t-if="act.occurrence &gt; 1"><dt>Occurrence</dt><dd t-out="act.occurrence"/></t>
+                    <t t-if="act.deduction_amount"><dt>Deduction</dt><dd t-out="ess_display(act, 'deduction_amount')"/></t>
+                    <t t-if="act.appeal_deadline and act.state == 'notified'"><dt>Appeal until</dt><dd t-out="ess_fdate(act.appeal_deadline)"/></t>
+                    <t t-if="act.employee_ack_date"><dt>Acknowledged</dt><dd t-out="ess_display(act, 'employee_ack_date')"/></t>
+                </dl>
+                <div class="small mb-2" style="white-space: pre-wrap;" t-out="act.description"/>
+                <form t-if="not act.employee_ack_date and act.state in ('notified', 'appealed', 'confirmed')"
+                      t-attf-action="/my/hr/disciplinary/#{act.id}/ack" method="post" class="mb-2">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <button type="submit" class="btn btn-outline-secondary w-100">I acknowledge receipt</button>
+                </form>
+                <details t-if="act._ess_can_appeal()">
+                    <summary class="btn btn-link px-0">Appeal this action</summary>
+                    <form t-attf-action="/my/hr/disciplinary/#{act.id}/appeal" method="post" class="mt-2">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <textarea name="reason" class="form-control mb-2" rows="3" required="required" placeholder="Why do you contest this action?"/>
+                        <button type="submit" class="btn btn-outline-danger w-100">Send the appeal to the committee</button>
+                    </form>
+                </details>
+            </div>
+        </t>
+    </template>
+</odoo>

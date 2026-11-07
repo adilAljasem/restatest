@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_announcement_hr,announcement hr,model_bs_hr_announcement,bs_hr_ess_base.group_ess_hr_officer,1,1,1,1
+access_announcement_ack_hr,announcement ack hr,model_bs_hr_announcement_ack,bs_hr_ess_base.group_ess_hr_officer,1,0,0,0
+access_announcement_ack_manager,announcement ack manager,model_bs_hr_announcement_ack,bs_hr_ess_base.group_ess_hr_manager,1,1,1,1

@@ -1,0 +1,202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_cash_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__pcm_blind_count
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__pos_pcm_blind_count
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid "Blind Cash Count"
+msgstr "عدّ أعمى للنقدية"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,help:pos_cash_management.field_pos_config__pcm_require_count
+#: model:ir.model.fields,help:pos_cash_management.field_res_config_settings__pos_pcm_require_count
+msgid ""
+"Blocks closing the register with a counted amount of zero while actual cash "
+"operations took place during the session. The error is raised as soon as "
+"Close Register is pressed, before the Payments Difference dialog. Applies to"
+" every user, managers included."
+msgstr ""
+"يمنع إقفال الوردية بمبلغ معدود = صفر طالما وُجدت عمليات نقدية فعلية خلالها. "
+"يظهر الخطأ فور الضغط على «إقفال الوردية» وقبل نافذة فرق المدفوعات. يُطبَّق "
+"على جميع المستخدمين بمن فيهم المدير."
+
+#. module: pos_cash_management
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid ""
+"Blocks closing the register with a counted amount of zero while cash "
+"operations took place."
+msgstr "يمنع إقفال الوردية بمبلغ معدود = صفر طالما وُجدت عمليات نقدية فعلية."
+
+#. module: pos_cash_management
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid ""
+"Books the counted cash as a cash out once the session is closed, leaving the"
+" drawer at zero."
+msgstr ""
+"يسجّل النقد المعدود كسحب نقدي بعد إقفال الوردية، فيصبح رصيد الدرج صفراً."
+
+#. module: pos_cash_management
+#: model:ir.model.fields,help:pos_cash_management.field_pos_config__pcm_auto_transfer
+#: model:ir.model.fields,help:pos_cash_management.field_res_config_settings__pos_pcm_auto_transfer
+msgid ""
+"Books the counted cash as a cash out once the session is closed, so the "
+"drawer ends at zero. The closing report keeps the expected, counted and "
+"difference amounts as they were at counting time."
+msgstr ""
+"يسجّل النقد المعدود كسحب نقدي بعد إقفال الوردية، فيصبح رصيد الدرج صفراً. "
+"ويحتفظ تقرير الإقفال بالمبلغ المتوقع والمعدود والفرق كما كانت لحظة العدّ."
+
+#. module: pos_cash_management
+#. odoo-javascript
+#: code:addons/pos_cash_management/static/src/closing_popup.xml:0
+msgid "Cash Count"
+msgstr "عدّ نقدية"
+
+#. module: pos_cash_management
+#. odoo-python
+#: code:addons/pos_cash_management/models/pos_session.py:0
+msgid "Cash In"
+msgstr "إيداع نقدي"
+
+#. module: pos_cash_management
+#. odoo-python
+#: code:addons/pos_cash_management/models/pos_session.py:0
+msgid "Cash Out"
+msgstr "سحب نقدي"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__pcm_transfer_reason
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__pos_pcm_transfer_reason
+msgid "Cash Out Reason"
+msgstr "سبب السحب النقدي"
+
+#. module: pos_cash_management
+#. odoo-python
+#: code:addons/pos_cash_management/models/pos_session.py:0
+msgid "Cash transfer to bank"
+msgstr "توريد نقدي للبنك"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__pcm_difference_partner
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__pos_pcm_difference_partner
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid "Cashier Partner on Cash Difference"
+msgstr "ربط فرق النقدية بشريك الموظف"
+
+#. module: pos_cash_management
+#: model:ir.model,name:pos_cash_management.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات"
+
+#. module: pos_cash_management
+#. odoo-javascript
+#: code:addons/pos_cash_management/static/src/closing_popup.xml:0
+msgid "Count the cash in the drawer and enter the actual amount carefully."
+msgstr "اعدد النقدية الموجودة في الدرج وأدخل المبلغ الفعلي بدقّة."
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_session__display_name
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: pos_cash_management
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid ""
+"Hides the theoretical balance, the live difference and the auto-fill button "
+"at closing."
+msgstr "يخفي الرصيد المتوقع والفرق اللحظي وزر التعبئة التلقائية عند الإقفال."
+
+#. module: pos_cash_management
+#: model:ir.model.fields,help:pos_cash_management.field_pos_config__pcm_blind_count
+#: model:ir.model.fields,help:pos_cash_management.field_res_config_settings__pos_pcm_blind_count
+msgid ""
+"Hides the theoretical balance, the live difference and the auto-fill button "
+"at closing. The amounts are stripped on the server, not only in the "
+"interface. Applies to every user, managers included."
+msgstr ""
+"يخفي الرصيد المتوقع والفرق اللحظي وزر التعبئة التلقائية عند الإقفال. الأرقام"
+" تُحذف على مستوى الخادم لا في الواجهة فقط. يُطبَّق على جميع المستخدمين بمن "
+"فيهم المدير."
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_session__id
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__pcm_require_count
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__pos_pcm_require_count
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid "Mandatory Cash Count"
+msgstr "إلزام إدخال العدّ الفعلي"
+
+#. module: pos_cash_management
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_cash_management/models/pos_session.py:0
+#: code:addons/pos_cash_management/static/src/closing_popup.js:0
+msgid "Please enter the actual Cash Count before closing the session."
+msgstr "الرجاء إدخال المبلغ النقدي المعدود فعلياً قبل إقفال الوردية."
+
+#. module: pos_cash_management
+#: model:ir.model,name:pos_cash_management.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع"
+
+#. module: pos_cash_management
+#: model:ir.model,name:pos_cash_management.model_pos_session
+msgid "Point of Sale Session"
+msgstr "جلسة نقطة البيع"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,help:pos_cash_management.field_pos_config__pcm_difference_partner
+#: model:ir.model.fields,help:pos_cash_management.field_res_config_settings__pos_pcm_difference_partner
+msgid ""
+"Sets the work contact of the cashier as the partner of the cash difference "
+"journal item generated at closing."
+msgstr ""
+"يضع جهة اتصال العمل الخاصة بالكاشير كشريك في قيد فرق النقدية المُنشأ عند "
+"الإقفال."
+
+#. module: pos_cash_management
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid ""
+"Sets the work contact of the cashier as the partner of the cash difference "
+"journal item."
+msgstr "يضع جهة اتصال العمل الخاصة بالكاشير كشريك في قيد فرق النقدية."
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_config__pcm_auto_transfer
+#: model:ir.model.fields,field_description:pos_cash_management.field_res_config_settings__pos_pcm_auto_transfer
+#: model_terms:ir.ui.view,arch_db:pos_cash_management.res_config_settings_view_form_pcm
+msgid "Transfer Cash to Bank on Closing"
+msgstr "توريد النقد للبنك عند الإقفال"
+
+#. module: pos_cash_management
+#: model:ir.model.fields,field_description:pos_cash_management.field_pos_session__pcm_transferred_amount
+msgid "Transferred to Bank"
+msgstr "المورّد للبنك"
+
+#. module: pos_cash_management
+#. odoo-javascript
+#: code:addons/pos_cash_management/static/src/closing_popup.js:0
+msgid "Validation Error"
+msgstr "خطأ في التصديق"

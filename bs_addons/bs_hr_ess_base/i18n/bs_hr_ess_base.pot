@@ -1,0 +1,2307 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "%s approved."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "%s rejected."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: already has a user (%s)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: portal access created (login %s)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: skipped - login %s is already used"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/wizard/ess_invite.py:0
+msgid "%s: skipped - no e-mail and no mobile number"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow_step__sla_hours
+msgid "0 = no deadline / no escalation."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "05XXXXXXXX"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "<i class=\"fa fa-check\"/> Approve"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "<i class=\"fa fa-lock me-1\"/> Password &amp; security"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "<i class=\"fa fa-pencil me-1\"/> Request an update"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "<i class=\"fa fa-th me-1\"/> Back to Odoo"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "<i class=\"fa fa-times\"/> Reject"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/profile_change.py:0
+msgid "A Saudi IBAN is SA followed by 22 digits."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_ess_invite_form
+msgid ""
+"A portal user is created for each employee. The login is the work / private e-mail,\n"
+"                    or the mobile number (format 9665XXXXXXXX) when there is no e-mail: those employees\n"
+"                    sign in with an SMS code when \"Login with mobile + OTP\" is enabled."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Access"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__active
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__active
+msgid "Active"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_decoration
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_state
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_type_icon
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__escalation__users
+msgid "Add escalation users"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__adj_type__addition
+msgid "Addition"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Additions"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Address"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "All"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "All caught up."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_res_company__ess_otp_login
+#: model:ir.model.fields,help:bs_hr_ess_base.field_res_config_settings__ess_otp_login
+msgid ""
+"Allow employees to sign in to the self-service portal with their mobile "
+"number and a one-time code sent by SMS."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__allowance
+msgid "Allowance"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__amount
+msgid "Amount"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "App name and color"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__state__applied
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Applied"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__applied_date
+msgid "Applied Date"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/adjustment.py:0
+msgid "Applied adjustments cannot be cancelled."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Applied ratio"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__condition_domain
+msgid "Applies when"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_delegation
+msgid "Approval Delegations"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_approval_flow
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_flows
+msgid "Approval Flows"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Approval needed: %s"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Approval progress"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__approval_line_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__approval_line_ids
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Approvals"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_all_approvals
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_report_approvals
+msgid "Approvals Analysis"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_ess_decision_wizard__decision__approve
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Approve"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__approved
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Approved requests can only be cancelled by HR."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Approved:"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__user_id
+msgid "Approver"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__approver_type
+msgid "Approver Type"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__user_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__approver_ids
+msgid "Approvers"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:res.groups,comment:bs_hr_ess_base.group_ess_branch_supervisor
+msgid ""
+"Approves requests and follows attendance of the branches / teams they "
+"manage."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid "Archived"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_attachment_count
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_attachment_count
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Attachments"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__attempts
+msgid "Attempts"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__attendance
+msgid "Attendance"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.portal_my_home_ess
+msgid "Attendance, requests, payslips and HR news"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_layout
+msgid "Back"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Bank account"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_bank_name
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Bank name"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__body
+msgid "Body"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__work_location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__work_location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__work_location_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Branch"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__ess_manager_id
+msgid "Branch Manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_supervisor
+#: model:res.groups,name:bs_hr_ess_base.group_ess_branch_supervisor
+msgid "Branch Supervisor"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__branch
+msgid "Branch manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_ess_branches
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_branches
+msgid "Branches"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__can_ess_approve
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__can_ess_approve
+msgid "Can Ess Approve"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Cancel"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Cancel request"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__cancelled
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_cashier
+msgid "Cashier"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__category
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Category"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Changes are applied after HR verification. Fill only what changes."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_offline
+msgid "Check your connection and try again."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "City"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_ess_invite_form
+msgid "Close"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__coach
+msgid "Coach"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Code"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__code_hash
+msgid "Code Hash"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__comment
+msgid "Comment"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "Comment (required to reject)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__comment
+msgid "Comment / Reason"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__company_id
+msgid "Company"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_config
+msgid "Configuration"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_decision_wizard_form
+msgid "Confirm"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Contract end / termination"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_cook
+msgid "Cook"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__custody
+msgid "Custody (lost / damaged)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__decided_on
+msgid "Decided On"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__decided_by_id
+msgid "Decided by"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__decision
+msgid "Decision"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__decision_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__decision_date
+msgid "Decision Date"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__adj_type__deduction
+msgid "Deduction"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Deductions"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Default SLA"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_default_sla_hours
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_default_sla_hours
+msgid "Default approval SLA (hours)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_approval_flow
+msgid "Define who approves each type of request"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__delegate_id
+msgid "Delegate to"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_delegations
+msgid "Delegations"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__department_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__department_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Department"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__department
+msgid "Department manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__name
+msgid "Description"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__manager
+msgid "Direct manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_decision_wizard_form
+msgid "Discard"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__disciplinary
+msgid "Disciplinary penalty"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__done
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__done
+msgid "Done"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__draft
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_driver
+msgid "Driver"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__duration_hours
+msgid "Duration Hours"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_app_name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_app_name
+msgid "ESS App Name"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_delegation
+msgid "ESS Approval Delegation"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_flow
+msgid "ESS Approval Flow"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_flow_step
+msgid "ESS Approval Flow Step"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_approval_line
+msgid "ESS Approval Line"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_brand_color
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_brand_color
+msgid "ESS Brand Color"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:res.groups,name:bs_hr_ess_base.group_ess_grievance_committee
+msgid "ESS Grievance Committee"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_ess_otp
+msgid "ESS One-Time Login Code"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_payroll_adjustment
+msgid "ESS Payroll Adjustment"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:res.groups,name:bs_hr_ess_base.group_ess_payroll_officer
+msgid "ESS Payroll Officer"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_notification
+msgid "ESS Portal Notification"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_profile_change
+msgid "ESS Profile Update Request"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_request_mixin
+msgid "ESS Request"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_ess_decision_wizard
+msgid "ESS approve / reject wizard"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_otp_login
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_otp_login
+msgid "ESS: Login with mobile + OTP"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.server,name:bs_hr_ess_base.ir_cron_ess_notification_gc_ir_actions_server
+msgid "ESS: clean old portal notifications"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.server,name:bs_hr_ess_base.ir_cron_ess_escalate_ir_actions_server
+msgid "ESS: escalate overdue approvals"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Emergency contact"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Emergency contact name"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Emergency contact phone"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_hr_employee
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__employee_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Employee"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+#: model:res.groups.privilege,name:bs_hr_ess_base.res_groups_privilege_ess
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.portal_my_home_ess
+msgid "Employee Self-Service"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Employee number"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Employee portal"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__employee_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__ess_employee_count
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_employees
+msgid "Employees"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__ess_portal_landing
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__ess_portal_landing
+msgid "Employees land on Self-Service"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.login_ess_link
+msgid "Employees: sign in with your mobile number"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "End of service calculator"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__escalation_user_ids
+msgid "Escalate to"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__escalated
+msgid "Escalated"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Escalated approval: %s"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/approval.py:0
+msgid "Escalated automatically (SLA exceeded)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__escalation
+msgid "Escalation"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__ess_notification_ids
+msgid "Ess Notification"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid ""
+"Estimate based on the Saudi Labor Law (articles 84 and 85): half a month per year for the first\n"
+"                five years, then a full month per year. On resignation: nothing before 2 years, one third\n"
+"                between 2 and 5 years, two thirds between 5 and 10 years, full award after 10 years.\n"
+"                The final amount is computed by payroll on the basis of your last wage."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Estimated end of service award"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__expire_at
+msgid "Expire At"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/profile_change.py:0
+msgid "Fill at least one field to update."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__flow_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__flow_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__flow_id
+msgid "Flow"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__step_id
+msgid "Flow step"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_follower_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_follower_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_partner_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_partner_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_type_icon
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "For employees without an e-mail. Requires the SMS module."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Full award"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_bs_hr_ess_invite
+msgid "Grant ESS portal access"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_ess_invite_form
+msgid "Grant access"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model:ir.actions.server,name:bs_hr_ess_base.action_server_ess_invite
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Grant self-service access"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__group_id
+msgid "Group"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+#: model:res.groups,name:bs_hr_ess_base.group_ess_hr_manager
+msgid "HR Manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:res.groups,name:bs_hr_ess_base.group_ess_hr_officer
+msgid "HR Officer"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__hr
+msgid "HR officers"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_base.flow_profile_change_step_hr
+msgid "HR verification"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__has_message
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__has_message
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+msgid "Hello"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Home"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Human Resources"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "IBAN"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_work_location__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_company__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_config_settings__id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "ID / Iqama number"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_icon
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_icon
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_sms_error
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_has_sms_error
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "If this number is registered, an SMS code has been sent."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__in_approval
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__in_approval
+msgid "In Approval"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Internal note"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__internal
+msgid "Internal user"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/otp_login.py:0
+msgid "Invalid or expired code."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__ip_address
+msgid "Ip Address"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_is_follower
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_is_follower
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__is_read
+msgid "Is Read"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Joining date"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+msgid "Latest updates"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow__company_id
+msgid "Leave empty to use the flow in all companies."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__loan
+msgid "Loan installment"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_adjustment
+msgid ""
+"Loan installments, custody deductions, penalties and objection settlements land here and are\n"
+"                pushed to the next payslip."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Login with mobile + SMS code"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__manager_2
+msgid "Manager's manager"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:res.groups,comment:bs_hr_ess_base.group_ess_payroll_officer
+msgid "Manages payroll adjustments, loans and payslip objections."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_notifications
+msgid "Mark all as read"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Mark as applied"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_ids
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Messages"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Mobile number"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+msgid "Month"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__escalation__next
+msgid "Move to next step"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__my_activity_date_deadline
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_my_approvals
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_approvals
+msgid "My Approvals"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_url,name:bs_hr_ess_base.action_ess_open_portal
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_my_portal
+msgid "My Self-Service"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "My profile"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "My requests"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "My team"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__name
+msgid "Name"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Nationality"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_list
+msgid "Net"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_iban
+msgid "New IBAN"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_private_street
+msgid "New address"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_private_city
+msgid "New city"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_emergency_contact
+msgid "New emergency contact"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_emergency_phone
+msgid "New emergency phone"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_mobile
+msgid "New mobile"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__new_private_email
+msgid "New private email"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_layout
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_new
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "New request"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_calendar_event_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_date_deadline
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_summary
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_type_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "No"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__none
+msgid "No access"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_notifications
+msgid "No notification."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_adjustment
+msgid "No payroll adjustment"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+msgid "No request yet."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_delegation__note
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__note
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__note
+msgid "Note"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__employee_note
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__employee_note
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Notes"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_my_approvals
+msgid "Nothing waiting for you"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_layout
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_notifications
+msgid "Notifications"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_needaction_counter
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_needaction_counter
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_error_counter
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__message_has_error_counter
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Only draft or cancelled requests can be deleted."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Only draft requests can be submitted."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:res.groups,comment:bs_hr_ess_base.group_ess_grievance_committee
+msgid "Only members of this group can read complaints and grievances."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Only rejected or cancelled requests can be reset."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__condition_domain
+msgid "Only when"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_search
+msgid "Open"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Open Self-Service after login"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_list
+msgid "Open request"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow__condition_domain
+msgid ""
+"Optional domain evaluated on the request: the first matching flow (by "
+"sequence) is used."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__other
+msgid "Other"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Passport"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_payroll
+msgid "Payroll"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_adjustment
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__ess_adjustment_ids
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_adjustment
+msgid "Payroll Adjustments"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Payroll adjustments"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__date
+msgid "Payroll date"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__category__objection
+msgid "Payslip objection"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__pending
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_payroll_adjustment__state__pending
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_search
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Pending"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Pending requests"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__date_pending
+msgid "Pending since"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Personal information"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_no_employee
+msgid "Please contact Human Resources."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Please give a reason for the rejection."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__portal_source
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__portal_source
+msgid "Portal Source"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_res_company__ess_portal_landing
+#: model:ir.model.fields,help:bs_hr_ess_base.field_res_config_settings__ess_portal_landing
+msgid ""
+"Portal employees (also in the Odoo iOS / Android app) open their self-"
+"service home after login."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid ""
+"Portal employees land on /my/hr, in the browser and in the Odoo iOS / "
+"Android app."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__portal
+msgid "Portal user"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Private e-mail"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Private phone"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_profile_change
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_profile_change
+msgid "Profile Updates"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:bs.hr.approval.flow,name:bs_hr_ess_base.flow_profile_change
+msgid "Profile update"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__name
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__name
+msgid "Reference"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_ess_decision_wizard__decision__reject
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Reject"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__rejected
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__rejection_reason
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__rejection_reason
+msgid "Rejection Reason"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Rejection reason"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__escalation__none
+msgid "Remind only"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__reminder_sent
+msgid "Reminder Sent"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_reporting
+msgid "Reporting"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__request_name
+msgid "Request Name"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__res_model
+msgid "Request Type"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Request approved"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Request cancelled."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Request rejected"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__portal_source
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__portal_source
+msgid "Request submitted from the employee portal"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Request type"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Requested changes"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_requests
+msgid "Requests"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__res_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__res_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__res_id
+msgid "Res"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__res_model
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_decision_wizard__res_model
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__res_model
+msgid "Res Model"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Reset to draft"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Reset to pending"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Resignation"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__activity_user_id
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__result
+msgid "Result"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_offline
+msgid "Retry"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "SA0000000000000000000000"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__sla_hours
+msgid "SLA (hours)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "SLA breached"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__message_has_sms_error
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__message_has_sms_error
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_root
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.hr_work_location_form_view_ess
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_employee_form_ess
+msgid "Self-Service"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_hr_employee__ess_access
+msgid "Self-Service Access"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Send"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_invite__send_invitation
+msgid "Send Invitation"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Send code"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_ess_invite__send_invitation
+msgid "Send the sign-up e-mail to employees having an e-mail."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Send to HR"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__sequence
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow_step__sequence
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+msgid "Services"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.actions.act_window,name:bs_hr_ess_base.action_ess_settings
+#: model:ir.ui.menu,name:bs_hr_ess_base.menu_ess_settings
+msgid "Settings"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Shown on the employees' phones (installable app)."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Sign in"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Sign in with e-mail and password"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_home
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_no_employee
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Sign out"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__signed_amount
+msgid "Signed Amount"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__skipped
+msgid "Skipped"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__sla_breached
+msgid "Sla Breached"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__source_ref
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_form
+msgid "Source"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__source_id
+msgid "Source ID"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__source_model
+msgid "Source Model"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__users
+msgid "Specific users"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__state
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__state
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__state
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__state
+msgid "State"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "Status"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_state
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__name
+msgid "Step"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_flow__step_ids
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid "Steps"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid ""
+"Steps without any approver (e.g. no manager set) are skipped automatically.\n"
+"                                An employee can never approve his own request.\n"
+"                                Step conditions use a domain on the request, e.g. [(\"amount\", \"&gt;\", 5000)]."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_form
+msgid "Submit"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__submit_date
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__submit_date
+msgid "Submit Date"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_attendance_correction__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_contract_renewal__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_custody_request__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_document_renewal__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_leave_request__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_loan_postpone__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_profile_change__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request__state__submitted
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_request_mixin__state__submitted
+msgid "Submitted"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Supporting document (IBAN certificate...)"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "Team members ("
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__date
+msgid ""
+"The adjustment is picked up by the first payslip ending on or after this "
+"date."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.constraint,message:bs_hr_ess_base.constraint_bs_hr_payroll_adjustment_amount_positive
+msgid "The amount must be positive."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.constraint,message:bs_hr_ess_base.constraint_bs_hr_approval_delegation_check_dates
+msgid "The end date must be after the start date."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "The file %s is larger than 10 MB."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_approval_flow_step__condition_domain
+msgid ""
+"The step is skipped when the request does not match this domain (e.g. "
+"[(\"amount\", \">\", 5000)])."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "There is nothing to approve on %s."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "There is nothing to reject on %s."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "This request can no longer be cancelled."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "This request cannot be cancelled."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__title
+msgid "Title"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_profile_change_search
+msgid "To approve"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_line_search
+msgid "To approve by me"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/otp.py:0
+msgid "Too many codes requested. Please try again later."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_adjustment_list
+msgid "Total"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__adj_type
+msgid "Type"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__activity_exception_decoration
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Unread"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile_change
+msgid "Update my details"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_notification__url
+msgid "Url"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_login
+msgid "Use another number"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__used
+msgid "Used"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_hr_work_location__ess_manager_id
+msgid "Used by approval flows with the \"Branch manager\" approver type."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "Used when a flow step has no SLA of its own."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_res_users
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_ess_otp__user_id
+msgid "User"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_flow_step__approver_type__group
+msgid "Users of a group"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Wage used"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:hr.job,name:bs_hr_ess_base.job_waiter
+msgid "Waiter"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__bs_hr_approval_line__state__waiting
+msgid "Waiting"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__current_approver_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__current_approver_ids
+msgid "Waiting for"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/hr_employee.py:0
+msgid "Waiting for approval"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
+msgid "Waiting for my approval ("
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_payroll_adjustment__website_message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_profile_change__website_message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_request_mixin__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_payroll_adjustment__website_message_ids
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_profile_change__website_message_ids
+#: model:ir.model.fields,help:bs_hr_ess_base.field_bs_hr_request_mixin__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_base.action_approval_flow
+msgid "Without a flow, requests go to the direct manager and then to HR."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model:ir.model,name:bs_hr_ess_base.model_hr_work_location
+#: model:ir.model.fields,field_description:bs_hr_ess_base.field_bs_hr_approval_line__work_location_id
+msgid "Work Location"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Work e-mail"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Work information"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
+msgid "Work phone"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_request_detail
+msgid "Write a message to HR..."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_eos
+msgid "Years of service"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Yes"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "You are not an approver of %s."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_offline
+msgid "You are offline"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_no_employee
+msgid "Your account is not linked to an employee."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Your request %(name)s has been rejected. %(reason)s"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/request_mixin.py:0
+msgid "Your request %s has been approved."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/models/otp.py:0
+msgid ""
+"Your self-service login code is %(code)s. It expires in %(min)s minutes."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#. odoo-python
+#: code:addons/bs_hr_ess_base/controllers/main.py:0
+msgid "Your update request was sent to HR."
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.view_approval_flow_form
+msgid "e.g. Loans above 5,000"
+msgstr ""
+
+#. module: bs_hr_ess_base
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
+msgid "hours"
+msgstr ""

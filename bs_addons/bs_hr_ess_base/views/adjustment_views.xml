@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_adjustment_list" model="ir.ui.view">
+        <field name="name">bs.hr.payroll.adjustment.list</field>
+        <field name="model">bs.hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancelled'" decoration-success="state == 'applied'">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="work_location_id" optional="show"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="adj_type"/>
+                <field name="amount" sum="Total"/>
+                <field name="signed_amount" optional="hide" sum="Net"/>
+                <field name="source_ref" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'pending'" decoration-success="state == 'applied'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_adjustment_form" model="ir.ui.view">
+        <field name="name">bs.hr.payroll.adjustment.form</field>
+        <field name="model">bs.hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_mark_applied" type="object" string="Mark as applied" invisible="state != 'pending'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state != 'pending'"/>
+                    <button name="action_reset_pending" type="object" string="Reset to pending" invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_source" type="object" class="oe_stat_button" icon="fa-link" invisible="not source_id">
+                            <field name="source_ref" widget="statinfo" string="Source"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'pending'"/>
+                            <field name="name" readonly="state != 'pending'"/>
+                            <field name="category" readonly="state != 'pending'"/>
+                            <field name="adj_type" readonly="state != 'pending'"/>
+                        </group>
+                        <group>
+                            <field name="amount" readonly="state != 'pending'"/>
+                            <field name="date" readonly="state != 'pending'"/>
+                            <field name="applied_date"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="source_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Internal note"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_adjustment_search" model="ir.ui.view">
+        <field name="name">bs.hr.payroll.adjustment.search</field>
+        <field name="model">bs.hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="name"/>
+                <filter name="pending" string="Pending" domain="[('state', '=', 'pending')]"/>
+                <filter name="applied" string="Applied" domain="[('state', '=', 'applied')]"/>
+                <separator/>
+                <filter name="deduction" string="Deductions" domain="[('adj_type', '=', 'deduction')]"/>
+                <filter name="addition" string="Additions" domain="[('adj_type', '=', 'addition')]"/>
+                <group>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_category" string="Category" context="{'group_by': 'category'}"/>
+                    <filter name="group_month" string="Month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_adjustment_pivot" model="ir.ui.view">
+        <field name="name">bs.hr.payroll.adjustment.pivot</field>
+        <field name="model">bs.hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="category" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="signed_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_adjustment" model="ir.actions.act_window">
+        <field name="name">Payroll Adjustments</field>
+        <field name="res_model">bs.hr.payroll.adjustment</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No payroll adjustment</p>
+            <p>Loan installments, custody deductions, penalties and objection settlements land here and are
+                pushed to the next payslip.</p>
+        </field>
+    </record>
+</odoo>

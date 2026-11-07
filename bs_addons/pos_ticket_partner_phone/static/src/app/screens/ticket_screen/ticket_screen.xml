@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_ticket_partner_phone.TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
+        <!-- Phone number directly under the customer name, above the preset badge -->
+        <xpath expr="//div[@id='order-tags']" position="before">
+            <div t-if="order.partner_id?.phone" class="o_pos_partner_phone small text-muted mb-1" dir="ltr">
+                <i class="fa fa-phone me-1" aria-hidden="true"/>
+                <t t-esc="order.partner_id.phone"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

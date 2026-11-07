@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_connection_form" model="ir.ui.view">
+        <field name="name">bs.delivery.connection.form</field>
+        <field name="model">bs.delivery.connection</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Connection">
+                <header>
+                    <button name="action_test_connection"
+                            type="object"
+                            string="Test Connection"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                            invisible="not id or state == 'disabled'"/>
+                    <button name="action_reset_to_draft"
+                            type="object"
+                            string="Reset to Draft"
+                            groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                            invisible="state == 'draft'"/>
+                    <button name="pause_receiving"
+                            type="object"
+                            string="Pause Receiving"
+                            class="btn-warning"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="paused or state == 'disabled'"/>
+                    <button name="resume_receiving"
+                            type="object"
+                            string="Resume Receiving"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="not paused"/>
+                    <button name="action_pull_menu"
+                            type="object"
+                            string="Pull Menu"
+                            class="btn-secondary"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="state != 'connected' or not can_pull_menu"/>
+                    <button name="action_push_menu"
+                            type="object"
+                            string="Push Menu to Platform"
+                            class="btn-secondary"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="state != 'connected' or not can_push_menu"/>
+                    <button name="action_sync_all_stores_availability"
+                            type="object"
+                            string="Sync Store Availability"
+                            class="btn-secondary"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="state != 'connected'"/>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,connected,error,disabled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_delivery_orders"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-cutlery">
+                            <field name="delivery_order_count"
+                                   widget="statinfo"
+                                   string="Orders"/>
+                        </button>
+                        <button name="action_view_product_mappings"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-list">
+                            <field name="product_mapping_count"
+                                   widget="statinfo"
+                                   string="Menu Mappings"/>
+                        </button>
+                        <button name="action_view_order_bindings"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-link">
+                            <field name="binding_count" widget="statinfo" string="Order Bindings"/>
+                        </button>
+                        <button name="action_view_sync_logs"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-list-alt">
+                            <field name="sync_log_count" widget="statinfo" string="Logs"/>
+                        </button>
+                        <button name="action_view_webhook_events"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-bolt">
+                            <field name="webhook_event_count"
+                                   widget="statinfo"
+                                   string="Webhooks"/>
+                        </button>
+                        <button name="action_view_outbox_jobs"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-paper-plane">
+                            <field name="outbox_job_count"
+                                   widget="statinfo"
+                                   string="Outgoing"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon"
+                            title="Archived"
+                            bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <field name="active" invisible="1"/>
+                    <field name="pos_config_ids" invisible="1"/>
+                    <field name="adapter_model_name" invisible="1"/>
+                    <field name="provider_implementation_state" invisible="1"/>
+                    <field name="can_pull_menu" invisible="1"/>
+                    <field name="can_push_menu" invisible="1"/>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <field name="provider_image_128"
+                               widget="image"
+                               class="oe_avatar"
+                               readonly="1"
+                               options="{'preview_image': 'provider_image_128'}"/>
+                        <div class="oe_title flex-grow-1 mb-0">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="e.g. Cairo Feedus Account"/></h1>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="provider_id"
+                                   readonly="id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="company_id"
+                                   readonly="id"
+                                   groups="base.group_multi_company"
+                                   options="{'no_create': True}"/>
+                            <field name="environment" widget="radio"/>
+                            <field name="remote_store_ids_display" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="paused"/>
+                            <field name="paused_until" invisible="not paused"/>
+                            <field name="pause_reason" invisible="not paused"/>
+                            <field name="last_test_date"/>
+                            <field name="last_sync_date"/>
+                        </group>
+                    </group>
+                    <group string="Last Error" invisible="not last_error">
+                        <field name="last_error" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page name="connection_api" string="Connection &amp; API">
+                            <group name="provider_credentials" string="Provider Configuration">
+                                <group string="Authentication">
+                                    <field name="auth_scheme"/>
+                                    <field name="username" invisible="auth_scheme != 'basic'"/>
+                                    <field name="password" widget="password" invisible="auth_scheme != 'basic'"/>
+                                    <field name="api_key" widget="password"
+                                           invisible="auth_scheme not in ('api_key_secret', 'oauth2_client_credentials')"/>
+                                    <field name="api_secret" widget="password"
+                                           invisible="auth_scheme not in ('api_key_secret', 'oauth2_client_credentials')"/>
+                                    <field name="webhook_secret" string="Inbound Bearer Token / Secret" widget="password"
+                                           invisible="auth_scheme not in ('bearer', 'hmac')"/>
+                                    <field name="access_token" string="Outbound Bearer Token" widget="password"
+                                           invisible="auth_scheme != 'bearer'"/>
+                                </group>
+                                <group string="Remote API">
+                                    <field name="base_url" placeholder="https://api.provider.example"/>
+                                    <field name="merchant_id"/>
+                                    <field name="oauth_token_url"
+                                           invisible="auth_scheme != 'oauth2_client_credentials'"/>
+                                    <field name="access_token_expires_at" readonly="1"
+                                           invisible="auth_scheme != 'oauth2_client_credentials'"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="menu_pricing" string="Menu &amp; Pricing">
+                            <group string="Aggregator Menu Prices">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="menu_pricelist_id"
+                                       domain="[('active', '=', True), ('currency_id', '=', currency_id), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                                       options="{'no_create': True}"/>
+                            </group>
+                        </page>
+                        <page name="remote_store_mapping" string="Branches &amp; Work Time">
+                            <div class="text-muted mb-2">
+                                Add one line per POS branch. When <b>Work Time</b> is on, the branch is open
+                                for delivery only inside its shifts; turn on <b>2nd Shift</b> for a split day
+                                (e.g. 09:00-15:00 and 18:00-02:00). When Work Time is off, the branch is open
+                                while its POS session is open. Open/closed changes are pushed to the platform
+                                automatically every few minutes.
+                            </div>
+                            <field name="store_binding_ids" nolabel="1"
+                                   context="{'default_connection_id': id, 'active_test': False}">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="pos_config_id"
+                                           string="POS Branch"
+                                           domain="[('company_id', '=', parent.company_id)]"
+                                           options="{'no_create': True}"/>
+                                    <field name="remote_store_id" string="Remote Store ID"/>
+                                    <field name="remote_vendor_id" string="Vendor / Brand ID" optional="hide"/>
+                                    <field name="remote_integration_id" string="Integration ID" optional="hide"/>
+                                    <field name="work_time_enabled" widget="boolean_toggle"/>
+                                    <field name="work_start_time" widget="float_time"
+                                           invisible="not work_time_enabled"/>
+                                    <field name="work_end_time" widget="float_time"
+                                           invisible="not work_time_enabled"/>
+                                    <field name="second_shift_enabled" widget="boolean_toggle"
+                                           invisible="not work_time_enabled"/>
+                                    <field name="work_start_time_2" widget="float_time"
+                                           invisible="not work_time_enabled or not second_shift_enabled"/>
+                                    <field name="work_end_time_2" widget="float_time"
+                                           invisible="not work_time_enabled or not second_shift_enabled"/>
+                                    <field name="is_open_now" widget="boolean" readonly="1"/>
+                                    <field name="paused" widget="boolean_toggle" optional="show"/>
+                                    <field name="active" widget="boolean_toggle" optional="hide"/>
+                                    <field name="last_availability_sync_at" string="Last Sent" readonly="1" optional="hide"/>
+                                    <button name="action_sync_availability" string="Send Now" type="object"
+                                            icon="fa-refresh" class="btn-link"
+                                            invisible="not id or parent.state != 'connected'"/>
+                                </list>
+                            </field>
+                            <group string="When the POS Session Is Closed">
+                                <group>
+                                    <field name="closed_pos_retry_timeout_minutes"/>
+                                    <field name="closed_pos_max_retry_attempts"/>
+                                </group>
+                                <group>
+                                    <field name="closed_pos_auto_reject_on_timeout"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="orders_acceptance" string="Orders &amp; Acceptance">
+                            <group name="delivery_acceptance_section" string="Delivery Acceptance"
+                                   groups="bs_pos_delivery_core.group_delivery_manager">
+                                <field name="delivery_accept_action"/>
+                                <field name="delivery_default_invoice_partner_id"
+                                       invisible="delivery_accept_action != 'accept'"
+                                       required="delivery_accept_action == 'accept'"
+                                       domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                                <field name="delivery_auto_reject_reason_id"
+                                       invisible="delivery_accept_action != 'reject'"
+                                       required="delivery_accept_action == 'reject'"
+                                       domain="[('active', '=', True), ('provider_id', '=', False), ('requires_note', '=', False), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                            </group>
+                            <group string="Order Notifications and Polling">
+                                <field name="sound_alert"/>
+                                <field name="auto_print_kitchen"/>
+                                <field name="polling_interval_minutes"/>
+                                <field name="tax_rounding_tolerance"/>
+                            </group>
+                            <group string="Today">
+                                <field name="today_order_count" readonly="1"/>
+                                <field name="today_gmv" readonly="1"/>
+                            </group>
+                        </page>
+                        <page name="payments" string="Payments">
+                            <group name="delivery_payments_section" string="Aggregator Payments"
+                                   groups="bs_pos_delivery_core.group_delivery_manager">
+                                <field name="delivery_payment_mapping_ids" nolabel="1" colspan="2"
+                                       context="{'default_connection_id': id}">
+                                    <list editable="bottom">
+                                        <field name="pos_config_id" string="POS Branch"
+                                               domain="[('id', 'in', parent.pos_config_ids)]"/>
+                                        <field name="aggregator_name"/>
+                                        <field name="payment_type"/>
+                                        <field name="available_payment_method_ids" column_invisible="True"/>
+                                        <field name="payment_method_id"
+                                               domain="[('id', 'in', available_payment_method_ids)]"/>
+                                    </list>
+                                </field>
+                            </group>
+                            <group string="Commercials">
+                                <field name="commission_pct"/>
+                                <field name="currency_id" readonly="1"/>
+                            </group>
+                        </page>
+                        <page name="advanced" string="Advanced">
+                            <group string="Webhook Queue">
+                                <group>
+                                    <field name="webhook_url" readonly="1"/>
+                                    <button name="action_rotate_webhook_token"
+                                            type="object"
+                                            string="Rotate Webhook URL"
+                                            class="btn-secondary"
+                                            groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                                            confirm="The current webhook URL will stop working immediately. Continue?"
+                                            invisible="not id"/>
+                                </group>
+                                <group>
+                                    <field name="webhook_max_attempts"/>
+                                    <field name="webhook_retry_base_seconds"/>
+                                    <field name="webhook_processing_timeout_minutes"/>
+                                </group>
+                            </group>
+                            <group string="Outgoing Queue">
+                                <group>
+                                    <field name="outgoing_mode" widget="radio"/>
+                                </group>
+                                <group invisible="outgoing_mode != 'queued'">
+                                    <field name="outbox_max_attempts"/>
+                                    <field name="outbox_retry_base_seconds"/>
+                                    <field name="outbox_processing_timeout_minutes"/>
+                                </group>
+                            </group>
+                            <group string="Data Retention">
+                                <group>
+                                    <field name="webhook_raw_payload_retention_days"/>
+                                    <field name="webhook_event_retention_days"/>
+                                    <field name="sync_log_retention_days"/>
+                                    <field name="outbox_retention_days"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_connection_list" model="ir.ui.view">
+        <field name="name">bs.delivery.connection.list</field>
+        <field name="model">bs.delivery.connection</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Connections" multi_edit="1">
+                <field name="name"/>
+                <field name="provider_image_128"
+                       string="Logo"
+                       widget="image"
+                       class="o_image_32_max"
+                       optional="show"/>
+                <field name="provider_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="environment"/>
+                <field name="remote_store_ids_display" string="Remote Store ID"/>
+                <field name="paused"/>
+                <field name="commission_pct" string="Commission %" optional="show"/>
+                <field name="today_order_count" string="Today Orders" optional="show"/>
+                <field name="today_gmv" string="Today GMV" optional="show"/>
+                <field name="currency_id" optional="show"/>
+                <field name="state"
+                       widget="badge"
+                       decoration-success="state == 'connected'"
+                       decoration-danger="state == 'error'"
+                       decoration-muted="state == 'disabled'"/>
+                <field name="pos_config_ids" widget="many2many_tags" optional="show"/>
+                <field name="binding_count" optional="hide"/>
+                <field name="sync_log_count" optional="hide"/>
+                <field name="webhook_event_count" optional="hide"/>
+                <field name="outbox_job_count" optional="hide"/>
+                <field name="last_sync_date" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_connection_search" model="ir.ui.view">
+        <field name="name">bs.delivery.connection.search</field>
+        <field name="model">bs.delivery.connection</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="provider_id"/>
+                <field name="pos_config_ids"/>
+                <filter name="connected" string="Connected" domain="[('state', '=', 'connected')]"/>
+                <filter name="errors" string="Errors" domain="[('state', '=', 'error')]"/>
+                <filter name="paused" string="Paused" domain="[('paused', '=', True)]"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_provider"
+                            string="Provider"
+                            context="{'group_by': 'provider_id'}"/>
+                    <filter name="group_company"
+                            string="Company"
+                            context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                    <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_connection" model="ir.actions.act_window">
+        <field name="name">Delivery Connections</field>
+        <field name="res_model">bs.delivery.connection</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_connection_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a delivery-provider connection.</p>
+            <p>Each connection belongs to one company and can serve multiple POS branches.</p>
+        </field>
+    </record>
+</odoo>

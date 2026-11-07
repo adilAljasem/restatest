@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="dk_pos_employee_access_rights.Navbar" t-inherit="point_of_sale.Navbar" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-burger-menu-items')]" position="before">
+            <t t-set="currentEmployee" t-value="pos.getCashier()"/>
+        </xpath>
+        <!-- Hide Orders button: it is a navbar button in Odoo 19, outside the burger menu scope -->
+        <xpath expr="//button[hasclass('orders-button')]" position="attributes">
+            <attribute name="t-if">!pos.getCashier()?.sbl_hide_pos_orders_menu</attribute>
+        </xpath>
+        <!-- Hide Install App menu -->
+        <xpath expr="//DropdownItem[contains(@t-if, 'isDisplayStandalone')]" position="attributes">
+            <attribute name="t-if">!isDisplayStandalone and this.pos.cashier._role != 'minimal' and !currentEmployee?.sbl_hide_pos_install_app</attribute>
+        </xpath>
+        <!-- Hide Cash In/Out menu -->
+        <xpath expr="//DropdownItem[contains(@t-if, 'showCashMoveButton')]" position="attributes">
+            <attribute name="t-if">showCashMoveButton and this.pos.cashier._role != 'minimal' and !currentEmployee?.sbl_hide_pos_cash_in_out</attribute>
+        </xpath>
+        <!-- Hide Backend menu -->
+        <xpath expr="//DropdownItem[@onSelected='() =&gt; pos.closePos()']" position="attributes">
+            <attribute name="t-if">!currentEmployee?.sbl_hide_pos_backend_menu</attribute>
+        </xpath>
+        <!-- Hide Close Register menu -->
+        <xpath expr="//DropdownItem[@onSelected='() =&gt; this.pos.closeSession()']" position="attributes">
+            <attribute name="t-if">!currentEmployee?.sbl_hide_pos_close_register</attribute>
+        </xpath>
+    </t>
+</templates>

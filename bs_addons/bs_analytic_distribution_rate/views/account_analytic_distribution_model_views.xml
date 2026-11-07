@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_analytic_distribution_model_form_view" model="ir.ui.view">
+        <field name="name">account.analytic.distribution.model.form.bs.rate</field>
+        <field name="model">account.analytic.distribution.model</field>
+        <field name="inherit_id" ref="account.account_analytic_distribution_model_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_bs_refresh_rate" type="object"
+                            string="Refresh Rate" class="oe_highlight"
+                            invisible="not bs_auto_compute_rate"/>
+                </header>
+            </xpath>
+            <xpath expr="//field[@name='analytic_distribution']" position="before">
+                <field name="bs_auto_compute_rate"/>
+                <field name="bs_compute_by" invisible="not bs_auto_compute_rate"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_analytic_distribution_model_list_view" model="ir.ui.view">
+        <field name="name">account.analytic.distribution.model.list.bs.rate</field>
+        <field name="model">account.analytic.distribution.model</field>
+        <field name="inherit_id" ref="account.account_analytic_distribution_model_tree_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_distribution']" position="before">
+                <field name="bs_auto_compute_rate" optional="show"/>
+                <field name="bs_compute_by" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

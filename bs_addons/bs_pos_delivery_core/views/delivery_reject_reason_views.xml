@@ -1,0 +1,77 @@
+<odoo>
+    <record id="view_bs_delivery_reject_reason_list" model="ir.ui.view">
+        <field name="name">bs.delivery.reject.reason.list</field>
+        <field name="model">bs.delivery.reject.reason</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Rejection Reasons" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="provider_id" optional="show"/>
+                <field name="external_code" optional="show"/>
+                <field name="requires_note" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_reject_reason_form" model="ir.ui.view">
+        <field name="name">bs.delivery.reject.reason.form</field>
+        <field name="model">bs.delivery.reject.reason</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Rejection Reason">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="provider_id" options="{'no_create': True}"/>
+                            <field name="external_code"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="requires_note"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_reject_reason_search" model="ir.ui.view">
+        <field name="name">bs.delivery.reject.reason.search</field>
+        <field name="model">bs.delivery.reject.reason</field>
+        <field name="arch" type="xml">
+            <search string="Search Rejection Reasons">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="external_code"/>
+                <field name="provider_id"/>
+                <filter name="shared" string="Shared" domain="[('company_id', '=', False)]"/>
+                <filter name="provider_neutral" string="All Providers" domain="[('provider_id', '=', False)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                    <filter name="group_company"
+                            string="Company"
+                            context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_reject_reason" model="ir.actions.act_window">
+        <field name="name">Rejection Reasons</field>
+        <field name="res_model">bs.delivery.reject.reason</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_reject_reason_search"/>
+        <field name="context">{'active_test': True}</field>
+    </record>
+</odoo>

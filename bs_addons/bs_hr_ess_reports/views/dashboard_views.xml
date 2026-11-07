@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_ess_hr_dashboard" model="ir.actions.client">
+        <field name="name">HR Dashboard</field>
+        <field name="tag">bs_hr_ess_reports.dashboard</field>
+    </record>
+    <menuitem id="menu_ess_hr_dashboard" name="HR Dashboard" parent="bs_hr_ess_base.menu_ess_root" sequence="0"
+              action="action_ess_hr_dashboard" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_hr_dashboard_reporting" name="HR Dashboard" parent="bs_hr_ess_base.menu_ess_reporting"
+              sequence="1" action="action_ess_hr_dashboard"/>
+</odoo>

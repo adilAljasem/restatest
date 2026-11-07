@@ -1,0 +1,42 @@
+{
+    "name": "BS POS Delivery Blend",
+    "summary": "Blend adapter for the BS POS Delivery integration framework",
+    "version": "19.0.1.18.0",
+    "category": "Point of Sale",
+    "author": "Bunbastic",
+    "license": "LGPL-3",
+    "icon": "/bs_pos_delivery_blend/static/description/icon.png",
+    "depends": [
+        "bs_pos_delivery_core",
+        "pos_restaurant",
+        "pos_restaurant_combo_modifiers",
+        "stock",
+    ],
+    "external_dependencies": {"python": ["requests"]},
+    "data": [
+        "security/ir.model.access.csv",
+        "data/blend_user.xml",
+        "data/blend_menu_cron.xml",
+        "data/delivery_provider_data.xml",
+        "views/delivery_connection_views.xml",
+        "views/delivery_order_views.xml",
+        "views/pos_config_views.xml",
+        "views/product_views.xml",
+        "views/blend_menu_preview_views.xml",
+        "views/pos_order_views.xml",
+    ],
+    "assets": {
+        "point_of_sale._assets_pos": [
+            "bs_pos_delivery_blend/static/src/js/blend_pos_store.js",
+            "bs_pos_delivery_blend/static/src/js/blend_combo_limits.js",
+            "bs_pos_delivery_blend/static/src/js/blend_order_receipt.js",
+            "bs_pos_delivery_blend/static/src/xml/blend_order_receipt.xml",
+        ],
+        "pos_preparation_display.assets": [
+            "bs_pos_delivery_blend/static/src/xml/blend_scheduled_kitchen.xml",
+        ],
+    },
+    "post_init_hook": "post_init_hook",
+    "application": False,
+    "installable": True,
+}

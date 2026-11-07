@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tenant_am,tenant am,model_resta_tenant,group_resta_account_manager,1,1,1,0
+access_tenant_mgr,tenant mgr,model_resta_tenant,group_resta_manager,1,1,1,1
+access_plan_am,plan am,model_resta_plan,group_resta_account_manager,1,0,0,0
+access_plan_mgr,plan mgr,model_resta_plan,group_resta_manager,1,1,1,1
+access_sub_am,sub am,model_resta_subscription,group_resta_account_manager,1,1,1,0
+access_sub_mgr,sub mgr,model_resta_subscription,group_resta_manager,1,1,1,1
+access_ann_am,ann am,model_resta_announcement,group_resta_account_manager,1,1,1,0
+access_ann_mgr,ann mgr,model_resta_announcement,group_resta_manager,1,1,1,1
+access_fb_am,fb am,model_resta_feedback,group_resta_account_manager,1,1,1,0
+access_fb_mgr,fb mgr,model_resta_feedback,group_resta_manager,1,1,1,1
+access_demo_am,demo am,model_resta_demo_request,group_resta_account_manager,1,1,1,0
+access_demo_mgr,demo mgr,model_resta_demo_request,group_resta_manager,1,1,1,1
+access_subwiz_am,subwiz am,model_resta_subscription_wizard,group_resta_account_manager,1,1,1,1

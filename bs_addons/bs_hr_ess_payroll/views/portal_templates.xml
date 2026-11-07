@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================ MY PAYSLIPS ============================ -->
+    <template id="ess_payslips" name="ESS My payslips">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My payslips</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-segment mb-3" t-if="len(years) &gt; 1">
+                <a t-foreach="years" t-as="y" t-attf-href="/my/hr/payslips?year=#{y}"
+                   t-attf-class="#{'active' if y == year else ''}" t-out="y"/>
+            </div>
+            <div class="ess-panel text-center" t-if="slips">
+                <div class="text-muted small">Net paid in <t t-out="year"/></div>
+                <div class="ess-big-number"><t t-out="'{:,.2f}'.format(year_total)"/> <small t-out="currency.symbol"/></div>
+            </div>
+            <div class="ess-list" t-if="slips">
+                <a t-foreach="slips" t-as="slip" t-attf-href="/my/hr/payslip/#{slip.id}" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold"><t t-out="ess_fdate(slip.date_from)"/> - <t t-out="ess_fdate(slip.date_to)"/></div>
+                            <div class="small text-muted" t-out="compat._slip_reference(slip)"/>
+                        </div>
+                        <div class="text-end">
+                            <div class="fw-semibold"><t t-out="'{:,.2f}'.format(compat._net_amount(slip))"/></div>
+                            <span t-if="slip._ess_is_draft_review()" class="ess-badge ess-badge-pending">Draft for review</span>
+                            <span t-else="" t-attf-class="ess-badge ess-badge-#{'paid' if slip.state == 'paid' else 'done'}"
+                                  t-out="ess_state_label(slip)"/>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty">
+                <i class="fa fa-money"/>
+                <p>No payslip yet.</p>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ PAYSLIP DETAIL ============================ -->
+    <template id="ess_payslip_detail" name="ESS Payslip detail">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Payslip</t>
+            <t t-set="ess_back" t-value="'/my/hr/payslips'"/>
+            <div t-if="is_draft" class="alert alert-warning small">
+                <i class="fa fa-eye me-1"/> Draft for review: amounts may still change.
+                <t t-if="slip.ess_review_until">Objections are accepted until <t t-out="ess_fdate(slip.ess_review_until)"/>.</t>
+            </div>
+            <div class="ess-panel text-center">
+                <div class="text-muted small"><t t-out="ess_fdate(slip.date_from)"/> - <t t-out="ess_fdate(slip.date_to)"/></div>
+                <div class="ess-big-number"><t t-out="'{:,.2f}'.format(net)"/> <small t-out="currency.symbol"/></div>
+                <div class="small text-muted">Net salary · <t t-out="reference"/></div>
+            </div>
+
+            <h6 class="ess-section-title">Details</h6>
+            <div class="ess-list">
+                <div t-foreach="lines" t-as="line" class="ess-list-item d-flex justify-content-between gap-2">
+                    <div class="min-w-0">
+                        <div t-out="line.name"/>
+                        <div class="small text-muted" t-out="line.code"/>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span t-attf-class="fw-semibold #{'text-danger' if line.total &lt; 0 else ''}" t-out="'{:,.2f}'.format(line.total)"/>
+                        <a t-attf-href="/my/hr/payslip/#{slip.id}/objection?line=#{line.id}" class="text-muted" title="Object to this line">
+                            <i class="fa fa-question-circle-o"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <t t-if="adjustments">
+                <h6 class="ess-section-title">Where do these amounts come from?</h6>
+                <div class="ess-list">
+                    <div t-foreach="adjustments" t-as="adj" class="ess-list-item">
+                        <div class="d-flex justify-content-between gap-2">
+                            <div class="min-w-0">
+                                <div t-out="adj.name"/>
+                                <div class="small text-muted">
+                                    <t t-out="ess_display(adj, 'category')"/>
+                                    <t t-if="adj.source_ref"> · <t t-out="adj.source_ref"/></t>
+                                </div>
+                            </div>
+                            <span t-attf-class="fw-semibold #{'text-danger' if adj.adj_type == 'deduction' else 'text-success'}">
+                                <t t-out="'-' if adj.adj_type == 'deduction' else '+'"/><t t-out="'{:,.2f}'.format(adj.amount)"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="objections">
+                <h6 class="ess-section-title">My objections</h6>
+                <div class="ess-list">
+                    <a t-foreach="objections" t-as="rec" t-att-href="rec._ess_portal_url()" class="ess-list-item d-flex justify-content-between">
+                        <span class="text-truncate"><t t-out="rec.name"/> · <t t-out="rec._ess_portal_summary()"/></span>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"><t t-set="rec" t-value="rec"/></t>
+                    </a>
+                </div>
+            </t>
+
+            <div class="d-flex gap-2 mt-3">
+                <a t-if="has_report and not is_draft" t-attf-href="/my/hr/payslip/#{slip.id}/pdf?download=1" class="btn btn-outline-primary flex-fill">
+                    <i class="fa fa-download me-1"/> PDF
+                </a>
+                <a t-attf-href="/my/hr/payslip/#{slip.id}/objection" class="btn btn-primary flex-fill">
+                    <i class="fa fa-flag me-1"/> Raise an objection
+                </a>
+            </div>
+        </t>
+    </template>
+
+    <!-- ============================ OBJECTION FORM ============================ -->
+    <template id="ess_payslip_objection" name="ESS Payslip objection">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Payslip objection</t>
+            <t t-set="ess_back" t-value="'/my/hr/payslip/%s' % slip.id"/>
+            <div class="ess-panel small">
+                <strong t-out="reference"/>
+                <div class="text-muted"><t t-out="ess_fdate(slip.date_from)"/> - <t t-out="ess_fdate(slip.date_to)"/></div>
+            </div>
+            <form t-attf-action="/my/hr/payslip/#{slip.id}/objection" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label>Contested line</label>
+                <select name="line_id" class="form-select">
+                    <option value="">Whole payslip</option>
+                    <t t-foreach="lines" t-as="line">
+                        <option t-att-value="line.id" t-att-selected="str(line.id) == str(selected)">
+                            <t t-out="line.name"/> (<t t-out="'{:,.2f}'.format(line.total)"/>)
+                        </option>
+                    </t>
+                </select>
+                <label>Amount you claim</label>
+                <input type="number" step="0.01" min="0" name="claimed_amount" class="form-control" inputmode="decimal"/>
+                <label>Reason *</label>
+                <textarea name="reason" class="form-control" rows="3" required="required"
+                          placeholder="e.g. I was present on 12/03 but an absence was deducted"/>
+                <label>Evidence (optional)</label>
+                <input type="file" name="attachments" class="form-control" multiple="multiple" accept="image/*,application/pdf"/>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send the objection</button>
+            </form>
+        </t>
+    </template>
+</odoo>

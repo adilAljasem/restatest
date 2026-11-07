@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sequence_bs_delivery_order" model="ir.sequence">
+        <field name="name">Delivery Aggregator Order</field>
+        <field name="code">bs.delivery.order</field>
+        <field name="prefix">FAO/%(year)s/</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="reject_reason_busy" model="bs.delivery.reject.reason">
+        <field name="name">Busy</field>
+        <field name="code">busy</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="reject_reason_out_of_stock" model="bs.delivery.reject.reason">
+        <field name="name">Out of Stock</field>
+        <field name="code">out_of_stock</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="reject_reason_store_closed" model="bs.delivery.reject.reason">
+        <field name="name">Store Closed</field>
+        <field name="code">store_closed</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="reject_reason_invalid_order" model="bs.delivery.reject.reason">
+        <field name="name">Invalid Order</field>
+        <field name="code">invalid_order</field>
+        <field name="sequence">40</field>
+        <field name="requires_note" eval="True"/>
+    </record>
+    <record id="reject_reason_technical_issue" model="bs.delivery.reject.reason">
+        <field name="name">Technical Issue</field>
+        <field name="code">technical_issue</field>
+        <field name="sequence">50</field>
+        <field name="requires_note" eval="True"/>
+    </record>
+</odoo>
+

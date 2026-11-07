@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_business_day_settings_form" model="ir.ui.view">
+        <field name="name">pos.business.day.settings.form</field>
+        <field name="model">pos.business.day.settings</field>
+        <field name="arch" type="xml">
+            <form string="Business Day Settings">
+                <sheet>
+                    <group>
+                        <field name="company_id"
+                               options="{'no_create': True, 'no_open': True}"/>
+                        <field name="business_day_start_hour"/>
+                    </group>
+                    <div class="text-muted">
+                        Set the operational business day start hour (0-24).
+                        Example: if the shift runs from 6 AM to 2 AM the next
+                        day, set the value to 6. Any POS sale or stock move
+                        between midnight and this hour is assigned to the
+                        previous business day in sales and inventory reports.
+                    </div>
+                    <group string="Recompute Existing Records">
+                        <field name="recompute_scope"/>
+                        <field name="date_from"
+                               invisible="recompute_scope != 'date_range'"/>
+                        <field name="date_to"
+                               invisible="recompute_scope != 'date_range'"/>
+                        <field name="batch_size"/>
+                    </group>
+                    <div class="mt16">
+                        <button name="action_apply"
+                                type="object"
+                                string="Save Settings"
+                                class="btn-secondary"/>
+                        <button name="action_apply_and_recompute"
+                                type="object"
+                                string="Save and Queue Recompute Job"
+                                class="btn-primary"
+                                confirm="This will save the setting and create a background job to recompute existing POS orders and stock moves in batches. Do you want to continue?"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_business_day_settings" model="ir.actions.act_window">
+        <field name="name">Business Day Settings</field>
+        <field name="res_model">pos.business.day.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="view_id" ref="view_pos_business_day_settings_form"/>
+        <field name="context">{'form_view_initial_mode': 'edit'}</field>
+    </record>
+
+    <menuitem id="menu_business_day_settings"
+              name="Business Day Settings"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_business_day_settings"
+              groups="point_of_sale.group_pos_manager"
+              sequence="90"/>
+
+</odoo>

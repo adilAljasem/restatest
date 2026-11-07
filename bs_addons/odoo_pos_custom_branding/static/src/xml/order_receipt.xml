@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Inherit point_of_sale.OrderReceipt for getting our custom receipt design-->
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <!-- When a custom design is selected, render it instead of the standard receipt.
+             Otherwise `$0` keeps the untouched core receipt, so this module no longer has to
+             carry a copy of the core markup (which changed heavily in Odoo 19). -->
+        <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+            <t t-if="isTrue">
+                <t t-component="templateComponent" t-props="templateProps"/>
+            </t>
+            <t t-else="">$0</t>
+        </xpath>
+    </t>
+</templates>

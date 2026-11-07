@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="request_type_salary_certificate" model="bs.hr.request.type">
+        <field name="name">Salary certificate</field>
+        <field name="code">salary_certificate</field>
+        <field name="sequence">10</field>
+        <field name="icon">fa-certificate</field>
+        <field name="description">Official letter stating your job and salary, addressed to a bank or an authority.</field>
+        <field name="generate_letter" eval="True"/>
+        <field name="letter_body"><![CDATA[<p>To: {{addressed_to}}</p>
+<p>Subject: Salary certificate</p>
+<p>{{company}} certifies that <strong>{{employee_name}}</strong>, {{nationality}} national, ID / Iqama number {{id_number}}, has been working with us as <strong>{{job}}</strong> in the {{department}} department since {{joining_date}}, and currently receives a total monthly salary of <strong>{{wage}}</strong>.</p>
+<p>This certificate was issued at the employee's request, without any liability on the company.</p>
+<p>Issued on {{today}} ({{hijri_today}}) - Reference {{reference}}</p>]]></field>
+    </record>
+    <record id="request_type_salary_certificate_to" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_salary_certificate"/>
+        <field name="sequence">10</field>
+        <field name="name">Addressed to</field>
+        <field name="key">addressed_to</field>
+        <field name="field_type">char</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="request_type_to_whom" model="bs.hr.request.type">
+        <field name="name">To whom it may concern letter</field>
+        <field name="code">to_whom</field>
+        <field name="sequence">20</field>
+        <field name="icon">fa-envelope-o</field>
+        <field name="generate_letter" eval="True"/>
+        <field name="letter_body"><![CDATA[<p>To whom it may concern,</p>
+<p>{{company}} certifies that <strong>{{employee_name}}</strong>, {{nationality}} national, ID / Iqama number {{id_number}}, is employed as <strong>{{job}}</strong> since {{joining_date}}.</p>
+<p>Purpose: {{purpose}}</p>
+<p>Issued on {{today}} ({{hijri_today}}) - Reference {{reference}}</p>]]></field>
+    </record>
+    <record id="request_type_to_whom_purpose" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_to_whom"/>
+        <field name="name">Purpose</field>
+        <field name="key">purpose</field>
+        <field name="field_type">char</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="request_type_bank_update" model="bs.hr.request.type">
+        <field name="name">Bank details update</field>
+        <field name="code">bank_update</field>
+        <field name="sequence">30</field>
+        <field name="icon">fa-bank</field>
+        <field name="require_attachment" eval="True"/>
+        <field name="description">Attach the IBAN certificate issued by your bank.</field>
+    </record>
+    <record id="request_type_bank_update_bank" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_bank_update"/>
+        <field name="sequence">10</field>
+        <field name="name">Bank</field>
+        <field name="key">bank</field>
+        <field name="field_type">char</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_bank_update_iban" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_bank_update"/>
+        <field name="sequence">20</field>
+        <field name="name">IBAN</field>
+        <field name="key">iban</field>
+        <field name="field_type">char</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="request_type_branch_transfer" model="bs.hr.request.type">
+        <field name="name">Branch transfer</field>
+        <field name="code">branch_transfer</field>
+        <field name="sequence">40</field>
+        <field name="icon">fa-exchange</field>
+    </record>
+    <record id="request_type_branch_transfer_branch" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_branch_transfer"/>
+        <field name="sequence">10</field>
+        <field name="name">Requested branch</field>
+        <field name="key">branch</field>
+        <field name="field_type">char</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_branch_transfer_date" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_branch_transfer"/>
+        <field name="sequence">20</field>
+        <field name="name">Preferred date</field>
+        <field name="key">date</field>
+        <field name="field_type">date</field>
+    </record>
+    <record id="request_type_branch_transfer_reason" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_branch_transfer"/>
+        <field name="sequence">30</field>
+        <field name="name">Reason</field>
+        <field name="key">reason</field>
+        <field name="field_type">text</field>
+    </record>
+
+    <record id="request_type_housing" model="bs.hr.request.type">
+        <field name="name">Housing request</field>
+        <field name="code">housing</field>
+        <field name="sequence">50</field>
+        <field name="icon">fa-bed</field>
+    </record>
+    <record id="request_type_housing_kind" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_housing"/>
+        <field name="sequence">10</field>
+        <field name="name">Request</field>
+        <field name="key">kind</field>
+        <field name="field_type">selection</field>
+        <field name="options">New accommodation,Room change,Maintenance,Leave accommodation</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_housing_details" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_housing"/>
+        <field name="sequence">20</field>
+        <field name="name">Details</field>
+        <field name="key">details</field>
+        <field name="field_type">text</field>
+    </record>
+
+    <record id="request_type_resignation" model="bs.hr.request.type">
+        <field name="name">Resignation</field>
+        <field name="code">resignation</field>
+        <field name="sequence">60</field>
+        <field name="icon">fa-sign-out</field>
+        <field name="description">Article 75 of the Labor Law: respect your notice period.</field>
+    </record>
+    <record id="request_type_resignation_last_day" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_resignation"/>
+        <field name="sequence">10</field>
+        <field name="name">Last working day</field>
+        <field name="key">last_day</field>
+        <field name="field_type">date</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_resignation_reason" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_resignation"/>
+        <field name="sequence">20</field>
+        <field name="name">Reason</field>
+        <field name="key">reason</field>
+        <field name="field_type">text</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="request_type_overtime" model="bs.hr.request.type">
+        <field name="name">Overtime pre-approval</field>
+        <field name="code">overtime</field>
+        <field name="sequence">70</field>
+        <field name="icon">fa-clock-o</field>
+    </record>
+    <record id="request_type_overtime_date" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_overtime"/>
+        <field name="sequence">10</field>
+        <field name="name">Date</field>
+        <field name="key">date</field>
+        <field name="field_type">date</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_overtime_hours" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_overtime"/>
+        <field name="sequence">20</field>
+        <field name="name">Hours</field>
+        <field name="key">hours</field>
+        <field name="field_type">number</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_overtime_reason" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_overtime"/>
+        <field name="sequence">30</field>
+        <field name="name">Reason</field>
+        <field name="key">reason</field>
+        <field name="field_type">text</field>
+    </record>
+
+    <record id="request_type_petty_cash" model="bs.hr.request.type">
+        <field name="name">Petty cash</field>
+        <field name="code">petty_cash</field>
+        <field name="sequence">80</field>
+        <field name="icon">fa-money</field>
+        <field name="description">Cash advance for branch expenses, to be settled with expense reports.</field>
+    </record>
+    <record id="request_type_petty_cash_amount" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_petty_cash"/>
+        <field name="sequence">10</field>
+        <field name="name">Amount</field>
+        <field name="key">amount</field>
+        <field name="field_type">number</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_petty_cash_purpose" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_petty_cash"/>
+        <field name="sequence">20</field>
+        <field name="name">Purpose</field>
+        <field name="key">purpose</field>
+        <field name="field_type">text</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="request_type_loan_settlement" model="bs.hr.request.type">
+        <field name="name">Early loan settlement</field>
+        <field name="code">loan_settlement</field>
+        <field name="sequence">90</field>
+        <field name="icon">fa-check-square-o</field>
+    </record>
+    <record id="request_type_loan_settlement_ref" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_loan_settlement"/>
+        <field name="sequence">10</field>
+        <field name="name">Loan reference</field>
+        <field name="key">loan_ref</field>
+        <field name="field_type">char</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="request_type_loan_settlement_mode" model="bs.hr.request.type.field">
+        <field name="type_id" ref="request_type_loan_settlement"/>
+        <field name="sequence">20</field>
+        <field name="name">Settlement mode</field>
+        <field name="key">mode</field>
+        <field name="field_type">selection</field>
+        <field name="options">Cash / transfer,Deduct from next payslip</field>
+        <field name="required" eval="True"/>
+    </record>
+</odoo>

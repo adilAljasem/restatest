@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_resta_saas" model="ir.module.category">
+        <field name="name">منصة ريستا</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="res_groups_privilege_resta_saas" model="res.groups.privilege">
+        <field name="name">منصة ريستا</field>
+        <field name="sequence">5</field>
+        <field name="category_id" ref="module_category_resta_saas"/>
+    </record>
+    <record id="group_resta_account_manager" model="res.groups">
+        <field name="name">مدير حساب</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_resta_saas"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="group_resta_manager" model="res.groups">
+        <field name="name">مدير المنصة</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_resta_saas"/>
+        <field name="implied_ids" eval="[(4, ref('group_resta_account_manager'))]"/>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

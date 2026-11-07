@@ -1,0 +1,550 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-29 00:00+0000\n"
+"PO-Revision-Date: 2026-07-29 00:00+0000\n"
+"Last-Translator: Custom Development\n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_recompute_job.py:0
+msgid "A business day recompute job is already running for %s."
+msgstr "توجد مهمة إعادة احتساب لليوم التشغيلي قيد التشغيل بالفعل للشركة %s."
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__recompute_scope__all
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_settings__recompute_scope__all
+msgid "All Existing Records"
+msgstr "كل السجلات الحالية"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__batch_size
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__batch_size
+msgid "Batch Size"
+msgstr "حجم الدفعة"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_recompute_job.py:0
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+msgid "Batch Size must be between 1 and 10000."
+msgstr "يجب أن يكون حجم الدفعة بين 1 و10000."
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_order__business_date
+#: model:ir.model.fields,field_description:pos_business_day.field_stock_move__business_date
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_filter_business_date
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_search_business_day
+msgid "Business Date"
+msgstr "تاريخ اليوم التشغيلي"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_recompute_job.py:0
+msgid "Business Day Recompute - %s"
+msgstr "إعادة احتساب اليوم التشغيلي - %s"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+#: code:addons/pos_business_day/models/res_company.py:0
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Business Day Recompute Job"
+msgstr "مهمة إعادة احتساب اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model:ir.actions.act_window,name:pos_business_day.action_pos_business_day_recompute_jobs
+#: model:ir.ui.menu,name:pos_business_day.menu_business_day_recompute_jobs
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+msgid "Business Day Recompute Jobs"
+msgstr "مهام إعادة احتساب اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model:ir.actions.act_window,name:pos_business_day.action_business_day_settings
+#: model:ir.ui.menu,name:pos_business_day.menu_business_day_settings
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_settings_form
+msgid "Business Day Settings"
+msgstr "إعدادات اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__business_day_start_hour
+#: model:ir.model.fields,field_description:pos_business_day.field_res_company__business_day_start_hour
+msgid "Business Day Start Hour"
+msgstr "ساعة بداية اليوم التشغيلي"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+#: code:addons/pos_business_day/models/res_company.py:0
+msgid "Business Day Start Hour must be between 0 and 24, excluding 24."
+msgstr "يجب أن تكون ساعة بداية اليوم التشغيلي بين 0 و24، مع استبعاد 24."
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+msgid "Business day settings have been saved."
+msgstr "تم حفظ إعدادات اليوم التشغيلي."
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Cancel this recompute job?"
+msgstr "هل تريد إلغاء مهمة إعادة الاحتساب هذه؟"
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__state__cancelled
+msgid "Cancelled"
+msgstr "ملغاة"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+msgid "Cashier"
+msgstr "الكاشير"
+
+#. module: pos_business_day
+#: model:ir.model,name:pos_business_day.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__company_id
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__company_id
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+msgid "Company"
+msgstr "الشركة"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__create_uid
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__create_date
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__date_from
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__date_from
+msgid "Date From"
+msgstr "التاريخ من"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_recompute_job.py:0
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+msgid "Date From must be before Date To."
+msgstr "يجب أن يكون التاريخ من قبل التاريخ إلى."
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__recompute_scope__date_range
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_settings__recompute_scope__date_range
+msgid "Date Range"
+msgstr "نطاق تاريخ"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__date_to
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__date_to
+msgid "Date To"
+msgstr "التاريخ إلى"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__display_name
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__state__done
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_search_business_day
+msgid "Done"
+msgstr "تم"
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__state__draft
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__error_message
+msgid "Error Message"
+msgstr "رسالة الخطأ"
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__state__failed
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+msgid "Failed"
+msgstr "فشلت"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Failure Details"
+msgstr "تفاصيل الفشل"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__finished_at
+msgid "Finished At"
+msgstr "انتهى في"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_search_business_day
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__id
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__last_order_id
+msgid "Last POS Order ID"
+msgstr "آخر معرّف طلب نقطة بيع"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__last_stock_move_id
+msgid "Last Stock Move ID"
+msgstr "آخر معرّف حركة مخزون"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__write_uid
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__write_date
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: pos_business_day
+#: model:ir.model.fields,help:pos_business_day.field_pos_business_day_recompute_job__batch_size
+#: model:ir.model.fields,help:pos_business_day.field_pos_business_day_settings__batch_size
+msgid "Maximum number of records processed in each cron run."
+msgstr "الحد الأقصى لعدد السجلات التي تتم معالجتها في كل تشغيل مجدول."
+
+#. module: pos_business_day
+#: model:ir.ui.menu,name:pos_business_day.menu_stock_move_report_business_day
+msgid "Moves by Business Day"
+msgstr "الحركات حسب اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__recompute_scope__missing
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_settings__recompute_scope__missing
+msgid "Only Empty Business Dates"
+msgstr "تواريخ اليوم التشغيلي الفارغة فقط"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+msgid "Only Point of Sale managers can change business day settings."
+msgstr "يمكن لمديري نقطة البيع فقط تغيير إعدادات اليوم التشغيلي."
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/res_company.py:0
+msgid "Only Point of Sale managers can recompute business dates."
+msgstr "يمكن لمديري نقطة البيع فقط إعادة احتساب تواريخ اليوم التشغيلي."
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_search_business_day
+msgid "Operation Type"
+msgstr "نوع العملية"
+
+#. module: pos_business_day
+#: model:ir.model,name:pos_business_day.model_pos_business_day_recompute_job
+msgid "POS Business Day Recompute Job"
+msgstr "مهمة إعادة احتساب اليوم التشغيلي لنقطة البيع"
+
+#. module: pos_business_day
+#: model:ir.model,name:pos_business_day.model_pos_business_day_settings
+msgid "POS Business Day Settings"
+msgstr "إعدادات اليوم التشغيلي لنقطة البيع"
+
+#. module: pos_business_day
+#: model:ir.actions.server,name:pos_business_day.ir_cron_process_business_day_recompute_jobs_ir_actions_server
+msgid "POS Business Day: Process Recompute Jobs"
+msgstr "اليوم التشغيلي لنقطة البيع: معالجة مهام إعادة الاحتساب"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "POS Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: pos_business_day
+#: model:ir.actions.act_window,name:pos_business_day.action_pos_order_report_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_graph_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_pivot_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+msgid "POS Sales by Business Day"
+msgstr "مبيعات نقطة البيع حسب اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+msgid "Paid"
+msgstr "مدفوعة"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+msgid "Point of Sale"
+msgstr "نقطة البيع"
+
+#. module: pos_business_day
+#: model:ir.model,name:pos_business_day.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Process Next Batch"
+msgstr "معالجة الدفعة التالية"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__processed_order_count
+msgid "Processed POS Orders"
+msgstr "طلبات نقطة البيع المعالجة"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__processed_stock_move_count
+msgid "Processed Stock Moves"
+msgstr "حركات المخزون المعالجة"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_search_business_day
+msgid "Product"
+msgstr "المنتج"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__progress
+msgid "Progress"
+msgstr "التقدم"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_settings_form
+msgid "Recompute Existing Records"
+msgstr "إعادة احتساب السجلات الحالية"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__recompute_scope
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_settings__recompute_scope
+msgid "Recompute Scope"
+msgstr "نطاق إعادة الاحتساب"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__requested_by_id
+msgid "Requested By"
+msgstr "طُلِبت بواسطة"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Retry"
+msgstr "إعادة المحاولة"
+
+#. module: pos_business_day
+#: model:ir.model.fields.selection,name:pos_business_day.selection__pos_business_day_recompute_job__state__running
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+msgid "Running"
+msgstr "قيد التشغيل"
+
+#. module: pos_business_day
+#: model:ir.ui.menu,name:pos_business_day.menu_pos_order_report_business_day
+msgid "Sales by Business Day"
+msgstr "المبيعات حسب اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_settings_form
+msgid "Save Settings"
+msgstr "حفظ الإعدادات"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_settings_form
+msgid "Save and Queue Recompute Job"
+msgstr "حفظ وإنشاء مهمة إعادة الاحتساب"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_order_search_business_day
+msgid "Session"
+msgstr "الجلسة"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_recompute_job.py:0
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+msgid "Set Date From or Date To when using Date Range."
+msgstr "حدد التاريخ من أو التاريخ إلى عند استخدام نطاق تاريخ."
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_settings_form
+msgid ""
+"Set the operational business day start hour (0-24).\n"
+"                        Example: if the shift runs from 6 AM to 2 AM the next\n"
+"                        day, set the value to 6. Any POS sale or stock move\n"
+"                        between midnight and this hour is assigned to the\n"
+"                        previous business day in sales and inventory reports."
+msgstr ""
+"حدد ساعة بداية يوم العمل التشغيلي (0-24). مثال: إذا كان الدوام من 6 صباحاً "
+"حتى 2 صباحاً في اليوم التالي، ضع القيمة 6. أي عملية بيع في نقطة البيع أو "
+"حركة مخزون بين منتصف الليل وهذه الساعة تُنسب إلى يوم العمل السابق في تقارير "
+"المبيعات والمخزون."
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__started_at
+msgid "Started At"
+msgstr "بدأ في"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: pos_business_day
+#: model:ir.model,name:pos_business_day.model_stock_move
+msgid "Stock Move"
+msgstr "حركة المخزون"
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_recompute_job_form
+msgid "Stock Moves"
+msgstr "حركات المخزون"
+
+#. module: pos_business_day
+#: model:ir.actions.act_window,name:pos_business_day.action_stock_move_report_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_graph_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_pivot_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_stock_move_search_business_day
+msgid "Stock Moves by Business Day"
+msgstr "حركات المخزون حسب اليوم التشغيلي"
+
+#. module: pos_business_day
+#: model:ir.model.fields,help:pos_business_day.field_res_company__business_day_start_hour
+msgid ""
+"The hour of the day (0-24) at which a new 'business day' starts for this company. Example: if your shift runs from 6:00 AM to 2:00 AM the next calendar day, set this to 6.0. Any POS order or stock move that happens between midnight and this hour will be attributed to the previous business day in reports.\n"
+"ساعة بداية يوم العمل التشغيلي. مثال: دوام من 6 صباحاً حتى 2 صباحاً اليوم التالي => ضع القيمة 6.0. أي عملية بيع أو حركة مخزون تحدث بين منتصف الليل وهذه الساعة تُنسب إلى يوم العمل السابق في التقارير."
+msgstr ""
+"ساعة اليوم (0-24) التي يبدأ عندها يوم تشغيلي جديد لهذه الشركة. مثال: إذا كان"
+" الدوام من 6:00 صباحاً حتى 2:00 صباحاً في اليوم التالي، ضع القيمة 6.0. أي "
+"طلب نقطة بيع أو حركة مخزون تحدث بين منتصف الليل وهذه الساعة تُنسب إلى يوم "
+"العمل السابق في التقارير."
+
+#. module: pos_business_day
+#: model:ir.model.fields,help:pos_business_day.field_pos_business_day_settings__business_day_start_hour
+msgid ""
+"The hour of the day (0-24) at which a new business day starts for this "
+"company."
+msgstr "ساعة اليوم (0-24) التي يبدأ عندها يوم تشغيلي جديد لهذه الشركة."
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_recompute_job.py:0
+msgid "The next recompute batch has been processed."
+msgstr "تمت معالجة الدفعة التالية من إعادة الاحتساب."
+
+#. module: pos_business_day
+#: model:ir.model.fields,help:pos_business_day.field_pos_order__business_date
+msgid ""
+"The operational business day this order belongs to, based on the company's 'Business Day Start Hour' setting. Orders placed after midnight but before that hour are attributed to the previous business day instead of the calendar date.\n"
+"يوم العمل التشغيلي لهذا الطلب حسب إعداد 'ساعة بداية اليوم التشغيلي'. الطلبات بعد منتصف الليل وقبل هذه الساعة تُنسب ليوم العمل السابق بدل التاريخ التقويمي."
+msgstr ""
+"اليوم التشغيلي الذي ينتمي إليه هذا الطلب حسب إعداد ساعة بداية اليوم التشغيلي"
+" للشركة. الطلبات التي تتم بعد منتصف الليل وقبل هذه الساعة تُنسب إلى يوم "
+"العمل السابق بدلاً من التاريخ التقويمي."
+
+#. module: pos_business_day
+#: model:ir.model.fields,help:pos_business_day.field_stock_move__business_date
+msgid ""
+"The operational business/inventory day this stock move belongs to, based on the company's 'Business Day Start Hour' setting.\n"
+"اليوم المخزني (التشغيلي) لهذه الحركة حسب إعداد 'ساعة بداية اليوم التشغيلي' على مستوى الشركة."
+msgstr ""
+"اليوم التشغيلي/المخزني الذي تنتمي إليه حركة المخزون هذه حسب إعداد ساعة بداية"
+" اليوم التشغيلي للشركة."
+
+#. module: pos_business_day
+#: model_terms:ir.ui.view,arch_db:pos_business_day.view_pos_business_day_settings_form
+msgid ""
+"This will save the setting and create a background job to recompute existing"
+" POS orders and stock moves in batches. Do you want to continue?"
+msgstr ""
+"سيتم حفظ الإعداد وإنشاء مهمة في الخلفية لإعادة احتساب طلبات نقطة البيع "
+"وحركات المخزون الحالية على دفعات. هل تريد المتابعة؟"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__total_order_count
+msgid "Total POS Orders"
+msgstr "إجمالي طلبات نقطة البيع"
+
+#. module: pos_business_day
+#: model:ir.model.fields,field_description:pos_business_day.field_pos_business_day_recompute_job__total_stock_move_count
+msgid "Total Stock Moves"
+msgstr "إجمالي حركات المخزون"
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/pos_business_day_settings.py:0
+msgid "You can only change business day settings for your allowed companies."
+msgstr "يمكنك تغيير إعدادات اليوم التشغيلي للشركات المسموح لك بها فقط."
+
+#. module: pos_business_day
+#. odoo-python
+#: code:addons/pos_business_day/models/res_company.py:0
+msgid "You can only recompute business dates for your allowed companies."
+msgstr "يمكنك إعادة احتساب تواريخ اليوم التشغيلي للشركات المسموح لك بها فقط."
+
+#. module: pos_business_day
+#: model_terms:ir.actions.act_window,help:pos_business_day.action_stock_move_report_business_day
+msgid ""
+"تعرض هذه الشاشة حركات المخزون مجمّعة حسب \"اليوم التشغيلي/المخزني\"\n"
+"                (Business Date) بدل التاريخ التقويمي، بناءً على ساعة بداية\n"
+"                الدوام المحددة في إعدادات نقطة البيع."
+msgstr ""
+"تعرض هذه الشاشة حركات المخزون مجمّعة حسب اليوم التشغيلي/المخزني بدلاً من "
+"التاريخ التقويمي، بناءً على ساعة بداية الدوام المحددة في إعدادات نقطة البيع."
+
+#. module: pos_business_day
+#: model_terms:ir.actions.act_window,help:pos_business_day.action_pos_order_report_business_day
+msgid ""
+"تعرض هذه الشاشة مبيعات نقاط البيع مجمّعة حسب \"اليوم التشغيلي\"\n"
+"                (Business Date) بدل التاريخ التقويمي، بناءً على ساعة بداية\n"
+"                الدوام المحددة في إعدادات نقطة البيع."
+msgstr ""
+"تعرض هذه الشاشة مبيعات نقاط البيع مجمّعة حسب اليوم التشغيلي بدلاً من التاريخ"
+" التقويمي، بناءً على ساعة بداية الدوام المحددة في إعدادات نقطة البيع."
+
+#. module: pos_business_day
+#: model_terms:ir.actions.act_window,help:pos_business_day.action_pos_order_report_business_day
+msgid "لا توجد بيانات مبيعات لعرضها بعد"
+msgstr "لا توجد بيانات مبيعات لعرضها بعد"
+
+#. module: pos_business_day
+#: model_terms:ir.actions.act_window,help:pos_business_day.action_stock_move_report_business_day
+msgid "لا توجد حركات مخزون لعرضها بعد"
+msgstr "لا توجد حركات مخزون لعرضها بعد"

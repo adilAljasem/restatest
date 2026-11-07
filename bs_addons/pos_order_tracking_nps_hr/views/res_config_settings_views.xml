@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_tracking_hr" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pos_order_tracking_nps_hr</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pos_order_tracking_nps.res_config_settings_view_form_tracking"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='tracking_cashiers_users']" position="after">
+                <div class="row" invisible="not pos_module_pos_hr">
+                    <label for="pos_tracking_employee_ids" string="Cashiers" class="col-lg-4 o_light_label"/>
+                    <field name="pos_tracking_employee_ids" widget="many2many_tags" placeholder="All employees"
+                           options="{'no_create': True}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

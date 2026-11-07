@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_pos_modifiers" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.pos.modifiers</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='product_and_category_block']" position="after">
+                <block id="pos_modifier_settings" title="Product Modifiers">
+                    <setting string="Enable Product Modifiers"
+                             help="Allow products and combo choices to use modifier groups.">
+                        <field name="pos_enable_product_modifiers"/>
+                    </setting>
+                    <setting string="Modifier Display Type"
+                             help="Choose the touch layout used for modifier options."
+                             invisible="not pos_enable_product_modifiers">
+                        <field name="pos_modifier_display_type"/>
+                    </setting>
+                    <setting string="Show Modifier Images"
+                             help="Load small product thumbnails only when the configurator is open."
+                             invisible="not pos_enable_product_modifiers">
+                        <field name="pos_show_modifier_images"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

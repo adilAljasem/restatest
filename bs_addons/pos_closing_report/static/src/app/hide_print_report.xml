@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- Replace "Print Report" in the POS burger menu by the branch manager report -->
+    <t t-name="pos_closing_report.Navbar" t-inherit="point_of_sale.Navbar" t-inherit-mode="extension">
+        <xpath expr="//DropdownItem[contains(@onSelected, 'showSaleDetails')]" position="replace">
+            <DropdownItem t-if="showBusinessDayReport" onSelected="() => this.printBusinessDayReport()">
+                Business Day Report
+            </DropdownItem>
+        </xpath>
+    </t>
+
+    <!-- Remove sales report print/download buttons from the closing popup -->
+    <t t-name="pos_closing_report.ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+        <xpath expr="//button[@t-on-click='downloadSalesReport']" position="replace"/>
+        <xpath expr="//button[SaleDetailsButton]" position="replace"/>
+    </t>
+</templates>

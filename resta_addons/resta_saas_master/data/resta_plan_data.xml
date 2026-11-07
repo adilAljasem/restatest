@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="plan_basic" model="resta.plan">
+        <field name="name">الأساسية</field>
+        <field name="sequence">10</field>
+        <field name="tagline">لمطعم أو مقهى بفرع واحد</field>
+        <field name="price_monthly">299</field>
+        <field name="price_yearly">2990</field>
+        <field name="max_branches">1</field>
+        <field name="extra_branch_price">199</field>
+        <field name="features">نقطة بيع للمطاعم مع الطاولات والطلبات الخارجية
+شاشة المطبخ
+فوترة إلكترونية متوافقة مع فاتورة (زاتكا)
+المخزون والمشتريات
+لوحة البيانات</field>
+    </record>
+    <record id="plan_pro" model="resta.plan">
+        <field name="name">الاحترافية</field>
+        <field name="sequence">20</field>
+        <field name="tagline">للمطاعم المتنامية حتى 3 فروع</field>
+        <field name="price_monthly">599</field>
+        <field name="price_yearly">5990</field>
+        <field name="max_branches">3</field>
+        <field name="extra_branch_price">179</field>
+        <field name="highlighted">True</field>
+        <field name="features">كل مزايا الأساسية
+الوصفات وتكلفة الطبق والإنتاج المركزي
+الطلب الذاتي بالـ QR والكشك
+ربط تطبيقات التوصيل
+المحاسبة الكاملة والتقارير المالية
+الموارد البشرية والحضور</field>
+    </record>
+    <record id="plan_enterprise" model="resta.plan">
+        <field name="name">المؤسسات</field>
+        <field name="sequence">30</field>
+        <field name="tagline">للسلاسل والامتياز التجاري</field>
+        <field name="price_monthly">1299</field>
+        <field name="price_yearly">12990</field>
+        <field name="max_branches">10</field>
+        <field name="extra_branch_price">149</field>
+        <field name="features">كل مزايا الاحترافية
+تعدد العلامات والمطابخ السحابية
+بوابة طلبات الفروع والممنوحين
+مدير حساب مخصص
+تقارير مخصصة وربط API</field>
+    </record>
+</odoo>

@@ -1,0 +1,1801 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_appraisal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "% · Self"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/kudos.py:0
+msgid "%(name)s sent you kudos: %(badge)s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "%s is not waiting for the manager review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "%s submitted the self review. Please complete the manager review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "<i class=\"fa fa-check me-1\"/> I have read my appraisal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "<i class=\"fa fa-refresh me-1\"/>Refresh KPIs"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "<option value=\"\">-</option>"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal_result
+msgid "<small>/ 100</small>"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.constraint,message:bs_hr_ess_appraisal.constraint_bs_hr_appraisal_template_line_competency_uniq
+msgid "A competency can only appear once per template."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_goal__state__achieved
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_form
+msgid "Achieved"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Acknowledge"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__employee_ack_date
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Acknowledged on"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_needaction
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_needaction
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__active
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__active
+msgid "Active"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_exception_decoration
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_state
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_type_icon
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisals
+msgid "All"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__selection_mode__all
+msgid "All employees"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__cycle_type__annual
+msgid "Annual"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Appeal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__appeal_date
+msgid "Appeal Date"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__appeal_deadline
+msgid "Appeal Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__appeal_reason
+msgid "Appeal Reason"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__appeal_res_id
+msgid "Appeal Res"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__appeal_res_model
+msgid "Appeal Res Model"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Appeal filed by the employee: %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Appeal on appraisal %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Appeal this result (until"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__state__appealed
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "Appealed"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,description:bs_hr_ess_appraisal.competency_hygiene
+msgid ""
+"Applies hygiene rules, HACCP practices, storage temperatures and keeps the "
+"station clean."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__appraisal_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__appraisal_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Appraisal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_appraisal_analysis
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_appraisal_analysis
+msgid "Appraisal Analysis"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_appraisal_competency
+msgid "Appraisal Competency"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__appraisal_count
+msgid "Appraisal Count"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_appraisal_cycle
+msgid "Appraisal Cycle"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_cycle
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_cycles
+msgid "Appraisal Cycles"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_ess_appraisal_line
+msgid "Appraisal Line"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_appraisal_template
+msgid "Appraisal Template"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_appraisal_template_line
+msgid "Appraisal Template Line"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_template
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_templates
+msgid "Appraisal Templates"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Appraisal appeal: %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Appraisal completed."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Appraisal result available"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Appraisal to review: %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_appraisal
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_appraisals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_pivot
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_cycle_form
+msgid "Appraisals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_competency_search
+msgid "Archived"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_attachment_count
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_attachment_count
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_competency__category__attendance
+msgid "Attendance"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,name:bs_hr_ess_appraisal.competency_attendance
+msgid "Attendance & punctuality"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__kpi_weight
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__kpi_weight
+msgid "Attendance KPI weight (%)"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal_result
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Attendance rate"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__attendance_rate
+msgid "Attendance rate (%)"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__attended_days
+msgid "Attended Days"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__badge
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_kudos_search
+msgid "Badge"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_competency__category__behaviour
+msgid "Behaviour"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__rating__below
+msgid "Below expectations"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__work_location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__work_location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__work_location_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_search
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_kudos_search
+msgid "Branch"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__work_location_ids
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__selection_mode__branches
+msgid "Branches"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__can_appeal
+msgid "Can Appeal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Cancel"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__category
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__category
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_competency_search
+msgid "Category"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_kudos__badge__clean_kitchen
+msgid "Clean kitchen"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,name:bs_hr_ess_appraisal.competency_hygiene
+msgid "Cleanliness & food safety"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_cycle_form
+msgid "Close"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Close appeal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__state__closed
+msgid "Closed"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Colleague"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,description:bs_hr_ess_appraisal.competency_attendance
+msgid "Comes on time to every shift and respects breaks and schedules."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Comment"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__company_id
+msgid "Company"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_competency
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__line_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__line_ids
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_competencies
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Competencies"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__competency_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__competency_id
+msgid "Competency"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__competency_score
+msgid "Competency Score"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Complete review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__done_date
+msgid "Completed on"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,name:bs_hr_ess_appraisal.competency_compliance
+msgid "Compliance with uniform & policies"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__probation_decision__confirm
+msgid "Confirm employment"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__kpi_weight
+msgid "Copied from the template when the appraisal is created."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_competency__category__customer
+msgid "Customer"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,name:bs_hr_ess_appraisal.competency_customer
+msgid "Customer handling"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_kudos__badge__customer_hero
+msgid "Customer hero"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__cycle_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "Cycle"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__cycle_type
+msgid "Cycle Type"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__date
+msgid "Date"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Decide confirmation before %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__department_id
+msgid "Department"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__department_ids
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__selection_mode__departments
+msgid "Departments"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__description
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__description
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__description
+msgid "Description"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_form
+msgid "Description / measure of success"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__disciplinary_count
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal_result
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Disciplinary actions"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_hr_employee__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__state__done
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "Done"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Draft saved."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.actions.server,name:bs_hr_ess_appraisal.ir_cron_probation_reviews_ir_actions_server
+msgid "ESS: probation reviews (15 days before the end of the trial period)"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_hr_employee
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__employee_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_search
+msgid "Employee"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_goal
+msgid "Employee Goal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__self_comment
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__self_comment
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Employee comment"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__selection_mode
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_cycle_form
+msgid "Employees"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__probation_decision__terminate
+msgid "End employment"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__cycle_type__probation
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "End of probation"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.template,name:bs_hr_ess_appraisal.template_probation
+msgid "End of probation review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Example / comment (optional)"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__rating__exceeds
+msgid "Exceeds expectations"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__rating__exceptional
+msgid "Exceptional"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__expected_days
+msgid "Expected Days"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Explain why you disagree with this appraisal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__probation_decision__extend
+msgid "Extend probation"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_kudos__badge__fast_service
+msgid "Fast service"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__final_score
+msgid "Final Score"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal_result
+msgid "Final score"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_follower_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_follower_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_partner_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_partner_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_type_icon
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__from_employee_id
+msgid "From"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "General comment"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_cycle_form
+msgid "Generate appraisals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/goal.py:0
+msgid "Goal reached 100%%: %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_goal
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_goals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+msgid "Goals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__has_message
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__has_message
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,description:bs_hr_ess_appraisal.competency_teamwork
+msgid "Helps colleagues, communicates clearly between kitchen and floor."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_competency__category__hygiene
+msgid "Hygiene & Food Safety"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_hr_employee__id
+msgid "ID"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_exception_icon
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_exception_icon
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_needaction
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_needaction
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_has_sms_error
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_has_sms_error
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_goal__state__open
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_search
+msgid "In progress"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_is_follower
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_is_follower
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__kpi_date
+msgid "KPIs computed on"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "KPIs of a completed appraisal are frozen."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "KPIs refreshed."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+#: model:ir.actions.act_window,name:bs_hr_ess_appraisal.action_kudos
+#: model:ir.model,name:bs_hr_ess_appraisal.model_bs_hr_kudos
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_kudos
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Kudos"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/kudos.py:0
+msgid "Kudos can only be sent to a colleague of the same company."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Kudos sent to %s!"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__last_update_note
+msgid "Last update"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__late_count
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal_result
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Late arrivals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__manager_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__manager_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Manager"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__manager_score
+msgid "Manager Score"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__manager_comment
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__comment
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Manager comment"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__state__manager_review
+msgid "Manager review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__rating__meets
+msgid "Meets expectations"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__message
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Message"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_has_error
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_has_error
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_goal__state__missed
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_form
+msgid "Missed"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__my_activity_date_deadline
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisals
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "My appraisals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+msgid "My goals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_search
+msgid "My team"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__name
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__name
+msgid "Name"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_calendar_event_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_date_deadline
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_summary
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_type_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisals
+msgid "No appraisal yet."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+msgid "No goal assigned yet."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "No kudos yet."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisals
+msgid "Nothing to review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_needaction_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_needaction_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_has_error_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_has_error_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_needaction_counter
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_needaction_counter
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_has_error_counter
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_has_error_counter
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Objective KPIs"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal_result
+msgid "Objective indicators"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only HR can cancel an appraisal."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only HR can change the competencies of an appraisal."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only HR can close an appeal."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only HR can reopen an appraisal."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only HR can skip the self review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only a completed appraisal can be acknowledged."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only the appraised employee can do this."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Only the manager of the employee can do this."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__state__open
+msgid "Open"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_competency__category__performance
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_config_appraisal
+#: model:ir.ui.menu,name:bs_hr_ess_appraisal.menu_performance
+msgid "Performance"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Period"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__date_to
+msgid "Period end"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__date_from
+msgid "Period start"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Please choose a colleague."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Please explain why you appeal this appraisal."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Please score every competency before completing the review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Please score every competency before submitting."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Please take the probation decision."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Please write a message."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,description:bs_hr_ess_appraisal.competency_speed
+msgid ""
+"Prepares and serves orders within the target times, even at rush hours."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "Probation"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__probation_decision
+msgid "Probation Decision"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__probation_end_date
+msgid "Probation End Date"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Probation decision"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Probation ends for %s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__is_probation
+msgid "Probation review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__is_probation
+msgid "Probation template"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__progress
+msgid "Progress"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/goal.py:0
+msgid "Progress updated to %(p)s%%. %(note)s"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Progress updated."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid ""
+"Rate yourself from 1 (needs improvement) to 5 (excellent) on each "
+"competency."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__rating
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "Rating"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Received"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+msgid "Received this month"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_kudos_search
+msgid "Receiver"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Refresh KPIs"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_form
+msgid "Reopen"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Reopen manager review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_cycle_form
+msgid "Reset to draft"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Reset to self review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_user_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.template,name:bs_hr_ess_appraisal.template_restaurant
+msgid "Restaurant staff appraisal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Result"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Result acknowledged by the employee."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__message_has_sms_error
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__message_has_sms_error
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Save draft"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/cycle.py:0
+msgid "Select at least one branch."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/cycle.py:0
+msgid "Select at least one department."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Self"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__self_review_deadline
+msgid "Self Review Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__self_score
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__self_score
+msgid "Self Score"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__self_submit_date
+msgid "Self Submit Date"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__state__self_review
+msgid "Self review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+msgid "Self review to fill"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__deadline
+msgid "Self-review deadline"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_appraisal_cycle__cycle_type__semi_annual
+msgid "Semi-annual"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Send"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Send appeal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Send kudos"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Sent"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_competency__sequence
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__sequence
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__kpi_weight
+msgid ""
+"Share of the final score coming from the attendance rate. The remaining "
+"share comes from the weighted manager scores."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Skip self review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,name:bs_hr_ess_appraisal.competency_speed
+msgid "Speed of service"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__state
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__state
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__state
+msgid "State"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "Status"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_state
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+msgid "Submit self review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Submit to manager"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__target_date
+msgid "Target Date"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+msgid "Target:"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisals
+msgid "Team appraisals"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/hr_employee.py:0
+msgid "Team reviews to do"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,name:bs_hr_ess_appraisal.competency_teamwork
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_kudos__badge__teamwork
+msgid "Teamwork"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__template_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__template_id
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__template_id
+msgid "Template"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_kudos__badge__thanks
+msgid "Thank you"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Thank you, the result is acknowledged."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "Thank your colleague for something specific"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/competency.py:0
+msgid "The KPI weight must be between 0 and 100."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "The appeal period of this appraisal is over."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/competency.py:0
+msgid "The competency weights of \"%s\" must sum to 100 (currently %s)."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/cycle.py:0
+msgid "The cycle %s is closed."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/cycle.py:0
+msgid "The cycle start date must be before its end date."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.constraint,message:bs_hr_ess_appraisal.constraint_bs_hr_ess_appraisal_dates_check
+msgid "The period start must be before the period end."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.constraint,message:bs_hr_ess_appraisal.constraint_bs_hr_goal_progress_range
+msgid "The progress must be between 0 and 100."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "The self review is already submitted."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "The self review of %s is already submitted."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.constraint,message:bs_hr_ess_appraisal.constraint_bs_hr_appraisal_template_line_weight_positive
+msgid "The weight must be positive."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "This appraisal is not waiting for your review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/goal.py:0
+msgid "This goal is closed."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_kudos_search
+msgid "This month"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_kudos__to_employee_id
+msgid "To"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisals
+msgid "To review"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_search
+msgid "To review by me"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_appraisal_form
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_template_form
+msgid "Total"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__total_weight
+msgid "Total Weight"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__activity_exception_decoration
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields.selection,name:bs_hr_ess_appraisal.selection__bs_hr_ess_appraisal__rating__unsatisfactory
+msgid "Unsatisfactory"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+msgid "Update"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_template__is_probation
+msgid "Used by the daily probation reminder."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_team_appraisal
+msgid "Waiting for the employee's self review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,description:bs_hr_ess_appraisal.competency_compliance
+msgid ""
+"Wears the full uniform, follows company policies and the work regulations."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__website_message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__website_message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_goal__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_appraisal_cycle__website_message_ids
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__website_message_ids
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_goal__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_appraisal_template_line__weight
+#: model:ir.model.fields,field_description:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal_line__weight
+msgid "Weight"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__competency_score
+msgid "Weighted manager scores on a 0-100 scale."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:ir.model.fields,help:bs_hr_ess_appraisal.field_bs_hr_ess_appraisal__self_score
+msgid "Weighted self scores on a 0-100 scale."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model:bs.hr.appraisal.competency,description:bs_hr_ess_appraisal.competency_customer
+msgid ""
+"Welcomes guests, handles requests and complaints politely and efficiently."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_goals
+msgid "What did you do?"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/kudos.py:0
+msgid "You can send at most %s kudos per day."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "You can still send"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "You cannot change the manager review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "You cannot change the self review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "You cannot modify the appraisal %s."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/goal.py:0
+msgid "You cannot modify the goal %s."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/kudos.py:0
+msgid "You cannot send kudos to yourself."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Your appeal was sent to HR on"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Your appeal was sent to HR."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Your appraisal \"%(name)s\" is complete: %(score)s / 100 (%(rating)s)."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/models/appraisal.py:0
+msgid "Your appraisal \"%s\" is open: please fill in your self review."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#. odoo-python
+#: code:addons/bs_hr_ess_appraisal/controllers/portal.py:0
+msgid "Your self review was sent to your manager."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_appraisal
+msgid "Your self review was submitted. Your manager is now reviewing it."
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_cycle_form
+msgid "e.g. Annual appraisal 2026"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_template_form
+msgid "e.g. Kitchen staff appraisal"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.view_goal_form
+msgid "e.g. Reduce order waiting time to 8 minutes"
+msgstr ""
+
+#. module: bs_hr_ess_appraisal
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_appraisal.ess_kudos
+msgid "kudos today."
+msgstr ""

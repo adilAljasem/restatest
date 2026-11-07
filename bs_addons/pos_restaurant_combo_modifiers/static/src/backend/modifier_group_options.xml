@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_restaurant_combo_modifiers.ModifierGroupOptionsRecordRow"
+       t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="primary">
+        <xpath expr="//t[@t-if='canUseFormatter(column, record)']" position="before">
+            <button t-if="column.name === 'modifier_group_id'" type="button"
+                    class="o_pcm_group_toggle btn btn-sm btn-link me-2"
+                    t-att-aria-expanded="this.state.expandedOptions[record.id] ? 'true' : 'false'"
+                    t-att-aria-label="this.state.expandedOptions[record.id] ? 'Hide modifier options' : 'Show modifier options'"
+                    t-on-click.stop.prevent="() => this.toggleOptions(record)">
+                <i t-att-class="this.state.expandedOptions[record.id] ? 'fa fa-chevron-down' : 'fa fa-chevron-right'"/>
+            </button>
+        </xpath>
+    </t>
+
+    <t t-name="pos_restaurant_combo_modifiers.ModifierGroupOptionsRows"
+       t-inherit="web.ListRenderer.Rows" t-inherit-mode="primary">
+        <xpath expr="//t[@t-call='{{ constructor.recordRowTemplate }}']" position="after">
+            <t t-if="this.state.expandedOptions[record.id]">
+                <tr t-if="this.state.optionsLoading[record.id]" class="o_pcm_option_notice">
+                    <td t-att-colspan="nbCols">Loading options...</td>
+                </tr>
+                <tr t-if="this.state.optionsError[record.id]" class="o_pcm_option_notice">
+                    <td t-att-colspan="nbCols" class="text-danger" role="alert"
+                        t-esc="this.state.optionsError[record.id]"/>
+                </tr>
+                <tr t-if="this.state.optionsByGroup[record.id]?.length &amp;&amp; !this.state.optionsLoading[record.id]"
+                    class="o_pcm_option_header">
+                    <td t-att-colspan="nbCols">
+                        <div class="o_pcm_option_grid">
+                            <span>Option</span><span>Product</span><span>Price Mode</span>
+                            <span>Extra Price</span><span>Default Qty</span><span>Max Qty</span>
+                            <span>Available</span>
+                        </div>
+                    </td>
+                </tr>
+                <t t-foreach="this.state.optionsByGroup[record.id] || []" t-as="option" t-key="option.id">
+                    <tr class="o_pcm_option_row" t-att-data-option-id="option.id">
+                        <td t-att-colspan="nbCols">
+                            <div class="o_pcm_option_grid">
+                                <div>
+                                    <input t-if="option.editable" type="text" class="form-control form-control-sm"
+                                           aria-label="Option name" t-att-value="option.name"
+                                           t-on-change="(ev) => this.changeOption(record, option, 'name', ev.target.value)"/>
+                                    <span t-else="" t-esc="option.name"/>
+                                </div>
+                                <div data-field="product_id">
+                                    <Many2XAutocomplete t-if="option.editable &amp;&amp; option.option_type === 'product'"
+                                        value="option.product_name" resModel="'product.product'"
+                                        fieldString="'Product'"
+                                        getDomain="() => ['|', ['company_id', '=', false], ['company_id', '=', option.company_id]]"
+                                        activeActions="{}"
+                                        update="(values) => this.updateProduct(record, option, values)"/>
+                                    <span t-elif="option.option_type === 'product'" t-esc="option.product_name"/>
+                                    <span t-else="" class="text-muted">—</span>
+                                </div>
+                                <div>
+                                    <select t-if="option.editable &amp;&amp; option.option_type === 'product'"
+                                            class="form-select form-select-sm" aria-label="Price Mode"
+                                            t-on-change="(ev) => this.changeOption(record, option, 'price_mode', ev.target.value)">
+                                        <option value="included" t-att-selected="option.price_mode === 'included'">Included</option>
+                                        <option value="fixed_extra" t-att-selected="option.price_mode === 'fixed_extra'">Fixed Extra Price</option>
+                                        <option value="product_pricelist" t-att-selected="option.price_mode === 'product_pricelist'">Product Pricelist Price</option>
+                                    </select>
+                                    <span t-elif="option.option_type === 'product'" t-esc="option.price_mode"/>
+                                    <span t-else="" class="text-muted">—</span>
+                                </div>
+                                <div>
+                                    <input t-if="option.editable &amp;&amp; option.option_type === 'product' &amp;&amp; option.price_mode === 'fixed_extra'"
+                                           type="number" step="0.01" data-field="extra_price"
+                                           class="form-control form-control-sm" aria-label="Extra Price"
+                                           t-att-value="option.extra_price"
+                                           t-on-change="(ev) => this.changeOption(record, option, 'extra_price', this.parseNumber(ev.target.value))"/>
+                                    <span t-elif="option.option_type === 'product' &amp;&amp; option.price_mode === 'fixed_extra'" t-esc="option.extra_price"/>
+                                    <span t-else="" class="text-muted">—</span>
+                                </div>
+                                <div>
+                                    <input t-if="option.editable" type="number" min="0" step="0.001"
+                                           data-field="default_qty" class="form-control form-control-sm"
+                                           aria-label="Default Qty" t-att-value="option.default_qty"
+                                           t-on-change="(ev) => this.changeOption(record, option, 'default_qty', this.parseNumber(ev.target.value))"/>
+                                    <span t-else="" t-esc="option.default_qty"/>
+                                </div>
+                                <div>
+                                    <input t-if="option.editable" type="number" min="1" step="1"
+                                           data-field="max_qty" class="form-control form-control-sm"
+                                           aria-label="Max Qty" t-att-value="option.max_qty"
+                                           t-on-change="(ev) => this.changeOption(record, option, 'max_qty', this.parseNumber(ev.target.value))"/>
+                                    <span t-else="" t-esc="option.max_qty"/>
+                                </div>
+                                <div class="o_pcm_option_available">
+                                    <input t-if="option.editable" type="checkbox" class="form-check-input"
+                                           aria-label="Available" t-att-checked="option.available"
+                                           t-on-change="(ev) => this.changeOption(record, option, 'available', ev.target.checked)"/>
+                                    <i t-else="" t-att-class="option.available ? 'fa fa-check text-success' : 'fa fa-times text-muted'"/>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </t>
+                <tr t-if="!this.state.optionsLoading[record.id] &amp;&amp; this.state.optionsByGroup[record.id] &amp;&amp; !this.state.optionsByGroup[record.id].length"
+                    class="o_pcm_option_notice">
+                    <td t-att-colspan="nbCols">This group has no active options.</td>
+                </tr>
+            </t>
+        </xpath>
+    </t>
+</templates>

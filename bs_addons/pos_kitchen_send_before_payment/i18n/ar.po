@@ -1,0 +1,107 @@
+# Arabic translation for pos_kitchen_send_before_payment
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: pos_kitchen_send_before_payment
+#: model:ir.model.fields,field_description:pos_kitchen_send_before_payment.field_pos_config__kitchen_send_before_payment
+#: model:ir.model.fields,field_description:pos_kitchen_send_before_payment.field_res_config_settings__pos_kitchen_send_before_payment
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_send_before_payment.res_config_settings_view_form_kitchen_send
+msgid "Send to Kitchen Before Payment"
+msgstr "الإرسال للمطبخ قبل الدفع"
+
+#. module: pos_kitchen_send_before_payment
+#: model:ir.model.fields,help:pos_kitchen_send_before_payment.field_pos_config__kitchen_send_before_payment
+#: model:ir.model.fields,help:pos_kitchen_send_before_payment.field_res_config_settings__pos_kitchen_send_before_payment
+msgid ""
+"Show a \"Send\" button on the register (outside Bar/Restaurant mode) to send "
+"the order to the preparation printers / display before payment."
+msgstr ""
+"إظهار زر \"إرسال\" في شاشة البيع (بدون وضع المطعم) لإرسال الطلب إلى طابعات "
+"أو شاشة التحضير قبل الدفع."
+
+#. module: pos_kitchen_send_before_payment
+#: model_terms:ir.ui.view,arch_db:pos_kitchen_send_before_payment.res_config_settings_view_form_kitchen_send
+msgid ""
+"Adds a Send button next to Payment (without Bar/Restaurant mode). Requires "
+"preparation printers or a preparation display."
+msgstr ""
+"يضيف زر إرسال بجانب زر الدفع (بدون وضع المطعم). يتطلب طابعات تحضير أو شاشة "
+"تحضير."
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/screens/product_screen/action_pad/action_pad.xml:0
+msgid "Send"
+msgstr "إرسال"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "%s, sent to the kitchen"
+msgstr "%s، تم الإرسال للمطبخ"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "Other"
+msgstr "أخرى"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "Message"
+msgstr "رسالة"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "No kitchen printer"
+msgstr "لا توجد طابعة مطبخ"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid ""
+"No preparation printer or preparation display is linked to this Point of "
+"Sale. Go to Point of Sale settings > Preparation, enable Preparation "
+"Printers, add the kitchen printer with its product categories, then close "
+"and reopen the session."
+msgstr ""
+"لا توجد طابعة تحضير أو شاشة تحضير مرتبطة بنقطة البيع هذه. اذهب إلى إعدادات "
+"نقطة البيع ← قسم Preparation، وفعّل Preparation Printers، وأضف طابعة المطبخ "
+"مع فئات المنتجات، ثم أغلق الجلسة وافتحها من جديد."
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "Nothing to send"
+msgstr "لا يوجد شيء للإرسال"
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid ""
+"There is nothing new to send to the kitchen. Either the items were already "
+"sent, or their product categories are not selected on the kitchen printer "
+"(Point of Sale > Configuration > Preparation Printers)."
+msgstr ""
+"لا توجد أصناف جديدة للإرسال للمطبخ. إما أنها أُرسلت مسبقاً، أو أن فئات هذه "
+"المنتجات غير محددة في طابعة المطبخ (نقطة البيع ← التهيئة ← طابعات التحضير)."
+
+#. module: pos_kitchen_send_before_payment
+#. odoo-javascript
+#: code:addons/pos_kitchen_send_before_payment/static/src/app/services/pos_store.js:0
+msgid "Order sent to the kitchen"
+msgstr "تم إرسال الطلب للمطبخ"

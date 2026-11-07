@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Payslip objection: the supervisor checks attendance, then payroll decides -->
+    <record id="flow_payslip_objection" model="bs.hr.approval.flow">
+        <field name="name">Payslip objection</field>
+        <field name="res_model">bs.hr.payslip.objection</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_payslip_objection_step_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_payslip_objection"/>
+        <field name="sequence">10</field>
+        <field name="name">Supervisor (attendance check)</field>
+        <field name="approver_type">manager</field>
+        <field name="sla_hours">48</field>
+    </record>
+    <record id="flow_payslip_objection_step_payroll" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_payslip_objection"/>
+        <field name="sequence">20</field>
+        <field name="name">Payroll</field>
+        <field name="approver_type">group</field>
+        <field name="group_id" ref="bs_hr_ess_base.group_ess_payroll_officer"/>
+        <field name="sla_hours">48</field>
+    </record>
+</odoo>

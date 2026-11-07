@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_resta_provision" model="ir.cron">
+        <field name="name">Resta: تجهيز قواعد بيانات المطاعم الجديدة</field>
+        <field name="model_id" ref="model_resta_tenant"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_provision()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+    </record>
+    <record id="ir_cron_resta_lifecycle" model="ir.cron">
+        <field name="name">Resta: انتهاء التجارب والاشتراكات والتذكير</field>
+        <field name="model_id" ref="model_resta_tenant"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_lifecycle()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+    </record>
+</odoo>

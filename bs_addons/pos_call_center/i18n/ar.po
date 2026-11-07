@@ -1,0 +1,728 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid "%s - Call Center POS"
+msgstr "%s - شاشة الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_call_center__allow_branch_transfer
+msgid ""
+"A branch can forward a waiting order to another open branch of the same "
+"scope."
+msgstr "يمكن للفرع تحويل الطلب المنتظر إلى فرع آخر مفتوح ضمن نفس النطاق."
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "Add products to the order first."
+msgstr "أضف منتجات للطلب أولاً."
+
+#. module: pos_call_center
+#: model:res.groups,name:pos_call_center.group_call_center_agent
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Agent"
+msgstr "موظف"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__user_ids
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Agents"
+msgstr "الموظفون"
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_call_center__scope_type__all
+msgid "All Points of Sale of the company"
+msgstr "كل نقاط البيع في الشركة"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "All zones"
+msgstr "كل المناطق"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Back"
+msgstr "رجوع"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_list
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid ""
+"Branch \"%s\" has no open session right now. Choose a branch that is "
+"currently working."
+msgstr "الفرع \"%s\" ليس لديه جلسة مفتوحة الآن. اختر فرعاً يعمل حالياً."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "Branch \"%s\" is not in the scope of this call center."
+msgstr "الفرع \"%s\" خارج نطاق هذا الكول سنتر."
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__allow_branch_transfer
+msgid "Branches can transfer"
+msgstr "السماح للفروع بالتحويل"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__config_ids
+msgid "Branches in Scope"
+msgstr "الفروع ضمن النطاق"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_zone__call_center_id
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_call_center_id
+#: model:ir.ui.menu,name:pos_call_center.menu_call_center_root
+#: model:res.groups.privilege,name:pos_call_center.res_groups_privilege_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_order_form_call_center
+msgid "Call Center"
+msgstr "الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_agent_id
+msgid "Call Center Agent"
+msgstr "موظف الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model,name:pos_call_center.model_pos_call_zone
+msgid "Call Center Delivery Zone"
+msgstr "منطقة توصيل الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_call_center_name
+msgid "Call Center Name"
+msgstr "اسم الكول سنتر"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+#: model:ir.actions.act_window,name:pos_call_center.action_cc_pos_orders
+msgid "Call Center Orders"
+msgstr "طلبات الكول سنتر"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Call Center Orders – waiting for payment"
+msgstr "طلبات الكول سنتر – بانتظار الدفع"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__terminal_config_ids
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Call Center POS"
+msgstr "شاشة الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_config__cc_terminal_center_id
+msgid "Call Center POS of"
+msgstr "شاشة الكول سنتر لـ"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_ref
+msgid "Call Center Ref."
+msgstr "مرجع الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_status
+msgid "Call Center Status"
+msgstr "حالة طلب الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.actions.act_window,name:pos_call_center.action_pos_call_center
+#: model:ir.ui.menu,name:pos_call_center.menu_call_center
+msgid "Call Centers"
+msgstr "مراكز الاتصال"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid "Call center POS \"%s\" created."
+msgstr "تم إنشاء شاشة الكول سنتر \"%s\"."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid "Call center POS \"%s\" created. Agents can now use the menu \"Take Orders\"."
+msgstr ""
+"تم إنشاء شاشة الكول سنتر \"%s\". يمكن للموظفين الآن استخدام قائمة \"تسجيل "
+"الطلبات\"."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid ""
+"Call center order %(ref)s taken by %(agent)s, sent to branch %(branch)s."
+msgstr "طلب الكول سنتر %(ref)s سجّله %(agent)s وأُرسل إلى فرع %(branch)s."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_status__cancel
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_config__cc_auto_send_kitchen
+msgid "Cc Auto Send Kitchen"
+msgstr "إرسال تلقائي للمطبخ"
+
+#. module: pos_call_center
+#: model_terms:ir.actions.act_window,help:pos_call_center.action_pos_call_center
+msgid ""
+"Choose the POS used by the agents and the branches that can receive the "
+"orders."
+msgstr ""
+"اختر نقطة البيع التي يستخدمها موظفو الكول سنتر والفروع التي تستقبل الطلبات."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: pos_call_center
+#: model:ir.ui.menu,name:pos_call_center.menu_call_center_config
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Create Call Center POS"
+msgstr "إنشاء شاشة الكول سنتر"
+
+#. module: pos_call_center
+#: model_terms:ir.actions.act_window,help:pos_call_center.action_pos_call_center
+msgid "Create your first call center"
+msgstr "أنشئ أول كول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__require_customer
+msgid "Customer required"
+msgstr "العميل إلزامي"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Day"
+msgstr "اليوم"
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_status__kitchen
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "In Kitchen"
+msgstr "في المطبخ"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_config__cc_is_terminal
+msgid "Is Call Center POS"
+msgstr "شاشة كول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_kitchen_state
+msgid "Kitchen"
+msgstr "المطبخ"
+
+#. module: pos_call_center
+#: model:res.groups,name:pos_call_center.group_call_center_manager
+msgid "Manager"
+msgstr "مدير"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "My Orders"
+msgstr "طلباتي"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__name
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_zone__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "New call center order %(ref)s – %(customer)s"
+msgstr "طلب كول سنتر جديد %(ref)s – %(customer)s"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "No branch of your call center has an open session right now."
+msgstr "لا يوجد فرع مفتوح حالياً ضمن نطاق الكول سنتر."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid ""
+"No call center POS is configured for you. Ask your manager to set it in Call"
+" Center > Configuration."
+msgstr ""
+"لا توجد شاشة كول سنتر مضبوطة لك. اطلب من المدير ضبطها من الكول سنتر > "
+"الإعدادات."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "No call center order is waiting in this branch."
+msgstr "لا توجد طلبات كول سنتر بانتظار الدفع في هذا الفرع."
+
+#. module: pos_call_center
+#: model_terms:ir.actions.act_window,help:pos_call_center.action_cc_pos_orders
+msgid "No call center order yet"
+msgstr "لا توجد طلبات كول سنتر بعد"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "No open branch"
+msgstr "لا يوجد فرع مفتوح"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "No open branch serves this zone right now."
+msgstr "لا يوجد فرع مفتوح يخدم هذه المنطقة الآن."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/cc_branch_button.js:0
+msgid "No other branch is open right now."
+msgstr "لا يوجد فرع آخر مفتوح الآن."
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_kitchen_state__none
+msgid "Not sent"
+msgstr "لم يُرسل"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Not sent to kitchen"
+msgstr "لم يُرسل للمطبخ"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_zone__note
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "Only unpaid orders can be sent."
+msgstr "لا يمكن إرسال إلا الطلبات غير المدفوعة."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "Only unpaid orders can be transferred."
+msgstr "لا يمكن تحويل إلا الطلبات غير المدفوعة."
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_list
+msgid "Open Branches"
+msgstr "الفروع المفتوحة"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__open_config_ids
+msgid "Open Branches Now"
+msgstr "الفروع المفتوحة الآن"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Open Call Center POS"
+msgstr "فتح شاشة الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__open_config_count
+msgid "Open Config Count"
+msgstr "عدد الفروع المفتوحة"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Open branches"
+msgstr "الفروع المفتوحة"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Open for Payment"
+msgstr "فتح للدفع"
+
+#. module: pos_call_center
+#: model_terms:ir.actions.act_window,help:pos_call_center.action_cc_pos_orders
+msgid "Open the call center POS, take the order and click \"Send to Branch\"."
+msgstr "افتح شاشة الكول سنتر، سجّل الطلب ثم اضغط \"إرسال للفرع\"."
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Options"
+msgstr "الخيارات"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "Order %(ref)s sent to %(branch)s – order number %(number)s"
+msgstr "تم إرسال الطلب %(ref)s إلى %(branch)s – رقم الطلب %(number)s"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__order_count
+msgid "Order Count"
+msgstr "عدد الطلبات"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "Order not sent"
+msgstr "لم يتم إرسال الطلب"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/cc_branch_button.js:0
+msgid "Order transferred."
+msgstr "تم تحويل الطلب."
+
+#. module: pos_call_center
+#: model:ir.ui.menu,name:pos_call_center.menu_call_center_orders
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Orders"
+msgstr "الطلبات"
+
+#. module: pos_call_center
+#: model:ir.model,name:pos_call_center.model_pos_call_center
+msgid "POS Call Center"
+msgstr "الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_status__paid
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: pos_call_center
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "Please select the customer before sending the order."
+msgstr "اختر العميل قبل إرسال الطلب."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid "Please set the Call Center POS of \"%s\" first."
+msgstr "حدد شاشة الكول سنتر لـ \"%s\" أولاً."
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_call_center__terminal_config_ids
+msgid ""
+"Point(s) of Sale used by the agents to take the orders. On these POS the "
+"\"Payment\" button is replaced by \"Send to Branch\"."
+msgstr ""
+"نقاط البيع التي يسجل منها موظفو الكول سنتر الطلبات. في هذه النقاط يُستبدل زر"
+" \"الدفع\" بزر \"إرسال للفرع\"."
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_config__cc_is_branch
+msgid "Receives Call Center Orders"
+msgstr "يستقبل طلبات الكول سنتر"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__scope_type
+msgid "Scope"
+msgstr "النطاق"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Scope (receiving branches)"
+msgstr "النطاق (الفروع المستقبلة)"
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_call_center__scope_type__selected
+msgid "Selected Points of Sale only"
+msgstr "نقاط بيع محددة فقط"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Send"
+msgstr "إرسال"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Send to Branch"
+msgstr "إرسال للفرع"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__auto_send_kitchen
+msgid "Send to kitchen automatically"
+msgstr "إرسال تلقائي للمطبخ"
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_status__dispatched
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Sent to Branch"
+msgstr "مرسل للفرع"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_dispatch_date
+msgid "Sent to Branch on"
+msgstr "تاريخ الإرسال للفرع"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_kitchen_date
+msgid "Sent to Kitchen on"
+msgstr "تاريخ الإرسال للمطبخ"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_kitchen_state__sent
+msgid "Sent to kitchen"
+msgstr "أُرسل للمطبخ"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__sequence
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_zone__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_zone__config_ids
+msgid "Serving Branches"
+msgstr "الفروع التي تخدمها"
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_config__cc_terminal_center_id
+msgid ""
+"Set when this Point of Sale is used by call center agents to take orders."
+msgstr ""
+"يُضبط عندما تُستخدم نقطة البيع هذه من موظفي الكول سنتر لتسجيل الطلبات."
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: pos_call_center
+#: model:ir.actions.server,name:pos_call_center.action_open_my_terminal
+#: model:ir.ui.menu,name:pos_call_center.menu_call_center_take_orders
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_list
+msgid "Take Orders"
+msgstr "تسجيل الطلبات"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_origin_config_id
+msgid "Taken on"
+msgstr "سُجّل في"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid "The POS \"%s\" cannot be at the same time a call center POS and a branch."
+msgstr "لا يمكن أن تكون نقطة البيع \"%s\" شاشة كول سنتر وفرعاً في نفس الوقت."
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_call_center__require_customer
+msgid "The agent must select a customer before sending the order."
+msgstr "يجب على الموظف اختيار العميل قبل إرسال الطلب."
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid ""
+"The agents take the orders in this Point of Sale (products, combos,\n"
+"                                notes, customer, preset...). Its \"Payment\" button becomes \"Send to Branch\"."
+msgstr ""
+"يسجّل الموظفون الطلبات في نقطة البيع هذه (المنتجات، الكومبو، الملاحظات، "
+"العميل، نوع الطلب...). ويصبح زر \"الدفع\" فيها \"إرسال للفرع\"."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "The order could not be saved, check the connection."
+msgstr "تعذر حفظ الطلب، تحقق من الاتصال."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "The order is already in this branch."
+msgstr "الطلب موجود بالفعل في هذا الفرع."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "The order is empty."
+msgstr "الطلب فارغ."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "The order was not found, please try again."
+msgstr "لم يتم العثور على الطلب، حاول مرة أخرى."
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid ""
+"This call center has no POS for the agents yet. Click <strong>Create Call Center POS</strong>\n"
+"                        (or choose an existing POS in the field \"Call Center POS\") so agents can take orders."
+msgstr ""
+"لا توجد شاشة لموظفي هذا الكول سنتر بعد. اضغط <strong>إنشاء شاشة الكول "
+"سنتر</strong> (أو اختر نقطة بيع موجودة في حقل \"شاشة الكول سنتر\") ليتمكن "
+"الموظفون من تسجيل الطلبات."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "This order was already sent to %s."
+msgstr "هذا الطلب أُرسل مسبقاً إلى %s."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "This order was not taken on a call center POS."
+msgstr "هذا الطلب لم يُسجل من شاشة الكول سنتر."
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_cc_pos_order_list
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "Transfer"
+msgstr "تحويل"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "Transferred from %(src)s to %(dst)s by %(user)s."
+msgstr "تم التحويل من %(src)s إلى %(dst)s بواسطة %(user)s."
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_transfer_count
+msgid "Transfers"
+msgstr "التحويلات"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "Transfers between branches are disabled for this call center."
+msgstr "التحويل بين الفروع غير مفعّل لهذا الكول سنتر."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/cc_branch_button.js:0
+#: code:addons/pos_call_center/static/src/app/pos_store_patch.js:0
+msgid "Unexpected error"
+msgstr "خطأ غير متوقع"
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_order.py:0
+msgid "Unknown call center order."
+msgstr "طلب كول سنتر غير معروف."
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_call_center__user_ids
+msgid "Users working in this call center."
+msgstr "المستخدمون العاملون في هذا الكول سنتر."
+
+#. module: pos_call_center
+#: model:ir.model.fields.selection,name:pos_call_center.selection__pos_order__cc_kitchen_state__pending
+msgid "Waiting for the branch"
+msgstr "بانتظار الفرع"
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_call_center__auto_send_kitchen
+msgid ""
+"When the order reaches the branch it is sent immediately to the kitchen "
+"printers / preparation display, exactly like the \"Order\" button."
+msgstr ""
+"عند وصول الطلب للفرع يُرسل فوراً لطابعات المطبخ / شاشة التحضير، تماماً مثل "
+"زر \"إرسال\" في نقطة البيع."
+
+#. module: pos_call_center
+#: model:ir.model.fields,help:pos_call_center.field_pos_call_zone__config_ids
+msgid ""
+"When this zone is selected in the call center POS, only these branches (if "
+"open) are proposed."
+msgstr ""
+"عند اختيار هذه المنطقة في شاشة الكول سنتر تُعرض هذه الفروع فقط (إن كانت "
+"مفتوحة)."
+
+#. module: pos_call_center
+#. odoo-python
+#: code:addons/pos_call_center/models/pos_call_center.py:0
+msgid "You are not an agent of call center \"%s\"."
+msgstr "لست موظفاً في الكول سنتر \"%s\"."
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_order__cc_zone_id
+msgid "Zone"
+msgstr "المنطقة"
+
+#. module: pos_call_center
+#: model:ir.model.fields,field_description:pos_call_center.field_pos_call_center__zone_ids
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "Zones"
+msgstr "المناطق"
+
+#. module: pos_call_center
+#: model_terms:ir.ui.view,arch_db:pos_call_center.view_pos_call_center_form
+msgid "e.g. Jeddah Call Center"
+msgstr "مثال: كول سنتر جدة"
+
+#. module: pos_call_center
+#. odoo-javascript
+#: code:addons/pos_call_center/static/src/app/call_center.xml:0
+msgid "line(s)"
+msgstr "بند"

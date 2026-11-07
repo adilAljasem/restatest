@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_resta_saas" model="ir.ui.view">
+        <field name="name">res.config.settings.resta.saas</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="منصة ريستا" string="منصة ريستا" name="resta_saas_master" groups="resta_saas_master.group_resta_manager">
+                    <block title="قواعد بيانات المطاعم">
+                        <setting string="رابط نظام المطعم" help="{db} يُستبدل باسم قاعدة البيانات، مثال https://{db}.resta.sa">
+                            <field name="resta_tenant_url_pattern"/>
+                        </setting>
+                        <setting string="رابط المنصة" help="تستخدمه أنظمة المطاعم للمزامنة">
+                            <field name="resta_master_url"/>
+                        </setting>
+                        <setting string="بادئة قواعد البيانات"><field name="resta_db_prefix"/></setting>
+                        <setting string="أيام التجربة"><field name="resta_trial_days"/></setting>
+                        <setting string="قالب الداين إن"><field name="resta_template_dinein"/></setting>
+                        <setting string="قالب الوجبات السريعة والمقاهي"><field name="resta_template_qsr"/></setting>
+                        <setting string="حد التسجيل لكل IP بالساعة"><field name="resta_signup_per_ip"/></setting>
+                    </block>
+                    <block title="الدعم">
+                        <setting string="هاتف الدعم"><field name="resta_support_phone"/></setting>
+                        <setting string="واتساب الدعم"><field name="resta_support_whatsapp"/></setting>
+                        <setting string="بريد الدعم"><field name="resta_support_email"/></setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_resta_saas_settings" model="ir.actions.act_window">
+        <field name="name">الإعدادات</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module': 'resta_saas_master'}</field>
+    </record>
+</odoo>

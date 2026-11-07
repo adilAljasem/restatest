@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_ess_escalate" model="ir.cron">
+        <field name="name">ESS: escalate overdue approvals</field>
+        <field name="model_id" ref="model_bs_hr_approval_line"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_escalate()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+    </record>
+    <record id="ir_cron_ess_notification_gc" model="ir.cron">
+        <field name="name">ESS: clean old portal notifications</field>
+        <field name="model_id" ref="model_bs_hr_notification"/>
+        <field name="state">code</field>
+        <field name="code">model._gc_old()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">weeks</field>
+    </record>
+</odoo>

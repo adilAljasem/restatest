@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_appraisal_form" model="ir.ui.view">
+        <field name="name">bs.hr.ess.appraisal.form</field>
+        <field name="model">bs.hr.ess.appraisal</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit_self_review" type="object" string="Submit self review"
+                            class="btn-primary" invisible="state != 'self_review'"/>
+                    <button name="action_start_manager_review" type="object" string="Skip self review"
+                            invisible="state != 'self_review'" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <button name="action_manager_done" type="object" string="Complete review"
+                            class="btn-primary" invisible="state != 'manager_review'"/>
+                    <button name="action_refresh_kpis" type="object" string="Refresh KPIs"
+                            invisible="state not in ('self_review', 'manager_review')"/>
+                    <button name="action_acknowledge" type="object" string="Acknowledge"
+                            invisible="state != 'done' or employee_ack_date"/>
+                    <button name="action_resolve_appeal" type="object" string="Close appeal"
+                            invisible="state != 'appealed'" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <button name="action_reopen_manager_review" type="object" string="Reopen manager review"
+                            invisible="state not in ('done', 'appealed')" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('done', 'cancelled')" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <button name="action_reset_self_review" type="object" string="Reset to self review"
+                            invisible="state != 'cancelled'" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+                    <field name="state" widget="statusbar" statusbar_visible="self_review,manager_review,done"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Probation" bg_color="text-bg-warning" invisible="not is_probation"/>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'self_review'"/>
+                            <field name="manager_id" readonly="state not in ('self_review', 'manager_review')"/>
+                            <field name="cycle_id" readonly="1"/>
+                            <field name="template_id" readonly="1"/>
+                            <field name="work_location_id"/>
+                        </group>
+                        <group>
+                            <label for="date_from" string="Period"/>
+                            <div class="o_row">
+                                <field name="date_from" readonly="state != 'self_review'"/> -
+                                <field name="date_to" readonly="state != 'self_review'"/>
+                            </div>
+                            <field name="deadline"/>
+                            <field name="done_date"/>
+                            <field name="employee_ack_date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Result" invisible="not rating">
+                        <group>
+                            <field name="final_score"/>
+                            <field name="rating"/>
+                        </group>
+                        <group>
+                            <field name="competency_score"/>
+                            <field name="self_score"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Competencies" name="competencies">
+                            <field name="line_ids" readonly="state not in ('self_review', 'manager_review')">
+                                <list editable="bottom" create="0" delete="0">
+                                    <field name="competency_id" readonly="1"/>
+                                    <field name="weight" readonly="1" sum="Total"/>
+                                    <field name="self_score" readonly="parent.state != 'self_review'"/>
+                                    <field name="self_comment" optional="show" readonly="parent.state != 'self_review'"/>
+                                    <field name="manager_score" readonly="parent.state != 'manager_review'"/>
+                                    <field name="comment" readonly="parent.state != 'manager_review'"/>
+                                </list>
+                            </field>
+                            <group>
+                                <field name="self_comment" readonly="state != 'self_review'"/>
+                                <field name="manager_comment" readonly="state != 'manager_review'"/>
+                            </group>
+                        </page>
+                        <page string="Objective KPIs" name="kpis">
+                            <group>
+                                <group>
+                                    <field name="attendance_rate"/>
+                                    <field name="expected_days"/>
+                                    <field name="attended_days"/>
+                                </group>
+                                <group>
+                                    <field name="late_count"/>
+                                    <field name="disciplinary_count"/>
+                                    <field name="kpi_weight" readonly="state not in ('self_review', 'manager_review')"/>
+                                    <field name="kpi_date"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Probation" name="probation" invisible="not is_probation">
+                            <group>
+                                <field name="is_probation" invisible="1"/>
+                                <field name="probation_end_date"/>
+                                <field name="probation_decision" readonly="state != 'manager_review'"/>
+                            </group>
+                        </page>
+                        <page string="Appeal" name="appeal" invisible="not appeal_date">
+                            <group>
+                                <field name="appeal_date"/>
+                                <field name="appeal_deadline"/>
+                                <field name="appeal_reason"/>
+                                <field name="appeal_res_model" invisible="1"/>
+                                <field name="appeal_res_id" invisible="not appeal_res_model"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_appraisal_list" model="ir.ui.view">
+        <field name="name">bs.hr.ess.appraisal.list</field>
+        <field name="model">bs.hr.ess.appraisal</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="manager_id"/>
+                <field name="work_location_id" optional="show"/>
+                <field name="cycle_id" optional="show"/>
+                <field name="date_to"/>
+                <field name="attendance_rate" optional="hide"/>
+                <field name="late_count" optional="hide"/>
+                <field name="final_score"/>
+                <field name="rating" widget="badge" decoration-success="rating in ('exceptional', 'exceeds')"
+                       decoration-warning="rating == 'below'" decoration-danger="rating == 'unsatisfactory'"/>
+                <field name="state" widget="badge" decoration-info="state in ('self_review', 'manager_review')"
+                       decoration-success="state == 'done'" decoration-danger="state == 'appealed'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_appraisal_search" model="ir.ui.view">
+        <field name="name">bs.hr.ess.appraisal.search</field>
+        <field name="model">bs.hr.ess.appraisal</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="manager_id"/>
+                <field name="cycle_id"/>
+                <field name="work_location_id"/>
+                <filter name="my_reviews" string="To review by me"
+                        domain="[('manager_id.user_id', '=', uid), ('state', '=', 'manager_review')]"/>
+                <filter name="mine" string="My appraisals" domain="[('employee_id.user_id', '=', uid)]"/>
+                <separator/>
+                <filter name="in_progress" string="In progress" domain="[('state', 'in', ('self_review', 'manager_review'))]"/>
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
+                <filter name="appealed" string="Appealed" domain="[('state', '=', 'appealed')]"/>
+                <filter name="probation" string="Probation" domain="[('is_probation', '=', True)]"/>
+                <group>
+                    <filter name="group_branch" string="Branch" context="{'group_by': 'work_location_id'}"/>
+                    <filter name="group_cycle" string="Cycle" context="{'group_by': 'cycle_id'}"/>
+                    <filter name="group_rating" string="Rating" context="{'group_by': 'rating'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_appraisal_pivot" model="ir.ui.view">
+        <field name="name">bs.hr.ess.appraisal.pivot</field>
+        <field name="model">bs.hr.ess.appraisal</field>
+        <field name="arch" type="xml">
+            <pivot string="Appraisals" sample="1">
+                <field name="work_location_id" type="row"/>
+                <field name="rating" type="col"/>
+                <field name="final_score" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_appraisal" model="ir.actions.act_window">
+        <field name="name">Appraisals</field>
+        <field name="res_model">bs.hr.ess.appraisal</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="context">{'search_default_in_progress': 1}</field>
+    </record>
+    <record id="action_appraisal_analysis" model="ir.actions.act_window">
+        <field name="name">Appraisal Analysis</field>
+        <field name="res_model">bs.hr.ess.appraisal</field>
+        <field name="view_mode">pivot,list,form</field>
+        <field name="domain">[('state', 'in', ('done', 'appealed'))]</field>
+    </record>
+</odoo>

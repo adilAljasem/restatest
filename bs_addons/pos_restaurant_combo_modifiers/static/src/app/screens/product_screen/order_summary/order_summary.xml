@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_restaurant_combo_modifiers.OrderSummaryEditModifiers"
+       t-inherit="point_of_sale.OrderSummary"
+       t-inherit-mode="extension">
+        <xpath expr="//Orderline" position="inside">
+            <li t-if="pos.canEditLineModifiers(line)" class="o_pcm_edit_modifiers_item list-unstyled">
+                <button type="button"
+                        class="btn btn-sm o_pcm_edit_modifiers"
+                        t-on-pointerdown.stop="() => {}"
+                        t-on-click.stop="() => pos.editLineModifiers(line)">
+                    <i class="fa fa-pencil" role="img" aria-hidden="true"/>
+                    <span>Edit modifiers</span>
+                </button>
+            </li>
+        </xpath>
+    </t>
+</templates>

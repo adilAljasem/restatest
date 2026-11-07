@@ -1,0 +1,94 @@
+# Arabic translation of resta_saas_base
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: resta_saas_base
+#: model:pos.preset,name:resta_saas_base.preset_delivery_apps
+msgid "Delivery Apps"
+msgstr "تطبيقات التوصيل"
+
+#. module: resta_saas_base
+#: model:pos.preset,name:resta_saas_base.preset_drive_thru
+msgid "Drive-thru"
+msgstr "طلبات السيارة"
+
+#. module: resta_saas_base
+#: model:ir.model.fields,field_description:resta_saas_base.field_pos_config__resta_edition
+msgid "Resta Edition"
+msgstr "نسخة ريستا"
+
+#. module: resta_saas_base
+#: model:ir.model.fields,help:resta_saas_base.field_pos_config__resta_edition
+msgid "Which pre-configured Resta edition this point of sale was created from."
+msgstr "نسخة ريستا المسبقة الإعداد التي أُنشئت منها نقطة البيع هذه."
+
+#. module: resta_saas_base
+#: model:ir.model.fields.selection,name:resta_saas_base.selection__pos_config__resta_edition__dinein
+msgid "Dine-in Restaurant"
+msgstr "مطعم (جلسات وطاولات)"
+
+#. module: resta_saas_base
+#: model:ir.model.fields.selection,name:resta_saas_base.selection__pos_config__resta_edition__qsr
+msgid "Fast Food & Cafe"
+msgstr "وجبات سريعة ومقاهي"
+
+#. module: resta_saas_base
+#. odoo-python
+#: code:addons/resta_saas_base/models/pos_config.py:0
+msgid "Dine-in Hall"
+msgstr "الصالة"
+
+#. module: resta_saas_base
+#. odoo-python
+#: code:addons/resta_saas_base/models/pos_config.py:0
+msgid "Cash - Hall"
+msgstr "نقدي - الصالة"
+
+#. module: resta_saas_base
+#. odoo-python
+#: code:addons/resta_saas_base/models/pos_config.py:0
+msgid "Counter"
+msgstr "الكاونتر"
+
+#. module: resta_saas_base
+#. odoo-python
+#: code:addons/resta_saas_base/models/pos_config.py:0
+msgid "Cash - Counter"
+msgstr "نقدي - الكاونتر"
+
+#. module: resta_saas_base
+#. odoo-python
+#: code:addons/resta_saas_base/models/pos_config.py:0
+msgid "Kitchen"
+msgstr "المطبخ"
+
+#. module: resta_saas_base
+#. odoo-javascript
+#: code:addons/resta_saas_base/static/src/backend/pos_kanban_patch.js:0
+msgid "Dine-in Restaurant"
+msgstr "مطعم (جلسات وطاولات)"
+
+#. module: resta_saas_base
+#. odoo-javascript
+#: code:addons/resta_saas_base/static/src/backend/pos_kanban_patch.js:0
+msgid "Floors, tables, QR table ordering, kitchen display"
+msgstr "الصالات والطاولات، الطلب من الطاولة عبر QR، شاشة المطبخ"
+
+#. module: resta_saas_base
+#. odoo-javascript
+#: code:addons/resta_saas_base/static/src/backend/pos_kanban_patch.js:0
+msgid "Fast Food & Cafe"
+msgstr "وجبات سريعة ومقاهي"
+
+#. module: resta_saas_base
+#. odoo-javascript
+#: code:addons/resta_saas_base/static/src/backend/pos_kanban_patch.js:0
+msgid "Counter service, order number screen, kitchen display"
+msgstr "خدمة الكاونتر، شاشة أرقام الطلبات، شاشة المطبخ"
+

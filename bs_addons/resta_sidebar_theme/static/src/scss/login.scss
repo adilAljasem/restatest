@@ -1,0 +1,45 @@
+// Login page (frontend bundle)
+body:has(.oe_login_form) {
+    font-family: "IBM Plex Sans Arabic", -apple-system, "Segoe UI", Arial, sans-serif;
+    background-color: #F9F7F3 !important;
+    background-image: none !important;   // Enterprise wallpaper
+
+    .card.o_database_list {
+        background-color: #FFFFFF !important;
+        border: 1px solid #E9E4DF !important;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(22, 22, 22, .06);
+        margin-top: 6vh;
+    }
+
+    .rs_login_logo {
+        display: block;
+        margin: 8px auto 4px;
+        height: 56px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border-color: #DED9D3;
+        &:focus {
+            border-color: #FF5A1F;
+            box-shadow: 0 0 0 .2rem rgba(255, 90, 31, .12);
+        }
+    }
+
+    .btn-primary {
+        background-color: #FF5A1F;
+        border-color: #FF5A1F;
+        border-radius: 10px;
+        font-weight: 600;
+        &:hover, &:focus {
+            background-color: #E9430A;
+            border-color: #E9430A;
+            box-shadow: 0 8px 20px rgba(255, 90, 31, .22);
+        }
+    }
+
+    a { color: #C2410C; }
+}

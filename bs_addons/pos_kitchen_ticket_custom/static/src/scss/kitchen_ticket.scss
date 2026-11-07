@@ -1,0 +1,299 @@
+// Kitchen ticket design. Left-to-right like the sample ticket: quantity on the
+// left, then the Arabic and English names.
+/*rtl:begin:ignore*/
+.pos-receipt.kt-ticket {
+    direction: ltr;
+    text-align: left;
+    color: #000;
+    /* Bold, plain fonts print best on thermal paper (Foodics-like). */
+    font-family: Arial, "Helvetica Neue", Helvetica, Tahoma, "Geeza Pro", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0.4em 0.3em !important;
+    margin: 0 !important;
+}
+
+/* Sizes on the 576-dot image: Normal is about the size of the Foodics ticket. */
+.pos-receipt.kt-ticket.kt-size-small { font-size: 26px !important; }
+.pos-receipt.kt-ticket.kt-size-normal { font-size: 31px !important; }
+.pos-receipt.kt-ticket.kt-size-large { font-size: 37px !important; }
+
+.pos-receipt.kt-ticket * {
+    font-weight: inherit;
+}
+
+.pos-receipt.kt-ticket .kt-head {
+    text-align: center;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #000;
+}
+
+.pos-receipt.kt-ticket .kt-reference,
+// Order number under the time: large and clear.
+.pos-receipt.kt-ticket .kt-order-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.3em 0;
+    padding: 0.15em 0 0.25em;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+    line-height: 1.1;
+}
+
+.pos-receipt.kt-ticket .kt-order-label {
+    font-size: 90%;
+}
+
+.pos-receipt.kt-ticket .kt-order-value {
+    font-size: 300%;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.pos-receipt.kt-ticket .kt-header-text {
+    direction: rtl;
+    unicode-bidi: isolate;
+}
+
+.pos-receipt.kt-ticket .kt-printed-at {
+    font-size: 90%;
+}
+
+/* Details: one row per label / value (no table: some browsers misplace table
+   rows when the ticket is turned into an image). */
+.pos-receipt.kt-ticket .kt-details {
+    margin: 0.3em 0;
+}
+
+.pos-receipt.kt-ticket .kt-row {
+    display: flex;
+    align-items: baseline;
+    padding: 0.05em 0;
+}
+
+.pos-receipt.kt-ticket .kt-row .kt-label {
+    flex: 0 0 40%;
+}
+
+.pos-receipt.kt-ticket .kt-row .kt-value {
+    flex: 1;
+    min-width: 0;
+    unicode-bidi: isolate;
+    overflow-wrap: anywhere;
+}
+
+// Delivery app (Connect / FeedUs): app name on a black band, then the app's
+// order number, so the kitchen sees at a glance it is an app order.
+.pos-receipt.kt-ticket .kt-platform {
+    text-align: center;
+    font-weight: 700;
+    margin: 0.3em 0;
+    border: 3px solid #000;
+}
+
+.pos-receipt.kt-ticket .kt-platform-name {
+    background: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #fff;
+    font-size: 150%;
+    font-weight: 900;
+    padding: 0.1em 0.2em;
+    unicode-bidi: isolate;
+    overflow-wrap: anywhere;
+}
+
+.pos-receipt.kt-ticket .kt-platform-ref {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.15em 0.2em 0.2em;
+    line-height: 1.1;
+}
+
+.pos-receipt.kt-ticket .kt-platform-label {
+    font-size: 85%;
+}
+
+.pos-receipt.kt-ticket .kt-platform-number {
+    font-size: 175%;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    direction: ltr;
+    unicode-bidi: isolate;
+    overflow-wrap: anywhere;
+}
+
+.pos-receipt.kt-ticket .kt-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 125%;
+    padding: 0.2em 0;
+    border-bottom: 2px solid #000;
+}
+
+// Each kind of ticket looks different, so the kitchen sees it at a glance.
+.pos-receipt.kt-ticket .kt-title.kt-kind-new {
+    border: 3px solid #000;
+    margin: 0.3em 0;
+}
+
+.pos-receipt.kt-ticket .kt-title.kt-kind-modified {
+    border: 7px solid #000;
+    margin: 0.3em 0;
+}
+
+.pos-receipt.kt-ticket .kt-title.kt-kind-cancelled {
+    background: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #fff;
+    border: 3px solid #000;
+    margin: 0.3em 0;
+}
+
+.pos-receipt.kt-ticket .kt-title.kt-kind-modifiers {
+    border: 7px double #000;
+    margin: 0.3em 0;
+}
+
+.pos-receipt.kt-ticket .kt-title.kt-kind-note {
+    border: 3px dashed #000;
+    margin: 0.3em 0;
+}
+
+// Reprinted copy: black band on top of the ticket.
+.pos-receipt.kt-ticket .kt-reprint-banner {
+    background: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 125%;
+    padding: 0.2em 0;
+    margin-bottom: 0.3em;
+}
+
+.pos-receipt.kt-ticket .kt-line {
+    padding: 0.3em 0;
+}
+
+.pos-receipt.kt-ticket.kt-separators .kt-line + .kt-line {
+    border-top: 2px solid #000;
+}
+
+.pos-receipt.kt-ticket .kt-line-main {
+    display: flex;
+    gap: 0.5em;
+    align-items: baseline;
+    font-size: 105%;
+}
+
+.pos-receipt.kt-ticket .kt-qty {
+    flex: none;
+    min-width: 1.4em;
+    font-weight: 700;
+}
+
+.pos-receipt.kt-ticket .kt-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.pos-receipt.kt-ticket .kt-sub {
+    padding-left: 2em;
+    font-size: 95%;
+    overflow-wrap: anywhere;
+}
+
+.pos-receipt.kt-ticket .kt-child-option {
+    padding-left: 3.6em;
+    font-size: 92%;
+}
+
+.pos-receipt.kt-ticket .kt-note {
+    font-style: normal;
+}
+
+// Modifiers under their item: "+ Extra cheese", "* No onion".
+.pos-receipt.kt-ticket .kt-modifier {
+    display: flex;
+    gap: 0.3em;
+    align-items: baseline;
+}
+
+.pos-receipt.kt-ticket .kt-modifier-mark {
+    flex: none;
+    min-width: 0.8em;
+}
+
+.pos-receipt.kt-ticket .kt-modifier-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    unicode-bidi: isolate;
+}
+
+.pos-receipt.kt-ticket .kt-modifier-qty {
+    flex: none;
+}
+
+.pos-receipt.kt-ticket .kt-child-modifier {
+    padding-left: 3.6em;
+    font-size: 92%;
+}
+
+// Item edited after it was sent: new modifiers underlined, removed ones struck.
+.pos-receipt.kt-ticket .kt-modifier-added .kt-modifier-name {
+    text-decoration: underline;
+}
+
+.pos-receipt.kt-ticket .kt-modifier-removed .kt-modifier-name {
+    text-decoration: line-through;
+}
+
+// Main item printed only to show which item the modifiers belong to.
+.pos-receipt.kt-ticket .kt-context .kt-line-main {
+    font-size: 100%;
+}
+
+.pos-receipt.kt-ticket .kt-context .kt-qty {
+    min-width: 0;
+}
+
+.pos-receipt.kt-ticket .kt-cancelled .kt-line-main {
+    text-decoration: line-through;
+}
+
+.pos-receipt.kt-ticket .kt-order-notes {
+    border-top: 2px solid #000;
+    padding-top: 0.3em;
+    text-align: center;
+}
+/* Printer width: the image sent to the kitchen printer has exactly the
+   printable width (equal margins), so the ticket is centered on the paper. */
+.pos-receipt.kt-ticket.pos-receipt-print {
+    box-sizing: border-box !important;
+    max-width: none !important;
+}
+
+.pos-receipt.kt-ticket.kt-w-576.pos-receipt-print {
+    width: 576px !important;
+    min-width: 576px !important;
+    padding: 0.4em 16px !important;
+}
+
+.pos-receipt.kt-ticket.kt-w-512.pos-receipt-print {
+    width: 512px !important;
+    min-width: 512px !important;
+    padding: 0.4em 8px !important;
+}
+
+.pos-receipt.kt-ticket.kt-w-420.pos-receipt-print {
+    width: 420px !important;
+    min-width: 420px !important;
+    padding: 0.4em 8px !important;
+}
+/*rtl:end:ignore*/

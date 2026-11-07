@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_order_nps_view_list" model="ir.ui.view">
+        <field name="name">pos.order.nps.list</field>
+        <field name="model">pos.order.nps</field>
+        <field name="arch" type="xml">
+            <list string="Customer Feedback" create="0" decoration-success="category == 'promoter'" decoration-danger="category == 'detractor'" decoration-warning="category == 'passive'">
+                <field name="date"/>
+                <field name="order_id"/>
+                <field name="order_number"/>
+                <field name="config_id"/>
+                <field name="partner_id" optional="hide"/>
+                <field name="employee_name" optional="show"/>
+                <field name="preparation_minutes" optional="show"/>
+                <field name="score"/>
+                <field name="category"/>
+                <field name="nps_value" optional="hide"/>
+                <field name="comment"/>
+                <field name="amount_total" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="pos_order_nps_view_form" model="ir.ui.view">
+        <field name="name">pos.order.nps.form</field>
+        <field name="model">pos.order.nps</field>
+        <field name="arch" type="xml">
+            <form string="Customer Feedback" create="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order_id"/>
+                            <field name="order_number"/>
+                            <field name="config_id"/>
+                            <field name="partner_id"/>
+                            <field name="employee_name"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="score"/>
+                            <field name="category"/>
+                            <field name="preparation_minutes"/>
+                        </group>
+                    </group>
+                    <field name="comment" placeholder="No comment"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pos_order_nps_view_pivot" model="ir.ui.view">
+        <field name="name">pos.order.nps.pivot</field>
+        <field name="model">pos.order.nps</field>
+        <field name="arch" type="xml">
+            <pivot string="NPS" sample="1">
+                <field name="config_id" type="row"/>
+                <field name="category" type="col"/>
+                <field name="nps_value" type="measure"/>
+                <field name="score" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="pos_order_nps_view_graph" model="ir.ui.view">
+        <field name="name">pos.order.nps.graph</field>
+        <field name="model">pos.order.nps</field>
+        <field name="arch" type="xml">
+            <graph string="NPS" type="line" sample="1">
+                <field name="date" interval="week"/>
+                <field name="nps_value" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="pos_order_nps_view_search" model="ir.ui.view">
+        <field name="name">pos.order.nps.search</field>
+        <field name="model">pos.order.nps</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="order_id"/>
+                <field name="config_id"/>
+                <field name="partner_id"/>
+                <field name="comment"/>
+                <filter name="promoters" string="Promoters (9-10)" domain="[('category', '=', 'promoter')]"/>
+                <filter name="passives" string="Passives (7-8)" domain="[('category', '=', 'passive')]"/>
+                <filter name="detractors" string="Detractors (0-6)" domain="[('category', '=', 'detractor')]"/>
+                <separator/>
+                <filter name="with_comment" string="With comment" domain="[('comment', '!=', False)]"/>
+                <separator/>
+                <filter name="date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_config" string="Point of Sale" context="{'group_by': 'config_id'}"/>
+                    <filter name="group_category" string="Category" context="{'group_by': 'category'}"/>
+                    <filter name="group_date" string="Date" context="{'group_by': 'date:week'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pos_order_nps" model="ir.actions.act_window">
+        <field name="name">Customer Feedback (NPS)</field>
+        <field name="res_model">pos.order.nps</field>
+        <field name="view_mode">pivot,list,graph,form</field>
+        <field name="context">{'search_default_date': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No customer ratings yet</p>
+            <p>Customers rate their experience from the order tracking page opened with the QR code on their receipt.
+               In the pivot, the average of the <b>NPS</b> measure is your Net Promoter Score (from -100 to +100).</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_pos_order_nps" name="Customer Feedback (NPS)" parent="point_of_sale.menu_point_rep"
+              action="action_pos_order_nps" sequence="40" groups="point_of_sale.group_pos_manager"/>
+</odoo>

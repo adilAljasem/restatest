@@ -1,0 +1,292 @@
+// Closing reports (cashier / business day).
+// Colour, font sizes and printer widths follow the kitchen ticket
+// (pos_kitchen_ticket_custom): solid black, bold fonts, and the same
+// small / normal / large sizes on the image sent to the receipt printer.
+// The direction comes from the report language (dir="rtl" / "ltr"), so the
+// rules use logical properties and are kept out of the RTL css conversion.
+/*rtl:begin:ignore*/
+.pos-receipt.pcr-ticket {
+    color: #000;
+    background: #fff;
+    font-family: Arial, "Helvetica Neue", Helvetica, Tahoma, "Geeza Pro", sans-serif;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: start;
+    padding: 0.4em 0.3em !important;
+    margin: 0 !important;
+
+    * {
+        font-weight: inherit;
+    }
+    small {
+        font-size: 80%;
+    }
+    &.pcr-rtl {
+        direction: rtl;
+    }
+    &.pcr-ltr {
+        direction: ltr;
+    }
+
+    .pcr-l2 {
+        display: block;
+        font-size: 75%;
+        font-weight: 400;
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+    &.pcr-rtl .pcr-l2 {
+        text-align: right;
+    }
+    &.pcr-ltr .pcr-l2 {
+        text-align: left;
+    }
+    .pcr-muted {
+        font-weight: 400;
+    }
+
+    // Header
+    .pcr-head {
+        text-align: center;
+        padding-bottom: 0.3em;
+    }
+    .pcr-company {
+        font-size: 120%;
+        font-weight: 900;
+    }
+    .pcr-title {
+        margin-top: 0.2em;
+        padding: 0.15em 0.2em;
+        background: #000;
+        color: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 125%;
+        font-weight: 900;
+    }
+    .pcr-details {
+        margin: 0.3em 0;
+    }
+    .pcr-business-date {
+        text-align: center;
+        margin: 0.3em 0;
+        padding: 0.15em 0 0.2em;
+        border-top: 3px solid #000;
+        border-bottom: 3px solid #000;
+        .pcr-label {
+            display: block;
+        }
+    }
+    .pcr-big {
+        font-size: 190%;
+        font-weight: 900;
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+
+    // label ......... value
+    .pcr-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.4em;
+        padding: 0.05em 0;
+    }
+    .pcr-label {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+    .pcr-value {
+        flex: none;
+        max-width: 60%;
+        text-align: end;
+        direction: ltr;
+        unicode-bidi: isolate;
+        overflow-wrap: anywhere;
+        white-space: nowrap;
+    }
+    .pcr-details .pcr-value {
+        white-space: normal;
+    }
+    .pcr-strong {
+        font-weight: 900;
+    }
+    .pcr-grand {
+        font-weight: 900;
+        font-size: 110%;
+        border-top: 2px solid #000;
+        margin-top: 0.15em;
+        padding-top: 0.15em;
+    }
+
+    // Section title: black band like the kitchen ticket titles
+    .pcr-band {
+        margin: 0.45em 0 0.25em;
+        padding: 0.12em 0.2em;
+        text-align: center;
+        font-size: 112%;
+        font-weight: 900;
+        border: 3px solid #000;
+    }
+    .pcr-band .pcr-l2,
+    .pcr-title .pcr-l2,
+    .pcr-business-date .pcr-l2 {
+        text-align: center !important;
+    }
+    .pcr-subtitle {
+        margin-top: 0.3em;
+        border-bottom: 2px dashed #000;
+    }
+    .pcr-block {
+        padding: 0.2em 0;
+        & + .pcr-block {
+            border-top: 2px dashed #000;
+        }
+    }
+    .pcr-block-title {
+        font-size: 105%;
+        font-weight: 900;
+    }
+    .pcr-split {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.4em;
+    }
+    .pcr-sub {
+        font-size: 85%;
+        font-weight: 400;
+    }
+    .pcr-ltr-text {
+        direction: ltr;
+        unicode-bidi: isolate;
+        text-align: start;
+    }
+    .pcr-tag {
+        flex: none;
+        font-size: 85%;
+        padding: 0 0.3em;
+        border: 2px solid #000;
+    }
+    .pcr-totals {
+        margin-top: 0.2em;
+        padding-top: 0.2em;
+        border-top: 3px solid #000;
+    }
+    .pcr-status {
+        margin: 0.3em 0;
+        padding: 0.1em 0;
+        text-align: center;
+        font-size: 125%;
+        font-weight: 900;
+        border: 3px solid #000;
+    }
+    .pcr-status-shortage {
+        background: #000;
+        color: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .pcr-status-surplus {
+        border-style: double;
+        border-width: 6px;
+    }
+
+    // Sold / refunded items: qty  name ....... amount
+    .pcr-item {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4em;
+        padding: 0.08em 0;
+        & + .pcr-item {
+            border-top: 1px solid #000;
+        }
+    }
+    .pcr-qty {
+        flex: none;
+        min-width: 1.8em;
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+    .pcr-item-name {
+        flex: 1;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+    .pcr-order {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 0.4em;
+        padding: 0.05em 0;
+    }
+    .pcr-order-ref {
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+    .pcr-order-meta {
+        flex: 1;
+        font-size: 85%;
+        font-weight: 400;
+    }
+    .pcr-empty,
+    .pcr-note {
+        font-size: 85%;
+        font-weight: 400;
+        text-align: center;
+    }
+    .pcr-footer {
+        margin-top: 0.5em;
+        padding-top: 0.2em;
+        border-top: 2px solid #000;
+        font-size: 85%;
+    }
+    .pcr-signature {
+        margin-top: 1.4em;
+        align-items: flex-end;
+    }
+}
+
+// Screen and browser printing: readable sizes, with the kitchen ratios.
+.pos-receipt.pcr-ticket.pcr-size-small { font-size: 12px; }
+.pos-receipt.pcr-ticket.pcr-size-normal { font-size: 14px; }
+.pos-receipt.pcr-ticket.pcr-size-large { font-size: 17px; }
+@media print {
+    .render-container .pos-receipt.pcr-ticket.pcr-size-small { font-size: 12px !important; }
+    .render-container .pos-receipt.pcr-ticket.pcr-size-normal { font-size: 14px !important; }
+    .render-container .pos-receipt.pcr-ticket.pcr-size-large { font-size: 17px !important; }
+    .render-container .pos-receipt.pcr-ticket .pcr-title,
+    .render-container .pos-receipt.pcr-ticket .pcr-status-shortage {
+        background-color: #000 !important;
+        color: #fff !important;
+    }
+    .render-container .pos-receipt.pcr-ticket .pcr-title *,
+    .render-container .pos-receipt.pcr-ticket .pcr-status-shortage * {
+        color: #fff !important;
+    }
+}
+
+// Image sent to the receipt printer: same sizes and widths as the kitchen ticket.
+.pos-receipt.pcr-ticket.pos-receipt-print {
+    box-sizing: border-box !important;
+    max-width: none !important;
+}
+.pos-receipt.pcr-ticket.pcr-size-small.pos-receipt-print { font-size: 26px !important; }
+.pos-receipt.pcr-ticket.pcr-size-normal.pos-receipt-print { font-size: 31px !important; }
+.pos-receipt.pcr-ticket.pcr-size-large.pos-receipt-print { font-size: 37px !important; }
+.pos-receipt.pcr-ticket.pcr-w-576.pos-receipt-print {
+    width: 576px !important;
+    min-width: 576px !important;
+    padding: 0.4em 16px !important;
+}
+.pos-receipt.pcr-ticket.pcr-w-512.pos-receipt-print {
+    width: 512px !important;
+    min-width: 512px !important;
+    padding: 0.4em 8px !important;
+}
+.pos-receipt.pcr-ticket.pcr-w-420.pos-receipt-print {
+    width: 420px !important;
+    min-width: 420px !important;
+    padding: 0.4em 8px !important;
+}
+/*rtl:end:ignore*/

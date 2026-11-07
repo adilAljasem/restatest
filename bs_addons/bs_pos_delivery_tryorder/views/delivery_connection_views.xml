@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_connection_form_tryorder_draft_test" model="ir.ui.view">
+        <field name="name">bs.delivery.connection.form.tryorder.draft.test</field>
+        <field name="model">bs.delivery.connection</field>
+        <field name="inherit_id" ref="bs_pos_delivery_core.view_bs_delivery_connection_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='environment']" position="after">
+                <field name="is_tryorder_provider" invisible="1"/>
+                <field name="allow_draft_api_testing"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="not is_tryorder_provider or environment != 'test'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

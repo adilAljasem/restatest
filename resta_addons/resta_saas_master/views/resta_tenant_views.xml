@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="resta_tenant_view_list" model="ir.ui.view">
+        <field name="name">resta.tenant.list</field>
+        <field name="model">resta.tenant</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state in ('expired','failed')" decoration-muted="state == 'cancelled'" decoration-success="state == 'active'">
+                <field name="account_number"/>
+                <field name="name"/>
+                <field name="edition"/>
+                <field name="owner_name"/>
+                <field name="owner_phone" widget="phone"/>
+                <field name="state" widget="badge" decoration-success="state == 'active'" decoration-info="state == 'trial'" decoration-danger="state in ('expired','failed','suspended')"/>
+                <field name="plan_id"/>
+                <field name="days_left"/>
+                <field name="account_manager_id" widget="many2one_avatar_user"/>
+                <field name="usage_orders_30d"/>
+                <field name="last_sync"/>
+                <field name="create_date" string="تاريخ التسجيل"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="resta_tenant_view_kanban" model="ir.ui.view">
+        <field name="name">resta.tenant.kanban</field>
+        <field name="model">resta.tenant</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" highlight_color="color" quick_create="false">
+                <field name="color"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex justify-content-between">
+                            <field name="name" class="fw-bold"/>
+                            <field name="account_number" class="text-muted"/>
+                        </div>
+                        <div class="text-muted small"><field name="edition"/> · <field name="owner_name"/></div>
+                        <div class="small mt-1"><field name="plan_id"/></div>
+                        <footer class="mt-2">
+                            <span class="badge text-bg-light">متبقي <field name="days_left"/> يوم</span>
+                            <field name="activity_ids" widget="kanban_activity"/>
+                            <field name="account_manager_id" widget="many2one_avatar_user" class="ms-auto"/>
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="resta_tenant_view_form" model="ir.ui.view">
+        <field name="name">resta.tenant.form</field>
+        <field name="model">resta.tenant</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(resta_saas_master.action_resta_subscription_wizard)d" type="action" string="تفعيل / تجديد الاشتراك" class="btn-primary" invisible="state in ('provisioning','failed','cancelled')"/>
+                    <button name="action_extend_trial" type="object" string="تمديد التجربة 7 أيام" invisible="state not in ('trial','expired')"/>
+                    <button name="action_suspend" type="object" string="إيقاف" invisible="state not in ('trial','active','expired')" confirm="سيتوقف النظام لدى المطعم. متابعة؟"/>
+                    <button name="action_reactivate" type="object" string="إعادة تفعيل" invisible="state != 'suspended'"/>
+                    <button name="action_retry_provision" type="object" string="إعادة التجهيز" invisible="state != 'failed'" groups="resta_saas_master.group_resta_manager"/>
+                    <button name="action_cancel" type="object" string="إلغاء الحساب" invisible="state in ('cancelled','provisioning')" groups="resta_saas_master.group_resta_manager" confirm="إلغاء حساب المطعم؟"/>
+                    <field name="state" widget="statusbar" statusbar_visible="provisioning,trial,active,expired"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_system" type="object" class="oe_stat_button" icon="fa-external-link" invisible="state in ('provisioning','failed')">
+                            <span class="o_stat_text">فتح النظام</span>
+                        </button>
+                        <button name="action_whatsapp" type="object" class="oe_stat_button" icon="fa-whatsapp" invisible="not owner_phone">
+                            <span class="o_stat_text">واتساب</span>
+                        </button>
+                        <button name="action_view_invoices" type="object" class="oe_stat_button" icon="fa-file-text-o">
+                            <field name="invoice_count" widget="statinfo" string="الفواتير"/>
+                        </button>
+                        <button name="action_view_feedback" type="object" class="oe_stat_button" icon="fa-comments-o">
+                            <field name="feedback_count" widget="statinfo" string="الملاحظات"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <div class="text-muted">رقم الحساب <field name="account_number" class="fw-bold"/></div>
+                        <h1><field name="name" placeholder="اسم النشاط"/></h1>
+                    </div>
+                    <group>
+                        <group string="النشاط">
+                            <field name="business_type"/>
+                            <field name="edition"/>
+                            <field name="country_id"/>
+                            <field name="branches_planned"/>
+                            <field name="partner_id"/>
+                            <field name="source"/>
+                        </group>
+                        <group string="المالك والتواصل">
+                            <field name="owner_name"/>
+                            <field name="owner_phone" widget="phone"/>
+                            <field name="owner_email" widget="email"/>
+                            <field name="account_manager_id" widget="many2one_avatar_user"/>
+                        </group>
+                        <group string="الاشتراك">
+                            <field name="plan_id"/>
+                            <field name="trial_end"/>
+                            <field name="subscription_end"/>
+                            <field name="days_left"/>
+                        </group>
+                        <group string="الاستخدام (من نظام المطعم)">
+                            <field name="last_sync"/>
+                            <field name="usage_users"/>
+                            <field name="usage_pos"/>
+                            <field name="usage_orders_30d"/>
+                            <field name="usage_sales_30d"/>
+                            <field name="usage_last_order"/>
+                            <field name="usage_last_login"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="فترات الاشتراك" name="subscriptions">
+                            <field name="subscription_ids">
+                                <list>
+                                    <field name="plan_id"/><field name="billing"/><field name="branches"/>
+                                    <field name="date_start"/><field name="date_end"/><field name="amount"/>
+                                    <field name="invoice_id"/><field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="ملاحظات" name="notes"><field name="notes"/></page>
+                        <page string="تقني" name="technical" groups="resta_saas_master.group_resta_manager">
+                            <group>
+                                <field name="db_name"/>
+                                <field name="url" widget="url"/>
+                                <field name="token" password="True"/>
+                                <field name="provision_step"/>
+                                <field name="signup_ip"/>
+                                <field name="usage_modules"/>
+                            </group>
+                            <field name="provision_log"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="resta_tenant_view_search" model="ir.ui.view">
+        <field name="name">resta.tenant.search</field>
+        <field name="model">resta.tenant</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="account_number"/>
+                <field name="owner_name"/>
+                <field name="owner_phone"/>
+                <field name="owner_email"/>
+                <filter name="mine" string="مطاعمي" domain="[('account_manager_id', '=', uid)]"/>
+                <separator/>
+                <filter name="trial" string="تجربة" domain="[('state', '=', 'trial')]"/>
+                <filter name="active" string="مشتركون" domain="[('state', '=', 'active')]"/>
+                <filter name="expired" string="منتهي" domain="[('state', '=', 'expired')]"/>
+                <separator/>
+                <filter name="no_sync" string="لم يزامن منذ يومين" domain="[('last_sync', '&lt;', (context_today() - relativedelta(days=2)).strftime('%Y-%m-%d'))]"/>
+                <group>
+                    <filter name="g_state" string="الحالة" context="{'group_by': 'state'}"/>
+                    <filter name="g_edition" string="النسخة" context="{'group_by': 'edition'}"/>
+                    <filter name="g_am" string="مدير الحساب" context="{'group_by': 'account_manager_id'}"/>
+                    <filter name="g_month" string="شهر التسجيل" context="{'group_by': 'create_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="resta_tenant_view_pivot" model="ir.ui.view">
+        <field name="name">resta.tenant.pivot</field>
+        <field name="model">resta.tenant</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="create_date" interval="month" type="row"/>
+                <field name="state" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="resta_tenant_view_graph" model="ir.ui.view">
+        <field name="name">resta.tenant.graph</field>
+        <field name="model">resta.tenant</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="1">
+                <field name="create_date" interval="month"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_resta_tenant" model="ir.actions.act_window">
+        <field name="name">المطاعم</field>
+        <field name="res_model">resta.tenant</field>
+        <field name="view_mode">kanban,list,form,pivot,graph</field>
+        <field name="context">{'search_default_g_state': 0}</field>
+    </record>
+</odoo>

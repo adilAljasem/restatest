@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_delivery_core.AggregatorPosHub">
+        <div
+            t-if="visibleProviders.length"
+            class="bs-aggregator-pos-hub"
+            aria-label="Delivery platforms"
+        >
+            <button
+                t-foreach="visibleProviders"
+                t-as="provider"
+                t-key="provider.id"
+                type="button"
+                class="bs-aggregator-provider-button"
+                t-att-class="{ 'is-paused': provider.paused, 'is-unavailable': !provider.connected, 'has-new': provider.received_count &gt; 0 }"
+                t-att-style="'--bs-aggregator-color: ' + provider.color"
+                t-att-title="provider.title"
+                t-att-aria-label="provider.title"
+                t-on-click="() =&gt; this.openProvider(provider)"
+            >
+                <span class="bs-aggregator-provider-logo" aria-hidden="true">
+                    <img
+                        t-if="provider.logo_url"
+                        t-att-src="provider.logo_url"
+                        t-att-alt="provider.name"
+                        t-on-error="() =&gt; this.handleLogoError(provider)"
+                    />
+                    <span t-else="" class="bs-aggregator-provider-initials" t-esc="provider.initials"/>
+                </span>
+                <span class="bs-aggregator-provider-name text-truncate" t-esc="provider.name"/>
+                <span
+                    t-if="provider.open_count"
+                    class="bs-aggregator-provider-count"
+                    t-att-class="{ 'is-new': provider.received_count &gt; 0 }"
+                    t-esc="provider.open_count"
+                    aria-live="polite"
+                />
+                <i
+                    t-if="provider.paused"
+                    class="fa fa-pause bs-aggregator-paused-icon"
+                    title="Receiving paused"
+                    aria-label="Receiving paused"
+                />
+            </button>
+        </div>
+
+        <div
+            t-if="state.isOpen"
+            class="bs-aggregator-board-backdrop"
+            role="presentation"
+            t-on-click="onBackdropClick"
+        >
+            <section
+                class="bs-aggregator-board"
+                role="dialog"
+                aria-modal="true"
+                t-att-aria-label="selectedProvider ? selectedProvider.name : 'Delivery orders'"
+                t-att-style="selectedProvider ? '--bs-aggregator-color: ' + selectedProvider.color : ''"
+            >
+                <header class="bs-aggregator-board-header">
+                    <div class="bs-aggregator-board-heading">
+                        <span class="bs-aggregator-board-logo" aria-hidden="true">
+                            <img
+                                t-if="selectedProvider and selectedProvider.logo_url"
+                                t-att-src="selectedProvider.logo_url"
+                                t-att-alt="selectedProvider.name"
+                                t-on-error="() =&gt; this.handleLogoError(selectedProvider)"
+                            />
+                            <span
+                                t-else=""
+                                class="bs-aggregator-provider-initials"
+                                t-esc="selectedProvider ? selectedProvider.initials : ''"
+                            />
+                        </span>
+                        <div class="min-w-0">
+                            <h2 class="m-0 text-truncate" t-esc="selectedProvider ? selectedProvider.name : 'Delivery'"/>
+                            <div class="bs-aggregator-board-meta">
+                                <span>
+                                    <t t-esc="selectedProvider ? selectedProvider.open_count : 0"/>
+                                    open
+                                </span>
+                                <span aria-hidden="true">&#8226;</span>
+                                <span t-esc="pollingIntervalLabel"/>
+                                <span t-if="updatedAtLabel" aria-hidden="true">&#8226;</span>
+                                <span t-if="updatedAtLabel">
+                                    updated <t t-esc="updatedAtLabel"/>
+                                </span>
+                                <span t-if="selectedProvider and selectedProvider.paused" class="bs-aggregator-pause-label">
+                                    Receiving paused
+                                </span>
+                                <span
+                                    t-elif="selectedProvider and selectedProvider.partially_paused"
+                                    class="bs-aggregator-pause-label"
+                                >
+                                    Some delivery routes are paused
+                                </span>
+                                <span t-if="state.offline" class="bs-aggregator-offline-label">
+                                    Offline
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bs-aggregator-board-tools">
+                        <button
+                            type="button"
+                            class="btn btn-light btn-lg"
+                            t-att-disabled="state.loadingBoard or state.offline"
+                            aria-label="Reload delivery orders"
+                            title="Reload delivery orders"
+                            t-on-click="() =&gt; this.refreshBoard()"
+                        >
+                            <i
+                                class="fa fa-refresh"
+                                t-att-class="{ 'fa-spin': state.loadingBoard }"
+                                aria-hidden="true"
+                            />
+                            <span class="d-none d-md-inline ms-1">Reload</span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-dark btn-lg"
+                            t-ref="closeButton"
+                            t-on-click="closeBoard"
+                        >
+                            <i class="fa fa-times" aria-hidden="true"/>
+                            <span class="ms-1">Close</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div t-if="state.offline" class="alert alert-warning bs-aggregator-board-alert" role="status">
+                    <span>Offline mode: reconnect to refresh or update delivery orders.</span>
+                </div>
+
+                <div t-if="state.boardError" class="alert alert-danger bs-aggregator-board-alert" role="alert">
+                    <span t-esc="state.boardError"/>
+                    <button type="button" class="btn btn-sm btn-outline-danger" t-on-click="() =&gt; this.refreshBoard()">
+                        Try again
+                    </button>
+                </div>
+
+                <div class="bs-aggregator-board-lanes" t-att-aria-busy="state.loadingBoard">
+                    <article
+                        t-foreach="boardLanes"
+                        t-as="lane"
+                        t-key="lane.key"
+                        class="bs-aggregator-lane"
+                        t-att-class="'state-' + lane.key"
+                    >
+                        <header class="bs-aggregator-lane-header">
+                            <h3 class="m-0" t-esc="lane.label"/>
+                            <span class="bs-aggregator-lane-count" t-esc="lane.orders.length"/>
+                        </header>
+                        <div class="bs-aggregator-lane-body">
+                            <div
+                                t-if="state.loadingBoard and !lane.orders.length"
+                                class="bs-aggregator-empty-lane"
+                            >
+                                <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"/>
+                                <span>Loading orders...</span>
+                            </div>
+                            <div
+                                t-elif="!lane.orders.length"
+                                class="bs-aggregator-empty-lane"
+                            >
+                                <i class="fa fa-check-circle-o" aria-hidden="true"/>
+                                <span>No orders</span>
+                            </div>
+
+                            <article
+                                t-foreach="lane.orders"
+                                t-as="order"
+                                t-key="order.id"
+                                class="bs-aggregator-order-card"
+                            >
+                                <div class="bs-aggregator-order-title-row">
+                                    <strong class="text-truncate" t-esc="order.name"/>
+                                    <strong class="bs-aggregator-order-total" t-esc="order.amount_display"/>
+                                </div>
+                                <div t-if="order.provider_reference" class="bs-aggregator-order-reference text-truncate">
+                                    <i class="fa fa-link" aria-hidden="true"/>
+                                    <span t-esc="order.provider_reference"/>
+                                </div>
+                                <div class="bs-aggregator-order-customer text-truncate">
+                                    <i class="fa fa-user" aria-hidden="true"/>
+                                    <span t-esc="order.customer_name"/>
+                                </div>
+                                <div t-if="order.driver_name or order.driver_eta_minutes !== false" class="bs-aggregator-order-driver text-truncate">
+                                    <i class="fa fa-motorcycle" aria-hidden="true"/>
+                                    <span t-if="order.driver_name" t-esc="order.driver_name"/>
+                                    <span t-if="order.driver_name and order.driver_eta_minutes !== false" aria-hidden="true">&#8226;</span>
+                                    <span t-if="order.driver_eta_minutes !== false">
+                                        ETA <t t-esc="order.driver_eta_minutes"/>m
+                                    </span>
+                                </div>
+                                <details
+                                    t-if="order.customer_phone_masked or order.delivery_address or order.driver_phone or order.scheduled_at_display"
+                                    class="bs-aggregator-order-details"
+                                >
+                                    <summary>Order details</summary>
+                                    <div class="bs-aggregator-order-detail-grid">
+                                        <span class="bs-aggregator-order-detail-label">Type</span>
+                                        <span t-esc="order.fulfillment_label"/>
+                                        <t t-if="order.customer_phone_masked">
+                                            <span class="bs-aggregator-order-detail-label">Customer phone</span>
+                                            <span dir="ltr" t-esc="order.customer_phone_masked"/>
+                                        </t>
+                                        <t t-if="order.driver_phone">
+                                            <span class="bs-aggregator-order-detail-label">Driver phone</span>
+                                            <span dir="ltr" t-esc="order.driver_phone"/>
+                                        </t>
+                                        <t t-if="order.delivery_address">
+                                            <span class="bs-aggregator-order-detail-label">Address</span>
+                                            <span t-esc="order.delivery_address"/>
+                                        </t>
+                                        <t t-if="order.scheduled_at_display">
+                                            <span class="bs-aggregator-order-detail-label">Scheduled at</span>
+                                            <span t-esc="order.scheduled_at_display"/>
+                                        </t>
+                                    </div>
+                                </details>
+                                <div class="bs-aggregator-order-status-row">
+                                    <span t-if="order.age_display" class="bs-aggregator-order-age" t-esc="order.age_display"/>
+                                    <span t-if="order.is_prepaid" class="badge text-bg-success">PAID</span>
+                                    <span t-if="order.pos_processing_state === 'waiting_session'" class="badge text-bg-warning">Awaiting POS Session</span>
+                                    <span t-elif="order.pos_processing_state === 'blocked'" class="badge text-bg-danger">Needs Review</span>
+                                </div>
+                                <div t-if="order.customer_note" class="bs-aggregator-order-note">
+                                    <i class="fa fa-sticky-note-o" aria-hidden="true"/>
+                                    <span t-esc="order.customer_note"/>
+                                </div>
+                                <div class="bs-aggregator-order-actions">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary flex-grow-1"
+                                        t-att-disabled="isTransitioning(order) or state.offline or order.pos_processing_state === 'waiting_session' or order.pos_processing_state === 'blocked'"
+                                        t-on-click="() =&gt; this.transition(order, lane.nextState)"
+                                    >
+                                        <i
+                                            t-if="isTransitioning(order)"
+                                            class="fa fa-circle-o-notch fa-spin me-1"
+                                            aria-hidden="true"
+                                        />
+                                        <span t-esc="lane.nextLabel"/>
+                                    </button>
+                                    <button
+                                        t-if="lane.key === 'received'"
+                                        type="button"
+                                        class="btn btn-outline-danger"
+                                        t-att-disabled="isTransitioning(order) or state.offline"
+                                        t-on-click="() =&gt; this.reject(order)"
+                                    >
+                                        Reject
+                                    </button>
+                                </div>
+                            </article>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </t>
+
+    <t
+        t-name="bs_pos_delivery_core.AggregatorNavbar"
+        t-inherit="point_of_sale.Navbar"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//Input[@t-if='pos.showSearchButton()']" position="after">
+            <AggregatorPosHub/>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="partner_blend_service" model="res.partner">
+            <field name="name">Blend User</field>
+            <field name="company_type">person</field>
+        </record>
+
+        <record id="user_blend_service" model="res.users" context="{'no_reset_password': True}">
+            <field name="partner_id" ref="partner_blend_service"/>
+            <field name="login">blend_user</field>
+            <field name="active" eval="True"/>
+            <field name="group_ids" eval="[Command.set([ref('base.group_portal')])]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_session_handover.Navbar"
+       t-inherit="point_of_sale.Navbar"
+       t-inherit-mode="extension">
+        <xpath expr="//DropdownItem[@onSelected='() => this.pos.closeSession()']" position="before">
+            <DropdownItem t-if="pos.config.module_pos_restaurant"
+                          onSelected="() => this.pos.pinoPrepareTableHandoverManually()">
+                Transfer Open Tables
+            </DropdownItem>
+        </xpath>
+    </t>
+</templates>

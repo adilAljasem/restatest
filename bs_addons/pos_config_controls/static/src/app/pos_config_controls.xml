@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_config_controls.PaymentScreenButtons"
+       t-inherit="point_of_sale.PaymentScreenButtons"
+       t-inherit-mode="extension">
+        <xpath expr="//button[contains(@class, 'js_invoice')]" position="attributes">
+            <attribute name="t-att-disabled">pos.config.always_to_invoice or currentOrder.lines[0]?.refunded_orderline_id?.order_id?.isToInvoice()</attribute>
+        </xpath>
+    </t>
+</templates>

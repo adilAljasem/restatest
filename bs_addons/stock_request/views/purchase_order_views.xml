@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_request_purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.stock.request.multi.warehouse</field>
+        <field name="model">purchase.order</field>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='products']/field[@name='order_line']"
+                position="before"
+            >
+                <field name="stock_request_multi_warehouse_enabled" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//page[@name='products']/field[@name='order_line']/list/field[@name='name']"
+                position="after"
+            >
+                <field
+                    name="stock_request_requisition_line_id"
+                    column_invisible="True"
+                />
+                <field
+                    name="warehouse_id"
+                    domain="[('company_id', '=', parent.company_id)]"
+                    options="{'no_create': True}"
+                    readonly="state in ('purchase', 'done', 'cancel')"
+                    column_invisible="not parent.stock_request_multi_warehouse_enabled or parent.default_location_dest_id_usage == 'customer'"
+                    optional="show"
+                />
+            </xpath>
+            <xpath
+                expr="//page[@name='products']/field[@name='order_line']/form/group/group/field[@name='date_planned']"
+                position="after"
+            >
+                <field name="stock_request_requisition_line_id" invisible="1" />
+                <field
+                    name="warehouse_id"
+                    domain="[('company_id', '=', parent.company_id)]"
+                    options="{'no_create': True}"
+                    readonly="state in ('purchase', 'done', 'cancel')"
+                    invisible="not parent.stock_request_multi_warehouse_enabled or parent.default_location_dest_id_usage == 'customer'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

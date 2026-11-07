@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_category_form_view_inventory_location" model="ir.ui.view">
+        <field name="name">product.category.form.inventory.location</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="stock.product_category_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name="removal_strategy_id" position="after">
+                <field name="property_stock_inventory"/>
+            </field>
+        </field>
+    </record>
+</odoo>

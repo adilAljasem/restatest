@@ -1,0 +1,36 @@
+// Expose the active scheme's tokens as CSS custom properties.
+// Same source file compiles to light values in web.assets_web and to dark
+// values in web.assets_web_dark.
+:root {
+    color-scheme: #{$rs-scheme};
+    --rs-page-bg: #{$rs-page-bg};
+    --rs-surface: #{$rs-surface};
+    --rs-surface-2: #{$rs-surface-2};
+    --rs-surface-3: #{$rs-surface-3};
+    --rs-text: #{$rs-text};
+    --rs-text-muted: #{$rs-text-muted};
+    --rs-text-subtle: #{$rs-text-subtle};
+    --rs-border: #{$rs-border};
+    --rs-border-soft: #{$rs-border-soft};
+    --rs-primary: #{$rs-primary};
+    --rs-primary-hover: #{$rs-primary-hover};
+    --rs-primary-fg: #{$rs-primary-fg};
+    --rs-active-bg: #{$rs-active-bg};
+    --rs-hover-bg: #{$rs-hover-bg};
+    --rs-focus-ring: #{$rs-focus-ring};
+    --rs-sidebar-bg: #{$rs-sidebar-bg};
+    --rs-topbar-bg: #{$rs-topbar-bg};
+    --rs-shadow-sm: #{$rs-shadow-sm};
+    --rs-shadow-md: #{$rs-shadow-md};
+    --rs-shadow-btn: #{$rs-shadow-btn};
+    --rs-backdrop: #{$rs-backdrop};
+    --rs-success: #{$rs-success};
+
+    --rs-sidebar-w: 264px;
+    --rs-sidebar-w-collapsed: 76px;
+    --rs-radius-sm: 8px;
+    --rs-radius: 10px;
+    --rs-radius-md: 12px;
+    --rs-radius-lg: 14px;
+    --rs-ease: cubic-bezier(.2, .7, .2, 1);
+}

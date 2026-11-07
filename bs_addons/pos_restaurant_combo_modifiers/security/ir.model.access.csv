@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_modifier_group_user,pos.modifier.group user,model_pos_modifier_group,point_of_sale.group_pos_user,1,0,0,0
+access_pos_modifier_group_manager,pos.modifier.group manager,model_pos_modifier_group,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_modifier_option_user,pos.modifier.option user,model_pos_modifier_option,point_of_sale.group_pos_user,1,0,0,0
+access_pos_modifier_option_manager,pos.modifier.option manager,model_pos_modifier_option,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_product_modifier_group_line_user,pos.product.modifier.group.line user,model_pos_product_modifier_group_line,point_of_sale.group_pos_user,1,0,0,0
+access_pos_product_modifier_group_line_manager,pos.product.modifier.group.line manager,model_pos_product_modifier_group_line,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_product_modifier_option_line_user,pos.product.modifier.option.line user,model_pos_product_modifier_option_line,point_of_sale.group_pos_user,1,0,0,0
+access_pos_product_modifier_option_line_manager,pos.product.modifier.option.line manager,model_pos_product_modifier_option_line,point_of_sale.group_pos_manager,1,1,1,1

@@ -1,0 +1,63 @@
+// ============================================================================
+// Resta look for app screens that hard-code Odoo artwork
+// (selectors simply match nothing when the app is not installed)
+// ============================================================================
+
+// Enterprise home-menu wallpaper (also used behind the Barcode app)
+body.o_home_menu_background,
+.o_web_client.o_home_menu_background,
+.o_home_menu_background {
+    --homeMenu-bg-color: var(--rs-page-bg);
+    --homeMenu-bg-image: none;
+    background-image: none !important;
+    background-color: var(--rs-page-bg) !important;
+}
+
+// Barcode app: replace the purple barcode picture with a Resta one
+.o_barcode_tap_to_scan {
+    position: relative;
+
+    > img[src*="stock_barcode/static/img/barcode"] {
+        display: none;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        width: 260px;
+        max-width: 70vw;
+        aspect-ratio: 100 / 66;
+        margin: 8px auto 4px;
+        background-color: var(--rs-text);
+        -webkit-mask: url("/resta_sidebar_theme/static/img/resta-barcode.svg") center / contain no-repeat;
+        mask: url("/resta_sidebar_theme/static/img/resta-barcode.svg") center / contain no-repeat;
+    }
+
+    // Odoo's animated scan line, in Resta orange
+    .o_stock_barcode_laser {
+        background: var(--rs-primary) !important;
+        border-radius: 3px;
+        box-shadow: 0 0 12px var(--rs-primary);
+    }
+}
+
+// Empty-state illustrations ("no record yet" screens)
+$rs-empty-suffix: if($rs-scheme == dark, "-dark", "");
+.o_view_nocontent .o_nocontent_help {
+    .o_view_nocontent_smiling_face::before {
+        background-image: url("/resta_sidebar_theme/static/img/empty-smiling#{$rs-empty-suffix}.svg") !important;
+    }
+    .o_view_nocontent_neutral_face::before {
+        background-image: url("/resta_sidebar_theme/static/img/empty-neutral#{$rs-empty-suffix}.svg") !important;
+    }
+    // Other app-specific illustrations (stock, sign, VoIP, …): shift Odoo's
+    // purple toward Resta orange
+    [class*="o_view_nocontent_"]:not(.o_view_nocontent_smiling_face):not(.o_view_nocontent_neutral_face)::before {
+        filter: hue-rotate(60deg) saturate(1.8);
+    }
+}
+
+// CRM "stale" badge: Odoo pink → Resta warning
+.o_mail_resource_rotting_bg {
+    background-color: $o-danger !important;
+}

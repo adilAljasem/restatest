@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Resta favicon (website keeps its own x_icon when set) -->
+    <template id="layout_favicon" inherit_id="web.layout" name="Resta favicon">
+        <xpath expr="//link[@rel='shortcut icon']" position="replace">
+            <link t-if="x_icon" type="image/x-icon" rel="shortcut icon" t-att-href="x_icon"/>
+            <link t-else="" type="image/svg+xml" rel="icon" href="/resta_sidebar_theme/static/img/favicon.svg"/>
+        </xpath>
+    </template>
+
+    <!-- Login page: Resta logo, full and unclipped -->
+    <template id="login_layout_logo" inherit_id="web.login_layout" name="Resta login logo">
+        <xpath expr="//div[hasclass('card-body')]/div[1]/img" position="attributes">
+            <attribute name="t-attf-src">/resta_theme/login_logo</attribute>
+            <attribute name="class">rs_login_logo</attribute>
+            <attribute name="style">max-height:56px; max-width:100%; width:auto; object-fit:contain</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('card-body')]/.." position="attributes">
+            <attribute name="style">max-width: 380px;</attribute>
+        </xpath>
+    </template>
+</odoo>

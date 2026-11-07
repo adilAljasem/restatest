@@ -1,0 +1,195 @@
+# Arabic translation for pos_blind_closing
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Blind Closing"
+msgstr "الإقفال الأعمى"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing_manager_visible
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing_manager_visible
+msgid "Show Amounts to POS Managers"
+msgstr "إظهار المبالغ لمدراء نقطة البيع"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing_empty_inputs
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing_empty_inputs
+msgid "Force Cashier Entry"
+msgstr "إلزام الكاشير بالإدخال"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing_show_all_banks
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing_show_all_banks
+msgid "Show All Bank Methods"
+msgstr "إظهار جميع طرق الدفع البنكية"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing_hide_reports
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing_hide_reports
+msgid "Hide Sales Reports"
+msgstr "إخفاء تقارير المبيعات"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing_confirm
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing_confirm
+msgid "Confirm Before Closing"
+msgstr "تأكيد قبل الإقفال"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,field_description:pos_blind_closing.field_pos_config__blind_closing_log
+#: model:ir.model.fields,field_description:pos_blind_closing.field_res_config_settings__pos_blind_closing_log
+msgid "Log Counts in Session"
+msgstr "تسجيل الجرد في سجل الجلسة"
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing
+msgid "Hide every expected amount (sales, cash, card totals, differences) in the closing popup. The cashier enters what was actually counted and the differences are calculated on the server."
+msgstr "إخفاء جميع المبالغ المتوقعة (المبيعات، النقد، إجماليات الشبكة، الفروقات) في شاشة الإقفال. يُدخل الكاشير المبالغ الفعلية وتُحسب الفروقات في السيرفر."
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing_manager_visible
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing_manager_visible
+msgid "Users in the Point of Sale / Administrator group see the standard closing popup."
+msgstr "مستخدمو مجموعة مدير نقطة البيع يشاهدون شاشة الإقفال العادية."
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing_empty_inputs
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing_empty_inputs
+msgid "All count fields start empty and the register cannot be closed until every field is filled."
+msgstr "تبدأ جميع حقول الجرد فارغة، ولا يمكن الإقفال قبل تعبئتها كلها."
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing_show_all_banks
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing_show_all_banks
+msgid "Show a count field for every bank payment method, even if it had no sales, so the cashier cannot tell which methods were used."
+msgstr "إظهار حقل جرد لكل طريقة دفع بنكية حتى لو لم تكن عليها مبيعات، حتى لا يعرف الكاشير أي الطرق استُخدمت."
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing_hide_reports
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing_hide_reports
+msgid "Hide the Daily Sale and Print Sales Details buttons in the closing popup."
+msgstr "إخفاء زري المبيعات اليومية وطباعة تفاصيل المبيعات في شاشة الإقفال."
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing_confirm
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing_confirm
+msgid "Show a confirmation with the entered amounts before closing the register."
+msgstr "إظهار نافذة تأكيد بالمبالغ المُدخلة قبل إقفال الصندوق."
+
+#. module: pos_blind_closing
+#: model:ir.model.fields,help:pos_blind_closing.field_pos_config__blind_closing_log
+#: model:ir.model.fields,help:pos_blind_closing.field_res_config_settings__pos_blind_closing_log
+msgid "Post expected, counted and difference per payment method in the session chatter (back-end only)."
+msgstr "تسجيل المتوقع والفعلي والفرق لكل طريقة دفع في سجل الجلسة (يظهر في الواجهة الخلفية فقط)."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Hide all expected amounts in the closing popup. The cashier enters the counted amounts only."
+msgstr "إخفاء جميع المبالغ المتوقعة في شاشة الإقفال، ويُدخل الكاشير المبالغ الفعلية فقط."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "POS managers see the standard closing popup with expected amounts."
+msgstr "مدراء نقطة البيع يشاهدون شاشة الإقفال العادية مع المبالغ المتوقعة."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Count fields start empty; the register cannot be closed until every field is filled."
+msgstr "تبدأ حقول الجرد فارغة، ولا يمكن الإقفال قبل تعبئتها كلها."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Show a count field for every bank method, even without sales."
+msgstr "إظهار حقل جرد لكل طريقة دفع بنكية حتى بدون مبيعات."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Hide the Daily Sale and sales details buttons in the closing popup."
+msgstr "إخفاء زري المبيعات اليومية وتفاصيل المبيعات في شاشة الإقفال."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Ask the cashier to confirm the entered amounts before closing."
+msgstr "مطالبة الكاشير بتأكيد المبالغ المُدخلة قبل الإقفال."
+
+#. module: pos_blind_closing
+#: model_terms:ir.ui.view,arch_db:pos_blind_closing.res_config_settings_view_form_blind_closing
+msgid "Post expected, counted and difference per method in the session chatter."
+msgstr "تسجيل المتوقع والفعلي والفرق لكل طريقة في سجل الجلسة."
+
+#. module: pos_blind_closing
+#. odoo-javascript
+#: code:addons/pos_blind_closing/static/src/closing_popup/closing_popup.xml:0
+msgid "Blind count"
+msgstr "الجرد الفعلي"
+
+#. module: pos_blind_closing
+#. odoo-javascript
+#: code:addons/pos_blind_closing/static/src/closing_popup/closing_popup.xml:0
+msgid "Count the cash in the drawer and the card terminal totals, then enter the actual amounts carefully."
+msgstr "اعدد النقد في الدرج وإجماليات أجهزة الشبكة، ثم أدخل المبالغ الفعلية بدقة."
+
+#. module: pos_blind_closing
+#. odoo-javascript
+#: code:addons/pos_blind_closing/static/src/closing_popup/closing_popup.js:0
+msgid "Confirm counted amounts"
+msgstr "تأكيد المبالغ المُدخلة"
+
+#. module: pos_blind_closing
+#. odoo-javascript
+#: code:addons/pos_blind_closing/static/src/closing_popup/closing_popup.js:0
+msgid "Please make sure the amounts below are correct. They cannot be changed after closing."
+msgstr "تأكد من صحة المبالغ التالية، لا يمكن تعديلها بعد الإقفال."
+
+#. module: pos_blind_closing
+#. odoo-javascript
+#: code:addons/pos_blind_closing/static/src/closing_popup/closing_popup.js:0
+msgid "Close Register"
+msgstr "إقفال الصندوق"
+
+#. module: pos_blind_closing
+#. odoo-javascript
+#: code:addons/pos_blind_closing/static/src/closing_popup/closing_popup.js:0
+msgid "Back"
+msgstr "رجوع"
+
+#. module: pos_blind_closing
+#. odoo-python
+#: code:addons/pos_blind_closing/models/pos_session.py:0
+msgid "Blind closing"
+msgstr "الإقفال الأعمى"
+
+#. module: pos_blind_closing
+#. odoo-python
+#: code:addons/pos_blind_closing/models/pos_session.py:0
+msgid "Cash"
+msgstr "النقد"
+
+#. module: pos_blind_closing
+#. odoo-python
+#: code:addons/pos_blind_closing/models/pos_session.py:0
+msgid "Expected"
+msgstr "المتوقع"
+
+#. module: pos_blind_closing
+#. odoo-python
+#: code:addons/pos_blind_closing/models/pos_session.py:0
+msgid "Counted"
+msgstr "الفعلي"
+
+#. module: pos_blind_closing
+#. odoo-python
+#: code:addons/pos_blind_closing/models/pos_session.py:0
+msgid "Difference"
+msgstr "الفرق"

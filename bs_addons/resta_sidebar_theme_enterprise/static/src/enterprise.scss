@@ -1,0 +1,4 @@
+// Hide the enterprise home-menu toggle: the sidebar replaces it.
+.o_main_navbar .o_menu_toggle {
+    display: none !important;
+}

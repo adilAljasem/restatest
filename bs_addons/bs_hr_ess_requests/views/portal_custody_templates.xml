@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_custody" name="ESS Custody">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">My custody</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-grid mb-3">
+                <a href="/my/hr/custody/new?type=new" class="ess-tile"><i class="fa fa-plus"/><span>New item</span></a>
+                <a href="/my/hr/custody/new?type=replace" class="ess-tile"><i class="fa fa-refresh"/><span>Replacement</span></a>
+                <a href="/my/hr/custody/new?type=return" class="ess-tile"><i class="fa fa-undo"/><span>Return</span></a>
+                <a href="/my/hr/custody/new?type=damage" class="ess-tile"><i class="fa fa-chain-broken"/><span>Report damage</span></a>
+                <a href="/my/hr/custody/new?type=loss" class="ess-tile"><i class="fa fa-question-circle"/><span>Report loss</span></a>
+            </div>
+            <h6 class="ess-section-title">Items in my custody (<t t-out="len(holdings)"/>)</h6>
+            <div class="ess-list" t-if="holdings">
+                <div t-foreach="holdings" t-as="holding" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold" t-out="holding.display_name"/>
+                            <div class="small text-muted">
+                                Qty <t t-out="'%g' % holding.quantity"/> · received <t t-out="ess_fdate(holding.date_received)"/>
+                            </div>
+                            <div class="small" t-if="holding.next_due_date">
+                                Renewal: <t t-out="ess_fdate(holding.next_due_date)"/>
+                            </div>
+                        </div>
+                        <span t-if="holding.ack_date" class="ess-badge ess-badge-success"><i class="fa fa-check"/> Acknowledged</span>
+                        <form t-else="" t-attf-action="/my/hr/custody/#{holding.id}/ack" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <button type="submit" class="btn btn-sm btn-primary">Acknowledge receipt</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-archive"/><p>No item in your custody.</p></div>
+
+            <t t-if="custody_requests">
+                <h6 class="ess-section-title">My custody requests</h6>
+                <div class="ess-list">
+                    <a t-foreach="custody_requests" t-as="rec" t-att-href="rec._ess_portal_url()" class="ess-list-item">
+                        <div class="d-flex justify-content-between align-items-start gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold text-truncate" t-out="rec._ess_portal_summary()"/>
+                                <div class="small text-muted" t-out="rec.name"/>
+                            </div>
+                            <t t-call="bs_hr_ess_base.ess_state_badge"/>
+                        </div>
+                    </a>
+                </div>
+            </t>
+            <t t-if="past_holdings">
+                <h6 class="ess-section-title">History</h6>
+                <div class="ess-list">
+                    <div t-foreach="past_holdings" t-as="holding" class="ess-list-item d-flex justify-content-between">
+                        <span t-out="holding.display_name"/>
+                        <span class="small text-muted" t-out="ess_state_label(holding)"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="ess_custody_new" name="ESS New custody request">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Custody request</t>
+            <t t-set="ess_back" t-value="'/my/hr/custody'"/>
+            <div class="ess-segment mb-3">
+                <a href="/my/hr/custody/new?type=new" t-attf-class="#{'active' if request_type == 'new' else ''}">New</a>
+                <a href="/my/hr/custody/new?type=replace" t-attf-class="#{'active' if request_type == 'replace' else ''}">Replace</a>
+                <a href="/my/hr/custody/new?type=return" t-attf-class="#{'active' if request_type == 'return' else ''}">Return</a>
+                <a href="/my/hr/custody/new?type=damage" t-attf-class="#{'active' if request_type == 'damage' else ''}">Damage</a>
+                <a href="/my/hr/custody/new?type=loss" t-attf-class="#{'active' if request_type == 'loss' else ''}">Loss</a>
+            </div>
+            <form action="/my/hr/custody/new" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="request_type" t-att-value="request_type"/>
+                <t t-if="request_type == 'new'">
+                    <div t-if="not products" class="ess-empty small"><p>No custody item is available.</p></div>
+                    <label for="ess_cus_product">Item</label>
+                    <select id="ess_cus_product" name="product_id" class="form-select" required="required">
+                        <option value="">-</option>
+                        <t t-foreach="products" t-as="product">
+                            <option t-att-value="product.id"><t t-out="product.display_name"/><t t-if="product.ess_needs_size"> (size)</t></option>
+                        </t>
+                    </select>
+                    <label for="ess_cus_qty">Quantity</label>
+                    <input id="ess_cus_qty" type="number" name="quantity" class="form-control" value="1" min="1" step="1"/>
+                </t>
+                <t t-else="">
+                    <div t-if="not holdings" class="ess-empty small"><p>You do not hold any item.</p></div>
+                    <label for="ess_cus_holding">Item in my custody</label>
+                    <select id="ess_cus_holding" name="holding_id" class="form-select" required="required">
+                        <option value="">-</option>
+                        <t t-foreach="holdings" t-as="holding">
+                            <option t-att-value="holding.id" t-out="holding.display_name"/>
+                        </t>
+                    </select>
+                </t>
+                <t t-if="request_type in ('new', 'replace')">
+                    <label for="ess_cus_size">Size</label>
+                    <input id="ess_cus_size" type="text" name="size" class="form-control" placeholder="e.g. M, 42"/>
+                </t>
+                <label for="ess_cus_reason">
+                    <t t-if="request_type in ('damage', 'loss')">What happened?</t>
+                    <t t-else="">Reason</t>
+                </label>
+                <textarea id="ess_cus_reason" name="reason" class="form-control" rows="3"
+                          t-att-required="'required' if request_type in ('damage', 'loss') else None"/>
+                <t t-if="request_type in ('damage', 'loss')">
+                    <label for="ess_cus_photo">Photo / report</label>
+                    <input id="ess_cus_photo" type="file" name="attachments" class="form-control" accept="image/*" capture="environment" multiple="multiple"/>
+                    <p class="small text-muted mt-2">The value of a lost or damaged item may be deducted from your salary after approval.</p>
+                </t>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send request</button>
+            </form>
+        </t>
+    </template>
+</odoo>

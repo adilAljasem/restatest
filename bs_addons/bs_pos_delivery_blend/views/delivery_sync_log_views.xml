@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_sync_log_form_blend_force" model="ir.ui.view">
+        <field name="name">bs.delivery.sync.log.form.blend.force</field>
+        <field name="model">bs.delivery.sync.log</field>
+        <field name="inherit_id" ref="bs_pos_delivery_core.view_bs_delivery_sync_log_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_retry_processing']" position="after">
+                <field name="can_force_send" invisible="1"/>
+                <button name="action_force_send_to_branch"
+                        type="object"
+                        string="Force Send to Branch"
+                        class="btn-danger"
+                        icon="fa-paper-plane"
+                        groups="bs_pos_delivery_core.group_delivery_manager,bs_pos_delivery_core.group_delivery_integration_manager"
+                        invisible="not can_force_send"
+                        confirm="Send this Blend order to the branch cashier and kitchen even though Odoo rejected it? Amounts will follow the Odoo product prices and taxes. Confirm with Blend that the order is still live before sending."/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

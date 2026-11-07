@@ -1,0 +1,22 @@
+# Arabic translation of resta_edition_dinein
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: resta_edition_dinein
+#. odoo-python
+#: code:addons/resta_edition_dinein/models/pos_config.py:0
+msgid "Kitchen"
+msgstr "المطبخ"
+
+#. module: resta_edition_dinein
+#. odoo-python
+#: code:addons/resta_edition_dinein/models/pos_config.py:0
+msgid "Drinks Bar"
+msgstr "بار المشروبات"
+

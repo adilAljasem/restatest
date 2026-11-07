@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_kitchen_flow" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.kitchen.flow</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pos_restaurant.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='restaurant_section']" position="inside">
+                <setting id="kitchen_flow_debug"
+                         string="Kitchen Flow Diagnostics"
+                         help="Store exact timings for each kitchen display, printing and synchronization operation."
+                         invisible="not pos_module_pos_restaurant or is_kiosk_mode">
+                    <field name="pos_kitchen_flow_debug"/>
+                </setting>
+                <setting id="kitchen_flow_notifications"
+                         string="Kitchen Sending Status"
+                         help="Show sending, duplicate-click prevention and completion messages."
+                         invisible="not pos_module_pos_restaurant or is_kiosk_mode">
+                    <field name="pos_kitchen_flow_notifications"/>
+                </setting>
+                <setting id="kitchen_flow_priority"
+                         string="Kitchen Delivery Priority"
+                         help="Keep Odoo's printer-first flow, send to the display first, or run both in parallel."
+                         invisible="not pos_module_pos_restaurant or is_kiosk_mode">
+                    <field name="pos_kitchen_flow_priority" class="w-100"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

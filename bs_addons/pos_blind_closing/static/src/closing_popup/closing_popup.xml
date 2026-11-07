@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_blind_closing.ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+
+        <!-- Header: "N orders: amount" -->
+        <xpath expr="//div[hasclass('total-orders')]" position="attributes">
+            <attribute name="t-if">!props.blind_closing</attribute>
+        </xpath>
+
+        <!-- Overview: expected, opening, payments, cash in/out, counted, difference -->
+        <xpath expr="//div[hasclass('payment-methods-overview')]" position="attributes">
+            <attribute name="t-if">!props.blind_closing</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-methods-overview')]" position="before">
+            <div t-if="props.blind_closing" class="alert alert-info mb-3" role="alert">
+                <div class="fw-bold">Blind count</div>
+                <div>Count the cash in the drawer and the card terminal totals, then enter the actual amounts carefully.</div>
+            </div>
+        </xpath>
+        <xpath expr="//hr" position="attributes">
+            <attribute name="t-if">!props.blind_closing</attribute>
+        </xpath>
+
+        <!-- Remove the auto-fill (copy expected amount) buttons -->
+        <xpath expr="//button[@t-on-click='autoFillCashCount']" position="attributes">
+            <attribute name="t-if">!props.blind_closing</attribute>
+        </xpath>
+        <xpath expr="//button[@t-on-click='() => this.autoFillPMCount(pm.id)']" position="attributes">
+            <attribute name="t-if">!props.blind_closing</attribute>
+        </xpath>
+
+        <!-- Bank count fields: all of them, or only methods with sales (setting) -->
+        <xpath expr="//t[@t-if='_showDiff']" position="attributes">
+            <attribute name="t-if">props.blind_closing ? isBlindBankVisible(pm) : _showDiff</attribute>
+        </xpath>
+
+        <!-- Sales reports show totals (setting) -->
+        <xpath expr="//button[@t-on-click='downloadSalesReport']" position="attributes">
+            <attribute name="t-if">!(props.blind_closing and props.blind_closing.hide_reports)</attribute>
+        </xpath>
+        <xpath expr="//button[@t-if='hardwareProxy.printer']" position="attributes">
+            <attribute name="t-if">hardwareProxy.printer and !(props.blind_closing and props.blind_closing.hide_reports)</attribute>
+        </xpath>
+
+    </t>
+</templates>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="bs_hr_ess_reports.Dashboard">
+        <div class="o_ess_dashboard o_action h-100 overflow-auto">
+            <div class="o_ess_dash_head d-flex flex-wrap align-items-center gap-3 px-4 py-3 border-bottom">
+                <h3 class="m-0 flex-grow-1">HR Dashboard</h3>
+                <select class="form-select w-auto" t-on-change="onLocation">
+                    <option value="" t-att-selected="!state.location">All branches</option>
+                    <t t-foreach="state.data.locations" t-as="loc" t-key="loc.id">
+                        <option t-att-value="loc.id" t-att-selected="loc.id + '' === state.location" t-esc="loc.name"/>
+                    </t>
+                </select>
+                <button class="btn btn-secondary" t-on-click="load"><i class="fa fa-refresh"/></button>
+            </div>
+            <div class="px-4 py-3">
+                <t t-foreach="groups" t-as="group" t-key="group[0]">
+                    <t t-if="tilesOf(group[0]).length">
+                        <h6 class="o_ess_dash_group text-uppercase text-muted mt-3 mb-2" t-esc="group[1]"/>
+                        <div class="o_ess_dash_tiles">
+                            <t t-foreach="tilesOf(group[0])" t-as="tile" t-key="tile.key">
+                                <div t-attf-class="o_ess_tile o_ess_tile_{{tile.tone}} {{tile.action ? 'o_ess_clickable' : ''}}"
+                                     t-on-click="() => this.open(tile)">
+                                    <div class="o_ess_tile_value"><t t-esc="tile.value"/> <small t-esc="tile.suffix"/></div>
+                                    <div class="o_ess_tile_label" t-esc="tile.label"/>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+                <h6 class="o_ess_dash_group text-uppercase text-muted mt-4 mb-2">By branch</h6>
+                <table class="table table-hover bg-view">
+                    <thead>
+                        <tr>
+                            <th>Branch</th><th class="text-end">Employees</th><th class="text-end">Saudis</th>
+                            <th class="text-end">Present now</th><th class="text-end">Late minutes (month)</th>
+                            <th class="text-end">Expired documents</th><th class="text-end">Pending approvals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state.data.branches" t-as="b" t-key="b.id" class="o_ess_clickable" t-on-click="() => this.openBranch(b)">
+                            <td t-esc="b.name"/>
+                            <td class="text-end" t-esc="b.headcount"/>
+                            <td class="text-end" t-esc="b.saudi"/>
+                            <td class="text-end" t-esc="b.present"/>
+                            <td class="text-end" t-esc="b.late_minutes"/>
+                            <td class="text-end" t-esc="b.doc_expired"/>
+                            <td class="text-end" t-esc="b.pending"/>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+</templates>

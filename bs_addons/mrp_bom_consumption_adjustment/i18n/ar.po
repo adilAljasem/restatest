@@ -1,0 +1,787 @@
+# Translation of Odoo Server.
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.actions.act_window,name:mrp_bom_consumption_adjustment.action_adjustment
+#: model:ir.ui.menu,name:mrp_bom_consumption_adjustment.menu_adjustment
+msgid "BOM Consumption Adjustments"
+msgstr "تسويات استهلاك الوصفات"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_product_category__recipe_adjustment_location_id
+msgid "Recipe Adjustment Location"
+msgstr "موقع تسوية فروق الوصفات"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.category_recipe_location_form
+msgid "Recipe Adjustments"
+msgstr "تسويات الوصفات"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Review"
+msgstr "مراجعة وحساب الفروق"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Reset to Draft"
+msgstr "رجوع للمسودة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields.selection,name:mrp_bom_consumption_adjustment.selection__mrp_bom_consumption_adjustment__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields.selection,name:mrp_bom_consumption_adjustment.selection__mrp_bom_consumption_adjustment__state__reviewed
+msgid "Reviewed"
+msgstr "تمت المراجعة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields.selection,name:mrp_bom_consumption_adjustment.selection__mrp_bom_consumption_adjustment__state__confirmed
+msgid "Confirmed"
+msgstr "تم التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Execution Sources"
+msgstr "مصادر التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Stock Moves"
+msgstr "حركات التسوية المخزنية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Journal Entry"
+msgstr "القيد المحاسبي"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "BOM Output Base"
+msgstr "كمية إنتاج الوصفة الأساسية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Components"
+msgstr "المكونات"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Review Details"
+msgstr "تفاصيل المراجعة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "New component quantities apply to the BOM output base shown above. For nested kits, see the actual stock components and their units in Review Details."
+msgstr "كميات المكونات الجديدة تخص كمية إنتاج الوصفة الأساسية الموضحة أعلاه. للمجموعات المتداخلة، راجع الخامات الفعلية ووحداتها في تفاصيل المراجعة."
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Reason for the recipe correction..."
+msgstr "سبب تصحيح الوصفة..."
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Validate Executed Quantity"
+msgstr "اعتماد كمية التنفيذ الموثقة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Open Execution Document"
+msgstr "فتح مستند التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.detail_form
+msgid "Lot / Serial Allocations"
+msgstr "توزيع الدُفعات والأرقام التسلسلية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__company_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__company_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__company_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__company_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_allocation__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__date
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__bom_id
+msgid "BOM"
+msgstr "قائمة مكونات الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__bom_type
+msgid "BOM Type"
+msgstr "نوع الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__product_tmpl_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__product_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__product_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_allocation__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__product_id
+msgid "Product Variant"
+msgstr "متغير المنتج"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__bom_quantity
+msgid "Bom Quantity"
+msgstr "كمية إنتاج الوصفة الأساسية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__bom_uom_id
+msgid "Bom Uom"
+msgstr "وحدة إنتاج الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__date_from
+msgid "Date From"
+msgstr "من تاريخ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__date_to
+msgid "Date To"
+msgstr "إلى تاريخ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__warehouse_id
+msgid "Warehouse"
+msgstr "المخزن"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__location_id
+msgid "Stock Location"
+msgstr "الموقع المخزني"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__analytic_account_id
+msgid "Analytic Account"
+msgstr "مركز التكلفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__notes
+msgid "Notes"
+msgstr "سبب التعديل"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__apply_change
+msgid "Apply Change"
+msgstr "تطبيق التغيير"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__bom_line_id
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__bom_line_id
+msgid "Bom Line"
+msgstr "سطر الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__product_id
+msgid "Component"
+msgstr "الخامة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__uom_id
+msgid "UoM"
+msgstr "وحدة القياس"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__old_quantity
+msgid "Current BOM Quantity"
+msgstr "الكمية الحالية في الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__new_quantity
+msgid "New BOM Quantity"
+msgstr "الكمية الجديدة في الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__recorded_quantity
+msgid "Recorded Consumption"
+msgstr "الاستهلاك المسجل"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__required_quantity
+msgid "Required Consumption"
+msgstr "الاستهلاك المطلوب"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__previous_quantity
+msgid "Previous Adjustments"
+msgstr "التسويات السابقة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__adjustment_quantity
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__adjustment_quantity
+msgid "Adjustment Quantity"
+msgstr "فرق التسوية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__unit_cost
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__unit_cost
+msgid "Unit Cost"
+msgstr "تكلفة الوحدة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__adjustment_value
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__adjustment_value
+msgid "Adjustment Value"
+msgstr "قيمة التسوية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_line__exploded
+msgid "Exploded Kit (see details)"
+msgstr "مجموعة متداخلة (راجع التفاصيل)"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__key
+msgid "Key"
+msgstr "مرجع مصدر التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__production_id
+msgid "Production"
+msgstr "أمر التصنيع"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__unbuild_id
+msgid "Unbuild"
+msgstr "أمر التفكيك"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__picking_id
+msgid "Picking"
+msgstr "عملية المخزون"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__execution_date
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__execution_date
+msgid "Execution Date"
+msgstr "تاريخ التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__quantity
+msgid "Executed Quantity (BOM UoM)"
+msgstr "كمية التنفيذ بوحدة إنتاج الوصفة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__basis
+msgid "Basis"
+msgstr "أساس الحساب"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__needs_review
+msgid "Needs Review"
+msgstr "تحتاج مراجعة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__evidence
+msgid "Evidence"
+msgstr "مستندات وأدلة التحقق"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__verified_by
+msgid "Verified By"
+msgstr "اعتمد بواسطة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__verified_on
+msgid "Verified On"
+msgstr "تاريخ الاعتماد"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__source_id
+msgid "Source"
+msgstr "مصدر التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__leaf_bom_line_id
+msgid "Leaf Bom Line"
+msgstr "سطر الخامة الفعلية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__executed_quantity
+msgid "Executed Quantity"
+msgstr "الكمية المنفذة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__recorded_quantity
+msgid "Recorded Quantity"
+msgstr "الاستهلاك المسجل"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__required_quantity
+msgid "Required Quantity"
+msgstr "الاستهلاك المطلوب"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_detail__previous_quantity
+msgid "Previous Quantity"
+msgstr "التسويات السابقة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_allocation__lot_id
+msgid "Lot"
+msgstr "الدفعة / الرقم التسلسلي"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_allocation__quantity
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only manufacturing administrators can execute adjustments."
+msgstr "يسمح لمسؤولي التصنيع فقط بتنفيذ التسويات."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only draft adjustments can be deleted."
+msgstr "يمكن حذف التسويات في حالة المسودة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "BOM component lines changed. Select the BOM again to reload them."
+msgstr "تغيرت أسطر مكونات الوصفة. اختر الوصفة مجددًا لإعادة تحميلها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "BOM base quantity changed. Select the BOM again to reload its quantities."
+msgstr "تغيرت كمية إنتاج الوصفة الأساسية. اختر الوصفة مجددًا لإعادة تحميل الكميات."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Review the adjustment before confirming."
+msgstr "راجع التسوية قبل تأكيدها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Sources or previous corrections changed. Reset to draft and Review again."
+msgstr "تغيرت المصادر أو التسويات السابقة. أعد المستند إلى مسودة ثم راجعه مجددًا."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Configure the company stock journal."
+msgstr "اضبط دفتر يومية المخزون للشركة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Components can only be removed in draft."
+msgstr "يمكن إزالة المكونات في حالة المسودة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Sources are generated by Review."
+msgstr "تنشأ مصادر التنفيذ باستخدام زر المراجعة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only manufacturing administrators can verify execution sources."
+msgstr "يسمح لمسؤولي التصنيع فقط باعتماد مصادر التنفيذ."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Review details are generated by the document."
+msgstr "ينشئ المستند تفاصيل المراجعة تلقائيًا."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Review details are managed by the document."
+msgstr "يدير المستند تفاصيل المراجعة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Choose an inventory loss location in the active company or a shared location."
+msgstr "اختر موقع خسائر مخزون تابعًا للشركة النشطة أو موقعًا مشتركًا."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Review and confirm using the document buttons."
+msgstr "استخدم أزرار المستند للمراجعة والتأكيد."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Confirmed adjustments are read-only."
+msgstr "التسويات المؤكدة للقراءة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Use the document buttons to change generated data."
+msgstr "استخدم أزرار المستند لتغيير البيانات المولدة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Reset to draft before editing a reviewed adjustment."
+msgstr "أعد المستند إلى مسودة قبل تعديل تسوية تمت مراجعتها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Date From must not be after Date To."
+msgstr "يجب ألا يتجاوز تاريخ البداية تاريخ النهاية."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "The BOM must belong to the adjustment company."
+msgstr "يجب أن تتبع الوصفة شركة التسوية."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "The stock location must be internal and inside the warehouse."
+msgstr "يجب أن يكون الموقع داخليًا وضمن المخزن المختار."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Confirmed adjustments cannot be reset."
+msgstr "لا يمكن إعادة التسويات المؤكدة إلى مسودة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Recursive kit structure."
+msgstr "تحتوي الوصفة على تداخل دائري للمجموعات."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Source movements changed: %s. Review the execution basis."
+msgstr "تغيرت حركات المصدر: %s. راجع أساس التنفيذ."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Execution quantity changed since the first review: %s"
+msgstr "تغيرت كمية التنفيذ منذ المراجعة الأولى: %s"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Actual completed production quantity"
+msgstr "كمية الإنتاج الفعلية المكتملة"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Actual completed unbuild quantity (negative production)"
+msgstr "كمية التفكيك الفعلية المكتملة (إنتاج سالب)"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "BOM components changed. Select the BOM again to reload them."
+msgstr "تغيرت مكونات الوصفة. اختر الوصفة مجددًا لإعادة تحميلها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "This adjustment is already confirmed."
+msgstr "هذه التسوية مؤكدة بالفعل."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Select at least one component to change."
+msgstr "حدد مكونًا واحدًا على الأقل لتعديله."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "No completed executions were found in this period."
+msgstr "لم يُعثر على عمليات تنفيذ مكتملة خلال الفترة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Some execution quantities require evidence. Open Execution Sources, enter verified quantities and evidence, validate them, then Review again."
+msgstr "تحتاج بعض كميات التنفيذ إلى توثيق. افتح مصادر التنفيذ وأدخل الكميات الموثقة وأدلتها ثم اعتمدها وأعد المراجعة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Configure automated valuation, the stock valuation account, and a distinct recipe loss account/location for %s."
+msgstr "اضبط التقييم الآلي وحساب تقييم المخزون وموقع وحساب مستقلين لفروق الوصفات للخامة %s."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Stock valuation differs from the frozen adjustment value."
+msgstr "يختلف تقييم حركة المخزون عن قيمة التسوية المحفوظة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "New BOM quantity cannot be negative."
+msgstr "لا يمكن أن تكون الكمية الجديدة في الوصفة سالبة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only unresolved execution quantities and their evidence can be edited."
+msgstr "يمكن تعديل كميات التنفيذ غير المعتمدة وأدلتها فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Enter evidence for the executed quantity before verification."
+msgstr "أدخل أدلة كمية التنفيذ قبل اعتمادها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Review details are read-only except lot allocations before confirmation."
+msgstr "تفاصيل المراجعة للقراءة فقط باستثناء توزيع الدفعات قبل التأكيد."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Confirmed lot allocations are read-only."
+msgstr "توزيعات الدفعات المؤكدة للقراءة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "The kit variant cannot be identified for %s."
+msgstr "تعذر تحديد متغير منتج المجموعة للعملية %s."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Frozen kit explosion coefficients; actual executed component quantities"
+msgstr "معاملات تفجير المجموعة المحفوظة وكميات المكونات المنفذة فعليًا"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Historical or partial kit: enter the verified executed quantity and explain its evidence."
+msgstr "مجموعة تاريخية أو جزئية: أدخل كمية التنفيذ الموثقة واشرح أدلتها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "The exploded BOM structure changed. Reload the BOM."
+msgstr "تغيرت بنية المكونات المتداخلة. أعد تحميل الوصفة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Allocate the entire adjustment quantity to lots/serials for %s in Review Details."
+msgstr "وزع كامل كمية التسوية على الدفعات أو الأرقام التسلسلية للخامة %s في تفاصيل المراجعة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Invalid lot allocation for %s."
+msgstr "توزيع الدفعات غير صالح للخامة %s."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Each serial number must be allocated exactly one unit."
+msgstr "يجب تخصيص وحدة واحدة بالضبط لكل رقم تسلسلي."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "An adjustment account is unavailable in this company: %s"
+msgstr "حساب التسوية غير متاح في هذه الشركة: %s"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Components can only be edited in draft."
+msgstr "يمكن تعديل المكونات في حالة المسودة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Component data must match the selected BOM line."
+msgstr "يجب أن تتطابق بيانات المكون مع سطر الوصفة المحدد."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only the checkbox and new quantity can be edited in draft."
+msgstr "يمكن تعديل خانة الاختيار والكمية الجديدة فقط في حالة المسودة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Source %s contains component movements without a BOM line link. Resolve their provenance before review."
+msgstr "يحتوي المصدر %s على حركات مكونات غير مرتبطة بسطر وصفة. حدد مصدرها قبل المراجعة."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Component line %s occurs through multiple kit paths; separate the BOM paths before adjustment."
+msgstr "يتكرر سطر المكون %s عبر مسارات مجموعات متعددة؛ افصل مسارات الوصفة قبل التسوية."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/stock_move.py:0
+msgid "Adjustment moves can only be generated by Confirm."
+msgstr "تنشأ حركات التسوية باستخدام زر التأكيد فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/stock_move.py:0
+msgid "Frozen recipe adjustment cost"
+msgstr "تكلفة تسوية الوصفة المحفوظة"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/stock_move.py:0
+msgid "Adjustment stock moves are managed by their adjustment document."
+msgstr "يدير مستند التسوية حركاتها المخزنية."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "A stock extension created an extra journal entry. Resolve its integration before confirming."
+msgstr "أنشأت إضافة مخزنية قيدًا محاسبيًا إضافيًا. عالج تعارض الإضافات قبل التأكيد."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "The journal date was changed by accounting lock rules. Choose a valid adjustment date."
+msgstr "تغير تاريخ القيد بسبب قواعد إقفال الحسابات. اختر تاريخ تسوية مسموحًا به."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Manufacturing Order"
+msgstr "أمر التصنيع"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Unbuild Order"
+msgstr "أمر التفكيك"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Stock Operation"
+msgstr "عملية مخزنية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_source__name
+msgid "Execution Document"
+msgstr "مستند التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "FIFO adjustments must be posted today to preserve historical outgoing valuations. The source period can be historical."
+msgstr "يجب ترحيل تسويات FIFO بتاريخ اليوم للحفاظ على قيم حركات الصرف السابقة. يمكن اختيار فترة استهلاك تاريخية."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/fifo.py:0
+msgid "FIFO value overlays are generated by adjustment confirmation."
+msgstr "تُنشأ فروق قيمة طبقات FIFO عند تأكيد مستند التسوية فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/fifo.py:0
+msgid "FIFO value overlays are immutable."
+msgstr "لا يمكن تعديل فروق قيمة طبقات FIFO بعد إنشائها."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/fifo.py:0
+msgid "FIFO correction cannot leave a negative value or an empty stock with a residual value. Replenish stock before confirming."
+msgstr "لا يمكن أن تترك تسوية FIFO قيمة سالبة أو رصيداً صفرياً بفرق قيمة متبقٍ. وفّر رصيداً بالمخزون قبل التأكيد."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/fifo.py:0
+msgid "FIFO remaining layers must have a positive total value before this correction."
+msgstr "يجب أن يكون إجمالي قيمة طبقات FIFO المتبقية موجباً قبل هذه التسوية."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/fifo.py:0
+msgid "FIFO remaining inventory value did not reconcile with the adjustment entry."
+msgstr "قيمة مخزون FIFO المتبقي غير مطابقة لقيد التسوية."
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Execute Adjustment"
+msgstr "تنفيذ التسوية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields.selection,name:mrp_bom_consumption_adjustment.selection__mrp_bom_consumption_adjustment__state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Execution Source"
+msgstr "مصدر التنفيذ"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Quantity and Verification"
+msgstr "الكمية والتحقق"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Raw Material Moves"
+msgstr "حركات الخامات"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Review and Evidence"
+msgstr "المراجعة والأدلة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Calculation Basis"
+msgstr "أساس الحساب"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Verification Evidence"
+msgstr "أدلة التحقق"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.source_form
+msgid "Evidence supporting the executed quantity..."
+msgstr "الأدلة الداعمة للكمية المنفذة..."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only reviewed or cancelled adjustments can be reset to draft."
+msgstr "يمكن الرجوع للمسودة من حالة تمت المراجعة أو ملغي فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only draft or reviewed adjustments can be cancelled."
+msgstr "يمكن إلغاء المستند في حالة المسودة أو تمت المراجعة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "Only draft adjustments can be reviewed."
+msgstr "يمكن مراجعة المستندات في حالة المسودة فقط."
+
+#. module: mrp_bom_consumption_adjustment
+#: code:addons/mrp_bom_consumption_adjustment/models/adjustment.py:0
+msgid "This adjustment has no journal entry."
+msgstr "لا يوجد قيد محاسبي لهذه التسوية."
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_stock_move_form
+msgid "Locations and Reference"
+msgstr "المواقع والمرجع"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_stock_move_form
+msgid "Product and Quantity"
+msgstr "المنتج والكمية"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_stock_move_form
+msgid "Destination Location"
+msgstr "موقع الوجهة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_stock_move_form
+msgid "Source Location"
+msgstr "موقع المصدر"
+
+#. module: mrp_bom_consumption_adjustment
+#: model_terms:ir.ui.view,arch_db:mrp_bom_consumption_adjustment.adjustment_stock_move_form
+msgid "Move Date"
+msgstr "تاريخ الحركة"
+
+#. module: mrp_bom_consumption_adjustment
+#: model:ir.model.fields,field_description:mrp_bom_consumption_adjustment.field_mrp_bom_consumption_adjustment__notes
+msgid "Reason"
+msgstr "سبب التعديل"

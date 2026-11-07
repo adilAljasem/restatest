@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_goal_form" model="ir.ui.view">
+        <field name="name">bs.hr.goal.form</field>
+        <field name="model">bs.hr.goal</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_achieved" type="object" string="Achieved" class="btn-primary" invisible="state != 'open'"/>
+                    <button name="action_missed" type="object" string="Missed" invisible="state != 'open'"/>
+                    <button name="action_reopen" type="object" string="Reopen" invisible="state == 'open'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" placeholder="e.g. Reduce order waiting time to 8 minutes"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="manager_id"/>
+                        </group>
+                        <group>
+                            <field name="target_date"/>
+                            <field name="progress" widget="progressbar" options="{'editable': true}"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Description / measure of success"/>
+                    <group><field name="last_update_note"/></group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_goal_list" model="ir.ui.view">
+        <field name="name">bs.hr.goal.list</field>
+        <field name="model">bs.hr.goal</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="name"/>
+                <field name="manager_id" optional="show"/>
+                <field name="target_date"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="state" widget="badge" decoration-success="state == 'achieved'" decoration-danger="state == 'missed'"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_goal_search" model="ir.ui.view">
+        <field name="name">bs.hr.goal.search</field>
+        <field name="model">bs.hr.goal</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="manager_id"/>
+                <filter name="open" string="In progress" domain="[('state', '=', 'open')]"/>
+                <filter name="my_team" string="My team" domain="[('manager_id.user_id', '=', uid)]"/>
+                <group>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_branch" string="Branch" context="{'group_by': 'work_location_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_goal" model="ir.actions.act_window">
+        <field name="name">Goals</field>
+        <field name="res_model">bs.hr.goal</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+    </record>
+</odoo>

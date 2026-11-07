@@ -1,0 +1,50 @@
+# Copyright 2017-2021 ForgeFlow, S.L.
+# Copyright 2026 Mohamed Elmalky
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
+{
+    "name": "Stock Transfer",
+    "summary": "Warehouse requests and internal transfers",
+    "version": "19.0.1.50.11",
+    "license": "LGPL-3",
+    "author": "Mohamed Elmalky",
+    "icon": "/stock_request/static/description/stock_transfer_icon.png",
+    "category": "Warehouse Management",
+    "depends": ["stock", "purchase_stock", "purchase_requisition"],
+    "data": [
+        "security/stock_request_security.xml",
+        "security/ir.model.access.csv",
+        "data/stock_request_activity_data.xml",
+        "views/product.xml",
+        "views/res_company_views.xml",
+        "views/res_config_settings_views.xml",
+        "views/purchase_order_views.xml",
+        "views/purchase_requisition_views.xml",
+        "views/res_users_views.xml",
+        "views/stock_request_allocation_views.xml",
+        "views/stock_move_views.xml",
+        "views/stock_picking_views.xml",
+        "views/stock_request_receive_wizard_views.xml",
+        "views/stock_request_close_receipt_wizard_views.xml",
+        "views/stock_request_order_views.xml",
+        "views/stock_request_one_step_transfer_views.xml",
+        "views/stock_request_one_step_return_views.xml",
+        "reports/stock_request_order_report.xml",
+        "views/stock_request_template_views.xml",
+        "views/stock_request_in_transit_report_views.xml",
+        "views/stock_request_analysis_views.xml",
+        "views/stock_warehouse.xml",
+        "views/stock_request_menu.xml",
+        "views/preparation_summary_views.xml",
+        "reports/preparation_summary_report.xml",
+        "data/stock_request_sequence_data.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [
+            "stock_request/static/src/preparation_summary.js",
+            "stock_request/static/src/preparation_summary.xml",
+        ],
+    },
+    "installable": True,
+    "post_init_hook": "post_init_hook",
+}

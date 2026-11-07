@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Petty Cash Management',
+    'version': '19.0.1.0.0',
+    'sequence': 7,
+    'category': 'Accounting',
+    'summary': 'Petty cash transaction management',
+    'author': 'Al-haj Hashim',
+    'website': 'https://www.linkedin.com/in/alhaj-hashim',
+    'depends': ['account_accountant', 'analytic', 'hr', 'hr_expense'],
+    'data': [
+            'security/ir.model.access.csv',
+            'security/petty_cash_security.xml',
+            'data/data.xml',
+            'views/menuitem.xml',
+            'wizard/petty_cash_operation_view.xml',
+            'wizard/petty_cash_request_wizard_view.xml',
+            'views/petty_cash_request_view.xml',
+            'views/petty_cash_settelement_view.xml',
+            'views/res_config_settings.xml',
+            'views/account_journal_checkbox_view.xml',
+
+        ],
+    'post_init_hook': 'post_init_hook',
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+    'images': ['static/description/logo.png'],
+}

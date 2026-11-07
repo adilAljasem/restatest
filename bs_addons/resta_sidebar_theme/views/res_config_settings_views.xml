@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_resta_theme" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.resta.theme</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='companies']" position="after">
+                <div id="resta_theme">
+                    <block title="Resta Theme" name="resta_theme_setting_container">
+                        <setting id="rs_logos" string="Sidebar Logos" company_dependent="1"
+                                 help="Full wordmark for light and dark modes, plus the small mark shown when the sidebar is collapsed. Reload the page after saving.">
+                            <div class="content-group">
+                                <div class="rs_settings_logo_row mt-3">
+                                    <label for="rs_logo_light" string="Light mode" class="o_form_label"/>
+                                    <field name="rs_logo_light" widget="image" class="rs_settings_logo" options="{'size': [180, 60]}"/>
+                                </div>
+                                <div class="rs_settings_logo_row mt-3">
+                                    <label for="rs_logo_dark" string="Dark mode" class="o_form_label"/>
+                                    <field name="rs_logo_dark" widget="image" class="rs_settings_logo rs_settings_logo_dark" options="{'size': [180, 60]}"/>
+                                </div>
+                                <div class="rs_settings_logo_row mt-3">
+                                    <label for="rs_logo_mark" string="Collapsed mark" class="o_form_label"/>
+                                    <field name="rs_logo_mark" widget="image" class="rs_settings_logo" options="{'size': [60, 60]}"/>
+                                </div>
+                                <div class="mt-3" invisible="rs_logo_dark">
+                                    <label for="rs_logo_dark_treatment" class="o_form_label"/>
+                                    <field name="rs_logo_dark_treatment" class="w-auto"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="rs_scheme" string="Color Mode" company_dependent="1"
+                                 help="Default mode for users who have not picked one yet. Each user can switch with the sun/moon button.">
+                            <field name="rs_default_scheme" widget="radio" options="{'horizontal': true}"/>
+                        </setting>
+                        <setting id="rs_icons" string="App Icons" company_dependent="1"
+                                 help="Resta line icons follow the theme: black in light mode, white in dark mode. Pick a different icon per app in Edit app sections.">
+                            <field name="rs_icon_style" widget="radio"/>
+                        </setting>
+                        <setting id="rs_sidebar" string="Sidebar" company_dependent="1"
+                                 help="Initial state of the side menu and whether apps are grouped under section titles.">
+                            <div class="content-group">
+                                <field name="rs_sidebar_default" widget="radio" options="{'horizontal': true}"/>
+                                <div class="mt-2">
+                                    <field name="rs_group_sections" class="w-auto"/>
+                                    <label for="rs_group_sections"/>
+                                </div>
+                                <button name="%(resta_sidebar_theme.action_rs_sidebar_sections)d" type="action"
+                                        icon="oi-arrow-right" string="Edit app sections" class="btn-link"/>
+                            </div>
+                        </setting>
+                    </block>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

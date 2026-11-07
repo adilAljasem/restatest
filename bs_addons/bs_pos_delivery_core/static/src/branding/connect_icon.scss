@@ -1,0 +1,7 @@
+// Connect uses a horizontal wordmark. The default home-menu cover fit crops it.
+// Keep the standard tile and its theme/hover styles; only adjust this app's image.
+.o_home_menu .o_app[data-menu-xmlid="bs_pos_delivery_core.menu_bs_delivery_root"] .o_app_icon {
+    object-fit: contain;
+    object-position: center;
+    padding: 4px;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="collection_component_list" model="ir.ui.view">
+        <field name="name">bs.pos.collection.component.list</field>
+        <field name="model">bs.pos.collection.component</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0">
+                <field name="session_id"/>
+                <field name="payment_method_id"/>
+                <field name="kind"/>
+                <field name="partner_id"/>
+                <field name="journal_id"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="amount" sum="Total"/>
+                <field name="payment_amount" optional="show" sum="Payments"/>
+                <field name="difference_amount" optional="show" sum="Differences"/>
+                <field name="move_id"/>
+            </list>
+        </field>
+    </record>
+    <record id="collection_component_form" model="ir.ui.view">
+        <field name="name">bs.pos.collection.component.form</field>
+        <field name="model">bs.pos.collection.component</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="session_id"/>
+                        <field name="payment_method_id"/>
+                        <field name="journal_id"/>
+                        <field name="partner_id"/>
+                        <field name="pos_payment_id"/>
+                        <field name="kind"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="amount"/>
+                        <field name="payment_amount"/>
+                        <field name="difference_amount"/>
+                        <field name="collection_account_id"/>
+                        <field name="settlement_account_id"/>
+                        <field name="move_id"/>
+                    </group>
+                    <field name="settlement_ids" readonly="1">
+                        <list create="0" edit="0" delete="0">
+                            <field name="name"/><field name="journal_id"/><field name="date"/><field name="state"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="pos_session_collection_form" model="ir.ui.view">
+        <field name="name">pos.session.collection.form</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="bs_collection_move_id" invisible="1"/>
+                <button name="action_bs_collection_details" type="object" string="Collection Details"
+                        icon="fa-list" class="oe_stat_button" invisible="not bs_collection_move_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

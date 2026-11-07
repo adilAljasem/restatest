@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- باقي الـ records بتاعتك موجودة هنا -->
+
+    <!-- حط الـ record ده في الآخر جوه الـ odoo -->
+    <record id="view_petty_cash_import_wizard" model="ir.ui.view">
+        <field name="name">petty.cash.import.wizard.form</field>
+        <field name="model">petty.cash.import.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="alert alert-info" role="status">
+                        <strong>Excel Format Requirements:</strong>
+                        <ul>
+                            <li>Required column: <strong>name</strong> (Description)</li>
+                            <li>Required column: <strong>amount</strong> (Amount)</li>
+                            <li>Optional: expense_account_id (Account code or name)</li>
+                            <li>Optional: product_id (Product code or name)</li>
+                            <li>Optional: accounting_date (Accounting date)</li>
+                            <li>Optional: bill_id (Bill reference)</li>
+                            <li>Optional: expense_id (Expense sheet reference)</li>
+                        </ul>
+                    </div>
+                    <group>
+                        <field name="excel_file"
+                               filename="excel_filename"
+                               required="1"
+                               string="Excel File (.xlsx, .xls, .csv)"/>
+                        <field name="excel_filename" invisible="1"/>
+                        <field name="petty_request_id" invisible="1"/>
+
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_import" string="Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

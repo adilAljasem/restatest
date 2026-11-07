@@ -1,0 +1,3323 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * stock_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0?0:n==1?1:n==2?2:n%100>=3 && "
+"n%100<=10?3:n%100>=11 && n%100<=99?4:5;\n"
+
+#. module: stock_request
+#: model:res.groups,name:stock_request.group_stock_request_user
+msgid "Stock Request User"
+msgstr "مستخدم طلبات المخزون"
+
+#. module: stock_request
+#: model:res.groups,name:stock_request.group_stock_request_warehouse_responsible
+msgid "Stock Request Warehouse Responsible"
+msgstr "مسؤول مخزن طلبات المخزون"
+
+#. module: stock_request
+#: model:res.groups,name:stock_request.group_stock_request_manager
+msgid "Stock Request Manager"
+msgstr "مدير طلبات المخزون"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Cancel Operation"
+msgstr "إلغاء العملية"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_my_requests_action
+#: model:ir.ui.menu,name:stock_request.stock_request_order_menu
+msgid "My Requests"
+msgstr "طلباتي"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_to_deliver_action
+#: model:ir.ui.menu,name:stock_request.stock_request_to_deliver_menu
+msgid "To Deliver"
+msgstr "مطلوب تسليمها"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_to_receive_action
+#: model:ir.ui.menu,name:stock_request.stock_request_to_receive_menu
+msgid "To Receive"
+msgstr "مطلوب استلامها"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_all_operations_action
+#: model:ir.ui.menu,name:stock_request.stock_request_all_operations_menu
+msgid "All Operations"
+msgstr "جميع العمليات"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_template_action
+#: model:ir.ui.menu,name:stock_request.stock_request_template_menu
+msgid "Templates"
+msgstr "القوالب"
+
+#. module: stock_request
+msgid "New Template"
+msgstr "قالب جديد"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__name
+msgid "Template Name"
+msgstr "اسم القالب"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Requested Quantity"
+msgstr "الكمية المطلوبة"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__delivered_qty
+msgid "Delivered Quantity"
+msgstr "الكمية المسلّمة"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__received_qty
+msgid "Received Quantity"
+msgstr "الكمية المستلمة"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__cancelled_receipt_qty
+msgid "Cancelled Receipt Quantity"
+msgstr "كمية الاستلام الملغاة"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_close_receipt_wizard_form
+msgid "Close Remaining Receipt"
+msgstr "إغلاق الاستلام وإلغاء الباقي"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_close_receipt_wizard_line__received_quantity
+msgid "Actual Received Quantity"
+msgstr "الكمية المستلمة فعليًا"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_close_receipt_wizard_line__remaining_quantity
+msgid "Remaining Quantity to Cancel"
+msgstr "الكمية المتبقية التي سيتم إلغاؤها"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_close_receipt_wizard_form
+msgid "Confirming will cancel the remaining quantities shown below. The actual received quantities will not be changed."
+msgstr "سيؤدي التأكيد إلى إلغاء الكميات المتبقية الموضحة أدناه، ولن تتغير الكميات المستلمة فعليًا."
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__remaining_delivery_qty
+msgid "Remaining to Deliver"
+msgstr "المتبقي للتسليم"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__remaining_receipt_qty
+msgid "Remaining to Receive"
+msgstr "المتبقي للاستلام"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__delivery_picking_count
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_picking__stock_request_operation__delivery
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Delivery"
+msgstr "التسليم"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__receipt_picking_count
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_picking__stock_request_operation__receipt
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Receipt"
+msgstr "الاستلام"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_order_action
+#: model:ir.ui.menu,name:stock_request.stock_request_order_menu
+msgid "Stock Requests"
+msgstr "طلبات المخزون"
+
+#. module: stock_request
+#: model:ir.module.category,name:stock_request.module_category_stock_request
+#: model:ir.module.module,shortdesc:base.module_stock_request
+#: model:ir.ui.menu,name:stock_request.menu_stock_request_root
+msgid "Stock Transfer"
+msgstr "تحويل المخزون"
+
+#. module: stock_request
+#: model:ir.module.module,summary:base.module_stock_request
+msgid "Warehouse requests and internal transfers"
+msgstr "طلبات المخزون والتحويلات الداخلية"
+
+#. module: stock_request
+#: model:ir.model,name:stock_request.model_stock_request_order
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__operation_type__request
+msgid "Stock Request"
+msgstr "طلب مخزون"
+
+#. module: stock_request
+#: model:ir.ui.menu,name:stock_request.menu_stock_request_operations
+msgid "Operations"
+msgstr "العمليات"
+
+#. module: stock_request
+#: model:ir.ui.menu,name:stock_request.menu_stock_request_master_data
+msgid "Master Data"
+msgstr "البيانات الأساسية"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_template_form_v14
+msgid "Items"
+msgstr "الأصناف"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__product_id
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template_line__product_id
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__product_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Product"
+msgstr "المنتج"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__state
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request__state__draft
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__draft
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__one_step_transfer_state__draft
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request__state__open
+msgid "In progress"
+msgstr "قيد التنفيذ"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request__state__done
+msgid "Done"
+msgstr "مكتمل"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request__state__cancel
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__cancelled
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__one_step_transfer_state__cancelled
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_search
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Explain why these products are needed..."
+msgstr "وضّح سبب الحاجة إلى هذه المنتجات..."
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__name
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_list
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_search
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_tree
+msgid "Request Number"
+msgstr "رقم الطلب"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__requested_by
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__requested_by
+msgid "Requested By"
+msgstr "مقدم الطلب"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__request_date
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__request_date
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Request Date"
+msgstr "تاريخ الطلب"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__expected_date
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__expected_date
+msgid "Expected Date"
+msgstr "التاريخ المتوقع"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__priority
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__priority
+msgid "Priority"
+msgstr "الأولوية"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__source_warehouse_id
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__source_warehouse_id
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__source_warehouse_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Source Warehouse"
+msgstr "المخزن المصدر"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__warehouse_id
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__destination_warehouse_id
+msgid "Destination Warehouse"
+msgstr "المخزن المستلم"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__template_id
+msgid "Stock Request Template"
+msgstr "قالب طلب المخزون"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__reason
+msgid "Request Reason / Notes"
+msgstr "سبب الطلب / ملاحظات"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__priority__0
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_template__priority__0
+msgid "Normal"
+msgstr "عادي"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__priority__1
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_template__priority__1
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_warehouse__stock_request_responsible_user_ids
+msgid "Stock Request Responsible Users"
+msgstr "مسؤولو طلبات المخزن"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_res_users__default_stock_request_warehouse_id
+msgid "Default Request Warehouse"
+msgstr "المخزن الافتراضي للطلبات"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__source_responsible_user_ids
+msgid "Source Warehouse Responsible Users"
+msgstr "مسؤولو المخزن المصدر"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__destination_responsible_user_ids
+msgid "Destination Warehouse Responsible Users"
+msgstr "مسؤولو المخزن المستلم"
+
+#. module: stock_request
+msgid "Is Source Warehouse Responsible"
+msgstr "مسؤول عن المخزن المصدر"
+
+#. module: stock_request
+msgid "Is Destination Warehouse Responsible"
+msgstr "مسؤول عن المخزن المستلم"
+
+#. module: stock_request
+msgid "Only a responsible user of the source warehouse can accept this Stock Request."
+msgstr "يمكن فقط لأحد مسؤولي المخزن المصدر قبول طلب المخزون."
+
+#. module: stock_request
+msgid "Warehouse responsible users must have Inventory User access: %(users)s"
+msgstr "يجب أن يمتلك مسؤولو المخزن صلاحية مستخدم المخزون: %(users)s"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_direct_transfer_action
+#: model:ir.ui.menu,name:stock_request.stock_request_direct_transfer_menu
+msgid "Direct Transfers"
+msgstr "التحويلات المباشرة"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__operation_type__transfer
+msgid "Direct Transfer"
+msgstr "تحويل مباشر"
+
+#. module: stock_request
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: stock_request
+msgid "Accept"
+msgstr "قبول"
+
+#. module: stock_request
+msgid "Reject"
+msgstr "رفض"
+
+#. module: stock_request
+msgid "Submitted"
+msgstr "تم الإرسال"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: stock_request
+msgid "The default request warehouse must belong to one of the user's allowed companies."
+msgstr "يجب أن ينتمي المخزن الافتراضي للطلبات إلى إحدى الشركات المسموح بها للمستخدم."
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_res_company__stock_request_transit_location_id
+msgid "Stock Request Transit Location"
+msgstr "موقع التحويلات بين المخازن"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_picking__stock_request_operation
+msgid "Stock Request Operation"
+msgstr "عملية طلب المخزون"
+
+#. module: stock_request
+msgid "The receipt transfer cannot be validated before its delivery transfer is completed."
+msgstr "لا يمكن اعتماد حركة الاستلام قبل اكتمال حركة التسليم."
+
+#. module: stock_request
+msgid "The receipt transfer cannot be completed before its delivery transfer is completed."
+msgstr "لا يمكن إكمال حركة الاستلام قبل اكتمال حركة التسليم."
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__submitted
+msgid "Waiting for Source Warehouse"
+msgstr "في انتظار المخزن المصدر"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__ready
+msgid "Ready to Deliver"
+msgstr "جاهز للتسليم"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__in_transit
+msgid "In Transit"
+msgstr "قيد التحويل"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__state__done
+msgid "Received"
+msgstr "تم الاستلام"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Submit Request"
+msgstr "إرسال الطلب"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Accept Request"
+msgstr "قبول الطلب"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Reject Request"
+msgstr "رفض الطلب"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Confirm Transfer"
+msgstr "تأكيد التحويل"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Deliver Products"
+msgstr "تسليم المنتجات"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Receive Products"
+msgstr "استلام المنتجات"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__delivered_by_id
+msgid "Delivered By"
+msgstr "تم التسليم بواسطة"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__delivery_date
+msgid "Delivery Date"
+msgstr "تاريخ التسليم"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__received_by_id
+msgid "Received By"
+msgstr "تم الاستلام بواسطة"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__receipt_date
+msgid "Receipt Date"
+msgstr "تاريخ الاستلام"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_picking__stock_request_validated_by_id
+msgid "Validated By"
+msgstr "تم الاعتماد بواسطة"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_picking__stock_request_validation_date
+msgid "Validation Date"
+msgstr "تاريخ الاعتماد"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Transfer Execution"
+msgstr "تنفيذ التحويل"
+
+#. module: stock_request
+msgid "Delivery and receipt audit fields are filled automatically when their transfers are validated."
+msgstr "يتم تعبئة حقول تدقيق التسليم والاستلام تلقائيًا عند اعتماد التحويلات الخاصة بها."
+
+#. module: stock_request
+msgid "Stock Request validation audit fields are filled automatically."
+msgstr "يتم تعبئة حقول تدقيق اعتماد طلب المخزون تلقائيًا."
+
+#. module: stock_request
+msgid "%(user)s validated %(operation)s %(picking)s on %(date)s."
+msgstr "قام %(user)s باعتماد %(operation)s %(picking)s في %(date)s."
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__rejection_reason
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Explain why this request is rejected..."
+msgstr "وضح سبب رفض هذا الطلب..."
+
+#. module: stock_request
+msgid "Stock Request Review"
+msgstr "مراجعة طلب المخزون"
+
+#. module: stock_request
+msgid "Stock Request Receipt"
+msgstr "استلام طلب المخزون"
+
+#. module: stock_request
+msgid "New stock request requires review."
+msgstr "يوجد طلب مخزون جديد يحتاج إلى المراجعة."
+
+#. module: stock_request
+msgid "Stock transfer is ready to receive."
+msgstr "تحويل المخزون جاهز للاستلام."
+
+#. module: stock_request
+msgid "Enter a rejection reason before rejecting the request."
+msgstr "أدخل سبب الرفض قبل رفض الطلب."
+
+#. module: stock_request
+msgid "The rejection reason can only be entered while a Stock Request is waiting for source warehouse review."
+msgstr "لا يمكن إدخال سبب الرفض إلا أثناء انتظار طلب المخزون لمراجعة المخزن المصدر."
+
+#. module: stock_request
+msgid "Stock request rejected."
+msgstr "تم رفض طلب المخزون."
+
+#. module: stock_request
+msgid "Stock Request %(request)s was rejected. Reason: %(reason)s"
+msgstr "تم رفض طلب المخزون %(request)s. السبب: %(reason)s"
+
+#. module: stock_request
+msgid "Stock request accepted."
+msgstr "تم قبول طلب المخزون."
+
+#. module: stock_request
+msgid "Stock Request %(request)s has been accepted."
+msgstr "تم قبول طلب المخزون %(request)s."
+
+#. module: stock_request
+msgid "Stock transfer received."
+msgstr "تم استلام تحويل المخزون."
+
+#. module: stock_request
+msgid "Stock Request %(request)s has been received."
+msgstr "تم استلام طلب المخزون %(request)s."
+
+#. module: stock_request
+msgid "Stock request cancelled."
+msgstr "تم إلغاء طلب المخزون."
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Load Template"
+msgstr "تحميل القالب"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template_line__product_uom_qty
+msgid "Default Quantity"
+msgstr "الكمية الافتراضية"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__notes
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__line_ids
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_template_form_v14
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_template_form_v14
+msgid "Default request notes..."
+msgstr "ملاحظات الطلب الافتراضية..."
+
+#. module: stock_request
+msgid "Templates can only be loaded into draft operations."
+msgstr "لا يمكن تحميل القوالب إلا في العمليات بحالة مسودة."
+
+#. module: stock_request
+msgid "Select an active Stock Request Template first."
+msgstr "اختر أولًا قالب طلب مخزون نشطًا."
+
+#. module: stock_request
+msgid "The Stock Request Template must belong to the request company."
+msgstr "يجب أن يتبع قالب طلب المخزون شركة الطلب."
+
+#. module: stock_request
+msgid "The Stock Request Template name must be unique per company."
+msgstr "يجب ألا يتكرر اسم قالب طلب المخزون داخل الشركة."
+
+#. module: stock_request
+msgid "Template warehouses must belong to the template company."
+msgstr "يجب أن تتبع مخازن القالب شركة القالب."
+
+#. module: stock_request
+msgid "A product can only appear once in a Stock Request Template."
+msgstr "لا يمكن تكرار المنتج داخل قالب طلب المخزون."
+
+#. module: stock_request
+msgid "The default quantity must be strictly positive."
+msgstr "يجب أن تكون الكمية الافتراضية أكبر من صفر."
+
+#. module: stock_request
+msgid "Template products must belong to the template company."
+msgstr "يجب أن تتبع منتجات القالب شركة القالب."
+
+#. module: stock_request
+#: model:ir.ui.menu,name:stock_request.menu_stock_request_configuration
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_warehouse_setup_action
+#: model:ir.ui.menu,name:stock_request.stock_request_warehouse_setup_menu
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_warehouse_setup_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_warehouse_setup_list
+msgid "Warehouse Setup"
+msgstr "إعداد المخازن"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_warehouse_setup_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_warehouse_setup_list
+msgid "Warehouse"
+msgstr "المخزن"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_warehouse__default_stock_request_source_warehouse_id
+msgid "Default Source Warehouse"
+msgstr "المخزن المصدر الافتراضي"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_warehouse__stock_request_receiving_transit_location_id
+msgid "Receiving Transit Location"
+msgstr "موقع التحويل الخاص بالمخزن المستلم"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_warehouse__stock_request_transit_mode
+msgid "Transit Mode"
+msgstr "وضع التحويل"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_warehouse__stock_request_configuration_status
+msgid "Configuration Status"
+msgstr "حالة الإعداد"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_transit_mode__custom
+msgid "Custom Warehouse Transit"
+msgstr "موقع تحويل مخصص للمخزن"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_transit_mode__odoo_default
+msgid "Odoo Default Transit"
+msgstr "موقع التحويل الافتراضي في أودو"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_transit_mode__missing
+msgid "Missing Transit Configuration"
+msgstr "إعداد موقع التحويل غير مكتمل"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_configuration_status__ready
+msgid "Ready"
+msgstr "جاهز"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_configuration_status__missing_responsible
+msgid "Missing Responsible Users"
+msgstr "مسؤولو المخزن غير محددين"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_configuration_status__missing_source
+msgid "Missing Default Source Warehouse"
+msgstr "المخزن المصدر الافتراضي غير محدد"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_configuration_status__missing_transit
+msgid "Missing Transit Location"
+msgstr "موقع التحويل غير محدد"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_warehouse_setup_form
+msgid "Create Receiving Transit Location"
+msgstr "إنشاء موقع التحويل"
+
+#. module: stock_request
+msgid "Receiving Transit"
+msgstr "تحويلات الاستلام"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__transit_location_id
+msgid "Transit Location"
+msgstr "موقع التحويل"
+
+#. module: stock_request
+msgid "No transit location is configured for the receiving warehouse, and the company does not have an Odoo default internal transit location."
+msgstr "لم يتم إعداد موقع تحويل للمخزن المستلم، ولا يوجد لدى الشركة موقع التحويل الداخلي الافتراضي في أودو."
+
+#. module: stock_request
+msgid "The transit location must be active."
+msgstr "يجب أن يكون موقع التحويل نشطًا."
+
+#. module: stock_request
+msgid "The transit location must be a Transit Location."
+msgstr "يجب أن يكون نوع موقع التحويل: موقع تحويل."
+
+#. module: stock_request
+msgid "The transit location must belong to the request company."
+msgstr "يجب أن يتبع موقع التحويل شركة الطلب."
+
+#. module: stock_request
+msgid "The transit location cannot be the source or destination warehouse stock location."
+msgstr "لا يمكن أن يكون موقع التحويل هو موقع مخزون المخزن المصدر أو المستلم."
+
+#. module: stock_request
+msgid "Source Warehouse is required."
+msgstr "المخزن المصدر مطلوب."
+
+#. module: stock_request
+msgid "Destination Warehouse is required."
+msgstr "المخزن المستلم مطلوب."
+
+#. module: stock_request
+msgid "Source Warehouse and Destination Warehouse must be different."
+msgstr "يجب أن يكون المخزن المصدر مختلفًا عن المخزن المستلم."
+
+#. module: stock_request
+msgid "Add at least one product before submitting the request."
+msgstr "أضف منتجًا واحدًا على الأقل قبل إرسال الطلب."
+
+#. module: stock_request
+msgid "Requested quantities must be greater than zero for all products."
+msgstr "يجب أن تكون الكميات المطلوبة أكبر من صفر لجميع المنتجات."
+
+#. module: stock_request
+msgid "No responsible users are configured for %(warehouse)s."
+msgstr "لم يتم تحديد مستخدمين مسؤولين عن %(warehouse)s."
+
+#. module: stock_request
+msgid "The transit location is selected automatically when the operation is confirmed."
+msgstr "يتم اختيار موقع التحويل تلقائيًا عند تأكيد العملية."
+
+#. module: stock_request
+msgid "The transit location must be locked on the Stock Request before transfers are created."
+msgstr "يجب تثبيت موقع التحويل على طلب المخزون قبل إنشاء التحويلات."
+
+#. module: stock_request
+msgid "Reporting"
+msgstr "التقارير"
+
+#. module: stock_request
+msgid "In Transit Operations"
+msgstr "العمليات قيد التحويل"
+
+#. module: stock_request
+msgid "Operation Type"
+msgstr "نوع العملية"
+
+#. module: stock_request
+msgid "Operation Status"
+msgstr "حالة العملية"
+
+#. module: stock_request
+msgid "Product Category"
+msgstr "فئة المنتج"
+
+#. module: stock_request
+msgid "In Transit Quantity"
+msgstr "الكمية قيد التحويل"
+
+#. module: stock_request
+msgid "Days in Transit"
+msgstr "أيام التحويل"
+
+#. module: stock_request
+msgid "Overdue"
+msgstr "متأخر"
+
+#. module: stock_request
+msgid "My Related Operations"
+msgstr "العمليات المرتبطة بي"
+
+#. module: stock_request
+msgid "Delivery Month"
+msgstr "شهر التسليم"
+
+#. module: stock_request
+msgid "Total In Transit"
+msgstr "إجمالي الكمية قيد التحويل"
+
+#. module: stock_request
+msgid "Request"
+msgstr "الطلب"
+
+#. module: stock_request
+msgid "Open Stock Request"
+msgstr "فتح طلب المخزون"
+
+#. module: stock_request
+msgid "Open Delivery Transfers"
+msgstr "فتح تحويلات التسليم"
+
+#. module: stock_request
+msgid "Open Receipt Transfers"
+msgstr "فتح تحويلات الاستلام"
+
+#. module: stock_request
+msgid "Stock Request Transfers"
+msgstr "تحويلات طلب المخزون"
+
+#. module: stock_request
+msgid "Stock Request Transfer"
+msgstr "تحويل طلب المخزون"
+
+#. module: stock_request
+msgid "There are no product quantities currently in transit."
+msgstr "لا توجد كميات منتجات قيد التحويل حاليًا."
+
+#. module: stock_request
+msgid "No related stock request order was found."
+msgstr "لم يتم العثور على طلب مخزون مرتبط."
+
+#. module: stock_request
+msgid "Overdue can only be searched with equals or not equals."
+msgstr "يمكن البحث في حالة التأخير باستخدام يساوي أو لا يساوي فقط."
+
+#. module: stock_request
+msgid "Request Analysis"
+msgstr "تحليل الطلبات"
+
+#. module: stock_request
+msgid "Product Movement Analysis"
+msgstr "تحليل حركة المنتجات"
+
+#. module: stock_request
+msgid "Submitted Date"
+msgstr "تاريخ الإرسال"
+
+#. module: stock_request
+msgid "Ready Date"
+msgstr "تاريخ الجاهزية"
+
+#. module: stock_request
+msgid "First Delivery Date"
+msgstr "تاريخ أول تسليم"
+
+#. module: stock_request
+msgid "Rejected Date"
+msgstr "تاريخ الرفض"
+
+#. module: stock_request
+msgid "Cancelled Date"
+msgstr "تاريخ الإلغاء"
+
+#. module: stock_request
+msgid "Requests Count"
+msgstr "عدد الطلبات"
+
+#. module: stock_request
+msgid "Completed Requests Count"
+msgstr "عدد الطلبات المكتملة"
+
+#. module: stock_request
+msgid "Rejected Requests Count"
+msgstr "عدد الطلبات المرفوضة"
+
+#. module: stock_request
+msgid "Cancelled Requests Count"
+msgstr "عدد الطلبات الملغاة"
+
+#. module: stock_request
+msgid "Average Review Time"
+msgstr "متوسط وقت المراجعة"
+
+#. module: stock_request
+msgid "Average Preparation Time"
+msgstr "متوسط وقت التجهيز"
+
+#. module: stock_request
+msgid "Average Transit Time"
+msgstr "متوسط وقت التحويل"
+
+#. module: stock_request
+msgid "Average Total Cycle Time"
+msgstr "متوسط زمن الدورة الكاملة"
+
+#. module: stock_request
+msgid "Workflow dates, audit fields, and analysis metrics are filled automatically."
+msgstr "يتم تسجيل تواريخ سير العمل وحقول التدقيق ومؤشرات التحليل تلقائيًا."
+
+#. module: stock_request
+msgid "Review time in days, from submission until acceptance."
+msgstr "وقت المراجعة بالأيام من الإرسال حتى القبول."
+
+#. module: stock_request
+msgid "Preparation time in days, from acceptance until first delivery."
+msgstr "وقت التجهيز بالأيام من القبول حتى أول تسليم."
+
+#. module: stock_request
+msgid "Transit time in days, from first delivery until complete receipt."
+msgstr "وقت التحويل بالأيام من أول تسليم حتى اكتمال الاستلام."
+
+#. module: stock_request
+msgid "Total cycle time in days, from request date until complete receipt."
+msgstr "زمن الدورة الكاملة بالأيام من تاريخ الطلب حتى اكتمال الاستلام."
+
+#. module: stock_request
+msgid "Request Month"
+msgstr "شهر الطلب"
+
+#. module: stock_request
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: stock_request
+msgid "Total Requested"
+msgstr "إجمالي المطلوب"
+
+#. module: stock_request
+msgid "Total Delivered"
+msgstr "إجمالي المسلم"
+
+#. module: stock_request
+msgid "Total Received"
+msgstr "إجمالي المستلم"
+
+#. module: stock_request
+msgid "Total Remaining to Deliver"
+msgstr "إجمالي المتبقي للتسليم"
+
+#. module: stock_request
+msgid "Total Remaining to Receive"
+msgstr "إجمالي المتبقي للاستلام"
+
+#. module: stock_request
+msgid "Stock Request / Internal Transfer"
+msgstr "طلب مخزون / تحويل داخلي"
+
+#. module: stock_request
+msgid "Print Stock Request"
+msgstr "طباعة طلب المخزون"
+
+#. module: stock_request
+msgid "Accepted By"
+msgstr "تم القبول بواسطة"
+
+#. module: stock_request
+msgid "Remaining Quantity"
+msgstr "الكمية المتبقية"
+
+#. module: stock_request
+msgid "Reason / Notes"
+msgstr "السبب / الملاحظات"
+
+#. module: stock_request
+msgid "Signature"
+msgstr "التوقيع"
+
+#. module: stock_request
+msgid "Only the requester, a responsible user of the source or destination warehouse, or a Stock Request Manager can print this document."
+msgstr "لا يمكن طباعة هذا المستند إلا بواسطة مقدم الطلب أو مسؤول المخزن المصدر أو المستلم أو مدير طلبات المخزون."
+
+#. module: stock_request
+msgid "Source Warehouse Tasks"
+msgstr "مهام المخزن المصدر"
+
+#. module: stock_request
+msgid "Next Action"
+msgstr "الإجراء التالي"
+
+#. module: stock_request
+msgid "Review Request"
+msgstr "مراجعة الطلب"
+
+#. module: stock_request
+msgid "Deliver Remaining Quantity"
+msgstr "تسليم الكمية المتبقية"
+
+#. module: stock_request
+msgid "Receive Remaining Quantity"
+msgstr "استلام الكمية المتبقية"
+
+#. module: stock_request
+msgid "No Action Required"
+msgstr "لا يوجد إجراء مطلوب"
+
+#. module: stock_request
+msgid "Fulfillment Status"
+msgstr "حالة التنفيذ"
+
+#. module: stock_request
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: stock_request
+msgid "Fully Received"
+msgstr "مستلم بالكامل"
+
+#. module: stock_request
+msgid "Partially Received"
+msgstr "مستلم جزئيًا"
+
+#. module: stock_request
+msgid "Not Fulfilled"
+msgstr "لم يتم التنفيذ"
+
+#. module: stock_request
+msgid "Other Information"
+msgstr "معلومات أخرى"
+
+#. module: stock_request
+msgid "To Review"
+msgstr "للمراجعة"
+
+#. module: stock_request
+msgid "All Requests"
+msgstr "جميع الطلبات"
+
+#. module: stock_request
+msgid "Warehouse responsible users must be internal users: %(users)s"
+msgstr "يجب أن يكون مسؤولو المخزن مستخدمين داخليين: %(users)s"
+
+#. module: stock_request
+msgid "Warehouse Name is required before creating a warehouse."
+msgstr "اسم المخزن مطلوب قبل إنشاء المخزن."
+
+#. module: stock_request
+msgid "Standalone Stock Request lines cannot be confirmed. Use the main Stock Request screen."
+msgstr "لا يمكن تأكيد سطور طلب المخزون منفردة. استخدم شاشة طلب المخزون الرئيسية."
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "Stock Transfer Settings"
+msgstr "إعدادات تحويل المخزون"
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_settings_action
+#: model:ir.ui.menu,name:stock_request.stock_request_settings_menu
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_res_config_settings__stock_request_transfer_flow
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__transfer_flow
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+#: model_terms:ir.ui.view,arch_db:stock_request.report_stock_request_order_document
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Transfer Flow"
+msgstr "مسار التحويل"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__res_config_settings__stock_request_transfer_flow__one_step
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__transfer_flow__one_step
+msgid "One Step"
+msgstr "خطوة واحدة"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__res_config_settings__stock_request_transfer_flow__two_step
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__transfer_flow__two_step
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Two Step"
+msgstr "خطوتان"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "One Step transfers directly between warehouses. Two Step uses a transit location with separate delivery and receipt operations."
+msgstr "تنقل الخطوة الواحدة المنتجات مباشرة بين المخازن. تستخدم الخطوتان موقع عبور مع عمليتي تسليم واستلام منفصلتين."
+
+#. module: stock_request
+#: model:ir.model.fields,help:stock_request.field_res_config_settings__stock_request_transfer_flow
+msgid "Choose whether Stock Transfer creates one direct internal transfer or separate delivery and receipt transfers through a transit location."
+msgstr "اختر ما إذا كان تحويل المخزون سينشئ حركة داخلية مباشرة واحدة أو حركتي تسليم واستلام منفصلتين عبر موقع ترانزيت."
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "One Step:"
+msgstr "خطوة واحدة:"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "Move products directly from the source warehouse to the destination warehouse without a transit location."
+msgstr "نقل المنتجات مباشرة من المخزن المصدر إلى المخزن الوجهة بدون موقع ترانزيت."
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "Two Step:"
+msgstr "خطوتان:"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "Deliver products to a transit location, then receive them in the destination warehouse."
+msgstr "تسليم المنتجات إلى موقع ترانزيت، ثم استلامها في المخزن الوجهة."
+
+#. module: stock_request
+#: model:ir.actions.act_window,name:stock_request.stock_request_to_transfer_action
+#: model:ir.ui.menu,name:stock_request.stock_request_to_transfer_menu
+msgid "To Transfer"
+msgstr "للتحويل"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__next_action__transfer_products
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Transfer Products"
+msgstr "تحويل المنتجات"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__next_action__transfer_remaining
+msgid "Transfer Remaining Quantity"
+msgstr "تحويل الكمية المتبقية"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__transfer_picking_count
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_picking__stock_request_operation__transfer
+#: model:ir.actions.act_window,name:stock_request.stock_request_one_step_transfer_action
+#: model:ir.ui.menu,name:stock_request.stock_request_one_step_transfer_menu
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_list
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_search
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
+msgid "Transfer"
+msgstr "تحويل"
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "There are no remaining products ready to transfer."
+msgstr "لا توجد منتجات متبقية جاهزة للتحويل."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "The transfer flow is selected automatically from Stock Transfer Settings when the operation is created."
+msgstr "يتم اختيار مسار التحويل تلقائيًا من إعدادات تحويل المخزون عند إنشاء العملية."
+
+#. module: stock_request
+#: model:ir.model.fields,help:stock_request.field_stock_request_order__transfer_flow
+msgid "Workflow selected when the operation was created. One Step moves products directly between warehouses; Two Step uses a transit location with separate delivery and receipt transfers."
+msgstr "مسار العمل المختار عند إنشاء العملية. تنقل الخطوة الواحدة المنتجات مباشرة بين المخازن، بينما تستخدم الخطوتان موقع ترانزيت مع حركتي تسليم واستلام منفصلتين."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "Stock Transfer %(request)s has been completed."
+msgstr "اكتمل تحويل المخزون %(request)s."
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__one_step_transfer_state
+msgid "Transfer Status"
+msgstr "حالة التحويل"
+
+#. module: stock_request
+#: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__one_step_transfer_state__transferred
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_search
+msgid "Transferred"
+msgstr "تم التحويل"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__product_uom_id
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_abstract__product_uom_id
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_allocation__product_uom_id
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template_line__product_uom_id
+#: model_terms:ir.ui.view,arch_db:stock_request.report_stock_request_order_document
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_in_transit_list
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_product_movement_list
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_product_movement_search
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_template_form_v14
+msgid "UOM"
+msgstr "وحدة القياس"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+msgid "Add transfer notes..."
+msgstr "أضف ملاحظات التحويل..."
+
+#. module: stock_request
+#: model_terms:ir.actions.act_window,help:stock_request.stock_request_direct_transfer_action
+msgid "Create a direct warehouse transfer in one step."
+msgstr "أنشئ تحويلًا مباشرًا بين المخازن في خطوة واحدة."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "Only One Step transfers can be completed directly."
+msgstr "يمكن إكمال تحويلات الخطوة الواحدة فقط بصورة مباشرة."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "No direct transfer is ready to complete."
+msgstr "لا يوجد تحويل مباشر جاهز للإكمال."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "Not enough stock is available in %(warehouse)s to transfer: %(products)s."
+msgstr "لا توجد كمية كافية في %(warehouse)s لتحويل: %(products)s."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "Only Draft One Step transfers can be confirmed."
+msgstr "يمكن تأكيد تحويلات الخطوة الواحدة المسودة فقط."
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request__available_qty
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_one_step_transfer_form
+msgid "Available Qty"
+msgstr "الكمية المتاحة"
+
+#. module: stock_request
+#: model:ir.model.fields,help:stock_request.field_stock_request__available_qty
+msgid "Unreserved quantity currently available in the source warehouse, expressed in the line UOM."
+msgstr "الكمية غير المحجوزة والمتاحة حاليًا في المخزن المصدر، معروضة بوحدة قياس السطر."
+
+#. module: stock_request
+msgid "Show Available Quantity"
+msgstr "إظهار الكمية المتاحة"
+
+#. module: stock_request
+msgid "Show the Available Qty column to users on One Step Transfer and Return product lines."
+msgstr "إظهار عمود الكمية المتاحة للمستخدمين في سطور منتجات التحويل والمرتجع بخطوة واحدة."
+
+#. module: stock_request
+msgid "Returns"
+msgstr "المرتجعات"
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_order__return_count
+msgid "Return Count"
+msgstr "عدد المرتجعات"
+
+#. module: stock_request
+msgid "Return"
+msgstr "مرتجع"
+
+#. module: stock_request
+msgid "Return Number"
+msgstr "رقم المرتجع"
+
+#. module: stock_request
+msgid "Original Transfer"
+msgstr "التحويل الأصلي"
+
+#. module: stock_request
+msgid "Create Return"
+msgstr "إنشاء مرتجع"
+
+#. module: stock_request
+msgid "Confirm Return"
+msgstr "تأكيد المرتجع"
+
+#. module: stock_request
+msgid "Return Status"
+msgstr "حالة المرتجع"
+
+#. module: stock_request
+msgid "Returned"
+msgstr "تم الإرجاع"
+
+#. module: stock_request
+msgid "Is Return"
+msgstr "عملية مرتجع"
+
+#. module: stock_request
+msgid "Stock Transfer Return"
+msgstr "مرتجع تحويل مخزون"
+
+#. module: stock_request
+msgid "Add return notes..."
+msgstr "أضف ملاحظات المرتجع..."
+
+#. module: stock_request
+msgid "Create a full or partial return for a completed One Step transfer."
+msgstr "أنشئ مرتجعًا كليًا أو جزئيًا لتحويل مكتمل بخطوة واحدة."
+
+#. module: stock_request
+msgid "Only Draft One Step returns can be confirmed."
+msgstr "يمكن تأكيد مرتجعات الخطوة الواحدة الموجودة في حالة مسودة فقط."
+
+#. module: stock_request
+msgid "Only a completed One Step transfer can be returned."
+msgstr "يمكن إنشاء مرتجع لتحويل مكتمل بخطوة واحدة فقط."
+
+#. module: stock_request
+msgid "Returns are available only while One Step flow is enabled."
+msgstr "المرتجعات متاحة فقط عند تفعيل مسار الخطوة الواحدة."
+
+#. module: stock_request
+msgid "All products in this transfer have already been returned."
+msgstr "تم إرجاع جميع منتجات هذا التحويل بالفعل."
+
+#. module: stock_request
+msgid "No original transfer is linked to this return."
+msgstr "لا يوجد تحويل أصلي مرتبط بهذا المرتجع."
+
+#. module: stock_request
+msgid "Returns can be created only while One Step flow is enabled."
+msgstr "يمكن إنشاء المرتجعات فقط عند تفعيل مسار الخطوة الواحدة."
+
+#. module: stock_request
+msgid "Select a completed One Step transfer to return."
+msgstr "اختر تحويلًا مكتملًا بخطوة واحدة لإنشاء المرتجع."
+
+#. module: stock_request
+msgid "A return must be linked to a completed One Step transfer."
+msgstr "يجب ربط المرتجع بتحويل مكتمل بخطوة واحدة."
+
+#. module: stock_request
+msgid "Return warehouses must be the reverse of the original transfer."
+msgstr "يجب أن تكون مخازن المرتجع معكوسة بالنسبة إلى التحويل الأصلي."
+
+#. module: stock_request
+msgid "Product %(product)s is not part of original transfer %(transfer)s."
+msgstr "المنتج %(product)s غير موجود في التحويل الأصلي %(transfer)s."
+
+#. module: stock_request
+msgid "The returned quantity for %(product)s exceeds the quantity in original transfer %(transfer)s."
+msgstr "الكمية المرتجعة للمنتج %(product)s تتجاوز كميته في التحويل الأصلي %(transfer)s."
+
+#. module: stock_request
+#, python-format
+msgid "%(product)s: %(quantity)s %(uom)s"
+msgstr "%(product)s: %(quantity)s %(uom)s"
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"%(product)s: actually received %(received)s %(uom)s; cancelled remainder "
+"%(cancelled)s %(uom)s."
+msgstr ""
+"%(product)s: المستلم فعليًا %(received)s %(uom)s؛ المتبقي الملغى "
+"%(cancelled)s %(uom)s."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"%(product)s: previous quantity %(previous)s %(uom)s; revised quantity "
+"%(revised)s %(uom)s."
+msgstr ""
+"%(product)s: الكمية السابقة %(previous)s %(uom)s؛ الكمية المعدلة %(revised)s"
+" %(uom)s."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"%(product)s: processed %(processed)s %(uom)s; remaining %(remaining)s "
+"%(uom)s."
+msgstr ""
+"%(product)s: تمت معالجة %(processed)s %(uom)s؛ المتبقي %(remaining)s "
+"%(uom)s."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"%(product_name)s : Transferred quantity %(product_qty)s %(product_uom)s"
+msgstr "%(product_name)s: الكمية المحولة %(product_qty)s %(product_uom)s"
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"%(user)s closed the remaining receipt on %(date)s. The cancelled quantities "
+"were not received."
+msgstr ""
+"أغلق %(user)s الكمية المتبقية للاستلام في %(date)s. لم تُستلم الكميات "
+"الملغاة."
+
+
+#. module: stock_request
+#, python-format
+msgid "%(user)s recorded the administrative delivery on %(date)s."
+msgstr "سجّل %(user)s التسليم الإداري في %(date)s."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"%(user)s revised the requested quantity during source warehouse review."
+msgstr "عدّل %(user)s الكمية المطلوبة أثناء مراجعة المخزن المصدر."
+
+
+#. module: stock_request
+msgid "<span class=\"o_stat_text\">Original Transfer</span>"
+msgstr "<span class=\"o_stat_text\">التحويل الأصلي</span>"
+
+
+#. module: stock_request
+msgid "<span class=\"o_stat_text\">Source Request</span>"
+msgstr "<span class=\"o_stat_text\">طلب المخزون المصدر</span>"
+
+
+#. module: stock_request
+msgid "<strong>Accepted By</strong><span>: </span>"
+msgstr "<strong>تم القبول بواسطة</strong><span>: </span>"
+
+
+#. module: stock_request
+msgid "<strong>Delivered By</strong>"
+msgstr "<strong>تم التسليم بواسطة</strong>"
+
+
+#. module: stock_request
+msgid "<strong>Delivered By</strong><span>: </span>"
+msgstr "<strong>تم التسليم بواسطة</strong><span>: </span>"
+
+
+#. module: stock_request
+msgid "<strong>Delivery Date</strong><span>: </span>"
+msgstr "<strong>تاريخ التسليم</strong><span>: </span>"
+
+
+#. module: stock_request
+msgid "<strong>Ready Date</strong><span>: </span>"
+msgstr "<strong>تاريخ الجاهزية</strong><span>: </span>"
+
+
+#. module: stock_request
+msgid "<strong>Reason / Notes</strong>"
+msgstr "<strong>السبب / الملاحظات</strong>"
+
+
+#. module: stock_request
+msgid "<strong>Receipt Date</strong><span>: </span>"
+msgstr "<strong>تاريخ الاستلام</strong><span>: </span>"
+
+
+#. module: stock_request
+msgid "<strong>Received By</strong>"
+msgstr "<strong>تم الاستلام بواسطة</strong>"
+
+
+#. module: stock_request
+msgid "<strong>Received By</strong><span>: </span>"
+msgstr "<strong>تم الاستلام بواسطة</strong><span>: </span>"
+
+
+#. module: stock_request
+msgid "<strong>Requested By</strong>"
+msgstr "<strong>مقدم الطلب</strong>"
+
+
+#. module: stock_request
+msgid ""
+"A route available to Stock Requests can only contain internal transfer "
+"rules."
+msgstr ""
+"لا يمكن أن يحتوي المسار المتاح لطلبات المخزون إلا على قواعد تحويل داخلي."
+
+
+#. module: stock_request
+msgid ""
+"A source delivery operation is still pending. Resolve it before closing the "
+"remaining receipt."
+msgstr ""
+"لا تزال هناك عملية تسليم من المصدر معلقة. عالجها قبل إغلاق الكمية المتبقية "
+"للاستلام."
+
+
+#. module: stock_request
+msgid "Add a line"
+msgstr "إضافة بند"
+
+
+#. module: stock_request
+msgid "Allow Warehouse in Purchase Order Line"
+msgstr "السماح بتحديد المخزن في بند أمر الشراء"
+
+
+#. module: stock_request
+msgid "Allow a different warehouse for every purchase order line."
+msgstr "السماح بتحديد مخزن مختلف لكل بند في أمر الشراء."
+
+
+#. module: stock_request
+msgid ""
+"Another pending receipt operation is not part of this remainder. Resolve it "
+"before closing the request."
+msgstr ""
+"توجد عملية استلام معلقة أخرى لا تدخل ضمن هذا المتبقي. عالجها قبل إغلاق "
+"الطلب."
+
+
+#. module: stock_request
+msgid "Another receipt for this Stock Request is still pending."
+msgstr "لا تزال هناك عملية استلام أخرى معلقة لطلب المخزون هذا."
+
+
+#. module: stock_request
+msgid "Can Close Remaining Receipt"
+msgstr "يمكنه إغلاق المتبقي للاستلام"
+
+
+#. module: stock_request
+msgid "Cancelled Delivery Quantity"
+msgstr "كمية التسليم الملغاة"
+
+
+#. module: stock_request
+msgid ""
+"Choose whether Stock Transfer creates one direct internal transfer "
+"immediately, uses separate delivery and receipt transfers through a transit "
+"location, or creates a direct transfer only when the receipt is confirmed."
+msgstr ""
+"اختر ما إذا كان تحويل المخزون سينشئ تحويلًا داخليًا مباشرًا فورًا، أو يستخدم"
+" تحويلي تسليم واستلام منفصلين عبر موقع تحويل، أو ينشئ تحويلًا مباشرًا فقط "
+"عند تأكيد الاستلام."
+
+
+#. module: stock_request
+msgid "Close Remaining Stock Request Receipt"
+msgstr "إغلاق المتبقي من استلام طلب المخزون"
+
+
+#. module: stock_request
+msgid "Close Remaining Stock Request Receipt Line"
+msgstr "بند إغلاق المتبقي من استلام طلب المخزون"
+
+
+#. module: stock_request
+msgid "Closed Receipt Quantity"
+msgstr "كمية الاستلام المغلقة"
+
+
+#. module: stock_request
+msgid ""
+"Closed receipt quantities can only be changed by the receipt closure action."
+msgstr ""
+"لا يمكن تغيير كميات الاستلام المغلقة إلا من خلال إجراء إغلاق الاستلام."
+
+
+#. module: stock_request
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__company_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Company"
+msgstr "الشركة"
+
+
+#. module: stock_request
+msgid "Company must be equal to the order"
+msgstr "يجب أن تتطابق الشركة مع شركة الطلب"
+
+
+#. module: stock_request
+msgid ""
+"Configure Stock Request responsibilities, defaults, and transit locations "
+"for each warehouse."
+msgstr "اضبط مسؤولي طلبات المخزون والقيم الافتراضية ومواقع التحويل لكل مخزن."
+
+
+#. module: stock_request
+msgid "Confirm Receipt"
+msgstr "تأكيد الاستلام"
+
+
+#. module: stock_request
+msgid ""
+"Confirming will cancel the remaining quantities shown below.\n"
+"                    The actual received quantities will not be changed."
+msgstr ""
+"سيؤدي التأكيد إلى إلغاء الكميات المتبقية الموضحة أدناه.\n"
+"                    لن تتغير الكميات المستلمة فعليًا."
+
+
+#. module: stock_request
+msgid "Create Backorder"
+msgstr "إنشاء طلب متأخر"
+
+
+#. module: stock_request
+msgid "Create a direct transfer containing one or more products."
+msgstr "أنشئ تحويلًا مباشرًا يتضمن منتجًا واحدًا أو أكثر."
+
+
+#. module: stock_request
+msgid "Create a stock request containing one or more products."
+msgstr "أنشئ طلب مخزون يتضمن منتجًا واحدًا أو أكثر."
+
+
+#. module: stock_request
+msgid "Create reusable products and quantities for stock operations."
+msgstr "أنشئ منتجات وكميات قابلة لإعادة الاستخدام في عمليات المخزون."
+
+
+#. module: stock_request
+msgid "Date when you expect to receive the goods."
+msgstr "التاريخ المتوقع لاستلام البضائع."
+
+
+#. module: stock_request
+msgid "Delivery Orders"
+msgstr "أوامر التوصيل"
+
+
+#. module: stock_request
+msgid "Destination warehouse proposed on new Stock Requests."
+msgstr "المخزن المستلم المقترح في طلبات المخزون الجديدة."
+
+
+#. module: stock_request
+msgid "Enter a received quantity for at least one product."
+msgstr "أدخل كمية مستلمة لمنتج واحد على الأقل."
+
+
+#. module: stock_request
+msgid ""
+"Every purchase order line must use an active Receipts operation type, either"
+" from its Warehouse or from the purchase order's Deliver To field."
+msgstr ""
+"يجب أن يستخدم كل بند في أمر الشراء نوع عملية استلام نشطًا، إما من مخزنه أو "
+"من حقل «التسليم إلى» في أمر الشراء."
+
+
+#. module: stock_request
+msgid "Expected date must be equal to the order"
+msgstr "يجب أن يتطابق التاريخ المتوقع مع تاريخ الطلب"
+
+
+#. module: stock_request
+msgid "Has Products to Deliver"
+msgstr "يحتوي على منتجات للتسليم"
+
+
+#. module: stock_request
+msgid "Has Products to Receive"
+msgstr "يحتوي على منتجات للاستلام"
+
+
+#. module: stock_request
+msgid ""
+"If set, this route is available for selection on Stock Requests and request "
+"lines."
+msgstr ""
+"عند التحديد، يصبح هذا المسار متاحًا للاختيار في طلبات المخزون وبنودها."
+
+
+#. module: stock_request
+msgid "Is Requester"
+msgstr "هو مقدم الطلب"
+
+
+#. module: stock_request
+msgid "Keep Remaining Pending"
+msgstr "إبقاء المتبقي معلقًا"
+
+
+#. module: stock_request
+msgid "Legacy compatibility field. New templates do not use warehouses."
+msgstr "حقل للتوافق مع الإصدارات السابقة. لا تستخدم القوالب الجديدة المخازن."
+
+
+#. module: stock_request
+msgid "Linked Direct Transfers"
+msgstr "التحويلات المباشرة المرتبطة"
+
+
+#. module: stock_request
+msgid "Location"
+msgstr "الموقع"
+
+
+#. module: stock_request
+msgid "Location must be equal to the order"
+msgstr "يجب أن يتطابق الموقع مع موقع الطلب"
+
+
+#. module: stock_request
+msgid ""
+"Moves created through this stock request will be put in this procurement "
+"group. If none is given, the moves generated by procurement rules will be "
+"grouped into one big picking."
+msgstr ""
+"ستُضاف الحركات المنشأة من خلال طلب المخزون هذا إلى مجموعة التوريد هذه. إذا "
+"لم تُحدد مجموعة، فستُجمع الحركات الناتجة عن قواعد التوريد في عملية انتقاء "
+"واحدة."
+
+
+#. module: stock_request
+msgid "New Stock Requests must start in Draft."
+msgstr "يجب أن تبدأ طلبات المخزون الجديدة بحالة مسودة."
+
+
+#. module: stock_request
+msgid "No 2 warehouse can has  \"Is Project WH ?\" ticked."
+msgstr "لا يمكن تحديد خيار «مخزن مشروع» في مخزنين."
+
+
+#. module: stock_request
+msgid "No Backorder / Cancel Remaining"
+msgstr "بدون طلب متأخر / إلغاء المتبقي"
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"No Backorder cannot be used for %(product)s because %(quantity)s %(uom)s has"
+" already been delivered and is still pending receipt. Create a backorder and"
+" process the remaining receipt, or use the existing return/correction flow."
+msgstr ""
+"لا يمكن استخدام خيار «بدون طلب متأخر» للمنتج %(product)s لأن %(quantity)s "
+"%(uom)s قد سُلّمت بالفعل ولا تزال بانتظار الاستلام. أنشئ طلبًا متأخرًا وعالج"
+" الاستلام المتبقي، أو استخدم مسار الإرجاع أو التصحيح الحالي."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"No Backorder cannot be used on this receipt while %(quantity)s %(uom)s of "
+"%(product)s is still pending delivery. Create a receipt backorder, or have "
+"the source responsible user cancel the unshipped delivery remainder first."
+msgstr ""
+"لا يمكن استخدام خيار «بدون طلب متأخر» في هذا الاستلام ما دامت كمية "
+"%(quantity)s %(uom)s من %(product)s معلقة للتسليم. أنشئ طلب استلام متأخرًا، "
+"أو اطلب من مسؤول المخزن المصدر إلغاء الكمية المتبقية غير المشحونة أولًا."
+
+
+#. module: stock_request
+msgid "No Source Request is linked to this Direct Transfer."
+msgstr "لا يوجد طلب مخزون مصدر مرتبط بهذا التحويل المباشر."
+
+
+#. module: stock_request
+msgid "No related transfer was found."
+msgstr "لم يتم العثور على تحويل مرتبط."
+
+
+#. module: stock_request
+msgid ""
+"One Step transfers directly between warehouses. Two Step uses a transit "
+"location with separate delivery and receipt operations. Two Step without "
+"Transit creates a direct transfer only when receipt is confirmed."
+msgstr ""
+"تنقل الخطوة الواحدة المنتجات مباشرة بين المخازن. تستخدم الخطوتان موقع تحويل "
+"مع عمليتي تسليم واستلام منفصلتين. أما الخطوتان دون موقع تحويل فتنشئان "
+"تحويلًا مباشرًا فقط عند تأكيد الاستلام."
+
+
+#. module: stock_request
+msgid "Only Stock Request Users can create Stock Requests."
+msgstr "لا يمكن إنشاء طلبات المخزون إلا بواسطة مستخدمي طلبات المخزون."
+
+
+#. module: stock_request
+msgid "Only a Stock Request Manager can manage Stock Request warehouse setup."
+msgstr ""
+"لا يمكن إدارة إعداد مخازن طلبات المخزون إلا بواسطة مدير طلبات المخزون."
+
+
+#. module: stock_request
+msgid ""
+"Only a Stock Request Warehouse Responsible can create a Direct Transfer."
+msgstr "لا يمكن إنشاء تحويل مباشر إلا بواسطة مسؤول مخزن طلبات المخزون."
+
+
+#. module: stock_request
+msgid ""
+"Only a responsible user of the destination warehouse can receive this Stock "
+"Request."
+msgstr "لا يمكن استلام طلب المخزون هذا إلا بواسطة أحد مسؤولي المخزن المستلم."
+
+
+#. module: stock_request
+msgid ""
+"Only a responsible user of the source warehouse can create a Direct "
+"Transfer."
+msgstr "لا يمكن إنشاء تحويل مباشر إلا بواسطة أحد مسؤولي المخزن المصدر."
+
+
+#. module: stock_request
+msgid ""
+"Only a responsible user of the source warehouse can perform this action."
+msgstr "لا يمكن تنفيذ هذا الإجراء إلا بواسطة أحد مسؤولي المخزن المصدر."
+
+
+#. module: stock_request
+msgid ""
+"Only a responsible user of the source warehouse can use it for a Direct "
+"Transfer."
+msgstr "لا يمكن استخدام المخزن المصدر في تحويل مباشر إلا بواسطة أحد مسؤوليه."
+
+
+#. module: stock_request
+msgid "Only draft Stock Requests can be submitted."
+msgstr "لا يمكن إرسال طلبات المخزون إلا إذا كانت بحالة مسودة."
+
+
+#. module: stock_request
+msgid "Only draft requests can be cancelled."
+msgstr "لا يمكن إلغاء الطلبات إلا إذا كانت بحالة مسودة."
+
+
+#. module: stock_request
+msgid ""
+"Only existing Requested Quantity values can be changed while a Stock Request"
+" is waiting for source warehouse review."
+msgstr ""
+"لا يمكن أثناء انتظار طلب المخزون لمراجعة المخزن المصدر سوى تغيير قيم الكمية "
+"المطلوبة الموجودة."
+
+
+#. module: stock_request
+msgid "Only requests in draft state can be deleted"
+msgstr "لا يمكن حذف الطلبات إلا إذا كانت بحالة مسودة"
+
+
+#. module: stock_request
+msgid "Only requests on draft state can be unlinked"
+msgstr "لا يمكن حذف الطلبات إلا إذا كانت بحالة مسودة"
+
+
+#. module: stock_request
+msgid "Only submitted Stock Requests can be rejected."
+msgstr "لا يمكن رفض طلبات المخزون إلا بعد إرسالها."
+
+
+#. module: stock_request
+msgid ""
+"Only the Requested Quantity can be changed while a Stock Request is waiting "
+"for source warehouse review."
+msgstr ""
+"لا يمكن أثناء انتظار طلب المخزون لمراجعة المخزن المصدر تغيير أي حقل سوى "
+"الكمية المطلوبة."
+
+
+#. module: stock_request
+msgid "Only the requester can cancel their own Draft request."
+msgstr "لا يمكن إلغاء طلب المسودة إلا بواسطة مقدم الطلب نفسه."
+
+
+#. module: stock_request
+msgid "Only the requesting user can submit or cancel this Stock Request."
+msgstr "لا يمكن إرسال طلب المخزون هذا أو إلغاؤه إلا بواسطة مقدم الطلب."
+
+
+#. module: stock_request
+msgid "Operational Stock Moves"
+msgstr "حركات المخزون التشغيلية"
+
+
+#. module: stock_request
+msgid "Operational Transfers"
+msgstr "التحويلات التشغيلية"
+
+
+#. module: stock_request
+msgid "Optional Stock Request that this Direct Transfer originates from."
+msgstr "طلب المخزون الاختياري الذي نشأ منه هذا التحويل المباشر."
+
+
+#. module: stock_request
+msgid ""
+"Optional transit location used for transfers received by this warehouse. "
+"Odoo's company Internal Transit Location is used when this field is empty."
+msgstr ""
+"موقع تحويل اختياري يُستخدم للتحويلات التي يستلمها هذا المخزن. عند ترك الحقل "
+"فارغًا، يُستخدم موقع التحويل الداخلي الافتراضي للشركة في أودو."
+
+
+#. module: stock_request
+msgid ""
+"Optional warehouse that will receive the purchase order line. If empty, the "
+"purchase order's Deliver To operation type is used."
+msgstr ""
+"المخزن الاختياري الذي سيستلم بند أمر الشراء. عند تركه فارغًا، يُستخدم نوع "
+"عملية «التسليم إلى» في أمر الشراء."
+
+
+#. module: stock_request
+msgid ""
+"Optional warehouse that will receive this purchase line. If empty, the "
+"purchase order's Deliver To operation type is used."
+msgstr ""
+"المخزن الاختياري الذي سيستلم بند الشراء هذا. عند تركه فارغًا، يُستخدم نوع "
+"عملية «التسليم إلى» في أمر الشراء."
+
+
+#. module: stock_request
+#, python-format
+msgid "Partial quantity decision: %(decision)s."
+msgstr "قرار الكمية الجزئية: %(decision)s."
+
+
+#. module: stock_request
+msgid "Pickings"
+msgstr "عمليات الانتقاء"
+
+
+#. module: stock_request
+msgid "Procurement group must be equal to the order"
+msgstr "يجب أن تتطابق مجموعة التوريد مع مجموعة الطلب"
+
+
+#. module: stock_request
+msgid "Products can only be added while the Stock Request is Draft."
+msgstr "لا يمكن إضافة المنتجات إلا عندما يكون طلب المخزون بحالة مسودة."
+
+
+#. module: stock_request
+msgid "Purchase Agreement Line"
+msgstr "بند اتفاقية الشراء"
+
+
+#. module: stock_request
+msgid "Purchase Line Warehouses Enabled"
+msgstr "تفعيل مخازن بنود الشراء"
+
+
+#. module: stock_request
+msgid "Quantity cancelled"
+msgstr "الكمية الملغاة"
+
+
+#. module: stock_request
+msgid "Quantity completed"
+msgstr "الكمية المكتملة"
+
+
+#. module: stock_request
+msgid "Quantity in progress."
+msgstr "الكمية قيد التنفيذ."
+
+
+#. module: stock_request
+msgid "Quantity in the default UoM of the product"
+msgstr "الكمية بوحدة قياس المنتج الافتراضية"
+
+
+#. module: stock_request
+msgid ""
+"Quantity of the stock request allocated to the stock move, in the UoM of the"
+" Stock Request"
+msgstr "كمية طلب المخزون المخصصة لحركة المخزون، بوحدة قياس طلب المخزون"
+
+
+#. module: stock_request
+msgid ""
+"Quantity of the stock request allocated to the stock move, in the default "
+"UoM of the product"
+msgstr ""
+"كمية طلب المخزون المخصصة لحركة المخزون، بوحدة القياس الافتراضية للمنتج"
+
+
+#. module: stock_request
+msgid "Quantity, specified in the unit of measure indicated in the request."
+msgstr "الكمية المحددة بوحدة القياس المبينة في الطلب."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"Receipt confirmation %(picking_name)s for your Request %(request_name)s"
+msgstr "تأكيد الاستلام %(picking_name)s لطلبك %(request_name)s"
+
+
+#. module: stock_request
+msgid ""
+"Receipt quantity explicitly cancelled when the remaining receipt is closed."
+msgstr "كمية الاستلام التي أُلغيت صراحة عند إغلاق المتبقي للاستلام."
+
+
+#. module: stock_request
+msgid "Receive Stock Request without Transit"
+msgstr "استلام طلب مخزون دون موقع تحويل"
+
+
+#. module: stock_request
+msgid "Receive Stock Request without Transit Line"
+msgstr "بند استلام طلب مخزون دون موقع تحويل"
+
+
+#. module: stock_request
+msgid "Received quantities cannot be negative."
+msgstr "لا يمكن أن تكون الكميات المستلمة سالبة."
+
+
+#. module: stock_request
+msgid "Received, rejected, or cancelled requests cannot be cancelled."
+msgstr "لا يمكن إلغاء الطلبات المستلمة أو المرفوضة أو الملغاة."
+
+
+#. module: stock_request
+msgid "Remaining receipt quantity cancelled."
+msgstr "تم إلغاء الكمية المتبقية للاستلام."
+
+
+#. module: stock_request
+msgid "Request Line"
+msgstr "بند الطلب"
+
+
+#. module: stock_request
+msgid "Request Stock"
+msgstr "طلب مخزون"
+
+
+#. module: stock_request
+msgid ""
+"Requested Quantity cannot be changed after the Stock Request has been "
+"accepted or otherwise processed."
+msgstr ""
+"لا يمكن تغيير الكمية المطلوبة بعد قبول طلب المخزون أو بدء معالجته بأي صورة "
+"أخرى."
+
+
+#. module: stock_request
+msgid "Requested by must be equal to the order"
+msgstr "يجب أن يتطابق مقدم الطلب مع مقدم الطلب في الطلب"
+
+
+#. module: stock_request
+msgid "Route"
+msgstr "المسار"
+
+
+#. module: stock_request
+msgid "Routes"
+msgstr "المسارات"
+
+
+#. module: stock_request
+msgid ""
+"Show the Available Qty column on product lines for both One Step and Two "
+"Step flows, based on the selected Source Warehouse."
+msgstr ""
+"إظهار عمود الكمية المتاحة في بنود المنتجات لمساري الخطوة الواحدة والخطوتين، "
+"بناءً على المخزن المصدر المحدد."
+
+
+#. module: stock_request
+msgid "Source Document"
+msgstr "المستند المصدر"
+
+
+#. module: stock_request
+msgid "Source Location"
+msgstr "الموقع المصدري"
+
+
+#. module: stock_request
+msgid "Source Request"
+msgstr "طلب المخزون المصدر"
+
+
+#. module: stock_request
+msgid "Source location must be equal to the order"
+msgstr "يجب أن يتطابق الموقع المصدر مع الموقع المصدر في الطلب"
+
+
+#. module: stock_request
+msgid "Stock Move"
+msgstr "حركة المخزون"
+
+
+#. module: stock_request
+msgid "Stock Moves"
+msgstr "حركات المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request / Internal Transfer Report"
+msgstr "تقرير طلب المخزون / التحويل الداخلي"
+
+
+#. module: stock_request
+msgid "Stock Request Allocation"
+msgstr "تخصيص طلب المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request Allocations"
+msgstr "تخصيصات طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request Line"
+msgstr "بند طلب المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request Line Abstract"
+msgstr "بند طلب المخزون المجرد"
+
+
+#. module: stock_request
+msgid "Stock Request Template Line"
+msgstr "بند قالب طلب المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request line status can only be changed by workflow actions."
+msgstr "لا يمكن تغيير حالة بند طلب المخزون إلا من خلال إجراءات سير العمل."
+
+
+#. module: stock_request
+msgid "Stock Request lines are completed by stock movements only."
+msgstr "لا تكتمل بنود طلب المخزون إلا بواسطة حركات المخزون."
+
+
+#. module: stock_request
+msgid "Stock Request lines cannot be reset manually."
+msgstr "لا يمكن إعادة تعيين بنود طلب المخزون يدويًا."
+
+
+#. module: stock_request
+msgid "Stock Request product quantity cannot be negative."
+msgstr "لا يمكن أن تكون كمية منتج طلب المخزون سالبة."
+
+
+#. module: stock_request
+msgid "Stock Request product quantity has to be strictly positive."
+msgstr "يجب أن تكون كمية منتج طلب المخزون أكبر من صفر."
+
+
+#. module: stock_request
+msgid "Stock Requests can only use internal transfer routes."
+msgstr "لا يمكن أن تستخدم طلبات المخزون إلا مسارات التحويل الداخلي."
+
+
+#. module: stock_request
+msgid "Stock Requests must be cancelled instead of deleted."
+msgstr "يجب إلغاء طلبات المخزون بدلًا من حذفها."
+
+
+#. module: stock_request
+msgid ""
+"Stock Requests must be waiting for the source warehouse, and Direct "
+"Transfers must be in draft before confirmation."
+msgstr ""
+"يجب أن تكون طلبات المخزون بانتظار المخزن المصدر، ويجب أن تكون التحويلات "
+"المباشرة بحالة مسودة قبل التأكيد."
+
+
+#. module: stock_request
+msgid ""
+"Stock request lines can only be created from the main Stock Request screen."
+msgstr "لا يمكن إنشاء بنود طلب المخزون إلا من شاشة طلب المخزون الرئيسية."
+
+
+#. module: stock_request
+msgid "Template"
+msgstr "قالب"
+
+
+#. module: stock_request
+msgid ""
+"The Source Document can only link a Direct Transfer to a Stock Request."
+msgstr "لا يمكن للمستند المصدر إلا ربط تحويل مباشر بطلب مخزون."
+
+
+#. module: stock_request
+msgid "The Stock Request Transit Location must be a Transit Location."
+msgstr "يجب أن يكون موقع تحويل طلب المخزون من نوع موقع تحويل."
+
+
+#. module: stock_request
+msgid "The Stock Request Transit Location must belong to the same company."
+msgstr "يجب أن يتبع موقع تحويل طلب المخزون الشركة نفسها."
+
+
+#. module: stock_request
+msgid "The Stock Request status can only be changed by workflow actions."
+msgstr "لا يمكن تغيير حالة طلب المخزون إلا من خلال إجراءات سير العمل."
+
+
+#. module: stock_request
+msgid "The company of the stock request must match with that of the location."
+msgstr "يجب أن تتطابق شركة طلب المخزون مع شركة الموقع."
+
+
+#. module: stock_request
+msgid ""
+"The company of the stock request must match with that of the source "
+"location."
+msgstr "يجب أن تتطابق شركة طلب المخزون مع شركة الموقع المصدر."
+
+
+#. module: stock_request
+msgid ""
+"The company of the stock request must match with that of the warehouse."
+msgstr "يجب أن تتطابق شركة طلب المخزون مع شركة المخزن."
+
+
+#. module: stock_request
+msgid ""
+"The default source warehouse must be different from the receiving warehouse."
+msgstr "يجب أن يختلف المخزن المصدر الافتراضي عن المخزن المستلم."
+
+
+#. module: stock_request
+msgid "The default source warehouse must belong to the same company."
+msgstr "يجب أن يتبع المخزن المصدر الافتراضي الشركة نفسها."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"The following requested items from Stock Request %(request_name)s have now "
+"been received in %(location_name)s using Picking %(picking_name)s:"
+msgstr ""
+"تم استلام الأصناف المطلوبة التالية من طلب المخزون %(request_name)s في "
+"%(location_name)s باستخدام عملية الانتقاء %(picking_name)s:"
+
+
+#. module: stock_request
+msgid "The operation type cannot be changed after creation."
+msgstr "لا يمكن تغيير نوع العملية بعد الإنشاء."
+
+
+#. module: stock_request
+msgid "The purchase line warehouse must belong to the purchase order company."
+msgstr "يجب أن يتبع مخزن بند الشراء شركة أمر الشراء."
+
+
+#. module: stock_request
+msgid ""
+"The quantities on your purchase order indicate less than billed. You should "
+"ask for a refund."
+msgstr ""
+"تشير الكميات في أمر الشراء إلى أنها أقل من الكميات المفوترة. ينبغي طلب "
+"استرداد المبلغ."
+
+
+#. module: stock_request
+msgid "The receipt closure lines are invalid."
+msgstr "بنود إغلاق الاستلام غير صالحة."
+
+
+#. module: stock_request
+msgid "The receipt lines are invalid."
+msgstr "بنود الاستلام غير صالحة."
+
+
+#. module: stock_request
+msgid ""
+"The receipt quantities changed. Close this window and open Close Remaining "
+"Receipt again."
+msgstr ""
+"تغيرت كميات الاستلام. أغلق هذه النافذة وافتح «إغلاق الاستلام وإلغاء الباقي» "
+"مرة أخرى."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"The received quantity for %(product)s exceeds the quantity already delivered"
+" and still pending receipt (%(quantity)s %(uom)s)."
+msgstr ""
+"تتجاوز الكمية المستلمة للمنتج %(product)s الكمية المسلّمة التي لا تزال "
+"بانتظار الاستلام (%(quantity)s %(uom)s)."
+
+
+#. module: stock_request
+#, python-format
+msgid "The received quantity for %(product)s exceeds the remaining quantity."
+msgstr "تتجاوز الكمية المستلمة للمنتج %(product)s الكمية المتبقية."
+
+
+#. module: stock_request
+msgid "The receiving transit location must be a Transit Location."
+msgstr "يجب أن يكون موقع تحويل الاستلام من نوع موقع تحويل."
+
+
+#. module: stock_request
+msgid "The receiving transit location must belong to the warehouse company."
+msgstr "يجب أن يتبع موقع تحويل الاستلام شركة المخزن."
+
+
+#. module: stock_request
+msgid ""
+"The remaining quantities changed. Close this window and open Receive "
+"Products again."
+msgstr ""
+"تغيرت الكميات المتبقية. أغلق هذه النافذة وافتح «استلام المنتجات» مرة أخرى."
+
+
+#. module: stock_request
+msgid ""
+"The remaining receipt can only be closed after a partial receipt while a "
+"quantity is still pending."
+msgstr ""
+"لا يمكن إغلاق المتبقي للاستلام إلا بعد استلام جزئي مع وجود كمية لا تزال "
+"معلقة."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"The remaining receipt cannot be closed because delivered stock is still "
+"unresolved in the transit location: %(details)s. Complete the existing "
+"receipt or resolve it through the supported return/correction procedure "
+"first."
+msgstr ""
+"لا يمكن إغلاق المتبقي للاستلام لأن مخزونًا مسلّمًا لا يزال دون تسوية في موقع"
+" التحويل: %(details)s. أكمل الاستلام الحالي أو عالجه أولًا من خلال إجراء "
+"الإرجاع أو التصحيح المدعوم."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"The remaining receipt cannot be closed while source delivery work is still "
+"pending: %(details)s."
+msgstr ""
+"لا يمكن إغلاق المتبقي للاستلام ما دامت أعمال التسليم من المصدر معلقة: "
+"%(details)s."
+
+
+#. module: stock_request
+msgid "The request still has delivery or receipt work and cannot be closed."
+msgstr "لا يزال الطلب يتضمن أعمال تسليم أو استلام، ولا يمكن إغلاقه."
+
+
+#. module: stock_request
+msgid "The route related to a stock request"
+msgstr "المسار المرتبط بطلب مخزون"
+
+
+#. module: stock_request
+msgid ""
+"The source and destination warehouses must belong to the same company as the"
+" Stock Request."
+msgstr "يجب أن يتبع المخزنان المصدر والمستلم شركة طلب المخزون نفسها."
+
+
+#. module: stock_request
+msgid ""
+"The warehouse on every purchase order line must belong to the purchase order"
+" company."
+msgstr "يجب أن يتبع المخزن المحدد في كل بند من أمر الشراء شركة أمر الشراء."
+
+
+#. module: stock_request
+msgid "There are no delivered products ready to receive."
+msgstr "لا توجد منتجات مسلّمة جاهزة للاستلام."
+
+
+#. module: stock_request
+msgid "There are no remaining products ready to deliver."
+msgstr "لا توجد منتجات متبقية جاهزة للتسليم."
+
+
+#. module: stock_request
+msgid "This action only works in the context of products"
+msgstr "لا يعمل هذا الإجراء إلا في سياق المنتجات"
+
+
+#. module: stock_request
+msgid "Transit location used between the delivery and receipt transfers."
+msgstr "موقع التحويل المستخدم بين تحويلي التسليم والاستلام."
+
+
+#. module: stock_request
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Two Step without Transit"
+msgstr "خطوتان دون موقع تحويل"
+
+
+#. module: stock_request
+msgid ""
+"Two Step without Transit cannot be delivered when stock transfers already "
+"exist."
+msgstr ""
+"لا يمكن تسجيل تسليم «خطوتان دون موقع تحويل» عند وجود تحويلات مخزون بالفعل."
+
+
+#. module: stock_request
+msgid "Unit"
+msgstr "الوحدة"
+
+
+#. module: stock_request
+msgid "Users can only create Stock Requests for themselves."
+msgstr "لا يمكن للمستخدمين إنشاء طلبات مخزون إلا لأنفسهم."
+
+
+#. module: stock_request
+msgid "Users cannot assign their Stock Requests to another requester."
+msgstr "لا يمكن للمستخدمين إسناد طلبات مخزونهم إلى مقدم طلب آخر."
+
+
+#. module: stock_request
+msgid ""
+"Users responsible for accepting and delivering requests from this warehouse,"
+" or receiving requests sent to it."
+msgstr ""
+"المستخدمون المسؤولون عن قبول الطلبات وتسليمها من هذا المخزن، أو استلام "
+"الطلبات المرسلة إليه."
+
+
+#. module: stock_request
+#, python-format
+msgid ""
+"Warehouse %(warehouse)s does not have a suitable Internal Picking Type."
+msgstr "لا يحتوي المخزن %(warehouse)s على نوع عملية داخلية مناسب."
+
+
+#. module: stock_request
+msgid "Warehouse must be equal to the order"
+msgstr "يجب أن يتطابق المخزن مع مخزن الطلب"
+
+
+#. module: stock_request
+msgid ""
+"Warehouse proposed as the source when this warehouse is selected as the "
+"destination of a Stock Request."
+msgstr "المخزن المقترح كمصدر عند اختيار هذا المخزن كمخزن مستلم لطلب مخزون."
+
+
+#. module: stock_request
+msgid ""
+"Workflow selected when the operation was created. One Step moves products "
+"directly between warehouses; Two Step uses a transit location with separate "
+"delivery and receipt transfers; Two Step without Transit creates a direct "
+"transfer when receipt is confirmed."
+msgstr ""
+"مسار العمل المحدد عند إنشاء العملية. تنقل الخطوة الواحدة المنتجات مباشرة بين"
+" المخازن؛ وتستخدم الخطوتان موقع تحويل مع تحويلي تسليم واستلام منفصلين؛ أما "
+"الخطوتان دون موقع تحويل فتنشئان تحويلًا مباشرًا عند تأكيد الاستلام."
+
+
+#. module: stock_request
+msgid "You can only add products to your own Stock Request while it is Draft."
+msgstr ""
+"لا يمكنك إضافة منتجات إلى طلب المخزون الخاص بك إلا عندما يكون بحالة مسودة."
+
+
+#. module: stock_request
+msgid ""
+"You can only modify products on your own Stock Request while it is Draft."
+msgstr ""
+"لا يمكنك تعديل المنتجات في طلب المخزون الخاص بك إلا عندما يكون بحالة مسودة."
+
+
+#. module: stock_request
+msgid "You can only modify your own Stock Requests while they are Draft."
+msgstr "لا يمكنك تعديل طلبات المخزون الخاصة بك إلا عندما تكون بحالة مسودة."
+
+
+#. module: stock_request
+msgid ""
+"You can only remove products from your own Stock Request while it is Draft."
+msgstr ""
+"لا يمكنك إزالة منتجات من طلب المخزون الخاص بك إلا عندما يكون بحالة مسودة."
+
+
+#. module: stock_request
+msgid ""
+"You cannot change the company of the location, as it is already assigned to "
+"stock requests that belong to another company."
+msgstr ""
+"لا يمكنك تغيير شركة الموقع لأنه مخصص بالفعل لطلبات مخزون تتبع شركة أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You cannot change the company of the route, as it is already assigned to "
+"stock requests that belong to another company."
+msgstr ""
+"لا يمكنك تغيير شركة المسار لأنه مخصص بالفعل لطلبات مخزون تتبع شركة أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You cannot change the company of the warehouse, as it is already assigned to"
+" stock requests that belong to another company."
+msgstr ""
+"لا يمكنك تغيير شركة المخزن لأنه مخصص بالفعل لطلبات مخزون تتبع شركة أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You cannot change the warehouse of a purchase order line after the order has"
+" been confirmed."
+msgstr "لا يمكنك تغيير مخزن بند أمر الشراء بعد تأكيد الأمر."
+
+
+#. module: stock_request
+msgid "You have entered a location that is assigned to another company."
+msgstr "لقد أدخلت موقعًا مخصصًا لشركة أخرى."
+
+
+#. module: stock_request
+msgid "You have entered a product that is assigned to another company."
+msgstr "لقد أدخلت منتجًا مخصصًا لشركة أخرى."
+
+
+#. module: stock_request
+msgid "You have entered a route that is assigned to another company."
+msgstr "لقد أدخلت مسارًا مخصصًا لشركة أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You have entered a source location that is assigned to another company."
+msgstr "لقد أدخلت موقعًا مصدرًا مخصصًا لشركة أخرى."
+
+
+#. module: stock_request
+msgid "You have entered a warehouse that is assigned to another company."
+msgstr "لقد أدخلت مخزنًا مخصصًا لشركة أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You have to select a product unit of measure that is compatible with the "
+"default unit of measure of the product"
+msgstr "يجب اختيار وحدة قياس للمنتج متوافقة مع وحدة القياس الافتراضية للمنتج"
+
+
+#. module: stock_request
+msgid "e.g. Weekly Replenishment"
+msgstr "مثال: التزويد الأسبوعي"
+
+#. module: stock_request
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+
+#. module: stock_request
+msgid "Activates Stock Request Orders"
+msgstr "يفعّل أوامر طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Activities"
+msgstr "الأنشطة"
+
+
+#. module: stock_request
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+
+#. module: stock_request
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+
+#. module: stock_request
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+
+#. module: stock_request
+msgid "Add State to Stock Request and Stock Request Orders if activated."
+msgstr "إضافة حالة إلى طلبات المخزون وأوامر طلبات المخزون عند التفعيل."
+
+
+#. module: stock_request
+msgid "Allocated Quantity"
+msgstr "الكمية المخصصة"
+
+
+#. module: stock_request
+msgid "Allow All Locations Types"
+msgstr "السماح بجميع أنواع المواقع"
+
+
+#. module: stock_request
+msgid "Allow Virtual locations on Stock Requests"
+msgstr "السماح بالمواقع الافتراضية في طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Analytic"
+msgstr "تحليلي"
+
+
+#. module: stock_request
+msgid "Analytic accounting in Stock Requests"
+msgstr "المحاسبة التحليلية في طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+
+#. module: stock_request
+msgid ""
+"By default only internal and transit locations are allowed in Stock Request "
+"and Orders."
+msgstr ""
+"افتراضيًا، لا يُسمح في طلبات المخزون وأوامرها إلا بالمواقع الداخلية ومواقع "
+"التحويل."
+
+
+#. module: stock_request
+msgid "By default, available stock is not used"
+msgstr "افتراضيًا، لا يُستخدم المخزون المتاح"
+
+
+#. module: stock_request
+msgid "Category"
+msgstr "الفئة"
+
+
+#. module: stock_request
+msgid "Check available stock first"
+msgstr "التحقق من المخزون المتاح أولًا"
+
+
+#. module: stock_request
+msgid "Click to add a Stock Request."
+msgstr "انقر لإضافة طلب مخزون."
+
+
+#. module: stock_request
+msgid "Companies"
+msgstr "الشركات"
+
+
+#. module: stock_request
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات"
+
+
+#. module: stock_request
+msgid "Confirm"
+msgstr "تأكيد"
+
+
+#. module: stock_request
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"لا يمكن التحويل بين وحدات القياس إلا إذا كانت تنتمي لنفس الفئة. سيتم إجراء "
+"التحويل بناءً على النسب."
+
+
+#. module: stock_request
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+
+#. module: stock_request
+msgid "Created on"
+msgstr "أنشئ في"
+
+
+#. module: stock_request
+msgid "Current requests"
+msgstr "الطلبات الحالية"
+
+
+#. module: stock_request
+msgid "Display Name"
+msgstr "اسم العرض"
+
+
+#. module: stock_request
+msgid "Enable Analytic Accounting in Stock Requests"
+msgstr "تفعيل المحاسبة التحليلية في طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Enable Orders"
+msgstr "تفعيل الأوامر"
+
+
+#. module: stock_request
+msgid "Enable Stock Requests Kanban cards"
+msgstr "تفعيل بطاقات كانبان لطلبات المخزون"
+
+
+#. module: stock_request
+msgid "Enable Stock Requests for Manufacturing"
+msgstr "تفعيل طلبات المخزون للتصنيع"
+
+
+#. module: stock_request
+msgid "Enable Submitted State"
+msgstr "تفعيل حالة «تم الإرسال»"
+
+
+#. module: stock_request
+msgid "Finished"
+msgstr "مكتمل"
+
+
+#. module: stock_request
+msgid "Followers"
+msgstr "المتابعون"
+
+
+#. module: stock_request
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+
+#. module: stock_request
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome، مثل fa-tasks"
+
+
+#. module: stock_request
+msgid "Group By"
+msgstr "تجميع حسب"
+
+
+#. module: stock_request
+msgid "Group Stock Request Order"
+msgstr "مجموعة أمر طلب المخزون"
+
+
+#. module: stock_request
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+
+#. module: stock_request
+msgid "ID"
+msgstr "المُعرف"
+
+
+#. module: stock_request
+msgid "Icon"
+msgstr "الأيقونة"
+
+
+#. module: stock_request
+msgid "Icon to indicate an exception activity."
+msgstr "الأيقونة للإشارة إلى النشاط المستثنى."
+
+
+#. module: stock_request
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة عليك رؤيتها."
+
+
+#. module: stock_request
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فقد حدث خطأ في تسليم بعض الرسائل."
+
+
+#. module: stock_request
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+
+#. module: stock_request
+msgid "Inventory Locations"
+msgstr "مواقع المخزون"
+
+
+#. module: stock_request
+msgid "Inventory Routes"
+msgstr "مسارات المخزون"
+
+
+#. module: stock_request
+msgid "Is Follower"
+msgstr "متابع"
+
+
+#. module: stock_request
+msgid "Kanban"
+msgstr "كانبان"
+
+
+#. module: stock_request
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+
+#. module: stock_request
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+
+#. module: stock_request
+msgid "Manufacturing"
+msgstr "التصنيع"
+
+
+#. module: stock_request
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+
+#. module: stock_request
+msgid "Messages"
+msgstr "الرسائل"
+
+
+#. module: stock_request
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطاتي"
+
+
+#. module: stock_request
+msgid "Name"
+msgstr "الاسم"
+
+
+#. module: stock_request
+msgid "Name must be unique"
+msgstr "يجب ألا يتكرر الاسم"
+
+
+#. module: stock_request
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+
+#. module: stock_request
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+
+#. module: stock_request
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+
+#. module: stock_request
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+
+#. module: stock_request
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+
+#. module: stock_request
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
+
+
+#. module: stock_request
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل الحادث بها خطأ في التسليم"
+
+
+#. module: stock_request
+msgid "Only orders on draft state can be unlinked"
+msgstr "لا يمكن حذف الأوامر إلا إذا كانت بحالة مسودة"
+
+
+#. module: stock_request
+msgid "Open Quantity"
+msgstr "الكمية المفتوحة"
+
+
+#. module: stock_request
+msgid "Order"
+msgstr "الطلب"
+
+
+#. module: stock_request
+msgid "Orders &amp; Configuration"
+msgstr "الأوامر والإعدادات"
+
+
+#. module: stock_request
+msgid "Procurement Group"
+msgstr "مجموعة التوريد"
+
+
+#. module: stock_request
+msgid "Product Moves (Stock Move Line)"
+msgstr "تحركات المنتج (بنود حركة المخزون)"
+
+
+#. module: stock_request
+msgid "Qty Cancelled"
+msgstr "الكمية الملغاة"
+
+
+#. module: stock_request
+msgid "Qty Done"
+msgstr "الكمية المنتهية"
+
+
+#. module: stock_request
+msgid "Qty In Progress"
+msgstr "الكمية قيد التنفيذ"
+
+
+#. module: stock_request
+msgid "Real Quantity"
+msgstr "الكمية الفعلية"
+
+
+#. module: stock_request
+msgid "Receive all products at once"
+msgstr "استلام جميع المنتجات دفعة واحدة"
+
+
+#. module: stock_request
+msgid "Receive each product when available"
+msgstr "استلام كل منتج عند توفره"
+
+
+#. module: stock_request
+msgid "Requested Quantity (UoM)"
+msgstr "الكمية المطلوبة (بوحدة القياس)"
+
+
+#. module: stock_request
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+
+#. module: stock_request
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+
+#. module: stock_request
+msgid "Shipping Policy"
+msgstr "سياسة الشحن"
+
+
+#. module: stock_request
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الأنشطة المعتمدة على الحالة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية."
+
+
+#. module: stock_request
+msgid "Stock Request #"
+msgstr "رقم طلب المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request Order"
+msgstr "أمر طلب مخزون"
+
+
+#. module: stock_request
+msgid "Stock Request Orders"
+msgstr "أوامر طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Stock Request for Manufacturing"
+msgstr "طلب مخزون للتصنيع"
+
+
+#. module: stock_request
+msgid "Stock Request name must be unique"
+msgstr "يجب ألا يتكرر اسم طلب المخزون"
+
+
+#. module: stock_request
+msgid "Stock Requests Analytic integration"
+msgstr "التكامل التحليلي لطلبات المخزون"
+
+
+#. module: stock_request
+msgid "Stock Requests Kanban integration"
+msgstr "تكامل كانبان لطلبات المخزون"
+
+
+#. module: stock_request
+msgid "Stock Rule"
+msgstr "قاعدة المخزون"
+
+
+#. module: stock_request
+msgid "Stock request Order"
+msgstr "أمر طلب مخزون"
+
+
+#. module: stock_request
+msgid "Stock requests"
+msgstr "طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Submitted state in Stock Requests"
+msgstr "حالة «تم الإرسال» في طلبات المخزون"
+
+
+#. module: stock_request
+msgid "The picking policy must be equal to the order"
+msgstr "يجب أن تتطابق سياسة الانتقاء مع سياسة الطلب"
+
+
+#. module: stock_request
+msgid "The route related to a stock request order"
+msgstr "المسار المرتبط بأمر طلب مخزون"
+
+
+#. module: stock_request
+msgid "There should be at least one request item for confirming the order."
+msgstr "يجب أن يحتوي الأمر على بند طلب واحد على الأقل لتأكيده."
+
+
+#. module: stock_request
+msgid "Transfers"
+msgstr "التحويلات"
+
+
+#. module: stock_request
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط المستثنى في السجل."
+
+
+#. module: stock_request
+msgid "Use Kanban cards for consumable products"
+msgstr "استخدام بطاقات كانبان للمنتجات الاستهلاكية"
+
+
+#. module: stock_request
+msgid "Use Manufacturing Orders with Stock Requests"
+msgstr "استخدام أوامر التصنيع مع طلبات المخزون"
+
+
+#. module: stock_request
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+
+#. module: stock_request
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع الإلكتروني"
+
+
+#. module: stock_request
+msgid ""
+"You cannot change the company of the location, as it is already assigned to "
+"stock request orders that belong to another company."
+msgstr ""
+"لا يمكنك تغيير شركة الموقع لأنه مخصص بالفعل لأوامر طلبات مخزون تتبع شركة "
+"أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You cannot change the company of the warehouse, as it is already assigned to"
+" stock request orders that belong to another company."
+msgstr ""
+"لا يمكنك تغيير شركة المخزن لأنه مخصص بالفعل لأوامر طلبات مخزون تتبع شركة "
+"أخرى."
+
+
+#. module: stock_request
+msgid ""
+"You have to select a product unit of measure in the same category than the "
+"default unit of measure of the product"
+msgstr "يجب اختيار وحدة قياس للمنتج من فئة وحدة القياس الافتراضية نفسها"
+
+#. module: stock_request
+msgid "Allowed Uom Categ"
+msgstr "فئة وحدات القياس المسموح بها"
+
+#. module: stock_request
+msgid "Is Project WH ?"
+msgstr "هل هو مخزن مشروع؟"
+
+#. module: stock_request
+msgid "Processed"
+msgstr "تمت المعالجة"
+
+#. module: stock_request
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: stock_request
+msgid "Wizard"
+msgstr "المعالج"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: model:ir.actions.client,name:stock_request.preparation_summary_action
+#: model:ir.ui.menu,name:stock_request.preparation_summary_menu
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+#: model:ir.actions.act_window,name:stock_request.preparation_summary_list_action
+#: model:ir.actions.report,name:stock_request.preparation_summary_pdf_action
+#: model:ir.model.fields,field_description:stock_request.field_res_config_settings__stock_request_preparation_summary_enabled
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "Preparation Summary"
+msgstr "إجمالي المطلوب تجهيزه"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__warehouse_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Receiving Warehouse"
+msgstr "المخزن المستلم"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "All"
+msgstr "الكل"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Request Date From"
+msgstr "تاريخ الطلب من"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Request Date To"
+msgstr "تاريخ الطلب إلى"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Refresh"
+msgstr "تحديث"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Reset Filters"
+msgstr "إعادة ضبط الفلاتر"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Loading…"
+msgstr "جارٍ التحميل…"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__code
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Internal Reference"
+msgstr "الكود الداخلي"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__product_uom_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Unit of Measure"
+msgstr "وحدة القياس"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__quantity
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Quantity to Prepare"
+msgstr "إجمالي الكمية المطلوب تجهيزها"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__order_count
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Orders"
+msgstr "عدد الطلبات"
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "No quantities pending preparation."
+msgstr "لا توجد كميات تنتظر التجهيز."
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Only warehouse responsible users and managers can access this report."
+msgstr "هذا التقرير متاح لمسؤول المخزن والمدير فقط."
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Invalid transfer flow."
+msgstr "نوع الدورة غير صالح."
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Print PDF"
+msgstr "طباعة PDF"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Export Excel"
+msgstr "تصدير Excel"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Preparation Summary is disabled in Settings."
+msgstr "ملخص التجهيز غير مفعّل في الإعدادات."
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Unsupported Preparation Summary filter: %s"
+msgstr "فلتر غير مدعوم في ملخص التجهيز: %s"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Unsupported report sort field: %s"
+msgstr "حقل ترتيب غير مدعوم في التقرير: %s"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Group by Company, Source Warehouse, Product, Internal Reference or Unit of Measure."
+msgstr "يمكن التجميع حسب الشركة أو مخزن المصدر أو المنتج أو الكود الداخلي أو وحدة القياس."
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "AND"
+msgstr "و"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "OR"
+msgstr "أو"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "NOT"
+msgstr "ليس"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Companies: %s"
+msgstr "الشركات: %s"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "All matching requests"
+msgstr "جميع الطلبات المطابقة"
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Use the Preparation Summary report to read its data."
+msgstr "استخدم شاشة ملخص التجهيز لقراءة بياناته."
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Preparation Summary is read-only."
+msgstr "ملخص التجهيز للقراءة فقط."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid "Kit products cannot be added to stock requests or transfers. Add their components instead."
+msgstr "لا يمكن إضافة منتجات الكيت إلى طلبات المخزون أو التحويلات. أضف مكوناتها بدلاً منها."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid "Only Requested Quantity changes and new product lines are allowed while a Stock Request is waiting for source warehouse review."
+msgstr "يُسمح فقط بتعديل الكمية المطلوبة وإضافة أصناف جديدة أثناء انتظار مراجعة مخزن المصدر."
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid "Finish or cancel the pending receipt before changing this line."
+msgstr "أكمل أو ألغِ الاستلام المعلق قبل تعديل هذا السطر."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid "A line with a recorded receipt or receipt closure cannot be deleted or have its product or unit changed."
+msgstr "لا يمكن حذف سطر له استلام مسجل أو إغلاق للاستلام، أو تغيير منتجه أو وحدة قياسه."
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid "Requested Quantity cannot be less than the received and closed receipt quantities."
+msgstr "لا يمكن أن تقل الكمية المطلوبة عن مجموع الكميات المستلمة والكميات المغلقة للاستلام."
+

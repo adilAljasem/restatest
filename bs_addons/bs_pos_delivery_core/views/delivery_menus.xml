@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_open_bs_delivery_provider_catalog" model="ir.actions.server">
+        <field name="name">Delivery Integrations</field>
+        <field name="model_id" ref="model_bs_delivery_provider"/>
+        <field name="group_ids" eval="[(4, ref('group_delivery_integration_manager'))]"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = env['bs.delivery.provider'].action_open_provider_catalog()
+        </field>
+    </record>
+
+    <menuitem id="menu_bs_delivery_root" name="Connect"
+              sequence="61" web_icon="bs_pos_delivery_core,static/description/icon.png"
+              groups="group_delivery_viewer"/>
+    <menuitem id="menu_bs_delivery_dashboard" name="Dashboard"
+              parent="menu_bs_delivery_root" action="action_bs_delivery_dashboard"
+              sequence="10" groups="group_delivery_viewer"/>
+    <menuitem id="menu_bs_delivery_orders_new" name="NEW Orders"
+              parent="menu_bs_delivery_root" action="action_bs_delivery_order_new"
+              sequence="20" groups="group_delivery_operator"/>
+    <menuitem id="menu_bs_delivery_orders" name="All Orders"
+              parent="menu_bs_delivery_root" action="action_bs_delivery_order"
+              sequence="30" groups="group_delivery_viewer"/>
+    <menuitem id="menu_bs_delivery_connections" name="Platforms"
+              parent="menu_bs_delivery_root" action="action_bs_delivery_connection"
+              sequence="40" groups="group_delivery_manager"/>
+    <menuitem id="menu_bs_delivery_product_mapping" name="Menu Mapping"
+              parent="menu_bs_delivery_root" action="action_bs_delivery_product_binding"
+              sequence="50" groups="group_delivery_manager" active="False"/>
+    <menuitem id="menu_bs_delivery_webhook_events" name="Webhook Log"
+              parent="menu_bs_delivery_root" action="action_bs_delivery_webhook_event"
+              sequence="70" groups="group_delivery_integration_manager"/>
+    <menuitem id="menu_bs_delivery_settings" name="Settings"
+              parent="menu_bs_delivery_root" sequence="90"
+              groups="group_delivery_manager"/>
+
+    <menuitem id="menu_bs_delivery_integrations" name="Provider Catalog"
+              parent="menu_bs_delivery_settings" action="action_open_bs_delivery_provider_catalog"
+              sequence="10" groups="group_delivery_integration_manager"/>
+    <menuitem id="menu_bs_delivery_stores" name="Store Mapping"
+              parent="menu_bs_delivery_settings" action="action_bs_delivery_store_binding"
+              sequence="20" groups="group_delivery_manager"/>
+    <menuitem id="menu_bs_delivery_reject_reasons" name="Rejection Reasons"
+              parent="menu_bs_delivery_settings" action="action_bs_delivery_reject_reason"
+              sequence="40" groups="group_delivery_manager"/>
+    <menuitem id="menu_bs_delivery_category_mapping" name="Category Mapping"
+              parent="menu_bs_delivery_settings" action="action_bs_delivery_category_binding"
+              sequence="50" groups="group_delivery_manager" active="False"/>
+    <menuitem id="menu_bs_delivery_modifier_mapping" name="Modifier Mapping"
+              parent="menu_bs_delivery_settings" action="action_bs_delivery_modifier_binding"
+              sequence="60" groups="group_delivery_manager"/>
+    <menuitem id="menu_bs_delivery_payment_mapping" name="Payment Mapping"
+              parent="menu_bs_delivery_settings" action="action_bs_delivery_payment_binding"
+              sequence="70" groups="group_delivery_manager" active="False"/>
+    <menuitem id="menu_bs_delivery_menu_sync" name="Menu Synchronization"
+              parent="menu_bs_delivery_settings" action="action_bs_delivery_menu_version"
+              sequence="80" groups="group_delivery_manager"/>
+    <menuitem id="menu_bs_delivery_technical" name="Technical"
+              parent="menu_bs_delivery_settings" sequence="90"
+              groups="group_delivery_integration_manager"/>
+    <menuitem id="menu_bs_delivery_logs" name="Synchronization Log"
+              parent="menu_bs_delivery_technical" action="action_bs_delivery_sync_log"
+              sequence="10" groups="group_delivery_integration_manager"/>
+    <menuitem id="menu_bs_delivery_outbox" name="Outgoing Queue"
+              parent="menu_bs_delivery_technical" action="action_bs_delivery_outbox"
+              sequence="20" groups="group_delivery_integration_manager"/>
+    <menuitem id="menu_bs_delivery_compatibility_bindings" name="Order Bindings"
+              parent="menu_bs_delivery_technical" action="action_bs_delivery_order_binding"
+              sequence="30" groups="group_delivery_integration_manager"/>
+</odoo>

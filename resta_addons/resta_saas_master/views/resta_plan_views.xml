@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="resta_plan_view_list" model="ir.ui.view">
+        <field name="name">resta.plan.list</field>
+        <field name="model">resta.plan</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/><field name="tagline"/>
+                <field name="price_monthly"/><field name="price_yearly"/>
+                <field name="max_branches"/><field name="extra_branch_price"/>
+                <field name="highlighted"/><field name="published"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="resta_plan_view_form" model="ir.ui.view">
+        <field name="name">resta.plan.form</field>
+        <field name="model">resta.plan</field>
+        <field name="arch" type="xml">
+            <form><sheet>
+                <h1><field name="name"/></h1>
+                <group>
+                    <group><field name="tagline"/><field name="price_monthly"/><field name="price_yearly"/><field name="currency_id"/></group>
+                    <group><field name="max_branches"/><field name="extra_branch_price"/><field name="highlighted"/><field name="published"/><field name="product_id"/></group>
+                </group>
+                <field name="features" placeholder="ميزة في كل سطر"/>
+            </sheet></form>
+        </field>
+    </record>
+    <record id="action_resta_plan" model="ir.actions.act_window">
+        <field name="name">الباقات</field>
+        <field name="res_model">resta.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

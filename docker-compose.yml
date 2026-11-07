@@ -1,0 +1,167 @@
+# Resta SaaS on Dokploy: PostgreSQL + Odoo 19 platform (all restaurants) + backups.
+# Domains: resta.sa (platform) and *.resta.sa (one sub-domain per restaurant) are routed
+# by the Traefik labels below. Change "resta.sa" in the labels if you use another domain.
+
+x-resta-build: &resta-build
+  context: .
+  dockerfile: Dockerfile
+
+x-resta-env: &resta-env
+  DB_HOST: postgres
+  DB_PORT: "5432"
+  DB_USER: odoo
+  DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in Dokploy > Environment}
+  TZ: Asia/Riyadh
+
+services:
+  # PostgreSQL Database (one database per restaurant + platform + templates)
+  postgres:
+    image: postgres:16-alpine
+    container_name: resta_postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+    command:
+      - postgres
+      - -c
+      - max_connections=${PG_MAX_CONNECTIONS:-200}
+      - -c
+      - shared_buffers=${PG_SHARED_BUFFERS:-2GB}
+      - -c
+      - effective_cache_size=${PG_EFFECTIVE_CACHE_SIZE:-8GB}
+      - -c
+      - work_mem=${PG_WORK_MEM:-16MB}
+      - -c
+      - maintenance_work_mem=${PG_MAINTENANCE_WORK_MEM:-512MB}
+      - -c
+      - max_wal_size=4GB
+      - -c
+      - wal_level=replica
+      - -c
+      - log_min_duration_statement=2000
+    shm_size: 1g
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # No "ports:" on purpose - the database is reachable only inside the stack.
+    networks:
+      - resta_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo -d postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # Odoo 19 - platform (resta.sa) and every restaurant (r100002.resta.sa, ...)
+  odoo:
+    build: *resta-build
+    image: resta/odoo:19
+    container_name: resta_odoo
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      <<: *resta-env
+      ODOO_MASTER_PASSWORD: ${ODOO_MASTER_PASSWORD:?set ODOO_MASTER_PASSWORD}
+      RESTA_DOMAIN: ${RESTA_DOMAIN:-resta.sa}
+      RESTA_AUTO_INIT: ${RESTA_AUTO_INIT:-true}
+      ODOO_WORKERS: ${ODOO_WORKERS:-4}
+      ODOO_CRON_THREADS: ${ODOO_CRON_THREADS:-2}
+      ODOO_DB_MAXCONN: ${ODOO_DB_MAXCONN:-16}
+      ODOO_MEMORY_SOFT_MB: ${ODOO_MEMORY_SOFT_MB:-2048}
+      ODOO_MEMORY_HARD_MB: ${ODOO_MEMORY_HARD_MB:-2560}
+    expose:
+      - "8069"
+      - "8072"
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - ${BACKUP_HOST_DIR:-/root/resta-backups}:/backups:ro
+    networks:
+      - resta_network
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      # HTTP -> HTTPS
+      - 'traefik.http.routers.resta-http.rule=Host(`resta.sa`) || HostRegexp(`^[a-z0-9-]+\.resta\.sa$$`)'
+      - traefik.http.routers.resta-http.entrypoints=web
+      - traefik.http.routers.resta-http.middlewares=resta-https
+      - traefik.http.middlewares.resta-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.resta-https.redirectscheme.permanent=true
+      # Web (port 8069)
+      - 'traefik.http.routers.resta-web.rule=Host(`resta.sa`) || HostRegexp(`^[a-z0-9-]+\.resta\.sa$$`)'
+      - traefik.http.routers.resta-web.entrypoints=websecure
+      - traefik.http.routers.resta-web.tls=true
+      - traefik.http.routers.resta-web.service=resta-web
+      - traefik.http.services.resta-web.loadbalancer.server.port=8069
+      # Live notifications / POS sync (websocket, port 8072)
+      - 'traefik.http.routers.resta-ws.rule=(Host(`resta.sa`) || HostRegexp(`^[a-z0-9-]+\.resta\.sa$$`)) && PathPrefix(`/websocket`)'
+      - traefik.http.routers.resta-ws.entrypoints=websecure
+      - traefik.http.routers.resta-ws.tls=true
+      - traefik.http.routers.resta-ws.service=resta-ws
+      - traefik.http.services.resta-ws.loadbalancer.server.port=8072
+      # Wildcard certificate by Let's Encrypt DNS challenge (only if Traefik has a
+      # Cloudflare DNS resolver configured - see DOKPLOY.md). Leave commented when
+      # using a Cloudflare Origin Certificate uploaded in Dokploy > Certificates.
+      # - traefik.http.routers.resta-web.tls.certresolver=letsencrypt-dns
+      # - traefik.http.routers.resta-web.tls.domains[0].main=resta.sa
+      # - traefik.http.routers.resta-web.tls.domains[0].sans=*.resta.sa
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -m 5 http://localhost:8069/web/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 900s   # first start builds the platform + 2 templates (~10 min)
+    restart: unless-stopped
+
+  # Backup Service - every database + filestore, daily/weekly/monthly, off-site copy
+  backup:
+    build: *resta-build
+    image: resta/odoo:19
+    container_name: resta_backup
+    user: root
+    command: ["resta-backup"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      <<: *resta-env
+      ODOO_MASTER_PASSWORD: ${ODOO_MASTER_PASSWORD:?set ODOO_MASTER_PASSWORD}
+      BACKUP_TIME: ${BACKUP_TIME:-02:30}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-7}
+      BACKUP_KEEP_WEEKS: ${BACKUP_KEEP_WEEKS:-4}
+      BACKUP_KEEP_MONTHS: ${BACKUP_KEEP_MONTHS:-6}
+      BACKUP_RCLONE_REMOTE: ${BACKUP_RCLONE_REMOTE:-}
+      BACKUP_NOTIFY_URL: ${BACKUP_NOTIFY_URL:-}
+      # rclone remote "b2" from environment (Backblaze B2). Any rclone backend works.
+      RCLONE_CONFIG_B2_TYPE: b2
+      RCLONE_CONFIG_B2_ACCOUNT: ${B2_KEY_ID:-}
+      RCLONE_CONFIG_B2_KEY: ${B2_APPLICATION_KEY:-}
+      RCLONE_CONFIG_B2_HARD_DELETE: "true"
+    volumes:
+      - odoo_data:/var/lib/odoo:ro
+      - ${BACKUP_HOST_DIR:-/root/resta-backups}:/backups
+    networks:
+      - resta_network
+    healthcheck:
+      # unhealthy when the last successful backup is older than 26 hours
+      test: ["CMD-SHELL", "test -n \"$$(find /backups/.last_success -mmin -1560 2>/dev/null)\""]
+      interval: 30m
+      timeout: 10s
+      retries: 1
+      start_period: 2h
+    restart: always
+
+volumes:
+  postgres_data:
+    driver: local
+  odoo_data:
+    driver: local
+
+networks:
+  resta_network:
+    driver: bridge
+  dokploy-network:
+    external: true

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ess" model="ir.ui.view">
+        <field name="name">res.config.settings.form.ess</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="75"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Self-Service" string="Self-Service" name="bs_hr_ess_base" groups="bs_hr_ess_base.group_ess_hr_manager">
+                    <block title="Employee portal" name="ess_portal">
+                        <setting string="App name and color" help="Shown on the employees' phones (installable app).">
+                            <div class="row mt-2">
+                                <label for="ess_app_name" class="col-lg-4 o_light_label"/>
+                                <field name="ess_app_name"/>
+                            </div>
+                            <div class="row">
+                                <label for="ess_brand_color" class="col-lg-4 o_light_label"/>
+                                <field name="ess_brand_color" widget="color"/>
+                            </div>
+                        </setting>
+                        <setting string="Open Self-Service after login" help="Portal employees land on /my/hr, in the browser and in the Odoo iOS / Android app.">
+                            <field name="ess_portal_landing"/>
+                        </setting>
+                        <setting string="Login with mobile + SMS code" help="For employees without an e-mail. Requires the SMS module.">
+                            <field name="ess_otp_login"/>
+                        </setting>
+                    </block>
+                    <block title="Approvals" name="ess_approvals">
+                        <setting string="Default SLA" help="Used when a flow step has no SLA of its own.">
+                            <field name="ess_default_sla_hours"/> hours
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_ess_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module': 'bs_hr_ess_base', 'bin_size': False}</field>
+    </record>
+</odoo>

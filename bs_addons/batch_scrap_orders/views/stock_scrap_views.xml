@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_scrap_form_view_inherit_batch" model="ir.ui.view">
+        <field name="name">stock.scrap.form.inherit.batch</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_batch_scrap_order" type="object"
+                        class="oe_stat_button" icon="fa-list-alt"
+                        invisible="batch_scrap_order_count == 0">
+                    <field name="batch_scrap_order_count" widget="statinfo"
+                           string="Batch Scrap Order"/>
+                </button>
+            </xpath>
+            <field name="origin" position="after">
+                <field name="batch_reference" invisible="not batch_scrap_order_id" readonly="1"/>
+                <field name="batch_scrap_order_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_scrap_list_view_inherit_batch" model="ir.ui.view">
+        <field name="name">stock.scrap.list.inherit.batch</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="batch_reference" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_scrap_search_view_inherit_batch" model="ir.ui.view">
+        <field name="name">stock.scrap.search.inherit.batch</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_search_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="batch_reference"/>
+                <field name="batch_scrap_order_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

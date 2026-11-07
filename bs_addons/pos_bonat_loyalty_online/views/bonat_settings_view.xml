@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Bonat block on the Point of Sale settings page.
+
+        Mirrors views/res_config_settings_view.xml from the on-premise module,
+        with three substitutions forced by the no-Python constraint:
+
+          * The API key was rendered twice (masked / plain) and switched by a
+            transient boolean plus two type="object" buttons. Here a single
+            field carries widget="bonat_api_key", which draws its own eye
+            toggle. Fewer moving parts and no server round trip.
+
+          * "Test Connection" was a type="object" button. It is now
+            <widget name="bonat_test_connection"/>. A view widget receives the
+            live record, so the button still tests the values the merchant just
+            typed rather than the last-saved ones, which is the behaviour the
+            on-premise docstring explicitly calls for.
+
+          * The onchange that cleared the API key when the integration was
+            switched off is now in widget="bonat_enable_toggle".
+    -->
+    <record id="res_config_settings_view_form_inherit_bonat_online" model="ir.ui.view">
+        <field name="name">pos.bonat.loyalty.online.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!--
+                Anchored after the Pricing block, not the Inventory one.
+
+                The on-premise view targets block[@id='pos_inventory_section'],
+                which does not exist on saas~19.4: that series' POS settings view
+                offers restaurant_section, pos_payment_section,
+                pos_interface_section, product_and_category_block,
+                pos_accounting_section, pos_pricing_section,
+                pos_bills_and_receipts_section, pos_localization_section,
+                pos_payment_terminals_section, pos_connected_devices_section and
+                pos_preparation_section. Using the on-premise anchor fails the
+                import outright with "cannot be located in parent view".
+
+                Pricing is the closest neighbour for a discount and loyalty block.
+            -->
+            <xpath expr="//block[@id='pos_pricing_section']" position="after">
+                <block title="Bonat Integration" id="pos_bonat_integration_section">
+                    <setting>
+                        <field name="x_bonat_enabled" widget="bonat_enable_toggle"/>
+                        <div class="text-muted small">Module version: 19.0.8.29-online.2</div>
+                        <div class="content-group" invisible="not x_bonat_enabled">
+                            <div class="mt16">
+                                <label string="API Key" for="x_bonat_api_key" class="o_light_label"/>
+                                <div class="o_row d-flex align-items-center">
+                                    <field name="x_bonat_api_key"
+                                           widget="bonat_api_key"
+                                           placeholder="API Key"
+                                           class="flex-grow-1"/>
+                                    <widget name="bonat_test_connection"/>
+                                </div>
+                                <div class="text-muted mt-2 small">
+                                    <p class="mb-1">
+                                        Need help? Contact
+                                        <a href="mailto:odoo@bonat.io">odoo@bonat.io</a>
+                                        or visit
+                                        <a href="https://bonat.io" target="_blank" rel="noopener noreferrer">bonat.io</a>.
+                                    </p>
+                                    <p class="mb-0">
+                                        This API key is issued by Bonat, not by Odoo. It comes with your
+                                        Bonat merchant account. Requires an active, paid Bonat subscription;
+                                        contact <a href="mailto:odoo@bonat.io">odoo@bonat.io</a> to sign up.
+                                        No account yet? Turn on <em>Demo Mode</em> below to try the full POS
+                                        flow with no key required.
+                                    </p>
+                                </div>
+                            </div>
+                            <!--
+                                Each label sits on its own line with the field in a
+                                nested div. Putting <label> and <field> as direct
+                                siblings renders them butted together
+                                ("Merchant IDABCD1234") inside a settings <setting>
+                                block, which is how the on-premise markup behaves
+                                here. The API Key row above already had this shape,
+                                which is why it looked right.
+                            -->
+                            <div class="mt16">
+                                <label string="Merchant ID" for="x_bonat_merchant_id" class="o_light_label"/>
+                                <div>
+                                    <field name="x_bonat_merchant_id" placeholder="Merchant ID"/>
+                                </div>
+                            </div>
+                            <div class="mt16">
+                                <label string="Merchant Name" for="x_bonat_merchant_name" class="o_light_label"/>
+                                <div>
+                                    <field name="x_bonat_merchant_name" placeholder="Merchant Name"/>
+                                </div>
+                            </div>
+                            <div class="mt16">
+                                <label string="Bonat Discount Product" for="x_bonat_discount_product_id" class="o_light_label"/>
+                                <div>
+                                    <field name="x_bonat_discount_product_id"
+                                           options="{'no_create': True}"
+                                           placeholder="Product carrying whole-order discounts"/>
+                                </div>
+                                <div class="text-muted small">
+                                    Required for whole-order (type 1) reward codes. Use a service product
+                                    with <em>Available in POS</em> switched off so it stays hidden from the
+                                    cashier's product grid.
+                                </div>
+                            </div>
+                            <div class="mt16">
+                                <label string="Bonat Voucher Payment Method" for="x_bonat_voucher_payment_method_id" class="o_light_label"/>
+                                <div>
+                                    <!--
+                                        View-level domain (evaluated client-side against this
+                                        form's own fields, unlike ir.model.fields.domain — see
+                                        data/bonat_settings_fields.xml): restates is_cash_count
+                                        and additionally scopes the list to pos_payment_method_ids
+                                        (this POS's own linked methods), so a merchant cannot pick
+                                        a company-wide method that isn't actually usable here
+                                        (Challenge F1 on PR #81 round 1). payment_method_type = 'none'
+                                        also excludes terminal / QR methods (Review B1): their
+                                        payment line never goes "done" in core, so it never reduces
+                                        remainingDue and the voucher cap gets stuck at 0 with
+                                        Validate permanently blocked. use_payment_terminal is not
+                                        used: it no longer exists on saas~19.3+. Same idiom core uses for its own auto-applied
+                                        method at point_of_sale/views/res_config_settings_views.xml:116.
+                                    -->
+                                    <field name="x_bonat_voucher_payment_method_id"
+                                           options="{'no_create': True}"
+                                           domain="[('is_cash_count', '=', False), ('payment_method_type', '=', 'none'), ('id', 'in', pos_payment_method_ids)]"
+                                           placeholder="Payment method used to redeem vouchers"/>
+                                </div>
+                                <div class="text-muted small">
+                                    Required for voucher reward codes. Create a non-cash payment
+                                    method under Point of Sale &gt; Payment Methods, add it to this
+                                    POS's payment methods, then select it here; only methods already
+                                    linked to this POS are selectable. Once set, a redeemed voucher
+                                    auto-applies as its own payment line at checkout, capped to the
+                                    amount due and hidden from manual selection. While unset, voucher
+                                    codes are declined at scan time on this POS (other reward types
+                                    are unaffected).
+                                </div>
+                            </div>
+                            <div class="mt16">
+                                <label for="x_bonat_menu_sync_mode" string="Menu Sync Mode" class="o_light_label"/>
+                                <field name="x_bonat_menu_sync_mode"/>
+                                <div class="text-muted small">
+                                    Variant-level (default): no change to today's menu-sync or
+                                    redemption behavior. Template-level: menu-sync pushes product
+                                    templates and redemption opens Odoo's native variant picker —
+                                    a reward can no longer be restricted to a subset of a
+                                    template's variants.
+                                </div>
+                                <div class="text-warning small mt-1">
+                                    <strong>Before switching an existing merchant's mode, recreate every active product-restricted reward:</strong>
+                                    variant and template IDs are separate, overlapping ID sequences
+                                    with no automatic migration between them. A reward created under
+                                    the old mode can silently discount the wrong product, corrupt its
+                                    own stored records, or collapse into an unrestricted whole-order
+                                    discount once the next menu sync runs (main branch's ADR 0003,
+                                    Decision 4). Also perform the switch itself with POS sessions
+                                    closed and no menu-sync push in flight on any till — this build's
+                                    push is unlocked and fire-and-forget, so a push started before
+                                    the switch can complete after one started after it and silently
+                                    revert the product-identity scheme with no error shown (main
+                                    branch's ADR 0003, Decision 2). On a multi-till merchant,
+                                    coordinate the switch across every till before resuming sales.
+                                </div>
+                            </div>
+                            <div class="mt16">
+                                <field name="x_bonat_demo_mode" widget="boolean_toggle"/>
+                                <label for="x_bonat_demo_mode" string="Demo Mode"/>
+                                <div class="text-muted small">
+                                    Route Bonat API calls to the staging environment (no real loyalty transactions).
+                                    A yellow DEMO banner is shown in the POS session while this is on.
+                                </div>
+                                <div class="text-muted small mt-2" invisible="not x_bonat_demo_mode">
+                                    <strong>Demo reward codes</strong> (handled locally, no API call):
+                                    <ul class="mb-0">
+                                        <li><code>1</code> is 10% off the total order</li>
+                                        <li><code>2</code> opens the product picker (up to 5 POS products); 10% off selected, cap 20, qty 1</li>
+                                        <li><code>3</code> opens the product picker (up to 5 POS products); 100% off selected, qty 2</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt16">
+                                <label string="Bonat API URL" for="x_bonat_api_url" class="o_light_label"/>
+                                <div>
+                                    <field name="x_bonat_api_url" placeholder="https://api.bonat.io"/>
+                                </div>
+                                <label string="Bonat API URL (Staging)" for="x_bonat_api_url_staging" class="o_light_label mt-2"/>
+                                <div>
+                                    <field name="x_bonat_api_url_staging" placeholder="https://stg-api.bonat.io"/>
+                                </div>
+                                <div class="text-muted small">
+                                    Leave both empty unless Bonat support asks you to change them.
+                                    The POS reads these directly, because on Odoo Online it cannot read
+                                    System Parameters.
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

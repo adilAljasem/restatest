@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="loan_type_salary_advance" model="bs.hr.loan.type">
+        <field name="name">Salary advance</field>
+        <field name="sequence">10</field>
+        <field name="company_id" eval="False"/>
+        <field name="max_percent_wage">50</field>
+        <field name="max_amount">0</field>
+        <field name="max_installments">1</field>
+        <field name="min_service_months">3</field>
+    </record>
+    <record id="loan_type_personal" model="bs.hr.loan.type">
+        <field name="name">Personal loan</field>
+        <field name="sequence">20</field>
+        <field name="company_id" eval="False"/>
+        <field name="max_percent_wage">200</field>
+        <field name="max_amount">20000</field>
+        <field name="max_installments">10</field>
+        <field name="min_service_months">6</field>
+    </record>
+    <record id="loan_type_emergency" model="bs.hr.loan.type">
+        <field name="name">Emergency loan</field>
+        <field name="sequence">30</field>
+        <field name="company_id" eval="False"/>
+        <field name="max_percent_wage">100</field>
+        <field name="max_amount">5000</field>
+        <field name="max_installments">5</field>
+        <field name="min_service_months">0</field>
+        <field name="allow_parallel" eval="True"/>
+    </record>
+</odoo>

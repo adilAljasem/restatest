@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_modifier_group_view_list" model="ir.ui.view">
+        <field name="name">pos.modifier.group.list</field>
+        <field name="model">pos.modifier.group</field>
+        <field name="arch" type="xml">
+            <list string="Modifier Groups" default_order="sequence, id">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="selection_type"/>
+                <field name="min_qty"/>
+                <field name="max_qty"/>
+                <field name="included_qty" optional="show"/>
+                <field name="display_type" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="active" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="pos_modifier_group_view_form" model="ir.ui.view">
+        <field name="name">pos.modifier.group.form</field>
+        <field name="model">pos.modifier.group</field>
+        <field name="arch" type="xml">
+            <form string="Modifier Group">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <label for="name" string="Modifier Group"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Choose a Sauce"/>
+                        </h1>
+                    </div>
+
+                    <group string="Selection Rules">
+                        <group>
+                            <field name="selection_type"/>
+                            <field name="min_qty"/>
+                        </group>
+                        <group>
+                            <field name="max_qty" readonly="selection_type == 'single'"/>
+                            <field name="included_qty"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Modifier Options" name="modifier_options">
+                            <field
+                                name="option_ids"
+                                context="{'default_group_id': id, 'active_test': False}"
+                            >
+                                <list
+                                    editable="bottom"
+                                    open_form_view="True"
+                                    default_order="sequence, id"
+                                >
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                    <field name="name"/>
+                                    <field name="option_type"/>
+                                    <field name="operation"/>
+                                    <field
+                                        name="product_id"
+                                        invisible="option_type == 'instruction'"
+                                        required="option_type == 'product'"
+                                    />
+                                    <field
+                                        name="price_mode"
+                                        invisible="option_type == 'instruction'"
+                                    />
+                                    <field
+                                        name="extra_price"
+                                        widget="monetary"
+                                        invisible="price_mode != 'fixed_extra'"
+                                    />
+                                    <field name="default_qty" optional="hide"/>
+                                    <field name="max_qty" optional="hide"/>
+                                    <field name="kitchen_name" optional="hide"/>
+                                    <field name="active" optional="hide"/>
+                                </list>
+                                <form string="Modifier Option">
+                                    <sheet>
+                                        <div class="oe_title">
+                                            <label for="name" string="Modifier Option"/>
+                                            <h1>
+                                                <field name="name" placeholder="e.g. Extra Cheese"/>
+                                            </h1>
+                                        </div>
+                                        <group>
+                                            <group>
+                                                <field name="option_type"/>
+                                                <field name="operation"/>
+                                                <field
+                                                    name="product_id"
+                                                    invisible="option_type == 'instruction'"
+                                                    required="option_type == 'product'"
+                                                />
+                                            </group>
+                                            <group>
+                                                <field
+                                                    name="price_mode"
+                                                    invisible="option_type == 'instruction'"
+                                                />
+                                                <field name="currency_id" invisible="1"/>
+                                                <field
+                                                    name="extra_price"
+                                                    widget="monetary"
+                                                    invisible="price_mode != 'fixed_extra'"
+                                                />
+                                            </group>
+                                        </group>
+                                        <group string="Advanced Settings">
+                                            <group>
+                                                <field name="default_qty"/>
+                                                <field name="max_qty"/>
+                                                <field name="sequence"/>
+                                            </group>
+                                            <group>
+                                                <field name="kitchen_name"/>
+                                                <field name="active"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Advanced Settings" name="advanced_settings">
+                            <group>
+                                <group>
+                                    <field name="display_type"/>
+                                    <field name="sequence"/>
+                                </group>
+                                <group>
+                                    <field
+                                        name="company_id"
+                                        groups="base.group_multi_company"
+                                        options="{'no_create': True}"
+                                    />
+                                    <field name="active"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pos_modifier_group_view_search" model="ir.ui.view">
+        <field name="name">pos.modifier.group.search</field>
+        <field name="model">pos.modifier.group</field>
+        <field name="arch" type="xml">
+            <search string="Modifier Groups">
+                <field name="name"/>
+                <field name="selection_type"/>
+                <field name="display_type"/>
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter
+                        name="group_by_selection_type"
+                        string="Selection Type"
+                        context="{'group_by': 'selection_type'}"
+                    />
+                    <filter
+                        name="group_by_company"
+                        string="Company"
+                        context="{'group_by': 'company_id'}"
+                        groups="base.group_multi_company"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pos_modifier_group_action" model="ir.actions.act_window">
+        <field name="name">Modifier Groups</field>
+        <field name="res_model">pos.modifier.group</field>
+        <field name="path">modifier-groups</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="pos_modifier_group_view_search"/>
+        <field name="context">{'active_test': True}</field>
+    </record>
+
+    <menuitem
+        id="menu_pos_modifier_groups"
+        name="Modifier Groups"
+        parent="point_of_sale.pos_config_menu_catalog"
+        action="pos_modifier_group_action"
+        groups="point_of_sale.group_pos_manager"
+        sequence="17"
+    />
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="batch_scrap_order_company_rule" model="ir.rule">
+        <field name="name">Batch Scrap Orders: company</field>
+        <field name="model_id" ref="model_batch_scrap_order"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="batch_scrap_order_line_company_rule" model="ir.rule">
+        <field name="name">Batch Scrap Order Lines: company</field>
+        <field name="model_id" ref="model_batch_scrap_order_line"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

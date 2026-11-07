@@ -1,0 +1,257 @@
+<odoo>
+    <record id="adjustment_entry_form" model="ir.ui.view">
+        <field name="name">recipe.adjustment.account.entry.readonly</field>
+        <field name="model">account.move</field>
+        <field name="active" eval="False"/>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0">
+                <sheet>
+                    <h1><field name="name"/></h1>
+                    <group><field name="date"/><field name="journal_id"/><field name="ref"/><field name="state"/>
+                        <field name="recipe_adjustment_id"/><field name="company_id" groups="base.group_multi_company"/></group>
+                    <field name="line_ids" readonly="1">
+                        <list create="0" delete="0">
+                            <field name="account_id"/><field name="product_id"/><field name="name"/>
+                            <field name="debit" sum="Debit"/><field name="credit" sum="Credit"/>
+                            <field name="analytic_distribution" widget="analytic_distribution"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="category_recipe_location_form" model="ir.ui.view">
+        <field name="name">product.category.recipe.location</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Recipe Adjustments" groups="mrp.group_mrp_manager">
+                    <field name="recipe_adjustment_location_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="adjustment_list" model="ir.ui.view">
+        <field name="name">mrp.bom.consumption.adjustment.list</field>
+        <field name="model">mrp.bom.consumption.adjustment</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'confirmed'" decoration-info="state == 'reviewed'" decoration-muted="state == 'cancelled'">
+                <field name="name"/><field name="date"/><field name="bom_id"/>
+                <field name="warehouse_id"/><field name="date_from"/><field name="date_to"/>
+                <field name="company_id" groups="base.group_multi_company"/><field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+    <record id="adjustment_form" model="ir.ui.view">
+        <field name="name">mrp.bom.consumption.adjustment.form</field>
+        <field name="model">mrp.bom.consumption.adjustment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_review" type="object" string="Review" class="oe_highlight" invisible="state != 'draft'" groups="mrp.group_mrp_manager"/>
+                    <button name="action_confirm" type="object" string="Execute Adjustment" class="oe_highlight" invisible="state != 'reviewed'" groups="mrp.group_mrp_manager"/>
+                    <button name="action_draft" type="object" string="Reset to Draft" invisible="state not in ('reviewed', 'cancelled')" groups="mrp.group_mrp_manager"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state not in ('draft', 'reviewed')" groups="mrp.group_mrp_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reviewed,confirmed,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_sources" type="object" class="oe_stat_button" icon="fa-industry" invisible="not source_ids"><span class="o_stat_text">Execution Sources</span></button>
+                        <button name="action_moves" type="object" class="oe_stat_button" icon="fa-exchange" invisible="not move_ids"><span class="o_stat_text">Stock Moves</span></button>
+                        <button name="action_account_move" type="object" class="oe_stat_button" icon="fa-book" invisible="not account_move_id"><span class="o_stat_text">Journal Entry</span></button>
+                    </div>
+                    <field name="source_ids" invisible="1"/>
+                    <field name="move_ids" invisible="1"/>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <field name="review_warning" invisible="not review_warning" class="alert alert-warning"/>
+                    <group>
+                        <group>
+                            <field name="company_id" readonly="state != 'draft'" groups="base.group_multi_company"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="bom_id" readonly="state != 'draft'" domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                            <field name="bom_type"/><field name="product_tmpl_id"/><field name="product_id"/>
+                            <label for="bom_quantity" string="BOM Output Base"/>
+                            <div class="o_row"><field name="bom_quantity"/><field name="bom_uom_id"/></div>
+                        </group>
+                        <group>
+                            <field name="date_from" readonly="state != 'draft'"/><field name="date_to" readonly="state != 'draft'"/>
+                            <field name="warehouse_id" readonly="state != 'draft'" domain="[('company_id', '=', company_id)]"/>
+                            <field name="location_id" readonly="state != 'draft'" domain="[('usage', '=', 'internal'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                            <field name="analytic_account_id" readonly="state != 'draft'"/>
+                            <field name="currency_id" invisible="1"/><field name="account_move_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="Reason for the recipe correction..." readonly="state != 'draft'"/>
+                    <notebook>
+                        <page string="Components">
+                            <p>New component quantities apply to the BOM output base shown above. For nested kits, see the actual stock components and their units in Review Details.</p>
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <list editable="bottom" create="0" delete="0">
+                                    <field name="apply_change" optional="show"/>
+                                    <field name="product_id" readonly="1" optional="show"/>
+                                    <field name="bom_line_id" column_invisible="True"/>
+                                    <field name="uom_id" readonly="1" optional="show"/>
+                                    <field name="old_quantity" readonly="1" optional="show"/>
+                                    <field name="new_quantity" optional="show"/>
+                                    <field name="recorded_quantity" optional="show"/>
+                                    <field name="required_quantity" optional="show"/>
+                                    <field name="adjustment_quantity" optional="show"/>
+                                    <field name="unit_cost" optional="show"/>
+                                    <field name="adjustment_value" optional="show"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Review Details">
+                            <field name="detail_ids" readonly="state not in ('draft', 'reviewed')">
+                                <list create="0" delete="0">
+                                    <field name="source_id"/><field name="execution_date"/><field name="executed_quantity"/>
+                                    <field name="bom_line_id"/><field name="product_id"/><field name="uom_id"/>
+                                    <field name="recorded_quantity"/><field name="required_quantity"/>
+                                    <field name="previous_quantity" optional="hide"/><field name="adjustment_quantity"/>
+                                    <field name="unit_cost"/><field name="adjustment_value"/>
+                                    <field name="original_move_ids" widget="many2many_tags" optional="hide"/>
+                                    <field name="move_id" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="source_list" model="ir.ui.view">
+        <field name="name">mrp.bom.consumption.source.list</field>
+        <field name="model">mrp.bom.consumption.source</field>
+        <field name="arch" type="xml">
+            <list create="0" delete="0" decoration-warning="needs_review">
+                <field name="name"/><field name="key" optional="hide"/><field name="production_id"/><field name="unbuild_id"/><field name="picking_id"/>
+                <field name="execution_date"/><field name="product_id"/><field name="quantity"/><field name="uom_id"/>
+                <field name="needs_review"/><field name="verified_by"/>
+            </list>
+        </field>
+    </record>
+    <record id="detail_form" model="ir.ui.view">
+        <field name="name">mrp.bom.consumption.detail.form</field>
+        <field name="model">mrp.bom.consumption.detail</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0">
+                <sheet>
+                    <group>
+                        <field name="source_id" readonly="1"/><field name="product_id" readonly="1"/>
+                        <field name="uom_id" readonly="1"/><field name="adjustment_quantity" readonly="1"/>
+                        <field name="unit_cost" readonly="1"/><field name="adjustment_value" readonly="1"/>
+                    </group>
+                    <group string="Lot / Serial Allocations">
+                        <field name="allocation_ids">
+                            <list editable="bottom">
+                                <field name="product_id" column_invisible="True"/>
+                                <field name="lot_id" domain="[('product_id', '=', product_id)]"/>
+                                <field name="quantity"/>
+                            </list>
+                        </field>
+                    </group>
+                    <field name="original_move_ids" readonly="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="source_form" model="ir.ui.view">
+        <field name="name">mrp.bom.consumption.source.form</field>
+        <field name="model">mrp.bom.consumption.source</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0">
+                <header>
+                    <button name="action_verify" type="object" string="Validate Executed Quantity" invisible="not needs_review" class="oe_highlight"/>
+                    <button name="action_execution" type="object" string="Open Execution Document"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group string="Execution Source" name="execution_source">
+                            <field name="bom_id"/><field name="product_id"/><field name="execution_date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="production_id" invisible="not production_id"/>
+                            <field name="unbuild_id" invisible="not unbuild_id"/>
+                            <field name="picking_id" invisible="not picking_id"/>
+                        </group>
+                        <group string="Quantity and Verification" name="execution_verification">
+                            <label for="quantity"/>
+                            <div class="o_row"><field name="quantity" readonly="not needs_review"/><field name="uom_id" options="{'no_open': True}"/></div>
+                            <field name="needs_review"/>
+                            <field name="verified_by"/><field name="verified_on"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Raw Material Moves" name="raw_material_moves">
+                            <field name="move_ids" readonly="1" context="{'form_view_ref': 'mrp_bom_consumption_adjustment.adjustment_stock_move_form'}">
+                                <list create="0" edit="0" delete="0" default_order="date,id">
+                                    <field name="date" optional="show"/><field name="reference" optional="show"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity" string="Quantity"/><field name="product_uom" string="UoM"/>
+                                    <field name="location_id" string="From" optional="show"/>
+                                    <field name="location_dest_id" string="To" optional="show"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Review and Evidence" name="review_evidence">
+                            <group><group string="Calculation Basis"><field name="basis" nolabel="1"/><field name="key"/></group>
+                                <group string="Verification Evidence"><field name="evidence" nolabel="1" readonly="not needs_review" placeholder="Evidence supporting the executed quantity..."/></group></group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="adjustment_stock_move_list" model="ir.ui.view">
+        <field name="name">recipe.adjustment.stock.move.list</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="mode">primary</field><field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="attributes">
+                <attribute name="editable"/>
+                <attribute name="edit">0</attribute><attribute name="delete">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_uom']" position="attributes"><attribute name="groups"/></xpath>
+        </field>
+    </record>
+    <record id="adjustment_stock_move_form" model="ir.ui.view">
+        <field name="name">recipe.adjustment.stock.move.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="mode">primary</field><field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes"><attribute name="delete">0</attribute></xpath>
+            <xpath expr="//sheet" position="replace">
+                <sheet>
+                    <div class="oe_title"><h1><field name="reference"/></h1></div>
+                    <group>
+                        <group string="Locations and Reference" name="adjustment_locations">
+                            <field name="location_id" string="Source Location"/>
+                            <field name="location_dest_id" string="Destination Location"/>
+                            <field name="origin"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Product and Quantity" name="adjustment_quantity">
+                            <field name="product_id"/>
+                            <label for="quantity" string="Quantity"/>
+                            <div class="o_row"><field name="quantity"/><field name="product_uom" widget="many2one_uom" options="{'no_open': True, 'no_create': True}"/></div>
+                            <field name="product_uom_qty"/>
+                            <field name="date" string="Move Date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_adjustment" model="ir.actions.act_window">
+        <field name="name">BOM Consumption Adjustments</field>
+        <field name="res_model">mrp.bom.consumption.adjustment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_adjustment" name="BOM Consumption Adjustments" parent="mrp.menu_mrp_configuration"
+              action="action_adjustment" groups="mrp.group_mrp_manager" sequence="90"/>
+</odoo>

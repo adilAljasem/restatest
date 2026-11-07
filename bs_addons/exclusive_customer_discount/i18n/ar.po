@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Language: ar\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#. module: exclusive_customer_discount
+msgid "Exclusive Customer"
+msgstr "عميل حصري"
+
+#. module: exclusive_customer_discount
+msgid "Customer Domain"
+msgstr "نطاق العملاء"
+
+#. module: exclusive_customer_discount
+msgid "Limit for Customer"
+msgstr "حد الاستخدام للعميل"
+
+#. module: exclusive_customer_discount
+msgid "Maximum Uses"
+msgstr "الحد الأقصى للاستخدام"
+
+#. module: exclusive_customer_discount
+msgid "Period"
+msgstr "الفترة"
+
+#. module: exclusive_customer_discount
+msgid "Day"
+msgstr "يوم"
+
+#. module: exclusive_customer_discount
+msgid "Week"
+msgstr "أسبوع"
+
+#. module: exclusive_customer_discount
+msgid "Month"
+msgstr "شهر"
+
+#. module: exclusive_customer_discount
+msgid "Year"
+msgstr "سنة"
+
+#. module: exclusive_customer_discount
+msgid "Apply"
+msgstr "تطبيق"
+
+#. module: exclusive_customer_discount
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: exclusive_customer_discount
+msgid "Exclusive Customer Discounts"
+msgstr "خصومات العملاء الحصريين"
+
+#. module: exclusive_customer_discount
+msgid "Apply \"%s\" to this order?"
+msgstr "هل تريد تطبيق \"%s\" على هذا الطلب؟"

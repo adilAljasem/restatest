@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_tracking" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pos_order_tracking_nps</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_bills_and_receipts_section']" position="after">
+                <block title="Order Tracking &amp; Customer Feedback" id="pos_order_tracking_section">
+                    <setting id="pos_tracking_enabled" string="Order Tracking QR"
+                             help="Print a QR code on the receipt. The customer follows the order on the phone, gets an alert with sound when it is ready, then rates the visit (NPS).">
+                        <field name="pos_tracking_enabled"/>
+                        <div class="content-group mt16" invisible="not pos_tracking_enabled">
+                            <div class="d-flex flex-column gap-1 mb16">
+                                <div>
+                                    <field name="pos_tracking_pager_enabled" class="w-auto me-2"/>
+                                    <label for="pos_tracking_pager_enabled" string="Pager: live status and an alert with sound when the order is ready" class="o_light_label"/>
+                                </div>
+                                <div>
+                                    <field name="pos_tracking_nps_enabled" class="w-auto me-2"/>
+                                    <label for="pos_tracking_nps_enabled" string="Rating: ask the customer to rate the visit (NPS)" class="o_light_label"/>
+                                </div>
+                            </div>
+                            <div class="row" invisible="not pos_tracking_pager_enabled">
+                                <label for="pos_tracking_prep_display_id" string="Tracking screen" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_prep_display_id" placeholder="All preparation screens of this POS"
+                                       options="{'no_create': True}"
+                                       domain="['|', ('pos_config_ids', '=', False), ('pos_config_ids', 'in', pos_config_id)]"/>
+                            </div>
+                            <div class="row" invisible="not pos_tracking_pager_enabled or not pos_tracking_prep_display_id">
+                                <field name="pos_tracking_stage_ids" invisible="1"/>
+                                <label for="pos_tracking_ready_stage_id" string="Ready stage" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_ready_stage_id" placeholder="Automatic"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       domain="[('id', 'in', pos_tracking_stage_ids)]"/>
+                            </div>
+                            <div class="text-muted small mb8" invisible="not pos_tracking_pager_enabled">New orders are always shown as "preparing". The order is ready from the ready stage (automatic: the stage before the last one, or the last stage on a 2-stage screen) and picked up on the last stage after it. A single-stage screen cannot mark orders ready.</div>
+                            <div class="row" invisible="not pos_use_presets">
+                                <label for="pos_tracking_preset_ids" string="Order types" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_preset_ids" widget="many2many_tags" placeholder="All order types"
+                                       options="{'no_create': True}" domain="[('id', 'in', pos_available_preset_ids)]"/>
+                            </div>
+                            <div class="row" id="tracking_cashiers_users" invisible="pos_module_pos_hr">
+                                <label for="pos_tracking_user_ids" string="Cashiers" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_user_ids" widget="many2many_tags" placeholder="All cashiers"
+                                       options="{'no_create': True}" domain="[('share', '=', False)]"/>
+                            </div>
+                            <div class="row" invisible="not pos_tracking_nps_enabled">
+                                <label for="pos_tracking_nps_delay" string="Ask for rating after (min)" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_nps_delay"/>
+                            </div>
+                            <div class="text-muted small mb8" invisible="not pos_tracking_nps_enabled">Counted from when the order is ready, or from the payment when the pager is off.</div>
+                            <div class="row" invisible="not pos_tracking_pager_enabled">
+                                <label for="pos_tracking_alert_repeat" string="Ring times" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_alert_repeat"/>
+                            </div>
+                            <div class="text-muted small mb8" invisible="not pos_tracking_pager_enabled">The ready notification is sent again every minute until the customer opens the page.</div>
+                            <div class="row" invisible="not pos_tracking_pager_enabled">
+                                <label for="pos_tracking_ready_message" string="Ready message" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_ready_message" placeholder="Please pick it up at the counter. Enjoy!"/>
+                            </div>
+                            <div class="row">
+                                <label for="pos_tracking_color" string="Page color" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_color" widget="color"/>
+                            </div>
+                            <div class="row" invisible="not pos_tracking_nps_enabled">
+                                <label for="pos_tracking_google_review_url" string="Google review link" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_google_review_url" widget="url" placeholder="https://g.page/r/.../review"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

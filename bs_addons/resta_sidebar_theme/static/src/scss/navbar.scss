@@ -1,0 +1,84 @@
+// Top bar: the sidebar now owns app and menu navigation.
+.o_main_navbar {
+    padding-inline: 12px;
+    gap: 4px;
+    background: var(--rs-topbar-bg);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+
+    // Hidden: app grid button, horizontal app menus, Odoo's mobile burger
+    .o_navbar_apps_menu,
+    .o_menu_sections,
+    .o_menu_sections_more,
+    > .o_menu_toggle {
+        display: none !important;
+    }
+
+    .o_menu_brand {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--rs-text) !important;
+        padding-inline: 8px;
+        background: transparent !important;
+    }
+
+    .o_menu_systray {
+        gap: 2px;
+        align-items: center;
+
+        > div > .dropdown-toggle,
+        > div > button,
+        .o_nav_entry {
+            border-radius: var(--rs-radius-sm);
+        }
+    }
+
+    // Room for the floating burger on small screens
+    @include media-breakpoint-down(lg) {
+        .rs_has_sidebar & {
+            padding-inline-start: 56px;
+        }
+    }
+}
+
+// Mobile burger (rendered by the sidebar component)
+.rs_mobile_burger {
+    position: fixed;
+    top: 8px;
+    inset-inline-start: 8px;
+    z-index: $zindex-fixed + 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: var(--rs-radius);
+    background: transparent;
+    color: var(--rs-text);
+    font-size: 1.15rem;
+
+    &:hover {
+        background: var(--rs-hover-bg);
+    }
+}
+
+// Theme toggle (systray)
+.rs_theme_toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: var(--rs-radius-sm);
+    background: transparent;
+    color: var(--rs-text-muted);
+    font-size: 1.05rem;
+    transition: background-color .15s, color .15s;
+
+    &:hover {
+        background: var(--rs-hover-bg);
+        color: var(--rs-primary-fg);
+    }
+}

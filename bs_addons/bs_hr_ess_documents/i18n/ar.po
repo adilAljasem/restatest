@@ -1,0 +1,1322 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "%(doc)s of %(employee)s"
+msgstr "%(doc)s الخاصة بـ %(employee)s"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "%(employee)s is checking in with an expired %(doc)s (expired on %(date)s)."
+msgstr "%(employee)s يسجّل الحضور بوثيقة منتهية: %(doc)s (انتهت في %(date)s)."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0
+msgid "%s expired"
+msgstr "%s منتهية"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "%s has no current contract."
+msgstr "لا يوجد عقد حالي لـ %s."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "<i class=\"fa fa-file-text-o me-1\"/> New contract to acknowledge"
+msgstr "<i class=\"fa fa-file-text-o me-1\"/> عقد جديد بانتظار الإقرار"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "<i class=\"fa fa-hourglass-half me-1\"/> The renewal of your contract is being reviewed."
+msgstr "<i class=\"fa fa-hourglass-half me-1\"/> تجديد عقدك قيد المراجعة."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "<i class=\"fa fa-upload me-1\"/> Upload the renewed document"
+msgstr "<i class=\"fa fa-upload me-1\"/> رفع الوثيقة المجددة"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_employee_form_ess_documents
+msgid "<span class=\"o_stat_text\">Documents</span>"
+msgstr "<span class=\"o_stat_text\">الوثائق</span>"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "<span class=\"small text-muted\"><i class=\"fa fa-hourglass-half me-1\"/>Renewal under review</span>"
+msgstr "<span class=\"small text-muted\"><i class=\"fa fa-hourglass-half me-1\"/>التجديد قيد المراجعة</span>"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "<span class=\"text-muted\">Expires</span>"
+msgstr "<span class=\"text-muted\">تنتهي في</span>"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_res_company__ess_contract_alert_days model:ir.model.fields,help:bs_hr_ess_documents.field_res_config_settings__ess_contract_alert_days
+msgid "A contract renewal workflow is opened this many days before the contract end date."
+msgstr "يُفتح مسار تجديد العقد قبل تاريخ انتهاء العقد بهذا العدد من الأيام."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/controllers/portal.py:0
+msgid "A renewal of this document is already in progress."
+msgstr "يوجد تجديد قيد التنفيذ لهذه الوثيقة."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.res_config_settings_view_form_ess_documents
+msgid "A renewal workflow (manager, HR, management) is opened before the contract end."
+msgstr "يُفتح مسار تجديد (المدير، الموارد البشرية، الإدارة) قبل انتهاء العقد."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "Acknowledged"
+msgstr "تم الإقرار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__employee_ack_date
+msgid "Acknowledged by employee on"
+msgstr "تاريخ إقرار الموظف"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_needaction model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_needaction model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__active model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_state model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_state model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__alert_days
+msgid "Alert before expiry (days)"
+msgstr "التنبيه قبل الانتهاء (أيام)"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document_type.py:0
+msgid "Alert days must be a comma separated list of numbers, e.g. 60,30,15,7."
+msgstr "يجب أن تكون أيام التنبيه قائمة أرقام مفصولة بفواصل، مثل 60,30,15,7."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form
+msgid "Alerts"
+msgstr "التنبيهات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document_type__mandatory_for__all
+msgid "All employees"
+msgstr "جميع الموظفين"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0
+msgid "All valid"
+msgstr "جميعها سارية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__approval_line_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__approval_line_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form
+msgid "Approvals"
+msgstr "الاعتمادات"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_type_form
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.res_config_settings_view_form_ess_documents
+msgid "Block check-in on expired health certificate"
+msgstr "منع تسجيل الحضور عند انتهاء الشهادة الصحية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__work_location_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__work_location_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__work_location_id model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_search model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__can_ess_approve model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__can_ess_approve
+msgid "Can Ess Approve"
+msgstr "يمكنه الاعتماد في الخدمة الذاتية"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0
+msgid "Check-in refused: your %s has expired. Please renew it and contact HR."
+msgstr "تم رفض تسجيل الحضور: %s منتهية. يرجى تجديدها والتواصل مع الموارد البشرية."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_type__alert_days
+msgid "Comma separated list of days before the expiry date when alerts are sent."
+msgstr "قائمة الأيام قبل تاريخ الانتهاء التي تُرسل فيها التنبيهات، مفصولة بفواصل."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__company_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__company_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__company_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_bs_hr_contract_renewal
+msgid "Contract Renewal"
+msgstr "تجديد العقد"
+
+#. module: bs_hr_ess_documents
+#: model:ir.actions.act_window,name:bs_hr_ess_documents.action_contract_renewal model:ir.ui.menu,name:bs_hr_ess_documents.menu_ess_contract_renewals
+msgid "Contract Renewals"
+msgstr "تجديدات العقود"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "Contract ending %s"
+msgstr "عقد ينتهي في %s"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.approval.flow,name:bs_hr_ess_documents.flow_contract_renewal
+msgid "Contract renewal"
+msgstr "تجديد العقد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.res_config_settings_view_form_ess_documents
+msgid "Contract renewal notice"
+msgstr "إشعار تجديد العقد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "Contract type"
+msgstr "نوع العقد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "Copy of the renewed document *"
+msgstr "نسخة من الوثيقة المجددة *"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__create_uid model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__create_uid model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__create_uid model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__create_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__create_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__create_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__block_attendance model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__block_attendance model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Critical for attendance"
+msgstr "حرجة للحضور"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__currency_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__currency_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__version_id model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form
+msgid "Current contract"
+msgstr "العقد الحالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__contract_date_end
+msgid "Current contract end"
+msgstr "نهاية العقد الحالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__contract_date_start
+msgid "Current contract start"
+msgstr "بداية العقد الحالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__old_expiry_date
+msgid "Current expiry date"
+msgstr "تاريخ الانتهاء الحالي"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "Current expiry:"
+msgstr "الانتهاء الحالي:"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__old_number
+msgid "Current number"
+msgstr "الرقم الحالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__current_wage
+msgid "Current wage"
+msgstr "الراتب الحالي"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail
+msgid "Days left"
+msgstr "الأيام المتبقية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__days_to_expiry
+msgid "Days to expiry"
+msgstr "الأيام حتى الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__manager_decision model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_search
+msgid "Decision"
+msgstr "القرار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__decision_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__decision_date
+msgid "Decision Date"
+msgstr "تاريخ القرار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__notes
+msgid "Decision notes"
+msgstr "ملاحظات القرار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__department_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__department_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_documents.flow_contract_renewal_step_manager
+msgid "Direct manager opinion"
+msgstr "رأي المدير المباشر"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__display_name model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__display_name model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__display_name model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__display_name model:ir.model.fields,field_description:bs_hr_ess_documents.field_hr_employee__display_name model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_company__display_name model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_contract_renewal__manager_decision__not_renew
+msgid "Do not renew"
+msgstr "عدم التجديد"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0 model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__document_id
+msgid "Document"
+msgstr "الوثيقة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_bs_hr_document_renewal
+msgid "Document Renewal"
+msgstr "تجديد الوثيقة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.actions.act_window,name:bs_hr_ess_documents.action_document_renewal model:ir.ui.menu,name:bs_hr_ess_documents.menu_ess_document_renewals
+msgid "Document Renewals"
+msgstr "تجديدات الوثائق"
+
+#. module: bs_hr_ess_documents
+#: model:ir.actions.act_window,name:bs_hr_ess_documents.action_document_type model:ir.ui.menu,name:bs_hr_ess_documents.menu_ess_document_types
+msgid "Document Types"
+msgstr "أنواع الوثائق"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "Document expired: %s"
+msgstr "وثيقة منتهية: %s"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "Document expiring: %s"
+msgstr "وثيقة قاربت على الانتهاء: %s"
+
+#. module: bs_hr_ess_documents
+#: model:mail.activity.type,name:bs_hr_ess_documents.mail_activity_document_expiry
+msgid "Document expiry"
+msgstr "انتهاء الوثيقة"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "Document number"
+msgstr "رقم الوثيقة"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.approval.flow,name:bs_hr_ess_documents.flow_document_renewal
+msgid "Document renewal"
+msgstr "تجديد الوثيقة"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document_renewal.py:0
+msgid "Document renewed by request %(name)s: new expiry date %(date)s."
+msgstr "تم تجديد الوثيقة بالطلب %(name)s: تاريخ الانتهاء الجديد %(date)s."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "Document renewed."
+msgstr "تم تجديد الوثيقة."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__type_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__type_id
+msgid "Document type"
+msgstr "نوع الوثيقة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__qiwa_state
+msgid "Documentation of the contract on the Qiwa platform (manual for now)."
+msgstr "توثيق العقد في منصة قوى (يدويًا حاليًا)."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_contract_renewal__qiwa_state__documented
+msgid "Documented"
+msgstr "موثّق"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form
+msgid "Documented on Qiwa"
+msgstr "موثّق في قوى"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_hr_employee__ess_document_ids model:ir.ui.menu,name:bs_hr_ess_documents.menu_ess_documents model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_pivot model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_employee_form_ess_documents_page
+msgid "Documents"
+msgstr "الوثائق"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.res_config_settings_view_form_ess_documents
+msgid "Documents and contracts"
+msgstr "الوثائق والعقود"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0
+msgid "Documents expiring"
+msgstr "وثائق قاربت على الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_driving
+msgid "Driving license"
+msgstr "رخصة القيادة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_company__ess_block_expired_health model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_config_settings__ess_block_expired_health
+msgid "ESS: Block check-in on expired critical document"
+msgstr "الخدمة الذاتية: منع تسجيل الحضور عند انتهاء وثيقة حرجة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_company__ess_contract_alert_days model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_config_settings__ess_contract_alert_days
+msgid "ESS: Contract renewal notice (days)"
+msgstr "الخدمة الذاتية: إشعار تجديد العقد (أيام)"
+
+#. module: bs_hr_ess_documents
+#: model:ir.actions.server,name:bs_hr_ess_documents.ir_cron_document_alerts_ir_actions_server
+msgid "ESS: document expiry states and alerts"
+msgstr "الخدمة الذاتية: حالات انتهاء الوثائق والتنبيهات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.actions.server,name:bs_hr_ess_documents.ir_cron_contract_renewals_ir_actions_server
+msgid "ESS: open contract renewals"
+msgstr "الخدمة الذاتية: فتح تجديدات العقود"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_hr_employee model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__employee_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__employee_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__employee_id model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_bs_hr_document
+msgid "Employee Document"
+msgstr "وثيقة الموظف"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model,name:bs_hr_ess_documents.model_bs_hr_document_type
+msgid "Employee Document Type"
+msgstr "نوع وثيقة الموظف"
+
+#. module: bs_hr_ess_documents
+#: model:ir.actions.act_window,name:bs_hr_ess_documents.action_document
+msgid "Employee Documents"
+msgstr "وثائق الموظفين"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "End"
+msgstr "النهاية"
+
+#. module: bs_hr_ess_documents
+#: model:mail.activity.type,name:bs_hr_ess_documents.mail_activity_end_of_service
+msgid "End of service / clearance"
+msgstr "نهاية الخدمة / إخلاء طرف"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "End of service / clearance: %s"
+msgstr "نهاية الخدمة / إخلاء طرف: %s"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "End of trial period"
+msgstr "نهاية فترة التجربة"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "Enter the Qiwa contract number first."
+msgstr "أدخل رقم العقد في قوى أولًا."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_hr_employee__ess_document_alert_count
+msgid "Ess Document Alert Count"
+msgstr "عدد تنبيهات الوثائق"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_hr_employee__ess_document_count
+msgid "Ess Document Count"
+msgstr "عدد الوثائق"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document__state__expired model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Expired"
+msgstr "منتهية"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "Expired %(doc)s: %(employee)s"
+msgstr "%(doc)s منتهية: %(employee)s"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form
+msgid "Expiring"
+msgstr "قاربت على الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document__state__expiring model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Expiring soon"
+msgstr "قاربت على الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__expiry_date
+msgid "Expiry Date"
+msgstr "تاريخ الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail
+msgid "Expiry date"
+msgstr "تاريخ الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__expiry_date_hijri
+msgid "Expiry date (Hijri)"
+msgstr "تاريخ الانتهاء (هجري)"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Expiry month"
+msgstr "شهر الانتهاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__renewal_cost
+msgid "Fees paid for this renewal (filled by HR)."
+msgstr "الرسوم المدفوعة لهذا التجديد (تعبّئها الموارد البشرية)."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__attachment_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__attachment_count model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form
+msgid "Files"
+msgstr "الملفات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__flow_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__flow_id
+msgid "Flow"
+msgstr "المسار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_type_icon model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__activity_type_icon model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_food_safety
+msgid "Food safety training certificate"
+msgstr "شهادة تدريب سلامة الغذاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__renewal_cost
+msgid "Government fees / insurance premium paid for the last renewal."
+msgstr "الرسوم الحكومية / قسط التأمين المدفوع لآخر تجديد."
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_documents.flow_contract_renewal_step_management
+msgid "HR management"
+msgstr "إدارة الموارد البشرية"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_documents.flow_document_renewal_step_hr
+msgid "HR verification"
+msgstr "تحقق الموارد البشرية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__has_message model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__has_message model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_health
+msgid "Health certificate"
+msgstr "الشهادة الصحية"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_documents.flow_contract_renewal_step_hr
+msgid "Human Resources"
+msgstr "الموارد البشرية"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "I acknowledge the new contract"
+msgstr "أقرّ بالعقد الجديد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "I have read the new contract terms and I accept them."
+msgstr "اطلعت على شروط العقد الجديد وأوافق عليها."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__id model:ir.model.fields,field_description:bs_hr_ess_documents.field_hr_employee__id model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_company__id model:ir.model.fields,field_description:bs_hr_ess_documents.field_res_config_settings__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_needaction model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__message_needaction model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تتطلب انتباهك."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_has_error model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__message_has_error model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__message_has_error model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فهناك رسائل بها خطأ في التسليم."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form
+msgid "Internal notes"
+msgstr "ملاحظات داخلية"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_iqama
+msgid "Iqama (residence permit)"
+msgstr "الإقامة"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_documents.action_document
+msgid "Iqama, passport, health certificate... Alerts are sent before they expire."
+msgstr "الإقامة، جواز السفر، الشهادة الصحية... تُرسل التنبيهات قبل انتهائها."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__issue_date
+msgid "Issue Date"
+msgstr "تاريخ الإصدار"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "Issue date"
+msgstr "تاريخ الإصدار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__issue_date_hijri
+msgid "Issue date (Hijri)"
+msgstr "تاريخ الإصدار (هجري)"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__last_alert_days
+msgid "Last Alert Days"
+msgstr "أيام آخر تنبيه"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__write_uid model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__write_uid model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__write_uid model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__write_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__write_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__write_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__last_alert_days
+msgid "Last alert threshold already sent (-1 = expiry alert sent)."
+msgstr "آخر حد تنبيه تم إرساله (-1 = أُرسل تنبيه الانتهاء)."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__supervisor_alert_date
+msgid "Last day the supervisor was told about a check-in with this expired document."
+msgstr "آخر يوم أُبلغ فيه المشرف بتسجيل حضور بهذه الوثيقة المنتهية."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_type__company_id
+msgid "Leave empty to share the type between companies."
+msgstr "اتركه فارغًا لمشاركة النوع بين الشركات."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__mandatory_for
+msgid "Mandatory for"
+msgstr "إلزامية لـ"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_insurance
+msgid "Medical insurance"
+msgstr "التأمين الطبي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_has_error model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_has_error model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "Missing documents"
+msgstr "وثائق ناقصة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document__state__missing
+msgid "Missing number"
+msgstr "رقم ناقص"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,note:bs_hr_ess_documents.doc_type_health
+msgid "Municipality health card (البطاقة الصحية) required for every food handler."
+msgstr "الشهادة الصحية من البلدية (البطاقة الصحية) مطلوبة لكل من يتعامل مع الأغذية."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "My contract"
+msgstr "عقدي"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "My documents"
+msgstr "وثائقي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_national_id
+msgid "National ID"
+msgstr "الهوية الوطنية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__new_version_id model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form
+msgid "New contract"
+msgstr "العقد الجديد"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "New contract created from %(start)s to %(end)s."
+msgstr "تم إنشاء عقد جديد من %(start)s إلى %(end)s."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__new_contract_date_end
+msgid "New contract end"
+msgstr "نهاية العقد الجديد"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "New contract to acknowledge"
+msgstr "عقد جديد بانتظار الإقرار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__new_expiry_date
+msgid "New expiry date"
+msgstr "تاريخ الانتهاء الجديد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "New expiry date *"
+msgstr "تاريخ الانتهاء الجديد *"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__new_issue_date
+msgid "New issue date"
+msgstr "تاريخ الإصدار الجديد"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__new_number
+msgid "New number"
+msgstr "الرقم الجديد"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__new_wage
+msgid "New wage"
+msgstr "الراتب الجديد"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_summary model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_summary model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "No approver found for the contract renewal of %s."
+msgstr "لم يُعثر على معتمِد لتجديد عقد %s."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "No document registered yet."
+msgstr "لا توجد وثائق مسجلة بعد."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document_type__mandatory_for__non_saudi
+msgid "Non-Saudi employees"
+msgstr "الموظفون غير السعوديين"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_search
+msgid "Not acknowledged"
+msgstr "لم يتم تأكيد الاستلام"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__note
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__employee_note model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__notes model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__employee_note model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_type_form
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__number model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail
+msgid "Number"
+msgstr "رقم"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "Only Human Resources can cancel a contract renewal."
+msgstr "لا يمكن إلغاء تجديد العقد إلا من قِبل الموارد البشرية."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__job_ids
+msgid "Only for job positions"
+msgstr "فقط للوظائف"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_search model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_search
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document_type__mandatory_for__none
+msgid "Optional"
+msgstr "اختيارية"
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_passport
+msgid "Passport"
+msgstr "جواز السفر"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/controllers/portal.py:0 code:addons/bs_hr_ess_documents/models/document_renewal.py:0
+msgid "Please attach a copy of the renewed document."
+msgstr "يرجى إرفاق نسخة من الوثيقة المجددة."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/controllers/portal.py:0
+msgid "Please enter the new expiry date."
+msgstr "يرجى إدخال تاريخ الانتهاء الجديد."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_documents
+msgid "Please give a copy of these documents to HR:"
+msgstr "يرجى تسليم نسخة من هذه الوثائق إلى الموارد البشرية:"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__portal_source model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__portal_source
+msgid "Portal Source"
+msgstr "مصدر البوابة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__qiwa_state model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form
+msgid "Qiwa"
+msgstr "قوى"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__qiwa_number
+msgid "Qiwa contract number"
+msgstr "رقم العقد في قوى"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__name model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.res_config_settings_view_form_ess_documents
+msgid "Refuse the self-service check-in when a document critical for attendance is expired. When disabled, the supervisor is notified instead."
+msgstr "رفض تسجيل الحضور عبر الخدمة الذاتية عند انتهاء وثيقة حرجة للحضور. عند التعطيل، يُشعَر المشرف بدلًا من ذلك."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_res_company__ess_block_expired_health model:ir.model.fields,help:bs_hr_ess_documents.field_res_config_settings__ess_block_expired_health
+msgid "Refuse the self-service check-in when the employee has an expired document whose type blocks attendance (e.g. health certificate). When disabled, the supervisor is only notified."
+msgstr "رفض تسجيل الحضور عبر الخدمة الذاتية عندما تكون لدى الموظف وثيقة منتهية من نوع يمنع الحضور (مثل الشهادة الصحية). عند التعطيل، يُشعَر المشرف فقط."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_documents.action_document
+msgid "Register the employees' documents"
+msgstr "سجّل وثائق الموظفين"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__rejection_reason model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__rejection_reason
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_contract_renewal__manager_decision__renew
+msgid "Renew"
+msgstr "تجديد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "Renew a document"
+msgstr "تجديد وثيقة"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/hr_employee.py:0
+msgid "Renew soon"
+msgstr "تجديد قريب"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_contract_renewal__manager_decision__modify
+msgid "Renew with changes"
+msgstr "تجديد مع تعديلات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__renewal_cost model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__renewal_cost
+msgid "Renewal cost"
+msgstr "تكلفة التجديد"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_detail
+msgid "Renewal requests"
+msgstr "طلبات التجديد"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0 model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__renewal_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form
+msgid "Renewals"
+msgstr "التجديدات"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__portal_source model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__portal_source
+msgid "Request submitted from the employee portal"
+msgstr "طلب مُرسَل من بوابة الموظفين"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form
+msgid "Reset to draft"
+msgstr "إعادة إلى مسودة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_type__job_ids
+msgid "Restrict the mandatory rule to these job positions (e.g. drivers)."
+msgstr "قصر قاعدة الإلزام على هذه الوظائف (مثل السائقين)."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document_type__mandatory_for__saudi
+msgid "Saudi employees"
+msgstr "الموظفون السعوديون"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_document_renew
+msgid "Send to HR"
+msgstr "إرسال إلى الموارد البشرية"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_type__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "Start"
+msgstr "ابدأ"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__state model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__state model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_state model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__activity_state model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مضى\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_form model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_form
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__submit_date model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__submit_date
+msgid "Submit Date"
+msgstr "تاريخ الإرسال"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__supervisor_alert_date
+msgid "Supervisor Alert Date"
+msgstr "تاريخ تنبيه المشرف"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/controllers/portal.py:0
+msgid "Thank you, your acknowledgement was recorded."
+msgstr "شكرًا لك، تم تسجيل إقرارك."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "The contract will not be renewed. Send the notice (article 75 of the Labor Law: at least 60 days), prepare the end of service award and the clearance."
+msgstr "لن يُجدَّد العقد. أرسل الإشعار (المادة 75 من نظام العمل: 60 يومًا على الأقل)، وجهّز مكافأة نهاية الخدمة وإخلاء الطرف."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "The current contract has no end date: nothing to renew."
+msgstr "العقد الحالي بدون تاريخ انتهاء: لا يوجد ما يُجدَّد."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document_renewal.py:0
+msgid "The document must belong to the employee."
+msgstr "يجب أن تخص الوثيقة الموظف."
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.constraint,message:bs_hr_ess_documents.constraint_bs_hr_document_type_code_company_uniq
+msgid "The document type code must be unique."
+msgstr "يجب أن يكون رمز نوع الوثيقة فريدًا."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "The employee acknowledged the new contract."
+msgstr "أقرّ الموظف بالعقد الجديد."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document_renewal.py:0
+msgid "The expiry date must be after the issue date."
+msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ الإصدار."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "The new end date must be after the current contract end."
+msgstr "يجب أن يكون تاريخ الانتهاء الجديد بعد نهاية العقد الحالي."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document_renewal.py:0
+msgid "The new expiry date must be in the future."
+msgstr "يجب أن يكون تاريخ الانتهاء الجديد في المستقبل."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "There is no new contract to acknowledge."
+msgstr "لا يوجد عقد جديد بانتظار الإقرار."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "To acknowledge"
+msgstr "بانتظار الإقرار"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_search model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_search
+msgid "To approve"
+msgstr "بانتظار الاعتماد"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_contract_renewal__qiwa_state__pending
+msgid "To document"
+msgstr "بانتظار التوثيق"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_contract_renewal_search
+msgid "To document on Qiwa"
+msgstr "بانتظار التوثيق في قوى"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "To follow"
+msgstr "للمتابعة"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_list
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_renewal_search model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "Unlimited"
+msgstr "غير محدد المدة"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "Upcoming contract"
+msgstr "العقد القادم"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields.selection,name:bs_hr_ess_documents.selection__bs_hr_document__state__valid
+msgid "Valid"
+msgstr "سارية"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.ess_contract
+msgid "Wage"
+msgstr "الراتب"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__current_approver_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__current_approver_ids
+msgid "Waiting for"
+msgstr "بانتظار"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_contract_renewal__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_documents.field_bs_hr_document_renewal__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_contract_renewal__website_message_ids model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__website_message_ids model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_renewal__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: bs_hr_ess_documents
+#: model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document__block_attendance model:ir.model.fields,help:bs_hr_ess_documents.field_bs_hr_document_type__block_attendance
+msgid "When expired, the self-service check-in is blocked (or the supervisor notified, depending on the company setting). Typically the health certificate."
+msgstr "عند انتهائها، يُمنع تسجيل الحضور عبر الخدمة الذاتية (أو يُشعَر المشرف، حسب إعداد الشركة). وهي عادةً الشهادة الصحية."
+
+#. module: bs_hr_ess_documents
+#: model:bs.hr.document.type,name:bs_hr_ess_documents.doc_type_work_permit
+msgid "Work permit"
+msgstr "رخصة العمل"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "Your %(doc)s expired on %(date)s. Please renew it and upload the new copy."
+msgstr "انتهت %(doc)s في %(date)s. يرجى تجديدها ورفع النسخة الجديدة."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "Your %(doc)s expires on %(date)s (in %(days)s days). Please start the renewal."
+msgstr "تنتهي %(doc)s في %(date)s (بعد %(days)s يومًا). يرجى البدء في التجديد."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/contract_renewal.py:0
+msgid "Your contract was renewed until %s. Please open it and acknowledge it."
+msgstr "تم تجديد عقدك حتى %s. يرجى فتحه والإقرار به."
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/controllers/portal.py:0
+msgid "Your renewed document was sent to HR for verification."
+msgstr "تم إرسال الوثيقة المجددة إلى الموارد البشرية للتحقق."
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.res_config_settings_view_form_ess_documents
+msgid "days"
+msgstr "أيام"
+
+#. module: bs_hr_ess_documents
+#. odoo-python
+#: code:addons/bs_hr_ess_documents/models/document.py:0
+msgid "document_id"
+msgstr "document_id"
+
+#. module: bs_hr_ess_documents
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_documents.view_document_form
+msgid "e.g. Health certificate"
+msgstr "مثال: الشهادة الصحية"

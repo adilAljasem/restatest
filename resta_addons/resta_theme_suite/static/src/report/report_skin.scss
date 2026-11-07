@@ -1,0 +1,4 @@
+// PDF reports (invoices, POS closing, stock reports): Arabic brand font.
+body, .article, .o_report_layout_standard, .o_report_layout_boxed, .o_report_layout_bold, .o_report_layout_striped {
+    font-family: "IBM Plex Sans Arabic", "Lato", Arial, sans-serif;
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_labor_cost_report_list" model="ir.ui.view">
+        <field name="name">bs.hr.ess.labor.cost.report.list</field>
+        <field name="model">bs.hr.ess.labor.cost.report</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-danger="labor_ratio &gt; 30" decoration-success="labor_ratio &gt; 0 and labor_ratio &lt;= 20">
+                <field name="date"/>
+                <field name="location_id"/>
+                <field name="net_sales" sum="Total"/>
+                <field name="worked_hours" sum="Total" widget="float_time"/>
+                <field name="labor_cost" sum="Total"/>
+                <field name="labor_ratio" widget="progressbar"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_labor_cost_report_pivot" model="ir.ui.view">
+        <field name="name">bs.hr.ess.labor.cost.report.pivot</field>
+        <field name="model">bs.hr.ess.labor.cost.report</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="location_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="net_sales" type="measure"/>
+                <field name="labor_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="view_labor_cost_report_graph" model="ir.ui.view">
+        <field name="name">bs.hr.ess.labor.cost.report.graph</field>
+        <field name="model">bs.hr.ess.labor.cost.report</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="location_id"/>
+                <field name="labor_cost" type="measure"/>
+                <field name="net_sales" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_labor_cost_report_search" model="ir.ui.view">
+        <field name="name">bs.hr.ess.labor.cost.report.search</field>
+        <field name="model">bs.hr.ess.labor.cost.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="location_id"/>
+                <filter name="this_month" string="This month" domain="[('date', '&gt;=', (context_today()).strftime('%Y-%m-01'))]"/>
+                <filter name="group_location" string="Branch" context="{'group_by': 'location_id'}"/>
+                <filter name="group_week" string="Week" context="{'group_by': 'date:week'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_labor_cost_report" model="ir.actions.act_window">
+        <field name="name">Labor cost vs sales</field>
+        <field name="res_model">bs.hr.ess.labor.cost.report</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{'search_default_this_month': 1}</field>
+        <field name="help" type="html">
+            <p>Daily labor cost (worked hours x hourly cost) against POS net sales of each branch.
+                Link each POS to its HR branch in the POS settings.</p>
+        </field>
+    </record>
+    <menuitem id="menu_labor_cost_report" name="Labor cost vs sales" parent="bs_hr_ess_base.menu_ess_reporting"
+              sequence="20" action="action_labor_cost_report"/>
+</odoo>

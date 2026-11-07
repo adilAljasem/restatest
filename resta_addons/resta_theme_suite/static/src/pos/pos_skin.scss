@@ -1,0 +1,16 @@
+// Resta skin for the POS family apps. Colours already come from the theme's
+// primary variables ($o-brand-primary, $o-action, greys); this adds the brand
+// font, radii and the warm surfaces of resta.sa.
+html, body {
+    font-family: "IBM Plex Sans Arabic", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.pos {
+    --bs-body-bg: var(--rs-page-bg);
+    .pos-topheader { background: var(--rs-surface) !important; border-bottom-color: var(--rs-border-soft) !important; }
+    .btn { border-radius: var(--rs-radius-sm); }
+    .btn-primary { box-shadow: var(--rs-shadow-btn); }
+    .product, .product-card, .o_category_button, .category-button { border-radius: var(--rs-radius); }
+    .numpad button, .numpad .btn { border-radius: var(--rs-radius-sm); }
+    .orderline.selected, .order-container .selected { background: var(--rs-active-bg) !important; }
+    .form-control:focus, .form-select:focus { border-color: var(--rs-primary); box-shadow: 0 0 0 .2rem var(--rs-focus-ring); }
+}

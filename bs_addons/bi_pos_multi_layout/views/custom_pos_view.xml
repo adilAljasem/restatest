@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.bi.pos.multi.layout</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_interface_section']" position="before">
+                <block title="POS Button Layout Configuration" id="pos_layout_cong">
+                    <setting id="pos_button_layout_setting" string="Button Layout"
+                             help="Show the POS action buttons in a dedicated column and choose its position and number of columns">
+                        <field name="pos_button_layout"/>
+                        <div class="content-group mt16" invisible="not pos_button_layout">
+                            <field name="pos_column_layout" widget="radio"/>
+                        </div>
+                        <div class="content-group mt16" invisible="not pos_button_layout">
+                            <field name="pos_left_right_layout" widget="radio"/>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

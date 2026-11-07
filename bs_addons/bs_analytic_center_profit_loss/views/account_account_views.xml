@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_form_center_allocation" model="ir.ui.view">
+        <field name="name">account.account.form.center.allocation</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <field name="account_type" position="after">
+                <field name="bs_include_in_center_allocation"
+                       invisible="account_type != 'income'"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_list_center_allocation" model="ir.ui.view">
+        <field name="name">account.account.list.center.allocation</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_list"/>
+        <field name="arch" type="xml">
+            <field name="account_type" position="after">
+                <field name="bs_include_in_center_allocation"
+                       string="Revenue Allocation"
+                       invisible="account_type != 'income'"
+                       optional="hide"/>
+            </field>
+        </field>
+    </record>
+</odoo>

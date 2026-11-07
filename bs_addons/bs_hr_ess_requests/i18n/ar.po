@@ -1,0 +1,2567 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_requests
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "\"%s\" must be a number."
+msgstr "يجب أن يكون \"%s\" رقمًا."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "\"%s\" must be a valid date."
+msgstr "يجب أن يكون \"%s\" تاريخًا صحيحًا."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/leave.py:0
+msgid "%(count)s colleague(s) of the same branch and job are already on leave during this period: %(names)s"
+msgstr "عدد الزملاء من نفس الفرع والوظيفة في إجازة خلال هذه الفترة: %(count)s - %(names)s"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/leave.py:0
+msgid "%(employee)s did not return from leave (%(ref)s)"
+msgstr "لم يباشر %(employee)s بعد الإجازة (%(ref)s)"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "%(item)s is due for renewal on %(date)s."
+msgstr "موعد تجديد %(item)s في %(date)s."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "%s is not a custody item."
+msgstr "%s ليس صنف عهدة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0
+msgid "%s to acknowledge"
+msgstr "%s بانتظار تأكيد الاستلام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.report,print_report_name:bs_hr_ess_requests.action_report_request_letter
+msgid "'%s - %s' % (object.type_id.name, object.name)"
+msgstr "'%s - %s' % (object.type_id.name, object.name)"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "(size)"
+msgstr "(المقاس)"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "* a document is mandatory for this type (e.g. medical report)."
+msgstr "* المستند إلزامي لهذا النوع (مثل التقرير الطبي)."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "<i class=\"fa fa-calendar me-1\"/> Preview schedule"
+msgstr "<i class=\"fa fa-calendar me-1\"/> معاينة جدول الأقساط"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expenses
+msgid "<i class=\"fa fa-camera me-1\"/> New expense"
+msgstr "<i class=\"fa fa-camera me-1\"/> مصروف جديد"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "<i class=\"fa fa-chain-broken\"/><span>Report damage</span>"
+msgstr "<i class=\"fa fa-chain-broken\"/><span>الإبلاغ عن تلف</span>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "<i class=\"fa fa-check\"/> Acknowledged"
+msgstr "<i class=\"fa fa-check\"/> تم تأكيد الاستلام"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_request_detail_letter
+msgid "<i class=\"fa fa-download me-1\"/> Download the letter"
+msgstr "<i class=\"fa fa-download me-1\"/> تحميل الخطاب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_generic_request_new
+msgid "<i class=\"fa fa-file-pdf-o\"/> The letter will be available here as a PDF once approved."
+msgstr "<i class=\"fa fa-file-pdf-o\"/> سيكون الخطاب متاحًا هنا بصيغة PDF بعد اعتماده."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loans
+msgid "<i class=\"fa fa-plus me-1\"/> Request a loan"
+msgstr "<i class=\"fa fa-plus me-1\"/> طلب سلفة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves
+msgid "<i class=\"fa fa-plus me-1\"/> Request time off"
+msgstr "<i class=\"fa fa-plus me-1\"/> طلب إجازة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "<i class=\"fa fa-plus\"/><span>New item</span>"
+msgstr "<i class=\"fa fa-plus\"/><span>صنف جديد</span>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "<i class=\"fa fa-question-circle\"/><span>Report loss</span>"
+msgstr "<i class=\"fa fa-question-circle\"/><span>الإبلاغ عن فقدان</span>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "<i class=\"fa fa-refresh\"/><span>Replacement</span>"
+msgstr "<i class=\"fa fa-refresh\"/><span>استبدال</span>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "<i class=\"fa fa-undo\"/><span>Return</span>"
+msgstr "<i class=\"fa fa-undo\"/><span>إرجاع</span>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_generic_request_new
+msgid "<option value=\"\">-</option>"
+msgstr "<option value=\"\">-</option>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.report_request_letter_document
+msgid "<strong>Date:</strong>"
+msgstr "<strong>التاريخ:</strong>"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.report_request_letter_document
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>المرجع:</strong>"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "A minimum of %(months)s months of service is required (you have %(have)s)."
+msgstr "يلزم ألا تقل مدة الخدمة عن %(months)s شهرًا (مدة خدمتك %(have)s)."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "A postponement is already pending for this installment."
+msgstr "يوجد طلب تأجيل قيد الانتظار لهذا القسط."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/leave.py:0
+msgid "A supporting document is required for %s."
+msgstr "يلزم مستند داعم لـ %s."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "A supporting document is required for this request."
+msgstr "يلزم مستند داعم لهذا الطلب."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_type__max_amount
+msgid "Absolute maximum amount (0 = no limit)."
+msgstr "الحد الأقصى المطلق للمبلغ (0 = بلا حد)."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_type_form
+msgid "Accounting"
+msgstr "المحاسبة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "Acknowledge receipt"
+msgstr "تأكيد الاستلام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__ack_date
+msgid "Acknowledged on"
+msgstr "تاريخ تأكيد الاستلام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_needaction model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_needaction model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_needaction model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_needaction model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_needaction model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_needaction model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__active model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__active model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_exception_decoration model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_type_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Add at least one item."
+msgstr "أضف صنفًا واحدًا على الأقل."
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_salary_certificate_to
+msgid "Addressed to"
+msgstr "موجّه إلى"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__adjustment_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__adjustment_id
+msgid "Adjustment"
+msgstr "التسوية"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0
+msgid "All acknowledged"
+msgstr "تم تأكيد استلام الكل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__allow_parallel
+msgid "Allow parallel loans"
+msgstr "السماح بسلف متزامنة"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_petty_cash_amount model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__amount model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__amount model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__amount model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__deduction_amount
+msgid "Amount deducted from the payroll for a damaged or lost item (set by the approver)."
+msgstr "المبلغ المخصوم من الراتب مقابل صنف تالف أو مفقود (يحدده المعتمِد)."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Approval progress"
+msgstr "تقدّم الاعتماد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__approval_line_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__approval_line_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__approval_line_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__approval_line_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__approval_line_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Approvals"
+msgstr "الاعتمادات"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_search
+msgid "Approved"
+msgstr "معتمد"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_type_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,description:bs_hr_ess_requests.request_type_resignation
+msgid "Article 75 of the Labor Law: respect your notice period."
+msgstr "المادة 75 من نظام العمل: التزم بفترة الإشعار."
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,description:bs_hr_ess_requests.request_type_bank_update
+msgid "Attach the IBAN certificate issued by your bank."
+msgstr "أرفق شهادة الآيبان (IBAN) الصادرة من بنكك."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_attachment_count model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_generic_request_new
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_bank_update_bank
+msgid "Bank"
+msgstr "البنك"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_bank_update
+msgid "Bank details update"
+msgstr "تحديث البيانات البنكية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_clearance__state__blocked
+msgid "Blocked"
+msgstr "محظور"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__blocker_count
+msgid "Blocker Count"
+msgstr "عدد العوائق"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__blocker_ids
+msgid "Blockers"
+msgstr "العوائق"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__work_location_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__work_location_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__work_location_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__work_location_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__work_location_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__work_location_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_custody_step_branch
+msgid "Branch manager"
+msgstr "مدير الفرع"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_branch_transfer
+msgid "Branch transfer"
+msgstr "النقل إلى فرع آخر"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__work_location_ids
+msgid "Branches"
+msgstr "الفروع"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__can_ess_approve model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__can_ess_approve model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__can_ess_approve model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__can_ess_approve model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__can_ess_approve
+msgid "Can Ess Approve"
+msgstr "يمكنه الاعتماد في الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Cancel request"
+msgstr "إلغاء الطلب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_loan_line__state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,description:bs_hr_ess_requests.request_type_petty_cash
+msgid "Cash advance for branch expenses, to be settled with expense reports."
+msgstr "سلفة نقدية لمصروفات الفرع، تُسوّى بتقارير المصروفات."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__category model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "Category"
+msgstr "الفئة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form
+msgid "Check"
+msgstr "تحقق"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_request_type_field__field_type__selection
+msgid "Choice list"
+msgstr "قائمة اختيارات"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_requests.action_clearance
+msgid "Clear a leaving employee"
+msgstr "إخلاء طرف موظف مغادر"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__clearance_id
+msgid "Clearance"
+msgstr "إخلاء طرف"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/clearance.py:0
+msgid "Clearance - %s"
+msgstr "إخلاء طرف - %s"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/clearance.py:0
+msgid "Clearance completed."
+msgstr "تم إكمال إخلاء الطرف."
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_clearance model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_clearance
+msgid "Clearances"
+msgstr "إخلاءات الطرف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_clearance__state__done
+msgid "Cleared"
+msgstr "تم الإخلاء"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type_field__options
+msgid "Comma separated choices for a choice list."
+msgstr "خيارات قائمة الاختيارات مفصولة بفواصل."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__company_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form
+msgid "Complete"
+msgstr "إكمال"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.res_config_settings_view_form_ess_requests
+msgid "Concurrent leaves warning"
+msgstr "تنبيه الإجازات المتزامنة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Configure the loan account and the disbursement journal on the loan type %s."
+msgstr "اضبط حساب السلفة ودفتر الصرف في نوع السلفة %s."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__conflict_warning
+msgid "Conflict Warning"
+msgstr "تنبيه التعارض"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__create_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__create_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__currency_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__currency_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__currency_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__currency_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow,name:bs_hr_ess_requests.flow_custody model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_clearance_blocker__category__custody model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_custody
+msgid "Custody"
+msgstr "عهدة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Custody %(state)s - %(ref)s"
+msgstr "عهدة %(state)s - %(ref)s"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_custody_products model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_config_custody_products
+msgid "Custody Items"
+msgstr "أصناف العهد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_custody_request
+msgid "Custody Request"
+msgstr "طلب عهدة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_custody_request_line
+msgid "Custody Request Line"
+msgstr "سطر طلب العهدة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_custody_request model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_custody_request
+msgid "Custody Requests"
+msgstr "طلبات العهد"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0
+msgid "Custody items"
+msgstr "أصناف العهد"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Custody renewal due"
+msgstr "استحقاق تجديد العهدة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model:ir.model.fields,field_description:bs_hr_ess_requests.field_stock_picking__ess_custody_request_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Custody request"
+msgstr "طلب عهدة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Custody updated"
+msgstr "تم تحديث العهدة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Damage"
+msgstr "تلف"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search
+msgid "Damage / loss"
+msgstr "تلف / فقدان"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_request__request_type__damage
+msgid "Damage report"
+msgstr "بلاغ تلف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_holding__state__damaged
+msgid "Damaged"
+msgstr "تالف"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_overtime_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__date model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_request_type_field__field_type__date model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_line_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__date_from
+msgid "Date From"
+msgstr "من تاريخ"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__date_received
+msgid "Date Received"
+msgstr "تاريخ الاستلام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__date_returned
+msgid "Date Returned"
+msgstr "تاريخ الإرجاع"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__date_to
+msgid "Date To"
+msgstr "إلى تاريخ"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__number_of_days model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_list
+msgid "Days"
+msgstr "الأيام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__decision_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__decision_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__decision_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__decision_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__decision_date
+msgid "Decision Date"
+msgstr "تاريخ القرار"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__deduction_amount
+msgid "Deduction from salary"
+msgstr "الخصم من الراتب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__department_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__department_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__department_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__department_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__description model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__description model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "Description"
+msgstr "الوصف"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_type_form
+msgid "Description shown to employees"
+msgstr "الوصف الظاهر للموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_housing_details model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__values_display model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_generic_request_step_manager model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_leave_step_manager model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_loan_step_manager
+msgid "Direct manager"
+msgstr "المدير المباشر"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form
+msgid "Disburse"
+msgstr "صرف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__disburse_date
+msgid "Disburse Date"
+msgstr "تاريخ الصرف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__disbursed
+msgid "Disbursed"
+msgstr "تم الصرف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__move_id
+msgid "Disbursement entry"
+msgstr "قيد الصرف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__journal_id
+msgid "Disbursement journal"
+msgstr "دفتر الصرف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_approval_flow__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_payroll_adjustment__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_hr_employee__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_template__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_company__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_config_settings__display_name model:ir.model.fields,field_description:bs_hr_ess_requests.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "Document"
+msgstr "الوثيقة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_clearance__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_approval_flow
+msgid "ESS Approval Flow"
+msgstr "مسار الاعتماد - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_clearance_blocker
+msgid "ESS Clearance Blocker"
+msgstr "عائق إخلاء الطرف - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_clearance
+msgid "ESS Employee Clearance"
+msgstr "إخلاء طرف الموظف - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_leave_blackout
+msgid "ESS Leave Blackout Period"
+msgstr "فترة حظر الإجازات - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_loan_line
+msgid "ESS Loan Installment"
+msgstr "قسط السلفة - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_loan_type
+msgid "ESS Loan Type"
+msgstr "نوع السلفة - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_payroll_adjustment
+msgid "ESS Payroll Adjustment"
+msgstr "تسوية الراتب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_request_type
+msgid "ESS Request Type"
+msgstr "نوع الطلب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_request_type_field
+msgid "ESS Request Type Field"
+msgstr "حقل نوع الطلب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_company__ess_custody_location_id
+msgid "ESS: Employee custody location"
+msgstr "الخدمة الذاتية: موقع عهد الموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_company__ess_leave_max_concurrent model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_config_settings__ess_leave_max_concurrent
+msgid "ESS: Max colleagues on leave"
+msgstr "الخدمة الذاتية: الحد الأقصى للزملاء في إجازة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.server,name:bs_hr_ess_requests.ir_cron_ess_leave_return_ir_actions_server
+msgid "ESS: check return from time off"
+msgstr "الخدمة الذاتية: التحقق من المباشرة بعد الإجازة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.server,name:bs_hr_ess_requests.ir_cron_ess_custody_renewal_ir_actions_server
+msgid "ESS: custody renewal reminders"
+msgstr "الخدمة الذاتية: تذكيرات تجديد العهد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.server,name:bs_hr_ess_requests.ir_cron_ess_loan_sync_ir_actions_server
+msgid "ESS: update loan balances from payroll"
+msgstr "الخدمة الذاتية: تحديث أرصدة السلف من الرواتب"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_loan_settlement
+msgid "Early loan settlement"
+msgstr "السداد المبكر للسلفة"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.leave.blackout,name:bs_hr_ess_requests.demo_blackout_eid
+msgid "Eid al-Adha peak season"
+msgstr "موسم ذروة عيد الأضحى"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__ack_date
+msgid "Electronic acknowledgement of receipt by the employee."
+msgstr "تأكيد الاستلام إلكترونيًا من الموظف."
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.loan.type,name:bs_hr_ess_requests.loan_type_emergency
+msgid "Emergency loan"
+msgstr "سلفة طارئة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_hr_employee model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__employee_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__employee_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_holding_search
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/res_company.py:0 model:ir.actions.act_window,name:bs_hr_ess_requests.action_custody_holding model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_custody_holding
+msgid "Employee Custody"
+msgstr "عهد الموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_custody_holding
+msgid "Employee Custody Holding"
+msgstr "عهدة مستلمة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.product_template_form_view_ess_custody
+msgid "Employee custody"
+msgstr "عهد الموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_product__ess_is_custody model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_template__ess_is_custody
+msgid "Employee custody item"
+msgstr "صنف عهدة للموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_type__account_id
+msgid "Employee receivable account debited when the loan is disbursed."
+msgstr "حساب ذمم الموظفين المدين عند صرف السلفة."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_product_product__ess_is_custody model:ir.model.fields,help:bs_hr_ess_requests.field_product_template__ess_is_custody
+msgid "Employees can request this item from the self-service portal."
+msgstr "يمكن للموظفين طلب هذا الصنف من بوابة الخدمة الذاتية."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form
+msgid "Entry"
+msgstr "القيد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__estimated_value
+msgid "Estimated Value"
+msgstr "القيمة التقديرية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__need_exit_reentry
+msgid "Exit / re-entry visa needed"
+msgstr "يحتاج تأشيرة خروج وعودة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search
+msgid "Exit/re-entry needed"
+msgstr "يحتاج خروج وعودة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Expected repayment schedule"
+msgstr "جدول السداد المتوقع"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expenses
+msgid "Expenses"
+msgstr "المصروفات"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid "Explanation shown to employees"
+msgstr "الشرح الظاهر للموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__field_type
+msgid "Field Type"
+msgstr "نوع الحقل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_request_type_field_key_uniq
+msgid "Field keys must be unique per request type."
+msgstr "يجب أن تكون مفاتيح الحقول فريدة لكل نوع طلب."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__field_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid "Fields"
+msgstr "الحقول"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__first_installment_date
+msgid "First Installment Date"
+msgstr "تاريخ القسط الأول"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "First installment"
+msgstr "القسط الأول"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__flow_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__flow_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__flow_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__flow_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__flow_id
+msgid "Flow"
+msgstr "المسار"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_follower_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_partner_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type__icon
+msgid "Font Awesome class, e.g. fa-bank"
+msgstr "فئة Font Awesome، مثل fa-bank"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__activity_type_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_type_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__activity_type_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__activity_type_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__activity_type_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_type_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_approval_flow__request_type_id
+msgid "For generic requests: restrict this flow to one request type."
+msgstr "للطلبات العامة: قصر هذا المسار على نوع طلب واحد."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__date_from model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "From"
+msgstr "من"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__generate_letter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__generate_letter
+msgid "Generate Letter"
+msgstr "إنشاء خطاب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__generate_letter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type__generate_letter
+msgid "Generate a PDF letter with a verification QR code on approval."
+msgstr "إنشاء خطاب PDF برمز QR للتحقق عند الاعتماد."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form
+msgid "Generate schedule"
+msgstr "إنشاء جدول الأقساط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_approval_flow__request_type_id
+msgid "Generic request type"
+msgstr "نوع الطلب العام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.report,name:bs_hr_ess_requests.action_report_request_letter
+msgid "HR Letter"
+msgstr "خطاب الموارد البشرية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_request model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_generic_request
+msgid "HR Requests"
+msgstr "طلبات الموارد البشرية"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_loan_step_hr_manager
+msgid "HR manager (above 5,000)"
+msgstr "مدير الموارد البشرية (أكثر من 5,000)"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow,name:bs_hr_ess_requests.flow_generic_request
+msgid "HR request"
+msgstr "طلب موارد بشرية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__has_message model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__has_message model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__has_message model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__has_message model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__has_message model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__has_message model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_holding__state__held model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_holding_search
+msgid "Held"
+msgstr "مستلمة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__holding_id
+msgid "Held item"
+msgstr "الصنف المستلم"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__help_text
+msgid "Help Text"
+msgstr "نص المساعدة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "History"
+msgstr "السجل"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_overtime_hours
+msgid "Hours"
+msgstr "الساعات"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_housing
+msgid "Housing request"
+msgstr "طلب سكن"
+
+#. module: bs_hr_ess_requests
+#: model:product.template,name:bs_hr_ess_requests.demo_custody_key_product_template
+msgid "Housing room key"
+msgstr "مفتاح غرفة السكن"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_custody_step_hr model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_generic_request_step_hr model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_leave_step_hr model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_loan_postpone_step_hr model:bs.hr.approval.flow.step,name:bs_hr_ess_requests.flow_loan_step_hr
+msgid "Human Resources"
+msgstr "الموارد البشرية"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.report_request_letter_document
+msgid "Human Resources Department"
+msgstr "إدارة الموارد البشرية"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "I need a travel ticket"
+msgstr "أحتاج تذكرة سفر"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "I need an exit / re-entry visa"
+msgstr "أحتاج تأشيرة خروج وعودة"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_bank_update_iban
+msgid "IBAN"
+msgstr "الآيبان (IBAN)"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_approval_flow__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_payroll_adjustment__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_hr_employee__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_template__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_company__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_res_config_settings__id model:ir.model.fields,field_description:bs_hr_ess_requests.field_stock_picking__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_exception_icon model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_exception_icon model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__message_needaction model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__message_needaction model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__message_needaction model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__message_needaction model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__message_needaction model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_needaction model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تتطلب انتباهك."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_has_sms_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__message_has_error model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فهناك رسائل بها خطأ في التسليم."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__loan_line_id
+msgid "Installment"
+msgstr "القسط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_loan_postpone
+msgid "Installment Postponement"
+msgstr "تأجيل قسط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_loan_postpone
+msgid "Installment Postponements"
+msgstr "تأجيلات الأقساط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__installment_amount
+msgid "Installment amount"
+msgstr "مبلغ القسط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__installment_date
+msgid "Installment date"
+msgstr "تاريخ القسط"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Installment postponed to %(date)s (%(ref)s)."
+msgstr "تم تأجيل القسط إلى %(date)s (%(ref)s)."
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow,name:bs_hr_ess_requests.flow_loan_postpone
+msgid "Installment postponement"
+msgstr "تأجيل قسط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__installment_count model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_loan_line model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Installments"
+msgstr "الأقساط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__line_ids
+msgid "Installments schedule"
+msgstr "جدول الأقساط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_res_company__ess_custody_location_id
+msgid "Internal location holding the items handed over to employees. Created automatically."
+msgstr "موقع داخلي للأصناف المسلّمة للموظفين. يُنشأ تلقائيًا."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "Invalid choice for \"%s\"."
+msgstr "اختيار غير صالح لـ \"%s\"."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_is_follower model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "Issued on"
+msgstr "تاريخ الإصدار"
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_salary_certificate model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_to_whom
+msgid "Issued on {{today}} ({{hijri_today}}) - Reference {{reference}}"
+msgstr "صدر بتاريخ {{today}} ({{hijri_today}}) - المرجع {{reference}}"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search
+msgid "Issues"
+msgstr "المشكلات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__product_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__product_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_holding_search
+msgid "Item"
+msgstr "الصنف"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Item in my custody"
+msgstr "صنف في عهدتي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__line_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form
+msgid "Items"
+msgstr "الأصناف"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "Items in my custody ("
+msgstr "الأصناف في عهدتي ("
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__key
+msgid "Key"
+msgstr "المفتاح"
+
+#. module: bs_hr_ess_requests
+#: model:product.template,name:bs_hr_ess_requests.demo_custody_shoes_product_template
+msgid "Kitchen safety shoes"
+msgstr "حذاء سلامة للمطبخ"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__name
+msgid "Label"
+msgstr "التسمية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__write_uid model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__write_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_resignation_last_day
+msgid "Last working day"
+msgstr "آخر يوم عمل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_leave_request__return_state__late model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search
+msgid "Late return"
+msgstr "تأخر في المباشرة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_leave_blackout model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_config_blackout
+msgid "Leave Blackout Periods"
+msgstr "فترات حظر الإجازات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_blackout__work_location_ids
+msgid "Leave empty to apply to all branches."
+msgstr "اتركه فارغًا للتطبيق على جميع الفروع."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_blackout__company_id
+msgid "Leave empty to apply to all companies."
+msgstr "اتركه فارغًا للتطبيق على جميع الشركات."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_blackout__leave_type_ids
+msgid "Leave empty to block every type of time off."
+msgstr "اتركه فارغًا لحظر جميع أنواع الإجازات."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_type__company_id model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type__company_id
+msgid "Leave empty to use the type in all companies."
+msgstr "اتركه فارغًا لاستخدام النوع في جميع الشركات."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__letter_attachment_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid "Letter"
+msgstr "الخطاب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__letter_body
+msgid "Letter Body"
+msgstr "نص الخطاب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_type_form
+msgid "Limits"
+msgstr "الحدود"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.approval.flow,name:bs_hr_ess_requests.flow_loan model:ir.model,name:bs_hr_ess_requests.model_bs_hr_loan model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__loan_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__loan_id model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_clearance_blocker__category__loan model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Loan"
+msgstr "سلفة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Loan %(loan)s - %(employee)s"
+msgstr "سلفة %(loan)s - %(employee)s"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Loan %(loan)s - installment %(date)s"
+msgstr "سلفة %(loan)s - قسط %(date)s"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_loan_line
+msgid "Loan Installments"
+msgstr "أقساط السلف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_loan_type model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_config_loan_type
+msgid "Loan Types"
+msgstr "أنواع السلف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__account_id
+msgid "Loan account (debit)"
+msgstr "حساب السلفة (مدين)"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0
+msgid "Loan balance"
+msgstr "رصيد السلفة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Loan fully paid"
+msgstr "تم سداد السلفة بالكامل"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_loan_settlement_ref
+msgid "Loan reference"
+msgstr "مرجع السلفة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__loan_type_id
+msgid "Loan type"
+msgstr "نوع السلفة"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model:ir.actions.act_window,name:bs_hr_ess_requests.action_loan model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_loan model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_loans model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loans
+msgid "Loans"
+msgstr "السلف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_request_type_field__field_type__text
+msgid "Long text"
+msgstr "نص طويل"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Loss"
+msgstr "فقدان"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_request__request_type__loss
+msgid "Loss report"
+msgstr "بلاغ فقدان"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_holding__state__lost
+msgid "Lost"
+msgstr "مفقود"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__max_percent_wage
+msgid "Max % of monthly wage"
+msgstr "الحد الأقصى % من الراتب الشهري"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__max_amount
+msgid "Max amount"
+msgstr "الحد الأقصى للمبلغ"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__max_installments
+msgid "Max installments"
+msgstr "الحد الأقصى للأقساط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_type__max_percent_wage
+msgid "Maximum amount as a percentage of the monthly wage (0 = no limit)."
+msgstr "الحد الأقصى للمبلغ كنسبة من الراتب الشهري (0 = بلا حد)."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_has_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_has_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_has_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_has_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_has_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_has_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__min_service_months
+msgid "Minimum service (months)"
+msgstr "الحد الأدنى للخدمة (أشهر)"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_line_search
+msgid "Month"
+msgstr "الشهر"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__installment_amount
+msgid "Monthly installment"
+msgstr "القسط الشهري"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__my_activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "My custody"
+msgstr "عهدتي"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "My custody requests"
+msgstr "طلبات العهدة الخاصة بي"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves
+msgid "My requests"
+msgstr "طلباتي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "New"
+msgstr "جديد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__new_date
+msgid "New Date"
+msgstr "التاريخ الجديد"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "New expense"
+msgstr "مصروف جديد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_request__request_type__new
+msgid "New item"
+msgstr "صنف جديد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_calendar_event_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_date_deadline model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_summary model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_summary model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_summary model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_summary model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_summary model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_summary model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_type_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "No"
+msgstr "لا"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "No custody item is available."
+msgstr "لا توجد أصناف عهدة متاحة."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "No expense category is configured."
+msgstr "لم تُضبط أي فئة مصروفات."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expenses
+msgid "No expense yet."
+msgstr "لا توجد مصروفات بعد."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "No item in your custody."
+msgstr "لا توجد أصناف في عهدتك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "No limit is configured on this loan type."
+msgstr "لم يُضبط أي حد لنوع السلفة هذا."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "No loan type is available."
+msgstr "لا توجد أنواع سلف متاحة."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loans
+msgid "No loan yet."
+msgstr "لا توجد سلف بعد."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form
+msgid "No open item: the clearance can be completed."
+msgstr "لا توجد بنود مفتوحة: يمكن إكمال إخلاء الطرف."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves
+msgid "No time off request yet."
+msgstr "لا توجد طلبات إجازة بعد."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "No time off type is available for you."
+msgstr "لا توجد أنواع إجازات متاحة لك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "No wage is registered on your contract."
+msgstr "لا يوجد راتب مسجّل في عقدك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "No warehouse is configured for %s."
+msgstr "لم يُضبط مستودع لـ %s."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_holding_search
+msgid "Not acknowledged"
+msgstr "لم يتم تأكيد الاستلام"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_leave_request__return_state__none
+msgid "Not checked"
+msgstr "لم يتم التحقق"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__note
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__employee_note model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__employee_note model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__employee_note model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__employee_note model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__employee_note model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_generic_request_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_request_type_field__field_type__number
+msgid "Number"
+msgstr "رقم"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_needaction_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_has_error_counter model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Number of installments"
+msgstr "عدد الأقساط"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_needaction_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_has_error_counter model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,description:bs_hr_ess_requests.request_type_salary_certificate
+msgid "Official letter stating your job and salary, addressed to a bank or an authority."
+msgstr "خطاب رسمي يوضح وظيفتك وراتبك، موجّه إلى بنك أو جهة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Only approved loans can be disbursed."
+msgstr "لا يمكن صرف إلا السلف المعتمدة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Only unpaid installments can be postponed."
+msgstr "لا يمكن تأجيل إلا الأقساط غير المسددة."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_search
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form
+msgid "Open items"
+msgstr "البنود المفتوحة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_clearance_blocker__category__request
+msgid "Open request"
+msgstr "فتح الطلب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__options
+msgid "Options"
+msgstr "الخيارات"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_overtime
+msgid "Overtime pre-approval"
+msgstr "موافقة مسبقة على العمل الإضافي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_loan_line__state__paid model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Paid"
+msgstr "مسدد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__paid_amount
+msgid "Paid Amount"
+msgstr "المبلغ المسدد"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "Pay my leave salary in advance"
+msgstr "صرف راتب الإجازة مقدمًا"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_loan_line__state__pending
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_product_product__ess_renew_months model:ir.model.fields,help:bs_hr_ess_requests.field_product_template__ess_renew_months
+msgid "Periodic entitlement, e.g. 6 for two uniforms a year. 0 = no renewal."
+msgstr "الاستحقاق الدوري، مثل 6 لزيّين في السنة. 0 = بدون تجديد."
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.loan.type,name:bs_hr_ess_requests.loan_type_personal
+msgid "Personal loan"
+msgstr "سلفة شخصية"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_petty_cash
+msgid "Petty cash"
+msgstr "عهدة نقدية"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Photo / report"
+msgstr "صورة / تقرير"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid ""
+"Placeholders: {{employee_name}}, {{job}}, {{department}}, {{joining_date}}, {{nationality}},\n"
+"                                {{id_number}}, {{wage}}, {{company}}, {{today}}, {{hijri_today}}, {{reference}} and {{key}} of\n"
+"                                any field above."
+msgstr ""
+"المتغيرات: {{employee_name}} و{{job}} و{{department}} و{{joining_date}} و{{nationality}}\n"
+"                                و{{id_number}} و{{wage}} و{{company}} و{{today}} و{{hijri_today}} و{{reference}} و{{key}} لأي\n"
+"                                حقل أعلاه."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type__letter_body
+msgid "Placeholders: {{employee_name}}, {{job}}, {{department}}, {{joining_date}}, {{nationality}}, {{id_number}}, {{wage}}, {{company}}, {{today}}, {{hijri_today}}, {{reference}} and the keys of the fields of this type."
+msgstr "المتغيرات: {{employee_name}} و{{job}} و{{department}} و{{joining_date}} و{{nationality}} و{{id_number}} و{{wage}} و{{company}} و{{today}} و{{hijri_today}} و{{reference}} ومفاتيح حقول هذا النوع."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Please choose a category and a positive amount."
+msgstr "يرجى اختيار فئة ومبلغ موجب."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Please choose a type and the dates."
+msgstr "يرجى اختيار النوع والتواريخ."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Please choose an item."
+msgstr "يرجى اختيار صنف."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Please choose the item you hold."
+msgstr "يرجى اختيار الصنف الذي في عهدتك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Please describe what happened."
+msgstr "يرجى وصف ما حدث."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Please give a reason for the postponement."
+msgstr "يرجى ذكر سبب التأجيل."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Please give the size for %s."
+msgstr "يرجى تحديد المقاس لـ %s."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Please take a photo of the receipt."
+msgstr "يرجى التقاط صورة للإيصال."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__portal_source model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__portal_source model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__portal_source model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__portal_source model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__portal_source
+msgid "Portal Source"
+msgstr "مصدر البوابة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form
+msgid "Post the disbursement entry and schedule the payroll deductions?"
+msgstr "ترحيل قيد الصرف وجدولة الخصومات من الراتب؟"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_loan_line__state__postponed
+msgid "Postponed"
+msgstr "مؤجل"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Postponement requested"
+msgstr "تم طلب التأجيل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__postpone_ids model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_loan_postpone model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form
+msgid "Postponements"
+msgstr "التأجيلات"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_branch_transfer_date
+msgid "Preferred date"
+msgstr "التاريخ المفضل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_product_template
+msgid "Product"
+msgstr "المنتج"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_petty_cash_purpose model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_to_whom_purpose
+msgid "Purpose"
+msgstr "الغرض"
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_to_whom
+msgid "Purpose: {{purpose}}"
+msgstr "الغرض: {{purpose}}"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.report_request_letter_document
+msgid "QR"
+msgstr "QR"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "Qty"
+msgstr "الكمية"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__quantity model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__quantity model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_branch_transfer_reason model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_overtime_reason model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_resignation_reason model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__reason model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__reason model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form
+msgid "Reason"
+msgstr "السبب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Reason / notes"
+msgstr "السبب / ملاحظات"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form
+msgid "Reason / what happened"
+msgstr "السبب / ما حدث"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Receipt acknowledged electronically by %s from the portal."
+msgstr "تم تأكيد الاستلام إلكترونيًا من قِبل %s عبر البوابة."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "Receipt photo"
+msgstr "صورة الإيصال"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__name model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__name model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Regenerate letter"
+msgstr "إعادة إنشاء الخطاب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__rejection_reason model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__rejection_reason model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__rejection_reason model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__rejection_reason model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__rejection_reason
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Rejection reason"
+msgstr "سبب الرفض"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_list
+msgid "Remaining"
+msgstr "المتبقي"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__remaining_amount
+msgid "Remaining Amount"
+msgstr "المبلغ المتبقي"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loans
+msgid "Remaining balance"
+msgstr "الرصيد المتبقي"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loans
+msgid "Remaining:"
+msgstr "المتبقي:"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_product__ess_renew_months model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_template__ess_renew_months
+msgid "Renew every (months)"
+msgstr "التجديد كل (أشهر)"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__renewal_notified
+msgid "Renewal Notified"
+msgstr "تم الإشعار بالتجديد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__next_due_date model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_holding_search
+msgid "Renewal due"
+msgstr "موعد التجديد"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "Renewal:"
+msgstr "التجديد:"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_clearance_form
+msgid "Reopen"
+msgstr "إعادة فتح"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Replace"
+msgstr "استبدال"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_request__request_type__replace
+msgid "Replacement"
+msgstr "استبدال"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_housing_kind model:ir.model,name:bs_hr_ess_requests.model_bs_hr_request model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__request_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__request_id
+msgid "Request"
+msgstr "الطلب"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/leave.py:0
+msgid "Request %s cancelled"
+msgstr "تم إلغاء الطلب %s"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__request_count
+msgid "Request Count"
+msgstr "عدد الطلبات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__request_type
+msgid "Request Type"
+msgstr "نوع الطلب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_request_type model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_config_request_type
+msgid "Request Types"
+msgstr "أنواع الطلبات"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Request a loan"
+msgstr "طلب سلفة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Request postponement"
+msgstr "طلب تأجيل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__portal_source model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__portal_source model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__portal_source model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__portal_source model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__portal_source
+msgid "Request submitted from the employee portal"
+msgstr "طلب مُرسَل من بوابة الموظفين"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "Request time off"
+msgstr "طلب إجازة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__type_id
+msgid "Request type"
+msgstr "نوع الطلب"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_branch_transfer_branch
+msgid "Requested branch"
+msgstr "الفرع المطلوب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid "Requests"
+msgstr "الطلبات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__require_attachment
+msgid "Require Attachment"
+msgstr "يتطلب مرفقًا"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__required
+msgid "Required"
+msgstr "مطلوب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_product__ess_needs_size model:ir.model.fields,field_description:bs_hr_ess_requests.field_product_template__ess_needs_size
+msgid "Requires a size"
+msgstr "يتطلب مقاسًا"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__res_id
+msgid "Res"
+msgstr "معرّف السجل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance_blocker__res_model
+msgid "Res Model"
+msgstr "نموذج السجل"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Reset to draft"
+msgstr "إعادة إلى مسودة"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_resignation
+msgid "Resignation"
+msgstr "استقالة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_user_id model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_request__request_type__return model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Return"
+msgstr "إرجاع"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__return_state
+msgid "Return to work"
+msgstr "المباشرة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_custody_holding__state__returned model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_leave_request__return_state__returned
+msgid "Returned"
+msgstr "مُرجَع"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__message_has_sms_error model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.loan.type,name:bs_hr_ess_requests.loan_type_salary_advance
+msgid "Salary advance"
+msgstr "سلفة على الراتب"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_salary_certificate
+msgid "Salary certificate"
+msgstr "تعريف بالراتب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__advance_salary
+msgid "Salary in advance"
+msgstr "راتب مقدم"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form
+msgid "Schedule"
+msgstr "الجدول"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "Select the item you hold for each line."
+msgstr "اختر الصنف الذي في عهدتك لكل سطر."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail
+msgid "Send"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_generic_request_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Send request"
+msgstr "إرسال الطلب"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_type__sequence model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type__sequence model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__lot_id
+msgid "Serial / Lot"
+msgstr "الرقم التسلسلي / الدفعة"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type.field,name:bs_hr_ess_requests.request_type_loan_settlement_mode
+msgid "Settlement mode"
+msgstr "طريقة السداد"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_request_type_field__field_type__char
+msgid "Short text"
+msgstr "نص قصير"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__size model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request_line__size model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "Size"
+msgstr "المقاس"
+
+#. module: bs_hr_ess_requests
+#: model:product.template,name:bs_hr_ess_requests.demo_custody_uniform_product_template
+msgid "Staff uniform"
+msgstr "زي الموظفين"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_line__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__state model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__activity_state model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_state model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__activity_state model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__activity_state model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__activity_state model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_state model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مضى\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_salary_certificate
+msgid "Subject: Salary certificate"
+msgstr "الموضوع: تعريف بالراتب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_form
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__submit_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__submit_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__submit_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__submit_date model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__submit_date
+msgid "Submit Date"
+msgstr "تاريخ الإرسال"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "Submit expense"
+msgstr "إرسال المصروف"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__support_document
+msgid "Supporting Document"
+msgstr "المستند الداعم"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "Supporting document"
+msgstr "المستند الداعم"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type__code
+msgid "Technical code, used by integrations."
+msgstr "رمز تقني تستخدمه عمليات الربط."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request_type_field__key
+msgid "Technical key (letters, digits, underscore), usable as {{key}}."
+msgstr "مفتاح تقني (أحرف وأرقام وشرطة سفلية)، يمكن استخدامه كـ {{key}}."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Thank you, your acknowledgement is recorded."
+msgstr "شكرًا لك، تم تسجيل تأكيدك."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_requests.action_clearance
+msgid "The clearance lists the custody items, loan balances and open requests that must be settled first."
+msgstr "يعرض إخلاء الطرف أصناف العهد وأرصدة السلف والطلبات المفتوحة التي يجب تسويتها أولًا."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/clearance.py:0
+msgid "The clearance of %s still has open items."
+msgstr "لا يزال لدى إخلاء طرف %s بنود مفتوحة."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_request_type_code_company_uniq
+msgid "The code must be unique per company."
+msgstr "يجب أن يكون الرمز فريدًا لكل شركة."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_type__journal_id
+msgid "The default account of this journal is credited when the loan is disbursed."
+msgstr "يُقيَّد الحساب الافتراضي لهذا الدفتر دائنًا عند صرف السلفة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The disbursement entry %s is posted: reverse it manually if needed."
+msgstr "تم ترحيل قيد الصرف %s: اعكسه يدويًا عند الحاجة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0 model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_leave_blackout_check_dates model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_leave_request_check_dates
+msgid "The end date must be after the start date."
+msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "The field \"%s\" is required."
+msgstr "الحقل \"%s\" مطلوب."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The first installment cannot be in the past."
+msgstr "لا يمكن أن يكون القسط الأول بتاريخ سابق."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The installment does not belong to this employee."
+msgstr "القسط لا يخص هذا الموظف."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "The item %s is not in your custody."
+msgstr "الصنف %s ليس في عهدتك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The journal %s has no default account."
+msgstr "لا يوجد حساب افتراضي للدفتر %s."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "The key \"%s\" must contain lowercase letters, digits and underscores only."
+msgstr "يجب أن يحتوي المفتاح \"%s\" على أحرف لاتينية صغيرة وأرقام وشرطات سفلية فقط."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "The letter can only be generated for approved requests."
+msgstr "لا يمكن إنشاء الخطاب إلا للطلبات المعتمدة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The loan %s is already disbursed."
+msgstr "تم صرف السلفة %s مسبقًا."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_loan_amount_positive
+msgid "The loan amount must be positive."
+msgstr "يجب أن يكون مبلغ السلفة موجبًا."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The maximum amount you can request is %(max)s."
+msgstr "الحد الأقصى للمبلغ الذي يمكنك طلبه هو %(max)s."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "The maximum number of installments is %s."
+msgstr "الحد الأقصى لعدد الأقساط هو %s."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_loan_type_max_installments_positive
+msgid "The maximum number of installments must be positive."
+msgstr "يجب أن يكون الحد الأقصى لعدد الأقساط موجبًا."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_loan_installments_positive
+msgid "The number of installments must be positive."
+msgstr "يجب أن يكون عدد الأقساط موجبًا."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_custody_request_line_quantity_positive
+msgid "The quantity must be positive."
+msgstr "يجب أن تكون الكمية موجبة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "The transfer for your request %s is done."
+msgstr "تم تنفيذ التحويل الخاص بطلبك %s."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "The value of a lost or damaged item may be deducted from your salary after approval."
+msgstr "قد تُخصم قيمة الصنف المفقود أو التالف من راتبك بعد الاعتماد."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.constraint,message:bs_hr_ess_requests.constraint_bs_hr_request_verify_token_uniq
+msgid "The verification token must be unique."
+msgstr "يجب أن يكون رمز التحقق فريدًا."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/custody.py:0
+msgid "The warehouse %s has no internal transfer type."
+msgstr "لا يوجد نوع تحويل داخلي للمستودع %s."
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_salary_certificate
+msgid "This certificate was issued at the employee's request, without any liability on the company."
+msgstr "صدر هذا التعريف بناءً على طلب الموظف دون أدنى مسؤولية على الشركة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "This installment is already processed by payroll."
+msgstr "تمت معالجة هذا القسط في الرواتب مسبقًا."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.report_request_letter_document
+msgid ""
+"This letter was generated electronically and does not require a signature.\n"
+"                                Scan the QR code to verify its validity."
+msgstr ""
+"صدر هذا الخطاب إلكترونيًا ولا يحتاج إلى توقيع.\n"
+"                                امسح رمز QR للتحقق من صحته."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "This letter was issued by"
+msgstr "صدر هذا الخطاب من"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "This request type does not produce a letter."
+msgstr "نوع الطلب هذا لا يُصدر خطابًا."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "This verification code does not match any valid letter."
+msgstr "رمز التحقق هذا لا يطابق أي خطاب صالح."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search
+msgid "Ticket needed"
+msgstr "يحتاج تذكرة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.ui.menu,name:bs_hr_ess_requests.menu_ess_leave_request model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_form
+msgid "Time Off"
+msgstr "الإجازات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_bs_hr_leave_request
+msgid "Time Off Request"
+msgstr "طلب إجازة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.actions.act_window,name:bs_hr_ess_requests.action_leave_request
+msgid "Time Off Requests"
+msgstr "طلبات الإجازات"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0 model:bs.hr.approval.flow,name:bs_hr_ess_requests.flow_leave model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__leave_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.res_config_settings_view_form_ess_requests
+msgid "Time off"
+msgstr "الإجازات"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/hr_employee.py:0
+msgid "Time off balance"
+msgstr "رصيد الإجازات"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/leave.py:0
+msgid "Time off is not allowed during this period: %s."
+msgstr "الإجازات غير مسموحة خلال هذه الفترة: %s."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__leave_state
+msgid "Time off status"
+msgstr "حالة الإجازة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__leave_type_id
+msgid "Time off type"
+msgstr "نوع الإجازة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_blackout__leave_type_ids
+msgid "Time off types"
+msgstr "أنواع الإجازات"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__date_to model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "To"
+msgstr "إلى"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_postpone_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_search model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_search
+msgid "To approve"
+msgstr "بانتظار الاعتماد"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_search
+msgid "To disburse"
+msgstr "بانتظار الصرف"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_line_search
+msgid "To pay"
+msgstr "بانتظار السداد"
+
+#. module: bs_hr_ess_requests
+#: model:bs.hr.request.type,name:bs_hr_ess_requests.request_type_to_whom
+msgid "To whom it may concern letter"
+msgstr "خطاب لمن يهمه الأمر"
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_to_whom
+msgid "To whom it may concern,"
+msgstr "إلى من يهمه الأمر،"
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_salary_certificate
+msgid "To: {{addressed_to}}"
+msgstr "إلى: {{addressed_to}}"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_holding_list model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_form model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_line_list model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_list
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_expense_new
+msgid "Total amount ("
+msgstr "المبلغ الإجمالي ("
+
+#. module: bs_hr_ess_requests
+#: model:ir.model,name:bs_hr_ess_requests.model_stock_picking model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__picking_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_custody_request_form
+msgid "Transfer"
+msgstr "التحويل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__need_ticket
+msgid "Travel ticket needed"
+msgstr "يحتاج تذكرة سفر"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request_type_field__type_id model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__activity_exception_decoration model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "Unknown or revoked document"
+msgstr "وثيقة غير معروفة أو ملغاة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "Up to"
+msgstr "حتى"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_letter_verify
+msgid "Valid document"
+msgstr "وثيقة صالحة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__value
+msgid "Value"
+msgstr "القيمة"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__values
+msgid "Values"
+msgstr "القيم"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__verify_token
+msgid "Verify Token"
+msgstr "رمز التحقق"
+
+#. module: bs_hr_ess_requests
+#: model:product.template,name:bs_hr_ess_requests.demo_custody_tablet_product_template
+msgid "Waiter tablet"
+msgstr "جهاز لوحي للنادل"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__current_approver_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__current_approver_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__current_approver_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__current_approver_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__current_approver_ids
+msgid "Waiting for"
+msgstr "بانتظار"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.res_config_settings_view_form_ess_requests
+msgid "Warn approvers when this number of colleagues of the same branch and job are already on leave (0 = disabled)."
+msgstr "تنبيه المعتمِدين عندما يكون هذا العدد من الزملاء من نفس الفرع والوظيفة في إجازة (0 = معطّل)."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_res_company__ess_leave_max_concurrent model:ir.model.fields,help:bs_hr_ess_requests.field_res_config_settings__ess_leave_max_concurrent
+msgid "Warn approvers when this number of colleagues of the same branch and job are already on leave during the requested period. 0 disables the check."
+msgstr "تنبيه المعتمِدين عندما يكون هذا العدد من الزملاء من نفس الفرع والوظيفة في إجازة خلال الفترة المطلوبة. القيمة 0 تعطّل التحقق."
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_clearance__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_holding__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_custody_request__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_leave_request__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_loan_postpone__website_message_ids model:ir.model.fields,field_description:bs_hr_ess_requests.field_bs_hr_request__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_clearance__website_message_ids model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_holding__website_message_ids model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_custody_request__website_message_ids model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_leave_request__website_message_ids model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan__website_message_ids model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_postpone__website_message_ids model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_request__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "What happened?"
+msgstr "ماذا حدث؟"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields,help:bs_hr_ess_requests.field_bs_hr_loan_type__allow_parallel
+msgid "When unchecked, an employee cannot request a new loan while another one is still open."
+msgstr "عند عدم التحديد، لا يمكن للموظف طلب سلفة جديدة ما دامت لديه سلفة مفتوحة."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_leave_request_search
+msgid "With conflict"
+msgstr "بها تعارض"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/generic_request.py:0
+msgid "Yes"
+msgstr "نعم"
+
+#. module: bs_hr_ess_requests
+#: model:ir.model.fields.selection,name:bs_hr_ess_requests.selection__bs_hr_request_type_field__field_type__boolean
+msgid "Yes / No"
+msgstr "نعم / لا"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "You already have an open loan."
+msgstr "لديك سلفة مفتوحة بالفعل."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "You can request up to"
+msgstr "يمكنك طلب حتى"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "You do not hold any item."
+msgstr "لا توجد أصناف في عهدتك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Your custody request was sent."
+msgstr "تم إرسال طلب العهدة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Your expense was submitted."
+msgstr "تم إرسال المصروف."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/loan.py:0
+msgid "Your loan %s is fully paid."
+msgstr "تم سداد سلفتك %s بالكامل."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Your loan request was sent."
+msgstr "تم إرسال طلب السلفة."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Your postponement request was sent."
+msgstr "تم إرسال طلب التأجيل."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Your request was sent."
+msgstr "تم إرسال طلبك."
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/controllers/main.py:0
+msgid "Your time off request was sent."
+msgstr "تم إرسال طلب الإجازة."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves
+msgid "allocated ·"
+msgstr "مخصص ·"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leave_new
+msgid "available)"
+msgstr "متاح)"
+
+#. module: bs_hr_ess_requests
+#. odoo-python
+#: code:addons/bs_hr_ess_requests/models/leave.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves
+msgid "days"
+msgstr "أيام"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody_new
+msgid "e.g. M, 42"
+msgstr "مثال: M، 42"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_loan_type_form
+msgid "e.g. Salary advance"
+msgstr "مثال: سلفة على الراتب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.view_request_type_form
+msgid "e.g. Salary certificate"
+msgstr "مثال: تعريف بالراتب"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "monthly installments ·"
+msgstr "أقساط شهرية ·"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_new
+msgid "months of service"
+msgstr "شهرًا من الخدمة"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_leaves
+msgid "used"
+msgstr "مستخدم"
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loan_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_loans
+msgid "x"
+msgstr "x"
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_salary_certificate
+msgid "{{company}} certifies that <strong>{{employee_name}}</strong>, {{nationality}} national, ID / Iqama number {{id_number}}, has been working with us as <strong>{{job}}</strong> in the {{department}} department since {{joining_date}}, and currently receives a total monthly salary of <strong>{{wage}}</strong>."
+msgstr "تشهد {{company}} بأن <strong>{{employee_name}}</strong>، {{nationality}} الجنسية، رقم الهوية / الإقامة {{id_number}}، يعمل لدينا بوظيفة <strong>{{job}}</strong> في قسم {{department}} منذ {{joining_date}}، ويتقاضى حاليًا راتبًا شهريًا إجماليًا قدره <strong>{{wage}}</strong>."
+
+#. module: bs_hr_ess_requests
+#: model_terms:bs.hr.request.type,letter_body:bs_hr_ess_requests.request_type_to_whom
+msgid "{{company}} certifies that <strong>{{employee_name}}</strong>, {{nationality}} national, ID / Iqama number {{id_number}}, is employed as <strong>{{job}}</strong> since {{joining_date}}."
+msgstr "تشهد {{company}} بأن <strong>{{employee_name}}</strong>، {{nationality}} الجنسية، رقم الهوية / الإقامة {{id_number}}، يعمل لديها بوظيفة <strong>{{job}}</strong> منذ {{joining_date}}."
+
+#. module: bs_hr_ess_requests
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_requests.ess_custody
+msgid "· received"
+msgstr "· تاريخ الاستلام"

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_blend" model="ir.ui.view">
+        <field name="name">pos.config.form.blend</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='configuration']" position="after">
+                <page name="blend_integration" string="Blend Integration" groups="base.group_system">
+                    <group>
+                        <group string="Branch Mapping">
+                            <field name="blend_enabled"/>
+                            <field name="available_preset_ids" invisible="1"/>
+                            <field name="blend_default_preset_id" string="نوع طلبات Blend: توصيل (Delivery)"
+                                   invisible="not blend_enabled"
+                                   domain="[('id', 'in', available_preset_ids), ('is_return', '=', False)]"
+                                   options="{'no_create': True}"/>
+                            <field name="blend_pickup_preset_id" string="نوع طلبات Blend: استلام (Pickup)"
+                                   invisible="not blend_enabled"
+                                   domain="[('id', 'in', available_preset_ids), ('is_return', '=', False)]"
+                                   options="{'no_create': True}"/>
+                            <field name="blend_dinein_preset_id" string="نوع طلبات Blend: داخل المطعم (Dine-in)"
+                                   invisible="not blend_enabled"
+                                   domain="[('id', 'in', available_preset_ids), ('is_return', '=', False)]"
+                                   options="{'no_create': True}"/>
+                            <field name="blend_auto_accept" invisible="not blend_enabled"/>
+                            <field name="blend_branch_id" required="blend_enabled"/>
+                            <field name="blend_brand_id"/>
+                            <field name="blend_available" readonly="not blend_outbound_webhook_url"/>
+                            <field name="blend_last_menu_sync_at" readonly="1"/>
+                            <field name="blend_webhook_url" readonly="1" widget="CopyClipboardChar"/>
+                            <field name="blend_login_url" readonly="1" widget="CopyClipboardChar"/>
+                        </group>
+                        <group name="blend_security" string="Security" col="2">
+                            <field name="blend_login_user_id" options="{'no_create': True}"/>
+                            <field name="blend_login_token_issued_at" readonly="1"/>
+                            <div name="blend_login_token_actions" colspan="2"
+                                 invisible="not blend_login_token_issued_at">
+                                <button name="action_revoke_blend_login_token"
+                                        type="object"
+                                        string="Revoke Login Token"
+                                        class="btn-secondary"/>
+                            </div>
+                            <field name="blend_inbound_token" password="True"
+                                   placeholder="Optional legacy pre-shared token"/>
+                            <field name="blend_outbound_token" password="True"/>
+                            <field name="blend_timeout"/>
+                            <field name="blend_retry_max"/>
+                            <field name="blend_sync_images"/>
+                        </group>
+                    </group>
+                    <group string="Blend Payments and Invoicing">
+                        <field name="blend_finalize_on_accept"/>
+                        <field name="blend_invoice_partner_id" invisible="not blend_finalize_on_accept"
+                               domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                               options="{'no_create': True}"/>
+                        <div colspan="2" invisible="not blend_finalize_on_accept">
+                            Applies to newly received orders only. Local acceptance records payment and a posted invoice.
+                            Select one existing POS payment method per aggregator. This does not collect funds from a gateway.
+                            Tax or accounting failures leave the order pending for review.
+                        </div>
+                        <field name="payment_method_ids" invisible="1"/>
+                        <field name="blend_payment_mapping_ids" colspan="2" nolabel="1">
+                            <list editable="bottom">
+                                <field name="active"/>
+                                <field name="aggregator"/>
+                                <field name="payment_method_id"
+                                       domain="[('id', 'in', parent.payment_method_ids), ('active', '=', True)]"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Outbound Events (Odoo calls Blend)">
+                        <field name="blend_outbound_webhook_url" placeholder="https://webhook.example.com/integration/webhook/pos/your-brand"/>
+                        <div colspan="2" invisible="not blend_outbound_webhook_url">
+                            POST menu.updated, item.updated, store.updated and order.updated to this URL.
+                            Legacy order creation is optional and uses its separate destination when enabled.
+                        </div>
+                    </group>
+                    <group>
+                        <field name="blend_legacy_order_creation_enabled"/>
+                    </group>
+                    <group string="Legacy Order Creation (Separate Contract)" invisible="not blend_legacy_order_creation_enabled">
+                        <field name="blend_order_url" placeholder="https://.../webhooks/order-receive"/>
+                    </group>
+                    <group string="Legacy Event Routing (Used Without Unified URL)" invisible="blend_outbound_webhook_url">
+                        <field name="blend_schema"/>
+                        <field name="blend_status_url" placeholder="https://.../webhooks/order-status"/>
+                        <field name="blend_event_url" placeholder="https://.../webhooks/menu-updated"/>
+                    </group>
+                    <group string="Manual POS APIs (Blend calls Odoo)">
+                        <field name="blend_menu_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_branches_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_orders_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_order_update_api_url" readonly="1" widget="CopyClipboardChar"/>
+                    </group>
+                    <group string="Last Received Branch Schedule">
+                        <field name="blend_schedule_json" widget="json" readonly="1" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

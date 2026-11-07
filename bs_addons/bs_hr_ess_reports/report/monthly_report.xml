@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_monthly_hr" model="ir.actions.report">
+        <field name="name">Monthly HR report</field>
+        <field name="model">res.company</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bs_hr_ess_reports.report_monthly_hr</field>
+        <field name="report_file">bs_hr_ess_reports.report_monthly_hr</field>
+    </record>
+
+    <template id="report_monthly_hr">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="company">
+                <t t-set="data" t-value="company.env['bs.hr.ess.dashboard'].with_company(company).with_context(allowed_company_ids=company.ids).get_data()"/>
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="company"/>
+                    <div class="page">
+                        <h3>Monthly HR report - <t t-out="company.name"/></h3>
+                        <p class="text-muted"><t t-out="data.get('today')"/></p>
+                        <table class="table table-sm table-bordered">
+                            <thead><tr><th>Indicator</th><th class="text-end">Value</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="data.get('tiles', [])" t-as="tile">
+                                    <td t-out="tile['label']"/>
+                                    <td class="text-end"><t t-out="tile['value']"/> <t t-out="tile['suffix']"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5 class="mt-4">By branch</h5>
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr><th>Branch</th><th class="text-end">Employees</th><th class="text-end">Saudis</th>
+                                    <th class="text-end">Late minutes (month)</th><th class="text-end">Expired documents</th>
+                                    <th class="text-end">Pending approvals</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="data.get('branches', [])" t-as="b">
+                                    <td t-out="b['name']"/>
+                                    <td class="text-end" t-out="b['headcount']"/>
+                                    <td class="text-end" t-out="b['saudi']"/>
+                                    <td class="text-end" t-out="b['late_minutes']"/>
+                                    <td class="text-end" t-out="b['doc_expired']"/>
+                                    <td class="text-end" t-out="b['pending']"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

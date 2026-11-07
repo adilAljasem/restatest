@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="resta_sidebar_theme.Sidebar.AppIcon">
+        <t t-set="icon" t-value="getAppIcon(app)"/>
+        <span class="rs_app_icon" t-att-class="{'rs_glyph': icon.type === 'resta'}" aria-hidden="true">
+            <t t-if="icon.type === 'resta'" t-out="icon.svg"/>
+            <img t-elif="icon.type === 'img'" t-att-src="icon.src" alt="" loading="lazy"/>
+            <span t-elif="icon.type === 'fa'" class="rs_app_icon_fa"
+                  t-attf-style="background:{{icon.background}};color:{{icon.color}}">
+                <i t-att-class="icon.iconClass"/>
+            </span>
+            <span t-else="" class="rs_app_icon_letter" t-esc="icon.letter"/>
+        </span>
+    </t>
+
+    <!-- Recursive sub-menu list -->
+    <t t-name="resta_sidebar_theme.Sidebar.Items">
+        <ul class="rs_items" t-att-data-depth="depth">
+            <t t-foreach="filterTree(items)" t-as="item" t-key="item.id">
+                <li class="rs_item_wrap">
+                    <a t-att-href="getMenuItemHref(item)"
+                       class="rs_item"
+                       t-att-class="{
+                           'rs_active': isActive(item),
+                           'rs_has_children': item.childrenTree.length,
+                           'rs_open': item.childrenTree.length and isOpen(item),
+                           'rs_contains_active': item.childrenTree.length and containsActive(item),
+                       }"
+                       t-att-data-menu-xmlid="item.xmlid"
+                       t-att-aria-current="isActive(item) ? 'page' : undefined"
+                       t-att-aria-expanded="item.childrenTree.length ? (isOpen(item) ? 'true' : 'false') : undefined"
+                       t-on-click="(ev) => this.onItemClick(ev, item)">
+                        <span class="rs_item_label" t-esc="item.name"/>
+                        <i t-if="item.childrenTree.length" class="rs_chevron oi oi-chevron-down" aria-hidden="true"/>
+                    </a>
+                    <t t-if="item.childrenTree.length and isOpen(item)">
+                        <t t-call="resta_sidebar_theme.Sidebar.Items">
+                            <t t-set="items" t-value="item.childrenTree"/>
+                            <t t-set="depth" t-value="depth + 1"/>
+                        </t>
+                    </t>
+                </li>
+            </t>
+        </ul>
+    </t>
+
+    <t t-name="resta_sidebar_theme.Sidebar">
+      <t t-if="!state.fullscreen">
+        <!-- Mobile: floating burger at the start of the top bar -->
+        <button t-if="ui.isSmall" class="rs_mobile_burger d-print-none" t-on-click="toggleMobile"
+                aria-label="Open menu" title="Open menu">
+            <i class="fa fa-bars" aria-hidden="true"/>
+        </button>
+        <aside class="rs_sidebar d-print-none" t-ref="root"
+               t-att-class="{
+                   'rs_collapsed': isCollapsed,
+                   'rs_mobile': ui.isSmall,
+                   'rs_mobile_open': ui.isSmall and state.mobileOpen,
+               }"
+               aria-label="Main menu">
+
+            <!-- Brand -->
+            <div class="rs_brand">
+                <a href="/odoo" class="rs_logo_link" t-on-click="onLogoClick" title="Home">
+                    <img t-if="!isCollapsed" class="rs_logo" t-att-src="logo.src"
+                         t-att-data-treatment="logo.treatment" alt="Logo"/>
+                    <img t-else="" class="rs_logo_mark" t-att-src="logoMark" alt="Logo"/>
+                </a>
+                <button t-if="ui.isSmall" class="rs_icon_btn rs_close_mobile" t-on-click="closeMobile"
+                        aria-label="Close menu" title="Close menu">
+                    <i class="oi oi-close"/>
+                </button>
+            </div>
+            <div t-if="!isCollapsed and companyName" class="rs_company">
+                <span class="rs_company_dot"/>
+                <span class="rs_company_name text-truncate" t-esc="companyName"/>
+            </div>
+
+            <!-- Search -->
+            <div class="rs_search_wrap">
+                <t t-if="!isCollapsed">
+                    <label class="rs_search">
+                        <i class="oi oi-search" aria-hidden="true"/>
+                        <input t-ref="search" type="search" class="rs_search_input"
+                               placeholder="Search menus…" aria-label="Search menus"
+                               t-att-value="state.query"
+                               t-on-input="onSearchInput" t-on-keydown="onSearchKeydown"/>
+                    </label>
+                </t>
+                <button t-else="" class="rs_icon_btn rs_search_btn" t-on-click="focusSearch"
+                        data-tooltip="Search menus" t-att-data-tooltip-position="tooltipPos" aria-label="Search menus">
+                    <i class="oi oi-search"/>
+                </button>
+            </div>
+
+            <!-- Apps -->
+            <nav class="rs_nav">
+                <t t-set="groupList" t-value="groups"/>
+                <div t-if="!groupList.length" class="rs_empty">No matching menu</div>
+                <t t-foreach="groupList" t-as="group" t-key="group.key">
+                    <section class="rs_group">
+                        <h6 t-if="group.label and !isCollapsed" class="rs_group_title">
+                            <span class="rs_dot"/><t t-esc="group.label"/>
+                        </h6>
+                        <div t-elif="group.label and !group_first" class="rs_group_sep"/>
+                        <ul class="rs_apps">
+                            <t t-foreach="group.apps" t-as="app" t-key="app.id">
+                                <li class="rs_app_wrap">
+                                    <a t-att-href="getMenuItemHref(app)"
+                                       class="rs_app"
+                                       t-att-class="{
+                                           'rs_current': isAppActive(app),
+                                           'rs_open': !isCollapsed and app.childrenTree.length and isOpen(app),
+                                           'rs_flyout_open': state.flyout and state.flyout.appId === app.id,
+                                       }"
+                                       t-att-data-menu-xmlid="app.xmlid"
+                                       t-att-data-tooltip="isCollapsed and !(state.flyout and state.flyout.appId === app.id) ? app.name : undefined"
+                                       t-att-data-tooltip-position="tooltipPos"
+                                       t-on-click="(ev) => this.onAppClick(ev, app)">
+                                        <t t-call="resta_sidebar_theme.Sidebar.AppIcon"/>
+                                        <span class="rs_app_label" t-esc="app.name"/>
+                                        <i t-if="app.childrenTree.length" class="rs_chevron oi oi-chevron-down" aria-hidden="true"/>
+                                    </a>
+                                    <t t-if="!isCollapsed and app.childrenTree.length and isOpen(app)">
+                                        <t t-call="resta_sidebar_theme.Sidebar.Items">
+                                            <t t-set="items" t-value="app.childrenTree"/>
+                                            <t t-set="depth" t-value="1"/>
+                                        </t>
+                                    </t>
+                                </li>
+                            </t>
+                        </ul>
+                    </section>
+                </t>
+            </nav>
+
+            <!-- Footer -->
+            <div class="rs_footer">
+                <button class="rs_footer_btn" t-on-click="onToggleScheme"
+                        t-att-data-tooltip="isCollapsed ? schemeLabel : undefined"
+                        t-att-data-tooltip-position="tooltipPos">
+                    <i t-att-class="isDark ? 'fa fa-sun-o' : 'fa fa-moon-o'" aria-hidden="true"/>
+                    <span class="rs_footer_label" t-if="!isCollapsed">
+                        <t t-if="isDark">Light mode</t><t t-else="">Dark mode</t>
+                    </span>
+                </button>
+                <button t-if="!ui.isSmall" class="rs_footer_btn rs_collapse_btn" t-on-click="toggleCollapsed"
+                        t-att-data-tooltip="isCollapsed ? expandLabel : undefined"
+                        t-att-data-tooltip-position="tooltipPos"
+                        t-att-aria-label="isCollapsed ? expandLabel : collapseLabel">
+                    <i t-att-class="collapseIcon" aria-hidden="true"/>
+                    <span class="rs_footer_label" t-if="!isCollapsed">Collapse menu</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Collapsed mode: sub-menu flyout -->
+        <t t-if="isCollapsed and flyoutApp">
+            <div class="rs_flyout" t-attf-style="top: {{state.flyout.top}}px">
+                <div class="rs_flyout_title" t-esc="flyoutApp.name"/>
+                <t t-call="resta_sidebar_theme.Sidebar.Items">
+                    <t t-set="items" t-value="flyoutApp.childrenTree"/>
+                    <t t-set="depth" t-value="1"/>
+                </t>
+            </div>
+        </t>
+
+        <!-- Mobile drawer backdrop -->
+        <div t-if="ui.isSmall and state.mobileOpen" class="rs_backdrop" t-on-click="closeMobile"/>
+      </t>
+    </t>
+
+</templates>

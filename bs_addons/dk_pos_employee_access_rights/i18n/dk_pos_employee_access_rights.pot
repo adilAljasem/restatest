@@ -1,0 +1,417 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dk_pos_employee_access_rights
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dk_pos_employee_access_rights
+#: model_terms:ir.ui.view,arch_db:dk_pos_employee_access_rights.sbl_hr_employee_form_inherit
+msgid "Actions Popup"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_pos_order__sbl_can_refund_pos_order
+msgid "Can Refund POS Order"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_change_price
+msgid "Disable POS Change Price"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_decimal_button
+msgid "Disable POS Decimal Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_discount_button
+msgid "Disable POS Discount Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_numpad_plus_minus
+msgid "Disable POS Numpad Plus-Minus Buttons"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_qty
+msgid "Disable POS Quantity (QTY) Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disabled_payment_method_ids
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee_public__sbl_disabled_payment_method_ids
+msgid "Disabled Payment Methods"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_backend_menu
+msgid "Hide Backend Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_cancel_order
+msgid "Hide Cancel Order Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_cash_in_out
+msgid "Hide Cash In/Out"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_clear_cache
+msgid "Hide Clear Cache Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_close_register
+msgid "Hide Close Register Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_create_customer_button
+msgid "Hide Create Customer Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_customer_button
+msgid "Hide Customer Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_customer_note
+msgid "Hide Customer Note Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_debug_window
+msgid "Hide Debug Window Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_edit_customer_button
+msgid "Hide Edit Customer Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_finance_from_product_info
+msgid "Hide Financials and Order from Product Info"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_fiscal_position
+msgid "Hide Fiscal Position Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_general_note
+msgid "Hide General Note Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_install_app
+msgid "Hide Install App Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_invoice_button
+msgid "Hide Invoice Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_open_cashbox_button
+msgid "Hide Open Cashbox Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_orders_menu
+msgid "Hide Orders Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_actions_button
+msgid "Hide POS Actions Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_customer_selection_button
+msgid "Hide POS Customer Selection Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_delete_order_button
+msgid "Hide POS Delete Order Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_new_order_button
+msgid "Hide POS New Order Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_numpad
+msgid "Hide POS Numpad"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment
+msgid "Hide POS Payment"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_pricelist
+msgid "Hide Pricelist Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_product_info
+msgid "Hide Product Info Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_refund
+msgid "Hide Refund Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_ship_later_button
+msgid "Hide Ship Later Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_tip_button
+msgid "Hide Tip Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_validate_button
+msgid "Hide Validate Button"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_actions_button
+msgid "If checked, the Actions button will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_backend_menu
+msgid "If checked, the Backend option will be hidden from the POS hamburger menu."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_cancel_order
+msgid "If checked, the Cancel Order button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_cash_in_out
+msgid "If checked, the Cash In/Out menu will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_change_price
+msgid "If checked, the Change Price functionality will be disabled for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_clear_cache
+msgid "If checked, the Clear Cache option will be hidden from the POS hamburger menu (debug mode only)."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_close_register
+msgid "If checked, the Close Register option will be hidden from the POS hamburger menu."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_create_customer_button
+msgid "If checked, the Create/New Customer button will be hidden in the customer list popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_customer_button
+msgid "If checked, the Customer button will be hidden on the payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_customer_note
+msgid "If checked, the Customer Note button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_customer_selection_button
+msgid "If checked, the Customer Selection button will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_debug_window
+msgid "If checked, the Debug Window option will be hidden from the POS hamburger menu (debug mode only)."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_decimal_button
+msgid "If checked, the decimal button in the Numpad will be disabled for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_delete_order_button
+msgid "If checked, the Delete Order button will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_discount_button
+msgid "If checked, the Discount button will be disabled for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_edit_customer_button
+msgid "If checked, the Edit Details option will be hidden from the customer list for this employee."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_show_pos_closing_register_details
+msgid "If checked, the employee can see payment totals, cash counts, and differences on the POS closing register popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_finance_from_product_info
+msgid "If checked, the Financials and Order sections will be hidden in the Product Information popup for this employee."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_fiscal_position
+msgid "If checked, the Fiscal Position/Tax button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_general_note
+msgid "If checked, the General Note button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_install_app
+msgid "If checked, the Install App option will be hidden from the POS hamburger menu."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_invoice_button
+msgid "If checked, the Invoice checkbox will be hidden on the payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_new_order_button
+msgid "If checked, the New Order button will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_numpad
+msgid "If checked, the Numpad will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_open_cashbox_button
+msgid "If checked, the Open Cashbox button will be hidden on the payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_orders_menu
+msgid "If checked, the Orders option will be hidden from the POS hamburger menu."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment
+msgid "If checked, the Payment process will be hidden for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_numpad_plus_minus
+msgid "If checked, the Plus-Minus buttons in the Numpad will be disabled for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_pricelist
+msgid "If checked, the Pricelist button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_product_info
+msgid "If checked, the Product Info button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disable_pos_qty
+msgid "If checked, the Quantity (QTY) button will be disabled for this employee in the POS interface."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_action_refund
+msgid "If checked, the Refund button will be hidden in the Actions popup."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_ship_later_button
+msgid "If checked, the Ship Later button will be hidden on the payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_tip_button
+msgid "If checked, the Tip button will be hidden on the payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_hide_pos_payment_validate_button
+msgid "If checked, the Validate button will be hidden on the payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model_terms:ir.ui.view,arch_db:dk_pos_employee_access_rights.sbl_hr_employee_form_inherit
+msgid "Navigation Menu"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model_terms:ir.ui.view,arch_db:dk_pos_employee_access_rights.sbl_hr_employee_form_inherit
+msgid "Numpad"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model_terms:ir.ui.view,arch_db:dk_pos_employee_access_rights.sbl_hr_employee_form_inherit
+msgid "Order Management"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disabled_payment_method_ids
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee_public__sbl_disabled_payment_method_ids
+msgid "Payment methods that will be hidden for this employee on the POS payment screen."
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model_terms:ir.ui.view,arch_db:dk_pos_employee_access_rights.sbl_hr_employee_form_inherit
+msgid "Payment Screen"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model_terms:ir.ui.view,arch_db:dk_pos_employee_access_rights.sbl_hr_employee_form_inherit
+msgid "POS Access Rights"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_show_pos_closing_register_details
+msgid "Show Closing Register Details"
+msgstr ""
+
+#. module: dk_pos_employee_access_rights
+#. odoo-python
+#: code:addons/dk_pos_employee_access_rights/models/pos_order.py:0
+msgid "You are not allowed to refund POS orders."
+msgstr ""

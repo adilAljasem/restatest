@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_document_list" model="ir.ui.view">
+        <field name="name">bs.hr.document.list</field>
+        <field name="model">bs.hr.document</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'expired'" decoration-warning="state == 'expiring'"
+                  decoration-muted="state == 'missing'">
+                <field name="employee_id"/>
+                <field name="work_location_id" optional="show"/>
+                <field name="type_id"/>
+                <field name="number"/>
+                <field name="issue_date" optional="hide"/>
+                <field name="expiry_date"/>
+                <field name="expiry_date_hijri" optional="show"/>
+                <field name="days_to_expiry" optional="show"/>
+                <field name="renewal_cost" optional="hide" sum="Total"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="state" widget="badge" decoration-success="state == 'valid'"
+                       decoration-warning="state == 'expiring'" decoration-danger="state == 'expired'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_document_form" model="ir.ui.view">
+        <field name="name">bs.hr.document.form</field>
+        <field name="model">bs.hr.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="valid,expiring,expired"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_renewals" type="object" class="oe_stat_button" icon="fa-refresh"
+                                string="Renewals"/>
+                    </div>
+                    <widget name="web_ribbon" title="Expired" bg_color="text-bg-danger" invisible="state != 'expired'"/>
+                    <widget name="web_ribbon" title="Expiring" bg_color="text-bg-warning" invisible="state != 'expiring'"/>
+                    <div class="oe_title">
+                        <label for="type_id"/>
+                        <h1><field name="type_id" placeholder="e.g. Health certificate"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="number"/>
+                            <field name="work_location_id"/>
+                            <field name="block_attendance"/>
+                        </group>
+                        <group>
+                            <label for="issue_date"/>
+                            <div class="o_row">
+                                <field name="issue_date"/>
+                                <field name="issue_date_hijri" class="text-muted"/>
+                            </div>
+                            <label for="expiry_date"/>
+                            <div class="o_row">
+                                <field name="expiry_date"/>
+                                <field name="expiry_date_hijri" class="text-muted"/>
+                            </div>
+                            <field name="days_to_expiry" invisible="not expiry_date"/>
+                            <field name="renewal_cost"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Files" name="files">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Internal notes"/>
+                        </page>
+                        <page string="Alerts" name="alerts" groups="base.group_no_one">
+                            <group>
+                                <field name="last_alert_days"/>
+                                <field name="supervisor_alert_date"/>
+                                <field name="active"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_document_kanban" model="ir.ui.view">
+        <field name="name">bs.hr.document.kanban</field>
+        <field name="model">bs.hr.document</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" group_create="false" group_delete="false" records_draggable="false">
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <field name="type_id" class="fw-bold"/>
+                        <field name="employee_id"/>
+                        <div class="d-flex justify-content-between">
+                            <field name="expiry_date"/>
+                            <field name="expiry_date_hijri" class="text-muted small"/>
+                        </div>
+                        <footer>
+                            <field name="work_location_id" class="small text-muted"/>
+                            <field name="days_to_expiry" class="ms-auto badge text-bg-light"/>
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_document_pivot" model="ir.ui.view">
+        <field name="name">bs.hr.document.pivot</field>
+        <field name="model">bs.hr.document</field>
+        <field name="arch" type="xml">
+            <pivot string="Documents">
+                <field name="type_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="renewal_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_document_search" model="ir.ui.view">
+        <field name="name">bs.hr.document.search</field>
+        <field name="model">bs.hr.document</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="type_id"/>
+                <field name="number"/>
+                <field name="work_location_id"/>
+                <filter name="expiring" string="Expiring soon" domain="[('state', '=', 'expiring')]"/>
+                <filter name="expired" string="Expired" domain="[('state', '=', 'expired')]"/>
+                <filter name="to_follow" string="To follow" domain="[('state', 'in', ('expiring', 'expired', 'missing'))]"/>
+                <filter name="critical" string="Critical for attendance" domain="[('block_attendance', '=', True)]"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_type" string="Type" context="{'group_by': 'type_id'}"/>
+                    <filter name="group_branch" string="Branch" context="{'group_by': 'work_location_id'}"/>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_expiry" string="Expiry month" context="{'group_by': 'expiry_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_document" model="ir.actions.act_window">
+        <field name="name">Employee Documents</field>
+        <field name="res_model">bs.hr.document</field>
+        <field name="view_mode">list,kanban,form,pivot</field>
+        <field name="context">{'search_default_to_follow': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Register the employees' documents</p>
+            <p>Iqama, passport, health certificate... Alerts are sent before they expire.</p>
+        </field>
+    </record>
+</odoo>

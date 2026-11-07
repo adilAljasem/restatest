@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="bi_pos_multi_layout.ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension">
+
+        <!-- Inline control buttons row (inside the pads).
+             When a side layout is active the "More" (ellipsis) button is dropped,
+             because every remaining action is already shown in the side column. -->
+        <xpath expr="//div[hasclass('control-buttons')]" position="replace">
+            <div class="control-buttons d-flex justify-content-between gap-2 w-100 pt-2">
+                <t t-if="pos.config.button_layout and pos.config.left_right_layout != 'default'">
+                    <ControlButtons showRemainingButtons="false" close="() =&gt; {}"/>
+                </t>
+                <t t-else="">
+                    <ControlButtons onClickMore.bind="displayAllControlPopup"/>
+                </t>
+            </div>
+        </xpath>
+
+        <!-- Side column of action buttons, on the left of the order pane -->
+        <xpath expr="//div[hasclass('product-screen')]/div[hasclass('leftpane')]" position="before">
+            <div t-if="!ui.isSmall and pos.config.button_layout and pos.config.left_right_layout == 'left_side'"
+                 t-attf-class="bi_multi_layout bi_multi_layout_left multi_layout_{{ pos.config.column_layout }} flex-shrink-0 overflow-auto">
+                <ControlButtons showRemainingButtons="true" close="() =&gt; {}"/>
+            </div>
+        </xpath>
+
+        <!-- Side column of action buttons, on the right of the order pane -->
+        <xpath expr="//div[hasclass('product-screen')]/div[hasclass('leftpane')]" position="after">
+            <div t-if="!ui.isSmall and pos.config.button_layout and pos.config.left_right_layout == 'right_side'"
+                 t-attf-class="bi_multi_layout bi_multi_layout_right multi_layout_{{ pos.config.column_layout }} flex-shrink-0 overflow-auto">
+                <ControlButtons showRemainingButtons="true" close="() =&gt; {}"/>
+            </div>
+        </xpath>
+
+        <!-- Collapse / expand handle for the numpad + payment pads -->
+        <xpath expr="//div[hasclass('product-screen')]/div[hasclass('leftpane')]/div[hasclass('pads')]" position="before">
+            <div t-if="!ui.isSmall and pos.config.button_layout"
+                 class="bi_pads_toggle text-center"
+                 t-on-click="click_actions">
+                <i t-attf-class="fa fa-chevron-{{ biLayoutState.padsVisible ? 'down' : 'up' }}" aria-hidden="true"/>
+            </div>
+        </xpath>
+
+    </t>
+
+</templates>

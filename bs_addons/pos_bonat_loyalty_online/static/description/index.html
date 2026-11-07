@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonat Loyalty (Odoo Online) — Odoo 19 POS Integration</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0a1837 0%, #1a3a6b 100%);
+      color: #ffffff;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .hero img.logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 2.4em;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero p.tagline {
+      font-size: 1.15em;
+      opacity: 0.85;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.85em;
+      margin-top: 18px;
+    }
+    section {
+      padding: 50px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section h2 {
+      font-size: 1.7em;
+      font-weight: 700;
+      color: #0a1837;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #1a3a6b;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .feature-card {
+      background: #f4f7fb;
+      border-radius: 10px;
+      padding: 24px 20px;
+    }
+    .feature-card .icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .feature-card h3 {
+      font-size: 1em;
+      font-weight: 700;
+      color: #0a1837;
+      margin-bottom: 6px;
+    }
+    .feature-card p {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .steps ol {
+      padding-left: 24px;
+    }
+    .steps ol li {
+      margin-bottom: 16px;
+      font-size: 1em;
+    }
+    .steps ol li strong {
+      color: #1a3a6b;
+    }
+    .steps code {
+      background: #eef2f9;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.9em;
+    }
+    .ksa-block {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+      border-left: 4px solid #1a3a6b;
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      margin-top: 10px;
+    }
+    .ksa-block p {
+      color: #1a1a2e;
+      font-size: 1em;
+    }
+    .screenshots {
+      padding: 50px 40px;
+      background: #f8faff;
+    }
+    .screenshots h2 {
+      font-size: 1.7em;
+      font-weight: 700;
+      color: #0a1837;
+      margin-bottom: 24px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #1a3a6b;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .screenshot-grid img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #dde3f0;
+    }
+    .support-block {
+      background: #0a1837;
+      color: #ffffff;
+      padding: 50px 40px;
+      text-align: center;
+    }
+    .support-block h2 {
+      font-size: 1.6em;
+      margin-bottom: 16px;
+    }
+    .support-block p {
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+    .support-block a {
+      color: #7eb3ff;
+      text-decoration: none;
+    }
+    .support-block a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="logo" src="icon.png" alt="Bonat Loyalty Logo" />
+    <h1>Bonat Loyalty (Odoo Online)</h1>
+    <p class="tagline">
+      Connect your Odoo Point of Sale to the Bonat loyalty platform — reward your customers,
+      redeem points at checkout, and grow repeat business. This edition contains no
+      server-side Python code, so it also runs on Odoo Online (odoo.com-hosted) databases.
+    </p>
+    <span class="badge">Odoo 19 · Odoo Online, Odoo.sh &amp; On-Premise · KSA</span>
+    <span class="badge">Requires a paid Bonat merchant account</span>
+  </div>
+
+  <!-- FEATURES -->
+  <section>
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">🎁</div>
+        <h3>Bonat Loyalty Integration</h3>
+        <p>
+          Live connection between Odoo POS and the Bonat loyalty engine.
+          Customer points balance and eligibility are checked in real time at the POS screen.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💳</div>
+        <h3>Reward Redemption at Checkout</h3>
+        <p>
+          Cashiers can apply Bonat reward codes during any POS order.
+          Discounts are validated against the Bonat API and applied instantly.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>Automatic Menu Sync</h3>
+        <p>
+          Your POS product catalogue is pushed to Bonat automatically each time a
+          POS session opens — no manual export, no server access needed.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚙️</div>
+        <h3>POS Settings Panel</h3>
+        <p>
+          A dedicated Bonat section in POS Configuration lets merchants enter
+          their API key and toggle the integration on or off.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ODOO ONLINE INSTALL -->
+  <section class="steps">
+    <h2>Installing on Odoo Online (odoo.com-hosted)</h2>
+    <p style="margin-bottom:16px;">
+      Odoo Online databases cannot run third-party Python code, which is why most POS
+      connectors are unavailable there. This edition of Bonat Loyalty is built entirely
+      from data and JavaScript, so it installs on Odoo Online as an imported module:
+    </p>
+    <ol>
+      <li>
+        <strong>Download the module zip</strong> from this page.
+      </li>
+      <li>
+        <strong>Activate developer mode</strong> in your database:
+        <code>Settings &rarr; Developer Tools &rarr; Activate the developer mode</code>.
+      </li>
+      <li>
+        <strong>Import it:</strong> open <code>Apps</code>, choose
+        <code>Import Module</code> from the top menu, upload the zip, and click
+        <em>Install</em>.
+      </li>
+    </ol>
+    <p style="margin-top:16px;">
+      On Odoo.sh or on-premise databases the same zip can be imported the same way, or
+      placed on the addons path like any other module.
+    </p>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section class="steps">
+    <h2>Before You Start</h2>
+    <p>
+      This module is <strong>free to install</strong>, but it is a connector, not a
+      standalone loyalty engine. Reward validation, redemption, and customer data are
+      served by the Bonat platform, which requires an active
+      <strong>paid Bonat merchant subscription</strong>. Without a Bonat account, the
+      module installs and its settings are visible, but redemption calls will fail
+      with "integration not enabled" or "API key missing." Contact
+      <a href="mailto:odoo@bonat.io">odoo@bonat.io</a> or visit
+      <a href="https://bonat.io" target="_blank" rel="noopener noreferrer">bonat.io</a>
+      to set up an account. Want to try the POS flow first? Enable <strong>Demo Mode</strong>
+      in settings to exercise the full reward/redeem/checkout experience with no Bonat
+      account.
+    </p>
+  </section>
+
+  <!-- SETUP STEPS -->
+  <section class="steps">
+    <h2>Setup in 3 Steps</h2>
+    <ol>
+      <li>
+        <strong>Sign up for Bonat.</strong>
+        Contact <a href="mailto:odoo@bonat.io">odoo@bonat.io</a> to set up your paid
+        Bonat merchant account. Bonat will issue you a <em>Merchant ID</em> and an
+        <em>API Key</em> — these come from Bonat, not from Odoo.
+      </li>
+      <li>
+        <strong>Enter your credentials in POS Settings.</strong>
+        Go to <code>Point of Sale &rarr; Configuration &rarr; Settings</code>,
+        locate the <em>Bonat</em> section, paste the API Key and Merchant ID
+        Bonat gave you, and save.
+      </li>
+      <li>
+        <strong>Confirm the connection.</strong>
+        Click <em>Test Connection</em> in the same settings panel to verify your
+        database can reach Bonat with your key. The Bonat team can confirm on their
+        side once your POS starts sending live traffic.
+      </li>
+    </ol>
+  </section>
+
+  <!-- KSA FOCUS -->
+  <section>
+    <h2>Built for KSA Merchants</h2>
+    <div class="ksa-block">
+      <p>
+        Bonat is a loyalty and customer-engagement platform purpose-built for merchants
+        in Saudi Arabia. The platform integrates with your POS, your marketing channels,
+        and your customer database to drive repeat visits and higher basket sizes.
+        The Odoo integration module extends that capability directly into Odoo POS —
+        so merchants running Odoo in KSA get seamless loyalty without a separate
+        tablet or manual point entry, including on odoo.com-hosted databases.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <div class="screenshots">
+    <h2>Screenshots</h2>
+    <div class="screenshot-grid">
+      <img src="screenshot_01.png" alt="Bonat section in POS Settings" />
+      <img src="screenshot_02.png" alt="Reward redemption at POS checkout" />
+      <img src="screenshot_03.png" alt="Customer loyalty balance on POS screen" />
+      <img src="screenshot_04.png" alt="POS Configuration — Bonat integration enabled" />
+    </div>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="support-block">
+    <h2>Support &amp; Contact</h2>
+    <p>
+      For technical questions, setup help, or integration issues, reach the Bonat team at:
+    </p>
+    <p>
+      <strong>Email:</strong> <a href="mailto:odoo@bonat.io">odoo@bonat.io</a>
+    </p>
+    <p>
+      <strong>Website:</strong> <a href="https://bonat.io" target="_blank" rel="noopener noreferrer">https://bonat.io</a>
+    </p>
+    <p style="margin-top:24px; opacity:0.6; font-size:0.85em;">
+      License: OPL-1 &nbsp;|&nbsp; Compatible with Odoo 19.0 — Odoo Online, Odoo.sh &amp; On-Premise
+    </p>
+  </div>
+
+</body>
+</html>

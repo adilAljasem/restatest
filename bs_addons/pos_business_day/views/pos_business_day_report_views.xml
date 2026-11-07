@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_order_pivot_business_day" model="ir.ui.view">
+        <field name="name">pos.order.pivot.business.day</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <pivot string="POS Sales by Business Day" sample="1">
+                <field name="business_date" type="row" interval="day"/>
+                <field name="amount_total" type="measure"/>
+                <field name="amount_paid" type="measure"/>
+                <field name="amount_tax" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_pos_order_graph_business_day" model="ir.ui.view">
+        <field name="name">pos.order.graph.business.day</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <graph string="POS Sales by Business Day" type="bar" sample="1">
+                <field name="business_date" type="row" interval="day"/>
+                <field name="amount_total" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_pos_order_search_business_day" model="ir.ui.view">
+        <field name="name">pos.order.search.business.day</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <search string="POS Sales by Business Day">
+                <field name="business_date"/>
+                <field name="config_id"/>
+                <field name="session_id"/>
+                <field name="user_id"/>
+                <filter name="paid_orders" string="Paid" domain="[('state', 'in', ['paid', 'done'])]"/>
+                <group name="group_by">
+                    <filter name="group_by_business_date" string="Business Date"
+                            context="{'group_by': 'business_date'}"/>
+                    <filter name="group_by_config" string="Point of Sale"
+                            context="{'group_by': 'config_id'}"/>
+                    <filter name="group_by_session" string="Session"
+                            context="{'group_by': 'session_id'}"/>
+                    <filter name="group_by_cashier" string="Cashier"
+                            context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pos_order_report_business_day" model="ir.actions.act_window">
+        <field name="name">POS Sales by Business Day</field>
+        <field name="res_model">pos.order</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="search_view_id" ref="view_pos_order_search_business_day"/>
+        <field name="context">{'search_default_group_by_business_date': 1, 'search_default_paid_orders': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                لا توجد بيانات مبيعات لعرضها بعد
+            </p>
+            <p>
+                تعرض هذه الشاشة مبيعات نقاط البيع مجمّعة حسب "اليوم التشغيلي"
+                (Business Date) بدل التاريخ التقويمي، بناءً على ساعة بداية
+                الدوام المحددة في إعدادات نقطة البيع.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_pos_order_report_business_day"
+              name="Sales by Business Day"
+              parent="point_of_sale.menu_point_rep"
+              action="action_pos_order_report_business_day"
+              sequence="20"/>
+
+</odoo>

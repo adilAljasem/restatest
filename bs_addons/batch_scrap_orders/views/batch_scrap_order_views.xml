@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="batch_scrap_order_list_view" model="ir.ui.view">
+        <field name="name">batch.scrap.order.list</field>
+        <field name="model">batch.scrap.order</field>
+        <field name="arch" type="xml">
+            <list string="Batch Scrap Orders"
+                  decoration-muted="state == 'cancel'"
+                  decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="source_document" optional="show"/>
+                <field name="reference" optional="show"/>
+                <field name="location_id"/>
+                <field name="scrap_location_id"/>
+                <field name="scrap_count" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="batch_scrap_order_form_view" model="ir.ui.view">
+        <field name="name">batch.scrap.order.form</field>
+        <field name="model">batch.scrap.order</field>
+        <field name="arch" type="xml">
+            <form string="Batch Scrap Order">
+                <header>
+                    <button name="action_validate" string="Validate" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            invisible="state != 'draft'"
+                            confirm="Are you sure you want to cancel this batch?"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done,cancel"/>
+                </header>
+                <sheet>
+                    <field name="company_id" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_scraps" type="object"
+                                class="oe_stat_button" icon="fa-recycle"
+                                invisible="scrap_count == 0">
+                            <field name="scrap_count" widget="statinfo"
+                                   string="Scrap Orders"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Cancelled" bg_color="text-bg-danger"
+                            invisible="state != 'cancel'"/>
+                    <widget name="web_ribbon" title="Done" bg_color="text-bg-success"
+                            invisible="state != 'done'"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="location_id" options="{'no_create': True, 'no_open': True}"
+                                   readonly="state != 'draft'" force_save="1"/>
+                            <field name="scrap_location_id" options="{'no_create': True, 'no_open': True}"
+                                   readonly="state != 'draft'" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="source_document" readonly="state != 'draft'"/>
+                            <field name="reference" readonly="state != 'draft'"/>
+                            <field name="analytic_account_id" readonly="state != 'draft'"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                            <field name="company_id" groups="base.group_multi_company"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Scrap Lines" name="scrap_lines">
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="company_id" column_invisible="True"/>
+                                    <field name="product_id" context="{'default_is_storable': True}"/>
+                                    <field name="quantity"/>
+                                    <field name="product_uom_id" readonly="1"/>
+                                    <field name="should_replenish" optional="show"/>
+                                    <field name="scrap_reason_tag_ids" widget="many2many_tags"
+                                           options="{'no_create_edit': True}" optional="show"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="batch_scrap_order_search_view" model="ir.ui.view">
+        <field name="name">batch.scrap.order.search</field>
+        <field name="model">batch.scrap.order</field>
+        <field name="arch" type="xml">
+            <search string="Batch Scrap Orders">
+                <field name="name"/>
+                <field name="source_document"/>
+                <field name="reference"/>
+                <field name="location_id"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
+                <filter name="cancelled" string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+                <group>
+                    <filter name="group_source_location" string="Source Location"
+                            context="{'group_by': 'location_id'}"/>
+                    <filter name="group_scrap_location" string="Scrap Location"
+                            context="{'group_by': 'scrap_location_id'}"/>
+                    <filter name="group_state" string="Status"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_company" string="Company"
+                            context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="batch_scrap_order_action" model="ir.actions.act_window">
+        <field name="name">Batch Scrap Orders</field>
+        <field name="path">batch-scrap-orders</field>
+        <field name="res_model">batch.scrap.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="batch_scrap_order_search_view"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Batch Scrap Order
+            </p>
+            <p>
+                Create and validate multiple Scrap Orders from one batch.
+            </p>
+        </field>
+    </record>
+</odoo>

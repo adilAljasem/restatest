@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_grievance_form" model="ir.ui.view">
+        <field name="name">bs.hr.grievance.form</field>
+        <field name="model">bs.hr.grievance</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0">
+                <header>
+                    <button name="action_start_investigation" type="object" string="Start investigation"
+                            class="btn-primary" invisible="state not in ('received', 'appealed')"/>
+                    <button name="action_resolve" type="object" string="Resolve" class="btn-primary"
+                            invisible="state not in ('received', 'investigating', 'appealed')"/>
+                    <button name="action_reject" type="object" string="Reject"
+                            invisible="state not in ('received', 'investigating', 'appealed')"/>
+                    <button name="action_close" type="object" string="Close" invisible="state not in ('resolved', 'rejected')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="received,investigating,resolved,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                        <h3><field name="subject" readonly="1"/></h3>
+                    </div>
+                    <div class="alert alert-info" role="alert" invisible="not anonymous">
+                        <i class="fa fa-user-secret me-1"/> Anonymous case: the identity of the author is not stored.
+                        Reply through the "Messages" tab, the author reads the answers in the portal.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="grievance_type" readonly="1"/>
+                            <field name="anonymous"/>
+                            <field name="author_display"/>
+                            <field name="against_employee_ids" widget="many2many_tags" readonly="1"/>
+                            <field name="work_location_id"/>
+                            <field name="related_ref" invisible="not related_ref"/>
+                        </group>
+                        <group>
+                            <field name="level"/>
+                            <field name="handler_ids" widget="many2many_tags"/>
+                            <field name="create_date" string="Received on"/>
+                            <field name="decision_date"/>
+                            <field name="appeal_deadline" invisible="not decision_date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description" readonly="1"/>
+                            <group invisible="not appeal_reason" string="Appeal">
+                                <field name="appeal_reason"/>
+                                <field name="appeal_date"/>
+                            </group>
+                        </page>
+                        <page string="Resolution" name="resolution">
+                            <field name="resolution" readonly="state in ('resolved', 'rejected', 'closed')"
+                                   placeholder="Decision of the committee (required to resolve or reject). Visible to the author."/>
+                        </page>
+                        <page string="Messages" name="messages">
+                            <field name="message_ids" readonly="state == 'closed'">
+                                <list editable="bottom" create="1" delete="0">
+                                    <field name="date"/>
+                                    <field name="author_type" readonly="1"/>
+                                    <field name="author_user_id" readonly="1"/>
+                                    <field name="body"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Access log" name="access_log">
+                            <field name="access_log_ids">
+                                <list>
+                                    <field name="date"/>
+                                    <field name="user_id"/>
+                                    <field name="action"/>
+                                </list>
+                            </field>
+                            <group>
+                                <field name="excluded_user_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_grievance_list" model="ir.ui.view">
+        <field name="name">bs.hr.grievance.list</field>
+        <field name="model">bs.hr.grievance</field>
+        <field name="arch" type="xml">
+            <list create="0" delete="0">
+                <field name="name"/>
+                <field name="create_date" string="Received on"/>
+                <field name="grievance_type"/>
+                <field name="subject"/>
+                <field name="author_display"/>
+                <field name="work_location_id" optional="show"/>
+                <field name="level" optional="show"/>
+                <field name="handler_ids" widget="many2many_tags" optional="hide"/>
+                <field name="state" widget="badge" decoration-warning="state in ('received', 'appealed')"
+                       decoration-info="state == 'investigating'" decoration-success="state == 'resolved'"
+                       decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_grievance_search" model="ir.ui.view">
+        <field name="name">bs.hr.grievance.search</field>
+        <field name="model">bs.hr.grievance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="subject"/>
+                <field name="against_employee_ids"/>
+                <filter name="open" string="Open" domain="[('state', 'in', ('received', 'investigating', 'appealed'))]"/>
+                <filter name="mine" string="Assigned to me" domain="[('handler_ids', 'in', [uid])]"/>
+                <filter name="anonymous" string="Anonymous" domain="[('anonymous', '=', True)]"/>
+                <filter name="appeals" string="Appeals (level 2)" domain="[('level', '=', '2')]"/>
+                <group>
+                    <filter name="group_type" string="Type" context="{'group_by': 'grievance_type'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_branch" string="Branch" context="{'group_by': 'work_location_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_grievance" model="ir.actions.act_window">
+        <field name="name">Grievances</field>
+        <field name="res_model">bs.hr.grievance</field>
+        <field name="path">ess-grievances</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No grievance to handle</p>
+            <p>Employees submit complaints, suggestions and appeals from the self-service portal,
+                optionally anonymously. Only the members of the grievance committee who are not a party see them.</p>
+        </field>
+    </record>
+</odoo>

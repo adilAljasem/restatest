@@ -1,0 +1,15 @@
+<odoo>
+    <record id="mrp_bom_list_selected_component" model="ir.ui.view">
+        <field name="name">mrp.bom.list.selected.component</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="selected_component_qty"
+                       column_invisible="not (context.get('selected_component_product_id') or context.get('selected_component_product_tmpl_id'))"/>
+                <field name="selected_component_uom_id" groups="uom.group_uom"
+                       column_invisible="not (context.get('selected_component_product_id') or context.get('selected_component_product_tmpl_id'))"/>
+            </field>
+        </field>
+    </record>
+</odoo>

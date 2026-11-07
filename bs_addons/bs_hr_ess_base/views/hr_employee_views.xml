@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_ess" model="ir.ui.view">
+        <field name="name">hr.employee.form.ess</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_create_user']" position="after">
+                <button name="action_ess_invite" type="object" string="Grant self-service access"
+                        invisible="user_id" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+            </xpath>
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page name="ess" string="Self-Service" groups="bs_hr_ess_base.group_ess_hr_officer">
+                    <group name="ess_main">
+                        <group name="ess_access" string="Access">
+                            <field name="ess_access"/>
+                        </group>
+                        <group name="ess_extra"/>
+                    </group>
+                    <separator string="Payroll adjustments"/>
+                    <field name="ess_adjustment_ids" readonly="1">
+                        <list>
+                            <field name="date"/>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="adj_type"/>
+                            <field name="amount"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="state" widget="badge"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_server_ess_invite" model="ir.actions.server">
+        <field name="name">Grant self-service access</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_view_types">list</field>
+        <field name="group_ids" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_ess_invite()</field>
+    </record>
+
+</odoo>

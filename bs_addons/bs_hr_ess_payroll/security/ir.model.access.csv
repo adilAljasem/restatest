@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_objection_user,objection user,model_bs_hr_payslip_objection,base.group_user,1,1,1,0
+access_objection_hr,objection hr,model_bs_hr_payslip_objection,bs_hr_ess_base.group_ess_hr_officer,1,0,0,0
+access_objection_payroll,objection payroll,model_bs_hr_payslip_objection,bs_hr_ess_base.group_ess_payroll_officer,1,1,1,1

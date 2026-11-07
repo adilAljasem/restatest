@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_leave_request" name="Time Off" parent="bs_hr_ess_base.menu_ess_requests" sequence="10"
+              action="action_leave_request"/>
+    <menuitem id="menu_ess_loans" name="Loans" parent="bs_hr_ess_base.menu_ess_requests" sequence="20"/>
+    <menuitem id="menu_ess_loan" name="Loans" parent="menu_ess_loans" sequence="10" action="action_loan"/>
+    <menuitem id="menu_ess_loan_postpone" name="Postponements" parent="menu_ess_loans" sequence="20"
+              action="action_loan_postpone"/>
+    <menuitem id="menu_ess_loan_line" name="Installments" parent="menu_ess_loans" sequence="30"
+              action="action_loan_line" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_custody" name="Custody" parent="bs_hr_ess_base.menu_ess_requests" sequence="30"/>
+    <menuitem id="menu_ess_custody_request" name="Custody Requests" parent="menu_ess_custody" sequence="10"
+              action="action_custody_request"/>
+    <menuitem id="menu_ess_custody_holding" name="Employee Custody" parent="menu_ess_custody" sequence="20"
+              action="action_custody_holding" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_generic_request" name="HR Requests" parent="bs_hr_ess_base.menu_ess_requests" sequence="40"
+              action="action_request"/>
+    <menuitem id="menu_ess_clearance" name="Clearances" parent="bs_hr_ess_base.menu_ess_employees" sequence="50"
+              action="action_clearance" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+
+    <menuitem id="menu_ess_config_loan_type" name="Loan Types" parent="bs_hr_ess_base.menu_ess_config" sequence="40"
+              action="action_loan_type"/>
+    <menuitem id="menu_ess_config_blackout" name="Leave Blackout Periods" parent="bs_hr_ess_base.menu_ess_config"
+              sequence="45" action="action_leave_blackout"/>
+    <menuitem id="menu_ess_config_custody_products" name="Custody Items" parent="bs_hr_ess_base.menu_ess_config"
+              sequence="50" action="action_custody_products"/>
+    <menuitem id="menu_ess_config_request_type" name="Request Types" parent="bs_hr_ess_base.menu_ess_config"
+              sequence="55" action="action_request_type"/>
+</odoo>

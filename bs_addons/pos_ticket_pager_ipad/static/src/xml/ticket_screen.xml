@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Odoo hides the pager below 1200px (d-none d-xl-flex), so iPads never see it.
+         Make it visible on every screen size. -->
+    <t t-name="pos_ticket_pager_ipad.TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('page-controls')]/.." position="attributes">
+            <attribute name="class">item d-flex align-items-center justify-content-end flex-shrink-0</attribute>
+        </xpath>
+    </t>
+</templates>

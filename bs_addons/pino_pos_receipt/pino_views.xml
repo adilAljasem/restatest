@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===== res_config_settings_views.xml ===== -->
+    <record id="res_config_settings_view_form_pino" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.pino.pos.receipt</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//block[@id='pos_bills_and_receipts_section']" position="inside">
+
+                <setting id="pino_receipt_design_setting"
+                         string="تصميم فاتورة المبيعات المخصص"
+                         help="طباعة فاتورة المبيعات بالتصميم المخصص بدلاً من التصميم الافتراضي.">
+                    <field name="pos_pino_receipt_design"/>
+                    <div class="content-group mt16" invisible="not pos_pino_receipt_design">
+                        <div class="row">
+                            <label string="اسم الصنف باللاتينية" for="pos_pino_show_latin_name" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_show_latin_name"/>
+                        </div>
+                        <div class="row">
+                            <label string="رمز QR (الزكاة والضريبة)" for="pos_pino_show_zatca_qr" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_show_zatca_qr"/>
+                        </div>
+                        <div class="row">
+                            <label string="الباركود" for="pos_pino_show_barcode" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_show_barcode"/>
+                        </div>
+                        <div class="row">
+                            <label string="العبارة التسويقية" for="pos_pino_receipt_slogan" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_receipt_slogan" placeholder="مثال: غالي وسير على غالي"/>
+                        </div>
+                        <div class="row">
+                            <label string="الموقع الإلكتروني" for="pos_pino_receipt_website" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_receipt_website" placeholder="مثال: pino.sa"/>
+                        </div>
+                        <div class="row">
+                            <label string="عبارة الشكر" for="pos_pino_receipt_thanks" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_receipt_thanks" placeholder="مثال: شكراً لزيارتكم – نراكم قريباً"/>
+                        </div>
+                    </div>
+                </setting>
+
+                <setting id="pino_kitchen_design_setting"
+                         string="تصميم إيصال المطبخ المخصص"
+                         help="طباعة إيصال المطبخ (KOT) بالتصميم المخصص على طابعات الطلبات.">
+                    <field name="pos_pino_kitchen_design"/>
+                    <div class="content-group mt16" invisible="not pos_pino_kitchen_design">
+                        <div class="row">
+                            <label string="عنوان الإيصال" for="pos_pino_kitchen_title" class="col-lg-4 o_light_label"/>
+                            <field name="pos_pino_kitchen_title" placeholder="مثال: المطبخ – KITCHEN"/>
+                        </div>
+                    </div>
+                </setting>
+
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ===== pos_config_views.xml ===== -->
+    <!--
+        Same switches, directly on the point of sale record
+        (Point of Sale > Configuration > Point of Sales).
+        This is an independent path to the settings, so the design stays
+        controllable even if the general Settings page is unavailable.
+    -->
+    <record id="pos_config_view_form_pino" model="ir.ui.view">
+        <field name="name">pos.config.form.inherit.pino.receipt</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='configuration']//div[hasclass('o_settings_container')]" position="inside">
+
+                <setting id="pino_receipt_design_pos_setting"
+                         string="تصميم فاتورة المبيعات المخصص"
+                         help="طباعة فاتورة المبيعات بالتصميم المخصص بدلاً من التصميم الافتراضي.">
+                    <field name="pino_receipt_design"/>
+                    <div class="content-group mt16" invisible="not pino_receipt_design">
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="اسم الصنف باللاتينية" for="pino_show_latin_name"/>
+                            </div>
+                            <div class="col-lg-6"><field name="pino_show_latin_name"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="رمز QR (الزكاة والضريبة)" for="pino_show_zatca_qr"/>
+                            </div>
+                            <div class="col-lg-6"><field name="pino_show_zatca_qr"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="الباركود" for="pino_show_barcode"/>
+                            </div>
+                            <div class="col-lg-6"><field name="pino_show_barcode"/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="العبارة التسويقية" for="pino_receipt_slogan"/>
+                            </div>
+                            <div class="col-lg-6">
+                                <field name="pino_receipt_slogan" class="w-100" placeholder="مثال: غالي وسير على غالي"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="الموقع الإلكتروني" for="pino_receipt_website"/>
+                            </div>
+                            <div class="col-lg-6">
+                                <field name="pino_receipt_website" class="w-100" placeholder="مثال: pino.sa"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="عبارة الشكر" for="pino_receipt_thanks"/>
+                            </div>
+                            <div class="col-lg-6">
+                                <field name="pino_receipt_thanks" class="w-100"/>
+                            </div>
+                        </div>
+                    </div>
+                </setting>
+
+                <setting id="pino_kitchen_design_pos_setting"
+                         string="تصميم إيصال المطبخ المخصص"
+                         help="طباعة إيصال المطبخ (KOT) بالتصميم المخصص على طابعات الطلبات.">
+                    <field name="pino_kitchen_design"/>
+                    <div class="content-group mt16" invisible="not pino_kitchen_design">
+                        <div class="row">
+                            <div class="col-lg-6 o_light_label">
+                                <label string="عنوان الإيصال" for="pino_kitchen_title"/>
+                            </div>
+                            <div class="col-lg-6">
+                                <field name="pino_kitchen_title" class="w-100" placeholder="مثال: المطبخ – KITCHEN"/>
+                            </div>
+                        </div>
+                    </div>
+                </setting>
+
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ===== product_views.xml ===== -->
+    <!-- Field on the product form, POS tab -->
+    <record id="product_template_form_view_pino" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.pino.pos.receipt</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='pos']//group[@name='pos']" position="inside">
+                <field name="pino_name_latin"
+                       string="الاسم اللاتيني (الإيصال)"
+                       placeholder="e.g. Margherita"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Editable list to fill every Latin name in one screen -->
+    <record id="product_template_list_view_pino" model="ir.ui.view">
+        <field name="name">product.template.list.pino.latin.names</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <list string="الأسماء اللاتينية للأصناف" editable="bottom" create="false" delete="false">
+                <field name="name" string="اسم الصنف" readonly="1"/>
+                <field name="pos_categ_ids" string="فئة نقطة البيع" widget="many2many_tags" readonly="1" optional="show"/>
+                <field name="pino_name_latin" string="الاسم اللاتيني (الإيصال)" placeholder="e.g. Margherita"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="product_template_action_pino_latin_names" model="ir.actions.act_window">
+        <field name="name">الأسماء اللاتينية للأصناف</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="product_template_list_view_pino"/>
+        <field name="domain">[('available_in_pos', '=', True)]</field>
+        <field name="context">{'search_default_filter_to_availabe_pos': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">لا توجد أصناف متاحة في نقطة البيع</p>
+            <p>اكتب هنا الاسم اللاتيني لكل صنف ليُطبع أسفل الاسم العربي في الفاتورة وإيصال المطبخ.</p>
+        </field>
+    </record>
+
+    <record id="server_action_pino_suggest_latin_names" model="ir.actions.server">
+        <field name="name">اقتراح الأسماء اللاتينية</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.action_pino_suggest_latin_names()</field>
+    </record>
+
+    <menuitem id="menu_pino_latin_names"
+        action="product_template_action_pino_latin_names"
+        parent="point_of_sale.pos_config_menu_catalog"
+        sequence="7"/>
+
+</odoo>

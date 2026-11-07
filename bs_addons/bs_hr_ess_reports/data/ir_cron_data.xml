@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_ess_monthly_report" model="ir.cron">
+        <field name="name">ESS: monthly HR report to management</field>
+        <field name="model_id" ref="model_bs_hr_ess_dashboard"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_monthly_report()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="nextcall" eval="(DateTime.today().replace(day=1) + relativedelta(months=1, hours=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+    </record>
+</odoo>

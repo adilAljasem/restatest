@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_defaults" model="ir.ui.view">
+        <field name="name">res.config.settings.bs.delivery</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app name="bs_pos_delivery_core" string="Connect" groups="bs_pos_delivery_core.group_delivery_integration_manager">
+                    <block title="API Access" name="bs_delivery_api_access">
+                        <setting string="API User" help="Odoo user whose login is shared with the external integration. Set its password in Users &amp; Companies.">
+                            <field name="bs_delivery_api_user_id" domain="[('share', '=', False)]" options="{'no_create': True}"/>
+                        </setting>
+                    </block>
+                    <block title="Defaults for New Platform Connections" name="bs_delivery_defaults">
+                        <setting string="Apply company defaults" help="Existing connections are never overwritten. Source-compatible connectors always use these defaults; this switch enables them for other new connections too.">
+                            <field name="bs_delivery_use_company_defaults"/>
+                        </setting>
+                        <setting string="Default commission %"><field name="bs_delivery_default_commission_pct"/></setting>
+                        <setting string="Sound alert"><field name="bs_delivery_default_sound_alert"/></setting>
+                        <setting string="Auto-print kitchen ticket"><field name="bs_delivery_default_auto_print"/></setting>
+                        <setting string="Polling interval (minutes)" help="Used only by connectors implementing polling. This setting does not invent a polling API."><field name="bs_delivery_default_polling_minutes"/></setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_delivery_defaults" model="ir.actions.act_window">
+        <field name="name">Aggregator Defaults</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module': 'bs_pos_delivery_core'}</field>
+    </record>
+    <menuitem id="menu_delivery_defaults" name="General Settings" parent="menu_bs_delivery_settings"
+              action="action_delivery_defaults" sequence="5" groups="group_delivery_integration_manager"/>
+</odoo>

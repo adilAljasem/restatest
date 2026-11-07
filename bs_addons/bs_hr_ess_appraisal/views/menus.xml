@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_performance" name="Performance" parent="bs_hr_ess_base.menu_ess_root" sequence="45"/>
+    <menuitem id="menu_appraisals" name="Appraisals" parent="menu_performance" sequence="10" action="action_appraisal"/>
+    <menuitem id="menu_cycles" name="Appraisal Cycles" parent="menu_performance" sequence="20" action="action_cycle"
+              groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_goals" name="Goals" parent="menu_performance" sequence="30" action="action_goal"/>
+    <menuitem id="menu_kudos" name="Kudos" parent="menu_performance" sequence="40" action="action_kudos"/>
+    <menuitem id="menu_appraisal_analysis" name="Appraisal Analysis" parent="bs_hr_ess_base.menu_ess_reporting"
+              sequence="40" action="action_appraisal_analysis"/>
+
+    <menuitem id="menu_config_appraisal" name="Performance" parent="bs_hr_ess_base.menu_ess_config" sequence="50"/>
+    <menuitem id="menu_templates" name="Appraisal Templates" parent="menu_config_appraisal" sequence="10" action="action_template"/>
+    <menuitem id="menu_competencies" name="Competencies" parent="menu_config_appraisal" sequence="20" action="action_competency"/>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_closing_report_manager,pos.closing.report manager,model_pos_closing_report,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_closing_report_line_manager,pos.closing.report.line manager,model_pos_closing_report_line,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_closing_report_generate_manager,pos.closing.report.generate manager,model_pos_closing_report_generate,point_of_sale.group_pos_manager,1,1,1,1
+access_pos_business_day_closing_wizard_manager,pos.business.day.closing.wizard manager,model_pos_business_day_closing_wizard,point_of_sale.group_pos_manager,1,1,1,1

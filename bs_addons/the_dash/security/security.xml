@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_the_dash_viewer" model="res.groups">
+        <field name="name">The Dash / Viewer</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">May open The Dash. Sees only the points of sale
+            listed on the user form under "The Dash: allowed points of sale";
+            an empty list means every branch.</field>
+    </record>
+
+    <record id="group_the_dash_manager" model="res.groups">
+        <field name="name">The Dash / Manager</field>
+        <field name="implied_ids" eval="[(4, ref('the_dash.group_the_dash_viewer'))]"/>
+        <field name="comment">Always sees every point of sale regardless of the
+            per-user branch list, and is shown the generated SQL when a report
+            fails.</field>
+    </record>
+</odoo>

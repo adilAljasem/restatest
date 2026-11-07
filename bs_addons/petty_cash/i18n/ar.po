@@ -1,0 +1,1693 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* petty_cash
+# Arabic (ar) - also serves ar_001 and ar_SY through Odoo's base-language fallback.
+# BASIC Solution.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-29 17:50+0000\n"
+"PO-Revision-Date: 2026-08-29 17:58+0000\n"
+"Last-Translator: BASIC Solution\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: petty_cash
+#: model:ir.module.module,shortdesc:base.module_petty_cash
+msgid "Petty Cash Management"
+msgstr "إدارة العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.module.module,summary:base.module_petty_cash
+msgid "Petty cash transaction management"
+msgstr "إدارة حركات العهدة النقدية"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "%(partner)s has already petty cash isn't full reconciled"
+msgstr "لدى %(partner)s عهدة سابقة لم تتم تسويتها بالكامل"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "%s / Replenishment"
+msgstr "%s / استعاضة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "%s settlement line(s) sent to Finance Review."
+msgstr "تم إرسال %s من بنود التسوية إلى المراجعة المالية."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "<strong>Excel Format Requirements:</strong>"
+msgstr "<strong>متطلبات تنسيق ملف Excel:</strong>"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_operation_form
+msgid ""
+"<strong>Replenishment mode:</strong>\n"
+"                        A new journal entry will be posted to top up the petty cash\n"
+"                        by the spent amount. Existing entries will not be modified."
+msgstr ""
+"<strong>وضع الاستعاضة:</strong>\n"
+"                        سيتم ترحيل قيد يومية جديد لتغذية العهدة النقدية\n"
+"                        بالمبلغ المنصرف. لن يتم تعديل القيود الحالية."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid ""
+"<strong>Warning:</strong>\n"
+"                    This request cannot be approved because this partner has already petty cash isn't full reconciled"
+msgstr ""
+"<strong>تنبيه:</strong>\n"
+"                    لا يمكن اعتماد هذا الطلب لوجود عهدة سابقة لهذه الجهة لم تتم تسويتها بالكامل"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"A petty cash request cannot be both Permanent and Temporary. Please select "
+"only one type."
+msgstr ""
+"لا يمكن أن يكون طلب العهدة مستديماً ومؤقتاً في آنٍ واحد. الرجاء اختيار نوع "
+"واحد فقط."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"A replenishment request has already been submitted and is awaiting approval."
+msgstr "تم تقديم طلب استعاضة بالفعل وهو بانتظار الاعتماد."
+
+#. module: petty_cash
+#: model:ir.module.category,description:petty_cash.module_category_petty_cash
+msgid "Access rights for petty cash management"
+msgstr "صلاحيات الوصول لإدارة العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__accounting_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__accounting_date
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Accounting Date"
+msgstr "التاريخ المحاسبي"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Accounting Information"
+msgstr "البيانات المحاسبية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_needaction
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_ids
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_exception_decoration
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_state
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_type_icon
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Add the narration of petty cash."
+msgstr "يجب إدخال بيان العهدة."
+
+#. module: petty_cash
+#: model:res.groups,name:petty_cash.group_petty_cash_administrator
+msgid "Administrator"
+msgstr "المدير"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "All settlement lines must belong to the same petty cash request."
+msgstr "يجب أن تنتمي جميع بنود التسوية إلى نفس طلب العهدة."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__amount
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Amount of petty cash must be added."
+msgstr "يجب إدخال مبلغ العهدة."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__analytic_distribution
+msgid "Analytic Distribution"
+msgstr "التوزيع التحليلي"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Analytic Information"
+msgstr "البيانات التحليلية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__analytic_precision
+msgid "Analytic Precision"
+msgstr "الدقة التحليلية"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Apply Filter"
+msgstr "تطبيق التصفية"
+
+#. module: petty_cash
+#: model:ir.actions.act_window,name:petty_cash.action_petty_open_approval
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__state__approval
+#: model:ir.ui.menu,name:petty_cash.menu_open_petty_approval
+msgid "Approval"
+msgstr "الاعتماد"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Approve"
+msgstr "موافقة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__approve_date
+msgid "Approve Date"
+msgstr "تاريخ الاعتماد"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__state__approved
+msgid "Approved"
+msgstr "تمت الموافقة"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Attach a file"
+msgstr "إرفاق ملف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_attachment_count
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__attachment_file
+msgid "Attachment File"
+msgstr "ملف المرفق"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__attachment_ids
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__attachment_ids
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__by_employee
+msgid "By Employee"
+msgstr "بواسطة موظف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__can_finance_review
+msgid "Can Finance Review"
+msgstr "يمكنه إجراء المراجعة المالية"
+
+#. module: petty_cash
+#: model:res.groups,comment:petty_cash.group_petty_cash_administrator
+msgid "Can create requests for all employees"
+msgstr "يمكنه إنشاء طلبات لجميع الموظفين"
+
+#. module: petty_cash
+#: model:res.groups,comment:petty_cash.group_petty_cash_user
+msgid "Can create requests for self and subordinates"
+msgstr "يمكنه إنشاء طلبات لنفسه ولمرؤوسيه"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_operation_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_confirm_settlement_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"Cannot approve replenishment: there is no settled expense amount. Add "
+"settlement lines with an expense account (or link a bill / expense sheet) "
+"and confirm settlement first."
+msgstr ""
+"لا يمكن اعتماد الاستعاضة: لا يوجد مبلغ مصروف مسوّى. أضف بنود تسوية بحساب "
+"مصروف (أو اربطها بفاتورة مورّد / مطالبة مصروف) وقم بتأكيد التسوية أولاً."
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__is_amount_includes_tax
+msgid "Check if the amount entered already includes taxes"
+msgstr "حدّد هذا الخيار إذا كان المبلغ المُدخل شاملاً للضرائب"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Click to Upload"
+msgstr "اضغط للرفع"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__state__complete
+msgid "Complete"
+msgstr "مكتمل"
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات"
+
+#. module: petty_cash
+#: model:ir.ui.menu,name:petty_cash.menu_petty_config
+msgid "Configuration"
+msgstr "التهيئة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid ""
+"Configure an account on the invoice tax repartition lines for: %(taxes)s."
+msgstr "قم بتحديد حساب في بنود توزيع الضريبة للفاتورة لـ: %(taxes)s."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_confirm_settlement_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__create_uid
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__create_uid
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__create_uid
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__create_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__create_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__create_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__accounting_date
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__accounting_date
+msgid "Date to be used for accounting entries instead of current date"
+msgstr "التاريخ المستخدم في القيود المحاسبية بدلاً من التاريخ الحالي"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__name
+msgid "Description"
+msgstr "الوصف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__different_amount
+msgid "Different Amount"
+msgstr "المبلغ المتبقي"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_account_journal__display_name
+#: model:ir.model.fields,field_description:petty_cash.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__display_name
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__display_name
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__display_name
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__display_name
+#: model:ir.model.fields,field_description:petty_cash.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__state__draft
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__requester_emp_id
+msgid "Employee Requester"
+msgstr "الموظف مقدم الطلب"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Error importing Excel file: %s"
+msgstr "خطأ أثناء استيراد ملف Excel: %s"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__excel_file
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__excel_import_file
+msgid "Excel File"
+msgstr "ملف Excel"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Excel File (.xlsx, .xls, .csv)"
+msgstr "ملف Excel ‏(.xlsx، .xls، .csv)"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__expense_id
+msgid "Expense"
+msgstr "مطالبة مصروف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__expense_account_id
+msgid "Expense Account"
+msgstr "حساب المصروف"
+
+#. module: petty_cash
+#: model:ir.ui.menu,name:petty_cash.menu_petty_expense_product
+msgid "Expense Categories"
+msgstr "فئات النفقة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid ""
+"Expense account %(acc)s belongs to company %(acc_co)s but this petty cash "
+"request is for %(req_co)s. Select an expense account for the same company as"
+" the request, or switch your active company in Odoo."
+msgstr ""
+"حساب المصروف %(acc)s يتبع الشركة %(acc_co)s بينما طلب العهدة هذا يخص "
+"%(req_co)s. اختر حساب مصروف يتبع نفس شركة الطلب، أو قم بتغيير الشركة النشطة "
+"في أودو."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__attachment_status
+msgid "File Status"
+msgstr "حالة الملف"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "File Uploaded"
+msgstr "تم رفع الملف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__excel_filename
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__excel_import_filename
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__attachment_filename
+msgid "Filename"
+msgstr "اسم الملف"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__settlement_date_from
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__settlement_date_from
+msgid "Filter settlements from this date"
+msgstr "تصفية التسويات ابتداءً من هذا التاريخ"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__settlement_date_to
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__settlement_date_to
+msgid "Filter settlements to this date"
+msgstr "تصفية التسويات حتى هذا التاريخ"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Filtered Settlements"
+msgstr "التسويات المصفّاة"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__state__finance_review
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Finance Review"
+msgstr "المراجعة المالية"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Finance Review approved by %s."
+msgstr "تمت الموافقة على المراجعة المالية بواسطة %s."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Finance Review approved for %s settlement line(s)."
+msgstr "تمت الموافقة على المراجعة المالية لعدد %s من بنود التسوية."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_follower_ids
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_follower_ids
+msgid "Followers"
+msgstr "المتابعين"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_partner_ids
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعين (الشركاء)"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__activity_type_icon
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة من Font awesome مثال: fa-tasks"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "From Date"
+msgstr "من تاريخ"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__settlement_state__full
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Full Settlement"
+msgstr "تسوية كاملة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_account_move_line__has_abnormal_deferred_dates
+msgid "Has Abnormal Deferred Dates"
+msgstr "تواريخ استحقاق مؤجلة غير معتادة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__has_message
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__has_request_not_reconciled
+msgid "Has Request Not Reconciled"
+msgstr "يوجد طلب غير مسوّى"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_account_journal__id
+#: model:ir.model.fields,field_description:petty_cash.field_account_move_line__id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__id
+#: model:ir.model.fields,field_description:petty_cash.field_res_config_settings__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_exception_icon
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__activity_exception_icon
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "الأيقونة للإشارة إلى النشاط المستثنى."
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__message_needaction
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة عليك رؤيتها."
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__message_has_error
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__message_has_sms_error
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__message_has_error
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فقد حدث خطأ في تسليم بعض الرسائل."
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__refuse
+msgid ""
+"If checked, this settlement line will be ignored in all calculations and "
+"reconciliations."
+msgstr ""
+"عند التحديد، سيتم استبعاد بند التسوية هذا من جميع الحسابات وعمليات المطابقة."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Import"
+msgstr "استيراد"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Import Excel"
+msgstr "استيراد من Excel"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Import Settlements from Excel"
+msgstr "استيراد التسويات من Excel"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Imported settlement line %s"
+msgstr "بند تسوية مستورد %s"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__in_settlement
+msgid "In Settlement"
+msgstr "قيد التسوية"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Intemperance amount of %s"
+msgstr "مبلغ تجاوز العهدة لـ %s"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__is_bill
+msgid "Is Bill"
+msgstr "فاتورة مورّد"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__is_expense
+msgid "Is Expense"
+msgstr "مطالبة مصروف"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_is_follower
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__is_intemperance
+msgid "Is Intemperance"
+msgstr "تجاوز العهدة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__is_return
+msgid "Is Return"
+msgstr "إرجاع"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__is_reconciled
+msgid "Is reconciled"
+msgstr "تمت المطابقة"
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_account_journal
+msgid "Journal"
+msgstr "دفتر اليومية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__move_id
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_account_move_line
+msgid "Journal Item"
+msgstr "عنصر اليومية"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__replenishment_move_id
+msgid "Journal entry that replenished the petty cash for this settlement."
+msgstr "قيد اليومية الذي تمت به استعاضة العهدة النقدية لهذه التسوية."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__write_uid
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__write_uid
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__write_uid
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__write_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__write_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__write_date
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_has_error
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_ids
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Missing petty cash request."
+msgstr "طلب العهدة النقدية غير موجود."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Missing required columns: %s"
+msgstr "أعمدة إلزامية مفقودة: %s"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطاتي"
+
+#. module: petty_cash
+#: model:ir.actions.act_window,name:petty_cash.action_petty_request_open_my
+#: model:ir.ui.menu,name:petty_cash.menu_open_petty_request_my
+msgid "My Petty Cash Requests"
+msgstr "طلبات العهدة الخاصة بي"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__narration
+msgid "Narration"
+msgstr "البيان"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "New"
+msgstr "جديد"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_date_deadline
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_summary
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_type_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "No replenishment has been requested for this record."
+msgstr "لا يوجد طلب استعاضة لهذا السجل."
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__settlement_state__no
+msgid "Not Yet"
+msgstr "لم تبدأ"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__note
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__refuse_reason
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__refuse_reason
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Notes..."
+msgstr "ملاحظات..."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_needaction_counter
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_has_error_counter
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__message_needaction_counter
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__message_has_error_counter
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل الحادث بها خطأ في التسليم"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid ""
+"Only an accounting user allowed to create journal entries can perform the "
+"Finance Review."
+msgstr ""
+"لا يمكن إجراء المراجعة المالية إلا لمستخدم الحسابات المخوّل بإنشاء قيود "
+"اليومية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/account_journal_checkbox.py:0
+msgid "Only one Permanent Petty Cash journal is allowed per company."
+msgstr "لا يُسمح بأكثر من دفتر يومية واحد للعهدة المستديمة لكل شركة."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/account_journal_checkbox.py:0
+msgid "Only one Temporary Petty Cash journal is allowed per company."
+msgstr "لا يُسمح بأكثر من دفتر يومية واحد للعهدة المؤقتة لكل شركة."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Only one petty cash request is allowed per requesting employee."
+msgstr "لا يُسمح بأكثر من طلب عهدة واحد لكل موظف."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__operation_account_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__operation_account_id
+msgid "Operation Account"
+msgstr "حساب العملية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__operation_journal_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__operation_journal_id
+msgid "Operation Journal"
+msgstr "دفتر يومية العملية"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Operations"
+msgstr "العمليات"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Optional: accounting_date (Accounting date)"
+msgstr "اختياري: accounting_date (التاريخ المحاسبي)"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Optional: bill_id (Bill reference)"
+msgstr "اختياري: bill_id (مرجع فاتورة المورّد)"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Optional: expense_account_id (Account code or name)"
+msgstr "اختياري: expense_account_id (رمز الحساب أو اسمه)"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Optional: expense_id (Expense sheet reference)"
+msgstr "اختياري: expense_id (مرجع مطالبة المصروف)"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Optional: product_id (Product code or name)"
+msgstr "اختياري: product_id (رمز المنتج أو اسمه)"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__order_date
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__settlement_state__partial
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Partial Settlement"
+msgstr "تسوية جزئية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__requester_partner_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__requester_partner_id
+msgid "Partner Requester"
+msgstr "جهة الاتصال مقدمة الطلب"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_account_journal__petty_cash_checkbox
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__petty_cash_checkbox
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__petty_cash_checkbox
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__petty_cash_type__permanent
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__petty_cash_type__permanent
+msgid "Permanent Petty Cash"
+msgstr "عهدة مستديمة"
+
+#. module: petty_cash
+#: model:account.account,name:petty_cash.petty_account
+#: model:account.journal,name:petty_cash.petty_cash_journal
+#: model:ir.module.category,name:petty_cash.module_category_petty_cash
+#: model:ir.ui.menu,name:petty_cash.menu_petty_cash
+#: model:res.groups.privilege,name:petty_cash.res_groups_privilege_petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.res_config_settings_view_form_inherit_petty_cash
+msgid "Petty Cash"
+msgstr "العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_res_config_settings__petty_cash_account_id
+msgid "Petty Cash Account"
+msgstr "حساب العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__amount
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__amount
+msgid "Petty Cash Amount"
+msgstr "مبلغ العهدة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__petty_cash_journal_id
+msgid "Petty Cash Journal"
+msgstr "دفتر يومية العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_petty_cash_operations
+msgid "Petty Cash Operations"
+msgstr "عمليات العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.ui.menu,name:petty_cash.menu_petty_orders
+msgid "Petty Cash Orders"
+msgstr "طلبات العهدة"
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_petty_cash_request
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_import_wizard__petty_request_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__petty_request_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__petty_request_id
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_list
+msgid "Petty Cash Request"
+msgstr "طلب عهدة نقدية"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_account_journal_form_inherit_petty_cash
+msgid "Petty Cash Settings"
+msgstr "إعدادات العهدة النقدية"
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_petty_cash_settlement
+msgid "Petty Cash Settlement"
+msgstr "تسوية العهدة النقدية"
+
+#. module: petty_cash
+#: model:account.account,name:petty_cash.petty_suspense_account
+msgid "Petty Cash Suspense"
+msgstr "حساب العهدة الوسيط"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__petty_cash_type
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__petty_cash_type
+msgid "Petty Cash Type"
+msgstr "نوع العهدة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Petty Cash [ %s ]"
+msgstr "عهدة نقدية [ %s ]"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Petty cash expenses of ..."
+msgstr "مصروفات العهدة الخاصة بـ ..."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Petty cash replenishment approved (Substitution)."
+msgstr "تم اعتماد استعاضة العهدة النقدية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Petty cash replenishment posted: %s - %s"
+msgstr "تم ترحيل استعاضة العهدة النقدية: %s - %s"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Petty cash replenishment requested."
+msgstr "تم طلب استعاضة العهدة النقدية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Petty cash replenishment: %s"
+msgstr "استعاضة العهدة النقدية: %s"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_import_wizard.py:0
+msgid "Please select an Excel file to import."
+msgstr "الرجاء اختيار ملف Excel للاستيراد."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Please select an operation journal with a default account."
+msgstr "الرجاء اختيار دفتر يومية عملية له حساب افتراضي."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Please select an operation journal."
+msgstr "الرجاء اختيار دفتر يومية العملية."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_operation_form
+msgid "Post Replenishment"
+msgstr "ترحيل الاستعاضة"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_confirm_settlement_form
+msgid ""
+"Press <b>CONFIRM</b> to reconcile the petty cash.\n"
+"                            <br/>"
+msgstr ""
+"اضغط <b>تأكيد</b> لمطابقة العهدة النقدية.\n"
+"                            <br/>"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__is_amount_includes_tax
+msgid "Price Includes Tax"
+msgstr "المبلغ شامل الضريبة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Reconcile"
+msgstr "مطابقة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Reconcile the expense sheet from ( %s )"
+msgstr "مطابقة مطالبة المصروف من ( %s )"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Reconciled Entries"
+msgstr "القيود المطابقة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__refuse
+msgid "Refuse Settlement Line"
+msgstr "رفض بند التسوية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__refuse
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__state__refused
+msgid "Refused"
+msgstr "تم الرفض"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_operation_form
+msgid "Register Petty Cash"
+msgstr "تسجيل صرف العهدة"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_operation_form
+msgid "Register Petty Cash Intemperance"
+msgstr "تسجيل تجاوز العهدة"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__state__reject
+msgid "Rejected"
+msgstr "تم الرفض"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__replenished
+msgid "Replenished"
+msgstr "تمت الاستعاضة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_operations__is_replenishment
+msgid "Replenishment"
+msgstr "الاستعاضة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__replenishment_approved
+msgid "Replenishment Approved"
+msgstr "تم اعتماد الاستعاضة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__replenishment_move_id
+msgid "Replenishment Move"
+msgstr "قيد الاستعاضة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__replenishment_requested
+msgid "Replenishment Requested"
+msgstr "تم طلب الاستعاضة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Replenishment amount must be greater than zero."
+msgstr "يجب أن يكون مبلغ الاستعاضة أكبر من صفر."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Request"
+msgstr "إرسال الطلب"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Request Info"
+msgstr "بيانات الطلب"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Request Information"
+msgstr "بيانات الطلب"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Request Replenishment"
+msgstr "طلب استعاضة"
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__state__request
+msgid "Requested"
+msgstr "مطلوب"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Required column: <strong>amount</strong> (Amount)"
+msgstr "عمود إلزامي: <strong>amount</strong> (المبلغ)"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_import_wizard
+msgid "Required column: <strong>name</strong> (Description)"
+msgstr "عمود إلزامي: <strong>name</strong> (الوصف)"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Reset to Draft"
+msgstr "إعادة التعيين كمسودة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__activity_user_id
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_cash_operation_form
+msgid "Return Petty Cash Remaining"
+msgstr "إرجاع المتبقي من العهدة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Return The Remaining of %s"
+msgstr "إرجاع المتبقي من %s"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Return The Remaining of ( %s )"
+msgstr "إرجاع المتبقي من ( %s )"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.petty_cash_settlement_view_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Review"
+msgstr "مراجعة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__message_has_sms_error
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل النصية القصيرة"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.res_config_settings_view_form_inherit_petty_cash
+msgid "Select the receivable account used as Petty Cash."
+msgstr "اختر الحساب المدين المستخدم كحساب للعهدة النقدية."
+
+#. module: petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__state__done
+msgid "Settled"
+msgstr "تمت التسوية"
+
+#. module: petty_cash
+#: model:ir.actions.act_window,name:petty_cash.action_open_petty_cash_settlement
+#: model:ir.ui.menu,name:petty_cash.menu_open_petty_cash_settlement
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Settlement"
+msgstr "التسوية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_amount
+msgid "Settlement Amount"
+msgstr "مبلغ التسوية"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_amount_reconcile
+msgid "Settlement Amount (Reconciled)"
+msgstr "مبلغ التسوية (المطابق)"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_date_from
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__settlement_date_from
+msgid "Settlement Date From"
+msgstr "تاريخ التسوية من"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_date_to
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__settlement_date_to
+msgid "Settlement Date To"
+msgstr "تاريخ التسوية إلى"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_state
+msgid "Settlement Status"
+msgstr "حالة التسوية"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid ""
+"Settlement amount %(amount)s is greater than the open amount %(residual)s "
+"for bill %(bill)s."
+msgstr ""
+"مبلغ التسوية %(amount)s أكبر من المبلغ المفتوح %(residual)s للفاتورة "
+"%(bill)s."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Settlement amount must be greater than zero for bill %s."
+msgstr "يجب أن يكون مبلغ التسوية أكبر من صفر للفاتورة %s."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Settlement from expense sheet: %(name)s"
+msgstr "تسوية من مطالبة مصروف: %(name)s"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Settlement from vendor bill by No: %(name)s"
+msgstr "تسوية من فاتورة مورّد رقم: %(name)s"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "Settlement of intemperance amount of ( %s )"
+msgstr "تسوية مبلغ تجاوز العهدة لـ ( %s )"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_ids
+#: model:ir.ui.menu,name:petty_cash.menu_petty_settlement
+#: model_terms:ir.ui.view,arch_db:petty_cash.petty_cash_settlement_view_form
+msgid "Settlements"
+msgstr "التسويات"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__settlement_review_pending
+msgid "Settlements Awaiting Finance Review"
+msgstr "تسويات بانتظار المراجعة المالية"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Settlements of %s"
+msgstr "تسويات %s"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Settlements of ( %s )"
+msgstr "تسويات ( %s )"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Settlements of (%(narration)s) from (%(document)s)"
+msgstr "تسويات (%(narration)s) من (%(document)s)"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__attachment_id
+msgid "Shared attachment"
+msgstr "مرفق مشترك"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__state
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__activity_state
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الأنشطة المعتمدة على الحالة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+msgid "Substitution"
+msgstr "اعتماد الاستعاضة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Success"
+msgstr "تم بنجاح"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Successfully imported %s settlement lines"
+msgstr "تم استيراد %s من بنود التسوية بنجاح"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__replenishment_total_amount
+msgid ""
+"Sum of settlement lines already covered by a replenishment (substitution) "
+"entry."
+msgstr "إجمالي بنود التسوية التي تمت تغطيتها بقيد استعاضة."
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__settlement_amount_reconcile
+msgid "Sum of settlement lines that have been reconciled only"
+msgstr "إجمالي بنود التسوية التي تمت مطابقتها فقط"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__tax_ids
+msgid "Taxes"
+msgstr "الضرائب"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__can_finance_review
+msgid ""
+"Technical field: the current user belongs to the accounting group allowed to"
+" create journal entries."
+msgstr ""
+"حقل تقني: المستخدم الحالي ينتمي إلى مجموعة المحاسبة المخوّلة بإنشاء قيود "
+"اليومية."
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_account_journal__temporary_petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__temporary_petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__temporary_petty_cash
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_request__petty_cash_type__temporary
+#: model:ir.model.fields.selection,name:petty_cash.selection__petty_cash_settlement__petty_cash_type__temporary
+msgid "Temporary Petty Cash"
+msgstr "عهدة مؤقتة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"The Petty Cash Journal '%s' belongs to company '%s' but the request belongs "
+"to company '%s'. Please select a journal that belongs to the same company as"
+" the request."
+msgstr ""
+"دفتر يومية العهدة النقدية '%s' يتبع الشركة '%s' بينما الطلب يتبع الشركة "
+"'%s'. الرجاء اختيار دفتر يومية يتبع نفس شركة الطلب."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"The Petty Cash Journal '%s' belongs to company '%s' but the request belongs "
+"to company '%s'. Please select a journal that belongs to the same company."
+msgstr ""
+"دفتر يومية العهدة النقدية '%s' يتبع الشركة '%s' بينما الطلب يتبع الشركة "
+"'%s'. الرجاء اختيار دفتر يومية يتبع نفس الشركة."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "The following taxes do not belong to company %(company)s: %(taxes)s."
+msgstr "الضرائب التالية لا تتبع الشركة %(company)s: %(taxes)s."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid ""
+"The operation journal default account cannot be the same as the petty cash "
+"journal default account. Choose a different bank/cash journal (e.g. main "
+"treasury) so debits and credits are not on one account."
+msgstr ""
+"لا يمكن أن يكون الحساب الافتراضي لدفتر يومية العملية هو نفسه الحساب "
+"الافتراضي لدفتر يومية العهدة النقدية. اختر دفتر يومية بنك/نقدية مختلفاً (مثل"
+" الخزينة الرئيسية) حتى لا يكون الطرف المدين والدائن على حساب واحد."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "The operation journal must have a default account."
+msgstr "يجب أن يكون لدفتر يومية العملية حساب افتراضي."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid ""
+"The original petty cash entry is already posted. Use the replenishment flow "
+"to top up the fund instead of editing the original entry."
+msgstr ""
+"قيد العهدة الأصلي مُرحّل بالفعل. استخدم دورة الاستعاضة لتغذية العهدة بدلاً "
+"من تعديل القيد الأصلي."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "The petty cash amount must be greater than \"0\""
+msgstr "يجب أن يكون مبلغ العهدة أكبر من \"0\""
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "The petty cash journal must have a default liquidity account."
+msgstr "يجب أن يكون لدفتر يومية العهدة النقدية حساب سيولة افتراضي."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid ""
+"There are no settled expenses to replenish for this request. Add and confirm"
+" expense settlements first."
+msgstr ""
+"لا توجد مصروفات مسوّاة قابلة للاستعاضة في هذا الطلب. أضف تسويات المصروفات "
+"وقم بتأكيدها أولاً."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "There is no draft settlement line to submit."
+msgstr "لا توجد بنود تسوية في حالة مسودة لإرسالها."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "There is no open payable line to reconcile for bill %s."
+msgstr "لا يوجد بند دائن مفتوح للمطابقة في الفاتورة %s."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "There is no settlement line waiting for Finance Review."
+msgstr "لا توجد بنود تسوية بانتظار المراجعة المالية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid ""
+"These settlement lines still need the Finance Review: %(lines)s.\n"
+"Only an accounting user allowed to create journal entries can approve them."
+msgstr ""
+"بنود التسوية التالية ما زالت بحاجة إلى المراجعة المالية: %(lines)s.\n"
+"لا يمكن اعتمادها إلا لمستخدم الحسابات المخوّل بإنشاء قيود اليومية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "This bill is already reconciled or paid"
+msgstr "تمت مطابقة هذه الفاتورة أو سدادها بالفعل"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "This expense sheet is invalid to reconcile"
+msgstr "مطالبة المصروف هذه غير صالحة للمطابقة"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "This replenishment has already been approved."
+msgstr "تم اعتماد هذه الاستعاضة مسبقاً."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "To Date"
+msgstr "إلى تاريخ"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__total_with_tax
+msgid "Total amount after tax calculation"
+msgstr "المبلغ الإجمالي بعد احتساب الضريبة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__replenishment_total_amount
+msgid "Total replenishment"
+msgstr "إجمالي الاستعاضة"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__total_with_tax
+msgid "Total with Tax"
+msgstr "الإجمالي شامل الضريبة"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__replenished
+msgid ""
+"True when this settlement line has been covered by a replenishment entry "
+"(imprest cycle closed for this line)."
+msgstr ""
+"يكون صحيحاً عند تغطية بند التسوية هذا بقيد استعاضة (إغلاق دورة العهدة لهذا "
+"البند)."
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__activity_exception_decoration
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط المستثنى في السجل."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Unknown Petty Cash Journal."
+msgstr "دفتر يومية العهدة النقدية غير محدد."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "Unsupported file format. Please use .xlsx, .xls, or .csv"
+msgstr "صيغة الملف غير مدعومة. الرجاء استخدام ‎.xlsx أو ‎.xls أو ‎.csv"
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_form
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_request_form
+msgid "Upload"
+msgstr "رفع"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__attachment_file
+msgid "Upload file attachment for this settlement line"
+msgstr "إرفاق ملف لبند التسوية هذا"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__use_analytic
+msgid "Use Analytic"
+msgstr "استخدام التوزيع التحليلي"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__user_id
+#: model:res.groups,name:petty_cash.group_petty_cash_user
+msgid "User"
+msgstr "المستخدم"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__bill_id
+msgid "Vendor Bill"
+msgstr "فاتورة المورد"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "Warning"
+msgstr "تحذير"
+
+#. module: petty_cash
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_request__website_message_ids
+#: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_request__website_message_ids
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_settlement__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع الإلكتروني"
+
+#. module: petty_cash
+#: model:ir.model.fields,help:petty_cash.field_petty_cash_operations__is_replenishment
+msgid ""
+"When set, register a new journal entry to top up petty cash by the spent "
+"amount (استعاضة)."
+msgstr ""
+"عند التفعيل، يتم إنشاء قيد يومية جديد لتغذية العهدة النقدية بالمبلغ المنصرف "
+"(استعاضة)."
+
+#. module: petty_cash
+#: model:ir.model,name:petty_cash.model_petty_cash_import_wizard
+msgid "Wizard for importing settlements from Excel"
+msgstr "معالج استيراد التسويات من ملف Excel"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"You are not allowed to change requester to this employee. You can only "
+"select yourself or your subordinates."
+msgstr ""
+"غير مصرح لك بتغيير مقدم الطلب إلى هذا الموظف. يمكنك اختيار نفسك أو أحد "
+"مرؤوسيك فقط."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"You are not allowed to create requests for this employee. You can only "
+"create requests for yourself and your subordinates."
+msgstr ""
+"غير مصرح لك بإنشاء طلبات لهذا الموظف. يمكنك إنشاء الطلبات لنفسك ولمرؤوسيك "
+"فقط."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"You cannot settle a balance higher than the petty cash in the current cycle."
+msgstr "لا يمكن تسوية مبلغ أكبر من قيمة العهدة في الدورة الحالية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "You have already created a journal entry."
+msgstr "تم إنشاء قيد يومية لهذا الطلب مسبقاً."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"You should add expense account for any settlement line has not bill or "
+"expense"
+msgstr ""
+"يجب تحديد حساب مصروف لكل بند تسوية لا يرتبط بفاتورة مورّد أو مطالبة مصروف"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"You should add expense account for any settlement line that has no bill or "
+"expense."
+msgstr ""
+"يجب تحديد حساب مصروف لكل بند تسوية لا يرتبط بفاتورة مورّد أو مطالبة مصروف."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "You should add operation journal."
+msgstr "يجب تحديد دفتر يومية العملية."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "You should create a journal entry first."
+msgstr "يجب إنشاء قيد يومية أولاً."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+#: code:addons/petty_cash/wizard/petty_cash_operation.py:0
+msgid "You should create an journal entry first."
+msgstr "يجب إنشاء قيد يومية أولاً."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid ""
+"Your user is not allowed to use company %(co)s. Add it on the user's Allowed"
+" Companies, or switch to a user that has access to this company."
+msgstr ""
+"المستخدم الحالي غير مصرح له باستخدام الشركة %(co)s. أضفها إلى الشركات "
+"المسموح بها للمستخدم، أو استخدم مستخدماً لديه صلاحية على هذه الشركة."
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_settlement.py:0
+msgid "none"
+msgstr "لا شيء"
+
+#. module: petty_cash
+#. odoo-python
+#: code:addons/petty_cash/models/petty_cash_request.py:0
+msgid "pandas library is not installed. Please contact your administrator."
+msgstr "مكتبة pandas غير مثبتة. الرجاء التواصل مع مسؤول النظام."
+
+#. module: petty_cash
+#: model_terms:ir.ui.view,arch_db:petty_cash.view_petty_approval_list
+msgid "settlement Amount"
+msgstr "مبلغ التسوية"

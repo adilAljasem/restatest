@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_the_dash_region_viewer,the.dash.region viewer,model_the_dash_region,the_dash.group_the_dash_viewer,1,0,0,0
+access_the_dash_region_user,the.dash.region user,model_the_dash_region,base.group_user,1,0,0,0
+access_the_dash_region_manager,the.dash.region manager,model_the_dash_region,the_dash.group_the_dash_manager,1,1,1,1
+access_the_dash_region_pos_manager,the.dash.region pos manager,model_the_dash_region,point_of_sale.group_pos_manager,1,1,1,1

@@ -1,0 +1,34 @@
+[options]
+; Copy the relevant values into the dedicated production Odoo configuration.
+; Never commit real database passwords or Blend tokens.
+
+admin_passwd = CHANGE_TO_A_LONG_RANDOM_MASTER_PASSWORD
+db_host = localhost
+db_port = 5432
+db_user = odoo
+db_password = CHANGE_ME
+db_name = pino2
+dbfilter = ^pino2$
+list_db = False
+
+addons_path = D:\odoo\odoo19\odoo\addons,D:\odoo\odoo19\pino,D:\odoo\odoo19\enterprise
+data_dir = C:\ProgramData\Odoo19
+
+http_interface = 127.0.0.1
+http_port = 8019
+proxy_mode = True
+max_cron_threads = 1
+
+; Odoo on Windows uses the threaded server. Use a service manager that restarts
+; the process after failure. Linux deployments can size workers for the host.
+workers = 0
+limit_time_cpu = 120
+limit_time_real = 240
+limit_request = 8192
+limit_memory_soft = 2147483648
+limit_memory_hard = 2684354560
+
+log_level = info
+log_handler = :INFO
+logfile = D:\odoo\odoo19\logs\odoo19-production.log
+

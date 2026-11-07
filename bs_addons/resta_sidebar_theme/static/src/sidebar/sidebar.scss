@@ -1,0 +1,548 @@
+// ============================================================================
+// Resta sidebar (Foodics-style). Logical properties only: flips with RTL.
+// ============================================================================
+
+.rs_sidebar {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    z-index: $zindex-fixed + 1;
+    display: flex;
+    flex-direction: column;
+    width: var(--rs-sidebar-w);
+    background: var(--rs-sidebar-bg);
+    border-inline-end: 1px solid var(--rs-border-soft);
+    color: var(--rs-text);
+    font-family: $o-font-family-sans-serif;
+    transition: width .22s var(--rs-ease), transform .25s var(--rs-ease);
+    user-select: none;
+
+    &.rs_collapsed {
+        width: var(--rs-sidebar-w-collapsed);
+    }
+
+    // ---- Mobile drawer ---------------------------------------------------
+    &.rs_mobile {
+        width: 86vw;
+        max-width: 320px;
+        box-shadow: var(--rs-shadow-md);
+        transform: translateX(-105%);   // rtlcss flips this for Arabic
+        visibility: hidden;
+        transition: transform .25s var(--rs-ease), visibility 0s linear .25s;
+
+        &.rs_mobile_open {
+            transform: none;
+            visibility: visible;
+            transition: transform .25s var(--rs-ease), visibility 0s;
+        }
+    }
+}
+
+.rs_backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: $zindex-fixed;
+    background: var(--rs-backdrop);
+    animation: rs-fade-in .2s ease;
+}
+
+@keyframes rs-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+// ---- Brand -----------------------------------------------------------------
+.rs_brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 72px;
+    padding: 16px 20px 8px;
+
+    .rs_collapsed & {
+        justify-content: center;
+        padding-inline: 0;
+    }
+}
+
+.rs_logo_link {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    flex: 1 1 auto;
+    border-radius: var(--rs-radius-sm);
+
+    .rs_collapsed & {
+        flex: 0 0 auto;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--rs-primary);
+        outline-offset: 4px;
+    }
+}
+
+.rs_logo {
+    display: block;
+    height: 38px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    animation: rs-fade-in .25s ease;
+
+    &[data-treatment="smart"] {
+        // Dark parts become light, hues (brand orange) are preserved.
+        filter: invert(1) hue-rotate(180deg) brightness(1.08);
+    }
+    &[data-treatment="white"] {
+        filter: brightness(0) invert(1);
+    }
+}
+
+.rs_logo_mark {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: var(--rs-radius);
+    box-shadow: 0 6px 16px rgba(255, 90, 31, .28);
+    animation: rs-fade-in .25s ease;
+}
+
+.rs_company {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 20px 10px;
+    font-size: .8rem;
+    color: var(--rs-text-muted);
+
+    .rs_company_dot {
+        flex: 0 0 auto;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--rs-success);
+        box-shadow: 0 0 0 3px rgba(32, 165, 120, .14);
+    }
+}
+
+// ---- Search ------------------------------------------------------------------
+.rs_search_wrap {
+    padding: 4px 14px 10px;
+
+    .rs_collapsed & {
+        display: flex;
+        justify-content: center;
+        padding-inline: 0;
+    }
+}
+
+.rs_search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    margin: 0;
+    padding-inline: 12px;
+    border: 1px solid var(--rs-border);
+    border-radius: var(--rs-radius);
+    background: var(--rs-surface-2);
+    color: var(--rs-text-subtle);
+    cursor: text;
+    transition: border-color .15s, box-shadow .15s, background-color .15s;
+
+    &:focus-within {
+        border-color: var(--rs-primary);
+        box-shadow: 0 0 0 3px var(--rs-focus-ring);
+        background: var(--rs-surface);
+    }
+
+    .rs_search_input {
+        flex: 1 1 auto;
+        min-width: 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--rs-text);
+        font-size: .9rem;
+
+        &::placeholder {
+            color: var(--rs-text-subtle);
+        }
+        &::-webkit-search-cancel-button {
+            cursor: pointer;
+        }
+    }
+}
+
+.rs_icon_btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: var(--rs-radius);
+    background: transparent;
+    color: var(--rs-text-muted);
+    transition: background-color .15s, color .15s;
+
+    &:hover {
+        background: var(--rs-hover-bg);
+        color: var(--rs-text);
+    }
+}
+
+// ---- Navigation ----------------------------------------------------------------
+.rs_nav {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2px 10px 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rs-surface-3) transparent;
+
+    .rs_collapsed & {
+        padding-inline: 12px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.rs_empty {
+    padding: 16px 12px;
+    color: var(--rs-text-subtle);
+    font-size: .85rem;
+}
+
+.rs_group + .rs_group {
+    margin-top: 6px;
+}
+
+.rs_group_title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 10px 6px;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--rs-text-subtle);
+    text-transform: uppercase;
+
+    .rs_dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--rs-primary);
+        box-shadow: 0 0 0 3px var(--rs-active-bg);
+    }
+}
+
+.rs_group_sep {
+    height: 1px;
+    margin: 10px 8px;
+    background: var(--rs-border-soft);
+}
+
+// App row
+.rs_app {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 42px;
+    margin-block: 1px;
+    padding: 6px 10px;
+    border-radius: var(--rs-radius);
+    color: var(--rs-text);
+    font-size: .92rem;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: background-color .15s, color .15s;
+
+    &:hover {
+        background: var(--rs-hover-bg);
+        color: var(--rs-text);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--rs-primary);
+        outline-offset: -2px;
+    }
+
+    &.rs_current {
+        color: var(--rs-primary-fg);
+        font-weight: 600;
+
+        .rs_app_icon {
+            box-shadow: 0 0 0 2px var(--rs-primary);
+        }
+    }
+
+    // Collapsed or app without open submenu: highlight the whole row
+    .rs_collapsed &.rs_current,
+    &.rs_current:not(.rs_open) {
+        background: var(--rs-active-bg);
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset-block: 8px;
+            inset-inline-start: -10px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: var(--rs-primary);
+
+            .rs_collapsed & {
+                inset-inline-start: -12px;
+            }
+        }
+    }
+
+    &.rs_flyout_open {
+        background: var(--rs-hover-bg);
+    }
+
+    .rs_collapsed & {
+        justify-content: center;
+        padding: 6px 0;
+        gap: 0;
+
+        .rs_app_label, .rs_chevron {
+            display: none;
+        }
+    }
+}
+
+.rs_app_icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow .15s;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .rs_app_icon_fa, .rs_app_icon_letter {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: .9rem;
+    }
+
+    .rs_app_icon_letter {
+        background: var(--rs-active-bg);
+        color: var(--rs-primary-fg);
+        font-weight: 700;
+    }
+}
+
+.rs_app_label, .rs_item_label {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.rs_chevron {
+    flex: 0 0 auto;
+    font-size: .7rem;
+    color: var(--rs-text-subtle);
+    transition: transform .2s var(--rs-ease);
+
+    .rs_open > & {
+        transform: rotate(180deg);
+    }
+}
+
+// Sub-items
+.rs_items {
+    position: relative;
+    margin: 2px 0 6px;
+    padding-inline-start: 24px !important;
+    animation: rs-slide-in .18s var(--rs-ease);
+
+    // guide line under the app icon
+    &::before {
+        content: "";
+        position: absolute;
+        inset-block: 4px;
+        inset-inline-start: 23px;
+        width: 1px;
+        background: var(--rs-border-soft);
+    }
+
+    .rs_items {
+        padding-inline-start: 12px !important;
+        margin-bottom: 2px;
+
+        &::before {
+            inset-inline-start: 11px;
+        }
+    }
+}
+
+@keyframes rs-slide-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: none; }
+}
+
+.rs_item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    margin-block: 1px;
+    padding: 5px 12px;
+    padding-inline-start: 16px;
+    border-radius: var(--rs-radius-sm);
+    color: var(--rs-text-muted);
+    font-size: .875rem;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: background-color .15s, color .15s;
+
+    &:hover {
+        background: var(--rs-hover-bg);
+        color: var(--rs-text);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--rs-primary);
+        outline-offset: -2px;
+    }
+
+    &.rs_has_children {
+        color: var(--rs-text);
+        font-weight: 600;
+    }
+
+    &.rs_contains_active:not(.rs_open) {
+        color: var(--rs-primary-fg);
+    }
+
+    &.rs_active {
+        background: var(--rs-active-bg);
+        color: var(--rs-primary-fg);
+        font-weight: 600;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset-block: 7px;
+            inset-inline-start: -2px;
+            width: 3px;
+            border-radius: 3px;
+            background: var(--rs-primary);
+        }
+    }
+}
+
+// ---- Footer ----------------------------------------------------------------------
+.rs_footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px;
+    border-top: 1px solid var(--rs-border-soft);
+
+    .rs_collapsed & {
+        align-items: center;
+        padding-inline: 12px;
+    }
+}
+
+.rs_footer_btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 40px;
+    padding: 6px 12px;
+    border: 0;
+    border-radius: var(--rs-radius);
+    background: transparent;
+    color: var(--rs-text-muted);
+    font-size: .875rem;
+    font-weight: 500;
+    text-align: start;
+    transition: background-color .15s, color .15s;
+
+    > i {
+        width: 22px;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    &:hover {
+        background: var(--rs-hover-bg);
+        color: var(--rs-text);
+    }
+
+    .rs_collapsed & {
+        justify-content: center;
+        width: 44px;
+        padding: 0;
+    }
+}
+
+// ---- Collapsed flyout ---------------------------------------------------------------
+.rs_flyout {
+    position: fixed;
+    inset-inline-start: calc(var(--rs-sidebar-w-collapsed) + 8px);
+    z-index: $zindex-fixed + 2;
+    width: 260px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid var(--rs-border-soft);
+    border-radius: var(--rs-radius-md);
+    background: var(--rs-surface);
+    box-shadow: var(--rs-shadow-md);
+    animation: rs-fade-in .15s ease;
+
+    .rs_flyout_title {
+        padding: 6px 10px 8px;
+        font-weight: 700;
+        color: var(--rs-text);
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    > .rs_items {
+        padding-inline-start: 0 !important;
+        margin: 0;
+
+        &::before {
+            display: none;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rs_sidebar, .rs_items, .rs_chevron, .rs_logo, .rs_flyout, .o_web_client.rs_has_sidebar {
+        animation: none !important;
+        transition: none !important;
+    }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.point_of_sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='product_and_category_block']" position="after">
+                <block id="default_customer_block" title="Default Customer in POS Order">
+                    <label for="pos_default_partner_id" string="Default Customer" />
+                    <div class="text-muted">
+                        Set a default customer for POS orders.
+                    </div>
+                    <field name="pos_default_partner_id" class="oe_inline" />
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

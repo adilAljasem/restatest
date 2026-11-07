@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Label in the report language; with "Arabic and English" the English label is printed under it. -->
+    <t t-name="pos_closing_report.Label">
+        <span class="pcr-label"><span t-esc="L[k]"/><small t-if="L2[k]" class="pcr-l2" t-esc="L2[k]"/></span>
+    </t>
+
+    <!-- label ........ value -->
+    <t t-name="pos_closing_report.Row">
+        <div t-attf-class="pcr-row {{ rowClass or '' }}">
+            <t t-call="pos_closing_report.Label"/>
+            <span t-attf-class="pcr-value {{ valueClass or '' }}" t-esc="v"/>
+        </div>
+    </t>
+
+    <t t-name="pos_closing_report.Band">
+        <div class="pcr-band"><span t-esc="L[k]"/><small t-if="L2[k]" class="pcr-l2" t-esc="L2[k]"/></div>
+    </t>
+
+    <!-- Item name, with the English name under the Arabic one when both languages are printed -->
+    <t t-name="pos_closing_report.ItemName">
+        <span class="pcr-item-name"><span t-esc="item.name"/><small t-if="item.name2" class="pcr-l2" t-esc="item.name2"/></span>
+    </t>
+
+    <t t-name="pos_closing_report.ClosingReceipt">
+        <div t-attf-class="pos-receipt pcr-ticket {{ rootClass }}" t-att-dir="d.direction" t-att-lang="d.lang == 'en' ? 'en' : 'ar'">
+
+            <!-- ============ Header ============ -->
+            <div class="pcr-head">
+                <div class="pcr-company" t-esc="d.company"/>
+                <div class="pcr-title">
+                    <span t-esc="d.kind == 'day' ? L.day_title : L.cashier_title"/>
+                    <small t-if="L2.cashier_title" class="pcr-l2" t-esc="d.kind == 'day' ? L2.day_title : L2.cashier_title"/>
+                </div>
+            </div>
+            <div class="pcr-details">
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="d.kind == 'day' ? 'branches' : 'branch'"/><t t-set="v" t-value="d.branch"/></t>
+                <t t-if="d.kind == 'cashier'">
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'employee'"/><t t-set="v" t-value="d.cashier"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'session'"/><t t-set="v" t-value="d.session"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'opening_date'"/><t t-set="v" t-value="d.start_at"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'closing_date'"/><t t-set="v" t-value="d.stop_at"/></t>
+                </t>
+                <t t-else="">
+                    <div class="pcr-business-date">
+                        <t t-call="pos_closing_report.Label"><t t-set="k" t-value="'business_date'"/></t>
+                        <div class="pcr-big" t-esc="d.business_date"/>
+                    </div>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'from'"/><t t-set="v" t-value="d.period_from"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'to'"/><t t-set="v" t-value="d.period_to"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'sessions_count'"/><t t-set="v" t-value="d.sessions_count"/></t>
+                </t>
+            </div>
+
+            <!-- ============ Cashier: closing count ============ -->
+            <t t-if="d.kind == 'cashier'">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'cash_count'"/></t>
+                <div t-foreach="d.lines" t-as="line" t-key="line_index" class="pcr-block">
+                    <div class="pcr-block-title">
+                        <span t-esc="line.name"/><t t-if="!line.diff_known"> *</t>
+                        <small class="pcr-muted"> (<t t-esc="line.type_label"/>)</small>
+                        <small t-if="line.name2" class="pcr-l2" t-esc="line.name2"/>
+                    </div>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'expected'"/><t t-set="v" t-value="money(line.expected)"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'counted'"/><t t-set="v" t-value="money(line.counted)"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'difference'"/><t t-set="v" t-value="money(line.difference)"/><t t-set="rowClass" t-value="'pcr-strong'"/></t>
+                </div>
+                <div class="pcr-totals">
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total_expected'"/><t t-set="v" t-value="money(d.expected_total)"/><t t-set="rowClass" t-value="''"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total_counted'"/><t t-set="v" t-value="money(d.counted_total)"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total_difference'"/><t t-set="v" t-value="money(d.difference_total)"/><t t-set="rowClass" t-value="'pcr-grand'"/></t>
+                </div>
+                <div t-attf-class="pcr-status pcr-status-{{ d.status }}">
+                    <t t-esc="d.status_label"/>
+                </div>
+                <div t-if="d.has_retro" class="pcr-note" t-esc="L.retro_note"/>
+            </t>
+
+            <!-- ============ Day: sessions ============ -->
+            <t t-if="d.kind == 'day' and show.sessions">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'sessions'"/></t>
+                <div t-if="!d.sessions.length" class="pcr-empty" t-esc="L.none"/>
+                <div t-foreach="d.sessions" t-as="s" t-key="s_index" class="pcr-block">
+                    <div class="pcr-block-title pcr-split">
+                        <span t-esc="s.cashier"/>
+                        <span t-attf-class="pcr-tag pcr-status-{{ s.status }}" t-esc="s.status_label"/>
+                    </div>
+                    <div class="pcr-sub"><t t-esc="s.name"/><t t-if="d.sessions_count and s.branch and d.branch != s.branch"> - <t t-esc="s.branch"/></t></div>
+                    <div class="pcr-sub pcr-ltr-text"><t t-esc="s.start_at"/> → <t t-esc="s.stop_at or '...'"/></div>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'expected'"/><t t-set="v" t-value="money(s.expected_total)"/><t t-set="rowClass" t-value="''"/></t>
+                    <t t-if="s.counted_known">
+                        <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'counted'"/><t t-set="v" t-value="money(s.counted_total)"/></t>
+                        <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'cash_difference'"/><t t-set="v" t-value="money(s.cash_difference)"/></t>
+                        <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'bank_difference'"/><t t-set="v" t-value="money(s.bank_difference)"/></t>
+                        <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'difference'"/><t t-set="v" t-value="money(s.difference_total)"/><t t-set="rowClass" t-value="'pcr-strong'"/></t>
+                    </t>
+                    <div t-else="" class="pcr-note" t-esc="L.open_note"/>
+                </div>
+                <div class="pcr-totals" t-if="d.sessions.length">
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total_expected'"/><t t-set="v" t-value="money(d.expected_total)"/><t t-set="rowClass" t-value="''"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total_counted'"/><t t-set="v" t-value="money(d.counted_total)"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'cash_difference'"/><t t-set="v" t-value="money(d.cash_difference)"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'bank_difference'"/><t t-set="v" t-value="money(d.bank_difference)"/></t>
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total_difference'"/><t t-set="v" t-value="money(d.difference_total)"/><t t-set="rowClass" t-value="'pcr-grand'"/></t>
+                </div>
+            </t>
+
+            <!-- ============ Day: payments ============ -->
+            <t t-if="d.kind == 'day' and show.payments">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'payments'"/></t>
+                <div t-if="!d.payments.length" class="pcr-empty" t-esc="L.none"/>
+                <div t-foreach="d.payments" t-as="item" t-key="item_index" class="pcr-row">
+                    <span class="pcr-label"><t t-call="pos_closing_report.ItemName"/> <small class="pcr-muted">(<t t-esc="item.count"/>)</small></span>
+                    <span class="pcr-value" t-esc="money(item.amount)"/>
+                </div>
+                <t t-if="d.payments.length">
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'total'"/><t t-set="v" t-value="money(d.payments_total)"/><t t-set="rowClass" t-value="'pcr-grand'"/></t>
+                </t>
+            </t>
+
+            <!-- ============ Sales summary ============ -->
+            <t t-if="show.summary">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'sales_summary'"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'orders_count'"/><t t-set="v" t-value="d.summary.orders_count"/><t t-set="rowClass" t-value="''"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'gross_sales'"/><t t-set="v" t-value="money(d.summary.gross_sales)"/></t>
+                <t t-if="show.refunds">
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'refunds_total'"/><t t-set="v" t-value="money(d.summary.refunds_total)"/></t>
+                </t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'net_sales'"/><t t-set="v" t-value="money(d.summary.net_sales)"/><t t-set="rowClass" t-value="'pcr-strong'"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'taxes'"/><t t-set="v" t-value="money(d.summary.taxes)"/><t t-set="rowClass" t-value="''"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'average_ticket'"/><t t-set="v" t-value="money(d.summary.average_ticket)"/></t>
+                <t t-if="d.summary.guests">
+                    <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'guests'"/><t t-set="v" t-value="d.summary.guests"/></t>
+                </t>
+            </t>
+
+            <!-- ============ Sold items ============ -->
+            <t t-if="show.items">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'sold_items'"/></t>
+                <div t-if="!d.items.length" class="pcr-empty" t-esc="L.none"/>
+                <div t-foreach="d.items" t-as="item" t-key="item_index" class="pcr-item">
+                    <span class="pcr-qty" t-esc="qty(item.qty)"/>
+                    <t t-call="pos_closing_report.ItemName"/>
+                    <span class="pcr-value" t-esc="money(item.amount)"/>
+                </div>
+                <div t-if="d.items.length" class="pcr-item pcr-grand">
+                    <span class="pcr-qty" t-esc="qty(d.items_qty)"/>
+                    <span class="pcr-item-name" t-esc="L.items_total"/>
+                    <span class="pcr-value" t-esc="money(d.items_total)"/>
+                </div>
+            </t>
+
+            <!-- ============ Refunds ============ -->
+            <t t-if="show.refunds">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'refunds'"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'refund_orders'"/><t t-set="v" t-value="d.summary.refunds_count"/><t t-set="rowClass" t-value="''"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'amount'"/><t t-set="v" t-value="money(-d.summary.refunds_total)"/><t t-set="rowClass" t-value="'pcr-strong'"/></t>
+                <t t-if="d.refund_items.length">
+                    <div class="pcr-subtitle"><t t-call="pos_closing_report.Label"><t t-set="k" t-value="'refunded_items'"/></t></div>
+                    <div t-foreach="d.refund_items" t-as="item" t-key="item_index" class="pcr-item">
+                        <span class="pcr-qty" t-esc="qty(item.qty)"/>
+                        <t t-call="pos_closing_report.ItemName"/>
+                        <span class="pcr-value" t-esc="money(item.amount)"/>
+                    </div>
+                </t>
+                <t t-if="d.refund_orders.length">
+                    <div class="pcr-subtitle"><t t-call="pos_closing_report.Label"><t t-set="k" t-value="'refund_orders'"/></t></div>
+                    <div t-foreach="d.refund_orders" t-as="o" t-key="o_index" class="pcr-order">
+                        <span class="pcr-order-ref"><t t-esc="o.ref"/><t t-if="o.origin"> ← <t t-esc="o.origin"/></t></span>
+                        <span class="pcr-order-meta"><t t-esc="o.time"/> <t t-esc="o.employee"/></span>
+                        <span class="pcr-value" t-esc="money(o.amount)"/>
+                    </div>
+                    <div t-if="d.refund_more" class="pcr-sub">+ <t t-esc="d.refund_more"/> <t t-esc="L.more"/></div>
+                </t>
+            </t>
+
+            <!-- ============ Cancellations ============ -->
+            <t t-if="show.cancellations">
+                <t t-call="pos_closing_report.Band"><t t-set="k" t-value="'cancellations'"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'cancelled_orders'"/><t t-set="v" t-value="d.summary.cancelled_count"/><t t-set="rowClass" t-value="''"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'amount'"/><t t-set="v" t-value="money(d.summary.cancelled_total)"/><t t-set="rowClass" t-value="'pcr-strong'"/></t>
+                <div t-foreach="d.cancelled_orders" t-as="o" t-key="o_index" class="pcr-order">
+                    <span class="pcr-order-ref" t-esc="o.ref"/>
+                    <span class="pcr-order-meta"><t t-esc="o.time"/> <t t-esc="o.employee"/></span>
+                    <span class="pcr-value" t-esc="money(o.amount)"/>
+                </div>
+                <div t-if="d.cancelled_more" class="pcr-sub">+ <t t-esc="d.cancelled_more"/> <t t-esc="L.more"/></div>
+            </t>
+
+            <!-- ============ Footer ============ -->
+            <div class="pcr-footer">
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'printed_at'"/><t t-set="v" t-value="d.printed_at"/><t t-set="rowClass" t-value="''"/></t>
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'printed_by'"/><t t-set="v" t-value="d.printed_by"/></t>
+            </div>
+            <t t-if="d.kind == 'cashier'">
+                <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'employee_signature'"/><t t-set="v" t-value="'..............'"/><t t-set="rowClass" t-value="'pcr-signature'"/></t>
+            </t>
+            <t t-call="pos_closing_report.Row"><t t-set="k" t-value="'manager_signature'"/><t t-set="v" t-value="'..............'"/><t t-set="rowClass" t-value="'pcr-signature'"/></t>
+        </div>
+    </t>
+</templates>

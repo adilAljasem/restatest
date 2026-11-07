@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_session_handover.TableHandoverPopup">
+        <Dialog title="props.title" size="'lg'" contentClass="'pino-handover-popup'" bodyClass="'p-0'">
+            <div class="pino-handover-summary">
+                <div>
+                    <div class="pino-handover-summary-label">Open tables</div>
+                    <div class="pino-handover-summary-value" t-esc="props.scopes.length"/>
+                </div>
+                <div>
+                    <div class="pino-handover-summary-label">Unpaid orders</div>
+                    <div class="pino-handover-summary-value" t-esc="props.allScope.orderCount"/>
+                </div>
+                <div>
+                    <div class="pino-handover-summary-label">Total</div>
+                    <div class="pino-handover-summary-value" t-esc="props.allScope.formattedAmount"/>
+                </div>
+            </div>
+
+            <div class="pino-handover-targets">
+                <div class="pino-handover-summary-label">Hand over to</div>
+                <div class="pino-handover-target-list">
+                    <button type="button"
+                            class="pino-handover-target"
+                            t-att-class="{'is-selected': !state.targetId}"
+                            t-on-click="() => this.selectTarget(0)">
+                        <i class="fa fa-clock-o me-1"/>Next session of this POS
+                    </button>
+                    <button t-foreach="this.targetOptions"
+                            t-as="target"
+                            t-key="target.id"
+                            type="button"
+                            class="pino-handover-target"
+                            t-att-class="{'is-selected': state.targetId === target.id}"
+                            t-on-click="() => this.selectTarget(target.id)">
+                        <i class="fa fa-user me-1"/><t t-esc="target.label"/>
+                    </button>
+                </div>
+                <div t-if="!this.targetOptions.length" class="pino-handover-target-empty">
+                    No other cashier is open on this floor right now.
+                </div>
+            </div>
+
+            <div t-if="props.isClosing" class="pino-handover-closing-note">
+                <t t-esc="this.closingNote"/>
+            </div>
+
+            <div class="pino-handover-table-list">
+                <button t-foreach="props.scopes"
+                        t-as="scope"
+                        t-key="scope.id"
+                        type="button"
+                        class="pino-handover-row"
+                        t-att-class="{
+                            'is-selected': this.isSelected(scope),
+                            'is-current': scope.isCurrent,
+                            'is-disabled': scope.isBlocked,
+                            'is-readonly': props.isClosing,
+                        }"
+                        t-on-click="() => this.toggleScope(scope)">
+                    <span class="pino-handover-check">
+                        <i t-att-class="this.isSelected(scope) ? 'fa fa-check' : 'fa fa-square-o'"/>
+                    </span>
+                    <span class="pino-handover-main">
+                        <span class="pino-handover-title-line">
+                            <span class="pino-handover-title" t-esc="scope.tableName"/>
+                            <span t-if="scope.isCurrent" class="badge text-bg-primary">Current</span>
+                            <span t-if="scope.isBlocked" class="badge text-bg-warning">Payment lines</span>
+                        </span>
+                        <span class="pino-handover-meta">
+                            <span t-esc="scope.orderLabel"/>
+                            <span t-if="scope.blockedCount" t-esc="scope.blockedLabel"/>
+                        </span>
+                    </span>
+                    <span class="pino-handover-amount" t-esc="scope.formattedAmount"/>
+                </button>
+            </div>
+
+            <div t-if="this.blockedCount" class="pino-handover-warning">
+                Remove or validate payment lines before transferring marked tables.
+            </div>
+
+            <t t-set-slot="footer">
+                <div class="pino-handover-footer">
+                    <button class="btn btn-lg btn-secondary" t-on-click="props.close">Cancel</button>
+                    <button t-if="!props.isClosing"
+                            class="btn btn-lg btn-outline-primary"
+                            t-att-disabled="!this.canTransferAll"
+                            t-on-click="confirmAll">
+                        <t t-esc="this.allSummary"/>
+                    </button>
+                    <button class="btn btn-lg btn-primary"
+                            t-att-disabled="props.isClosing ? !this.canTransferAll : !state.selectedIds.length"
+                            t-on-click="confirmSelected">
+                        <t t-esc="this.selectedSummary"/>
+                    </button>
+                </div>
+            </t>
+        </Dialog>
+    </t>
+</templates>

@@ -1,0 +1,26 @@
+{
+    'name': 'ESS Payroll - Payslips, Objections, Adjustments Bridge',
+    'summary': 'Payslips in the employee portal (PDF, lines, source of every adjustment), draft publication '
+               'for review, payslip objections, pending payroll adjustments injected as payslip inputs',
+    'description': 'Payslips in the employee portal, payroll adjustments into payslip inputs, payslip objections. See README.md.',
+    'version': '19.0.1.0.0',
+    'category': 'Human Resources/Payroll',
+    'author': 'Basic Solution',
+    'website': 'https://resta.sa',
+    'license': 'LGPL-3',
+    'depends': ['bs_hr_ess_base', 'hr_payroll'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/payroll_rules.xml',
+        'data/ir_sequence_data.xml',
+        'data/payslip_input_type_data.xml',
+        'data/approval_flow_data.xml',
+        'views/payslip_objection_views.xml',
+        'views/adjustment_views.xml',
+        'views/hr_payslip_actions.xml',
+        'views/menus.xml',
+        'views/portal_templates.xml',
+    ],
+    'installable': True,
+    'auto_install': ['bs_hr_ess_base', 'hr_payroll'],
+}

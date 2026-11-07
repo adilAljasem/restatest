@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_pos_order_form_combo_modifier_details" model="ir.ui.view">
+        <field name="name">pos.order.form.combo.modifier.details</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Combo &amp; Modifier Details" name="combo_modifier_details">
+                    <field name="lines" nolabel="1" readonly="1"
+                           domain="['|', '|', '|', '|',
+                                    ('combo_parent_id', '!=', False),
+                                    ('combo_line_ids', '!=', False),
+                                    ('modifier_parent_line_id', '!=', False),
+                                    ('modifier_child_line_ids', '!=', False),
+                                    ('modifier_configuration_key', '!=', False)]">
+                        <list string="Combo &amp; Modifier Details" create="0" delete="0">
+                            <field name="is_modifier_line" column_invisible="True"/>
+                            <field name="combo_parent_id" column_invisible="True"/>
+                            <field name="combo_line_ids" column_invisible="True"/>
+                            <field name="modifier_parent_line_id" column_invisible="True"/>
+                            <field name="modifier_child_line_ids" column_invisible="True"/>
+                            <field name="modifier_configuration_key" column_invisible="True"/>
+                            <field name="combo_modifier_parent_product_name" string="Parent Product"/>
+                            <field name="full_product_name" string="Product / Combo Choice"/>
+                            <field name="modifier_option_name" string="Modifier"/>
+                            <field name="modifier_instruction_summary" string="Instructions"/>
+                            <field name="qty"/>
+                            <field name="combo_item_extra_price" optional="hide" widget="monetary"/>
+                            <field name="price_unit" widget="monetary"/>
+                            <field name="price_subtotal_incl" string="Total" widget="monetary"/>
+                            <field name="currency_id" column_invisible="True"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

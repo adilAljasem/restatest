@@ -1,0 +1,1461 @@
+// Bilingual POS — Classic thermal receipt (80mm paper, ~70mm inner + safe padding)
+// Black & white only. Qty | Item | Price (LTR table). No card totals.
+// ----------------------------------------------------------------------------
+
+$bilingual-ink: #000;
+
+// SAR symbol is rendered as an inline SVG via .bilingual-sar-symbol — no Saudi Riyal
+// icon font is required (vio's @font-face only ships an SVG file, which modern
+// browsers no longer render).
+$bilingual-receipt-font-stack: "Tajawal", "Cairo", Arial, Tahoma, sans-serif;
+
+/* Thermal-safe: no horizontal clip; padding on root, not double 80mm+pad */
+.pos-receipt.bilingual-receipt,
+.pos-receipt.bilingual-receipt * {
+    box-sizing: border-box !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt {
+    /*rtl:ignore*/
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+}
+
+.pos-receipt.bilingual-receipt {
+    width: 76mm !important;
+    max-width: 76mm !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    padding: 2mm 1mm !important;
+    overflow: visible !important;
+    color: $bilingual-ink !important;
+    background: #fff;
+    font-family: $bilingual-receipt-font-stack !important;
+    font-size: 12px;
+    line-height: 1.28;
+    /*rtl:ignore*/
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+
+    .bilingual-ltr {
+        direction: ltr;
+        unicode-bidi: embed;
+        display: inline-block;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .bilingual-rcpt,
+    .bilingual-receipt__sheet.bilingual-rcpt {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .receipt-inner {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    .bilingual-receipt__sheet:not(.bilingual-rcpt) {
+        width: 100%;
+    }
+
+    /* ----- Full-width rules (classic dashed/solid look = solid 1px) ----- */
+    .bilingual-line {
+        height: 0;
+        margin: 6px 0;
+        border: 0;
+        border-top: 1px solid $bilingual-ink;
+        clear: both;
+
+        &--spaced {
+            margin: 8px 0;
+        }
+
+        &--tight {
+            margin: 4px 0;
+        }
+    }
+
+    /* ----- Header ----- */
+    .bilingual-hd {
+        text-align: center;
+        margin-bottom: 2px;
+    }
+
+    .bilingual-hd-logo {
+        margin: 2px 0 4px;
+        width: 100%;
+        padding: 0;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bilingual-hd-logo-img {
+        display: block;
+        margin: 0 auto;
+        max-height: 125px;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .bilingual-tax-invoice-title {
+        margin: 0 0 3px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 1.2;
+    }
+
+    .bilingual-hd-name {
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    /* ----- Branch (warehouse) under company name ----- */
+    .bilingual-branch {
+        margin-top: 6px;
+        padding: 0 2px;
+        text-align: center;
+    }
+
+    .bilingual-branch__card {
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 6px 8px 7px;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        border-radius: 2px;
+        background: #fff;
+        text-align: center;
+    }
+
+    .bilingual-branch__block {
+        margin-top: 5px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &--name {
+            padding-bottom: 4px;
+            margin-bottom: 2px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.28);
+        }
+    }
+
+    .bilingual-branch__labels {
+        display: block;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 1.2;
+        margin-bottom: 2px;
+        color: rgba(0, 0, 0, 0.72);
+    }
+
+    .bilingual-branch__ar {
+        font-weight: 800;
+    }
+
+    .bilingual-branch__slash {
+        margin: 0 3px;
+        font-weight: 600;
+        opacity: 0.65;
+    }
+
+    .bilingual-branch__en {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 7px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .bilingual-branch__value {
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1.35;
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    .bilingual-branch__value--name {
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+    .bilingual-branch__value--addr {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 9px;
+        text-align: center !important;
+    }
+
+    .bilingual-branch__value--phone {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.02em;
+    }
+
+    /* ----- Order # — thin border only (reference style) ----- */
+    .bilingual-order-wrap {
+        text-align: center;
+        margin: 3px 0 2px;
+    }
+
+    .bilingual-order-box {
+        display: inline-block;
+        min-width: 76px;
+        padding: 6px 12px 8px;
+        border: 1px solid $bilingual-ink;
+        font-weight: 800;
+        line-height: 1.08;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .bilingual-order-txt {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 1.05;
+        vertical-align: baseline;
+    }
+
+    .bilingual-order-hash {
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 800;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.05;
+        vertical-align: baseline;
+    }
+
+    .bilingual-order-num {
+        display: block;
+        font-size: 28px;
+        font-weight: 800;
+        font-family: Arial, Helvetica, sans-serif;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.08;
+        text-align: center;
+    }
+
+    /* ----- Metadata ----- */
+    .bilingual-meta {
+        display: block;
+        width: max-content;
+        max-width: 100%;
+        margin: 2px auto 3px;
+        padding: 1px 0;
+        text-align: right;
+    }
+
+    .bilingual-meta-line {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.38;
+        padding: 1px 0;
+        text-align: right;
+        word-break: break-word;
+    }
+
+    .bilingual-meta-lbl {
+        font-weight: 800;
+    }
+
+    .bilingual-meta-sep {
+        font-weight: 600;
+    }
+
+    .bilingual-meta-val {
+        font-weight: 700;
+    }
+
+    .bilingual-meta-lbl-en {
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    /* ----- Product table: fit inner width; safe horizontal padding (anti-clip) ----- */
+    .items-table-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 8px auto 10px auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        display: block !important;
+    }
+
+    .classic-items-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed !important;
+        border-collapse: collapse !important;
+        border-spacing: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        font-family: $bilingual-receipt-font-stack !important;
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+        color: #000 !important;
+        border-top: 1px solid #000 !important;
+    }
+
+    .classic-items-table thead tr {
+        border-bottom: 1px solid #000 !important;
+    }
+
+    .classic-items-table th,
+    .classic-items-table td {
+        overflow: visible !important;
+        padding-left: 3px !important;
+        padding-right: 3px !important;
+    }
+
+    .classic-items-table th {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        text-align: center !important;
+        vertical-align: bottom !important;
+        font-weight: 700 !important;
+        line-height: 1.1 !important;
+    }
+
+    .classic-items-table th .ar {
+        display: block !important;
+        direction: rtl !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+    }
+
+    .classic-items-table th .en {
+        display: block !important;
+        direction: ltr !important;
+        font-size: 9px !important;
+        font-weight: 700 !important;
+    }
+
+    .classic-items-table td {
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+        border-bottom: 1px solid #999 !important;
+        vertical-align: middle !important;
+        line-height: 1.25 !important;
+    }
+
+    .classic-items-table .qty-cell,
+    .classic-items-table .qty-head {
+        width: 22% !important;
+        text-align: center !important;
+        padding-left: 4px !important;
+        white-space: nowrap !important;
+        overflow: visible !important;
+        direction: ltr !important;
+        font-weight: 600 !important;
+    }
+
+    .classic-items-table .item-cell,
+    .classic-items-table .item-head {
+        width: 48% !important;
+        text-align: center !important;
+        direction: rtl !important;
+        unicode-bidi: isolate !important;
+        font-weight: 600 !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .classic-items-table .price-cell,
+    .classic-items-table .price-head {
+        width: 30% !important;
+        text-align: center !important;
+        direction: ltr !important;
+        padding-right: 4px !important;
+        white-space: nowrap !important;
+        overflow: visible !important;
+        font-weight: 600 !important;
+    }
+
+    .classic-items-table .item-cell .item-suben {
+        display: block !important;
+        font-size: 9px !important;
+        font-weight: 600 !important;
+        margin-top: 2px !important;
+        direction: ltr !important;
+    }
+
+    .classic-items-table .item-cell .bilingual-modifier-summary {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 4px !important;
+        font-size: 11px !important;
+        line-height: 1.3 !important;
+        font-weight: 700 !important;
+        color: #000 !important;
+        text-align: center !important;
+        direction: rtl !important;
+        unicode-bidi: isolate !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .classic-items-table .item-cell .bilingual-modifier-summary div {
+        display: block !important;
+        width: 100% !important;
+        margin: 1px 0 0 !important;
+    }
+
+    .classic-items-table .classic-items-note-cell {
+        padding-top: 4px !important;
+        padding-bottom: 10px !important;
+        vertical-align: top !important;
+        border-bottom: 1px solid #999 !important;
+        overflow: visible !important;
+    }
+
+    /* Professional note blocks — line-level + invoice-level */
+    .bilingual-note {
+        text-align: right;
+        width: 100%;
+        padding: 7px 9px 8px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        border-radius: 2px;
+        background: #fafafa;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    .bilingual-note--line {
+        margin: 2px 0 0;
+        font-size: 10px;
+        line-height: 1.35;
+    }
+
+    .bilingual-note--order {
+        margin: 4px auto 6px;
+        max-width: 100%;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .bilingual-note--basic {
+        list-style: none;
+        margin: 6px 0 !important;
+        padding: 6px 8px 7px !important;
+    }
+
+    .bilingual-note__head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 2px 4px;
+        margin-bottom: 4px;
+        padding-bottom: 4px;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.28);
+        font-weight: 800;
+        color: rgba(0, 0, 0, 0.88);
+    }
+
+    .bilingual-note__icon {
+        margin-left: 4px;
+        opacity: 0.85;
+        font-size: 9px;
+    }
+
+    .bilingual-note__label {
+        font-weight: 800;
+        letter-spacing: 0.02em;
+    }
+
+    .bilingual-note__slash {
+        font-weight: 600;
+        opacity: 0.55;
+        margin: 0 1px;
+    }
+
+    .bilingual-note__label-en {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 8px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        opacity: 0.75;
+    }
+
+    .bilingual-note__body {
+        font-weight: 700;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: #000;
+        text-align: right;
+        margin: 0;
+        padding-top: 2px;
+        line-height: 1.45;
+    }
+
+    .items-table-wrap .classic-items-table tr {
+        display: table-row !important;
+    }
+
+    .items-table-wrap .classic-items-table th,
+    .items-table-wrap .classic-items-table td {
+        display: table-cell !important;
+    }
+
+    /* ----- Subtotal / VAT / total / payment: amounts inset from left edge ----- */
+    .bilingual-sums,
+    .bilingual-pay {
+        padding: 1px 0;
+        max-width: 100%;
+        overflow: visible;
+    }
+
+    .summary-row {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: table !important;
+        table-layout: fixed !important;
+        margin: 6px 0 !important;
+        padding: 0 3px !important;
+        overflow: visible !important;
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .summary-amount {
+        display: table-cell !important;
+        width: 35% !important;
+        text-align: left !important;
+        direction: ltr !important;
+        white-space: nowrap !important;
+        padding-left: 4px !important;
+        overflow: visible !important;
+        font-weight: 700 !important;
+        font-family: Arial, Helvetica, sans-serif;
+        font-variant-numeric: tabular-nums;
+        vertical-align: top;
+    }
+
+    /* Saudi Riyal symbol — inline <svg> emitted from JS so html-to-image
+       (used by POS print) always rasterises it. fill="currentColor" inherits
+       receipt ink color. */
+    svg.bilingual-sar-symbol {
+        display: inline-block;
+        width: 0.95em;
+        height: 1em;
+        margin: 0 0.18em;
+        vertical-align: -0.12em;
+        flex-shrink: 0;
+        overflow: visible;
+        fill: currentColor;
+    }
+
+    .bilingual-currency-symbol {
+        display: inline-block;
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+
+    .summary-label {
+        display: table-cell !important;
+        width: 65% !important;
+        text-align: right !important;
+        direction: rtl !important;
+        padding-right: 4px !important;
+        line-height: 1.15;
+        vertical-align: top;
+        word-wrap: break-word;
+        overflow: visible !important;
+    }
+
+    .summary-label .ar {
+        display: block;
+        font-weight: 700;
+        font-size: 10px;
+    }
+
+    .summary-label .en {
+        display: block;
+        font-weight: 700;
+        font-size: 8px;
+        text-transform: uppercase;
+        direction: ltr;
+        text-align: right;
+        margin-top: 1px;
+    }
+
+    .summary-label--plain {
+        font-weight: 700;
+        font-size: 10px;
+    }
+
+    .summary-hint {
+        display: block;
+        font-size: 9px;
+        font-weight: 600;
+        margin-top: 2px;
+        direction: ltr;
+        text-align: right;
+    }
+
+    .summary-taxname {
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        margin-top: 2px;
+    }
+
+    .summary-badge {
+        display: block;
+        font-size: 9px;
+        font-weight: 700;
+        margin-bottom: 2px;
+        direction: ltr;
+        text-align: right;
+    }
+
+    .total-row .summary-amount {
+        font-size: 15px;
+        font-weight: 800;
+    }
+
+    .total-row .summary-label .ar {
+        font-size: 12px;
+    }
+
+    .total-row {
+        padding-top: 4px;
+        margin-top: 2px;
+    }
+
+    .summary-row--emph {
+        border-top: 1px solid $bilingual-ink;
+        padding-top: 4px;
+        margin-top: 4px;
+    }
+
+    .summary-row--muted {
+        font-weight: 600;
+    }
+
+    .bilingual-sums .bilingual-line--tight {
+        margin: 2px 0 4px;
+    }
+
+    /* ----- Item count (sandwiched lines) ----- */
+    .bilingual-itemcount-wrap {
+        margin: 4px 0 2px;
+    }
+
+    .bilingual-itemcount {
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 0 2px;
+    }
+
+    .bilingual-itemcount--secondary {
+        font-size: 11px;
+        font-weight: 600;
+        padding-top: 0;
+        padding-bottom: 4px;
+    }
+
+    .bilingual-gnote {
+        /* structure from .bilingual-note; spacing only here */
+        font-size: inherit;
+    }
+
+    .bilingual-portal-hint {
+        font-size: 10px;
+        text-align: center;
+        margin: 4px 0;
+    }
+
+    .bilingual-portal-qr {
+        margin: 4px 0;
+        text-align: center;
+    }
+
+    .bilingual-portal-qr-img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .bilingual-portal-code,
+    .bilingual-portal-url {
+        font-size: 10px;
+        text-align: center;
+        word-break: break-all;
+        margin: 2px 0;
+    }
+
+    /* ----- Footer ----- */
+    .bilingual-ft {
+        text-align: center;
+        padding: 6px 2px 4px;
+    }
+
+    .bilingual-ft-custom {
+        font-size: 12px;
+        font-weight: 700;
+        white-space: pre-line;
+        margin-bottom: 6px;
+    }
+
+    .bilingual-ft-slogan {
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 5px;
+        letter-spacing: 0.03em;
+    }
+
+    .bilingual-ft-ar {
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 3px;
+    }
+
+    .bilingual-ft-en {
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .bilingual-before-qr {
+        margin-top: 8px;
+    }
+
+    .bilingual-zatca {
+        text-align: center;
+        margin: 6px 0 6px;
+    }
+
+    /* ~25–30mm QR */
+    .bilingual-zatca-img {
+        width: 27mm;
+        height: 27mm;
+        max-width: 90%;
+        object-fit: contain;
+        display: inline-block;
+    }
+
+    .bilingual-legal {
+        text-align: center;
+        font-size: 9px;
+        line-height: 1.35;
+        padding: 4px 0 4px;
+        border-top: 1px solid $bilingual-ink;
+        margin-top: 2px;
+    }
+
+    .bilingual-legal-row {
+        margin: 2px 0;
+        font-weight: 700;
+    }
+
+    .bilingual-legal-vat {
+        font-weight: 800;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-right: 4px;
+    }
+
+    .bilingual-legal-addr {
+        margin-top: 3px;
+        font-size: 9px;
+    }
+
+    .bilingual-cfg-footer {
+        font-size: 9px;
+        white-space: pre-line;
+        margin: 4px 0 0;
+        padding: 5px 2px;
+        border-top: 1px solid $bilingual-ink;
+        text-align: center;
+        line-height: 1.3;
+    }
+
+    .bilingual-ship {
+        font-size: 11px;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .bilingual-order-ref {
+        text-align: center;
+        margin-top: 6px;
+        padding-top: 5px;
+        border-top: 1px solid $bilingual-ink;
+    }
+
+    .bilingual-order-ref-lbl {
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+
+    .bilingual-order-ref-id {
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .bilingual-order-ref-date {
+        font-size: 10px;
+        margin-top: 2px;
+    }
+
+    &.bilingual-receipt--thermal {
+        width: 72mm !important;
+        max-width: 72mm !important;
+        min-width: 0 !important;
+    }
+
+    &.bilingual-receipt--basic {
+        width: 72mm !important;
+        max-width: 72mm !important;
+        margin: 0 auto !important;
+        padding: 2mm 1mm !important;
+        overflow: visible !important;
+    }
+}
+
+/* Receipt preview: match thermal padding + inner width (Odoo render-container) */
+.render-container .pos-receipt.bilingual-receipt {
+    width: 72mm !important;
+    max-width: 72mm !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    padding: 2mm 1mm !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    overflow: visible !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .bilingual-rcpt {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+/* Preview render-container: same anti-clip rules */
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 8px auto 10px auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    display: block !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    font-family: $bilingual-receipt-font-stack !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    color: #000 !important;
+    border-top: 1px solid #000 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table thead tr {
+    border-bottom: 1px solid #000 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table th,
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table td {
+    overflow: visible !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table th .ar {
+    display: block !important;
+    direction: rtl !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table th .en {
+    display: block !important;
+    direction: ltr !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table td {
+    border-bottom: 1px solid #999 !important;
+    vertical-align: middle !important;
+    line-height: 1.25 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table .qty-cell,
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table .qty-head {
+    width: 22% !important;
+    text-align: center !important;
+    padding-left: 4px !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    direction: ltr !important;
+    font-weight: 600 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table .item-cell,
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table .item-head {
+    width: 48% !important;
+    text-align: center !important;
+    direction: rtl !important;
+    unicode-bidi: isolate !important;
+    font-weight: 600 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table .price-cell,
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table .price-head {
+    width: 30% !important;
+    text-align: center !important;
+    direction: ltr !important;
+    padding-right: 4px !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    font-weight: 600 !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table tr {
+    display: table-row !important;
+}
+
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table th,
+.render-container .pos-receipt.bilingual-receipt .receipt-inner .items-table-wrap .classic-items-table td {
+    display: table-cell !important;
+}
+
+/*rtl:begin:ignore*/
+.pos-receipt.bilingual-receipt,
+.render-container .pos-receipt.bilingual-receipt,
+.pos-receipt.bilingual-receipt .bilingual-ltr,
+.pos-receipt.bilingual-receipt .items-table-wrap,
+.pos-receipt.bilingual-receipt .classic-items-table,
+.pos-receipt.bilingual-receipt .classic-items-table .qty-cell,
+.pos-receipt.bilingual-receipt .classic-items-table .qty-head,
+.pos-receipt.bilingual-receipt .classic-items-table .price-cell,
+.pos-receipt.bilingual-receipt .classic-items-table .price-head,
+.pos-receipt.bilingual-receipt .classic-items-table .item-suben,
+.pos-receipt.bilingual-receipt .summary-row,
+.pos-receipt.bilingual-receipt .summary-amount,
+.pos-receipt.bilingual-receipt .summary-label .en,
+.pos-receipt.bilingual-receipt .summary-hint,
+.pos-receipt.bilingual-receipt .summary-badge,
+.pos-receipt.bilingual-receipt .summary-taxname,
+.pos-receipt.bilingual-receipt .bilingual-currency-symbol,
+.pos-receipt.bilingual-receipt .bilingual-ft-en,
+.pos-receipt.bilingual-receipt .bilingual-portal-hint,
+.pos-receipt.bilingual-receipt .bilingual-portal-code,
+.pos-receipt.bilingual-receipt .bilingual-portal-url,
+.pos-receipt.bilingual-receipt .bilingual-order-ref-id,
+.pos-receipt.bilingual-receipt .bilingual-order-ref-date {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+}
+
+.pos-receipt.bilingual-receipt .bilingual-hd-name,
+.pos-receipt.bilingual-receipt .bilingual-branch,
+.pos-receipt.bilingual-receipt .bilingual-order-box,
+.pos-receipt.bilingual-receipt .bilingual-meta,
+.pos-receipt.bilingual-receipt .classic-items-table th .ar,
+.pos-receipt.bilingual-receipt .classic-items-table .item-cell,
+.pos-receipt.bilingual-receipt .classic-items-table .item-head,
+.pos-receipt.bilingual-receipt .summary-label,
+.pos-receipt.bilingual-receipt .summary-label .ar,
+.pos-receipt.bilingual-receipt .bilingual-note,
+.pos-receipt.bilingual-receipt .bilingual-note__body,
+.pos-receipt.bilingual-receipt .bilingual-itemcount,
+.pos-receipt.bilingual-receipt .bilingual-legal-row,
+.pos-receipt.bilingual-receipt .bilingual-legal-addr,
+.pos-receipt.bilingual-receipt .bilingual-cfg-footer,
+.pos-receipt.bilingual-receipt .bilingual-ship,
+.pos-receipt.bilingual-receipt .bilingual-order-ref-lbl {
+    direction: rtl !important;
+    unicode-bidi: isolate !important;
+}
+
+.pos-receipt.bilingual-receipt .summary-amount {
+    text-align: left !important;
+}
+
+.pos-receipt.bilingual-receipt .classic-items-table .price-cell,
+.pos-receipt.bilingual-receipt .classic-items-table .price-head {
+    text-align: center !important;
+}
+
+.pos-receipt.bilingual-receipt .summary-label,
+.pos-receipt.bilingual-receipt .summary-label .en,
+.pos-receipt.bilingual-receipt .summary-hint,
+.pos-receipt.bilingual-receipt .summary-badge,
+.pos-receipt.bilingual-receipt .bilingual-note,
+.pos-receipt.bilingual-receipt .bilingual-note__body {
+    text-align: right !important;
+}
+/*rtl:end:ignore*/
+
+/*
+ * Odoo sends thermal receipts to hardware printers as a 512px raster image.
+ * Keep the POS preview at 80mm, but restore Odoo's raster width when the
+ * renderer adds .pos-receipt-print before html-to-canvas conversion.
+ */
+.pos-receipt.bilingual-receipt.pos-receipt-print,
+.render-container .pos-receipt.bilingual-receipt.pos-receipt-print {
+    width: 512px !important;
+    max-width: 512px !important;
+    min-width: 512px !important;
+    margin: 0 auto !important;
+    padding: 12px 8px !important;
+    overflow: visible !important;
+    font-size: 20px !important;
+    line-height: 1.28 !important;
+    box-sizing: border-box !important;
+
+    .bilingual-receipt__sheet,
+    .bilingual-receipt__sheet.bilingual-rcpt,
+    .bilingual-rcpt {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .receipt-inner {
+        width: 100% !important;
+        max-width: 496px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    .bilingual-hd-logo-img {
+        max-height: 245px;
+    }
+
+    .bilingual-hd-name {
+        font-size: 22px;
+    }
+
+    .bilingual-branch__labels {
+        font-size: 14px;
+    }
+
+    .bilingual-branch__en {
+        font-size: 12px;
+    }
+
+    .bilingual-branch__value {
+        font-size: 17px;
+    }
+
+    .bilingual-branch__value--name {
+        font-size: 19px;
+    }
+
+    .bilingual-branch__value--addr {
+        font-size: 15px;
+    }
+
+    .bilingual-branch__value--phone {
+        font-size: 17px;
+    }
+
+    .bilingual-order-box {
+        min-width: 132px;
+        padding: 9px 20px 13px;
+        line-height: 1.1;
+    }
+
+    .bilingual-order-txt {
+        font-size: 24px;
+        line-height: 1.05;
+    }
+
+    .bilingual-order-hash {
+        font-size: 30px;
+        line-height: 1.05;
+    }
+
+    .bilingual-order-num {
+        font-size: 46px;
+        line-height: 1.08;
+    }
+
+    .bilingual-meta-line {
+        font-size: 20px;
+    }
+
+    .bilingual-meta-lbl-en {
+        font-size: 17px;
+    }
+
+    .items-table-wrap .classic-items-table,
+    .receipt-inner .items-table-wrap .classic-items-table {
+        font-size: 20px !important;
+    }
+
+    .items-table-wrap .classic-items-table th .ar,
+    .receipt-inner .items-table-wrap .classic-items-table th .ar {
+        font-size: 20px !important;
+    }
+
+    .items-table-wrap .classic-items-table th .en,
+    .items-table-wrap .classic-items-table .item-cell .item-suben,
+    .receipt-inner .items-table-wrap .classic-items-table th .en,
+    .receipt-inner .items-table-wrap .classic-items-table .item-cell .item-suben {
+        font-size: 15px !important;
+    }
+
+    .items-table-wrap .classic-items-table .item-cell .bilingual-modifier-summary,
+    .receipt-inner .items-table-wrap .classic-items-table .item-cell .bilingual-modifier-summary {
+        margin-top: 5px !important;
+        font-size: 16px !important;
+        line-height: 1.25 !important;
+        font-weight: 700 !important;
+        color: #000 !important;
+        text-align: center !important;
+    }
+
+    .items-table-wrap .classic-items-table .item-cell .bilingual-modifier-summary div,
+    .receipt-inner .items-table-wrap .classic-items-table .item-cell .bilingual-modifier-summary div {
+        margin-top: 2px !important;
+    }
+
+    .bilingual-note--line {
+        font-size: 15px;
+    }
+
+    .bilingual-note--order {
+        font-size: 19px;
+    }
+
+    .bilingual-note__icon,
+    .bilingual-note__label-en {
+        font-size: 14px;
+    }
+
+    .summary-row {
+        font-size: 19px;
+    }
+
+    .summary-label .ar,
+    .summary-taxname,
+    .summary-label--plain,
+    .bilingual-portal-hint,
+    .bilingual-portal-code,
+    .bilingual-portal-url,
+    .bilingual-order-ref-date {
+        font-size: 17px;
+    }
+
+    .summary-label .en,
+    .summary-hint,
+    .summary-badge,
+    .bilingual-legal,
+    .bilingual-legal-addr,
+    .bilingual-cfg-footer {
+        font-size: 15px;
+    }
+
+    .total-row .summary-amount {
+        font-size: 25px;
+    }
+
+    .total-row .summary-label .ar,
+    .bilingual-itemcount,
+    .bilingual-ft-custom {
+        font-size: 20px;
+    }
+
+    .bilingual-itemcount--secondary,
+    .bilingual-ft-en,
+    .bilingual-ship,
+    .bilingual-order-ref-lbl,
+    .bilingual-order-ref-id {
+        font-size: 19px;
+    }
+
+    .bilingual-ft-slogan,
+    .bilingual-ft-ar {
+        font-size: 22px;
+    }
+
+    .bilingual-portal-qr-img {
+        max-width: 170px;
+    }
+
+    .bilingual-zatca-img {
+        width: 173px;
+        height: 173px;
+    }
+}
+
+@media print {
+    .pos-receipt.bilingual-receipt.bilingual-receipt--thermal {
+        width: 72mm !important;
+        max-width: 72mm !important;
+        min-width: 0 !important;
+        /*rtl:ignore*/
+        margin-left: auto !important;
+        /*rtl:ignore*/
+        margin-right: auto !important;
+        padding: 2mm 1mm !important;
+        overflow: visible !important;
+        /*rtl:ignore*/
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+    }
+
+    .pos-receipt.bilingual-receipt .bilingual-rcpt {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .pos-receipt.bilingual-receipt .receipt-inner {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+}
+
+// Compact approved thermal layout. Keep these rules after the shared/basic
+// design and 512px hardware-raster rules so the selected thermal design wins.
+.pos-receipt.bilingual-receipt.bilingual-receipt--thermal,
+.render-container .pos-receipt.bilingual-receipt.bilingual-receipt--thermal {
+    width: 72mm !important;
+    max-width: 72mm !important;
+    min-width: 0 !important;
+    padding: 2mm 1mm !important;
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+
+    .bilingual-hd-logo {
+        width: 112px;
+        height: 68px;
+        margin: 0 auto 4px;
+        padding: 4px;
+        background: #000 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .bilingual-hd-logo-img {
+        max-width: 104px !important;
+        max-height: 60px !important;
+        filter: grayscale(1) invert(1);
+    }
+    .bilingual-hd-logo-img--custom { filter: none; }
+
+    .bilingual-order-wrap { margin: 2px 0 !important; }
+    .bilingual-order-box {
+        min-width: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        white-space: nowrap;
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+    }
+    .bilingual-order-hash,
+    .bilingual-order-num {
+        display: inline !important;
+        font-size: 23px !important;
+        line-height: 1 !important;
+        font-weight: 900 !important;
+    }
+    .bilingual-hd-name {
+        font-size: 12px !important;
+        font-weight: 700 !important;
+    }
+    .bilingual-branch {
+        margin: 1px 0 4px !important;
+        padding: 0 !important;
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+    }
+    .bilingual-meta {
+        width: 100% !important;
+        margin: 3px auto 4px !important;
+        padding: 0 !important;
+        border-bottom: 1px solid #000;
+        text-align: center !important;
+    }
+    .bilingual-meta-line {
+        padding: 1px 0 !important;
+        font-size: 10px !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+        font-weight: 500 !important;
+    }
+    .bilingual-meta-line--type {
+        border-top: 1px solid #000;
+        font-weight: 700 !important;
+    }
+    .items-table-wrap { margin: 2px auto 4px !important; }
+    .items-table-wrap .classic-items-table,
+    .receipt-inner .items-table-wrap .classic-items-table {
+        font-size: 11px !important;
+        line-height: 1.25 !important;
+    }
+    .classic-items-table .item-cell,
+    .classic-items-table .item-head {
+        width: 72% !important;
+        text-align: left !important;
+        direction: ltr !important;
+    }
+    .classic-items-table .price-cell,
+    .classic-items-table .price-head {
+        width: 28% !important;
+        text-align: right !important;
+    }
+    .classic-items-table th,
+    .classic-items-table td {
+        padding: 3px 1px !important;
+        vertical-align: top !important;
+    }
+    .items-table-wrap .classic-items-table th .ar,
+    .receipt-inner .items-table-wrap .classic-items-table th .ar { display: none !important; }
+    .items-table-wrap .classic-items-table th .en,
+    .receipt-inner .items-table-wrap .classic-items-table th .en { font-size: 10px !important; }
+    .bilingual-item-qty {
+        display: inline-block;
+        min-width: 20px;
+        font-weight: 800;
+    }
+    .bilingual-item-main { font-weight: 800; }
+    .bilingual-item-subar {
+        display: block;
+        margin-left: 20px;
+        font-size: 10px;
+        line-height: 1.2;
+        text-align: left !important;
+    }
+    .items-table-wrap .classic-items-table .item-cell .bilingual-modifier-summary,
+    .receipt-inner .items-table-wrap .classic-items-table .item-cell .bilingual-modifier-summary {
+        margin: 1px 0 0 20px !important;
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+        text-align: left !important;
+    }
+    .summary-row {
+        direction: rtl !important;
+        margin: 3px 0 !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+    }
+    .summary-amount { text-align: right !important; }
+    .summary-label,
+    .summary-label .en { text-align: left !important; }
+    .summary-label .ar,
+    .summary-label--plain,
+    .summary-taxname { font-size: 10px !important; }
+    .summary-label .en { font-size: 8px !important; }
+    .total-row .summary-amount { font-size: 15px !important; }
+    .total-row .summary-label .ar { font-size: 12px !important; }
+    .bilingual-portal-hint,
+    .bilingual-portal-code { font-size: 8px !important; }
+    .bilingual-portal-qr-img { max-width: 68px !important; }
+    .bilingual-zatca-img { width: 98px !important; height: 98px !important; }
+    .bilingual-tax-invoice-title,
+    .bilingual-legal,
+    .bilingual-legal-addr,
+    .bilingual-cfg-footer { font-size: 10px !important; }
+    .bilingual-tax-invoice-title { margin: 2px 0 !important; }
+    .bilingual-before-qr { margin-top: 3px !important; }
+    .bilingual-zatca { margin: 3px 0 !important; }
+    .bilingual-legal-row {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 4px;
+        direction: rtl !important;
+    }
+    .bilingual-legal-vat {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        margin: 0 !important;
+    }
+    .bilingual-ft { margin: 4px 0 0 !important; }
+    .bilingual-ft-en,
+    .bilingual-contact { font-size: 11px !important; line-height: 1.3 !important; }
+    .bilingual-contact { margin-top: 2px; font-weight: 700; }
+}
+
+// Odoo's IoT/hardware path rasterizes a 512px receipt outside print media.
+// Render the same 72mm layout at printer resolution without changing its
+// proportions; browser/PDF printing below continues to use the native width.
+.pos-receipt.bilingual-receipt.bilingual-receipt--thermal.pos-receipt-print,
+.render-container .pos-receipt.bilingual-receipt.bilingual-receipt--thermal.pos-receipt-print {
+    width: 512px !important;
+    max-width: 512px !important;
+    min-width: 512px !important;
+    padding: 0 8px !important;
+
+    .bilingual-receipt__sheet.bilingual-rcpt {
+        width: 248px !important;
+        max-width: 248px !important;
+        zoom: 2;
+    }
+}
+
+@media print {
+    @page { margin: 0; }
+
+    .render-container { top: 0 !important; left: 0 !important; }
+    .pos-receipt.bilingual-receipt.bilingual-receipt--thermal.pos-receipt-print,
+    .render-container .pos-receipt.bilingual-receipt.bilingual-receipt--thermal.pos-receipt-print {
+        width: 72mm !important;
+        max-width: 72mm !important;
+        min-width: 0 !important;
+        padding: 2mm 1mm !important;
+
+        .bilingual-receipt__sheet.bilingual-rcpt {
+            width: 100% !important;
+            max-width: 100% !important;
+            zoom: 1;
+        }
+    }
+}
+

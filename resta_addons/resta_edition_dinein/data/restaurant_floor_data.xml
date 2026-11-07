@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="floor_families" model="restaurant.floor">
+            <field name="name">قسم العوائل</field>
+            <field name="sequence">1</field>
+            <field name="background_color">white</field>
+        </record>
+        <record id="floor_families_t01" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">101</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">60</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t02" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">102</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">230</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t03" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">103</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">400</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t04" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">104</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">570</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t05" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">105</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">60</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t06" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">106</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">230</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t07" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">107</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">400</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_families_t08" model="restaurant.table">
+            <field name="floor_id" ref="floor_families"/>
+            <field name="table_number">108</field>
+            <field name="seats">6</field>
+            <field name="shape">square</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">570</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles" model="restaurant.floor">
+            <field name="name">قسم الأفراد</field>
+            <field name="sequence">2</field>
+            <field name="background_color">white</field>
+        </record>
+        <record id="floor_singles_t01" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">201</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">60</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t02" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">202</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">230</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t03" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">203</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">400</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t04" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">204</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">570</field>
+            <field name="position_v">60</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t05" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">205</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">60</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t06" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">206</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">230</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t07" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">207</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">400</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+        <record id="floor_singles_t08" model="restaurant.table">
+            <field name="floor_id" ref="floor_singles"/>
+            <field name="table_number">208</field>
+            <field name="seats">4</field>
+            <field name="shape">round</field>
+            <field name="width">110</field>
+            <field name="height">110</field>
+            <field name="position_h">570</field>
+            <field name="position_v">230</field>
+            <field name="color">rgb(53,211,116)</field>
+        </record>
+    </data>
+</odoo>

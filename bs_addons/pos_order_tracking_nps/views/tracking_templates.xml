@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tracking_page" name="POS Order Tracking Page">
+        <t t-translation="off">&lt;!DOCTYPE html&gt;</t>
+        <html lang="ar" dir="rtl">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+                <meta name="robots" content="noindex"/>
+                <meta name="theme-color" t-att-content="color"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <title t-esc="company.name"/>
+                <link rel="manifest" t-attf-href="/track/#{token}/manifest.webmanifest"/>
+                <link rel="apple-touch-icon" t-attf-href="/logo.png?company=#{company.id}"/>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap"/>
+                <link rel="stylesheet" t-attf-href="/pos_order_tracking_nps/static/src/page/tracking.css?v=#{css_version}"/>
+                <style t-out="brand_css"/>
+            </head>
+            <body>
+                <main class="trk" id="trk" data-state="received">
+                    <header class="trk-top">
+                        <div class="trk-brand">
+                            <img t-if="has_logo" class="trk-logo" t-attf-src="/logo.png?company=#{company.id}" alt=""/>
+                            <span class="trk-shop" t-esc="company.name"/>
+                        </div>
+                        <button type="button" class="trk-lang" id="trk-lang" aria-label="Change language">EN</button>
+                    </header>
+
+                    <section class="trk-ticket" aria-live="polite">
+                        <p class="trk-ticket-label" data-i18n="your_order">رقم طلبك</p>
+                        <p class="trk-number" id="trk-number" t-esc="order.tracking_number or order.pos_reference"/>
+                        <h1 class="trk-headline" id="trk-headline"/>
+                        <p class="trk-sub" id="trk-sub"/>
+                        <ol class="trk-steps" id="trk-steps">
+                            <li data-step="received"><span class="trk-dot"/><span data-i18n="step_received">استلمنا طلبك</span></li>
+                            <li data-step="preparing"><span class="trk-dot"/><span data-i18n="step_preparing">قيد التحضير</span></li>
+                            <li data-step="ready"><span class="trk-dot"/><span data-i18n="step_ready">جاهز</span></li>
+                        </ol>
+                        <div class="trk-perf" aria-hidden="true"/>
+                        <details class="trk-items">
+                            <summary data-i18n="order_details">تفاصيل الطلب</summary>
+                            <ul id="trk-lines"/>
+                        </details>
+                    </section>
+
+                    <section class="trk-panel" id="trk-alerts">
+                        <p class="trk-panel-text" id="trk-alerts-text" data-i18n="alerts_off">فعّل التنبيه ونبلغك بصوت واهتزاز أول ما يجهز طلبك.</p>
+                        <ul class="trk-checks" id="trk-checks" hidden="hidden">
+                            <li id="trk-check-sound"/>
+                            <li id="trk-check-notif"/>
+                        </ul>
+                        <p class="trk-hint" id="trk-alerts-hint" hidden="hidden"/>
+                        <button type="button" class="trk-btn" id="trk-enable" data-i18n="enable_alerts">نبّهني لما يجهز</button>
+                    </section>
+
+                    <section class="trk-panel trk-nps" id="trk-nps" hidden="hidden">
+                        <h2 class="trk-nps-q" id="trk-nps-q"/>
+                        <div class="trk-scale" id="trk-scale" role="radiogroup"/>
+                        <div class="trk-scale-ends"><span data-i18n="nps_low">غير محتمل</span><span data-i18n="nps_high">محتمل جداً</span></div>
+                        <label class="trk-comment-label" for="trk-comment" data-i18n="nps_comment">وش أكثر شي عجبك، أو وش نقدر نحسّنه؟ (اختياري)</label>
+                        <textarea id="trk-comment" rows="3" maxlength="2000"/>
+                        <button type="button" class="trk-btn" id="trk-nps-send" disabled="disabled" data-i18n="nps_send">أرسل التقييم</button>
+                    </section>
+
+                    <section class="trk-panel trk-thanks" id="trk-thanks" hidden="hidden">
+                        <h2 data-i18n="thanks_title">شكراً لك!</h2>
+                        <p data-i18n="thanks_text">وصلنا تقييمك، ويساعدنا نخدمك أفضل.</p>
+                        <a class="trk-btn trk-btn-ghost" id="trk-google" target="_blank" rel="noopener" hidden="hidden" data-i18n="google_review">قيّمنا على خرائط قوقل</a>
+                    </section>
+
+                    <div class="trk-ready-bar" id="trk-ready-bar" hidden="hidden">
+                        <button type="button" class="trk-btn trk-btn-light" id="trk-stop" data-i18n="stop_alert">إيقاف التنبيه</button>
+                    </div>
+
+                    <!-- Mandatory: while the order is being prepared the page opens behind this gate,
+                         the only way in is the button that turns the alerts on. -->
+                    <div class="trk-sheet trk-gate" id="trk-sheet" t-att-hidden="None if gate else 'hidden'">
+                        <div class="trk-sheet-card" role="dialog" aria-modal="true" aria-labelledby="trk-sheet-title">
+                            <svg class="trk-bell" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 0 0-5.5-6.84V3.5a1.5 1.5 0 0 0-3 0v.66A7 7 0 0 0 5 11v5l-2 2v1h18v-1l-2-2Z"/></svg>
+                            <h2 id="trk-sheet-title" data-i18n="sheet_title">فعّل التنبيه عشان نبلغك أول ما يجهز طلبك</h2>
+                            <ul class="trk-sheet-list">
+                                <li data-i18n="sheet_p1">يرن ويهتز حتى لو قفلت الشاشة</li>
+                                <li data-i18n="sheet_p2">يوصلك إشعار لو طلعت من الصفحة</li>
+                            </ul>
+                            <button type="button" class="trk-btn" id="trk-sheet-allow" data-i18n="sheet_allow">فعّل التنبيهات وتابع طلبك</button>
+                            <p class="trk-hint trk-sheet-note" data-i18n="sheet_note">بعد الضغط، اختر «سماح» في رسالة المتصفح.</p>
+                        </div>
+                    </div>
+                </main>
+                <script id="trk-data" type="application/json" t-out="initial_data"/>
+                <script>
+                    window.TRK_TOKEN = <t t-out="token_json"/>;
+                    window.TRK_VAPID = <t t-out="vapid_json"/>;
+                </script>
+                <script t-attf-src="/pos_order_tracking_nps/static/src/page/tracking.js?v=#{js_version}"/>
+            </body>
+        </html>
+    </template>
+</odoo>

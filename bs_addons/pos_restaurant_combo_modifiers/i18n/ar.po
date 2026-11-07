@@ -1,0 +1,241 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * pos_restaurant_combo_modifiers
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Option"
+msgstr "الخيار"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Product"
+msgstr "المنتج"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Price Mode"
+msgstr "طريقة التسعير"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Extra Price"
+msgstr "السعر الإضافي"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Default Qty"
+msgstr "الكمية الافتراضية"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Max Qty"
+msgstr "الحد الأقصى للكمية"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Available"
+msgstr "متاح"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Actions"
+msgstr "إجراءات"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Inherited"
+msgstr "موروث"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Customized"
+msgstr "مخصص"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Pending"
+msgstr "بانتظار الحفظ"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Reset pending"
+msgstr "إعادة الضبط بانتظار الحفظ"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "More details"
+msgstr "تفاصيل إضافية"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Reset to default"
+msgstr "العودة للإعداد الافتراضي"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Included"
+msgstr "مشمول"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Fixed Extra Price"
+msgstr "سعر إضافي ثابت"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Product Pricelist Price"
+msgstr "سعر المنتج من قائمة الأسعار"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Description"
+msgstr "الوصف"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Kitchen Name"
+msgstr "اسم المطبخ"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Loading options..."
+msgstr "جارٍ تحميل الخيارات..."
+
+#. module: pos_restaurant_combo_modifiers
+msgid "This group has no active options."
+msgstr "لا توجد خيارات نشطة في هذه المجموعة."
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.xml:152
+msgid "Add to order"
+msgstr "إضافة إلى الطلب"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.xml:147
+msgid "Extras:"
+msgstr "الإضافات:"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.js:241
+msgid "Maximum quantity reached."
+msgstr "تم الوصول إلى الحد الأقصى للكمية."
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.xml:72
+msgid "Modifiers"
+msgstr "الإضافات"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.js:225
+#, python-format
+msgid "Customize %(product)s"
+msgstr "تخصيص %(product)s"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.xml:15
+msgid "Optional"
+msgstr "اختياري"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.xml:14
+msgid "Required"
+msgstr "مطلوب"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.js:218
+#, python-format
+msgid "Select between %(min)s and %(max)s options."
+msgstr "اختر من %(min)s إلى %(max)s اختيارًا."
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/static/src/app/components/popups/combo_modifier_configurator_popup/combo_modifier_configurator_popup.xml:148
+msgid "Total:"
+msgstr "الإجمالي:"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Customize your order"
+msgstr "خصّص طلبك"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Choose the options you want, then add the item to the order."
+msgstr "اختر المكونات والإضافات التي تريدها ثم أضف المنتج إلى الطلب."
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Product options"
+msgstr "خيارات المنتج"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Customize this product before adding it."
+msgstr "اختر إضافات هذا المنتج قبل إضافته."
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Extras"
+msgstr "الإضافات"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_restaurant_combo_modifiers
+#, python-format
+msgid "%(completed)s of %(total)s complete"
+msgstr "اكتمل %(completed)s من %(total)s"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Your choices are ready."
+msgstr "اختياراتك جاهزة."
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Complete the required choices to continue."
+msgstr "أكمل الاختيارات المطلوبة للمتابعة."
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Update order"
+msgstr "تحديث الطلب"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Decrease quantity"
+msgstr "تقليل الكمية"
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Increase quantity"
+msgstr "زيادة الكمية"
+
+#. module: pos_restaurant_combo_modifiers
+#: model:ir.model.fields,field_description:pos_restaurant_combo_modifiers.field_pos_config__enable_product_modifiers
+#: model:ir.model.fields,field_description:pos_restaurant_combo_modifiers.field_res_config_settings__pos_enable_product_modifiers
+#: model_terms:ir.ui.view,arch_db:pos_restaurant_combo_modifiers.res_config_settings_view_form_pos_modifiers
+msgid "Enable Product Modifiers"
+msgstr "تفعيل إضافات المنتجات"
+
+#. module: pos_restaurant_combo_modifiers
+#: model:ir.model.fields,field_description:pos_restaurant_combo_modifiers.field_pos_config__modifier_display_type
+#: model:ir.model.fields,field_description:pos_restaurant_combo_modifiers.field_res_config_settings__pos_modifier_display_type
+#: model_terms:ir.ui.view,arch_db:pos_restaurant_combo_modifiers.res_config_settings_view_form_pos_modifiers
+msgid "Modifier Display Type"
+msgstr "طريقة عرض الإضافات"
+
+#. module: pos_restaurant_combo_modifiers
+#: model:ir.model.fields,field_description:pos_restaurant_combo_modifiers.field_pos_config__show_modifier_images
+#: model:ir.model.fields,field_description:pos_restaurant_combo_modifiers.field_res_config_settings__pos_show_modifier_images
+#: model_terms:ir.ui.view,arch_db:pos_restaurant_combo_modifiers.res_config_settings_view_form_pos_modifiers
+msgid "Show Modifier Images"
+msgstr "إظهار صور الإضافات"
+
+#. module: pos_restaurant_combo_modifiers
+#: model_terms:ir.ui.view,arch_db:pos_restaurant_combo_modifiers.res_config_settings_view_form_pos_modifiers
+msgid "Product Modifiers"
+msgstr "إضافات المنتجات"
+
+#. module: pos_restaurant_combo_modifiers
+#: model:ir.model.fields.selection,name:pos_restaurant_combo_modifiers.selection__pos_config__modifier_display_type__grid
+msgid "Grid"
+msgstr "شبكة"
+
+#. module: pos_restaurant_combo_modifiers
+#: model:ir.model.fields.selection,name:pos_restaurant_combo_modifiers.selection__pos_config__modifier_display_type__list
+msgid "List"
+msgstr "قائمة"
+
+#. module: pos_restaurant_combo_modifiers
+#: code:addons/pos_restaurant_combo_modifiers/models/pos_config.py:0
+#, python-format
+msgid "Only Point of Sale managers can change modifier settings."
+msgstr "يمكن لمديري نقطة البيع فقط تغيير إعدادات الإضافات."
+
+#. module: pos_restaurant_combo_modifiers
+msgid "Edit modifiers"
+msgstr "تعديل الإضافات"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bs_hr_ess_base.branch_olaya" model="hr.work.location">
+        <field name="ess_latitude">24.6950000</field>
+        <field name="ess_longitude">46.6850000</field>
+        <field name="ess_radius">120</field>
+        <field name="ess_use_geo" eval="True"/>
+        <field name="ess_use_qr" eval="True"/>
+        <field name="ess_method_logic">all</field>
+    </record>
+    <record id="bs_hr_ess_base.branch_tahlia" model="hr.work.location">
+        <field name="ess_latitude">21.5490000</field>
+        <field name="ess_longitude">39.1530000</field>
+        <field name="ess_radius">100</field>
+        <field name="ess_use_geo" eval="True"/>
+        <field name="ess_use_face" eval="True"/>
+        <field name="ess_method_logic">any</field>
+    </record>
+    <record id="bs_hr_ess_base.branch_khobar" model="hr.work.location">
+        <field name="ess_latitude">26.2794000</field>
+        <field name="ess_longitude">50.2083000</field>
+        <field name="ess_radius">150</field>
+        <field name="ess_use_geo" eval="True"/>
+    </record>
+</odoo>

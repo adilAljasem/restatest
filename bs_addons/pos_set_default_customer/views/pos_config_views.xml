@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="inherit_ip_pos_config_view_form" model="ir.ui.view">
+        <field name="name">pos.config.view.form.inherit.ip</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='configuration']/div[hasclass('o_settings_container')]" position="inside">
+                <setting title="Default Customer in POS Order." string="Default Customer" help="Set a default customer for each new order.">
+                    <field name="default_partner_id"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

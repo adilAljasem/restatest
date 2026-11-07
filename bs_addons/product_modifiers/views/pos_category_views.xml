@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="product_pos_category_form_view_kanak_inh" model="ir.ui.view">
+            <field name="name">pos.category.form.inherit.kanak.inh</field>
+            <field name="model">pos.category</field>
+            <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position='before'>
+                    <field name='is_modifier'/>
+                </xpath>
+                <xpath expr="//group" position='after'>
+                    <notebook invisible="is_modifier != True">
+                        <page string='Modifiers'>
+                            <field name='modifier_ids'>
+                                <list editable='bottom' string="Modifiers Lines">
+                                    <field name='name'/>
+                                    <field name='desc'/>
+                                    <field name='price'/>
+                                    <field name='pos_categoryid' invisible='1'/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

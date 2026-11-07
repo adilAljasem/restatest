@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_blackout_eid" model="bs.hr.leave.blackout">
+        <field name="name">Eid al-Adha peak season</field>
+        <field name="date_from" eval="(DateTime.today().replace(month=12, day=20)).strftime('%Y-%m-%d')"/>
+        <field name="date_to" eval="(DateTime.today().replace(month=12, day=31)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="demo_custody_uniform" model="product.product">
+        <field name="name">Staff uniform</field>
+        <field name="type">consu</field>
+        <field name="ess_is_custody" eval="True"/>
+        <field name="ess_needs_size" eval="True"/>
+        <field name="ess_renew_months">6</field>
+        <field name="standard_price">120</field>
+    </record>
+    <record id="demo_custody_shoes" model="product.product">
+        <field name="name">Kitchen safety shoes</field>
+        <field name="type">consu</field>
+        <field name="ess_is_custody" eval="True"/>
+        <field name="ess_needs_size" eval="True"/>
+        <field name="ess_renew_months">12</field>
+        <field name="standard_price">180</field>
+    </record>
+    <record id="demo_custody_tablet" model="product.product">
+        <field name="name">Waiter tablet</field>
+        <field name="type">consu</field>
+        <field name="ess_is_custody" eval="True"/>
+        <field name="standard_price">1200</field>
+    </record>
+    <record id="demo_custody_key" model="product.product">
+        <field name="name">Housing room key</field>
+        <field name="type">consu</field>
+        <field name="ess_is_custody" eval="True"/>
+        <field name="standard_price">50</field>
+    </record>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_analytic_account" model="ir.ui.view">
+        <field name="name">pos.config.form.analytic.account</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="company_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='configuration']/div[hasclass('o_settings_container')]" position="inside">
+                <setting
+                    id="pos_analytic_account_setting"
+                    string="Analytic Account"
+                    help="Apply this analytic account automatically to eligible POS revenue and expense entries.">
+                    <field
+                        name="analytic_account_id"
+                        options="{'no_create': True, 'no_open': True}"
+                        placeholder="Select an analytic account..."
+                    />
+                    <div class="text-muted mt8">
+                        Leave empty to keep the standard Point of Sale accounting behavior.
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

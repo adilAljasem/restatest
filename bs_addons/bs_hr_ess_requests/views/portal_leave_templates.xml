@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_leaves" name="ESS Time off">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Time off</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <div class="ess-cards" t-if="balances">
+                <div t-foreach="balances" t-as="bal" class="ess-card ess-tone-success">
+                    <div class="ess-card-icon"><i class="fa fa-plane"/></div>
+                    <div class="ess-card-value"><t t-out="'%g' % bal[1].get('virtual_remaining_leaves', 0)"/></div>
+                    <div class="ess-card-title" t-out="bal[0].name"/>
+                    <div class="ess-card-sub">
+                        <t t-out="'%g' % bal[1].get('max_leaves', 0)"/> allocated ·
+                        <t t-out="'%g' % bal[1].get('virtual_leaves_taken', 0)"/> used
+                    </div>
+                </div>
+            </div>
+            <a href="/my/hr/leave/new" class="btn btn-primary w-100 my-3"><i class="fa fa-plus me-1"/> Request time off</a>
+            <h6 class="ess-section-title">My requests</h6>
+            <div class="ess-list" t-if="leave_requests">
+                <a t-foreach="leave_requests" t-as="rec" t-att-href="rec._ess_portal_url()" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold" t-out="rec.leave_type_id.name"/>
+                            <div class="small text-muted">
+                                <t t-out="ess_fdate(rec.date_from)"/> → <t t-out="ess_fdate(rec.date_to)"/>
+                                <t t-if="rec.number_of_days"> · <t t-out="'%g' % rec.number_of_days"/> days</t>
+                            </div>
+                            <div class="small text-muted" t-out="rec.name"/>
+                        </div>
+                        <t t-call="bs_hr_ess_base.ess_state_badge"/>
+                    </div>
+                </a>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-plane"/><p>No time off request yet.</p></div>
+        </t>
+    </template>
+
+    <template id="ess_leave_new" name="ESS New time off">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Request time off</t>
+            <t t-set="ess_back" t-value="'/my/hr/leaves'"/>
+            <div t-if="not leave_types" class="ess-empty"><i class="fa fa-plane"/><p>No time off type is available for you.</p></div>
+            <form t-else="" action="/my/hr/leave/new" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label for="ess_leave_type">Type</label>
+                <select id="ess_leave_type" name="leave_type_id" class="form-select" required="required">
+                    <t t-foreach="leave_types" t-as="lt">
+                        <option t-att-value="lt.id">
+                            <t t-out="lt.name"/>
+                            <t t-if="balances.get(lt.id)"> (<t t-out="'%g' % balances[lt.id].get('virtual_remaining_leaves', 0)"/> available)</t>
+                            <t t-if="lt.support_document"> *</t>
+                        </option>
+                    </t>
+                </select>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <label for="ess_leave_from">From</label>
+                        <input id="ess_leave_from" type="date" name="date_from" class="form-control" required="required"/>
+                    </div>
+                    <div class="col-6">
+                        <label for="ess_leave_to">To</label>
+                        <input id="ess_leave_to" type="date" name="date_to" class="form-control" required="required"/>
+                    </div>
+                </div>
+                <label for="ess_leave_att">Supporting document</label>
+                <input id="ess_leave_att" type="file" name="attachments" class="form-control" multiple="multiple" accept="image/*,application/pdf"/>
+                <div class="small text-muted">* a document is mandatory for this type (e.g. medical report).</div>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="need_ticket" id="ess_need_ticket" value="1"/>
+                    <label class="form-check-label" for="ess_need_ticket">I need a travel ticket</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="need_exit_reentry" id="ess_need_exit" value="1"/>
+                    <label class="form-check-label" for="ess_need_exit">I need an exit / re-entry visa</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="advance_salary" id="ess_advance" value="1"/>
+                    <label class="form-check-label" for="ess_advance">Pay my leave salary in advance</label>
+                </div>
+                <label for="ess_leave_note">Notes</label>
+                <textarea id="ess_leave_note" name="employee_note" class="form-control" rows="2"/>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send request</button>
+            </form>
+        </t>
+    </template>
+</odoo>

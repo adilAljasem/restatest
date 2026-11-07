@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Safety net: the standard EDI cron is triggered after each POS invoice,
+         this one makes sure pending ZATCA reports are retried every 5 minutes
+         (e.g. after an internet outage). -->
+    <record id="ir_cron_zatca_pos_async_report" model="ir.cron">
+        <field name="name">ZATCA: report pending POS invoices</field>
+        <field name="model_id" ref="account_edi.model_account_edi_document"/>
+        <field name="state">code</field>
+        <field name="code">model._l10n_sa_cron_report_pos_async()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

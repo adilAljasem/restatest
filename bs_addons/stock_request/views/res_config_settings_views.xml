@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_transfer_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.stock.transfer</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    data-string="Stock Transfer"
+                    string="Stock Transfer"
+                    name="stock_request"
+                    groups="base.group_system"
+                >
+                    <block title="Stock Transfer Settings" name="stock_transfer_settings">
+                        <setting id="stock_request_preparation_summary_setting" string="Preparation Summary">
+                            <field name="stock_request_preparation_summary_enabled"/>
+                        </setting>
+                        <setting
+                            id="stock_request_transfer_flow_setting"
+                            string="Transfer Flow"
+                            help="One Step transfers directly between warehouses. Two Step uses a transit location with separate delivery and receipt operations. Two Step without Transit creates a direct transfer only when receipt is confirmed."
+                        >
+                            <field
+                                name="stock_request_transfer_flow"
+                                widget="radio"
+                                class="o_light_label"
+                            />
+                        </setting>
+                        <setting
+                            id="stock_request_show_available_qty_setting"
+                            string="Show Available Quantity"
+                            help="Show the Available Qty column on product lines for both One Step and Two Step flows, based on the selected Source Warehouse."
+                        >
+                            <field name="stock_request_show_available_qty" />
+                        </setting>
+                        <setting
+                            id="stock_request_purchase_line_warehouse_setting"
+                            string="Allow Warehouse in Purchase Order Line"
+                            help="Allow a different warehouse for every purchase order line."
+                        >
+                            <field
+                                name="stock_request_allow_warehouse_in_purchase_order_line"
+                            />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_request_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="stock_transfer_res_config_settings_view_form" />
+        <field name="view_mode">form</field>
+        <field name="context">{'module': 'stock_request'}</field>
+    </record>
+</odoo>

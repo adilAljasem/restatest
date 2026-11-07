@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Kitchen ticket: our design when enabled on the POS (data.kt), else Odoo's. -->
+    <t t-inherit="point_of_sale.OrderChangeReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+            <t t-if="data.kt">
+                <t t-call="pos_kitchen_ticket_custom.KitchenTicket"/>
+            </t>
+            <t t-else="">$0</t>
+        </xpath>
+    </t>
+
+    <t t-name="pos_kitchen_ticket_custom.KitchenTicket">
+        <t t-set="kt" t-value="data.kt"/>
+        <div class="pos-receipt kt-ticket"
+             t-att-class="'kt-size-' + kt.fontSize + ' kt-w-' + kt.printWidth + (kt.separators ? ' kt-separators' : '')"
+             dir="ltr">
+            <div t-if="kt.reprintText" class="kt-reprint-banner" t-esc="kt.reprintText"/>
+            <div class="kt-head">
+                <div t-if="kt.reference" class="kt-reference" t-esc="kt.reference"/>
+                <div t-if="kt.headerText" class="kt-header-text" t-esc="kt.headerText"/>
+                <div t-if="kt.printedAt" class="kt-printed-at">Printed At: <t t-esc="kt.printedAt"/></div>
+            </div>
+
+            <div t-if="kt.details.length" class="kt-details">
+                <div t-foreach="kt.details" t-as="row" t-key="row_index" class="kt-row">
+                    <span class="kt-label" t-esc="row.label"/>
+                    <span class="kt-value" t-esc="row.value"/>
+                </div>
+            </div>
+
+            <div t-if="kt.orderNumber" class="kt-order-number">
+                <span class="kt-order-label" t-esc="kt.orderLabel"/>
+                <span class="kt-order-value" t-esc="kt.orderNumber"/>
+            </div>
+
+            <div t-if="kt.platformName or kt.platformRef" class="kt-platform">
+                <div t-if="kt.platformName" class="kt-platform-name" t-esc="kt.platformName"/>
+                <div t-if="kt.platformRef" class="kt-platform-ref">
+                    <span class="kt-platform-label" t-esc="kt.platformRefLabel"/>
+                    <span class="kt-platform-number" t-esc="kt.platformRef"/>
+                </div>
+            </div>
+
+            <div t-if="kt.title" t-att-class="'kt-title kt-kind-' + (kt.kind or 'other')">
+                <t t-esc="kt.title"/>
+            </div>
+
+            <div class="kt-lines">
+                <div t-foreach="data.kt_lines" t-as="line" t-key="line_index"
+                     class="kt-line" t-att-class="{'kt-cancelled': line.cancelled, 'kt-context': line.context, 'kt-modifier-update': line.modifierUpdate}">
+                    <div class="kt-line-main">
+                        <span class="kt-qty" t-esc="line.qty"/>
+                        <span class="kt-name" t-esc="line.name"/>
+                    </div>
+                    <div t-foreach="line.options" t-as="option" t-key="option_index" class="kt-sub" t-esc="option"/>
+                    <t t-call="pos_kitchen_ticket_custom.KitchenTicketModifiers">
+                        <t t-set="modifiers" t-value="line.modifiers"/>
+                        <t t-set="modifierClass" t-value="''"/>
+                    </t>
+                    <t t-foreach="line.children" t-as="child" t-key="child_index">
+                        <div class="kt-sub kt-child">
+                            <t t-esc="child.name"/>
+                            <span t-if="child.qty" class="kt-child-qty"> <t t-esc="child.qty"/></span>
+                        </div>
+                        <div t-foreach="child.options" t-as="option" t-key="option_index" class="kt-sub kt-child-option" t-esc="option"/>
+                        <t t-call="pos_kitchen_ticket_custom.KitchenTicketModifiers">
+                            <t t-set="modifiers" t-value="child.modifiers"/>
+                            <t t-set="modifierClass" t-value="'kt-child-modifier'"/>
+                        </t>
+                        <div t-foreach="child.notes" t-as="note" t-key="note_index" class="kt-sub kt-note" t-esc="note"/>
+                    </t>
+                    <div t-foreach="line.notes" t-as="note" t-key="note_index" class="kt-sub kt-note" t-esc="note"/>
+                </div>
+            </div>
+
+            <div t-if="kt.orderNotes.length" class="kt-order-notes">
+                <div t-foreach="kt.orderNotes" t-as="note" t-key="note_index" class="kt-note" t-esc="note"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Modifiers under an item: "+ Extra cheese", "No onion" (instruction),
+         "x Ketchup" (removed after the item was sent). -->
+    <t t-name="pos_kitchen_ticket_custom.KitchenTicketModifiers">
+        <div t-foreach="modifiers or []" t-as="modifier" t-key="modifier_index"
+             t-att-class="'kt-sub kt-modifier kt-modifier-' + modifier.kind + (modifier.status ? ' kt-modifier-' + modifier.status : '') + (modifierClass ? ' ' + modifierClass : '')">
+            <span class="kt-modifier-mark" t-esc="modifier.status == 'removed' ? '×' : (modifier.kind == 'instruction' ? '*' : '+')"/>
+            <span class="kt-modifier-name" t-esc="modifier.name"/>
+            <span t-if="modifier.qty" class="kt-modifier-qty" t-esc="modifier.qty"/>
+        </div>
+    </t>
+</templates>

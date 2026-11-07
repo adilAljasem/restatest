@@ -1,0 +1,787 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_comms
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/hr_employee.py:0
+msgid "%s to acknowledge"
+msgstr "%s بانتظار تأكيد الاستلام"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news
+msgid "<i class=\"fa fa-book me-1\"/> Policies"
+msgstr "<i class=\"fa fa-book me-1\"/> السياسات"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news
+msgid "<i class=\"fa fa-calendar me-1\"/> Calendar"
+msgstr "<i class=\"fa fa-calendar me-1\"/> التقويم"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news_detail
+msgid "<i class=\"fa fa-check me-1\"/> I have read and agree"
+msgstr "<i class=\"fa fa-check me-1\"/> اطلعت وأوافق"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news_detail
+msgid ""
+"<i class=\"fa fa-check-circle me-1\"/>\n"
+"                    Acknowledged on"
+msgstr ""
+"<i class=\"fa fa-check-circle me-1\"/>\n"
+"                    تم الإقرار بالاطلاع في"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_home_pinned
+msgid "<i class=\"fa fa-thumb-tack me-1\"/>Pinned"
+msgstr "<i class=\"fa fa-thumb-tack me-1\"/>مثبّت"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_kanban
+msgid "<i class=\"fa fa-thumb-tack\" invisible=\"not pinned\" title=\"Pinned\"/>"
+msgstr "<i class=\"fa fa-thumb-tack\" invisible=\"not pinned\" title=\"مثبّت\"/>"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "<span class=\"o_stat_text\">Read</span>"
+msgstr "<span class=\"o_stat_text\">قراءات</span>"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "<span class=\"o_stat_text\">Who did not acknowledge</span>"
+msgstr "<span class=\"o_stat_text\">من لم يقرّ بالاطلاع</span>"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__ack_count model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_announcement_item model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_policies model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_ack_search
+msgid "Acknowledged"
+msgstr "تم الإقرار"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__ack_date
+msgid "Acknowledged on"
+msgstr "تاريخ تأكيد الاستلام"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__ack_rate
+msgid "Acknowledgement rate (%)"
+msgstr "نسبة الإقرار بالاطلاع (%)"
+
+#. module: bs_hr_ess_comms
+#: model:ir.actions.act_window,name:bs_hr_ess_comms.action_announcement_ack model:ir.ui.menu,name:bs_hr_ess_comms.menu_ess_announcement_acks
+msgid "Acknowledgements"
+msgstr "الإقرارات بالاطلاع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news
+msgid "All"
+msgstr "الكل"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__target_all
+msgid "All employees"
+msgstr "جميع الموظفين"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.constraint,message:bs_hr_ess_comms.constraint_bs_hr_announcement_ack_employee_uniq
+msgid "An employee has a single read record per announcement."
+msgstr "للموظف سجل قراءة واحد لكل تعميم."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model,name:bs_hr_ess_comms.model_bs_hr_announcement model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__announcement_id model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_ack_search
+msgid "Announcement"
+msgstr "تعميم"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model,name:bs_hr_ess_comms.model_bs_hr_announcement_ack
+msgid "Announcement read / acknowledgement"
+msgstr "قراءة التعميم / الإقرار بالاطلاع"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/hr_employee.py:0 model:ir.actions.act_window,name:bs_hr_ess_comms.action_announcement model:ir.ui.menu,name:bs_hr_ess_comms.menu_ess_announcements
+msgid "Announcements"
+msgstr "التعاميم"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Archive"
+msgstr "أرشفة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__state__archived
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__attachment_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news_detail
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Audience"
+msgstr "الجمهور المستهدف"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__author_id
+msgid "Author"
+msgstr "الكاتب"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "Birthday"
+msgstr "يوم الميلاد"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.res_config_settings_view_form_ess_comms
+msgid "Birthdays and work anniversaries"
+msgstr "أعياد الميلاد وذكرى التعيين"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__body
+msgid "Body"
+msgstr "المحتوى"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__work_location_id model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_ack_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__work_location_ids
+msgid "Branches"
+msgstr "الفروع"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news_detail
+msgid ""
+"By confirming, you declare that you have read this document,\n"
+"                        understood it and agree to comply with it."
+msgstr ""
+"بالتأكيد، تقرّ بأنك اطلعت على هذه الوثيقة\n"
+"                        وفهمتها وتوافق على الالتزام بها."
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "Celebrations this month"
+msgstr "مناسبات هذا الشهر"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Choose at least one target or select \"All employees\"."
+msgstr "اختر جهة مستهدفة واحدة على الأقل أو حدّد \"جميع الموظفين\"."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__announcement_type__circular
+msgid "Circular"
+msgstr "تعميم"
+
+#. module: bs_hr_ess_comms
+#: model_terms:bs.hr.announcement,body:bs_hr_ess_comms.demo_announcement_uniform
+msgid "Clean uniform at every shift."
+msgstr "زي نظيف في كل وردية."
+
+#. module: bs_hr_ess_comms
+#: model:ir.ui.menu,name:bs_hr_ess_comms.menu_ess_comms model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.res_config_settings_view_form_ess_comms
+msgid "Communication"
+msgstr "التواصل"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model,name:bs_hr_ess_comms.model_res_company model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__company_ids
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "Company calendar"
+msgstr "تقويم الشركة"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_policies
+msgid "Company policies"
+msgstr "سياسات الشركة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model,name:bs_hr_ess_comms.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__announcement_type__congrats
+msgid "Congratulations"
+msgstr "تهنئة"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Content"
+msgstr "المحتوى"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__create_uid model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__create_date model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__department_ids
+msgid "Departments"
+msgstr "الأقسام"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__display_name model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__display_name model:ir.model.fields,field_description:bs_hr_ess_comms.field_hr_employee__display_name model:ir.model.fields,field_description:bs_hr_ess_comms.field_res_company__display_name model:ir.model.fields,field_description:bs_hr_ess_comms.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__state__draft model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_res_company__ess_show_birthdays model:ir.model.fields,field_description:bs_hr_ess_comms.field_res_config_settings__ess_show_birthdays
+msgid "ESS: Show birthdays and work anniversaries"
+msgstr "الخدمة الذاتية: عرض أعياد الميلاد وذكرى التعيين"
+
+#. module: bs_hr_ess_comms
+#: model:ir.actions.server,name:bs_hr_ess_comms.ir_cron_ess_announcement_ir_actions_server
+msgid "ESS: publish scheduled announcements and remind acknowledgements"
+msgstr "الخدمة الذاتية: نشر التعاميم المجدولة والتذكير بالإقرار بالاطلاع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model,name:bs_hr_ess_comms.model_hr_employee model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__require_ack
+msgid "Employees must click \"I have read and agree\". Reminders are sent automatically to those who did not acknowledge."
+msgstr "يجب على الموظفين الضغط على \"اطلعت وأوافق\". تُرسل التذكيرات تلقائيًا لمن لم يقرّ بالاطلاع."
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Employees must match every filled criterion (branch AND department AND job AND nationality)."
+msgstr "يجب أن يطابق الموظفون جميع المعايير المعبأة (الفرع و القسم و الوظيفة و الجنسية)."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__announcement_type__event
+msgid "Event"
+msgstr "مناسبة"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "Events"
+msgstr "المناسبات"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__target_all
+msgid "Every active employee of the selected companies (all companies when empty)."
+msgstr "جميع الموظفين النشطين في الشركات المحددة (جميع الشركات إذا تُرك فارغًا)."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__date_expire
+msgid "Expiry date"
+msgstr "تاريخ الانتهاء"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: bs_hr_ess_comms
+#: model:bs.hr.announcement,name:bs_hr_ess_comms.demo_announcement_food_safety
+msgid "Food safety circular"
+msgstr "تعميم سلامة الغذاء"
+
+#. module: bs_hr_ess_comms
+#: model_terms:bs.hr.announcement,body:bs_hr_ess_comms.demo_announcement_welcome
+msgid "From today every request goes through the self-service app. Ask your branch supervisor if you need help to sign in."
+msgstr "اعتبارًا من اليوم تُقدَّم جميع الطلبات عبر تطبيق الخدمة الذاتية. تواصل مع مشرف فرعك إذا احتجت مساعدة في تسجيل الدخول."
+
+#. module: bs_hr_ess_comms
+#: model_terms:bs.hr.announcement,body:bs_hr_ess_comms.demo_announcement_uniform
+msgid "Hair net and gloves in the kitchen."
+msgstr "غطاء الشعر والقفازات في المطبخ."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__id model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__id model:ir.model.fields,field_description:bs_hr_ess_comms.field_hr_employee__id model:ir.model.fields,field_description:bs_hr_ess_comms.field_res_company__id model:ir.model.fields,field_description:bs_hr_ess_comms.field_res_config_settings__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__ip
+msgid "IP address"
+msgstr "عنوان IP"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تتطلب انتباهك."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__message_has_error model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فهناك رسائل بها خطأ في التسليم."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__image
+msgid "Image"
+msgstr "الصورة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__job_ids
+msgid "Job positions"
+msgstr "الوظائف"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__last_reminder_date
+msgid "Last Reminder Date"
+msgstr "تاريخ آخر تذكير"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__write_uid model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__write_date model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__date_publish
+msgid "Leave empty to publish immediately."
+msgstr "اتركه فارغًا للنشر فورًا."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__country_ids
+msgid "Nationalities"
+msgstr "الجنسيات"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_announcement_item
+msgid "New"
+msgstr "جديد"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "New announcement: %s"
+msgstr "تعميم جديد: %s"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "New circular to acknowledge: %s"
+msgstr "تعميم جديد بانتظار الإقرار بالاطلاع: %s"
+
+#. module: bs_hr_ess_comms
+#: model:bs.hr.announcement,summary:bs_hr_ess_comms.demo_announcement_food_safety
+msgid "New temperature log for the cold rooms, twice per shift."
+msgstr "سجل جديد لدرجات حرارة غرف التبريد، مرتين في كل وردية."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/hr_employee.py:0 model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__announcement_type__news
+msgid "News"
+msgstr "الأخبار"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news
+msgid "News &amp; circulars"
+msgstr "الأخبار والتعاميم"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_comms.action_announcement
+msgid ""
+"News, circulars and policies reach the employees on their phones. Circulars can require an\n"
+"                acknowledgement (\"I have read and agree\")."
+msgstr ""
+"تصل الأخبار والتعاميم والسياسات إلى الموظفين على جوالاتهم. ويمكن أن تتطلب التعاميم\n"
+"                إقرارًا بالاطلاع (\"اطلعت وأوافق\")."
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news
+msgid "No announcement."
+msgstr "لا توجد تعاميم."
+
+#. module: bs_hr_ess_comms
+#: model_terms:bs.hr.announcement,body:bs_hr_ess_comms.demo_announcement_uniform
+msgid "No jewellery while handling food."
+msgstr "يُمنع ارتداء المجوهرات أثناء التعامل مع الأغذية."
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_policies
+msgid "No policy published yet."
+msgstr "لا توجد سياسات منشورة بعد."
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "No public holiday in the next 90 days."
+msgstr "لا توجد إجازات رسمية خلال الـ 90 يومًا القادمة."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Not acknowledged: %s"
+msgstr "لم يقرّ بالاطلاع: %s"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "Nothing to celebrate this month."
+msgstr "لا توجد مناسبات هذا الشهر."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__notified
+msgid "Notified"
+msgstr "تم الإشعار"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Open in the self-service portal"
+msgstr "فتح في بوابة الخدمة الذاتية"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__pinned model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Pinned"
+msgstr "مثبّت"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__pinned
+msgid "Pinned announcements are shown first and on the portal home page."
+msgstr "تظهر التعاميم المثبّتة أولًا وفي الصفحة الرئيسية للبوابة."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Policies"
+msgstr "السياسات"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__announcement_type__policy
+msgid "Policy"
+msgstr "سياسة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.actions.act_window,name:bs_hr_ess_comms.action_announcement_policy model:ir.ui.menu,name:bs_hr_ess_comms.menu_ess_policies
+msgid "Policy Library"
+msgstr "مكتبة السياسات"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "Public holidays (next 90 days)"
+msgstr "الإجازات الرسمية (الـ 90 يومًا القادمة)"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__date_publish
+msgid "Publication date"
+msgstr "تاريخ النشر"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Publish"
+msgstr "نشر"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.actions.act_window,help:bs_hr_ess_comms.action_announcement
+msgid "Publish your first announcement"
+msgstr "انشر أول تعميم"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields.selection,name:bs_hr_ess_comms.selection__bs_hr_announcement__state__published model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Published"
+msgstr "منشور"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__read_count
+msgid "Read"
+msgstr "مقروء"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement_ack__read_date
+msgid "Read Date"
+msgstr "تاريخ القراءة"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_ack_search
+msgid "Read, not acknowledged"
+msgstr "مقروء، دون إقرار بالاطلاع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__ack_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Reads"
+msgstr "القراءات"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Reads and acknowledgements"
+msgstr "القراءات والإقرارات بالاطلاع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__recipient_count
+msgid "Recipients"
+msgstr "المستلمون"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__notified
+msgid "Recipients have been notified."
+msgstr "تم إشعار المستلمين."
+
+#. module: bs_hr_ess_comms
+#: model_terms:bs.hr.announcement,body:bs_hr_ess_comms.demo_announcement_food_safety
+msgid "Record the cold room temperature at the start and the end of each shift."
+msgstr "سجّل درجة حرارة غرفة التبريد في بداية ونهاية كل وردية."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Reminder sent to %s employee(s)."
+msgstr "تم إرسال التذكير إلى الموظفين (العدد: %s)."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Reminder: please acknowledge \"%s\""
+msgstr "تذكير: يرجى الإقرار بالاطلاع على \"%s\""
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "Reminders are only sent for published announcements that require an acknowledgement."
+msgstr "تُرسل التذكيرات فقط للتعاميم المنشورة التي تتطلب إقرارًا بالاطلاع."
+
+#. module: bs_hr_ess_comms
+#: model:bs.hr.announcement,summary:bs_hr_ess_comms.demo_announcement_welcome
+msgid "Request your leaves, loans and follow your payslips from your phone."
+msgstr "اطلب إجازاتك وسلفك وتابع قسائم راتبك من جوالك."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__require_ack model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Requires acknowledgement"
+msgstr "يتطلب إقرارًا بالاطلاع"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Reset to draft"
+msgstr "إعادة إلى مسودة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Send a reminder to every employee who did not acknowledge yet?"
+msgstr "إرسال تذكير لكل موظف لم يقرّ بالاطلاع بعد؟"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "Send reminder"
+msgstr "إرسال تذكير"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__summary
+msgid "Short text displayed in the feed and in notifications."
+msgstr "نص قصير يظهر في الأخبار والإشعارات."
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.res_config_settings_view_form_ess_comms
+msgid "Show colleagues' birthdays and work anniversaries of the same branch in the portal calendar (name and day only)."
+msgstr "عرض أعياد ميلاد زملاء الفرع وذكرى تعيينهم في تقويم البوابة (الاسم واليوم فقط)."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_res_company__ess_show_birthdays model:ir.model.fields,help:bs_hr_ess_comms.field_res_config_settings__ess_show_birthdays
+msgid "Show the birthdays and work anniversaries of the colleagues of the same branch in the portal calendar (name and day only)."
+msgstr "عرض أعياد ميلاد زملاء نفس الفرع وذكرى تعيينهم في تقويم البوابة (الاسم واليوم فقط)."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__summary
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/controllers/main.py:0
+msgid "Thank you, your acknowledgement has been recorded."
+msgstr "شكرًا لك، تم تسجيل إقرارك بالاطلاع."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.constraint,message:bs_hr_ess_comms.constraint_bs_hr_announcement_date_check
+msgid "The expiry date must be after the publication date."
+msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ النشر."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "This announcement does not require an acknowledgement."
+msgstr "هذا التعميم لا يتطلب إقرارًا بالاطلاع."
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__name
+msgid "Title"
+msgstr "العنوان"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_announcement_item model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_policies
+msgid "To acknowledge"
+msgstr "بانتظار الإقرار"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__announcement_type model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: bs_hr_ess_comms
+#: model:bs.hr.announcement,name:bs_hr_ess_comms.demo_announcement_uniform
+msgid "Uniform policy"
+msgstr "سياسة الزي الموحد"
+
+#. module: bs_hr_ess_comms
+#: model:bs.hr.announcement,summary:bs_hr_ess_comms.demo_announcement_uniform
+msgid "Uniform, hair net and gloves are mandatory in the kitchen."
+msgstr "الزي الموحد وغطاء الشعر والقفازات إلزامية في المطبخ."
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news
+msgid "Unread"
+msgstr "غير مقروء"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__is_current
+msgid "Visible now"
+msgstr "ظاهر الآن"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,field_description:bs_hr_ess_comms.field_bs_hr_announcement__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: bs_hr_ess_comms
+#: model:ir.model.fields,help:bs_hr_ess_comms.field_bs_hr_announcement__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: bs_hr_ess_comms
+#: model:bs.hr.announcement,name:bs_hr_ess_comms.demo_announcement_welcome
+msgid "Welcome to the new self-service app"
+msgstr "مرحبًا بك في تطبيق الخدمة الذاتية الجديد"
+
+#. module: bs_hr_ess_comms
+#. odoo-python
+#: code:addons/bs_hr_ess_comms/models/announcement.py:0
+msgid "announcement_id"
+msgstr "announcement_id"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.view_announcement_form
+msgid "e.g. New uniform policy"
+msgstr "مثال: سياسة الزي الموحد الجديدة"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_calendar
+msgid "year(s) with us"
+msgstr "سنة/سنوات معنا"
+
+#. module: bs_hr_ess_comms
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_comms.ess_news_detail
+msgid "· Until"
+msgstr "· حتى"

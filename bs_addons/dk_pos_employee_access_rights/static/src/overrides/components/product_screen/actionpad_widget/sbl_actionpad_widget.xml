@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="dk_pos_employee_access_rights.ActionpadWidget" t-inherit="point_of_sale.ActionpadWidget" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('actionpad')]" position="before">
+            <t t-set="currentEmployee" t-value="pos.getCashier()"/>
+        </xpath>
+        <!-- Target only the standard Odoo payment button (not pos_restaurant's w-50 duplicate). -->
+        <xpath expr="//button[hasclass('pay-order-button') and hasclass('pay')]" position="attributes">
+            <attribute name="t-if">!this.swapButton and !currentEmployee?.sbl_hide_pos_payment</attribute>
+        </xpath>
+        <!-- pos_restaurant adds a second Payment button when swapButton is active. -->
+        <xpath expr="//button[hasclass('pay-order-button') and hasclass('w-50')]" position="attributes">
+            <attribute name="t-if">!currentOrder.isEmpty() and this.pos.numpadMode != 'table' and !currentEmployee?.sbl_hide_pos_payment</attribute>
+        </xpath>
+        <xpath expr="//button[hasclass('mobile-more-button')]" position="attributes">
+            <attribute name="t-if">!currentEmployee?.sbl_hide_pos_actions_button</attribute>
+        </xpath>
+        <xpath expr="//SelectPartnerButton" position="attributes">
+            <attribute name="t-if">!currentEmployee?.sbl_hide_pos_customer_selection_button</attribute>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="bs_pos_products_by_category_only.ProductScreen"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension">
+        <!--
+            Core 19 hides the category selector when `productsToDisplay` is empty.
+            Since this module empties it until a category is picked, that condition
+            has to go, otherwise no category could ever be selected.
+        -->
+        <xpath expr="//div[hasclass('rightpane')]//CategorySelector" position="attributes">
+            <attribute name="t-if">!pos.isSmallProductScreen || !pos.scanning</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('rightpane')]//div[@t-else='']/p[@t-if='searchWord']" position="attributes">
+            <attribute name="t-if">searchWord and hasSelectedProductCategory</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('rightpane')]//div[@t-else='']/div[@t-elif='!pos.selectedCategory']" position="replace">
+            <div t-elif="!hasSelectedProductCategory" class="o_view_nocontent">
+                <div class="o_nocontent_help">
+                    <t t-if="pos.models['pos.category'].getAll().length">
+                        <p class="o_view_nocontent_smiling_face">Select a product category</p>
+                        <p>Products are displayed after selecting a category.</p>
+                    </t>
+                    <t t-else="">
+                        <!-- No category at all: keep the core onboarding, else the screen is a dead end. -->
+                        <p class="o_view_nocontent_smiling_face">No Product Yet?</p>
+                        <p>Scan a barcode to create automatically, or load our sample data.</p>
+                        <p>
+                            <button class="btn btn-lg btn-primary me-2" t-on-click="()=> doLoadSampleData.call()" t-att-disabled="doLoadSampleData.status === 'loading' ? 'disabled' : null">
+                                <t t-if="doLoadSampleData.status === 'loading'">Loading...</t>
+                                <t t-else="">Load Sample</t>
+                            </button>
+                            <button role="button" class="btn btn-lg btn-secondary" t-on-click="()=>pos.editProduct()">Create Manually</button>
+                        </p>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('search-more-button')]" position="attributes">
+            <attribute name="t-if">searchWord and hasSelectedProductCategory</attribute>
+        </xpath>
+    </t>
+</templates>

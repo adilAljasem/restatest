@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_business_day_settings_manager,pos.business.day.settings manager,model_pos_business_day_settings,point_of_sale.group_pos_manager,1,1,1,0
+access_pos_business_day_settings_system,pos.business.day.settings system,model_pos_business_day_settings,base.group_system,1,1,1,0
+access_pos_business_day_recompute_job_manager,pos.business.day.recompute.job manager,model_pos_business_day_recompute_job,point_of_sale.group_pos_manager,1,1,1,0
+access_pos_business_day_recompute_job_system,pos.business.day.recompute.job system,model_pos_business_day_recompute_job,base.group_system,1,1,1,0

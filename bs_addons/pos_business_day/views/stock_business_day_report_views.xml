@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_move_pivot_business_day" model="ir.ui.view">
+        <field name="name">stock.move.pivot.business.day</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <pivot string="Stock Moves by Business Day" sample="1">
+                <field name="business_date" type="row" interval="day"/>
+                <field name="product_qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_stock_move_graph_business_day" model="ir.ui.view">
+        <field name="name">stock.move.graph.business.day</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <graph string="Stock Moves by Business Day" type="bar" sample="1">
+                <field name="business_date" type="row" interval="day"/>
+                <field name="product_qty" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_stock_move_search_business_day" model="ir.ui.view">
+        <field name="name">stock.move.search.business.day</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <search string="Stock Moves by Business Day">
+                <field name="business_date"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <field name="picking_type_id"/>
+                <filter name="done_moves" string="Done" domain="[('state', '=', 'done')]"/>
+                <group name="group_by">
+                    <filter name="group_by_business_date" string="Business Date"
+                            context="{'group_by': 'business_date'}"/>
+                    <filter name="group_by_product" string="Product"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="group_by_picking_type" string="Operation Type"
+                            context="{'group_by': 'picking_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_move_report_business_day" model="ir.actions.act_window">
+        <field name="name">Stock Moves by Business Day</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="search_view_id" ref="view_stock_move_search_business_day"/>
+        <field name="context">{'search_default_group_by_business_date': 1, 'search_default_done_moves': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                لا توجد حركات مخزون لعرضها بعد
+            </p>
+            <p>
+                تعرض هذه الشاشة حركات المخزون مجمّعة حسب "اليوم التشغيلي/المخزني"
+                (Business Date) بدل التاريخ التقويمي، بناءً على ساعة بداية
+                الدوام المحددة في إعدادات نقطة البيع.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_stock_move_report_business_day"
+              name="Moves by Business Day"
+              parent="stock.menu_stock_root"
+              action="action_stock_move_report_business_day"
+              sequence="20"/>
+
+</odoo>

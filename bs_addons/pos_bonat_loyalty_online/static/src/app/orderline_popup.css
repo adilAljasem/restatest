@@ -1,0 +1,23 @@
+/*
+ * Port of static/src/popup/orderline_popup.scss.
+ *
+ * Shipped as plain CSS on purpose. An importable module stores its static files
+ * as ir.attachment records, and SCSS in that position would have to be compiled
+ * server-side at bundle time; plain CSS is served straight through. These two
+ * rules need no preprocessing, so nothing is lost.
+ *
+ * Class names are prefixed to avoid colliding with Bootstrap's own .border-right,
+ * which the on-premise stylesheet was overriding globally across the whole
+ * backend. Scoping it was overdue.
+ */
+
+.bonat-separator-line {
+    margin: 10px 0;
+    height: 1px;
+    background-color: #ddd;
+    border: none;
+}
+
+.bonat-border-right {
+    border-right: 1px solid #ddd;
+}

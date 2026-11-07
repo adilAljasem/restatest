@@ -1,0 +1,721 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:50+0000\n"
+"PO-Revision-Date: 2026-11-03 21:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "<i class=\"fa fa-download me-1\"/> PDF"
+msgstr "<i class=\"fa fa-download me-1\"/> PDF"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "<i class=\"fa fa-eye me-1\"/> Draft for review: amounts may still change."
+msgstr "<i class=\"fa fa-eye me-1\"/> مسودة للمراجعة: قد تتغير المبالغ."
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "<i class=\"fa fa-flag me-1\"/> Raise an objection"
+msgstr "<i class=\"fa fa-flag me-1\"/> تقديم اعتراض"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "<option value=\"\">Whole payslip</option>"
+msgstr "<option value=\"\">قسيمة الراتب كاملة</option>"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__resolution_amount
+msgid "Accepted amount"
+msgstr "المبلغ المقبول"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__adjustment_id
+msgid "Adjustment"
+msgstr "التسوية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__adjustment_state
+msgid "Adjustment status"
+msgstr "حالة التسوية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__resolution_amount
+msgid "Amount of the correction added to the next payslip. 0 = the objection is accepted without any amount."
+msgstr "مبلغ التصحيح المضاف إلى قسيمة الراتب التالية. 0 = قبول الاعتراض دون أي مبلغ."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__claimed_amount
+msgid "Amount the employee believes is missing or wrongly deducted."
+msgstr "المبلغ الذي يرى الموظف أنه ناقص أو مخصوم بالخطأ."
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "Amount you claim"
+msgstr "المبلغ المطالب به"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/payslip_objection.py:0
+msgid "Amounts must be positive."
+msgstr "يجب أن تكون المبالغ موجبة."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/adjustment.py:0
+msgid "An applied adjustment cannot be modified: create a new one."
+msgstr "لا يمكن تعديل تسوية مطبّقة: أنشئ تسوية جديدة."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__approval_line_ids model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Approvals"
+msgstr "الاعتمادات"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__work_location_id model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__can_ess_approve
+msgid "Can Ess Approve"
+msgstr "يمكنه الاعتماد في الخدمة الذاتية"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__claimed_amount
+msgid "Claimed amount"
+msgstr "المبلغ المطالب به"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__line_id model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "Contested line"
+msgstr "البند المعترض عليه"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__decision_date
+msgid "Decision Date"
+msgstr "تاريخ القرار"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payroll_adjustment__display_name model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payroll_compat__display_name model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__display_name model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_employee__display_name model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip__display_name model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_input__display_name model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_run__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslips
+msgid "Draft for review"
+msgstr "مسودة للمراجعة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model,name:bs_hr_ess_payroll.model_bs_hr_payroll_adjustment
+msgid "ESS Payroll Adjustment"
+msgstr "تسوية الراتب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model,name:bs_hr_ess_payroll.model_bs_hr_payroll_compat
+msgid "ESS Payroll compatibility helpers"
+msgstr "أدوات توافق الرواتب - الخدمة الذاتية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_input__ess_adjustment_id
+msgid "ESS adjustment"
+msgstr "تسوية الخدمة الذاتية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.actions.server,name:bs_hr_ess_payroll.action_server_payslip_open_adjustments model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip__ess_adjustment_ids
+msgid "ESS adjustments"
+msgstr "تسويات الخدمة الذاتية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model,name:bs_hr_ess_payroll.model_hr_employee model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "Evidence (optional)"
+msgstr "إثبات (اختياري)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__flow_id
+msgid "Flow"
+msgstr "المسار"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payroll_adjustment__id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payroll_compat__id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_employee__id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip__id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_input__id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_run__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تتطلب انتباهك."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_has_error model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فهناك رسائل بها خطأ في التسليم."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_employee.py:0
+msgid "Last payslip"
+msgstr "آخر قسيمة راتب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__line_amount
+msgid "Line amount"
+msgstr "مبلغ البند"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.actions.server,name:bs_hr_ess_payroll.action_server_payslip_sync_adjustments
+msgid "Load ESS adjustments"
+msgstr "تحميل تسويات الخدمة الذاتية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "My objections"
+msgstr "اعتراضاتي"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_employee.py:0 model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslips
+msgid "My payslips"
+msgstr "قسائم راتبي"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslips
+msgid "Net paid in"
+msgstr "الصافي المدفوع في"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "Net salary ·"
+msgstr "صافي الراتب ·"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_employee.py:0
+msgid "Net · %s"
+msgstr "الصافي · %s"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_employee.py:0
+msgid "No payslip yet"
+msgstr "لا توجد قسائم راتب بعد"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslips
+msgid "No payslip yet."
+msgstr "لا توجد قسائم راتب بعد."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__employee_note
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "Object to this line"
+msgstr "الاعتراض على هذا البند"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Objection"
+msgstr "الاعتراض"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip__ess_objection_ids
+msgid "Objections"
+msgstr "الاعتراضات"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "Objections are accepted until"
+msgstr "تُقبل الاعتراضات حتى"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_search
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields.selection,name:bs_hr_ess_payroll.selection__bs_hr_payslip_objection__resolution_type__addition
+msgid "Pay to the employee (addition)"
+msgstr "دفع للموظف (إضافة)"
+
+#. module: bs_hr_ess_payroll
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_payroll.flow_payslip_objection_step_payroll
+msgid "Payroll"
+msgstr "الرواتب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payroll_adjustment__payslip_id model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__payslip_id model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_adjustment_form_payroll
+msgid "Payslip"
+msgstr "قسيمة الراتب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model,name:bs_hr_ess_payroll.model_bs_hr_payslip_objection
+msgid "Payslip Objection"
+msgstr "اعتراض على الراتب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.actions.act_window,name:bs_hr_ess_payroll.action_payslip_objection model:ir.ui.menu,name:bs_hr_ess_payroll.menu_ess_payslip_objections model:ir.ui.menu,name:bs_hr_ess_payroll.menu_ess_payslip_objections_requests
+msgid "Payslip Objections"
+msgstr "الاعتراضات على الرواتب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payroll_adjustment__payslip_id
+msgid "Payslip in which this adjustment was injected as an input line."
+msgstr "قسيمة الراتب التي أُدرجت فيها هذه التسوية كبند إدخال."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payroll_adjustment__payslip_input_id
+msgid "Payslip input"
+msgstr "بند إدخال قسيمة الراتب"
+
+#. module: bs_hr_ess_payroll
+#: model:bs.hr.approval.flow,name:bs_hr_ess_payroll.flow_payslip_objection model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "Payslip objection"
+msgstr "اعتراض على قسيمة الراتب"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/payslip_objection.py:0
+msgid "Payslip objection %(name)s (%(ref)s)"
+msgstr "اعتراض على الراتب %(name)s (%(ref)s)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__payslip_ref
+msgid "Payslip reference"
+msgstr "مرجع قسيمة الراتب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__payslip_period
+msgid "Period"
+msgstr "الفترة"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/controllers/portal.py:0
+msgid "Please enter a valid amount."
+msgstr "يرجى إدخال مبلغ صحيح."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/payslip_objection.py:0
+msgid "Please explain the reason of the objection."
+msgstr "يرجى توضيح سبب الاعتراض."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_payslip_run.py:0
+msgid "Please review it before %s and raise an objection if something is wrong."
+msgstr "يرجى مراجعتها قبل %s وتقديم اعتراض إذا وُجد خطأ."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__portal_source
+msgid "Portal Source"
+msgstr "مصدر البوابة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.actions.server,name:bs_hr_ess_payroll.action_server_payslip_run_publish
+msgid "Publish for review (ESS)"
+msgstr "نشر للمراجعة (الخدمة الذاتية)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip__ess_published model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_run__ess_published
+msgid "Published for review"
+msgstr "منشورة للمراجعة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__reason model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Reason"
+msgstr "السبب"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "Reason *"
+msgstr "السبب *"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields.selection,name:bs_hr_ess_payroll.selection__bs_hr_payslip_objection__resolution_type__deduction
+msgid "Recover from the employee (deduction)"
+msgstr "استرداد من الموظف (خصم)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__rejection_reason
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__portal_source
+msgid "Request submitted from the employee portal"
+msgstr "طلب مُرسَل من بوابة الموظفين"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Reset to draft"
+msgstr "إعادة إلى مسودة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__resolution_type model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Resolution"
+msgstr "القرار"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__resolution_note
+msgid "Resolution note"
+msgstr "ملاحظة القرار"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_run__ess_review_days
+msgid "Review period (days)"
+msgstr "فترة المراجعة (أيام)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip__ess_review_until
+msgid "Review until"
+msgstr "المراجعة حتى"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسالة النصية"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_hr_payslip_input__ess_adjustment_id
+msgid "Self-service adjustment (loan, custody, penalty, objection...) at the origin of this input."
+msgstr "تسوية الخدمة الذاتية (سلفة، عهدة، جزاء، اعتراض...) التي نشأ عنها هذا البند."
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "Send the objection"
+msgstr "إرسال الاعتراض"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_hr_payslip_input__ess_source_ref
+msgid "Source"
+msgstr "المصدر"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مضى\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_form
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__submit_date
+msgid "Submit Date"
+msgstr "تاريخ الإرسال"
+
+#. module: bs_hr_ess_payroll
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_payroll.flow_payslip_objection_step_manager
+msgid "Supervisor (attendance check)"
+msgstr "المشرف (التحقق من الحضور)"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/payslip_objection.py:0
+msgid "The contested line must belong to the payslip."
+msgstr "يجب أن يتبع البند المعترض عليه قسيمة الراتب."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_hr_payslip__ess_published
+msgid "The draft payslip is visible in the employee portal as \"Draft for review\" so that the employee can raise an objection before the payroll is closed."
+msgstr "تظهر مسودة قسيمة الراتب في بوابة الموظفين بعنوان \"مسودة للمراجعة\" ليتمكن الموظف من تقديم اعتراض قبل إقفال الرواتب."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/payslip_objection.py:0
+msgid "The payslip must belong to the employee."
+msgstr "يجب أن تخص قسيمة الراتب الموظف."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_payslip_run.py:0
+msgid "There is no draft payslip to publish in %s."
+msgstr "لا توجد مسودة قسيمة راتب للنشر في %s."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/payslip_objection.py:0
+msgid "This payslip cannot be contested."
+msgstr "لا يمكن الاعتراض على قسيمة الراتب هذه."
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_search
+msgid "To approve"
+msgstr "بانتظار الاعتماد"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.view_payslip_objection_list
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: bs_hr_ess_payroll
+#: model:ir.actions.server,name:bs_hr_ess_payroll.action_server_payslip_run_unpublish
+msgid "Unpublish (ESS)"
+msgstr "إلغاء النشر (الخدمة الذاتية)"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__current_approver_ids
+msgid "Waiting for"
+msgstr "بانتظار"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,field_description:bs_hr_ess_payroll.field_bs_hr_payslip_objection__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model.fields,help:bs_hr_ess_payroll.field_bs_hr_payslip_objection__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_detail
+msgid "Where do these amounts come from?"
+msgstr "من أين تأتي هذه المبالغ؟"
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/controllers/portal.py:0
+msgid "Your objection was sent."
+msgstr "تم إرسال اعتراضك."
+
+#. module: bs_hr_ess_payroll
+#. odoo-python
+#: code:addons/bs_hr_ess_payroll/models/hr_payslip_run.py:0
+msgid "Your payslip draft is available"
+msgstr "مسودة قسيمة راتبك متاحة"
+
+#. module: bs_hr_ess_payroll
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_payroll.ess_payslip_objection
+msgid "e.g. I was present on 12/03 but an absence was deducted"
+msgstr "مثال: كنت حاضرًا في 12/03 لكن تم خصم غياب"
+
+#. module: bs_hr_ess_payroll
+#: model:ir.model,name:bs_hr_ess_payroll.model_hr_payslip model:ir.model,name:bs_hr_ess_payroll.model_hr_payslip_input model:ir.model,name:bs_hr_ess_payroll.model_hr_payslip_run
+msgid "stub"
+msgstr "stub"

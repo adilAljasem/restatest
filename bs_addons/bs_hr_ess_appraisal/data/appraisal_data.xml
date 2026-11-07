@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Restaurant competencies -->
+    <record id="competency_speed" model="bs.hr.appraisal.competency">
+        <field name="name">Speed of service</field>
+        <field name="category">performance</field>
+        <field name="sequence">10</field>
+        <field name="description">Prepares and serves orders within the target times, even at rush hours.</field>
+    </record>
+    <record id="competency_hygiene" model="bs.hr.appraisal.competency">
+        <field name="name">Cleanliness &amp; food safety</field>
+        <field name="category">hygiene</field>
+        <field name="sequence">20</field>
+        <field name="description">Applies hygiene rules, HACCP practices, storage temperatures and keeps the station clean.</field>
+    </record>
+    <record id="competency_customer" model="bs.hr.appraisal.competency">
+        <field name="name">Customer handling</field>
+        <field name="category">customer</field>
+        <field name="sequence">30</field>
+        <field name="description">Welcomes guests, handles requests and complaints politely and efficiently.</field>
+    </record>
+    <record id="competency_attendance" model="bs.hr.appraisal.competency">
+        <field name="name">Attendance &amp; punctuality</field>
+        <field name="category">attendance</field>
+        <field name="sequence">40</field>
+        <field name="description">Comes on time to every shift and respects breaks and schedules.</field>
+    </record>
+    <record id="competency_teamwork" model="bs.hr.appraisal.competency">
+        <field name="name">Teamwork</field>
+        <field name="category">behaviour</field>
+        <field name="sequence">50</field>
+        <field name="description">Helps colleagues, communicates clearly between kitchen and floor.</field>
+    </record>
+    <record id="competency_compliance" model="bs.hr.appraisal.competency">
+        <field name="name">Compliance with uniform &amp; policies</field>
+        <field name="category">behaviour</field>
+        <field name="sequence">60</field>
+        <field name="description">Wears the full uniform, follows company policies and the work regulations.</field>
+    </record>
+
+    <!-- Templates -->
+    <record id="template_restaurant" model="bs.hr.appraisal.template">
+        <field name="name">Restaurant staff appraisal</field>
+        <field name="kpi_weight">10</field>
+        <field name="line_ids" eval="[
+            Command.create({'competency_id': ref('competency_speed'), 'weight': 20, 'sequence': 10}),
+            Command.create({'competency_id': ref('competency_hygiene'), 'weight': 25, 'sequence': 20}),
+            Command.create({'competency_id': ref('competency_customer'), 'weight': 20, 'sequence': 30}),
+            Command.create({'competency_id': ref('competency_attendance'), 'weight': 15, 'sequence': 40}),
+            Command.create({'competency_id': ref('competency_teamwork'), 'weight': 10, 'sequence': 50}),
+            Command.create({'competency_id': ref('competency_compliance'), 'weight': 10, 'sequence': 60}),
+        ]"/>
+    </record>
+    <record id="template_probation" model="bs.hr.appraisal.template">
+        <field name="name">End of probation review</field>
+        <field name="is_probation" eval="True"/>
+        <field name="kpi_weight">20</field>
+        <field name="line_ids" eval="[
+            Command.create({'competency_id': ref('competency_speed'), 'weight': 20, 'sequence': 10}),
+            Command.create({'competency_id': ref('competency_hygiene'), 'weight': 25, 'sequence': 20}),
+            Command.create({'competency_id': ref('competency_customer'), 'weight': 15, 'sequence': 30}),
+            Command.create({'competency_id': ref('competency_attendance'), 'weight': 20, 'sequence': 40}),
+            Command.create({'competency_id': ref('competency_teamwork'), 'weight': 10, 'sequence': 50}),
+            Command.create({'competency_id': ref('competency_compliance'), 'weight': 10, 'sequence': 60}),
+        ]"/>
+    </record>
+</odoo>

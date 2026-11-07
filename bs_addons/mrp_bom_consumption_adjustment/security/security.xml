@@ -1,0 +1,48 @@
+<odoo>
+    <record id="fifo_company_rule" model="ir.rule">
+        <field name="name">Recipe FIFO overlays: companies</field>
+        <field name="model_id" ref="model_mrp_bom_consumption_fifo_layer"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="entry_manager_read_rule" model="ir.rule">
+        <field name="name">Manufacturing: read recipe entries only</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="groups" eval="[(4, ref('mrp.group_mrp_manager'))]"/>
+        <field name="domain_force">[('recipe_adjustment_id', '!=', False)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/><field name="perm_create" eval="False"/><field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="entry_line_manager_read_rule" model="ir.rule">
+        <field name="name">Manufacturing: read recipe entry lines only</field>
+        <field name="model_id" ref="account.model_account_move_line"/>
+        <field name="groups" eval="[(4, ref('mrp.group_mrp_manager'))]"/>
+        <field name="domain_force">[('move_id.recipe_adjustment_id', '!=', False)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/><field name="perm_create" eval="False"/><field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="allocation_company_rule" model="ir.rule">
+        <field name="name">Consumption lot allocations: companies</field>
+        <field name="model_id" ref="model_mrp_bom_consumption_allocation"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="adjustment_company_rule" model="ir.rule">
+        <field name="name">Consumption adjustments: companies</field>
+        <field name="model_id" ref="model_mrp_bom_consumption_adjustment"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="line_company_rule" model="ir.rule">
+        <field name="name">Consumption components: companies</field>
+        <field name="model_id" ref="model_mrp_bom_consumption_line"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="detail_company_rule" model="ir.rule">
+        <field name="name">Consumption details: companies</field>
+        <field name="model_id" ref="model_mrp_bom_consumption_detail"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="source_company_rule" model="ir.rule">
+        <field name="name">Consumption sources: companies</field>
+        <field name="model_id" ref="model_mrp_bom_consumption_source"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

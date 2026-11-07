@@ -1,0 +1,5 @@
+// Self-order bundle only (QR menu, mobile ordering, kiosk): brand font, rounded orange actions.
+body { font-family: "IBM Plex Sans Arabic", system-ui, sans-serif; --companyColor: #FF5A1F; }
+.btn { border-radius: var(--rs-radius-md, 12px); }
+.btn-primary { box-shadow: var(--rs-shadow-btn); }
+.o_self_order_item_card { border-radius: var(--rs-radius-md, 12px); }

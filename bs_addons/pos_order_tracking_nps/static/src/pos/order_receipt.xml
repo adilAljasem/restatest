@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_order_tracking_nps.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('before-footer')]" position="before">
+            <div t-if="order.showTrackingQr" class="pos-receipt-tracking text-center pt-3">
+                <t t-if="order.config.tracking_pager_enabled">
+                    <div class="tracking-title fw-bolder">امسح الكود لتتبّع طلبك</div>
+                    <div class="tracking-title-en">Scan to track your order</div>
+                </t>
+                <t t-else="">
+                    <div class="tracking-title fw-bolder">امسح الكود وقيّم تجربتك</div>
+                    <div class="tracking-title-en">Scan to rate your visit</div>
+                </t>
+                <img class="tracking-qr my-1" t-att-src="trackingQrCode" alt="QR"/>
+                <t t-if="order.config.tracking_pager_enabled">
+                    <div class="tracking-hint">ونبلغك على جوالك أول ما يجهز</div>
+                    <div class="tracking-hint">We'll alert you on your phone when it's ready</div>
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="seq_petty_cash_request" model="ir.sequence">
+        <field name="name">Petty Cash Request</field>
+        <field name="code">petty.cash.request</field>
+        <field name="prefix">PETTY/%(range_year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!--
+        The Petty Cash accounts and journal are NOT declared here any more.
+
+        Declaring them as XML records makes the module impossible to install on
+        any database that already owns an account with code 10000000001 /
+        10000000011, or a journal with code PCSH - the install aborts with
+        "duplicate key value violates unique constraint
+        account_journal_code_company_uniq". That happens on every re-install
+        after an uninstall, and on any database where those codes are already
+        taken.
+
+        They are created by the post_init_hook in hooks.py instead, which
+        adopts whatever already exists (binding the same external ids
+        petty_cash.petty_account, petty_cash.petty_suspense_account and
+        petty_cash.petty_cash_journal, so env.ref keeps working) and only
+        creates what is genuinely missing. An adopted record is never
+        overwritten.
+    -->
+</odoo>

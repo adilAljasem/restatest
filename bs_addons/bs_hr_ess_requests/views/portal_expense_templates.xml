@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_expenses" name="ESS Expenses">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">Expenses</t>
+            <t t-set="ess_back" t-value="'/my/hr'"/>
+            <a href="/my/hr/expense/new" class="btn btn-primary w-100 mb-3"><i class="fa fa-camera me-1"/> New expense</a>
+            <div class="ess-list" t-if="expenses">
+                <div t-foreach="expenses" t-as="exp" class="ess-list-item">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="min-w-0">
+                            <div class="fw-semibold text-truncate" t-out="exp.name"/>
+                            <div class="small text-muted">
+                                <t t-out="exp.product_id.name"/> · <t t-out="ess_fdate(exp.date)"/>
+                            </div>
+                            <div class="small"><strong t-out="'{:,.2f}'.format(exp.total_amount_currency)"/> <t t-out="exp.currency_id.symbol"/></div>
+                        </div>
+                        <t t-set="exp_tone" t-value="{'draft': 'info', 'submitted': 'submitted', 'approved': 'approved', 'posted': 'approved', 'in_payment': 'pending', 'paid': 'paid', 'refused': 'rejected'}.get(exp.state, 'info')"/>
+                        <span t-attf-class="ess-badge ess-badge-#{exp_tone}" t-out="ess_state_label(exp)"/>
+                    </div>
+                </div>
+            </div>
+            <div t-else="" class="ess-empty"><i class="fa fa-credit-card"/><p>No expense yet.</p></div>
+        </t>
+    </template>
+
+    <template id="ess_expense_new" name="ESS New expense">
+        <t t-call="bs_hr_ess_base.ess_layout">
+            <t t-set="ess_title">New expense</t>
+            <t t-set="ess_back" t-value="'/my/hr/expenses'"/>
+            <div t-if="not products" class="ess-empty"><i class="fa fa-credit-card"/><p>No expense category is configured.</p></div>
+            <form t-else="" action="/my/hr/expense/new" method="post" enctype="multipart/form-data" class="ess-form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <label for="ess_exp_receipt">Receipt photo</label>
+                <input id="ess_exp_receipt" type="file" name="receipt" class="form-control" accept="image/*" capture="environment" required="required"/>
+                <label for="ess_exp_product">Category</label>
+                <select id="ess_exp_product" name="product_id" class="form-select" required="required">
+                    <t t-foreach="products" t-as="product">
+                        <option t-att-value="product.id" t-out="product.name"/>
+                    </t>
+                </select>
+                <label for="ess_exp_amount">Total amount (<t t-out="currency.symbol"/>)</label>
+                <input id="ess_exp_amount" type="number" name="amount" class="form-control" min="0.01" step="0.01" required="required"/>
+                <label for="ess_exp_date">Date</label>
+                <input id="ess_exp_date" type="date" name="date" class="form-control" t-att-value="ess_today" t-att-max="ess_today"/>
+                <label for="ess_exp_desc">Description</label>
+                <input id="ess_exp_desc" type="text" name="description" class="form-control" maxlength="250" required="required"/>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Submit expense</button>
+            </form>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_the_dash" model="ir.ui.view">
+        <field name="name">res.users.form.the.dash</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="The Dash" name="the_dash"
+                      groups="the_dash.group_the_dash_viewer">
+                    <group>
+                        <field name="dash_config_ids"
+                               widget="many2many_tags"
+                               options="{'no_create': True}"
+                               placeholder="اتركه فارغاً ليرى كل الفروع"/>
+                    </group>
+                    <div class="text-muted" style="font-size:.85rem">
+                        <i class="fa fa-info-circle me-1" role="img"
+                           aria-label="Info" title="Info"/>
+                        يرى هذا المستخدم نقاط البيع المحددة أعلاه فقط. القائمة
+                        الفارغة تعني كل الفروع. أعضاء
+                        <strong>The Dash / Manager</strong> يرون الكل دائماً.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_company_form_stock_request" model="ir.ui.view">
+        <field name="name">res.company.form.stock.request</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="active" eval="False" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field
+                    name="stock_request_transit_location_id"
+                    options="{'no_create': True}"
+                    groups="base.group_system,stock_request.group_stock_request_manager"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

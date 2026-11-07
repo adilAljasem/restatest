@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kitchen_flow_log_user,Kitchen flow log administrator read,model_bs_pos_kitchen_flow_log,base.group_system,1,0,0,0
+access_kitchen_flow_log_manager,Kitchen flow log administrator,model_bs_pos_kitchen_flow_log,base.group_system,1,1,1,1
+access_kitchen_flow_step_user,Kitchen flow step administrator read,model_bs_pos_kitchen_flow_step,base.group_system,1,0,0,0
+access_kitchen_flow_step_manager,Kitchen flow step administrator,model_bs_pos_kitchen_flow_step,base.group_system,1,1,1,1

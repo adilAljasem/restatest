@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Stock ageing report">
+  <rect width="128" height="128" rx="20" fill="#2f5597"/>
+  <path d="M22 34 64 14l42 20-42 20z" fill="#d9e2f3"/>
+  <path d="M22 34v45l42 22V54z" fill="#9dc3e6"/>
+  <path d="M106 34v45L64 101V54z" fill="#5b9bd5"/>
+  <circle cx="91" cy="91" r="25" fill="#fff" stroke="#244062" stroke-width="5"/>
+  <path d="M91 77v15l10 6" fill="none" stroke="#244062" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

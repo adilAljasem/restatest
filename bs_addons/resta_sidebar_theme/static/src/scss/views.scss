@@ -1,0 +1,167 @@
+// ============================================================================
+// Content area: Resta look on top of Odoo views (light & dark share this file)
+// ============================================================================
+
+.o_web_client {
+    // Buttons ---------------------------------------------------------------
+    .btn {
+        border-radius: var(--rs-radius-sm);
+        font-weight: 500;
+    }
+    .btn-primary {
+        font-weight: 600;
+        box-shadow: none;
+        &:hover, &:focus-visible {
+            box-shadow: var(--rs-shadow-btn);
+        }
+    }
+    .btn-secondary {
+        border-color: var(--rs-border);
+    }
+
+    // Inputs ------------------------------------------------------------------
+    .form-control, .form-select, .o_input {
+        border-radius: var(--rs-radius-sm);
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: var(--rs-primary);
+        box-shadow: 0 0 0 .2rem var(--rs-focus-ring);
+    }
+
+    // Control panel -----------------------------------------------------------
+    .o_control_panel {
+        background-color: var(--rs-page-bg);
+        border-bottom: 0;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .o_searchview {
+        border-radius: var(--rs-radius);
+        background-color: var(--rs-surface);
+    }
+    .o_control_panel .breadcrumb-item.active,
+    .o_control_panel .o_last_breadcrumb_item {
+        font-weight: 700;
+        color: var(--rs-text);
+    }
+
+    // Content background --------------------------------------------------------
+    .o_action_manager .o_content {
+        background-color: var(--rs-page-bg);
+    }
+
+    // List view as a card ------------------------------------------------------
+    .o_list_view .o_list_renderer {
+        background-color: var(--rs-surface);
+        border: 1px solid var(--rs-border-soft);
+        border-radius: var(--rs-radius-lg);
+        box-shadow: var(--rs-shadow-sm);
+        margin: 0 16px 16px;
+        overflow: auto;
+
+        @include media-breakpoint-down(md) {
+            margin: 0;
+            border-radius: 0;
+            border-inline: 0;
+        }
+    }
+    .o_list_table {
+        thead th, thead {
+            background-color: var(--rs-surface-2);
+        }
+        thead th {
+            color: var(--rs-text-muted);
+            font-weight: 600;
+            font-size: .82rem;
+            border-bottom-color: var(--rs-border-soft);
+        }
+        tbody tr.o_data_row:hover > td {
+            background-color: var(--rs-active-bg);
+        }
+        tfoot, tfoot td {
+            background-color: var(--rs-surface-2);
+        }
+    }
+
+    // Form view -----------------------------------------------------------------
+    .o_form_view {
+        .o_form_sheet_bg {
+            background-color: var(--rs-page-bg);
+        }
+        .o_form_sheet {
+            border: 1px solid var(--rs-border-soft) !important;
+            border-radius: var(--rs-radius-lg);
+            box-shadow: var(--rs-shadow-sm);
+            background-color: var(--rs-surface);
+        }
+    }
+    .o_form_statusbar .o_statusbar_status .o_arrow_button {
+        font-weight: 500;
+    }
+    .o_form_statusbar .o_statusbar_status .o_arrow_button_current {
+        color: #FFFFFF !important;
+        background-color: var(--rs-primary) !important;
+    }
+
+    // Kanban ------------------------------------------------------------------
+    .o_kanban_renderer {
+        background-color: var(--rs-page-bg);
+    }
+    .o_kanban_record:not(.o_kanban_ghost) {
+        border-radius: var(--rs-radius-md);
+        border-color: var(--rs-border-soft);
+        background-color: var(--rs-surface);
+        box-shadow: var(--rs-shadow-sm);
+    }
+    .o_kanban_group {
+        border-radius: var(--rs-radius-md);
+    }
+
+    // Tags & badges ---------------------------------------------------------------
+    .badge.rounded-pill, .o_tag {
+        font-weight: 500;
+    }
+
+    // Dropdowns, popovers & dialogs ---------------------------------------------
+    .dropdown-menu, .o-dropdown--menu {
+        border-color: var(--rs-border-soft);
+        border-radius: var(--rs-radius-md);
+        box-shadow: var(--rs-shadow-md);
+        padding: 6px;
+
+        .dropdown-item {
+            border-radius: var(--rs-radius-sm);
+        }
+        .dropdown-item.active, .dropdown-item:active, .dropdown-item.focus {
+            background-color: var(--rs-active-bg);
+            color: var(--rs-primary-fg);
+        }
+    }
+    .modal-content {
+        border: 1px solid var(--rs-border-soft);
+        border-radius: var(--rs-radius-lg);
+        box-shadow: var(--rs-shadow-md);
+    }
+
+    // Settings page logos preview ------------------------------------------------
+    .rs_settings_logo_row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .rs_settings_logo {
+        display: inline-block;
+        width: auto !important;
+    }
+    .rs_settings_logo img {
+        object-fit: contain;
+        background: #FFFFFF;
+        border: 1px dashed var(--rs-border);
+        border-radius: var(--rs-radius-sm);
+        padding: 6px;
+    }
+    .rs_settings_logo_dark img {
+        background: #171717;
+    }
+}

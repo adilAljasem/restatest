@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_attendance_tree_ess" model="ir.ui.view">
+        <field name="name">hr.attendance.list.ess</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="ess_location_id" optional="show"/>
+                <field name="ess_method" optional="show"/>
+                <field name="ess_late_minutes" optional="show" sum="Late"/>
+                <field name="ess_early_minutes" optional="hide" sum="Early"/>
+                <field name="ess_suspicious" optional="show" widget="boolean_toggle" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_attendance_view_form_ess" model="ir.ui.view">
+        <field name="name">hr.attendance.form.ess</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Self-service check" name="ess_check" invisible="not ess_method">
+                    <group>
+                        <field name="ess_location_id"/>
+                        <field name="ess_method"/>
+                        <field name="ess_out_method" invisible="not ess_out_method"/>
+                        <field name="ess_device_id"/>
+                        <field name="ess_late_minutes"/>
+                        <field name="ess_early_minutes"/>
+                    </group>
+                    <group>
+                        <field name="ess_distance"/>
+                        <field name="ess_accuracy"/>
+                        <field name="ess_face_distance" invisible="not ess_face_distance"/>
+                        <field name="ess_liveness" invisible="not ess_face_distance"/>
+                        <field name="ess_suspicious"/>
+                        <field name="ess_suspicious_reason" invisible="not ess_suspicious"/>
+                        <field name="ess_photo" widget="image" invisible="not ess_photo" options="{'size': [120, 120]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_attendance_view_filter_ess" model="ir.ui.view">
+        <field name="name">hr.attendance.search.ess</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="ess_location_id"/>
+                <filter name="ess_suspicious" string="Suspicious" domain="[('ess_suspicious', '=', True)]"/>
+                <filter name="ess_late" string="Late" domain="[('ess_late_minutes', '&gt;', 0)]"/>
+                <filter name="ess_open" string="Currently present" domain="[('check_out', '=', False)]"/>
+                <filter name="group_ess_branch" string="Branch" context="{'group_by': 'ess_location_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_ess_attendance_live" model="ir.actions.act_window">
+        <field name="name">Present now</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('check_out', '=', False)]</field>
+        <field name="context">{'search_default_group_ess_branch': 1}</field>
+    </record>
+
+    <record id="action_ess_attendance_suspicious" model="ir.actions.act_window">
+        <field name="name">Suspicious check-ins</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('ess_suspicious', '=', True)]</field>
+    </record>
+
+    <record id="action_ess_attendance_late" model="ir.actions.act_window">
+        <field name="name">Lateness</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">pivot,list,graph</field>
+        <field name="domain">[('ess_late_minutes', '&gt;', 0)]</field>
+        <field name="context">{'pivot_measures': ['ess_late_minutes', '__count']}</field>
+    </record>
+
+    <!-- attempts audit log -->
+    <record id="view_attempt_list" model="ir.ui.view">
+        <field name="name">bs.hr.attendance.attempt.list</field>
+        <field name="model">bs.hr.attendance.attempt</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" decoration-danger="not success">
+                <field name="create_date" string="Date"/>
+                <field name="employee_id"/>
+                <field name="location_id"/>
+                <field name="action"/>
+                <field name="success"/>
+                <field name="methods"/>
+                <field name="reason"/>
+                <field name="distance" optional="show"/>
+                <field name="accuracy" optional="hide"/>
+                <field name="face_distance" optional="hide"/>
+                <field name="ip_address" optional="hide"/>
+                <field name="device_id" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_attempt_search" model="ir.ui.view">
+        <field name="name">bs.hr.attendance.attempt.search</field>
+        <field name="model">bs.hr.attendance.attempt</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="location_id"/>
+                <filter name="failed" string="Failed" domain="[('success', '=', False)]"/>
+                <filter name="today" string="Today" domain="[('create_date', '&gt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_attempt" model="ir.actions.act_window">
+        <field name="name">Check-in attempts</field>
+        <field name="res_model">bs.hr.attendance.attempt</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'search_default_today': 1}</field>
+    </record>
+</odoo>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="bilingual_thermal_receipt" model="pos.receipt">
+            <field name="name">RYVK Thermal Receipt</field>
+            <field name="design_receipt"><![CDATA[
+<div class="pos-receipt bilingual-receipt bilingual-receipt--thermal" dir="ltr" lang="en">
+    <t t-set="data" t-value="props.data or {}"/>
+    <t t-set="receipt" t-value="props.receipt or data or {}"/>
+    <t t-set="bilingual" t-value="data.bilingual_receipt_data or receipt.bilingual_receipt_data or {}"/>
+    <t t-set="header" t-value="data.headerData or receipt.headerData or {}"/>
+    <t t-set="company" t-value="header.company or env.services.pos.company or {}"/>
+    <t t-set="feedusReceipt" t-value="data.feedusReceipt or receipt.feedusReceipt or {}"/>
+    <t t-set="cashierName" t-value="bilingual.cashier or data.cashier or receipt.cashier or ''"/>
+    <t t-set="orderRef" t-value="bilingual.receiptReference or data.name or ''"/>
+    <t t-set="orderDate" t-value="data.date or receipt.date or ''"/>
+
+    <div class="bilingual-receipt__sheet bilingual-rcpt">
+        <div class="receipt-inner">
+            <header class="bilingual-hd">
+                <div class="bilingual-hd-logo">
+                    <t t-if="env.services.pos.config.pos_brand_logo">
+                        <img t-att-src="'data:image/png;base64,' + env.services.pos.config.pos_brand_logo"
+                             alt=""
+                             class="bilingual-hd-logo-img bilingual-hd-logo-img--custom"/>
+                    </t>
+                    <t t-elif="company.id">
+                        <img t-attf-src="/web/image?model=res.company&amp;id={{company.id}}&amp;field=logo"
+                             alt=""
+                             class="bilingual-hd-logo-img"/>
+                    </t>
+                    <t t-elif="env.services.pos.config.logo">
+                        <img t-att-src="'data:image/png;base64,' + env.services.pos.config.logo"
+                             alt=""
+                             class="bilingual-hd-logo-img"/>
+                    </t>
+                </div>
+                <section class="bilingual-order-wrap">
+                    <div class="bilingual-order-box" dir="ltr">
+                        <span class="bilingual-order-num bilingual-ltr" dir="ltr"
+                              t-esc="'#' + (bilingual.orderNumber or receipt.tracking_number or '')"/>
+                    </div>
+                </section>
+                <div class="bilingual-hd-name" t-if="bilingual.brandName or company.name" dir="ltr"
+                     t-esc="bilingual.brandName or company.name"/>
+                <div class="bilingual-branch" t-if="bilingual.branchName" dir="rtl"
+                     t-esc="bilingual.branchName"/>
+            </header>
+
+            <section class="bilingual-meta" dir="rtl">
+                <div class="bilingual-meta-line" t-if="orderRef" dir="ltr">
+                    <span class="bilingual-meta-lbl">Receipt ref:</span>
+                    <span class="bilingual-meta-val bilingual-ltr" t-esc="orderRef"/>
+                </div>
+                <div class="bilingual-meta-line">
+                    <span class="bilingual-meta-val bilingual-ltr"
+                          t-esc="bilingual.orderDate or orderDate"/>
+                </div>
+                <div class="bilingual-meta-line bilingual-meta-line--type" t-if="bilingual.orderType">
+                    <span class="bilingual-meta-val" t-esc="bilingual.orderType"/>
+                </div>
+                <div class="bilingual-meta-line"
+                     t-if="data.isRestaurant and bilingual.tableDisplay and !bilingual.hideTableOnReceipt">
+                    <span class="bilingual-meta-lbl">الطاولة</span>
+                    <span class="bilingual-meta-sep"> / </span>
+                    <span dir="ltr" class="bilingual-meta-lbl-en">Table</span>
+                    <span class="bilingual-meta-sep"> : </span>
+                    <span class="bilingual-meta-val" t-esc="bilingual.tableDisplay"/>
+                </div>
+                <div class="bilingual-meta-line" t-if="feedusReceipt.show and feedusReceipt.aggregatorName">
+                    <span class="bilingual-meta-lbl">المنصة</span>
+                    <span class="bilingual-meta-sep"> : </span>
+                    <span class="bilingual-meta-val" t-esc="feedusReceipt.aggregatorName"/>
+                </div>
+                <div class="bilingual-meta-line" t-if="feedusReceipt.show and feedusReceipt.aggregatorOrderId">
+                    <span class="bilingual-meta-lbl">رقم طلب المنصة</span>
+                    <span class="bilingual-meta-sep"> : </span>
+                    <span class="bilingual-meta-val bilingual-ltr" t-esc="feedusReceipt.aggregatorOrderId"/>
+                </div>
+            </section>
+
+            <div class="items-table-wrap" dir="ltr">
+                <table class="classic-items-table" dir="ltr" cellpadding="0" cellspacing="0">
+                    <colgroup>
+                        <col style="width:72%"/>
+                        <col style="width:28%"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="item-head">
+                                <span class="ar" dir="rtl">المنتج</span>
+                                <span class="en" dir="ltr">Product</span>
+                            </th>
+                            <th class="price-head">
+                                <span class="ar" dir="rtl">المبلغ</span>
+                                <span class="en" dir="ltr">Amount</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="bilingual.bilingualLines and bilingual.bilingualLines.length">
+                            <t t-foreach="bilingual.bilingualLines" t-as="line" t-key="line_index">
+                                <tr>
+                                    <td class="item-cell" dir="ltr">
+                                        <span class="bilingual-item-qty" dir="ltr" t-esc="line.qtyStr"/>
+                                        <span class="bilingual-item-main" dir="ltr"
+                                              t-esc="line.nameEn or line.nameAr"/>
+                                        <t t-if="line.nameAr and line.nameAr !== line.nameEn">
+                                            <span class="bilingual-item-subar" dir="rtl" t-esc="line.nameAr"/>
+                                        </t>
+                                        <div t-if="line.modifierSummaryLines and line.modifierSummaryLines.length"
+                                             class="bilingual-modifier-summary"
+                                             dir="rtl">
+                                            <t t-foreach="line.modifierSummaryLines"
+                                               t-as="modifierLine"
+                                               t-key="modifierLine_index">
+                                                <div>- <t t-esc="modifierLine"/></div>
+                                            </t>
+                                        </div>
+                                    </td>
+                                    <td class="price-cell" dir="ltr" t-esc="line.pricePlain"/>
+                                </tr>
+                                <tr t-if="line.customerNote">
+                                    <td colspan="2" class="classic-items-note-cell" dir="rtl">
+                                        <div class="bilingual-note bilingual-note--line">
+                                            <div class="bilingual-note__head">
+                                                <i class="fa fa-sticky-note bilingual-note__icon" dir="ltr" title="Note"/>
+                                                <span class="bilingual-note__label">ملاحظة على الصنف</span>
+                                                <span class="bilingual-note__slash">/</span>
+                                                <span class="bilingual-note__label-en">Item note</span>
+                                            </div>
+                                            <div class="bilingual-note__body">
+                                                <t t-esc="line.customerNote"/>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <t t-foreach="props.orderlines or []" t-as="orderline" t-key="orderline_index">
+                                <tr>
+                                    <td class="item-cell" dir="ltr">
+                                        <span class="bilingual-item-qty" dir="ltr" t-esc="orderline.qty"/>
+                                        <t t-esc="orderline.productName or orderline.name"/>
+                                        <div t-if="orderline.customerNote"
+                                             class="bilingual-note__body"
+                                             t-esc="orderline.customerNote"/>
+                                    </td>
+                                    <td class="price-cell" dir="ltr">
+                                        <t t-esc="orderline.price or env.utils.formatCurrency(orderline.price_without_discount or 0)"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bilingual-line"/>
+
+            <section class="bilingual-sums">
+                <div class="summary-row" dir="ltr" t-if="bilingual.showItemCount">
+                    <div class="summary-amount" t-esc="bilingual.itemCount or 0"/>
+                    <div class="summary-label">
+                        <span class="ar">إجمالي الكمية</span>
+                        <span class="en">Total quantity</span>
+                    </div>
+                </div>
+                <div class="summary-row" dir="ltr">
+                    <div class="summary-amount" t-esc="env.utils.formatCurrency(data.total_discount)"/>
+                    <div class="summary-label">
+                        <span class="ar">الخصم</span>
+                        <span class="en">Discount</span>
+                    </div>
+                </div>
+                <div class="summary-row" dir="ltr">
+                    <div class="summary-amount" t-esc="env.utils.formatCurrency(data.total_without_tax)"/>
+                    <div class="summary-label">
+                        <span class="ar">المجموع بدون ضريبة</span>
+                        <span class="en">Subtotal excl. VAT</span>
+                    </div>
+                </div>
+                <div class="summary-row" dir="ltr">
+                    <div class="summary-amount" t-esc="env.utils.formatCurrency(data.amount_tax)"/>
+                    <div class="summary-label">
+                        <span class="ar">ضريبة القيمة المضافة</span>
+                        <span class="en">VAT</span>
+                    </div>
+                </div>
+                <t t-foreach="data.tax_details or []" t-as="tax_detail" t-key="tax_detail_index">
+                    <div class="summary-row summary-row--muted" dir="ltr">
+                        <div class="summary-amount" t-esc="env.utils.formatCurrency(tax_detail.amount)"/>
+                        <div class="summary-label summary-label--plain" t-esc="tax_detail.name"/>
+                    </div>
+                </t>
+                <div class="bilingual-line bilingual-line--tight"/>
+                <div class="summary-row total-row" dir="ltr">
+                    <div class="summary-amount" t-esc="env.utils.formatCurrency(data.amount_total)"/>
+                    <div class="summary-label">
+                        <span class="ar">الإجمالي شامل الضريبة</span>
+                        <span class="en">Total incl. VAT</span>
+                    </div>
+                </div>
+            </section>
+
+            <t t-if="data.show_rounding">
+                <div class="summary-row" dir="ltr">
+                    <div class="summary-amount"
+                         t-esc="env.utils.formatCurrency(data.order_rounding)"/>
+                    <div class="summary-label summary-label--plain">Rounding</div>
+                </div>
+                <div class="summary-row summary-row--emph" dir="ltr">
+                    <div class="summary-amount"
+                         t-esc="env.utils.formatCurrency(data.amount_total + data.order_rounding)"/>
+                    <div class="summary-label">
+                        <span class="ar">المستحق</span>
+                        <span class="en">To pay</span>
+                    </div>
+                </div>
+            </t>
+
+            <div class="bilingual-line"/>
+
+            <section class="bilingual-pay">
+                <t t-if="bilingual.paymentLines and bilingual.paymentLines.length">
+                    <t t-foreach="bilingual.paymentLines" t-as="pay" t-key="pay_index">
+                        <div class="summary-row" dir="ltr">
+                            <div class="summary-amount" t-esc="env.utils.formatCurrency(pay.amount)"/>
+                            <div class="summary-label">
+                                <span class="ar">الدفع - <t t-esc="pay.name"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+                <t t-else="">
+                    <t t-foreach="props.paymentlines or data.paymentlines or []" t-as="pay" t-key="pay_index">
+                        <div class="summary-row" dir="ltr">
+                            <div class="summary-amount"
+                                 t-esc="typeof pay.amount === 'string' ? pay.amount : env.utils.formatCurrency(pay.amount || 0)"/>
+                            <div class="summary-label">
+                                <span class="ar">الدفع - <t t-esc="pay.name"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </section>
+
+            <t t-if="data.show_change">
+                <div class="summary-row" dir="ltr">
+                    <div class="summary-amount"
+                         t-esc="env.utils.formatCurrency(data.order_change)"/>
+                    <div class="summary-label summary-label--plain">Change</div>
+                </div>
+            </t>
+
+            <t t-if="data.generalNote">
+                <div class="bilingual-line"/>
+                <div class="bilingual-gnote bilingual-note bilingual-note--order" dir="rtl">
+                    <div class="bilingual-note__head">
+                        <i class="fa fa-pencil-square-o bilingual-note__icon" dir="ltr" title="Invoice note"/>
+                        <span class="bilingual-note__label">ملاحظات الفاتورة</span>
+                        <span class="bilingual-note__slash">/</span>
+                        <span class="bilingual-note__label-en">Order notes</span>
+                    </div>
+                    <div class="bilingual-note__body">
+                        <t t-esc="data.generalNote"/>
+                    </div>
+                </div>
+            </t>
+
+            <div class="bilingual-before-qr"/>
+
+            <div t-if="bilingual.zatcaQR" class="bilingual-zatca">
+                <img t-att-src="bilingual.zatcaQR" alt="QR" class="bilingual-zatca-img"/>
+            </div>
+
+            <div t-if="company" class="bilingual-legal">
+                <div class="bilingual-tax-invoice-title" dir="rtl">فاتورة ضريبية مبسطة</div>
+                <div t-if="company.name" class="bilingual-legal-name" dir="rtl" t-esc="company.name"/>
+                <div t-if="company.vat" class="bilingual-legal-row" dir="rtl">
+                    <span>الرقم الضريبي:</span>
+                    <span class="bilingual-ltr bilingual-legal-vat" t-esc="company.vat"/>
+                </div>
+                <div t-if="bilingual.companyAddress" class="bilingual-legal-addr" dir="rtl" t-esc="bilingual.companyAddress"/>
+            </div>
+
+            <div t-if="data.footer" class="bilingual-cfg-footer pos-receipt-center-align" dir="rtl">
+                <t t-esc="data.footer"/>
+            </div>
+
+            <div class="after-footer">
+                <t t-foreach="data.paymentlines or props.paymentlines or []" t-as="line" t-key="line_index">
+                    <t t-if="line.ticket">
+                        <br/>
+                        <div class="pos-payment-terminal-receipt">
+                            <pre t-esc="line.ticket"/>
+                        </div>
+                    </t>
+                </t>
+            </div>
+
+            <t t-if="data.shippingDate">
+                <div class="bilingual-ship pos-receipt-order-data" dir="rtl">
+                    <span>التسليم المتوقع / </span>
+                    <span class="bilingual-ltr" t-esc="data.shippingDate"/>
+                </div>
+            </t>
+
+            <footer class="bilingual-ft">
+                <div t-if="cashierName" class="bilingual-ft-en" dir="ltr">
+                    You were served by <t t-esc="cashierName"/>
+                </div>
+                <t t-if="bilingual.thankYouMsg">
+                    <div class="bilingual-ft-en" dir="rtl" t-esc="bilingual.thankYouMsg"/>
+                </t>
+                <div t-if="bilingual.branchPhone" class="bilingual-contact bilingual-ltr" dir="ltr"
+                     t-esc="bilingual.branchPhone"/>
+            </footer>
+
+        </div>
+    </div>
+</div>
+            ]]></field>
+        </record>
+    </data>
+
+    <function model="pos.receipt"
+              name="migrate_bilingual_thermal_receipt"
+              eval="(ref('bilingual_thermal_receipt'),)"/>
+</odoo>
+

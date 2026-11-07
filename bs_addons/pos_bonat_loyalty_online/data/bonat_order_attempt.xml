@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="model_x_bonat_order_attempt" model="ir.model">
+        <field name="name">Bonat Order Attempt</field>
+        <field name="model">x_bonat_order_attempt</field>
+    </record>
+
+    <record id="field_attempt_order_id" model="ir.model.fields">
+        <field name="name">x_order_id</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">POS Order</field>
+        <field name="ttype">many2one</field>
+        <field name="relation">pos.order</field>
+        <field name="on_delete">cascade</field>
+        <field name="required" eval="True"/>
+        <field name="index" eval="True"/>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_at" model="ir.model.fields">
+        <field name="name">x_attempted_at</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Attempted At</field>
+        <field name="ttype">datetime</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_number" model="ir.model.fields">
+        <field name="name">x_attempt_number</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Attempt Number</field>
+        <field name="ttype">integer</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_delivery_key" model="ir.model.fields">
+        <field name="name">x_delivery_key</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Delivery Key</field>
+        <field name="ttype">char</field>
+        <field name="index" eval="True"/>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_request" model="ir.model.fields">
+        <field name="name">x_request</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Request Summary (Redacted)</field>
+        <field name="ttype">text</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_response" model="ir.model.fields">
+        <field name="name">x_response</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Response Summary (Redacted)</field>
+        <field name="ttype">text</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_http_status" model="ir.model.fields">
+        <field name="name">x_http_status</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">HTTP Status</field>
+        <field name="ttype">integer</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_result" model="ir.model.fields">
+        <field name="name">x_result</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Result</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+    </record>
+    <record id="field_attempt_duration_ms" model="ir.model.fields">
+        <field name="name">x_duration_ms</field>
+        <field name="model">x_bonat_order_attempt</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="field_description">Duration (ms)</field>
+        <field name="ttype">integer</field>
+        <field name="state">manual</field>
+    </record>
+
+    <record id="access_attempt_cashier" model="ir.model.access">
+        <field name="name">Bonat attempt cashier create</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="group_id" ref="point_of_sale.group_pos_user"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="access_attempt_manager" model="ir.model.access">
+        <field name="name">Bonat attempt manager read</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="group_id" ref="point_of_sale.group_pos_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="rule_attempt_company" model="ir.rule">
+        <field name="name">Bonat attempts in allowed companies</field>
+        <field name="model_id" ref="model_x_bonat_order_attempt"/>
+        <field name="domain_force">[('x_order_id.company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user')), (4, ref('point_of_sale.group_pos_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

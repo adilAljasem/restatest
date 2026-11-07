@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="loyalty_program_view_form_employee_promotion" model="ir.ui.view">
+        <field name="name">loyalty.program.form.employee.promotion</field>
+        <field name="model">loyalty.program</field>
+        <field name="inherit_id" ref="loyalty.loyalty_program_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_to']" position="after">
+                <field name="for_employees" invisible="program_type != 'promotion'"/>
+                <label for="employee_limit" invisible="program_type != 'promotion' or not for_employees"/>
+                <div class="o_row" invisible="program_type != 'promotion' or not for_employees">
+                    <field name="employee_limit" class="oe_inline" required="for_employees and program_type == 'promotion'"/>
+                    <span class="mx-2">Per</span>
+                    <field name="employee_limit_period" class="oe_inline" required="for_employees and program_type == 'promotion'"/>
+                </div>
+                <field name="employee_domain" widget="domain"
+                       options="{'model': 'hr.employee'}"
+                       invisible="program_type != 'promotion' or not for_employees"/>
+            </xpath>
+            <xpath expr="//label[@for='limit_usage']" position="attributes">
+                <attribute name="invisible">program_type in ('gift_card', 'ewallet') or for_employees</attribute>
+            </xpath>
+            <xpath expr="//field[@name='limit_usage']/parent::span" position="attributes">
+                <attribute name="invisible">program_type in ('gift_card', 'ewallet') or for_employees</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

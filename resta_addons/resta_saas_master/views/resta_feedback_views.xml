@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="resta_feedback_view_list" model="ir.ui.view">
+        <field name="name">resta.feedback.list</field>
+        <field name="model">resta.feedback</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="create_date"/><field name="tenant_id"/><field name="kind" widget="badge"/>
+                <field name="rating"/><field name="message"/><field name="user_name"/>
+                <field name="announcement_id"/><field name="account_manager_id" widget="many2one_avatar_user"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+    <record id="resta_feedback_view_kanban" model="ir.ui.view">
+        <field name="name">resta.feedback.kanban</field>
+        <field name="model">resta.feedback</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <templates><t t-name="card">
+                    <field name="tenant_id" class="fw-bold"/>
+                    <field name="kind" widget="badge"/>
+                    <field name="message"/>
+                    <footer><field name="rating"/><field name="create_date" class="ms-auto text-muted small"/></footer>
+                </t></templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="resta_feedback_view_form" model="ir.ui.view">
+        <field name="name">resta.feedback.form</field>
+        <field name="model">resta.feedback</field>
+        <field name="arch" type="xml">
+            <form>
+                <header><field name="state" widget="statusbar" options="{'clickable': '1'}"/></header>
+                <sheet>
+                    <group>
+                        <group><field name="tenant_id"/><field name="kind"/><field name="rating"/><field name="announcement_id"/></group>
+                        <group><field name="user_name"/><field name="user_email"/><field name="account_manager_id"/></group>
+                    </group>
+                    <field name="message"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_resta_feedback" model="ir.actions.act_window">
+        <field name="name">الاقتراحات والتقييمات</field>
+        <field name="res_model">resta.feedback</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>

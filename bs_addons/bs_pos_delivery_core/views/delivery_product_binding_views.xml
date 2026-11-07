@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_product_binding_list" model="ir.ui.view">
+        <field name="name">bs.delivery.product.binding.list</field>
+        <field name="model">bs.delivery.product.binding</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Product Mappings" multi_edit="1">
+                <field name="connection_id"/>
+                <field name="store_binding_id" optional="show"/>
+                <field name="provider_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="external_product_id"/>
+                <field name="external_variant_id" optional="hide"/>
+                <field name="external_name_en" optional="show"/>
+                <field name="external_name_ar" optional="show"/>
+                <field name="product_id"/>
+                <field name="platform_price" optional="show"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="last_sync_date" optional="hide"/>
+                <field name="active" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_product_binding_form" model="ir.ui.view">
+        <field name="name">bs.delivery.product.binding.form</field>
+        <field name="model">bs.delivery.product.binding</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Product Mapping">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="connection_id"/>
+                            <field name="store_binding_id"
+                                   domain="[('connection_id', '=', connection_id)]"/>
+                            <field name="provider_id" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="external_product_id"/>
+                            <field name="external_variant_id"/>
+                            <field name="external_name_en"/>
+                            <field name="external_name_ar"/>
+                            <field name="external_name" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="platform_price"/>
+                            <field name="last_sync_date" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_product_binding_search" model="ir.ui.view">
+        <field name="name">bs.delivery.product.binding.search</field>
+        <field name="model">bs.delivery.product.binding</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="external_product_id"/>
+                <field name="external_name"/>
+                <field name="external_name_en"/>
+                <field name="external_name_ar"/>
+                <field name="product_id"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_store" string="Store" context="{'group_by': 'store_binding_id'}"/>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_product_binding" model="ir.actions.act_window">
+        <field name="name">Product Mapping</field>
+        <field name="res_model">bs.delivery.product.binding</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_product_binding_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Map an external product to an Odoo variant.</p>
+            <p>Mappings are isolated per delivery connection.</p>
+        </field>
+    </record>
+</odoo>

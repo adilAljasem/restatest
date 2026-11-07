@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="flow_profile_change" model="bs.hr.approval.flow">
+        <field name="name">Profile update</field>
+        <field name="res_model">bs.hr.profile.change</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_profile_change_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_profile_change"/>
+        <field name="name">HR verification</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="pos_enterprise.Order" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'customer-note')]" position="attributes">
+            <attribute name="t-att-class">{'bg-warning text-dark fs-5 fw-bold': this.order.pos_order_id.blend_schedule_at}</attribute>
+        </xpath>
+    </t>
+</templates>

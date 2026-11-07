@@ -1,0 +1,12 @@
+<odoo>
+    <!-- Retire the former POS Connect page when upgrading an existing database. -->
+    <record id="view_pos_config_delivery_payment_mapping" model="ir.ui.view">
+        <field name="name">pos.config.delivery.payment.mapping.retired</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="active" eval="False"/>
+        <field name="arch" type="xml">
+            <data/>
+        </field>
+    </record>
+</odoo>

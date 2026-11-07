@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_blend_integration_log_admin,Blend integration log administrator,model_blend_integration_log,base.group_system,1,1,1,1
+access_blend_stock_state_admin,Blend stock state administrator,model_blend_stock_state,base.group_system,1,0,0,0
+access_blend_reject_wizard_pos,Blend rejection wizard POS users,model_blend_order_reject_wizard,point_of_sale.group_pos_user,1,1,1,1
+access_blend_reject_wizard_admin,Blend rejection wizard administrators,model_blend_order_reject_wizard,base.group_system,1,1,1,1
+access_blend_payment_mapping_admin,Blend payment mapping administrators,model_blend_payment_mapping,base.group_system,1,1,1,1
+access_blend_payment_mapping_pos,Blend payment mapping POS readers,model_blend_payment_mapping,point_of_sale.group_pos_user,1,0,0,0
+access_blend_kitchen_print_pos,Blend printing POS readers,model_blend_kitchen_print,point_of_sale.group_pos_user,1,0,0,0
+access_blend_kitchen_print_admin,Blend printing administrators,model_blend_kitchen_print,base.group_system,1,0,0,0
+access_blend_inbound_reprocess_wizard_admin,Blend inbound reprocessing administrators,model_blend_inbound_reprocess_wizard,base.group_system,1,1,1,1

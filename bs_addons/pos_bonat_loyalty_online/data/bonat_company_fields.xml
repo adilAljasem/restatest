@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Bonat configuration fields on res.company.
+
+        The on-premise module declares these in models/res_company.py. An
+        importable module cannot ship Python, so they are created here as
+        manual (state="manual") fields instead.
+
+        Naming: Odoo enforces that manual fields start with "x_"
+        (ir.model.fields._check_name raises otherwise), so these are NOT
+        name-compatible with the on-premise fields. The mapping is:
+
+            enable_bonat_integration  ->  x_bonat_enabled
+            bonat_api_key             ->  x_bonat_api_key
+            bonat_merchant_id         ->  x_bonat_merchant_id
+            bonat_merchant_name       ->  x_bonat_merchant_name
+            bonat_demo_mode           ->  x_bonat_demo_mode
+
+        The two URL fields have no on-premise counterpart as company fields;
+        on-premise they live only in ir.config_parameter, read with sudo() by
+        res.company._get_bonat_api_base_url(). A POS cashier cannot read
+        ir.config_parameter over RPC, so the effective value is mirrored onto
+        the company where the POS client can reach it. See
+        static/src/app/bonat_store.js for the resolution order.
+
+        noupdate is deliberately NOT set: field definitions should be corrected
+        by module upgrades. The merchant's *values* live on res.company rows and
+        are untouched by upgrades either way.
+    -->
+    <record id="field_res_company_bonat_enabled" model="ir.model.fields">
+        <field name="name">x_bonat_enabled</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Enable Bonat Integration</field>
+        <field name="ttype">boolean</field>
+        <field name="state">manual</field>
+    </record>
+
+    <record id="field_res_company_bonat_api_key" model="ir.model.fields">
+        <field name="name">x_bonat_api_key</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat API Key</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="help">Issued by Bonat with your merchant account. Requires an active Bonat subscription. Readable by any internal user who can read this company record: see the security note in the module README.</field>
+    </record>
+
+    <record id="field_res_company_bonat_merchant_id" model="ir.model.fields">
+        <field name="name">x_bonat_merchant_id</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat Merchant ID</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+    </record>
+
+    <record id="field_res_company_bonat_merchant_name" model="ir.model.fields">
+        <field name="name">x_bonat_merchant_name</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat Merchant Name</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+    </record>
+
+    <record id="field_res_company_bonat_demo_mode" model="ir.model.fields">
+        <field name="name">x_bonat_demo_mode</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat Demo Mode</field>
+        <field name="ttype">boolean</field>
+        <field name="state">manual</field>
+        <field name="help">Route outbound Bonat API calls to the staging environment and handle demo reward codes 1, 2 and 3 locally. The POS session shows a yellow DEMO banner while this is on. No real loyalty transactions are recorded.</field>
+    </record>
+
+    <!--
+        Selection field (ADR 0003 on main, docs/adr/0003-odoo19-menu-sync-mode-toggle.md
+        — Online counterpart of BON-2420's bonat_menu_sync_mode; this branch's OWN
+        docs/adr/0003-*.md is a different, unrelated decision — see docs/adr/README.md
+        on each branch before following an "ADR 0003" pointer). ir.model.fields has no
+        "default" for manual fields
+        (verified live against odoo19_prod's ir_model.py, _instanciate_attrs/
+        _reflect_field_params carry no default key), so unlike the on-premise
+        fields.Selection(default='variant'), this column is NOT backfilled to
+        'variant' on existing company rows by Odoo itself — it is left blank.
+        Every reader in this module (bonat_store.js's loadBonatConfig) therefore
+        treats any value other than the literal string "template" as variant-level,
+        so the effective default is 'variant' for old and new merchants alike even
+        though the stored column can be NULL. Not marked required="1" for the same
+        reason: a required selection with no guaranteed value would block the
+        settings form from saving for a merchant whose column is still NULL.
+    -->
+    <record id="field_res_company_bonat_menu_sync_mode" model="ir.model.fields">
+        <field name="name">x_bonat_menu_sync_mode</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat Menu Sync Mode</field>
+        <field name="ttype">selection</field>
+        <field name="state">manual</field>
+        <field name="help">Variant-level (default): menu-sync and redemption operate on product.product rows — unchanged behavior. Template-level: menu-sync pushes product.template rows and redemption lets Odoo's native variant configurator handle selection. See this repo's ADR 0003 on the main branch before switching an existing merchant that has active product-restricted campaigns.</field>
+    </record>
+
+    <record id="selection_field_res_company_bonat_menu_sync_mode_variant" model="ir.model.fields.selection">
+        <field name="field_id" ref="field_res_company_bonat_menu_sync_mode"/>
+        <field name="value">variant</field>
+        <field name="name">Variant-level</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="selection_field_res_company_bonat_menu_sync_mode_template" model="ir.model.fields.selection">
+        <field name="field_id" ref="field_res_company_bonat_menu_sync_mode"/>
+        <field name="value">template</field>
+        <field name="name">Template-level</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="field_res_company_bonat_api_url" model="ir.model.fields">
+        <field name="name">x_bonat_api_url</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat API URL</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="help">Production Bonat API base URL. Leave empty to use https://api.bonat.io.</field>
+    </record>
+
+    <record id="field_res_company_bonat_api_url_staging" model="ir.model.fields">
+        <field name="name">x_bonat_api_url_staging</field>
+        <field name="model">res.company</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="field_description">Bonat API URL (Staging)</field>
+        <field name="ttype">char</field>
+        <field name="state">manual</field>
+        <field name="help">Staging Bonat API base URL, used by Demo Mode. Leave empty to use https://stg-api.bonat.io.</field>
+    </record>
+</odoo>

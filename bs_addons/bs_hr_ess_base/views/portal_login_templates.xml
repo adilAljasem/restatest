@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ess_login" name="ESS OTP login">
+        <t t-call="portal.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="o_bs_ess">
+                <div class="container ess-container py-5" style="max-width: 420px;">
+                    <div class="text-center mb-4">
+                        <img src="/web/binary/company_logo" alt="" style="max-height: 72px;"/>
+                        <h4 class="mt-3">Employee Self-Service</h4>
+                    </div>
+                    <div t-if="error" class="alert alert-danger" t-out="error"/>
+                    <form t-if="step == 'phone'" action="/my/hr/login" method="post" class="ess-form">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <label for="ess_phone">Mobile number</label>
+                        <input id="ess_phone" type="tel" name="phone" class="form-control form-control-lg" dir="ltr"
+                               placeholder="05XXXXXXXX" required="required" autocomplete="tel" t-att-value="phone"/>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Send code</button>
+                    </form>
+                    <form t-else="" action="/my/hr/login/verify" method="post" class="ess-form">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <p class="text-muted small">If this number is registered, an SMS code has been sent.</p>
+                        <label for="ess_code">Code</label>
+                        <input id="ess_code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" name="code"
+                               class="form-control form-control-lg text-center" dir="ltr" required="required"
+                               autocomplete="one-time-code"/>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Sign in</button>
+                        <a href="/my/hr/login" class="btn btn-link w-100">Use another number</a>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="/web/login?redirect=/my/hr" class="small">Sign in with e-mail and password</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Link from the standard login page -->
+    <template id="login_ess_link" name="ESS link on login" inherit_id="web.login">
+        <xpath expr="//form" position="after">
+            <div class="text-center small mt-2" t-if="request.env['res.company'].sudo().search_count([('ess_otp_login', '=', True)])">
+                <a href="/my/hr/login">Employees: sign in with your mobile number</a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

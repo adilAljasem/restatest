@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="bs_pos_delivery_core.AggregatorDashboard">
+        <div class="o_bs_aggregator_dashboard h-100 overflow-auto" t-att-aria-busy="state.loading ? 'true' : 'false'">
+            <header class="o_bs_dashboard_header">
+                <div><h2>Delivery overview</h2><p class="text-muted mb-0">Operations and integration — in one place</p></div>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <label class="d-flex align-items-center gap-2"><input type="checkbox" class="form-check-input mt-0" t-model="state.autoRefresh"/> Auto-refresh · 30s</label>
+                    <button class="btn btn-outline-primary" t-on-click="() => this.load()" t-att-disabled="state.loading">
+                        <i t-att-class="'fa fa-refresh me-1 ' + (state.loading ? 'fa-spin' : '')" aria-hidden="true"/> Refresh
+                    </button>
+                </div>
+            </header>
+
+            <form t-if="state.options" class="o_bs_filters o_bs_panel" t-on-submit.prevent="applyFilters">
+                <label>Period<select class="form-select" t-model="state.filters.period"><option value="today">Today</option><option value="yesterday">Yesterday</option><option value="last7">Last 7 days</option><option value="month">This month</option><option value="custom">Custom dates</option></select></label>
+                <label t-if="state.filters.period === 'custom'">From<input type="date" class="form-control" t-model="state.filters.date_from" required="required"/></label>
+                <label t-if="state.filters.period === 'custom'">To<input type="date" class="form-control" t-model="state.filters.date_to" required="required"/></label>
+                <label>Company<select class="form-select" t-model="state.filters.company_id"><option t-foreach="state.options.companies" t-as="company" t-key="company.id" t-att-value="company.id" t-esc="company.name"/></select></label>
+                <label>Platform<select class="form-select" t-model="state.filters.channel"><option value="">All platforms</option><option t-foreach="channels" t-as="channel" t-key="channel.key" t-att-value="channel.key" t-esc="channel.name"/></select></label>
+                <label>Branch / POS<select class="form-select" t-model="state.filters.pos_config_id"><option value="">All branches</option><option t-foreach="branches" t-as="branch" t-key="branch.id" t-att-value="branch.id" t-esc="branch.name"/></select></label>
+                <button type="submit" class="btn btn-primary align-self-end" t-att-disabled="state.loading">Apply filters</button>
+            </form>
+
+            <div t-if="state.loading and !state.data" class="o_bs_dashboard_loading" role="status"><i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"/> Loading dashboard...</div>
+            <div t-elif="state.error and !state.data" class="alert alert-danger" role="alert">The dashboard could not be loaded. Check your access and try again.</div>
+            <t t-elif="state.data">
+                <div t-if="state.stale" class="alert alert-warning" role="status">Refresh failed. The previous snapshot and its original filters are still shown; shortcuts use that same snapshot.</div>
+                <div class="o_bs_scope_line">
+                    <span><strong t-esc="scopeLabel"/> · <t t-esc="periodLabel"/> <span t-if="businessDayLabel" class="o_bs_business_day_chip" title="Days follow the POS business day setting (pos_business_day)."><i class="fa fa-clock-o me-1" aria-hidden="true"/><t t-esc="businessDayLabel"/></span></span>
+                    <small class="text-muted">Last updated <t t-esc="lastUpdatedLabel"/></small>
+                </div>
+                <nav class="o_bs_dashboard_modes" aria-label="Dashboard sections">
+                    <button t-foreach="modes" t-as="mode" t-key="mode.key" t-att-class="'btn ' + (state.mode === mode.key ? 'btn-primary' : 'btn-outline-secondary')" t-att-aria-pressed="state.mode === mode.key ? 'true' : 'false'" t-on-click="() => state.mode = mode.key" t-esc="mode.label"/>
+                </nav>
+
+                <section t-if="!live.connections" class="o_bs_empty_setup o_bs_panel" role="status">
+                    <i class="fa fa-plug fa-lg" aria-hidden="true"/><div><h3>No active platform connections in this scope</h3><p class="mb-0 text-muted">Review connections or adjust filters. Historical orders remain available.</p></div>
+                    <button t-if="permissions.configure" class="btn btn-primary" t-on-click="() => this.openMetric('connections')">Configure platforms</button>
+                    <button t-if="permissions.integration" class="btn btn-outline-primary" t-on-click="() => this.openMetric('catalog')">Provider Catalog</button>
+                </section>
+                <div t-elif="!metrics.orders" class="o_bs_period_empty alert alert-info" role="status">No orders match this period and these filters. Try another period or platform.</div>
+
+                <section t-if="hasAttention and showSection('overview', 'operations')" class="o_bs_attention o_bs_panel" data-section="attention">
+                    <div><h3>Needs attention now</h3><small class="text-muted">Current workload · all dates</small></div>
+                    <div class="o_bs_attention_actions">
+                        <button class="btn btn-outline-primary" t-on-click="() => this.openMetric('awaiting')">Awaiting acceptance <strong t-esc="live.awaiting_acceptance"/></button>
+                        <button t-att-class="'btn ' + (kpis.late_orders ? 'btn-warning' : 'btn-outline-secondary')" t-on-click="() => this.openMetric('late')">Late orders <strong t-esc="kpis.late_orders"/></button>
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.openMetric('active')">Active orders <strong t-esc="live.active_orders"/></button>
+                        <button t-if="permissions.integration and queueIssueCount" class="btn btn-outline-danger" t-on-click="() => state.mode = 'integration'">Queue issues <strong t-esc="queueIssueCount"/></button>
+                        <button t-if="permissions.integration and live.connection_errors" class="btn btn-outline-danger" t-on-click="() => state.mode = 'integration'">Connection errors <strong t-esc="live.connection_errors"/></button>
+                    </div>
+                </section>
+
+                <div t-if="showSection('overview')" class="o_bs_kpi_grid" data-section="kpis">
+                    <button class="o_bs_kpi o_bs_kpi--navy" t-on-click="() => this.openMetric('orders')"><small>ORDERS</small><strong t-esc="metrics.orders"/><span>Selected period · all states</span></button>
+                    <button class="o_bs_kpi o_bs_kpi--teal" t-on-click="() => this.openMetric('gmv')"><small>GMV</small><strong t-esc="formatAmount(metrics.gmv)"/><span>Excludes rejected / cancelled</span></button>
+                    <button class="o_bs_kpi o_bs_kpi--blue" t-on-click="() => this.openMetric('gmv')"><small>AVERAGE ORDER VALUE</small><strong t-esc="metrics.average_order_value == null ? '—' : formatAmount(metrics.average_order_value)"/><span>Same orders as GMV</span></button>
+                    <article class="o_bs_kpi o_bs_kpi--slate"><small>ESTIMATED NET RECEIVABLE</small><strong t-esc="formatAmount(metrics.net)"/><span>Selected period · not profit</span></article>
+                </div>
+
+                <div t-if="showSection('overview') and overviewHasHistory" class="row g-3 mb-3" data-section="overview-summary">
+                    <div class="col-12 col-xl-7"><section class="o_bs_panel h-100" data-section="trend"><t t-call="bs_pos_delivery_core.DashboardTrend"/></section></div>
+                    <div class="col-12 col-xl-5"><section class="o_bs_panel h-100" data-section="commercial"><t t-call="bs_pos_delivery_core.DashboardCommercial"/></section></div>
+                </div>
+
+                <t t-if="showSection('operations')">
+                    <section class="o_bs_panel mb-3" data-section="service">
+                        <div class="o_bs_section_heading"><h3>Service performance <small class="text-muted">· selected period</small></h3>
+                            <details class="o_bs_help"><summary aria-label="About service performance"><i class="fa fa-info-circle" aria-hidden="true"/></summary><div class="o_bs_help_text">Acceptance: received → accepted. Preparation: preparing → ready. Averages use orders with valid timestamps; rates use all orders received in the selected period.</div></details>
+                        </div>
+                        <div class="o_bs_service_grid">
+                            <div><span>Average acceptance</span><strong><t t-esc="metric(metrics.acceptance_minutes)"/> <small>min</small></strong><small class="text-muted"><t t-esc="metrics.acceptance_samples"/> timed orders</small></div>
+                            <div><span>Average preparation</span><strong><t t-esc="metric(metrics.preparation_minutes)"/> <small>min</small></strong><small class="text-muted"><t t-esc="metrics.preparation_samples"/> timed orders</small></div>
+                            <button class="o_bs_plain_button" t-on-click="() => this.openMetric('state', { state: 'rejected' })"><span>Rejection rate</span><strong t-esc="metric(metrics.rejection_pct, '%')"/></button>
+                            <button class="o_bs_plain_button" t-on-click="() => this.openMetric('state', { state: 'cancelled' })"><span>Cancellation rate</span><strong t-esc="metric(metrics.cancellation_pct, '%')"/></button>
+                        </div>
+                    </section>
+                    <div t-if="metrics.orders or live.active_orders" class="row g-3 mb-3">
+                        <div t-if="metrics.orders" t-att-class="live.active_orders ? 'col-12 col-xl-7' : 'col-12'"><section class="o_bs_panel h-100" data-section="states">
+                            <h3>Order states <small class="text-muted">· selected period</small></h3>
+                            <button class="o_bs_state_row o_bs_plain_button" t-foreach="state.data.state_breakdown" t-as="item" t-key="item.state" t-att-data-state="item.state" t-on-click="() => this.openMetric('state', { state: item.state })">
+                                <span t-esc="stateLabel(item.state)"/><span class="o_bs_state_track" aria-hidden="true"><i t-att-style="'width:' + stateWidth(item.count)"/></span><strong t-esc="item.count"/>
+                            </button>
+                        </section></div>
+                        <div t-if="live.active_orders" t-att-class="metrics.orders ? 'col-12 col-xl-5' : 'col-12'"><section class="o_bs_panel h-100" data-section="active-platforms">
+                        <h3>Active orders by platform <small class="text-muted">· all dates</small></h3>
+                        <div class="o_bs_platform_chips">
+                            <button t-foreach="live.platforms" t-as="platform" t-key="platform.key" class="btn btn-outline-secondary" t-on-click="() => this.openMetric('active', { channel: platform.key })"><t t-call="bs_pos_delivery_core.DashboardChannelMark"><t t-set="row" t-value="platform"/></t><span t-esc="platform.name"/><strong t-esc="platform.count"/></button>
+                            <span t-if="!live.platforms.length" class="text-muted">No active orders in this scope.</span>
+                        </div>
+                    </section></div>
+                    </div>
+                </t>
+
+                <section t-if="permissions.integration and showSection('integration')" data-section="integration" t-att-class="'o_bs_panel o_bs_queue_health mb-3 ' + (queueIssueCount || live.connection_errors ? 'is-warning' : '')">
+                    <div class="o_bs_section_heading"><h3>Integration queues</h3>
+                        <details class="o_bs_help"><summary aria-label="About integration queues"><i class="fa fa-info-circle" aria-hidden="true"/></summary><div class="o_bs_help_text">Current queues for connections serving the selected scope, including their other stores. No live API request is made by this dashboard.</div></details>
+                    </div>
+                    <p class="text-muted small">Connection scope · all dates · API connectivity not verified</p>
+                    <div class="o_bs_queue_status" role="status">
+                        <strong t-if="!live.connections">Not configured</strong><strong t-elif="queueIssueCount">Retries or failures need review</strong><strong t-elif="live.connection_errors">A connection is in error</strong><strong t-else="">No queued failures detected · API connectivity not verified</strong>
+                    </div>
+                    <div class="o_bs_attention_actions mt-3">
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.openMetric('webhook')">Webhook retry / failed <strong t-esc="state.data.queue_health.webhook_retry || 0"/></button>
+                        <button class="btn btn-outline-secondary" t-on-click="() => this.openMetric('outbox')">Outgoing retry / failed <strong t-esc="state.data.queue_health.outbox_retry || 0"/></button>
+                        <span><t t-esc="live.configured"/> connections marked connected · <t t-esc="live.paused"/> paused · <t t-esc="live.connection_errors"/> in error</span>
+                    </div>
+                </section>
+
+                <section t-if="showSection('overview') and metrics.orders" class="o_bs_panel mb-3" data-section="platform-performance">
+                    <div class="o_bs_section_heading"><h3>Platform sales <small class="text-muted">· selected period</small></h3>
+                        <details class="o_bs_help"><summary aria-label="About platform sales"><i class="fa fa-info-circle" aria-hidden="true"/></summary><div class="o_bs_help_text">Sales by the platform the customer ordered from (HungerStation, Jahez, Keeta…), not by the integration that delivered the order (e.g. Blend). Excludes rejected and cancelled orders, so the total matches GMV.</div></details>
+                    </div>
+                    <p t-if="!platformSales.length" class="o_bs_inline_empty">No sales match these filters.</p>
+                    <div t-else="" class="table-responsive"><table class="table table-hover align-middle mb-0 o_bs_sales_table">
+                        <thead><tr><th scope="col">Platform</th><th scope="col" class="text-end">Orders</th><th scope="col" class="text-end">Sales</th><th scope="col" class="text-end">Share</th><th scope="col" class="text-end">Average order value</th><th scope="col" class="text-end">Estimated commission</th><th scope="col" class="text-end">Estimated net</th></tr></thead>
+                        <tbody><tr t-foreach="platformSales" t-as="platform" t-key="platform.key">
+                            <td><button class="o_bs_plain_button o_bs_platform_link" t-on-click="() => this.openMetric('gmv', { channel: platform.key })"><t t-call="bs_pos_delivery_core.DashboardChannelMark"><t t-set="row" t-value="platform"/></t><span><span t-esc="platform.name"/><small t-if="platform.via.length" class="d-block text-muted">via <t t-esc="platform.via.join(', ')"/></small></span></button></td>
+                            <td class="text-end" t-esc="platform.orders"/>
+                            <td class="text-end fw-semibold" t-esc="formatAmount(platform.gmv)"/>
+                            <td class="text-end"><span class="o_bs_share"><span class="o_bs_share_track" aria-hidden="true"><i t-att-style="'width:' + Math.min(100, platform.share_pct) + '%'"/></span><t t-esc="metric(platform.share_pct, '%')"/></span></td>
+                            <td class="text-end" t-esc="platform.average_order_value == null ? '—' : formatAmount(platform.average_order_value)"/>
+                            <td class="text-end" t-esc="formatAmount(platform.commission)"/>
+                            <td class="text-end" t-esc="formatAmount(platform.net)"/>
+                        </tr></tbody>
+                        <tfoot t-if="platformSales.length > 1"><tr><th scope="row">Total</th><th class="text-end" t-esc="salesTotal(platformSales, 'orders')"/><th class="text-end" t-esc="formatAmount(salesTotal(platformSales, 'gmv'))"/><th class="text-end">100%</th><th/><th class="text-end" t-esc="formatAmount(salesTotal(platformSales, 'commission'))"/><th class="text-end" t-esc="formatAmount(salesTotal(platformSales, 'net'))"/></tr></tfoot>
+                    </table></div>
+                </section>
+                <section t-if="showSection('overview', 'operations') and recentOrders.length" class="o_bs_panel" data-section="recent-orders">
+                    <div class="d-flex justify-content-between align-items-center mb-2"><h3 class="mb-0">Recent orders <small class="text-muted">· selected period · latest <t t-esc="recentOrders.length"/></small></h3><button class="btn btn-link" t-on-click="() => this.openMetric('orders')">View all</button></div>
+                    <div class="table-responsive"><table class="table table-hover align-middle mb-0">
+                        <thead><tr><th scope="col">Order</th><th scope="col">Platform</th><th scope="col">Customer</th><th scope="col">State</th><th scope="col" class="text-end">Amount</th><th scope="col">Received</th></tr></thead>
+                        <tbody><tr t-foreach="recentOrders" t-as="order" t-key="order.id" t-att-class="order.is_late ? 'o_bs_order_late' : ''">
+                            <td><button class="btn btn-link p-0 fw-semibold" t-on-click="() => this.openOrder(order.id)" t-esc="order.name"/></td>
+                            <td><span class="o_bs_platform_link"><t t-call="bs_pos_delivery_core.DashboardChannelMark"><t t-set="row" t-value="{ name: order.channel_name, color: order.channel_color, provider_id: order.channel_is_provider ? order.provider_id : 0 }"/></t><span><span t-esc="order.channel_name"/><small t-if="!order.channel_is_provider" class="d-block text-muted">via <t t-esc="order.provider"/></small></span></span></td>
+                            <td t-esc="order.customer"/>
+                            <td><span class="o_bs_state_badge" t-att-data-state="order.state" t-esc="stateLabel(order.state)"/><span t-if="order.is_late" class="o_bs_late_badge"><i class="fa fa-clock-o me-1" aria-hidden="true"/>Late</span></td>
+                            <td class="text-end" t-esc="formatAmount(order.amount)"/><td t-esc="formatDateTimeValue(order.received_at)"/>
+                        </tr></tbody>
+                    </table></div>
+                </section>
+
+                <section t-if="showSection('overview') and metrics.orders" class="o_bs_panel mt-3" data-section="branch-sales">
+                    <div class="o_bs_section_heading"><h3>Branch sales <small class="text-muted">· selected period</small></h3>
+                        <details class="o_bs_help"><summary aria-label="About branch sales"><i class="fa fa-info-circle" aria-hidden="true"/></summary><div class="o_bs_help_text">Delivery sales per branch / POS for the selected business days. Excludes rejected and cancelled orders.</div></details>
+                    </div>
+                    <p t-if="!branchSales.length" class="o_bs_inline_empty">No sales match these filters.</p>
+                    <div t-else="" class="table-responsive"><table class="table table-hover align-middle mb-0 o_bs_sales_table">
+                        <thead><tr><th scope="col">Branch</th><th scope="col" class="text-end">Orders</th><th scope="col" class="text-end">Sales</th><th scope="col" class="text-end">Share</th><th scope="col" class="text-end">Average order value</th><th scope="col" class="text-end">Estimated commission</th><th scope="col" class="text-end">Estimated net</th></tr></thead>
+                        <tbody><tr t-foreach="branchSales" t-as="branch" t-key="branch.pos_config_id">
+                            <td><button t-if="branch.pos_config_id" class="o_bs_plain_button o_bs_platform_link" t-on-click="() => this.openMetric('gmv', { posConfigId: branch.pos_config_id })"><i class="fa fa-cutlery o_bs_branch_icon" aria-hidden="true"/><span t-esc="branch.name"/></button><span t-else="" class="o_bs_platform_link text-muted"><i class="fa fa-question o_bs_branch_icon" aria-hidden="true"/><span t-esc="branch.name"/></span></td>
+                            <td class="text-end" t-esc="branch.orders"/>
+                            <td class="text-end fw-semibold" t-esc="formatAmount(branch.gmv)"/>
+                            <td class="text-end"><span class="o_bs_share"><span class="o_bs_share_track" aria-hidden="true"><i t-att-style="'width:' + Math.min(100, branch.share_pct) + '%'"/></span><t t-esc="metric(branch.share_pct, '%')"/></span></td>
+                            <td class="text-end" t-esc="branch.average_order_value == null ? '—' : formatAmount(branch.average_order_value)"/>
+                            <td class="text-end" t-esc="formatAmount(branch.commission)"/>
+                            <td class="text-end" t-esc="formatAmount(branch.net)"/>
+                        </tr></tbody>
+                        <tfoot t-if="branchSales.length > 1"><tr><th scope="row">Total</th><th class="text-end" t-esc="salesTotal(branchSales, 'orders')"/><th class="text-end" t-esc="formatAmount(salesTotal(branchSales, 'gmv'))"/><th class="text-end">100%</th><th/><th class="text-end" t-esc="formatAmount(salesTotal(branchSales, 'commission'))"/><th class="text-end" t-esc="formatAmount(salesTotal(branchSales, 'net'))"/></tr></tfoot>
+                    </table></div>
+                </section>
+            </t>
+        </div>
+    </t>
+    <t t-name="bs_pos_delivery_core.DashboardChannelMark">
+        <img t-if="row.provider_id" t-att-src="'/web/image/bs.delivery.provider/' + row.provider_id + '/image_128'" alt="" loading="lazy"/>
+        <span t-else="" class="o_bs_channel_mark" t-att-style="channelStyle(row.color)" aria-hidden="true" t-esc="channelInitial(row)"/>
+    </t>
+    <t t-name="bs_pos_delivery_core.DashboardTrend">
+        <div class="o_bs_section_heading"><h3>7-day GMV trend</h3>
+            <details class="o_bs_help"><summary aria-label="About the GMV trend"><i class="fa fa-info-circle" aria-hidden="true"/></summary><div class="o_bs_help_text">Seven days ending on the selected end date</div></details>
+        </div>
+        <div t-if="!maxTrend" class="o_bs_chart_empty">No GMV in this seven-day window.</div>
+        <div t-else="" class="o_bs_trend">
+            <div class="o_bs_trend_day" t-foreach="state.data.trend" t-as="day" t-key="day.date">
+                <span t-esc="formatAmount(day.amount)"/>
+                <div class="o_bs_trend_track"><div class="o_bs_trend_bar" t-att-style="'height:' + trendHeight(day.amount)"/></div>
+                <small t-esc="day.label"/><small class="text-muted" t-esc="day.date.slice(5)"/>
+            </div>
+        </div>
+    </t>
+    <t t-name="bs_pos_delivery_core.DashboardCommercial">
+        <div class="o_bs_section_heading"><h3>Commercial overview</h3>
+            <details class="o_bs_help"><summary aria-label="About commercial metrics"><i class="fa fa-info-circle" aria-hidden="true"/></summary><div class="o_bs_help_text">MTD and YTD end on the selected end date. Net receivable is an estimate, not restaurant profit.</div></details>
+        </div>
+        <div t-att-class="'o_bs_service_grid ' + (state.mode === 'overview' ? 'o_bs_service_grid--two' : '')">
+            <div><span>MTD GMV</span><strong t-esc="formatAmount(kpis.mtd_gmv)"/><small t-att-class="kpis.mom_comparable and kpis.mom_growth_pct &lt; 0 ? 'text-danger' : 'text-muted'" t-esc="growthText"/></div>
+            <div><span>YTD GMV</span><strong t-esc="formatAmount(kpis.ytd_gmv)"/></div>
+            <div><span>MTD orders</span><strong t-esc="kpis.mtd_orders"/></div>
+            <div><span>Estimated commission · selected period</span><strong t-esc="formatAmount(metrics.commission)"/></div>
+        </div>
+    </t>
+</templates>

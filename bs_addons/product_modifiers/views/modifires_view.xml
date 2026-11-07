@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_modifiers_groups_form" model="ir.ui.view">
+            <field name="name">modifiers.groups.form</field>
+            <field name="model">modifiers.groups</field>
+            <field name="arch" type="xml">
+                <form string="Modifiers Groups">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="modifier_ids" widget="many2many_tags" context="{'default_use_as_modifier': True}" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter />
+                </form>
+            </field>
+        </record>
+
+        <record id="view_modifiers_groups_list" model='ir.ui.view'>
+            <field name='name'>modifiers.groups.list</field>
+            <field name='model'>modifiers.groups</field>
+            <field name='arch' type='xml'>
+                <list string='Modifiers Groups'>
+                    <field name="name" />
+                    <field name="modifier_ids" widget="many2many_tags" context="{'default_use_as_modifier': True}" />
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>

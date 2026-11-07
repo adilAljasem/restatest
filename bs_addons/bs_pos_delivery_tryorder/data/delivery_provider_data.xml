@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function model="bs.delivery.provider"
+              name="register_provider"
+              eval="('tryorder', {
+                  'name': 'TryOrder',
+                  'sequence': 40,
+                  'active': True,
+                  'connector_kind': 'aggregator',
+                  'implementation_state': 'ready',
+                  'capabilities': {
+                      'incoming_orders': True,
+                      'order_status': True,
+                      'menu_pull': True,
+                  },
+                  'color': '#E67E22',
+                  'description': 'Connect TryOrder to Odoo Point of Sale through Delivery Core.',
+                  'website': 'https://tryorder.com',
+              }, 'bs_pos_delivery_tryorder')"/>
+</odoo>

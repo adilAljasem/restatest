@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_connection_form_blend" model="ir.ui.view">
+        <field name="name">bs.delivery.connection.form.blend</field>
+        <field name="model">bs.delivery.connection</field>
+        <field name="inherit_id" ref="bs_pos_delivery_core.view_bs_delivery_connection_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='auth_scheme']" position="attributes">
+                <attribute name="invisible">adapter_model_name == 'bs.delivery.adapter.blend'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='auth_scheme']" position="after">
+                <field name="blend_login_method"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="adapter_model_name != 'bs.delivery.adapter.blend'"/>
+                <field name="blend_login_user_id" options="{'no_create': True, 'no_create_edit': True}"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       required="adapter_model_name == 'bs.delivery.adapter.blend' and blend_login_method == 'odoo_user'"
+                       invisible="adapter_model_name != 'bs.delivery.adapter.blend' or blend_login_method != 'odoo_user'"/>
+                <field name="blend_login_username" readonly="1"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="adapter_model_name != 'bs.delivery.adapter.blend' or blend_login_method != 'odoo_user'"/>
+                <field name="blend_execution_user_id" options="{'no_create': True, 'no_create_edit': True}"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       required="adapter_model_name == 'bs.delivery.adapter.blend' and blend_login_method == 'credentials'"
+                       invisible="adapter_model_name != 'bs.delivery.adapter.blend' or blend_login_method != 'credentials'"/>
+            </xpath>
+            <xpath expr="//field[@name='username']" position="attributes">
+                <attribute name="invisible">(adapter_model_name == 'bs.delivery.adapter.blend' and blend_login_method != 'credentials') or (adapter_model_name != 'bs.delivery.adapter.blend' and auth_scheme != 'basic')</attribute>
+            </xpath>
+            <xpath expr="//field[@name='password']" position="attributes">
+                <attribute name="invisible">(adapter_model_name == 'bs.delivery.adapter.blend' and blend_login_method != 'credentials') or (adapter_model_name != 'bs.delivery.adapter.blend' and auth_scheme != 'basic')</attribute>
+            </xpath>
+            <xpath expr="//field[@name='webhook_secret']" position="attributes">
+                <attribute name="invisible">(adapter_model_name == 'bs.delivery.adapter.blend' and blend_login_method != 'bearer') or (adapter_model_name != 'bs.delivery.adapter.blend' and auth_scheme not in ('bearer', 'hmac'))</attribute>
+            </xpath>
+            <xpath expr="//field[@name='access_token']" position="attributes">
+                <attribute name="invisible">adapter_model_name != 'bs.delivery.adapter.blend' and auth_scheme != 'bearer'</attribute>
+            </xpath>
+            <xpath expr="//group[@name='provider_credentials']/group[1]" position="inside">
+                <div colspan="2" class="text-muted"
+                     groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                     invisible="adapter_model_name != 'bs.delivery.adapter.blend' or blend_login_method != 'credentials'">
+                    Use the connection's Username and Password to log in to Blend's Odoo endpoints.
+                    Operations use the selected Execution User, who needs POS and Delivery Operator access.
+                </div>
+                <div colspan="2" class="text-muted"
+                     groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                     invisible="adapter_model_name != 'bs.delivery.adapter.blend' or blend_login_method != 'odoo_user'">
+                    Send the selected user's Odoo Login / Email and Odoo password to the Blend Login URL.
+                    Operations are attributed to this user, who needs POS and Delivery Operator access.
+                </div>
+                <field name="blend_login_token_issued_at"
+                       groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                       invisible="adapter_model_name != 'bs.delivery.adapter.blend' or blend_login_method == 'bearer'"/>
+                <button name="action_revoke_blend_login_token" type="object"
+                        string="Revoke Login Token" class="btn-secondary"
+                        groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                        invisible="adapter_model_name != 'bs.delivery.adapter.blend' or not blend_login_token_issued_at"/>
+            </xpath>
+            <xpath expr="//group[@name='provider_credentials']" position="after">
+                <group string="Blend Settings"
+                       invisible="adapter_model_name != 'bs.delivery.adapter.blend'">
+                    <group string="Blend Parameters">
+                        <field name="blend_brand_id"/>
+                        <field name="blend_schema"/>
+                        <field name="blend_timeout_seconds"/>
+                        <field name="blend_sync_images"/>
+                    </group>
+                    <group string="Blend Inbound Endpoints (Provide to Blend)" colspan="2">
+                        <field name="blend_login_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_branches_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_menu_api_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_order_intake_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_order_status_intake_url" readonly="1" widget="CopyClipboardChar"/>
+                        <field name="blend_legacy_webhook_url" readonly="1" widget="CopyClipboardChar"/>
+                    </group>
+                    <group string="Outbound Blend Webhook (Supplied by Blend)" colspan="2">
+                        <field name="blend_outbound_webhook_url" placeholder="https://webhookapi.staging-v2.tryblend.net/integration/webhook/pos/pino-sa"/>
+                        <field name="blend_menu_url" placeholder="https://api.tryblend.net/.../menu"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='remote_store_mapping']//field[@name='store_binding_ids']/list/field[@name='pos_config_id']" position="after">
+                <field name="blend_available_preset_ids" column_invisible="True"/>
+                <field name="blend_delivery_preset_id" optional="show"
+                       column_invisible="parent.adapter_model_name != 'bs.delivery.adapter.blend'"
+                       domain="[('id', 'in', blend_available_preset_ids), ('is_return', '=', False)]"
+                       options="{'no_create': True}"/>
+                <field name="blend_pickup_preset_id" optional="show"
+                       column_invisible="parent.adapter_model_name != 'bs.delivery.adapter.blend'"
+                       domain="[('id', 'in', blend_available_preset_ids), ('is_return', '=', False)]"
+                       options="{'no_create': True}"/>
+                <field name="blend_dine_in_preset_id" optional="show"
+                       column_invisible="parent.adapter_model_name != 'bs.delivery.adapter.blend'"
+                       domain="[('id', 'in', blend_available_preset_ids), ('is_return', '=', False)]"
+                       options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

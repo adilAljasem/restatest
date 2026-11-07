@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Loans: manager -> HR -> HR manager above 5,000 -->
+    <record id="flow_loan" model="bs.hr.approval.flow">
+        <field name="name">Loan</field>
+        <field name="res_model">bs.hr.loan</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_loan_step_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_loan"/>
+        <field name="sequence">10</field>
+        <field name="name">Direct manager</field>
+        <field name="approver_type">manager</field>
+        <field name="sla_hours">24</field>
+    </record>
+    <record id="flow_loan_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_loan"/>
+        <field name="sequence">20</field>
+        <field name="name">Human Resources</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+    <record id="flow_loan_step_hr_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_loan"/>
+        <field name="sequence">30</field>
+        <field name="name">HR manager (above 5,000)</field>
+        <field name="approver_type">group</field>
+        <field name="group_id" ref="bs_hr_ess_base.group_ess_hr_manager"/>
+        <field name="condition_domain">[('amount', '&gt;', 5000)]</field>
+        <field name="sla_hours">48</field>
+    </record>
+
+    <record id="flow_loan_postpone" model="bs.hr.approval.flow">
+        <field name="name">Installment postponement</field>
+        <field name="res_model">bs.hr.loan.postpone</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_loan_postpone_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_loan_postpone"/>
+        <field name="name">Human Resources</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+
+    <!-- Time off: manager -> HR -->
+    <record id="flow_leave" model="bs.hr.approval.flow">
+        <field name="name">Time off</field>
+        <field name="res_model">bs.hr.leave.request</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_leave_step_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_leave"/>
+        <field name="sequence">10</field>
+        <field name="name">Direct manager</field>
+        <field name="approver_type">manager</field>
+        <field name="sla_hours">24</field>
+    </record>
+    <record id="flow_leave_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_leave"/>
+        <field name="sequence">20</field>
+        <field name="name">Human Resources</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">24</field>
+    </record>
+
+    <!-- Custody: branch manager -> HR -->
+    <record id="flow_custody" model="bs.hr.approval.flow">
+        <field name="name">Custody</field>
+        <field name="res_model">bs.hr.custody.request</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="flow_custody_step_branch" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_custody"/>
+        <field name="sequence">10</field>
+        <field name="name">Branch manager</field>
+        <field name="approver_type">branch</field>
+        <field name="sla_hours">24</field>
+    </record>
+    <record id="flow_custody_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_custody"/>
+        <field name="sequence">20</field>
+        <field name="name">Human Resources</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+
+    <!-- Generic requests: manager -> HR -->
+    <record id="flow_generic_request" model="bs.hr.approval.flow">
+        <field name="name">HR request</field>
+        <field name="res_model">bs.hr.request</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="flow_generic_request_step_manager" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_generic_request"/>
+        <field name="sequence">10</field>
+        <field name="name">Direct manager</field>
+        <field name="approver_type">manager</field>
+        <field name="sla_hours">24</field>
+    </record>
+    <record id="flow_generic_request_step_hr" model="bs.hr.approval.flow.step">
+        <field name="flow_id" ref="flow_generic_request"/>
+        <field name="sequence">20</field>
+        <field name="name">Human Resources</field>
+        <field name="approver_type">hr</field>
+        <field name="sla_hours">48</field>
+    </record>
+</odoo>

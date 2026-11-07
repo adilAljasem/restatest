@@ -1,0 +1,39 @@
+# Arabic translation for dk_pos_employee_access_rights
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee__sbl_disallow_pos_remove_sent_lines
+#: model:ir.model.fields,field_description:dk_pos_employee_access_rights.field_hr_employee_public__sbl_disallow_pos_remove_sent_lines
+msgid "Prevent Removing Lines Sent to Kitchen"
+msgstr "منع حذف الأصناف المرسلة للمطبخ"
+
+#. module: dk_pos_employee_access_rights
+#: model:ir.model.fields,help:dk_pos_employee_access_rights.field_hr_employee__sbl_disallow_pos_remove_sent_lines
+msgid ""
+"If checked, this employee cannot delete an order line or decrease its "
+"quantity below what was already sent to the kitchen, and cannot cancel an "
+"order that contains lines already sent to the kitchen."
+msgstr ""
+"عند التفعيل لا يستطيع الموظف حذف صنف من الطلب أو تقليل كميته عن الكمية "
+"المرسلة للمطبخ، ولا يستطيع إلغاء طلب يحتوي على أصناف مرسلة للمطبخ."
+
+#. module: dk_pos_employee_access_rights
+#. odoo-javascript
+#: code:addons/dk_pos_employee_access_rights/static/src/overrides/services/pos_store.js:0
+msgid ""
+"You are not allowed to remove or decrease items already sent to the kitchen."
+msgstr "غير مسموح لك بحذف أو تقليل كمية صنف تم إرساله للمطبخ."
+
+#. module: dk_pos_employee_access_rights
+#. odoo-javascript
+#: code:addons/dk_pos_employee_access_rights/static/src/overrides/services/pos_store.js:0
+msgid ""
+"This order has items already sent to the kitchen and cannot be cancelled."
+msgstr "هذا الطلب يحتوي على أصناف مرسلة للمطبخ ولا يمكن إلغاؤه."

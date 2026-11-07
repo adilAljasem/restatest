@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.module.category" id="module_category_stock_request">
+        <field name="name">Stock Transfer</field>
+        <field name="parent_id" ref="base.module_category_supply_chain" />
+        <field name="sequence">10</field>
+    </record>
+    <record id="group_stock_request_user" model="res.groups">
+        <field name="name">Stock Request User</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+    <record id="group_stock_request_warehouse_responsible" model="res.groups">
+        <field name="name">Stock Request Warehouse Responsible</field>
+        <field
+            name="implied_ids"
+            eval="[(4, ref('stock_request.group_stock_request_user')),(4, ref('stock.group_stock_user'))]"
+        />
+    </record>
+    <record id="group_stock_request_manager" model="res.groups">
+        <field name="name">Stock Request Manager</field>
+<!--        <field-->
+<!--            name="user_ids"-->
+<!--            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"-->
+<!--        />-->
+        <field
+            name="implied_ids"
+            eval="[(4, ref('stock_request.group_stock_request_warehouse_responsible')),(4, ref('stock.group_stock_manager'))]"
+        />
+    </record>
+    <!-- New rules also load on upgrade; existing noupdate rules stay intact. -->
+    <record id="stock_request_no_transit_warehouse_items_rule" model="ir.rule">
+        <field name="name">Warehouse responsible - No transit items before delivery</field>
+        <field name="model_id" ref="model_stock_request"/>
+        <field name="groups" eval="[(4, ref('group_stock_request_warehouse_responsible'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="domain_force">[
+            ('order_id.operation_type', '=', 'request'),
+            ('order_id.transfer_flow', '=', 'two_step_no_transit'),
+            ('order_id.state', 'in', ['draft', 'submitted', 'ready']),
+            '|',
+            ('order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+            ('order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])
+        ]</field>
+    </record>
+    <record id="stock_request_no_transit_warehouse_order_rule" model="ir.rule">
+        <field name="name">Warehouse responsible - No transit order items before delivery</field>
+        <field name="model_id" ref="model_stock_request_order"/>
+        <field name="groups" eval="[(4, ref('group_stock_request_warehouse_responsible'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[
+            ('operation_type', '=', 'request'),
+            ('transfer_flow', '=', 'two_step_no_transit'),
+            ('state', 'in', ['draft', 'submitted', 'ready']),
+            '|',
+            ('source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+            ('warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])
+        ]</field>
+    </record>
+    <record id="stock_request_no_transit_in_transit_items_rule" model="ir.rule">
+        <field name="name">No transit - Edit items awaiting receipt</field>
+        <field name="model_id" ref="model_stock_request"/>
+        <field name="groups" eval="[(4, ref('group_stock_request_user'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="domain_force">[
+            ('order_id.operation_type', '=', 'request'),
+            ('order_id.transfer_flow', '=', 'two_step_no_transit'),
+            ('order_id.state', '=', 'in_transit'), '|', '|',
+            ('order_id.requested_by', '=', user.id),
+            ('order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+            ('order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])
+        ]</field>
+    </record>
+    <record id="stock_request_no_transit_in_transit_order_rule" model="ir.rule">
+        <field name="name">No transit - Edit order items awaiting receipt</field>
+        <field name="model_id" ref="model_stock_request_order"/>
+        <field name="groups" eval="[(4, ref('group_stock_request_user'))]"/>
+        <field name="perm_read" eval="False"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[
+            ('operation_type', '=', 'request'),
+            ('transfer_flow', '=', 'two_step_no_transit'),
+            ('state', '=', 'in_transit'), '|', '|',
+            ('requested_by', '=', user.id),
+            ('source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+            ('warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])
+        ]</field>
+    </record>
+    <data noupdate="1">
+        <record model="ir.rule" id="stock_picking_rule">
+            <field name="name">stock_request multi-company</field>
+            <field
+                name="model_id"
+                search="[('model','=','stock.request')]"
+                model="ir.model"
+            />
+            <field name="global" eval="True" />
+            <field
+                name="domain_force"
+            >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="stock_request_followers_rule" model="ir.rule">
+            <field name="name">Follow Stock Request</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field name="active" eval="False" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">['|',('requested_by','=',user.id),
+                                            ('message_partner_ids', 'in', [user.partner_id.id])]</field>
+        </record>
+        <record id="stock_request_rule" model="ir.rule">
+            <field name="name">Stock Request User - Own Requests</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">[('requested_by','=',user.id)]</field>
+        </record>
+        <record id="stock_request_draft_write_rule" model="ir.rule">
+            <field name="name">Stock Request User - Own Draft Lines</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_user')])]" />
+            <field name="perm_read" eval="False" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="True" />
+            <field name="domain_force">
+                [('requested_by', '=', user.id), ('state', '=', 'draft')]
+            </field>
+        </record>
+        <record id="stock_request_template_read_rule" model="ir.rule">
+            <field name="name">Stock Request User - Template Lines</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="False" />
+            <field name="domain_force">[(0, '=', 1)]</field>
+        </record>
+        <record id="stock_request_no_transit_requester_items_rule" model="ir.rule">
+            <field name="name">Requester - No transit items before delivery</field>
+            <field name="model_id" ref="model_stock_request"/>
+            <field name="groups" eval="[(4, ref('group_stock_request_user'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[
+                ('order_id.requested_by', '=', user.id),
+                ('order_id.operation_type', '=', 'request'),
+                ('order_id.transfer_flow', '=', 'two_step_no_transit'),
+                ('order_id.state', 'in', ['draft', 'submitted', 'ready'])
+            ]</field>
+        </record>
+        <record id="stock_request_no_transit_requester_order_rule" model="ir.rule">
+            <field name="name">Requester - No transit order items before delivery</field>
+            <field name="model_id" ref="model_stock_request_order"/>
+            <field name="groups" eval="[(4, ref('group_stock_request_user'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[
+                ('requested_by', '=', user.id),
+                ('operation_type', '=', 'request'),
+                ('transfer_flow', '=', 'two_step_no_transit'),
+                ('state', 'in', ['draft', 'submitted', 'ready'])
+            ]</field>
+        </record>
+        <record id="stock_request_source_review_create_rule" model="ir.rule">
+            <field name="name">Source responsible - Add lines during review</field>
+            <field name="model_id" ref="model_stock_request"/>
+            <field name="groups" eval="[(4, ref('group_stock_request_warehouse_responsible'))]"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[
+                ('order_id.operation_type', '=', 'request'),
+                ('order_id.state', '=', 'submitted'),
+                ('order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])
+            ]</field>
+        </record>
+        <record id="stock_request_source_responsible_rule" model="ir.rule">
+            <field name="name">Responsible for Source Warehouse</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field
+                name="groups"
+                eval="[(6, 0, [ref('group_stock_request_warehouse_responsible')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_destination_responsible_rule" model="ir.rule">
+            <field name="name">Responsible for Destination Warehouse</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field
+                name="groups"
+                eval="[(6, 0, [ref('group_stock_request_warehouse_responsible')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_manager_rule" model="ir.rule">
+            <field name="name">Stock Request Manager</field>
+            <field name="model_id" ref="model_stock_request" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_manager')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+        </record>
+        <record id="stock_request_user_linked_picking_rule" model="ir.rule">
+            <field name="name">Stock Request User - Related Transfers</field>
+            <field name="model_id" ref="stock.model_stock_picking" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('stock_request_order_id', '!=', False), '|', '|',
+                 ('stock_request_order_id.requested_by', '=', user.id),
+                 ('stock_request_order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+                 ('stock_request_order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_inventory_picking_rule" model="ir.rule">
+            <field name="name">Inventory User - Standard and Related Stock Request Transfers</field>
+            <field name="model_id" ref="stock.model_stock_picking" />
+            <field name="groups" eval="[(6,0, [ref('stock.group_stock_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                ['|', ('stock_request_order_id', '=', False), '|', '|',
+                 ('stock_request_order_id.requested_by', '=', user.id),
+                 ('stock_request_order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+                 ('stock_request_order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_manager_picking_rule" model="ir.rule">
+            <field name="name">Stock Request Manager - All Transfers</field>
+            <field name="model_id" ref="stock.model_stock_picking" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_manager')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        <record id="stock_request_user_linked_move_rule" model="ir.rule">
+            <field name="name">Stock Request User - Related Transfer Moves</field>
+            <field name="model_id" ref="stock.model_stock_move" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('stock_request_line_id.order_id', '!=', False), '|', '|',
+                 ('stock_request_line_id.order_id.requested_by', '=', user.id),
+                 ('stock_request_line_id.order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+                 ('stock_request_line_id.order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_inventory_move_rule" model="ir.rule">
+            <field name="name">Inventory User - Standard and Related Stock Request Moves</field>
+            <field name="model_id" ref="stock.model_stock_move" />
+            <field name="groups" eval="[(6,0, [ref('stock.group_stock_user')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                ['|', ('stock_request_line_id', '=', False), '|',
+                 ('stock_request_line_id.order_id', '=', False), '|', '|',
+                 ('stock_request_line_id.order_id.requested_by', '=', user.id),
+                 ('stock_request_line_id.order_id.source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id]),
+                 ('stock_request_line_id.order_id.warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_manager_move_rule" model="ir.rule">
+            <field name="name">Stock Request Manager - All Moves</field>
+            <field name="model_id" ref="stock.model_stock_move" />
+            <field name="groups" eval="[(6,0, [ref('group_stock_request_manager')])]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+        <record model="ir.rule" id="stock_request_order_picking_rule">
+            <field name="name">stock_request_order multi-company</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field name="global" eval="True" />
+            <field
+                name="domain_force"
+            >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="stock_request_order_followers_rule" model="ir.rule">
+            <field name="name">Follow Stock Request</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field name="active" eval="False" />
+            <field
+                name="groups"
+                eval="[(6,0, [ref('stock_request.group_stock_request_user')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">['|',('requested_by','=',user.id),
+                                            ('message_partner_ids', 'in', [user.partner_id.id])]</field>
+        </record>
+        <record id="stock_request_order_rule" model="ir.rule">
+            <field name="name">Stock Request User - Own Requests</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field
+                name="groups"
+                eval="[(6,0, [ref('stock_request.group_stock_request_user')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">[('requested_by','=',user.id)]</field>
+        </record>
+        <record id="stock_request_order_draft_write_rule" model="ir.rule">
+            <field name="name">Stock Request User - Own Draft Requests</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field
+                name="groups"
+                eval="[(6,0, [ref('stock_request.group_stock_request_user')])]"
+            />
+            <field name="perm_read" eval="False" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('requested_by', '=', user.id), ('state', '=', 'draft')]
+            </field>
+        </record>
+        <record id="stock_request_order_template_read_rule" model="ir.rule">
+            <field name="name">Stock Request User - Templates</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field
+                name="groups"
+                eval="[(6,0, [ref('stock_request.group_stock_request_user')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="False" />
+            <field name="domain_force">[(0, '=', 1)]</field>
+        </record>
+        <record id="stock_request_template_company_rule" model="ir.rule">
+            <field name="name">Stock Request Template multi-company</field>
+            <field name="model_id" ref="model_stock_request_template" />
+            <field name="global" eval="True" />
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record id="stock_request_template_line_company_rule" model="ir.rule">
+            <field name="name">Stock Request Template Line multi-company</field>
+            <field name="model_id" ref="model_stock_request_template_line" />
+            <field name="global" eval="True" />
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+        <record
+            id="stock_request_order_source_responsible_rule"
+            model="ir.rule"
+        >
+            <field name="name">Responsible for Source Warehouse</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field
+                name="groups"
+                eval="[(6, 0, [ref('group_stock_request_warehouse_responsible')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('source_warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record
+            id="stock_request_order_destination_responsible_rule"
+            model="ir.rule"
+        >
+            <field name="name">Responsible for Destination Warehouse</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field
+                name="groups"
+                eval="[(6, 0, [ref('group_stock_request_warehouse_responsible')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="domain_force">
+                [('warehouse_id.stock_request_responsible_user_ids', 'in', [user.id])]
+            </field>
+        </record>
+        <record id="stock_request_order_manager_rule" model="ir.rule">
+            <field name="name">Stock Request Manager</field>
+            <field name="model_id" ref="model_stock_request_order" />
+            <field
+                name="groups"
+                eval="[(6,0, [ref('stock_request.group_stock_request_manager')])]"
+            />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+        </record>
+    </data>
+</odoo>

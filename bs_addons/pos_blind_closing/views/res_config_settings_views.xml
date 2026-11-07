@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_blind_closing" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.pos.blind.closing</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_payment_section']" position="after">
+                <block title="Blind Closing" id="pos_blind_closing_section">
+                    <setting id="pos_blind_closing"
+                             help="Hide all expected amounts in the closing popup. The cashier enters the counted amounts only.">
+                        <field name="pos_blind_closing"/>
+                    </setting>
+                    <setting id="pos_blind_closing_manager_visible" invisible="not pos_blind_closing"
+                             help="POS managers see the standard closing popup with expected amounts.">
+                        <field name="pos_blind_closing_manager_visible"/>
+                    </setting>
+                    <setting id="pos_blind_closing_empty_inputs" invisible="not pos_blind_closing"
+                             help="Count fields start empty; the register cannot be closed until every field is filled.">
+                        <field name="pos_blind_closing_empty_inputs"/>
+                    </setting>
+                    <setting id="pos_blind_closing_show_all_banks" invisible="not pos_blind_closing"
+                             help="Show a count field for every bank method, even without sales.">
+                        <field name="pos_blind_closing_show_all_banks"/>
+                    </setting>
+                    <setting id="pos_blind_closing_hide_reports" invisible="not pos_blind_closing"
+                             help="Hide the Daily Sale and sales details buttons in the closing popup.">
+                        <field name="pos_blind_closing_hide_reports"/>
+                    </setting>
+                    <setting id="pos_blind_closing_confirm" invisible="not pos_blind_closing"
+                             help="Ask the cashier to confirm the entered amounts before closing.">
+                        <field name="pos_blind_closing_confirm"/>
+                    </setting>
+                    <setting id="pos_blind_closing_log" invisible="not pos_blind_closing"
+                             help="Post expected, counted and difference per method in the session chatter.">
+                        <field name="pos_blind_closing_log"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

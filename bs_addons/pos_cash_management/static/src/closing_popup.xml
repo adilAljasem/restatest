@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+
+        <!-- Session sales total in the dialog header -->
+        <xpath expr="//div[contains(@class, 'total-orders')]" position="attributes">
+            <attribute name="t-if">!pcmIsBlind</attribute>
+        </xpath>
+
+        <!-- Instructions shown instead of the expected amounts -->
+        <xpath expr="//div[contains(@class, 'payment-methods-overview')]" position="before">
+            <div t-if="pcmIsBlind" class="alert alert-info w-100 mb-3">
+                <b>Cash Count</b>
+                <div>Count the cash in the drawer and enter the actual amount carefully.</div>
+            </div>
+        </xpath>
+
+        <!-- Expected balance, opening balance, cash moves and live difference -->
+        <xpath expr="//div[contains(@class, 'payment-methods-overview')]" position="attributes">
+            <attribute name="t-if">!pcmIsBlind</attribute>
+        </xpath>
+
+        <!-- Auto-fill with the expected amount -->
+        <xpath expr="//button[@t-on-click='autoFillCashCount']" position="attributes">
+            <attribute name="t-if">!pcmIsBlind</attribute>
+        </xpath>
+
+        <!-- Daily sales report download -->
+        <xpath expr="//button[@t-on-click='downloadSalesReport']" position="attributes">
+            <attribute name="t-if">!pcmIsBlind</attribute>
+        </xpath>
+
+        <!-- Session report printing -->
+        <xpath expr="//button[@t-if='hardwareProxy.printer']" position="attributes">
+            <attribute name="t-if">hardwareProxy.printer and !pcmIsBlind</attribute>
+        </xpath>
+
+    </t>
+
+</templates>

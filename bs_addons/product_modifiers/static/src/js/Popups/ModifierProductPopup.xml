@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="product_modifiers.ModifierProductPopup">
+        <Dialog title="'Modifier'" footer="false" size="'xl'" contentClass="'modifier-dialog-content'" bodyClass="'p-0'">
+            <div t-ref="root" class="modifier-product-popup">
+                <main class="modifier-popup-main">
+                    <section class="modifier-popup-heading" dir="auto">
+                        <div>
+                            <div class="modifier-popup-eyebrow">Product</div>
+                            <h3><t t-esc="props.title" /></h3>
+                        </div>
+                    </section>
+
+                    <div class="modifier-popup-content" t-att-class="{'has-portion-selector': props.product.allow_portion}">
+                        <section class="modifier-options-panel">
+                            <t t-if="props.product.allow_portion">
+                                <div class="portion-modifier" data-portion_no="full" data-total_portion="full" data-label="Full Pizza">
+                                    <div class="pos_modifier_scroll">
+                                        <t t-foreach="props.products" t-as="modifer" t-key="modifer_index">
+                                            <div class="product-list">
+                                                <h3 class="sub-heading">
+                                                    <t t-esc="modifer.product.display_name" />
+                                                    <small t-if="modifer.apply_selector">
+                                                        (<t t-esc="modifer.min_selector" /> - <t t-esc="modifer.max_selector" />)
+                                                    </small>
+                                                </h3>
+                                                <div class="modifier-product-grid">
+                                                    <t t-foreach="modifer.attributes" t-as="attribute" t-key="attribute_index">
+                                                        <t t-set="attributeValues" t-value="attribute._attribute_line_ids || attribute.values || []" />
+                                                        <t t-foreach="attributeValues" t-as="value" t-key="value_index">
+                                                            <t t-set="name" t-value="modifer.product.display_name + ' (' + value.name + ')'" />
+                                                            <t t-set="price" t-value="modifer.price + (value.price_extra || 0)" />
+                                                            <article t-att-data-product-id="modifer.product.id" t-att-data-modifier-line-id="modifer.modifier_line_id" t-att-data-attribute-value-id="value.id" t-att-data-attribute-value-name="value.name" t-att-data-attribute-price-extra="price" class="product position-relative" t-att-title="name" t-on-click="SelectExtraModifier">
+                                                                <span class="modifier-quantity-badge" />
+                                                                <div class="product-img">
+                                                                    <img t-att-src="modifer.image_url" t-att-alt="name" />
+                                                                    <span t-if="price" class="price-tag">
+                                                                        +
+                                                                        <t t-esc="env.utils.formatCurrency(price)" />
+                                                                    </span>
+                                                                </div>
+                                                                <div class="product-name">
+                                                                    <t t-esc="name" />
+                                                                </div>
+                                                            </article>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="!modifer.attributes.length">
+                                                        <t t-set="name" t-value="modifer.product.display_name" />
+                                                        <article t-att-data-product-id="modifer.product.id" t-att-data-modifier-line-id="modifer.modifier_line_id" t-att-data-attribute-price-extra="modifer.price" class="product position-relative" t-att-title="name" t-on-click="SelectExtraModifier">
+                                                            <span class="modifier-quantity-badge" />
+                                                            <div class="product-img">
+                                                                <img t-att-src="modifer.image_url" t-att-alt="name" />
+                                                                <span t-if="modifer.price" class="price-tag">
+                                                                    +
+                                                                    <t t-esc="env.utils.formatCurrency(modifer.price)" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="product-name">
+                                                                <t t-esc="name" />
+                                                            </div>
+                                                        </article>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                    <div class="modifiers-by-portion">
+                                        <div class="portion-choose">
+                                            <img src="/product_modifiers/static/src/img/full.png" usemap="#image-map-full" />
+                                            <map name="image-map-full">
+                                                <area title="Full Pizza" data-portion_no="full" data-total_portion="full" data-label="Full Pizza" coords="77,75,68" shape="circle" t-on-click="SelectPizzaPortionArea" />
+                                            </map>
+                                            <img src="/product_modifiers/static/src/img/2.png" usemap="#image-map-two" />
+                                            <map name="image-map-two">
+                                                <area title="Left Half" t-att-data-portion_no="1" t-att-data-total_portion="2" data-label="Left Half" coords="78,8,78,142,56,138,35,126,19,107,13,83,11,56,23,38,33,24,57,11" shape="poly" t-on-click="SelectPizzaPortionArea" />
+                                                <area title="Right Half" t-att-data-portion_no="2" t-att-data-total_portion="2" data-label="Right Half" coords="80,143,79,10,108,16,129,32,141,55,145,81,138,105,119,127" shape="poly" t-on-click="SelectPizzaPortionArea" />
+                                            </map>
+                                            <img src="/product_modifiers/static/src/img/4.png" usemap="#image-map-four" />
+                                            <map name="image-map-four">
+                                                <area title="1st Quater" t-att-data-portion_no="1" t-att-data-total_portion="4" data-label="1st Quater" coords="78,75,77,9,55,12,40,19,31,28,21,38,16,48,13,58,9,75" shape="poly" t-on-click="SelectPizzaPortionArea" />
+                                                <area title="2nd Quater" t-att-data-portion_no="2" t-att-data-total_portion="4" data-label="2nd Quater" coords="79,8,80,76,145,76,144,60,138,44,128,30,108,15" shape="poly" t-on-click="SelectPizzaPortionArea" />
+                                                <area title="3rd Quater" t-att-data-portion_no="3" t-att-data-total_portion="4" data-label="3rd Quater" coords="79,77,79,142,98,139,113,132,125,122,136,109,142,96,146,77" shape="poly" t-on-click="SelectPizzaPortionArea" />
+                                                <area title="4th Quater" t-att-data-portion_no="4" t-att-data-total_portion="4" data-label="4th Quater" coords="77,77,76,143,58,139,40,131,24,121,10,99,8,78" shape="poly" t-on-click="SelectPizzaPortionArea" />
+                                            </map>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="pos_modifier_scroll">
+                                    <t t-foreach="props.products" t-as="modifer" t-key="modifer_index">
+                                        <div class="product-list">
+                                            <h3 class="sub-heading">
+                                                <t t-esc="modifer.product.display_name" />
+                                                <small t-if="modifer.apply_selector">
+                                                    (<t t-esc="modifer.min_selector" /> - <t t-esc="modifer.max_selector" />)
+                                                </small>
+                                            </h3>
+                                            <div class="modifier-product-grid">
+                                                <t t-foreach="modifer.attributes" t-as="attribute" t-key="attribute_index" t-if="modifer.attributes.length">
+                                                    <t t-set="attributeValues" t-value="attribute._attribute_line_ids || attribute.values || []" />
+                                                    <t t-foreach="attributeValues" t-as="value" t-key="value_index">
+                                                        <t t-set="name" t-value="modifer.product.display_name + ' (' + value.name + ')'" />
+                                                        <t t-set="price" t-value="modifer.price + (value.price_extra || 0)" />
+                                                        <article t-att-data-product-id="modifer.product.id" t-att-data-modifier-line-id="modifer.modifier_line_id" t-att-data-attribute-value-id="value.id" t-att-data-attribute-value-name="value.name" t-att-data-attribute-price-extra="price" class="product position-relative" t-att-title="name" t-on-click="SelectExtraModifier">
+                                                            <span class="modifier-quantity-badge" />
+                                                            <div class="product-img">
+                                                                <img t-att-src="modifer.image_url" t-att-alt="name" />
+                                                                <span t-if="price" class="price-tag">
+                                                                    +
+                                                                    <t t-esc="env.utils.formatCurrency(price)" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="product-name">
+                                                                <t t-esc="name" />
+                                                            </div>
+                                                        </article>
+                                                    </t>
+                                                </t>
+                                                <t t-if="!modifer.attributes.length">
+                                                    <t t-set="name" t-value="modifer.product.display_name" />
+                                                    <article t-att-data-product-id="modifer.product.id" t-att-data-modifier-line-id="modifer.modifier_line_id" t-att-data-attribute-price-extra="modifer.price" class="product position-relative" t-att-title="name" t-on-click="SelectExtraModifier">
+                                                        <span class="modifier-quantity-badge" />
+                                                        <div class="product-img">
+                                                            <img t-att-src="modifer.image_url" t-att-alt="name" />
+                                                            <span t-if="modifer.price" class="price-tag">
+                                                                +
+                                                                <t t-esc="env.utils.formatCurrency(modifer.price)" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <t t-esc="name" />
+                                                        </div>
+                                                    </article>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </section>
+
+                        <aside class="pos_modifier_cart">
+                            <div class="modifier-cart-header">
+                                <div>
+                                    <div class="modifier-popup-eyebrow">Selection</div>
+                                    <h3 class="title">Modifiers</h3>
+                                </div>
+                                <i class="fa fa-check-square-o" />
+                            </div>
+                            <div class="modifer_cart_lines">
+                                <div class="modifier-empty-state">
+                                    <i class="fa fa-plus-circle" />
+                                    <span>No modifiers selected</span>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </main>
+
+                <footer class="modifier-popup-footer">
+                    <button type="button" class="btn btn-light" t-on-click="cancel">Skip</button>
+                    <button type="button" class="btn btn-primary" t-on-click="confirm">
+                        <i class="fa fa-plus me-1" />
+                        Add Extra
+                    </button>
+                </footer>
+            </div>
+        </Dialog>
+    </t>
+    <t t-name="ModfierDisplayCartOrderLines">
+        <table class="modifier-cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th t-if="is_portion">Portion</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            <t t-foreach="modifierslines" t-as="modifer" t-key="modifer_index">
+                <tr>
+                    <td>
+                        <t t-esc="modifer.product.display_name" />
+                        <small t-if="modifer.attribute_value" class="modifier-cart-attribute" t-esc="modifer.attribute_value" />
+                    </td>
+                    <td t-if="is_portion">
+                        <t t-esc="modifer.portion_name" />
+                    </td>
+                    <td>
+                        <div class="modifier-cart-quantity-control">
+                            <button type="button" class="modifier-cart-quantity-button" data-modifier-cart-action="decrease" t-att-data-modifier-key="modifer.selection_key" aria-label="Decrease quantity">−</button>
+                            <span class="modifier-cart-quantity-value" t-esc="modifer.qty" />
+                            <button type="button" class="modifier-cart-quantity-button" data-modifier-cart-action="increase" t-att-data-modifier-key="modifer.selection_key" aria-label="Increase quantity">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <t t-esc="formatCurrency(modifer.price || 0)" />
+                    </td>
+                </tr>
+            </t>
+            </tbody>
+        </table>
+    </t>
+</templates>

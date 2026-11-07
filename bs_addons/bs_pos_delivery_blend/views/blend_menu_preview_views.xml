@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_blend_menu_preview_form" model="ir.ui.view">
+        <field name="name">bs.blend.menu.preview.form</field>
+        <field name="model">bs.blend.menu.preview</field>
+        <field name="arch" type="xml">
+            <form string="Blend Menu Preview">
+                <field name="product_tmpl_id" invisible="1"/>
+                <p class="text-muted">
+                    What Odoo sends to Blend for this product right now, option by option.
+                    Red rows are not sent at all; yellow rows are sent as unavailable.
+                </p>
+                <field name="result_html" nolabel="1"/>
+                <footer>
+                    <button string="Close" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_template_form_blend_preview" model="ir.ui.view">
+        <field name="name">product.template.form.blend.preview</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="bs_pos_delivery_core.product_template_form_view_delivery"/>
+        <field name="arch" type="xml">
+            <button name="action_delivery_sync_product" position="after">
+                <button name="action_blend_menu_preview"
+                        string="Blend Menu Preview"
+                        type="object"
+                        class="btn-secondary"
+                        groups="bs_pos_delivery_core.group_delivery_integration_manager"/>
+            </button>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Saudi restaurant order types, on top of Dine In / Takeout / Delivery from pos_restaurant -->
+        <record model="pos.preset" id="preset_delivery_apps">
+            <field name="name">Delivery Apps</field>
+            <field name="color">6</field>
+            <field name="identification">name</field>
+        </record>
+        <record model="pos.preset" id="preset_drive_thru">
+            <field name="name">Drive-thru</field>
+            <field name="color">9</field>
+            <field name="identification">name</field>
+        </record>
+    </data>
+</odoo>

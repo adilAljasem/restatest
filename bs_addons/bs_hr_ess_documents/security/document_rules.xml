@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="rule_document_type_company" model="ir.rule">
+            <field name="name">ESS document type: company</field>
+            <field name="model_id" ref="model_bs_hr_document_type"/>
+            <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        </record>
+
+        <!-- Documents: own documents, documents of the managed team; HR sees its companies -->
+        <record id="rule_document_user" model="ir.rule">
+            <field name="name">ESS document: own / team</field>
+            <field name="model_id" ref="model_bs_hr_document"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', '|', ('employee_id.user_id', '=', user.id),
+                ('employee_id.parent_id.user_id', '=', user.id),
+                ('work_location_id.ess_manager_id', '=', user.id)]</field>
+        </record>
+        <record id="rule_document_hr" model="ir.rule">
+            <field name="name">ESS document: HR</field>
+            <field name="model_id" ref="model_bs_hr_document"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="rule_document_renewal_user" model="ir.rule">
+            <field name="name">ESS document renewal: own / approver</field>
+            <field name="model_id" ref="model_bs_hr_document_renewal"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_document_renewal_hr" model="ir.rule">
+            <field name="name">ESS document renewal: HR</field>
+            <field name="model_id" ref="model_bs_hr_document_renewal"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <!-- Contract renewals are internal: users only see the ones waiting for their decision
+             (the employee sees the result on the portal, through the controller) -->
+        <record id="rule_contract_renewal_approver" model="ir.rule">
+            <field name="name">ESS contract renewal: approver</field>
+            <field name="model_id" ref="model_bs_hr_contract_renewal"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">[('current_approver_ids', 'in', [user.id])]</field>
+        </record>
+        <record id="rule_contract_renewal_hr" model="ir.rule">
+            <field name="name">ESS contract renewal: HR</field>
+            <field name="model_id" ref="model_bs_hr_contract_renewal"/>
+            <field name="groups" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

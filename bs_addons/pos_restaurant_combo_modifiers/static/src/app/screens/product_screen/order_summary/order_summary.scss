@@ -1,0 +1,26 @@
+.order-container .orderline .o_pcm_edit_modifiers_item {
+    margin-top: 0.35rem;
+}
+
+.order-container .orderline .o_pcm_edit_modifiers {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    min-height: 2.1rem;
+    border: 1px solid var(--o-brand-primary, #FF5A1F);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--o-brand-primary, #FF5A1F);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1;
+    touch-action: manipulation;
+
+    &:hover,
+    &:focus-visible {
+        background: var(--o-brand-primary, #FF5A1F);
+        color: #fff;
+    }
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_bs_delivery_process_webhooks" model="ir.cron">
+        <field name="name">Delivery: Process Webhook Events</field>
+        <field name="model_id" ref="model_bs_delivery_webhook_event"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_process_webhook_events(batch_size=50)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_bs_delivery_cleanup_integration_data" model="ir.cron">
+        <field name="name">Delivery: Clean Up Integration Data</field>
+        <field name="model_id" ref="model_bs_delivery_webhook_event"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_cleanup_webhook_events(); env['bs.delivery.sync.log']._cron_cleanup_sync_logs(); env['bs.delivery.outbox']._cron_cleanup_outbox_jobs()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_bs_delivery_process_outbox" model="ir.cron">
+        <field name="name">Delivery: Process Outgoing Queue</field>
+        <field name="model_id" ref="model_bs_delivery_outbox"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_process_outbox(batch_size=50)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_bs_delivery_resume_pos_sessions" model="ir.cron">
+        <field name="name">Delivery: Resume Orders Awaiting POS Session</field>
+        <field name="model_id" ref="model_bs_delivery_order"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_resume_awaiting_pos_sessions(batch_size=50)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_bs_delivery_sync_store_work_time" model="ir.cron">
+        <field name="name">Delivery: Sync Store Work Time &amp; Availability</field>
+        <field name="model_id" ref="model_bs_delivery_store_binding"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_sync_store_availability()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

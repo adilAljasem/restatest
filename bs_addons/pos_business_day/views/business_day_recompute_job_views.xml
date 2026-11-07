@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_business_day_recompute_job_list" model="ir.ui.view">
+        <field name="name">pos.business.day.recompute.job.list</field>
+        <field name="model">pos.business.day.recompute.job</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'done'"
+                  decoration-danger="state == 'failed'"
+                  decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'running'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'failed'"
+                       decoration-muted="state == 'cancelled'"/>
+                <field name="recompute_scope"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="processed_order_count"/>
+                <field name="total_order_count"/>
+                <field name="processed_stock_move_count"/>
+                <field name="total_stock_move_count"/>
+                <field name="requested_by_id"/>
+                <field name="started_at"/>
+                <field name="finished_at"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pos_business_day_recompute_job_form" model="ir.ui.view">
+        <field name="name">pos.business.day.recompute.job.form</field>
+        <field name="model">pos.business.day.recompute.job</field>
+        <field name="arch" type="xml">
+            <form string="Business Day Recompute Job">
+                <header>
+                    <button name="action_process_next_batch"
+                            type="object"
+                            string="Process Next Batch"
+                            class="btn-primary"
+                            invisible="state not in ['draft', 'running']"/>
+                    <button name="action_retry"
+                            type="object"
+                            string="Retry"
+                            class="btn-secondary"
+                            invisible="state not in ['failed', 'cancelled']"/>
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            class="btn-secondary"
+                            confirm="Cancel this recompute job?"
+                            invisible="state not in ['draft', 'running']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,running,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="state != 'draft'"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id"
+                                   readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                            <field name="requested_by_id" readonly="1"/>
+                            <field name="recompute_scope"
+                                   readonly="state != 'draft'"/>
+                            <field name="date_from"
+                                   readonly="state != 'draft'"
+                                   invisible="recompute_scope != 'date_range'"/>
+                            <field name="date_to"
+                                   readonly="state != 'draft'"
+                                   invisible="recompute_scope != 'date_range'"/>
+                            <field name="batch_size"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="progress" widget="progressbar"/>
+                            <field name="started_at" readonly="1"/>
+                            <field name="finished_at" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="POS Orders">
+                        <field name="last_order_id" readonly="1"/>
+                        <field name="processed_order_count" readonly="1"/>
+                        <field name="total_order_count" readonly="1"/>
+                    </group>
+                    <group string="Stock Moves">
+                        <field name="last_stock_move_id" readonly="1"/>
+                        <field name="processed_stock_move_count" readonly="1"/>
+                        <field name="total_stock_move_count" readonly="1"/>
+                    </group>
+                    <group string="Failure Details" invisible="state != 'failed'">
+                        <field name="error_message" nolabel="1" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pos_business_day_recompute_job_search" model="ir.ui.view">
+        <field name="name">pos.business.day.recompute.job.search</field>
+        <field name="model">pos.business.day.recompute.job</field>
+        <field name="arch" type="xml">
+            <search string="Business Day Recompute Jobs">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="requested_by_id"/>
+                <filter name="draft" string="Draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="running" string="Running"
+                        domain="[('state', '=', 'running')]"/>
+                <filter name="failed" string="Failed"
+                        domain="[('state', '=', 'failed')]"/>
+                <filter name="done" string="Done"
+                        domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="group_by_company" string="Company"
+                        context="{'group_by': 'company_id'}"/>
+                <filter name="group_by_state" string="Status"
+                        context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pos_business_day_recompute_jobs" model="ir.actions.act_window">
+        <field name="name">Business Day Recompute Jobs</field>
+        <field name="res_model">pos.business.day.recompute.job</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_pos_business_day_recompute_job_search"/>
+    </record>
+
+    <menuitem id="menu_business_day_recompute_jobs"
+              name="Business Day Recompute Jobs"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_pos_business_day_recompute_jobs"
+              groups="point_of_sale.group_pos_manager"
+              sequence="91"/>
+
+</odoo>

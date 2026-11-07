@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_restaurant_combo_modifiers.ComboConfiguratorPopup"
+       t-inherit="point_of_sale.ComboConfiguratorPopup"
+       t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'product-list')]" position="attributes">
+            <attribute name="class">product-list</attribute>
+            <attribute name="t-att-class">
+                combo.display_type === 'list'
+                    ? 'd-flex flex-column gap-2'
+                    : 'd-grid gap-1 gap-lg-2'
+            </attribute>
+        </xpath>
+        <xpath expr="//QuantityButtons" position="attributes">
+            <attribute name="isPlusButtonDisabled">this.isItemPlusDisabled(combo_item)</attribute>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_comms" name="Communication" parent="bs_hr_ess_base.menu_ess_root" sequence="30"
+              groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_announcements" name="Announcements" parent="menu_ess_comms" sequence="10"
+              action="action_announcement"/>
+    <menuitem id="menu_ess_policies" name="Policy Library" parent="menu_ess_comms" sequence="20"
+              action="action_announcement_policy"/>
+    <menuitem id="menu_ess_announcement_acks" name="Acknowledgements" parent="menu_ess_comms" sequence="30"
+              action="action_announcement_ack"/>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.pos.deferred.invoice.pdf</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pos_config_controls.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='pos_disable_auto_invoice_pdf_download_setting']" position="after">
+                <setting id="pos_defer_invoice_pdf_generation_setting"
+                         string="Generate Invoice PDF After Payment"
+                         help="Post and reconcile the invoice during payment. Generate the PDF in the background after payment completes.">
+                    <field name="pos_defer_invoice_pdf_generation"/>
+                    <field name="pos_invoice_pdf_cron_active" invisible="1"/>
+                    <div class="alert alert-warning mt-2" role="alert"
+                         groups="base.group_system"
+                         invisible="not pos_defer_invoice_pdf_generation or pos_invoice_pdf_cron_active">
+                        The invoice sending scheduled action is inactive. PDFs will be generated during payment until it is activated.
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        The Enterprise hr_payroll views are not available to us: instead of inheriting views by
+        an unverified xmlid, the features are exposed as server actions bound to the models
+        (they appear in the "Actions" gear menu of the list and form views).
+    -->
+    <record id="action_server_payslip_run_publish" model="ir.actions.server">
+        <field name="name">Publish for review (ESS)</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip_run"/>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip_run"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="group_ids" eval="[(4, ref('bs_hr_ess_base.group_ess_payroll_officer'))]"/>
+        <field name="state">code</field>
+        <field name="code">records.action_ess_publish()</field>
+    </record>
+    <record id="action_server_payslip_run_unpublish" model="ir.actions.server">
+        <field name="name">Unpublish (ESS)</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip_run"/>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip_run"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="group_ids" eval="[(4, ref('bs_hr_ess_base.group_ess_payroll_officer'))]"/>
+        <field name="state">code</field>
+        <field name="code">records.action_ess_unpublish()</field>
+    </record>
+    <record id="action_server_payslip_sync_adjustments" model="ir.actions.server">
+        <field name="name">Load ESS adjustments</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="group_ids" eval="[(4, ref('bs_hr_ess_base.group_ess_payroll_officer'))]"/>
+        <field name="state">code</field>
+        <field name="code">records._ess_sync_adjustment_inputs()</field>
+    </record>
+    <record id="action_server_payslip_open_adjustments" model="ir.actions.server">
+        <field name="name">ESS adjustments</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_view_types">form</field>
+        <field name="group_ids" eval="[(4, ref('bs_hr_ess_base.group_ess_hr_officer'))]"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_ess_open_adjustments()</field>
+    </record>
+</odoo>

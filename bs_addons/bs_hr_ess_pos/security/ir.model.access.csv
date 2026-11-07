@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_labor_cost_report_hr,labor cost report,model_bs_hr_ess_labor_cost_report,bs_hr_ess_base.group_ess_hr_officer,1,0,0,0
+access_labor_cost_report_pos,labor cost report pos,model_bs_hr_ess_labor_cost_report,point_of_sale.group_pos_manager,1,0,0,0

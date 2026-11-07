@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_order_list" model="ir.ui.view">
+        <field name="name">bs.delivery.order.list</field>
+        <field name="model">bs.delivery.order</field>
+        <field name="arch" type="xml">
+            <list string="Aggregator Orders"
+                  create="false"
+                  delete="false"
+                  decoration-success="state in ('delivered', 'picked_up')"
+                  decoration-info="state == 'received'"
+                  decoration-warning="state in ('accepted', 'preparing', 'ready')"
+                  decoration-muted="state in ('rejected', 'cancelled')">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="name"/>
+                <field name="provider_id"/>
+                <field name="external_reference" string="Platform Ref" optional="show"/>
+                <field name="received_at"/>
+                <field name="business_date" optional="show"/>
+                <field name="external_source" string="Ordering Platform" optional="show"/>
+                <field name="pos_config_id" string="Branch" optional="hide"/>
+                <field name="customer_name"/>
+                <field name="line_count" optional="show"/>
+                <field name="amount_total" sum="Total"/>
+                <field name="is_prepaid"/>
+                <field name="commission_amount" sum="Commission" optional="show"/>
+                <field name="net_amount" sum="Net" optional="show"/>
+                <field name="age_seconds" optional="show"/>
+                <field name="late_deadline" optional="hide"/>
+                <field name="is_late" optional="show"/>
+                <field name="sync_state" widget="badge" optional="hide"
+                       decoration-success="sync_state == 'synced'"
+                       decoration-warning="sync_state == 'pending'"
+                       decoration-danger="sync_state == 'error'"/>
+                <field name="pos_processing_state" widget="badge" optional="show"
+                       decoration-warning="pos_processing_state == 'waiting_session'"
+                       decoration-danger="pos_processing_state == 'blocked'"/>
+                <field name="state" widget="badge"
+                       decoration-success="state in ('delivered', 'picked_up')"
+                       decoration-info="state == 'received'"
+                       decoration-warning="state in ('accepted', 'preparing', 'ready')"
+                       decoration-danger="state == 'rejected'"
+                       decoration-muted="state == 'cancelled'"/>
+                <button name="action_accept"
+                        type="object"
+                        string="Accept"
+                        icon="fa-check"
+                        class="btn-success"
+                        groups="bs_pos_delivery_core.group_delivery_operator"
+                        invisible="state != 'received'"/>
+                <button name="action_open_reject_wizard"
+                        type="object"
+                        string="Reject"
+                        icon="fa-times"
+                        class="btn-danger"
+                        groups="bs_pos_delivery_core.group_delivery_operator"
+                        invisible="state not in ('received', 'accepted', 'preparing')"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_order_form" model="ir.ui.view">
+        <field name="name">bs.delivery.order.form</field>
+        <field name="model">bs.delivery.order</field>
+        <field name="arch" type="xml">
+            <form string="Aggregator Order" create="false" edit="false" delete="false">
+                <header>
+                    <button name="action_accept"
+                            type="object"
+                            string="Accept"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_operator"
+                            invisible="state != 'received'"/>
+                    <button name="action_open_reject_wizard"
+                            type="object"
+                            string="Reject"
+                            groups="bs_pos_delivery_core.group_delivery_operator"
+                            invisible="state not in ('received', 'accepted', 'preparing')"/>
+                    <button name="action_start_preparing"
+                            type="object"
+                            string="Start Preparing"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_operator"
+                            invisible="state != 'accepted' or pos_processing_state in ('waiting_session', 'blocked')"/>
+                    <button name="action_mark_ready"
+                            type="object"
+                            string="Ready for Pick-up"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_operator"
+                            invisible="state != 'preparing'"/>
+                    <button name="action_mark_picked_up"
+                            type="object"
+                            string="Picked Up"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_operator"
+                            invisible="state != 'ready'"/>
+                    <button name="action_mark_delivered"
+                            type="object"
+                            string="Mark Delivered"
+                            class="btn-primary"
+                            groups="bs_pos_delivery_core.group_delivery_operator"
+                            invisible="state != 'picked_up'"/>
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            confirm="Cancel this delivery order and notify the provider when supported?"
+                            invisible="state not in ('received', 'accepted', 'preparing', 'ready')"/>
+                    <button name="action_retry_pos_processing"
+                            type="object"
+                            string="Retry POS Processing"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            invisible="pos_processing_state not in ('blocked', 'waiting_session')"/>
+                    <button name="action_retry_kitchen_print"
+                            type="object"
+                            string="Retry Kitchen Print"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            confirm="Check that this ticket was not already printed before retrying. Retry kitchen printing now?"
+                            invisible="not kitchen_can_retry"/>
+                    <button name="action_retry_cashier_receipt"
+                            type="object"
+                            string="Retry Cashier Receipt"
+                            groups="bs_pos_delivery_core.group_delivery_manager"
+                            confirm="Check that the receipt was not already printed before retrying. Retry cashier receipt printing now?"
+                            invisible="not cashier_receipt_can_retry"/>
+                    <field name="state"
+                           widget="statusbar"
+                           readonly="1"
+                           statusbar_visible="received,accepted,preparing,ready,picked_up,delivered"/>
+                </header>
+                <sheet>
+                    <field name="kitchen_can_retry" invisible="1"/>
+                    <field name="cashier_receipt_can_retry" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="provider_id" invisible="1"/>
+                    <field name="is_late" invisible="1"/>
+                    <widget name="web_ribbon" title="Late" bg_color="text-bg-danger" invisible="not is_late"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                        <div class="d-flex gap-2 align-items-center">
+                            <field name="provider_id" readonly="1"/>
+                            <span class="text-muted">&#8226;</span>
+                            <field name="external_reference" readonly="1" placeholder="Platform reference"/>
+                        </div>
+                    </div>
+
+                    <group>
+                        <group string="Customer">
+                            <field name="delivery_invoice_partner_id" readonly="1"
+                                   invisible="not delivery_invoice_partner_id"/>
+                            <field name="customer_name" readonly="1"/>
+                            <field name="customer_phone_masked" readonly="1"/>
+                            <field name="customer_phone"
+                                   readonly="1"
+                                   groups="bs_pos_delivery_core.group_delivery_manager"/>
+                            <field name="customer_email" widget="email" readonly="1"/>
+                            <field name="delivery_address" readonly="1"/>
+                            <field name="delivery_latitude" readonly="1"/>
+                            <field name="delivery_longitude" readonly="1"/>
+                            <field name="customer_note" readonly="1"/>
+                        </group>
+                        <group string="Driver">
+                            <field name="driver_name" readonly="1"/>
+                            <field name="driver_phone" readonly="1"/>
+                            <field name="driver_eta_minutes" readonly="1"/>
+                            <field name="driver_tracking_url" widget="url" readonly="1"/>
+                            <field name="driver_latitude" readonly="1"/>
+                            <field name="driver_longitude" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Money">
+                            <field name="items_subtotal" readonly="1"/>
+                            <field name="discount_amount" readonly="1"/>
+                            <field name="delivery_fee" readonly="1"/>
+                            <field name="service_fee" readonly="1"/>
+                            <field name="small_order_fee" readonly="1"/>
+                            <field name="tip_amount" readonly="1"/>
+                            <field name="vat_amount" readonly="1"/>
+                            <field name="amount_total" readonly="1"/>
+                            <field name="is_prepaid" readonly="1"/>
+                            <field name="remote_payment_method" readonly="1"/>
+                        </group>
+                        <group string="Commission and Timing">
+                            <field name="commission_rate" string="Commission %" readonly="1"/>
+                            <field name="commission_amount" readonly="1"/>
+                            <field name="net_amount" readonly="1"/>
+                            <field name="received_at" readonly="1"/>
+                            <field name="business_date" readonly="1"/>
+                            <field name="accepted_at" readonly="1"/>
+                            <field name="preparing_at" readonly="1"/>
+                            <field name="ready_at" readonly="1"/>
+                            <field name="picked_up_at" readonly="1"/>
+                            <field name="delivered_at" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Items" name="items">
+                            <field name="line_ids" nolabel="1" readonly="1">
+                                <list create="false" delete="false">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="name_ar" optional="show"/>
+                                    <field name="external_sku"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="discount_amount" optional="hide"/>
+                                    <field name="vat_amount" optional="hide"/>
+                                    <field name="price_subtotal" sum="Subtotal"/>
+                                    <field name="is_modifier" optional="show"/>
+                                    <field name="parent_line_id" optional="hide"/>
+                                    <field name="modifier_text" optional="show"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Status History" name="status_history">
+                            <field name="transition_ids" nolabel="1" readonly="1">
+                                <list create="false" delete="false">
+                                    <field name="transitioned_at"/>
+                                    <field name="from_state" widget="badge"/>
+                                    <field name="to_state" widget="badge"/>
+                                    <field name="source"/>
+                                    <field name="actor_id"/>
+                                    <field name="reject_reason_id" optional="show"/>
+                                    <field name="reason" optional="show"/>
+                                    <field name="external_status" optional="hide"/>
+                                    <field name="is_noop" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Payments" name="payment_allocations">
+                            <field name="payment_allocation_ids" nolabel="1" readonly="1">
+                                <list create="false" delete="false">
+                                    <field name="external_source"/>
+                                    <field name="external_payment_code"/>
+                                    <field name="amount" sum="Allocated"/>
+                                    <field name="collected_by"/>
+                                    <field name="collection_status" widget="badge"/>
+                                    <field name="external_payment_reference"/>
+                                    <field name="payment_method_id"/>
+                                    <field name="pos_payment_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Integration" name="integration">
+                            <group>
+                                <group>
+                                    <field name="connection_id" readonly="1"/>
+                                    <field name="store_binding_id" readonly="1"/>
+                                    <field name="pos_config_id" readonly="1"/>
+                                    <field name="pos_order_id" readonly="1"/>
+                                    <field name="pos_refund_order_id" readonly="1"/>
+                                    <field name="external_order_id" readonly="1"/>
+                                    <field name="external_source" readonly="1"/>
+                                    <field name="external_status" readonly="1"/>
+                                    <field name="fulfillment_type" readonly="1"/>
+                                    <field name="contract_version" readonly="1"/>
+                                    <field name="core_last_provider_update_at" readonly="1"/>
+                                    <field name="scheduled_at" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="sync_state" widget="badge" readonly="1"/>
+                                    <field name="pos_processing_state" widget="badge" readonly="1"/>
+                                    <field name="session_wait_started_at" readonly="1"
+                                           invisible="not session_wait_started_at"/>
+                                    <field name="acceptance_deadline_at" readonly="1"
+                                           invisible="not acceptance_deadline_at"/>
+                                    <field name="pos_processing_error" readonly="1"
+                                           invisible="pos_processing_state != 'blocked'"/>
+                                    <field name="last_sync_at" readonly="1"/>
+                                    <field name="last_sync_error" readonly="1"/>
+                                    <field name="webhook_event_id" readonly="1"/>
+                                    <field name="binding_id" readonly="1" groups="base.group_no_one"/>
+                                    <field name="age_seconds" readonly="1"/>
+                                    <field name="late_deadline" readonly="1"/>
+                                    <field name="late_threshold_minutes" readonly="1"/>
+                                    <field name="kitchen_print_state" widget="badge" readonly="1"/>
+                                    <field name="kitchen_print_requested_at" readonly="1"/>
+                                    <field name="kitchen_print_last_attempt_at" readonly="1"/>
+                                    <field name="kitchen_print_sent_at" readonly="1"/>
+                                    <field name="kitchen_print_attempts" readonly="1"/>
+                                    <field name="kitchen_print_error" readonly="1"
+                                           invisible="kitchen_print_state != 'error'"/>
+                                    <field name="cashier_receipt_state" widget="badge" readonly="1"/>
+                                    <field name="cashier_receipt_requested_at" readonly="1"/>
+                                    <field name="cashier_receipt_last_attempt_at" readonly="1"/>
+                                    <field name="cashier_receipt_sent_at" readonly="1"/>
+                                    <field name="cashier_receipt_attempts" readonly="1"/>
+                                    <field name="cashier_receipt_error" readonly="1"
+                                           invisible="cashier_receipt_state != 'error'"/>
+                                </group>
+                            </group>
+                            <group string="Rejection" invisible="state != 'rejected'">
+                                <field name="reject_reason_id" readonly="1"/>
+                                <field name="rejection_note" readonly="1"/>
+                                <field name="rejected_at" readonly="1"/>
+                            </group>
+                            <group string="Cancellation" invisible="state != 'cancelled'">
+                                <field name="cancelled_at" readonly="1"/>
+                            </group>
+                            <group string="Incoming Request Payload" colspan="2"
+                                   groups="bs_pos_delivery_core.group_delivery_integration_manager">
+                                <field name="incoming_request_payload" nolabel="1"
+                                       readonly="1" class="font-monospace"/>
+                            </group>
+                            <group string="Processing Response" colspan="2"
+                                   groups="bs_pos_delivery_core.group_delivery_integration_manager">
+                                <field name="processing_response_payload" nolabel="1"
+                                       readonly="1" class="font-monospace"/>
+                            </group>
+                            <group string="Processing Error" colspan="2"
+                                   groups="bs_pos_delivery_core.group_delivery_integration_manager"
+                                   invisible="not processing_error_message">
+                                <field name="processing_error_message" nolabel="1" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_order_search" model="ir.ui.view">
+        <field name="name">bs.delivery.order.search</field>
+        <field name="model">bs.delivery.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Aggregator Orders">
+                <field name="name"/>
+                <field name="external_order_id"/>
+                <field name="external_reference"/>
+                <field name="customer_name"/>
+                <field name="customer_phone"/>
+                <field name="provider_id"/>
+                <field name="connection_id"/>
+                <field name="store_binding_id"/>
+                <filter name="received" string="New" domain="[('state', '=', 'received')]"/>
+                <filter name="active_orders"
+                        string="Open"
+                        domain="[('state', 'in', ('received', 'accepted', 'preparing', 'ready', 'picked_up'))]"/>
+                <filter name="late" string="Late" domain="[('is_late', '=', True)]"/>
+                <filter name="sync_errors" string="Sync Errors" domain="[('sync_state', '=', 'error')]"/>
+                <filter name="awaiting_pos_session" string="Awaiting POS Session"
+                        domain="[('pos_processing_state', '=', 'waiting_session')]"/>
+                <separator/>
+                <filter name="received_date" string="Received Date" date="received_at"/>
+                <filter name="business_date" string="Business Date" date="business_date"/>
+                <group>
+                    <filter name="group_provider" string="Provider" context="{'group_by': 'provider_id'}"/>
+                    <filter name="group_connection" string="Connection" context="{'group_by': 'connection_id'}"/>
+                    <filter name="group_store" string="Remote Store" context="{'group_by': 'store_binding_id'}"/>
+                    <filter name="group_state" string="State" context="{'group_by': 'state'}"/>
+                    <filter name="group_received_day" string="Received Day" context="{'group_by': 'received_at:day'}"/>
+                    <filter name="group_business_day" string="Business Day" context="{'group_by': 'business_date:day'}"/>
+                    <filter name="group_ordering_platform" string="Ordering Platform" context="{'group_by': 'external_source'}"/>
+                    <filter name="group_branch" string="Branch" context="{'group_by': 'pos_config_id'}"/>
+                    <filter name="group_company"
+                            string="Company"
+                            context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_order" model="ir.actions.act_window">
+        <field name="name">Aggregator Orders</field>
+        <field name="res_model">bs.delivery.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_order_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No delivery orders received yet.</p>
+            <p>Authenticated platform orders will appear here and in the mapped POS branch.</p>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_order_new" model="ir.actions.act_window">
+        <field name="name">New Aggregator Orders</field>
+        <field name="res_model">bs.delivery.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_order_search"/>
+        <field name="domain">[('state', '=', 'received')]</field>
+        <field name="context">{'search_default_received': 1}</field>
+    </record>
+
+    <record id="view_bs_delivery_reject_wizard_form" model="ir.ui.view">
+        <field name="name">bs.delivery.reject.wizard.form</field>
+        <field name="model">bs.delivery.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reject Delivery Order">
+                <field name="company_id" invisible="1"/>
+                <field name="provider_id" invisible="1"/>
+                <group>
+                    <field name="order_id"/>
+                    <field name="reject_reason_id" options="{'no_create': True}"/>
+                    <field name="note" placeholder="Add details for the platform and the audit trail..."/>
+                </group>
+                <footer>
+                    <button name="action_reject"
+                            type="object"
+                            string="Reject Order"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_reject_wizard" model="ir.actions.act_window">
+        <field name="name">Reject Delivery Order</field>
+        <field name="res_model">bs.delivery.reject.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_bs_delivery_reject_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_bs_delivery_accept_customer_wizard_form" model="ir.ui.view">
+        <field name="name">bs.delivery.accept.customer.wizard.form</field>
+        <field name="model">bs.delivery.accept.customer.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Choose Invoice Customer">
+                <field name="company_id" invisible="1"/>
+                <group>
+                    <field name="order_id"/>
+                    <field name="partner_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Accept and Invoice"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_accept_customer_wizard" model="ir.actions.act_window">
+        <field name="name">Choose Invoice Customer</field>
+        <field name="res_model">bs.delivery.accept.customer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_bs_delivery_accept_customer_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Bonat codes of a POS order, as JSON (see static/src/app/bonat_codes.js).
+
+        Several codes per order are checked when entered and used with Bonat when
+        the order is sent to the kitchen. The list must therefore travel WITH the
+        order: a waiter's device can apply the codes and send to the kitchen, and
+        the cashier's device take the payment. Stored on pos.order, the list is
+        synced with the order like any other field, so every device knows which
+        codes are on the order and whether each one was already used with Bonat.
+
+        pos.order loads all its fields into the POS (no _load_pos_data_fields
+        restriction), so this manual field reaches the client with no Python.
+    -->
+    <record id="field_pos_order_bonat_codes" model="ir.model.fields">
+        <field name="name">x_bonat_codes</field>
+        <field name="model">pos.order</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="field_description">Bonat Codes</field>
+        <field name="ttype">text</field>
+        <field name="copied" eval="False"/>
+        <field name="state">manual</field>
+        <field name="help">Bonat reward codes applied on this order and whether each was used with Bonat (JSON, managed by the POS).</field>
+    </record>
+</odoo>

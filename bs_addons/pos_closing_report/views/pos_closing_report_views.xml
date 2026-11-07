@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_closing_report_list" model="ir.ui.view">
+        <field name="name">pos.closing.report.list</field>
+        <field name="model">pos.closing.report</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-danger="status == 'shortage'" decoration-warning="status == 'surplus'" decoration-success="status == 'balanced'">
+                <field name="name" optional="show"/>
+                <field name="branch_name"/>
+                <field name="cashier_name"/>
+                <field name="stop_at"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="cash_expected" sum="Total"/>
+                <field name="cash_counted" sum="Total"/>
+                <field name="cash_difference" sum="Total"/>
+                <field name="bank_expected" sum="Total"/>
+                <field name="bank_counted" sum="Total"/>
+                <field name="bank_difference" sum="Total"/>
+                <field name="difference_total" sum="Total"/>
+                <field name="status" widget="badge" decoration-danger="status == 'shortage'" decoration-warning="status == 'surplus'" decoration-success="status == 'balanced'"/>
+                <field name="source" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pos_closing_report_form" model="ir.ui.view">
+        <field name="name">pos.closing.report.form</field>
+        <field name="model">pos.closing.report</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0">
+                <header>
+                    <button name="action_print" type="object" string="Print PDF" class="btn-primary" icon="fa-print"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="cashier_name"/>
+                        <h1><field name="cashier_name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="branch_name"/>
+                            <field name="config_id"/>
+                            <field name="session_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="start_at"/>
+                            <field name="stop_at"/>
+                            <field name="user_id"/>
+                            <field name="source"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="line_ids">
+                        <list>
+                            <field name="name"/>
+                            <field name="method_type"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="expected"/>
+                            <field name="counted"/>
+                            <field name="difference" decoration-danger="difference &lt; 0" decoration-warning="difference &gt; 0"/>
+                            <field name="diff_known" widget="boolean_toggle" readonly="1"/>
+                        </list>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field name="expected_total"/>
+                        <field name="counted_total"/>
+                        <field name="difference_total" class="oe_subtotal_footer_separator"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pos_closing_report_pivot" model="ir.ui.view">
+        <field name="name">pos.closing.report.pivot</field>
+        <field name="model">pos.closing.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Employee Differences">
+                <field name="cashier_name" type="row"/>
+                <field name="stop_at" interval="month" type="col"/>
+                <field name="cash_difference" type="measure"/>
+                <field name="bank_difference" type="measure"/>
+                <field name="difference_total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_pos_closing_report_graph" model="ir.ui.view">
+        <field name="name">pos.closing.report.graph</field>
+        <field name="model">pos.closing.report</field>
+        <field name="arch" type="xml">
+            <graph string="Employee Differences" type="bar">
+                <field name="cashier_name"/>
+                <field name="difference_total" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_pos_closing_report_search" model="ir.ui.view">
+        <field name="name">pos.closing.report.search</field>
+        <field name="model">pos.closing.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="cashier_name"/>
+                <field name="branch_name"/>
+                <field name="config_id"/>
+                <field name="session_id"/>
+                <filter name="shortage" string="Shortage" domain="[('status', '=', 'shortage')]"/>
+                <filter name="surplus" string="Surplus" domain="[('status', '=', 'surplus')]"/>
+                <filter name="balanced" string="Balanced" domain="[('status', '=', 'balanced')]"/>
+                <separator/>
+                <filter name="stop_at" string="Closing Date" date="stop_at"/>
+                <group>
+                    <filter name="group_cashier" string="Employee" context="{'group_by': 'cashier_name'}"/>
+                    <filter name="group_branch" string="Point of Sale" context="{'group_by': 'config_id'}"/>
+                    <filter name="group_day" string="Day" context="{'group_by': 'stop_at:day'}"/>
+                    <filter name="group_status" string="Status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pos_closing_report" model="ir.actions.act_window">
+        <field name="name">Closing Reports</field>
+        <field name="res_model">pos.closing.report</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="context">{'search_default_group_cashier': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No closing reports yet</p>
+            <p>A report is created automatically every time a session is closed. Use "Generate Retroactively" to create reports for older sessions.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_pos_closing_report_root" name="Cashier Closing"
+              parent="point_of_sale.menu_point_rep" sequence="5"
+              groups="point_of_sale.group_pos_manager"/>
+    <menuitem id="menu_pos_closing_report" name="Closing Reports"
+              parent="menu_pos_closing_report_root" action="action_pos_closing_report" sequence="1"/>
+</odoo>

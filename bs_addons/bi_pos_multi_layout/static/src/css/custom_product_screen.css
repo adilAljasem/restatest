@@ -1,0 +1,96 @@
+/* Part of BrowseInfo. See LICENSE file for full copyright and licensing details. */
+
+/* ---- Side column holding the POS action buttons ---- */
+.bi_multi_layout {
+    background: #eef1f5 !important;
+    width: 21.5%;
+}
+
+.bi_multi_layout.bi_multi_layout_left {
+    border-right: 1px solid #d7dce3 !important;
+}
+
+.bi_multi_layout.bi_multi_layout_right {
+    border-left: 1px solid #d7dce3 !important;
+}
+
+.bi_multi_layout.multi_layout_one {
+    width: 8%;
+}
+
+.bi_multi_layout.multi_layout_two {
+    width: 15%;
+}
+
+.bi_multi_layout.multi_layout_three,
+.bi_multi_layout.multi_layout_default {
+    width: 21.5%;
+}
+
+/* ---- Number of button columns ---- */
+.bi_multi_layout.multi_layout_one .control-buttons-modal {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.bi_multi_layout.multi_layout_two .control-buttons-modal {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.bi_multi_layout.multi_layout_three .control-buttons-modal,
+.bi_multi_layout.multi_layout_default .control-buttons-modal {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ---- Button look inside the side column ---- */
+.bi_multi_layout .control-buttons-modal {
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 6px !important;
+}
+
+.bi_multi_layout .control-buttons-modal > button,
+.bi_multi_layout .control-buttons-modal > .btn {
+    min-height: 58px !important;
+    height: auto !important;
+    padding: 8px 6px !important;
+    border: 1px solid #d5dbe3 !important;
+    border-radius: 4px !important;
+    background: #f8fafc !important;
+    color: #233044 !important;
+    box-shadow: none !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+}
+
+.bi_multi_layout .control-buttons-modal > button:hover,
+.bi_multi_layout .control-buttons-modal > .btn:hover {
+    background: #fff !important;
+    border-color: #b8c1cc !important;
+}
+
+.bi_multi_layout .control-buttons-modal > button:active,
+.bi_multi_layout .control-buttons-modal > .btn:active {
+    background: #e5eaf0 !important;
+}
+
+.bi_multi_layout .control-buttons-modal > button i,
+.bi_multi_layout .control-buttons-modal > .btn i {
+    margin-inline: 3px !important;
+    font-size: 13px !important;
+}
+
+/* ---- Collapse / expand handle above the pads ---- */
+.bi_pads_toggle {
+    background: #fff;
+    font-size: 20px;
+    line-height: 1;
+    padding: 2px 0;
+    cursor: pointer;
+    border-top: 1px solid #d7dce3;
+}
+
+.bi_pads_toggle:hover {
+    background: #f1f4f8;
+}

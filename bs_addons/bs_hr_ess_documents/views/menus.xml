@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_documents" name="Documents" parent="bs_hr_ess_base.menu_ess_employees" sequence="20"
+              action="action_document" groups="bs_hr_ess_base.group_ess_hr_officer"/>
+    <menuitem id="menu_ess_contract_renewals" name="Contract Renewals" parent="bs_hr_ess_base.menu_ess_employees"
+              sequence="30" action="action_contract_renewal"/>
+    <menuitem id="menu_ess_document_renewals" name="Document Renewals" parent="bs_hr_ess_base.menu_ess_requests"
+              sequence="60" action="action_document_renewal"/>
+    <menuitem id="menu_ess_document_types" name="Document Types" parent="bs_hr_ess_base.menu_ess_config"
+              sequence="40" action="action_document_type"/>
+</odoo>

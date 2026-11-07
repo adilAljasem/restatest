@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ess_invite_form" model="ir.ui.view">
+        <field name="name">bs.hr.ess.invite.form</field>
+        <field name="model">bs.hr.ess.invite</field>
+        <field name="arch" type="xml">
+            <form>
+                <group invisible="result">
+                    <field name="employee_ids" widget="many2many_tags"/>
+                    <field name="send_invitation"/>
+                </group>
+                <div class="text-muted" invisible="result">
+                    A portal user is created for each employee. The login is the work / private e-mail,
+                    or the mobile number (format 9665XXXXXXXX) when there is no e-mail: those employees
+                    sign in with an SMS code when "Login with mobile + OTP" is enabled.
+                </div>
+                <field name="result" invisible="not result"/>
+                <footer>
+                    <button name="action_grant" type="object" string="Grant access" class="btn-primary" invisible="result"/>
+                    <button special="cancel" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

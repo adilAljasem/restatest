@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Customer display: use POS brand logo and hide 'Powered by Odoo' text -->
+    <t t-inherit="point_of_sale.CustomerDisplay" t-inherit-mode="extension">
+        <!-- Replace the company logo in sidebar with custom brand logo -->
+        <xpath expr="//div[hasclass('o_customer_display_logo')]//img" position="replace">
+            <img t-if="brandLogo"
+                 class="img-fluid"
+                 t-att-src="brandLogo"
+                 alt="Logo"/>
+        </xpath>
+        <!-- Hide "Powered by Odoo" in sidebar (large screens) - the div with position-absolute that contains "Powered by" -->
+        <xpath expr="//div[hasclass('position-absolute') and hasclass('bottom-0') and contains(., 'Powered by')]" position="replace">
+            <div t-if="false"/>
+        </xpath>
+        <!-- Hide "Powered by Odoo" at bottom of main display area - the div with "Powered by" text -->
+        <xpath expr="//div[hasclass('d-flex') and hasclass('justify-content-center')]/div[contains(., 'Powered by')]" position="replace">
+            <div t-if="false"/>
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_combo_view_form_rules" model="ir.ui.view">
+        <field name="name">product.combo.form.restaurant.rules</field>
+        <field name="model">product.combo</field>
+        <field name="inherit_id" ref="point_of_sale.product_combo_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_max']/parent::div" position="before">
+                <span class="o_form_label oe_inline fw-bolder">Minimum</span>
+                <div>
+                    <field name="qty_min" class="text-center" style="width:50px;"/>
+                    <label for="qty_min" string="items" class="fw-bolder ps-3"/>
+                </div>
+            </xpath>
+            <field name="base_price" position="after">
+                <field name="display_type"/>
+            </field>
+            <field name="product_id" position="after">
+                <field name="default_qty"/>
+                <field name="qty_max"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_combo_view_list_rules" model="ir.ui.view">
+        <field name="name">product.combo.list.restaurant.rules</field>
+        <field name="model">product.combo</field>
+        <field name="inherit_id" ref="product.product_combo_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="combo_item_count" position="before">
+                <field name="qty_min" optional="show"/>
+                <field name="display_type" optional="hide"/>
+            </field>
+        </field>
+    </record>
+</odoo>

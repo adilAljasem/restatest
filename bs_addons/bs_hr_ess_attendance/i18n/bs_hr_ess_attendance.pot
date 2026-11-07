@@ -1,0 +1,1790 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bs_hr_ess_attendance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 21:49+0000\n"
+"PO-Revision-Date: 2026-11-03 21:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/kiosk.js:0
+msgid "%s employee(s) present"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "(no reason)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "<i class=\"fa fa-history\"/> Request a correction"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "<i class=\"fa fa-location-arrow\"/> Location"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "<i class=\"fa fa-qrcode\"/> QR code"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "<i class=\"fa fa-smile-o\"/> Face"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/correction.py:0
+msgid "A correction cannot be in the future."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "A new phone needs HR approval (no punching for a colleague)."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_face_photo_fallback
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_face_photo_fallback
+msgid "Accept a selfie when the live camera is unavailable"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__accuracy
+msgid "Accuracy"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__action
+msgid "Action"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_needaction
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_kiosk_activate
+msgid "Activate"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_ess_device__state__active
+msgid "Active"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_exception_decoration
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_state
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_type_icon
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_attendance_all
+msgid "All attendances"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "All branch screens will have to be activated again. Continue?"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__hr_employee__ess_method_logic__all
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__hr_work_location__ess_method_logic__all
+msgid "All selected methods are required"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_face_enroll_allowed
+msgid "Allow face enrollment"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_allowed_location_ids
+msgid "Allowed branches"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__hr_employee__ess_method_logic__any
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__hr_work_location__ess_method_logic__any
+msgid "Any selected method is enough"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__approval_line_ids
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+msgid "Approvals"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_employee_form_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_ess_device_list
+msgid "Approve"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "At least 3 clear captures of the face are required."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_attachment_count
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+#: model:ir.model,name:bs_hr_ess_attendance.model_hr_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__attendance_id
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Attendance"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.act_window,name:bs_hr_ess_attendance.action_correction
+msgid "Attendance Corrections"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "Attendance check-in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+#: model:bs.hr.approval.flow,name:bs_hr_ess_attendance.flow_attendance_correction
+#: model:ir.model,name:bs_hr_ess_attendance.model_bs_hr_attendance_correction
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+msgid "Attendance correction"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_employee_form_ess_attendance
+msgid "Attendance devices"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__attendance_id
+msgid "Attendance to fix"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_device_binding
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_device_binding
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Bind employees to their phone"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_face_consent_date
+msgid "Biometric consent on"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__work_location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_location_id
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_attendance_view_filter_ess
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_search
+msgid "Branch"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "Branch QR screen"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_hr_employee__ess_allowed_location_ids
+msgid ""
+"Branches where the employee may check in. Empty = his work location only."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__can_ess_approve
+msgid "Can Ess Approve"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+msgid "Cancel"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Cancelled."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_attendance_attempt__action__check_in
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Check in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_attendance_attempt__action__check_out
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Check out"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.act_window,name:bs_hr_ess_attendance.action_attempt
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_attempt
+msgid "Check-in attempts"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_method
+msgid "Check-in method"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_photo
+msgid "Check-in photo"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_out_method
+msgid "Check-out method"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/correction.py:0
+msgid "Check-out must be after check-in."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Checked in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Checked in at %(time)s - %(branch)s"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Checked out at %(time)s. Worked %(hours)s h today."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Choose one method"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_method_logic
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_method_logic
+msgid "Combination"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__company_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__company_id
+msgid "Company"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_face_consent_ip
+msgid "Consent IP"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid "Consent to biometric processing"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__correction_type
+msgid "Correction Type"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "Correction request sent."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_correction
+msgid "Corrections"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "Could not capture your face. Retry in good light."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Could not get your location. Move outside or enable GPS and retry."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Could not read the photo."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__create_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__create_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_attendance_view_filter_ess
+msgid "Currently present"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_attempt_list
+msgid "Date"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__decision_date
+msgid "Decision Date"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__department_id
+msgid "Department"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__device_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_device_id
+msgid "Device"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_device_ids
+msgid "Devices"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_attendance.flow_attendance_correction_step_manager
+msgid "Direct manager"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__display_name
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__distance
+msgid "Distance"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_distance
+msgid "Distance (m)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_bs_hr_attendance_qr_use
+msgid "ESS QR code use"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_bs_hr_attendance_attempt
+msgid "ESS attendance attempt"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.server,name:bs_hr_ess_attendance.ir_cron_ess_clean_photos_ir_actions_server
+msgid "ESS: delete old check-in photos"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_attendance_tree_ess
+msgid "Early"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_hr_employee
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__employee_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__employee_id
+msgid "Employee"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.act_window,name:bs_hr_ess_attendance.action_ess_device
+msgid "Employee Devices"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_device
+msgid "Employee devices"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_bs_hr_ess_device
+msgid "Employee phone (attendance device binding)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Enroll my face"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_kiosk_activate
+msgid ""
+"Enter the kiosk activation key (Self-Service &gt; Configuration &gt; "
+"Branches) to turn this screen into the branch attendance QR display."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_face_descriptor
+msgid "Ess Face Descriptor"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_qr_secret
+msgid "Ess Qr Secret"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_bs_hr_geofence_point
+msgid "Extra geofence point of a branch"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_point_ids
+msgid "Extra points"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__face_distance
+msgid "Face Distance"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Face check"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Face checked on a selfie (no liveness: live camera unavailable)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_face_distance
+msgid "Face distance"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_face_enrolled
+msgid "Face enrolled"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Face enrolled for self-service attendance (biometric consent given)."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid "Face enrollment"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid ""
+"Face enrollment is done in front of HR or your branch supervisor. Ask them "
+"to unlock it for you."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "Face enrollment is locked. Ask HR or your supervisor to unlock it."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_face_threshold
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_face_threshold
+msgid "Face match threshold"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Face not recognized. Retry in good light."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_use_face
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_use_face
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Face recognition"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_attempt_search
+msgid "Failed"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Fake GPS detection"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Flag punches implying an impossible travel speed."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__flow_id
+msgid "Flow"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_follower_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_partner_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_type_icon
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_attendance_correction__correction_type__missing_both
+msgid "Forgot both"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_attendance_correction__correction_type__missing_in
+msgid "Forgot to check in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_attendance_correction__correction_type__missing_out
+msgid "Forgot to check out"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_accuracy
+msgid "GPS accuracy (m)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid ""
+"GPS accuracy is too low (%(acc)s m). Move outside or enable precise "
+"location, then retry."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "GPS accuracy reported as %s m (mock location?)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "Geofence"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Getting your location..."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/correction.py:0
+msgid "Give the real check-in time."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/correction.py:0
+msgid "Give the real check-out time."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Good, now look back at the camera"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:bs.hr.approval.flow.step,name:bs_hr_ess_attendance.flow_attendance_correction_step_branch
+msgid "HR"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__has_message
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "Hold still... (%s/%s)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid "I agree to the processing of my biometric data for attendance."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_exception_icon
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_exception_icon
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_needaction
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_has_sms_error
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__message_has_error
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_max_speed_kmh
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_max_speed_kmh
+msgid "Impossible travel speed (km/h)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Impossible travel: %(km)s km in %(min)s min"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "In since %s"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "Invalid data."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__ip_address
+msgid "Ip Address"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_is_follower
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_face_keep_photo
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_face_keep_photo
+msgid "Keep a check-in photo as evidence"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_face_photo_days
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_face_photo_days
+msgid "Keep check-in photos (days)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "Keep your eyes open"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_kiosk_url
+msgid "Kiosk URL"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_kiosk_key
+msgid "Kiosk activation key"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/kiosk.py:0
+msgid "Kiosk not activated."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_kiosk_token
+msgid "Kiosk token"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Last 14 days"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__last_ip
+msgid "Last Ip"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__write_uid
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__write_date
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__last_used
+msgid "Last Used"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_attendance_view_filter_ess
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_attendance_tree_ess
+msgid "Late"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_late_minutes
+msgid "Late (min)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.act_window,name:bs_hr_ess_attendance.action_ess_attendance_late
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_attendance_late
+msgid "Lateness"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_company__ess_late_grace_minutes
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_res_config_settings__ess_late_grace_minutes
+msgid "Lateness grace (minutes)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Lateness grace period"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__latitude
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__latitude
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_latitude
+msgid "Latitude"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Left"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_early_minutes
+msgid "Left early (min)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Liveness check failed. Follow the instruction on screen."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Liveness check timed out. Retry in good light."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_liveness
+msgid "Liveness passed"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "Loading face recognition..."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__location_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__location_id
+msgid "Location"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_use_geo
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_use_geo
+msgid "Location (geofence)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Location is not available on this device."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid ""
+"Location permission denied. Allow location for this site in your browser "
+"settings."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__longitude
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__longitude
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_longitude
+msgid "Longitude"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Look at the camera and blink slowly"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "Look at the camera, then turn your head to one side and back"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid "Look straight at the camera, in good light."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Match threshold (lower = stricter) and evidence photos."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_max_accuracy
+msgid "Max GPS accuracy (m)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_company__ess_face_threshold
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_config_settings__ess_face_threshold
+msgid ""
+"Maximum distance between the live face and the enrolled face (lower = "
+"stricter). 0.5 is a good default."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_has_error
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__methods
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "Methods"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "Minutes tolerated after the scheduled start."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__in_mode
+msgid "Mode"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__my_activity_date_deadline
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__name
+msgid "Name"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "New attendance device waiting for approval: %s"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "New phone for %s: approve or revoke"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_calendar_event_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_date_deadline
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_summary
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_type_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "No QR code found on the photo. Retry closer to the screen."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "No attendance today."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "No branch is assigned to you. Contact HR."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "No face detected - center your face"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "No face detected - center your face in the frame"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "No face detected. Look at the camera and retry."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "No face found on the photo. Retry facing the camera in good light."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/correction.py:0
+msgid "No open attendance found before that check-out time."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "No open attendance to check out."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Not checked in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__employee_note
+msgid "Notes"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_needaction_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_has_error_counter
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_needaction_counter
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_has_error_counter
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_search
+msgid "Open"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "Open the QR screen"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid ""
+"Open the QR screen URL on a tablet in the branch and enter the activation key once.\n"
+"                        The code changes every few seconds; a photo of it is useless after that."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__out_mode
+msgid "Out Mode"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_hr_employee__ess_att_override
+msgid "Override the check-in methods of the branch for this employee."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "Please tick the consent box first."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Point the camera at the QR code"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__portal_source
+msgid "Portal Source"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.act_window,name:bs_hr_ess_attendance.action_ess_attendance_live
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_today_present
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_attendance_live
+msgid "Present now"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+msgid "Proof (optional)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_kiosk
+msgid "QR"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_qr_period
+msgid "QR refresh (seconds)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_geofence_point__radius
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_radius
+msgid "Radius (m)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_hr_work_location__ess_max_accuracy
+msgid ""
+"Readings less precise than this are refused (the phone must have a good GPS "
+"fix)."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__check_in
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+msgid "Real check-in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__check_out
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+msgid "Real check-out"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__reason
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__reason
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+msgid "Reason"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__name
+msgid "Reference"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_work_location_form_view_ess_att
+msgid "Regenerate keys"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_ess_device_list
+msgid "Registered"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+msgid "Reject"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__rejection_reason
+msgid "Rejection Reason"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__portal_source
+msgid "Request submitted from the employee portal"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_employee_form_ess_attendance
+msgid "Reset face"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+msgid "Reset to draft"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_user_id
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_employee_form_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_ess_device_list
+msgid "Revoke"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_ess_device__state__revoked
+msgid "Revoked"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_use_qr
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_work_location__ess_use_qr
+msgid "Rotating QR code"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__message_has_sms_error
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Scan the QR code on the branch screen"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Scan the QR code shown on the branch screen."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_kiosk
+msgid "Scan with your phone to check in / out"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__hr_attendance__in_mode__ess_portal
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__hr_attendance__out_mode__ess_portal
+msgid "Self-Service"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_attendance_view_form_ess
+msgid "Self-service check"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Self-service check-in is not enabled for your branch."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+msgid "Send"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Sending..."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_company__ess_face_photo_fallback
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_config_settings__ess_face_photo_fallback
+msgid ""
+"Some phone apps (e.g. the Odoo iOS / Android app) may block live camera "
+"streams. The employee then takes a selfie: the face is still matched but "
+"liveness cannot be checked, so the attendance is flagged as suspicious for "
+"HR review."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid "Something went wrong."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Something went wrong. Retry."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_employee__ess_att_override
+msgid "Specific check-in rules"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid "Start"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__state
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__state
+msgid "State"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_state
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_qr_use__step
+msgid "Step"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_form
+msgid "Submit"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__submit_date
+msgid "Submit Date"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__success
+msgid "Success"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_suspicious
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.hr_attendance_view_filter_ess
+msgid "Suspicious"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.actions.act_window,name:bs_hr_ess_attendance.action_ess_attendance_suspicious
+#: model:ir.ui.menu,name:bs_hr_ess_attendance.menu_ess_attendance_suspicious
+msgid "Suspicious check-ins"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Take a photo of the QR code on the branch screen"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "Take a selfie to check in"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "The branch %s has no coordinates yet. Contact HR."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/attendance.js:0
+msgid "The camera cannot be used here. Open the portal in Safari / Chrome."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid ""
+"The captures are too different from each other. Retry in good light, facing "
+"the camera."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_employee_form_ess_attendance
+msgid "The encrypted face signature will be deleted. Continue?"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_company__ess_device_binding
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_config_settings__ess_device_binding
+msgid ""
+"The first phone used becomes the employee device; a new phone needs HR "
+"approval."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/face_enroll.js:0
+msgid ""
+"The live camera is not available in this app. Do the enrollment once in "
+"Safari or Chrome."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid ""
+"This QR code is invalid or expired. Scan the code currently shown on the "
+"branch screen."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.constraint,message:bs_hr_ess_attendance.constraint_bs_hr_attendance_qr_use_uniq_use
+msgid "This QR code was already used."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "This QR code was already used. Wait for the next code."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-javascript
+#: code:addons/bs_hr_ess_attendance/static/src/js/camera.js:0
+msgid "This browser cannot use the camera. Open the page in Safari or Chrome."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/ess_device.py:0
+msgid "This browser could not be identified. Reload the page."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/ess_device.py:0
+msgid "This phone has been blocked by HR."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/ess_device.py:0
+msgid ""
+"This phone is not your registered device. HR has been asked to approve it; "
+"try again after approval."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_correction_search
+msgid "To approve"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid ""
+"To check in with your face, a mathematical signature of your face (not a photo) is computed\n"
+"                        on your phone and stored encrypted by your employer, only for attendance. You can ask HR to\n"
+"                        delete it at any time. A small photo may be kept as evidence for each check-in for a limited\n"
+"                        period. (Saudi Personal Data Protection Law)"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_attempt_search
+msgid "Today"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__token_hash
+msgid "Token Hash"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Too many attempts. Wait one minute and try again."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_company__ess_max_speed_kmh
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_config_settings__ess_max_speed_kmh
+msgid ""
+"Two punches implying a faster move are flagged as suspicious (fake GPS)."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__activity_exception_decoration
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_hr_employee__ess_face_enroll_allowed
+msgid ""
+"Unlock (re)enrollment from the portal, under the supervision of HR or the "
+"branch supervisor. Locked again automatically once done."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_attempt__user_agent
+msgid "User Agent"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_ess_device__state__pending
+msgid "Waiting HR approval"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.view_ess_device_search
+msgid "Waiting approval"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__current_approver_ids
+msgid "Waiting for"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_attendance_correction__website_message_ids
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_bs_hr_ess_device__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_attendance_correction__website_message_ids
+#: model:ir.model.fields,help:bs_hr_ess_attendance.field_bs_hr_ess_device__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_correction
+msgid "What happened?"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields,field_description:bs_hr_ess_attendance.field_hr_attendance__ess_suspicious_reason
+msgid "Why suspicious"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model,name:bs_hr_ess_attendance.model_hr_work_location
+msgid "Work Location"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Worked today"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/kiosk.py:0
+msgid "Wrong activation key."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model:ir.model.fields.selection,name:bs_hr_ess_attendance.selection__bs_hr_attendance_correction__correction_type__wrong_time
+msgid "Wrong time recorded"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "You are %(dist)s m away from %(branch)s. Get closer to check in."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "You are not allowed to check in at %s."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "Your account is not linked to an employee."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "Your consent is required."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_face_enroll
+msgid "Your face is already enrolled."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/controllers/portal.py:0
+msgid "Your face is enrolled. You can now check in."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "Your face is not enrolled yet."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Your face is not enrolled yet. Ask HR or your supervisor to enroll it."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#. odoo-python
+#: code:addons/bs_hr_ess_attendance/models/hr_employee.py:0
+msgid "Your location is required. Allow location access and retry."
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "by location"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "km/h"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.res_config_settings_view_form_ess_att
+msgid "min"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "min early"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "with QR"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "with face"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_kiosk
+msgid "امسح الرمز بجوالك لتسجيل الحضور أو الانصراف"
+msgstr ""
+
+#. module: bs_hr_ess_attendance
+#: model_terms:ir.ui.view,arch_db:bs_hr_ess_attendance.ess_attendance
+msgid "→ <i class=\"fa fa-sign-out text-danger\"/>"
+msgstr ""

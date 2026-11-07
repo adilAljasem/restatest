@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bs_delivery_provider_form" model="ir.ui.view">
+        <field name="name">bs.delivery.provider.form</field>
+        <field name="model">bs.delivery.provider</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Provider" create="false" edit="false" delete="false">
+                <field name="module_available" invisible="1"/>
+                <field name="has_installed_companion_modules" invisible="1"/>
+                <header>
+                    <button name="action_install_module"
+                            type="object"
+                            string="Install"
+                            class="btn-primary"
+                            groups="base.group_system"
+                            invisible="not module_available or not module_id or module_state == 'installed'"/>
+                    <button name="action_configure"
+                            type="object"
+                            string="Configure"
+                            class="btn-primary"
+                            invisible="not module_available or implementation_state in ('awaiting_api', 'deprecated') or (module_id and module_state != 'installed')"/>
+                    <button name="action_uninstall_module"
+                            type="object"
+                            string="Clean Up"
+                            class="btn-secondary"
+                            groups="base.group_system"
+                            confirm="Remove the provider components that are still installed?"
+                            invisible="not module_id or module_state == 'installed' or not has_installed_companion_modules"/>
+                    <button name="action_uninstall_module"
+                            type="object"
+                            string="Uninstall"
+                            class="btn-secondary"
+                            groups="base.group_system"
+                            confirm="Uninstall this provider and all of its owned components? Its delivery connections will be disabled."
+                            invisible="not module_id or module_state != 'installed'"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_configure"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-plug"
+                                invisible="not module_available or implementation_state in ('awaiting_api', 'deprecated') or (module_id and module_state != 'installed')">
+                            <field name="connection_count" widget="statinfo" string="Connections"/>
+                        </button>
+                    </div>
+                    <field name="image_128" widget="image" class="oe_avatar" readonly="1"/>
+                    <field name="implementation_state" invisible="1"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                        <div class="d-flex gap-1">
+                            <field name="configuration_state"
+                                   widget="label_selection"
+                                   options="{'classes': {
+                                       'not_installed': 'light',
+                                       'cleanup_required': 'danger',
+                                       'not_configured': 'warning',
+                                       'configured': 'info',
+                                       'connected': 'success',
+                                       'error': 'danger'
+                                   }}"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code" groups="base.group_no_one"/>
+                            <field name="module_id" groups="base.group_no_one"/>
+                            <field name="companion_module_ids"
+                                   widget="many2many_tags"
+                                   groups="base.group_no_one"/>
+                            <field name="module_state" groups="base.group_no_one"/>
+                            <field name="website" widget="url"/>
+                            <field name="connector_kind"/>
+                            <field name="implementation_state" widget="badge"/>
+                            <field name="is_operational"/>
+                        </group>
+                        <group>
+                            <field name="connection_count"/>
+                            <field name="connected_connection_count"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <group string="Capabilities">
+                        <field name="capabilities" nolabel="1" widget="json"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_provider_list" model="ir.ui.view">
+        <field name="name">bs.delivery.provider.list</field>
+        <field name="model">bs.delivery.provider</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Integrations" create="false" edit="false" delete="false">
+                <field name="sequence" widget="handle" groups="base.group_system"/>
+                <field name="name"/>
+                <field name="code" groups="base.group_no_one"/>
+                <field name="module_state"/>
+                <field name="connector_kind" optional="show"/>
+                <field name="implementation_state" widget="badge"
+                       decoration-success="implementation_state == 'ready'"
+                       decoration-info="implementation_state == 'sandbox'"
+                       decoration-warning="implementation_state in ('awaiting_api', 'development')"
+                       decoration-muted="implementation_state == 'deprecated'"/>
+                <field name="configuration_state"
+                       widget="badge"
+                       decoration-success="configuration_state == 'connected'"
+                       decoration-warning="configuration_state in ('not_configured', 'configured')"
+                       decoration-danger="configuration_state in ('cleanup_required', 'error')"
+                       decoration-muted="configuration_state == 'not_installed'"/>
+                <field name="connection_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_provider_kanban" model="ir.ui.view">
+        <field name="name">bs.delivery.provider.kanban</field>
+        <field name="model">bs.delivery.provider</field>
+        <field name="arch" type="xml">
+            <kanban create="false" quick_create="false">
+                <field name="module_available"/>
+                <field name="module_id"/>
+                <field name="module_state"/>
+                <field name="has_installed_companion_modules"/>
+                <field name="configuration_state"/>
+                <field name="connection_count"/>
+                <field name="implementation_state"/>
+                <field name="connector_kind"/>
+                <field name="is_operational"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <t t-set="installed"
+                           t-value="!record.module_id.value || record.module_state.raw_value === 'installed'"/>
+                        <aside>
+                            <field name="image_128"
+                                   widget="image"
+                                   class="mb-0 o_image_64_max"
+                                   alt="Provider"/>
+                        </aside>
+                        <main class="ms-2">
+                            <field name="name" class="mb-1 fw-bold fs-4"/>
+                            <field name="configuration_state"
+                                   widget="label_selection"
+                                   options="{'classes': {
+                                       'not_installed': 'light',
+                                       'cleanup_required': 'danger',
+                                       'not_configured': 'warning',
+                                       'configured': 'info',
+                                       'connected': 'success',
+                                       'error': 'danger'
+                                   }}"/>
+                            <field name="implementation_state"
+                                   widget="label_selection"
+                                   options="{'classes': {
+                                       'awaiting_api': 'warning',
+                                       'development': 'info',
+                                       'sandbox': 'primary',
+                                       'ready': 'success',
+                                       'deprecated': 'light'
+                                   }}"/>
+                            <div t-if="installed" class="text-muted mt-1">
+                                <field name="connection_count"/> connection(s)
+                            </div>
+                            <footer>
+                                <button t-if="record.module_available.raw_value and !installed and !selection_mode"
+                                        name="action_install_module"
+                                        type="object"
+                                        string="Install"
+                                        class="btn btn-sm btn-primary ms-auto"
+                                        groups="base.group_system"/>
+                                <button t-if="!installed and record.has_installed_companion_modules.raw_value and !selection_mode"
+                                        name="action_uninstall_module"
+                                        type="object"
+                                        string="Clean Up"
+                                        class="btn btn-sm btn-link text-danger"
+                                        groups="base.group_system"
+                                        confirm="Remove the provider components that are still installed?"/>
+                                <button t-if="installed and record.is_operational.raw_value and !selection_mode"
+                                        name="action_configure"
+                                        type="object"
+                                        string="Configure"
+                                        class="btn btn-sm btn-primary ms-auto"/>
+                                <button t-if="installed and !selection_mode"
+                                        name="action_uninstall_module"
+                                        type="object"
+                                        string="Uninstall"
+                                        class="btn btn-sm btn-link text-danger"
+                                        groups="base.group_system"
+                                        confirm="Uninstall this provider and all of its owned components? Its delivery connections will be disabled."/>
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_bs_delivery_provider_search" model="ir.ui.view">
+        <field name="name">bs.delivery.provider.search</field>
+        <field name="model">bs.delivery.provider</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="connector_kind"/>
+                <field name="implementation_state"/>
+                <filter name="installed"
+                        string="Installed"
+                        domain="[('module_state', '=', 'installed')]"/>
+                <filter name="not_installed"
+                        string="Not Installed"
+                        domain="[('module_state', '!=', 'installed')]"/>
+                <filter name="operational" string="Operational"
+                        domain="[('implementation_state', 'in', ('sandbox', 'ready'))]"/>
+                <filter name="awaiting_api" string="Awaiting API"
+                        domain="[('implementation_state', '=', 'awaiting_api')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_bs_delivery_provider" model="ir.actions.act_window">
+        <field name="name">Delivery Integrations</field>
+        <field name="res_model">bs.delivery.provider</field>
+        <field name="domain">[('module_available', '=', True)]</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_bs_delivery_provider_search"/>
+        <field name="context">{'active_test': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No delivery providers are available.</p>
+            <p>Update the Apps list after adding a provider addon to the server.</p>
+        </field>
+    </record>
+</odoo>

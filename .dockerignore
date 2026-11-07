@@ -1,0 +1,12 @@
+.git
+**/__pycache__
+**/*.pyc
+**/tests
+**/static/description/*.png
+!**/static/description/icon.png
+*.zip
+.env
+DOKPLOY.md
+README.md
+DEPLOY_SAAS.md
+tools/

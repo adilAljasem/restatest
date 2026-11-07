@@ -1,0 +1,25 @@
+{
+    "name": "Employee Loans & Advances",
+    "summary": "Manage employee loan requests, payments, and payroll deductions",
+    "version": "19.0.1.0.3",
+    "category": "Human Resources",
+    "license": "LGPL-3",
+    "author": "Mohamed Elmalky",
+    "depends": [
+        "accountant",
+        "hr_payroll_account",
+    ],
+    "data": [
+        "security/employee_loan_security.xml",
+        "security/ir.model.access.csv",
+        "data/employee_loan_sequence.xml",
+        "data/employee_loan_cron.xml",
+        "views/res_config_settings_views.xml",
+        "views/employee_loan_views.xml",
+        "wizard/employee_loan_payment_wizard_views.xml",
+        "views/employee_loan_menus.xml",
+    ],
+    "application": True,
+    "images": ["static/description/icon.png"],
+    "installable": True,
+}

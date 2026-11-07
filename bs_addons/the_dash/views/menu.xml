@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The Dash is the system dashboard ("لوحة البيانات"): first app in the menu,
+         opened inside the back office. Every branch the user may see is included;
+         narrowing happens inside the page. -->
+    <record id="action_the_dash_embedded" model="ir.actions.client">
+        <field name="name">لوحة البيانات</field>
+        <field name="tag">the_dash.embedded</field>
+    </record>
+
+    <!-- Full-screen page in its own tab (wall screens) -->
+    <record id="action_the_dash" model="ir.actions.act_url">
+        <field name="name">The Dash (full screen)</field>
+        <field name="url">/thedash</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_the_dash_root"
+              name="لوحة البيانات"
+              web_icon="the_dash,static/description/icon.png"
+              action="action_the_dash_embedded"
+              sequence="1"
+              groups="the_dash.group_the_dash_viewer,point_of_sale.group_pos_manager"/>
+
+    <menuitem id="menu_the_dash_open"
+              name="لوحة البيانات"
+              parent="menu_the_dash_root"
+              action="action_the_dash_embedded"
+              sequence="1"/>
+
+    <menuitem id="menu_the_dash_fullscreen"
+              name="ملء الشاشة"
+              parent="menu_the_dash_root"
+              action="action_the_dash"
+              sequence="2"/>
+
+    <menuitem id="menu_the_dash_config"
+              name="الإعدادات"
+              parent="menu_the_dash_root"
+              sequence="90"
+              groups="the_dash.group_the_dash_manager,point_of_sale.group_pos_manager"/>
+
+    <menuitem id="menu_the_dash_regions"
+              name="المناطق"
+              parent="menu_the_dash_config"
+              action="action_the_dash_region"
+              sequence="10"/>
+
+    <!-- Point of Sale reporting (the other apps get theirs from the.dash.app.menus) -->
+    <menuitem id="menu_the_dash_pos"
+              name="لوحة البيانات"
+              parent="point_of_sale.menu_point_rep"
+              action="action_the_dash_embedded"
+              sequence="1"
+              groups="the_dash.group_the_dash_viewer,point_of_sale.group_pos_manager"/>
+</odoo>

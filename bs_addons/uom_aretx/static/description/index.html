@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Change Product UoM Anytime | Areterix for Odoo 19</title>
+  <meta name="description"
+    content="Unlock. Update. Move on. A Unit of Measure restriction removal module by Areterix for Odoo 19 — change a product's UoM at any time, even after it has been used in Sales Orders, Purchase Orders, Invoices, Deliveries or Manufacturing Orders." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <style>
+    :root {
+      --primary-color: #00438B;
+      --bg-white: #fff;
+      --text-color: #121212;
+      --text-color-light: #64728f;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      color: #1a1f36;
+      background: #ffffff;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Nav tabs */
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+      color: var(--text-color);
+      font-family: Montserrat;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+      border-radius: 30px;
+      line-height: normal;
+      text-transform: capitalize;
+      background-color: #F5F5F5;
+      border: none;
+      margin-bottom: 0;
+      padding: 12px 24px;
+    }
+
+    .nav-tabs .nav-link:focus,
+    .nav-tabs .nav-link:hover {
+      border-color: transparent;
+      isolation: isolate;
+    }
+
+    .nav-tabs .nav-link:focus-visible {
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    /* Owl Carousel */
+    .owl-carousel .owl-nav {
+      position: absolute;
+      top: 42%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-42%);
+    }
+
+    .owl-carousel .owl-nav button.owl-prev {
+      position: absolute;
+      right: -36px;
+      font-size: 28px;
+      background-color: #e4e4e4;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .owl-carousel .owl-nav button.owl-next {
+      position: absolute;
+      left: -36px;
+      font-size: 28px;
+      background-color: #e4e4e4;
+      border-radius: 20px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* FAQ accordion */
+    .faq-header {
+      cursor: pointer;
+      background-color: #f8f8f8;
+      border: none;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      padding: 12px 24px;
+    }
+
+    .faq-body {
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px;
+      border: 1px solid #f8f8f8;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    /* Step badge */
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #e87722;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #e87722;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    /* Service card hover */
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(10, 31, 110, .14);
+    }
+
+    .service-card {
+      transition: .3s;
+    }
+
+    /* Feature card */
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(10, 31, 110, .15);
+    }
+
+    .feature-card {
+      transition: .35s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="my-5">
+
+      <div class="tab-content" id="myTabContent1">
+        <!-- Odoo Version Badges -->
+        <div class="text-center d-flex justify-content-end gap-2 my-3">
+          <span class="px-3 py-1"
+            style="background-color:#017E84;color:#fff;font-size:0.8rem;font-weight:600;border:1px solid #017E84;border-radius:30px;">
+            ODOO 19 · COMMUNITY
+          </span>
+
+          <span class="px-3 py-1"
+            style="background-color:#875A7B;color:#fff;font-size:0.8rem;font-weight:600;border:1px solid #875A7B;border-radius:30px;">
+            ODOO 19 · ENTERPRISE
+          </span>
+        </div>
+
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+          <!-- ══════════ HERO ══════════ -->
+          <div class="position-relative"
+            style="border-radius:16px;background-color: rgb(16, 44, 122); background-size: cover; background-position: center;">
+
+            <!-- Overlay -->
+            <div style="position:absolute;inset:0;background: transparent;">
+            </div>
+
+            <div class="row position-relative" style="padding:2rem 0rem 0 !important;z-index:1;">
+
+              <!-- Logos -->
+              <div class="col-lg-12 d-flex justify-content-center gap-4 align-items-center" style="margin-bottom:2rem;">
+                <!-- Areterix logo -->
+                <div style="
+width:230px;
+height:78px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0 20px;
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.25);
+border-radius:20px;
+box-shadow:0 8px 30px rgba(0,0,0,.12);
+overflow:hidden;
+">
+
+                  <img src="images/areterix-logo.png" alt="Areterix" style="
+max-width:100%;
+max-height:40px;
+width:auto;
+height:auto;
+object-fit:contain;
+display:block;
+">
+
+                </div><!-- Module icon + name -->
+                <div style="
+width:auto;
+min-width:300px;
+height:78px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:14px;
+padding:18px 32px;
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.25);
+border-radius:20px;
+box-shadow:0 8px 30px rgba(0,0,0,.12);
+">
+
+                  <img src="images/module-icon.png" alt="Open Change Product UoM" style="
+width:40px;
+height:40px;
+object-fit:contain;
+flex-shrink:0;
+display:block;
+">
+
+                  <span style="
+color:#fff;
+font-size:16px;
+font-weight:700;
+white-space:nowrap;
+">
+                    Change Product UoM
+                  </span>
+
+                </div>
+              </div>
+
+              <!-- Headline -->
+              <div class="col-lg-8 mx-auto gap-3 d-flex flex-column align-items-center">
+                <h1 class="text-center my-0"><span style="
+display:block;
+font-size:clamp(1.35rem,2.3vw,2rem);
+font-weight:700;
+color:#f7941d;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:8px;">
+                    CHANGE PRODUCT UOM ANYTIME
+                  </span>
+                  <span style="
+display:block;
+font-size:clamp(2rem,3vw,3rem);
+font-weight:900;
+line-height:1.05;
+letter-spacing:-1px;
+text-transform:uppercase;
+color:#ffffff;
+margin-top:0;
+margin-bottom:10px;">
+                    UNLOCK. UPDATE. MOVE ON.
+                  </span>
+                </h1>
+
+                <p class="my-1 text-center"
+                  style="letter-spacing:3px;color:rgba(255,255,255,.85);font-weight:700;font-size:14px;text-transform:uppercase;line-height:1.7;">
+                  NO ARCHIVING &bull; NO DUPLICATE PRODUCTS &bull; WORKS WITH EXISTING STOCK MOVES &bull;
+                  INSTANT UOM CHANGE
+                </p>
+
+                <p class="text-center"
+                  style="max-width:680px;font-size:1rem;line-height:1.9;color:rgba(255,255,255,.78);font-weight:400;margin-bottom:0.5rem;">
+                  The Change Product UoM module removes Odoo's default restriction that blocks editing a product's
+                  Unit of Measure once it has been used in stock moves, sales, purchases, invoices or manufacturing
+                  orders. Change the UoM directly on the product form at any time — historical documents keep the
+                  UoM they were originally created with, only the product's default UoM is updated for future use.
+                </p>
+                <div class="d-inline-flex align-items-center gap-2 mt-1"
+                  style="background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 20px;">
+                  <i class="fa fa-unlock" style="color:#f7941d;font-size:20px;"></i>
+                  <span style="color:#fff;font-weight:700;font-size:14px;letter-spacing:.3px;">CHANGE THE UOM
+                    WITHOUT TOUCHING A SINGLE HISTORICAL RECORD.</span>
+                </div>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div class="col-md-12 text-center" style="margin-top:1.5rem;margin-bottom:2.5rem;">
+
+                <!-- Email Button -->
+                <a href="mailto:info@areterix.com"
+                  style="background-color:transparent;border-radius:35px;font-family:Montserrat;display:inline-flex;align-items:center;gap:10px;padding:10px 28px;border:1.5px solid rgba(255,255,255,.6);color:#fff;text-decoration:none;font-size:15px;font-weight:600;"
+                  class="mx-2 mb-2">
+
+                  <span
+                    style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <i class="fa fa-envelope" style="color:#fff;font-size:16px;"></i>
+                  </span>
+
+                  Email Us
+                </a>
+
+                <!-- Website Button -->
+                <a href="https://areterix.com" target="_blank"
+                  style="background-color:#e87722;font-family:Montserrat;display:inline-flex;align-items:center;gap:10px;padding:10px 28px;border:1.5px solid #e87722;border-radius:35px;text-decoration:none;color:#fff;font-size:15px;font-weight:700;"
+                  class="mx-2 mb-2">
+
+                  <span
+                    style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <img src="./images/Rightclick.png" style="width:18px;height:18px;object-fit:contain;display:block;">
+                  </span>
+
+                  Visit areterix.com
+                </a>
+
+              </div>
+
+            </div>
+          </div>
+          <!-- /HERO -->
+
+          <!-- ══════════ KEY HIGHLIGHTS ══════════ -->
+          <div class="my-5"
+            style="border-radius:16px;padding:60px 40px;border:1px solid #EBEEF2;background-position:center;background-size:cover;box-shadow:0px 5px 20px -11px rgba(0,0,0,0.25);">
+            <div class="row position-relative overflow-hidden">
+              <div class="col-lg-12 d-flex flex-column justify-content-center align-items-center">
+                <h2
+                  style="color:var(--text-color);text-align:center;font-size:40px;font-weight:700;text-transform:uppercase;padding-bottom:50px;">
+                  Key Highlights</h2>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="col-lg-4">
+                <div class="mb-4 feature-card position-relative d-flex flex-column justify-content-center gap-3"
+                  style="border-radius:12px;background:#FFF;padding:32px;z-index:2;">
+                  <div class="d-flex justify-content-center align-items-center"
+                    style="background-color:#00438B;border-radius:8px;height:42px;width:42px;">
+                    <i class="fa fa-unlock" style="color:#fff;font-size:18px;"></i>
+                  </div>
+                  <h5 class="m-0" style="color:#000;font-weight:bold;">Change UoM Even After Stock Moves</h5>
+                  <p class="m-0" style="font-size:16px;color:var(--text-color-light);font-weight:400;">Update a
+                    product's Unit of Measure at any time — even after it has been used in Sales Orders, Purchase
+                    Orders, Invoices, Deliveries or Manufacturing Orders.</p>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="col-lg-4">
+                <div class="mb-4 feature-card position-relative d-flex flex-column justify-content-center gap-3"
+                  style="border-radius:12px;background:#FFF;padding:32px;z-index:2;">
+                  <div class="d-flex justify-content-center align-items-center"
+                    style="background-color:#00438B;border-radius:8px;height:42px;width:42px;">
+                    <i class="fa fa-ban" style="color:#fff;font-size:18px;"></i>
+                  </div>
+                  <h5 class="m-0" style="color:#000;font-weight:bold;">No More Archive-and-Recreate</h5>
+                  <p class="m-0" style="font-size:16px;color:var(--text-color-light);font-weight:400;">Skip the old
+                    workaround of archiving a product and creating a fresh one just to correct a wrong Unit of
+                    Measure.</p>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="col-lg-4">
+                <div class="mb-4 feature-card position-relative d-flex flex-column justify-content-center gap-3"
+                  style="border-radius:12px;background:#FFF;padding:32px;z-index:2;">
+                  <div class="d-flex justify-content-center align-items-center"
+                    style="background-color:#00438B;border-radius:8px;height:42px;width:42px;">
+                    <i class="fa fa-history" style="color:#fff;font-size:18px;"></i>
+                  </div>
+                  <h5 class="m-0" style="color:#000;font-weight:bold;">Historical Documents Stay Intact</h5>
+                  <p class="m-0" style="font-size:16px;color:var(--text-color-light);font-weight:400;">Every
+                    existing Sale Order, Purchase Order, Invoice and stock move keeps the UoM it was originally
+                    recorded with; only future transactions use the new default.</p>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="col-lg-4">
+                <div class="mb-4 feature-card position-relative d-flex flex-column justify-content-center gap-3"
+                  style="border-radius:12px;background:#FFF;padding:32px;z-index:2;">
+                  <div class="d-flex justify-content-center align-items-center"
+                    style="background-color:#00438B;border-radius:8px;height:42px;width:42px;">
+                    <i class="fa fa-check-circle" style="color:#fff;font-size:18px;"></i>
+                  </div>
+                  <h5 class="m-0" style="color:#000;font-weight:bold;">Works On Any Product Type</h5>
+                  <p class="m-0" style="font-size:16px;color:var(--text-color-light);font-weight:400;">Applies to
+                    Goods products, including those tracked by Lot or Serial Number, regardless of Sales, Purchase,
+                    Point of Sale or Manufacturing usage.</p>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="col-lg-4">
+                <div class="mb-4 feature-card position-relative d-flex flex-column justify-content-center gap-3"
+                  style="border-radius:12px;background:#FFF;padding:32px;z-index:2;">
+                  <div class="d-flex justify-content-center align-items-center"
+                    style="background-color:#00438B;border-radius:8px;height:42px;width:42px;">
+                    <i class="fa fa-bolt" style="color:#fff;font-size:18px;"></i>
+                  </div>
+                  <h5 class="m-0" style="color:#000;font-weight:bold;">Zero Configuration</h5>
+                  <p class="m-0" style="font-size:16px;color:var(--text-color-light);font-weight:400;">Install the
+                    module and the restriction is lifted immediately — no settings screen, no setup wizard, no extra
+                    steps.</p>
+                </div>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="col-lg-4">
+                <div class="mb-4 feature-card position-relative d-flex flex-column justify-content-center gap-3"
+                  style="border-radius:12px;background:#FFF;padding:32px;z-index:2;">
+                  <div class="d-flex justify-content-center align-items-center"
+                    style="background-color:#00438B;border-radius:8px;height:42px;width:42px;">
+                    <i class="fa fa-edit" style="color:#fff;font-size:18px;"></i>
+                  </div>
+                  <h5 class="m-0" style="color:#000;font-weight:bold;">Same Familiar Product Form</h5>
+                  <p class="m-0" style="font-size:16px;color:var(--text-color-light);font-weight:400;">No new menus
+                    or screens. The Unit of Measure field on the standard Product form simply becomes editable.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- /KEY HIGHLIGHTS -->
+
+          <!-- ══════════ CTA BANNER ══════════ -->
+          <div style="background-color:rgb(16, 44, 122);border-radius:16px;padding:40px;color:#fff;">
+
+            <h1 style="margin:0;font-size:34px;color:#fff;">
+              Change Product UoM
+            </h1>
+
+            <p style="font-size:18px;color:#fff;line-height:30px;margin-top:15px;">
+              Stop archiving products just to fix a wrong Unit of Measure.<br />
+              Edit the UoM directly, any time, on any product.
+            </p>
+
+            <table style="margin-top:30px;">
+              <tr>
+                <td style="padding-right:15px;">
+                  <a href="mailto:info@areterix.com"
+                    style="background:#ffffff22;border:1px solid #ffffff44;padding:12px 20px;border-radius:10px;color:#fff;text-decoration:none;">
+                    <i class="fa fa-envelope"></i>
+                    &nbsp;info@areterix.com
+                  </a>
+                </td>
+
+                <td>
+                  <a href="https://areterix.com"
+                    style="background:#ffffff22;border:1px solid #ffffff44;padding:12px 20px;border-radius:10px;color:#fff;text-decoration:none;">
+                    🌐 areterix.com
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <div style="text-align:right;margin-top:30px;">
+              <img src="./images/module-banner_19.png" style="max-width:420px;width:100%;">
+            </div>
+
+          </div>
+          <!-- /CTA BANNER -->
+
+          <!-- ══════════ SCREENSHOTS / FEATURES / FAQ / RELEASES TABS ══════════ -->
+          <div class="mb-4 bg-white"
+            style="border:1px solid #EBEEF2;border-radius:6px;box-shadow:0px 8px 20px -4px rgba(0,0,0,.10);">
+            <div>
+              <ul class="nav nav-tabs justify-content-center bg-white py-2" id="myTab" role="tablist"
+                style="border-radius:6px 6px 0 0;">
+                <li class="nav-item">
+                  <a aria-controls="overview" class="nav-link active" data-bs-toggle="tab" href="#overview"
+                    id="overview-tab" role="tab" style="color:#121212;font-weight:500;font-size:16px;">Screenshots</a>
+                </li>
+                <li class="nav-item">
+                  <a aria-controls="feature" class="nav-link py-2" data-bs-toggle="tab" href="#feature" id="feature-tab"
+                    role="tab" style="color:#121212;font-weight:500;font-size:16px;">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a aria-controls="faq" class="nav-link" data-bs-toggle="tab" href="#faq" id="faq-tab" role="tab"
+                    style="color:#121212;font-weight:500;font-size:16px;">FAQs</a>
+                </li>
+                <li class="nav-item">
+                  <a aria-controls="releases" class="nav-link" data-bs-toggle="tab" href="#releases" id="releases-tab"
+                    role="tab" style="color:#121212;font-weight:500;font-size:16px;">Releases</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tab-content p-md-5 p-2 py-3" id="myTabContent">
+
+              <!-- ── SCREENSHOTS ── -->
+              <div aria-labelledby="overview-tab" class="tab-pane fade show active" id="overview" role="tabpanel">
+
+                <!-- Step 1 -->
+                <div class="position-relative mb-4" style="border-radius:10px;background-color:#f4f4f4;">
+                  <div class="p-md-5 p-3 position-relative">
+                    <div class="row">
+                      <div class="col-md-12 text-center mb-2">
+                        <div class="step-badge justify-content-center">
+                          <span class="step-num">1</span> The Standard Odoo Restriction
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <h1
+                          style="font-weight:bold;line-height:120%;text-align:center;text-transform:capitalize;font-size:clamp(1.4rem,3vw,2.2rem);">
+                          <span style="color:#121212;">The Default "Oh Snap!" Block</span>
+                        </h1>
+                      </div>
+                      <div class="col-md-12 mb-4">
+                        <p
+                          style="font-weight:400;font-size:16px;line-height:150%;text-align:center;color:var(--text-color-light);">
+                          In standard Odoo, opening a product that already has stock moves and trying to change its
+                          Unit of Measure triggers an error: <strong>"You cannot change the unit of measure as
+                            there are already stock moves for this product."</strong> The only official workaround
+                          is to archive the product and create a new one.
+                        </p>
+                      </div>
+                      <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff;border-radius:10px;">
+                          <img alt="Standard Odoo error blocking a Unit of Measure change for a product with existing stock moves"
+                            class="img-fluid" loading="lazy" src="images/ss1.png" style="min-height:1px;" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="position-relative mb-4" style="border-radius:10px;background-color:#f4f4f4;">
+                  <div class="p-md-5 p-3 position-relative">
+                    <div class="row">
+                      <div class="col-md-12 text-center mb-2">
+                        <div class="step-badge justify-content-center">
+                          <span class="step-num">2</span> Product Created In Its First UoM
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <h1
+                          style="font-weight:bold;line-height:120%;text-align:center;text-transform:capitalize;font-size:clamp(1.4rem,3vw,2.2rem);">
+                          <span style="color:#121212;">The Product Starts Out In "KGs"</span>
+                        </h1>
+                      </div>
+                      <div class="col-md-12 mb-4">
+                        <p
+                          style="font-weight:400;font-size:16px;line-height:150%;text-align:center;color:var(--text-color-light);">
+                          A sample product is created with Track Inventory <strong>By Lots</strong>
+                          enabled and its Unit of Measure set to <strong>KGs</strong>. This is the UoM every
+                          transaction for this product will use until it is deliberately changed.
+                        </p>
+                      </div>
+                      <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff;border-radius:10px;">
+                          <img alt="Product created with Unit of Measure set to KGs"
+                            class="img-fluid" loading="lazy" src="images/ss2.png" style="min-height:1px;" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="position-relative mb-4" style="border-radius:10px;background-color:#f4f4f4;">
+                  <div class="p-md-5 p-3 position-relative">
+                    <div class="row">
+                      <div class="col-md-12 text-center mb-2">
+                        <div class="step-badge justify-content-center">
+                          <span class="step-num">3</span> Product Used In A Confirmed Sale
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <h1
+                          style="font-weight:bold;line-height:120%;text-align:center;text-transform:capitalize;font-size:clamp(1.4rem,3vw,2.2rem);">
+                          <span style="color:#121212;">Sold Under the Original UoM</span>
+                        </h1>
+                      </div>
+                      <div class="col-md-12 mb-4">
+                        <p
+                          style="font-weight:400;font-size:16px;line-height:150%;text-align:center;color:var(--text-color-light);">
+                          The product is added to a Sales Order and confirmed, creating a real stock move against it
+                          — exactly the kind of usage that normally locks a product's Unit of Measure in standard
+                          Odoo.
+                        </p>
+                      </div>
+                      <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff;border-radius:10px;">
+                          <img alt="Sales Order confirmed for the product, creating a stock move"
+                            class="img-fluid" loading="lazy" src="images/ss3.png" style="min-height:1px;" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="position-relative mb-4" style="border-radius:10px;background-color:#f4f4f4;">
+                  <div class="p-md-5 p-3 position-relative">
+                    <div class="row">
+                      <div class="col-md-12 text-center mb-2">
+                        <div class="step-badge justify-content-center">
+                          <span class="step-num">4</span> Product Invoiced And Paid
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <h1
+                          style="font-weight:bold;line-height:120%;text-align:center;text-transform:capitalize;font-size:clamp(1.4rem,3vw,2.2rem);">
+                          <span style="color:#121212;">Still Locked in Standard Odoo</span>
+                        </h1>
+                      </div>
+                      <div class="col-md-12 mb-4">
+                        <p
+                          style="font-weight:400;font-size:16px;line-height:150%;text-align:center;color:var(--text-color-light);">
+                          The related invoice is posted and marked <strong>Paid</strong> for the same product.
+                          Normally, this alone is enough for Odoo to permanently block any further change to the
+                          product's Unit of Measure.
+                        </p>
+                      </div>
+                      <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff;border-radius:10px;">
+                          <img alt="Posted and paid customer invoice for the product"
+                            class="img-fluid" loading="lazy" src="images/ss4.png" style="min-height:1px;" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="position-relative mb-4" style="border-radius:10px;background-color:#f4f4f4;">
+                  <div class="p-md-5 p-3 position-relative">
+                    <div class="row">
+
+                      <div class="col-md-12 text-center mb-2">
+                        <div class="step-badge justify-content-center">
+                          <span class="step-num">5</span> UoM Changed Without Restriction
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <h1
+                          style="font-weight:bold;line-height:120%;text-align:center;text-transform:capitalize;font-size:clamp(1.4rem,3vw,2.2rem);">
+                          <span style="color:#121212;">The Same Product Switched From KGs to Pcs</span>
+                        </h1>
+                      </div>
+
+                      <div class="col-md-12 mb-4">
+                        <p
+                          style="font-weight:400;font-size:16px;line-height:150%;text-align:center;color:var(--text-color-light);">
+                          With this module installed, the same product — already used in a confirmed Sales
+                          Order and a paid Invoice — has its Unit of Measure changed from <strong>KGs</strong> to
+                          <strong>Pcs</strong> directly on the product form. No "Oh snap!" warning, no archiving,
+                          no recreating the product.
+                        </p>
+                      </div>
+
+                      <div class="col-md-12 text-center">
+                        <div class="d-inline-block p-3 shadow-sm" style="background-color:#fff;border-radius:10px;">
+                          <img
+                            alt="Product Unit of Measure successfully changed to Pcs despite existing stock moves and invoices"
+                            class="img-fluid" loading="lazy" src="images/ss5.png" style="min-height:1px;" />
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <!-- /SCREENSHOTS -->
+
+              <!-- ── FEATURES ── -->
+              <!-- ── FEATURES ── -->
+              <div aria-labelledby="feature-tab" class="tab-pane fade show py-1" id="feature" role="tabpanel">
+                <div class="row py-4">
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">Removes Odoo's default restriction that blocks Unit of Measure changes for products already used in stock moves.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">Works even when the product has confirmed Sales Orders, Purchase Orders, Deliveries, Manufacturing Orders or posted Invoices.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">No "Oh snap!" warning — the Unit of Measure field on the product form simply stays editable and savable.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">Historical documents are untouched: existing Sale Orders, Purchase Orders, Invoices and stock moves keep the UoM they were created with.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">Only the product's default Unit of Measure is updated for future transactions.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">No new menus, wizards or settings — the change happens on the standard Product form you already use.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">No configuration required after installation; the restriction is lifted automatically for every product.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-12 p-3">
+                    <div class="d-flex flex-column align-items-start h-100"
+                      style="padding:30px;border-radius:12px;background-color:#00438b17;">
+                      <div class="d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center"
+                          style="width:36px;height:36px;border-radius:50%;background-color:#00438B;margin-right:10px;flex-shrink:0;">
+                          <i class="fa fa-star" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <p style="color:#1A202C;font-weight:600;font-size:1.1rem;margin-bottom:2px;">Designed, tested and structurally verified across Odoo 19 Community and Enterprise Edition.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /FEATURES -->
+              <!-- /FEATURES -->
+
+              <!-- ── FAQs ── -->
+              <div aria-labelledby="faq-tab" class="tab-pane fade show" id="faq" role="tabpanel">
+                <div class="row" style="background-color:#fff !important;">
+                  <div class="col-lg-12 d-flex flex-column align-items-center">
+                    <h1 class="text-center text-uppercase"
+                      style="font-size:40px;color:var(--primary-color);font-weight:900;">FAQ</h1>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="accordion mb-4" id="accordion_faq">
+
+                      <!-- Q1 -->
+                      <div style="margin:1rem 0;">
+                        <div class="faq-header collapsed card-header" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFAQOne" aria-controls="collapseFAQOne" aria-expanded="false">
+                          <a class="card-title text-decoration-none"
+                            style="font-size:18px;line-height:30px;font-weight:500;color:#040f3a;">
+                            What does this module do?
+                            <i class="fa fa-chevron-down float-end"
+                              style="color:#00438B;font-size:16px;line-height:30px;"></i>
+                          </a>
+                        </div>
+                        <div class="accordion-collapse collapse faq-body" id="collapseFAQOne"
+                          data-bs-parent="#accordion_faq">
+                          <p
+                            style="padding:.75rem 1.25rem;font-size:16px;line-height:27px;color:#888;font-weight:normal;">
+                            Standard Odoo blocks changing a product's Unit of Measure once the product appears in any stock move, Sale Order, Purchase Order, Invoice or Manufacturing Order. This module removes that restriction so the UoM field stays editable on the product form at any time.
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Q2 -->
+                      <div style="margin:1rem 0;">
+                        <div class="faq-header collapsed card-header" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFAQTwo" aria-controls="collapseFAQTwo" aria-expanded="false">
+                          <a class="card-title text-decoration-none"
+                            style="font-size:18px;line-height:30px;font-weight:500;color:#040f3a;">
+                            Does this affect Sale Orders, Purchase Orders or Invoices that already exist?
+                            <i class="fa fa-chevron-down float-end"
+                              style="color:#00438B;font-size:16px;line-height:30px;"></i>
+                          </a>
+                        </div>
+                        <div class="accordion-collapse collapse faq-body" id="collapseFAQTwo"
+                          data-bs-parent="#accordion_faq">
+                          <p
+                            style="padding:.75rem 1.25rem;font-size:16px;line-height:27px;color:#888;font-weight:normal;">
+                            No. Historical Sale Orders, Purchase Orders, Invoices and stock moves keep whatever Unit of Measure was recorded on them at the time they were created. Only the product's default UoM changes, and only future transactions use it.
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Q3 -->
+                      <div style="margin:1rem 0;">
+                        <div class="faq-header collapsed card-header" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFAQThree" aria-controls="collapseFAQThree" aria-expanded="false">
+                          <a class="card-title text-decoration-none"
+                            style="font-size:18px;line-height:30px;font-weight:500;color:#040f3a;">
+                            Will I still see the “Oh snap!” warning before changing the UoM?
+                            <i class="fa fa-chevron-down float-end"
+                              style="color:#00438B;font-size:16px;line-height:30px;"></i>
+                          </a>
+                        </div>
+                        <div class="accordion-collapse collapse faq-body" id="collapseFAQThree"
+                          data-bs-parent="#accordion_faq">
+                          <p
+                            style="padding:.75rem 1.25rem;font-size:16px;line-height:27px;color:#888;font-weight:normal;">
+                            No. The warning that normally blocks the change is removed entirely, so the Unit of Measure field can be edited and saved like any other product field, without archiving the product first.
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Q4 -->
+                      <div style="margin:1rem 0;">
+                        <div class="faq-header collapsed card-header" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFAQFour" aria-controls="collapseFAQFour" aria-expanded="false">
+                          <a class="card-title text-decoration-none"
+                            style="font-size:18px;line-height:30px;font-weight:500;color:#040f3a;">
+                            What happens to Quantity On Hand and Forecasted quantity after I change the UoM?
+                            <i class="fa fa-chevron-down float-end"
+                              style="color:#00438B;font-size:16px;line-height:30px;"></i>
+                          </a>
+                        </div>
+                        <div class="accordion-collapse collapse faq-body" id="collapseFAQFour"
+                          data-bs-parent="#accordion_faq">
+                          <p
+                            style="padding:.75rem 1.25rem;font-size:16px;line-height:27px;color:#888;font-weight:normal;">
+                            The Quantity On Hand and Forecasted figures continue to display against the product's current Unit of Measure. Since only the UoM label changes, review the recorded quantities after switching to confirm they reflect what you expect for the new unit.
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Q5 -->
+                      <div style="margin:1rem 0;">
+                        <div class="faq-header collapsed card-header" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFAQFive" aria-controls="collapseFAQFive" aria-expanded="false">
+                          <a class="card-title text-decoration-none"
+                            style="font-size:18px;line-height:30px;font-weight:500;color:#040f3a;">
+                            Do I need to configure anything after installing this module?
+                            <i class="fa fa-chevron-down float-end"
+                              style="color:#00438B;font-size:16px;line-height:30px;"></i>
+                          </a>
+                        </div>
+                        <div class="accordion-collapse collapse faq-body" id="collapseFAQFive"
+                          data-bs-parent="#accordion_faq">
+                          <p
+                            style="padding:.75rem 1.25rem;font-size:16px;line-height:27px;color:#888;font-weight:normal;">
+                            No configuration is needed. Once installed, the restriction is removed automatically for every product — simply open the product form, change the Unit of Measure field, and save.
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Q6 -->
+                      <div style="margin:1rem 0;">
+                        <div class="faq-header collapsed card-header" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFAQSix" aria-controls="collapseFAQSix" aria-expanded="false">
+                          <a class="card-title text-decoration-none"
+                            style="font-size:18px;line-height:30px;font-weight:500;color:#040f3a;">
+                            Which Odoo versions are supported, and is there anything to be careful about?
+                            <i class="fa fa-chevron-down float-end"
+                              style="color:#00438B;font-size:16px;line-height:30px;"></i>
+                          </a>
+                        </div>
+                        <div class="accordion-collapse collapse faq-body" id="collapseFAQSix"
+                          data-bs-parent="#accordion_faq">
+                          <p
+                            style="padding:.75rem 1.25rem;font-size:16px;line-height:27px;color:#888;font-weight:normal;">
+                            This module is designed, tested and structurally verified across Odoo 19 Community and Enterprise Edition. Use it with care: switching between Units of Measure from different categories (for example, Unit to Weight) can change how existing recorded quantities are interpreted, since only the product's default UoM is updated and historical documents are left as they were.
+                          </p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /FAQs -->
+
+              <!-- ── RELEASES ── -->
+              <div aria-labelledby="releases-tab" class="tab-pane fade show" id="releases" role="tabpanel">
+                <div class="row pt-5 m-0">
+                  <div class="col-md-3">
+                    <h4 style="font-size:16px;font-weight:600;color:#514F4F;margin:0;line-height:26px;">Version
+                      19.0.1.0.0</h4>
+                    <span style="font-size:14px;color:#7A7979;display:block;margin-bottom:20px;">15 April 2026</span>
+
+                  </div>
+                  <div class="col-md-8">
+                    <div style="padding:0 0 40px;">
+                      <div style="margin:0 0 10px;">
+                        <div
+                          style="display:inline-block;padding:0px 8px;color:#514F4F;background-color:#b5d9ff;border-radius:20px;">
+                          Initial Release</div>
+                      </div>
+                      <div class="d-flex m-0" style="color:#7A7979;">
+                        <ul class="pl-3 mb-0">
+                          <li>Removes the default Odoo restriction blocking Unit of Measure changes for products
+                            used in stock moves, Sales Orders, Purchase Orders, Invoices or Manufacturing Orders.</li>
+                          <li>Unit of Measure field remains editable on the standard Product form at all times.</li>
+                          <li>Historical Sale Orders, Purchase Orders, Invoices and stock moves retain their
+                            original UoM.</li>
+                          <li>Only the product's default Unit of Measure is updated for future transactions.</li>
+                          <li>No configuration or setup required after installation.</li>
+                          <li>Works with Goods products, including those tracked by Lot or Serial Number.</li>
+                          <li>Compatible with Odoo 19 Community and Enterprise Edition</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div style="padding:0 0 0;border-bottom:1px solid #E3E3E3;"></div>
+                  </div>
+                </div>
+
+
+                <div style="padding:0 0 0;border-bottom:1px solid #E3E3E3;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- /RELEASES -->
+
+        </div>
+      </div>
+      <!-- /TABS -->
+
+      <!-- RELATED MODULES -->
+      <div class="container my-5">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center mb-4" style="font-weight:700;">
+              Other Modules
+            </h2>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <!-- Module 1 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <a href="https://apps.odoo.com/apps/modules/19.0/multi_pick_aretx" target="_blank"
+              style="text-decoration:none;color:inherit;">
+
+              <div style="
+          border:1px solid #e5e5e5;
+          border-radius:12px;
+          overflow:hidden;
+          transition:0.3s;
+          box-shadow:0 4px 12px rgba(0,0,0,0.08);
+          height:100%;
+          background:#fff;">
+
+                <img src="images/multi_delivery_sale_order.png" alt="Create Multiple Delivery Orders"
+                  style="width:100%;display:block;">
+
+                <div style="padding:20px;">
+
+                  <span style="
+              display:inline-block;
+              background:#6f42c1;
+              color:#fff;
+              padding:4px 10px;
+              border-radius:20px;
+              font-size:12px;
+              margin-bottom:12px;">
+                    v19.0
+                  </span>
+
+                  <h5 style="font-weight:700;margin-bottom:10px;">
+                    Create Multiple Delivery Orders From Sale Order
+                  </h5>
+
+                  <p style="color:#666;font-size:15px;margin:0;">
+                    Split a single Sale Order into multiple Delivery Orders with flexible warehouse and shipment
+                    management.
+                  </p>
+
+                </div>
+              </div>
+
+            </a>
+          </div>
+
+          <!-- Module 2 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <a href="https://apps.odoo.com/apps/modules/17.0/mobile_barcode_scanner_aretx" target="_blank"
+              style="text-decoration:none;color:inherit;">
+
+              <div style="
+          border:1px solid #e5e5e5;
+          border-radius:12px;
+          overflow:hidden;
+          transition:0.3s;
+          box-shadow:0 4px 12px rgba(0,0,0,0.08);
+          height:100%;
+          background:#fff;">
+
+                <img src="images/mobile_barcode_scanner.png" alt="Smart Product Scanner"
+                  style="width:100%;display:block;">
+
+                <div style="padding:20px;">
+
+                  <span style="
+              display:inline-block;
+              background:#6f42c1;
+              color:#fff;
+              padding:4px 10px;
+              border-radius:20px;
+              font-size:12px;
+              margin-bottom:12px;">
+                    v17.0
+                  </span>
+
+                  <h5 style="font-weight:700;margin-bottom:10px;">
+                    Smart Product Scanner
+                  </h5>
+
+                  <p style="color:#666;font-size:15px;margin:0;">
+                    Scan product barcodes using your mobile device for faster Sales, Purchase and Inventory operations
+                    in Odoo.
+                  </p>
+
+                </div>
+              </div>
+
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <!-- /RELATED MODULES -->
+
+      <!-- service-section -->
+
+      <section id="services" class="mt-5" style="border-radius: 16px;
+    border: 1px solid #EBEEF2;
+    background: var(--Neutral-N0, #FFF);
+    padding: 60px 40px;
+    box-shadow: 0px 5px 20px -11px rgba(0, 0, 0, 0.25);">
+        <div class="text-center mt-4">
+          <h3 class="mb-0" style="color: #000;
+          text-align: center;
+          font-family: Montserrat;
+          font-size: 40px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          text-transform: uppercase;
+          padding-bottom: 50px;">Our Services</h3>
+        </div>
+        <div class="row mt-3">
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#FFE2E5; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#FA5A7D; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-cog" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 18px;
+                      color: var(--text-color);
+                      font-weight: 600;"> Odoo Customization</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#FFF4DE; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#FF947A; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-wrench" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 16px;
+                    color: var(--text-color);
+                    font-weight: 600;"> Odoo Implementation</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#DCFCE7; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#3CD856; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-life-ring" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 18px;
+                  color: var(--text-color);
+                  font-weight: 600;">Odoo Support</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#F3E8FF; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#BF83FF; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-refresh" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 18px;
+                color: var(--text-color);
+                font-weight: 600;">Odoo Migration</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#F1F9FF; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#01649C; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-puzzle-piece" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 18px;
+              color: var(--text-color);
+              font-weight: 600;">Odoo integration</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#EDF8ED; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#69CC70; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-comments" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 18px;
+            color: var(--text-color);
+            font-weight: 600;">Odoo Consultancy</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#F1F6FF; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#2E4556; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-certificate" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 18px;
+          color: var(--text-color);
+          font-weight: 600;">Odoo Licensing</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-sm-12 mb-3">
+            <a href="#" style="text-decoration:none">
+              <div class="btn-lg btn-block p-4 mb-2 d-flex flex-column justify-content-center align-items-center"
+                style="font-size:25px; font-weight:bold;background-color:#FAF6EA; margin:auto; gap: 16px; border-radius: 8px;">
+
+                <div class="d-flex justify-content-center align-items-center"
+                  style="background-color:#FCD12C; border-radius:50%; height:56px; width:56px">
+                  <i class="fa fa-users" style="color:#fff;font-size:22px;"></i>
+                </div>
+                <span style="font-size: 17px;
+          color: var(--text-color);
+          font-weight: 600;">Hire Odoo Developer</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!--  -->
+
+    </div>
+    <!-- /tab-pane -->
+
+  </div>
+  <!-- /tab-content -->
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer
+    style="background-color: rgb(16, 44, 122);background-size: cover; background-position: center; color:rgba(255,255,255,.6);text-align:center;padding:28px;font-family:'Montserrat',sans-serif;font-size:.85rem;margin-top:60px;">
+    <p style="margin:0;">
+      &copy; 2026 <a href="https://areterix.com" target="_blank"
+        style="color:#f5a44c;text-decoration:none;">Areterix</a> — All rights reserved.
+      &nbsp;|&nbsp;
+      <a href="mailto:info@areterix.com" style="color:#f5a44c;text-decoration:none;">info@areterix.com</a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+      rtl: true,
+      loop: false,
+      margin: 30,
+      nav: true,
+      dots: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1000: {
+          items: 2
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

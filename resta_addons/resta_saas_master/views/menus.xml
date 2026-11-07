@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_resta_saas_root" name="منصة ريستا" web_icon="resta_saas_master,static/description/icon.png" sequence="2"
+              groups="resta_saas_master.group_resta_account_manager"/>
+    <menuitem id="menu_resta_tenants" name="المطاعم" parent="menu_resta_saas_root" action="action_resta_tenant" sequence="1"/>
+    <menuitem id="menu_resta_demo" name="طلبات العرض" parent="menu_resta_saas_root" action="action_resta_demo_request" sequence="2"/>
+    <menuitem id="menu_resta_comm" name="التواصل" parent="menu_resta_saas_root" sequence="3"/>
+    <menuitem id="menu_resta_announcements" name="التحديثات والرسائل" parent="menu_resta_comm" action="action_resta_announcement" sequence="1"/>
+    <menuitem id="menu_resta_feedback" name="الاقتراحات والتقييمات" parent="menu_resta_comm" action="action_resta_feedback" sequence="2"/>
+    <menuitem id="menu_resta_config" name="الإعدادات" parent="menu_resta_saas_root" sequence="90" groups="resta_saas_master.group_resta_manager"/>
+    <menuitem id="menu_resta_plans" name="الباقات" parent="menu_resta_config" action="action_resta_plan" sequence="1"/>
+    <menuitem id="menu_resta_settings" name="إعدادات المنصة" parent="menu_resta_config" action="action_resta_saas_settings" sequence="2"/>
+</odoo>

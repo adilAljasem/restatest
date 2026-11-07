@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--
+        Demo Mode and voucher banners in the Product Screen right pane.
+
+        Same markup as the on-premise template, with `this.` added to every
+        component lookup for Owl 3. The .rightpane anchor was verified to still
+        exist on saas~19.4.
+
+        The Orderline half of the on-premise template.xml is not here: its two
+        anchors (t-slot="default" and t-esc="line.unitPrice") no longer exist on
+        this series. See orderline.js and orderline.xml.
+    -->
+    <t t-name="pos_bonat_loyalty_online.ProductScreenVoucherBanner"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('rightpane')]" position="inside">
+            <div t-if="this.bonatDemoModeActive"
+                 class="bonat-demo-banner text-center fw-bold p-2 mt-2"
+                 style="background:#ffc107;color:#000;border:2px solid #b98900;border-radius:4px;letter-spacing:0.5px;"
+                 role="alert"
+                 aria-live="polite">
+                <span t-esc="this.bonatDemoBannerLabel"/>
+            </div>
+            <div t-if="this.bonatVoucherActive"
+                 class="bonat-voucher-banner d-flex justify-content-between align-items-center p-2 mt-2"
+                 style="background:#fff3cd;color:#664d03;border:1px solid #ffe69c;border-radius:4px;">
+                <span t-esc="this.bonatVoucherLabel"/>
+                <!--
+                    No remove control on purpose — classic 19 parity (BON-1835
+                    Challenge B1); see the comment in product_screen.js. The
+                    payment line's own delete button on the Payment screen is
+                    the only sanctioned removal path.
+                -->
+            </div>
+        </xpath>
+    </t>
+
+</templates>

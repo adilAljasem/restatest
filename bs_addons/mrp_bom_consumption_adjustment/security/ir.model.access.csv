@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_recipe_adjustment_manager,recipe.adjustment.manager,model_mrp_bom_consumption_adjustment,mrp.group_mrp_manager,1,1,1,1
+access_recipe_line_manager,recipe.line.manager,model_mrp_bom_consumption_line,mrp.group_mrp_manager,1,1,1,1
+access_recipe_detail_manager,recipe.detail.manager,model_mrp_bom_consumption_detail,mrp.group_mrp_manager,1,1,1,1
+access_recipe_source_manager,recipe.source.manager,model_mrp_bom_consumption_source,mrp.group_mrp_manager,1,1,1,0
+access_recipe_allocation_manager,recipe.allocation.manager,model_mrp_bom_consumption_allocation,mrp.group_mrp_manager,1,1,1,1
+access_recipe_entry_read,recipe.entry.read,account.model_account_move,mrp.group_mrp_manager,1,0,0,0
+access_recipe_entry_line_read,recipe.entry.line.read,account.model_account_move_line,mrp.group_mrp_manager,1,0,0,0
+access_recipe_journal_read,recipe.journal.read,account.model_account_journal,mrp.group_mrp_manager,1,0,0,0
+access_recipe_fifo_read,recipe.fifo.read,model_mrp_bom_consumption_fifo_layer,mrp.group_mrp_manager,1,0,0,0

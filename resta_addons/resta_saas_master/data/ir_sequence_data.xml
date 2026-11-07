@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_resta_tenant_account" model="ir.sequence">
+        <field name="name">Resta account number</field>
+        <field name="code">resta.tenant.account</field>
+        <field name="padding">6</field>
+        <field name="number_next">100001</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

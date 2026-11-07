@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Hide POS settings that do not serve restaurants, or that point to modules
+         removed from the Resta build (terminals not used in KSA, IoT, Pricer, Avatax...). -->
+    <record id="res_config_settings_view_form_resta" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.resta</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <!-- Always a restaurant: no "Is a Bar/Restaurant" toggle -->
+            <xpath expr="//setting[@id='is_restaurant']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Retail-only features -->
+            <xpath expr="//setting[@id='ship_later']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//setting[@id='basic_receipt']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//setting[@id='barcode_scanner']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//setting[@id='pos_pricer']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='pos_module_pos_appointment']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Modules not shipped in the Resta build -->
+            <xpath expr="//setting[@id='pos-avatax']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//setting[@id='pos_sms']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='pos_is_posbox']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Adyen, Stripe, Viva, Razorpay, Mercado Pago, Pine Labs, QFPay, Tyro: none used in KSA -->
+            <xpath expr="//block[@id='pos_payment_terminals_section']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_resta_enterprise" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.resta.enterprise</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="pos_enterprise.res_config_settings_view_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <!-- Urban Piper is replaced by Basic Solution's Connect (Blend / FeedUs / TryOrder) -->
+            <xpath expr="//block[@id='pos_urban_piper_section']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

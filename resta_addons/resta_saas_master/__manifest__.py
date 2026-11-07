@@ -1,0 +1,38 @@
+{
+    "name": "Resta SaaS - Platform (Master)",
+    "summary": "Resta marketing site, self-service trial signup that provisions one database per restaurant, "
+               "account-number login, subscriptions, account managers and announcements to every tenant",
+    "version": "19.0.1.0.0",
+    "category": "Services/SaaS",
+    "author": "Basic Solution",
+    "website": "https://resta.sa",
+    "license": "OPL-1",
+    "depends": ["website", "mail", "account", "resta_sidebar_theme"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
+        "data/ir_config_parameter_data.xml",
+        "data/ir_cron_data.xml",
+        "data/mail_template_data.xml",
+        "data/resta_plan_data.xml",
+        "wizard/resta_subscription_wizard_views.xml",
+        "views/resta_tenant_views.xml",
+        "views/resta_plan_views.xml",
+        "views/resta_announcement_views.xml",
+        "views/resta_feedback_views.xml",
+        "views/resta_demo_request_views.xml",
+        "views/res_config_settings_views.xml",
+        "views/menus.xml",
+        "views/website_templates.xml",
+        "data/website_data.xml",
+    ],
+    "assets": {
+        "web.assets_frontend": [
+            "resta_saas_master/static/src/scss/site.scss",
+            "resta_saas_master/static/src/js/site.js",
+        ],
+    },
+    "application": True,
+    "installable": True,
+}

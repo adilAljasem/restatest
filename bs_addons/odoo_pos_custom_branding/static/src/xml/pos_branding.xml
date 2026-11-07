@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Saver screen (sleep mode/screensaver): replace Odoo logo with POS brand logo when available.
+         In Odoo 19 the Odoo logo is no longer an <img>, it is the CSS background of a
+         `div.pos-logo` (see point_of_sale/static/src/app/components/navbar/navbar.scss). -->
+    <t t-inherit="point_of_sale.SaverScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-logo')]" position="replace">
+            <img t-if="brandLogo"
+                 t-att-src="brandLogo"
+                 t-att-height="env.isSmall ? 40 : 182"
+                 alt="Logo"/>
+        </xpath>
+    </t>
+
+    <!-- POS navbar: use POS brand logo instead of default Odoo logo.
+         In Odoo 19 the navbar logo is `div.pos-logo` inside `div.pos-centerheader`, and the
+         Navbar component no longer exposes the `debug` service, so the debug toggle is dropped. -->
+    <t t-inherit="point_of_sale.Navbar" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-centerheader')]//div[hasclass('pos-logo')]" position="replace">
+            <img t-if="brandLogo"
+                 class="mw-100"
+                 height="42"
+                 t-att-src="brandLogo"
+                 alt="Logo"/>
+        </xpath>
+    </t>
+
+</templates>

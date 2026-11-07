@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_requisition_form_view" model="ir.ui.view">
+        <field name="name">purchase.requisition.form.bs.recurring.purchase</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requisition_type']" position="after">
+                <field
+                    name="bs_recurring_purchase_order_feature_enabled"
+                    invisible="1"
+                />
+                <field
+                    name="bs_recurring_purchase_order"
+                    invisible="not bs_recurring_purchase_order_feature_enabled or requisition_type != 'blanket_order'"
+                    readonly="state in ('done', 'cancel')"
+                />
+                <field
+                    name="bs_recurring_plan"
+                    invisible="not bs_recurring_purchase_order_feature_enabled or requisition_type != 'blanket_order' or not bs_recurring_purchase_order"
+                    required="bs_recurring_purchase_order"
+                    readonly="state in ('done', 'cancel')"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                <attribute name="required">bs_recurring_purchase_order</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_end']" position="attributes">
+                <attribute name="required">bs_recurring_purchase_order</attribute>
+            </xpath>
+
+            <xpath
+                expr="//page[@name='products']/field[@name='line_ids']/list/field[@name='product_qty']"
+                position="after"
+            >
+                <field
+                    name="bs_recurring_qty"
+                    column_invisible="not parent.bs_recurring_purchase_order_feature_enabled or parent.requisition_type != 'blanket_order' or not parent.bs_recurring_purchase_order"
+                    optional="show"
+                />
+            </xpath>
+            <xpath
+                expr="//page[@name='products']/field[@name='line_ids']/form/group/field[@name='product_qty']"
+                position="after"
+            >
+                <field
+                    name="bs_recurring_qty"
+                    invisible="not parent.bs_recurring_purchase_order_feature_enabled or parent.requisition_type != 'blanket_order' or not parent.bs_recurring_purchase_order"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
