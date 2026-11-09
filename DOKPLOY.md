@@ -14,6 +14,7 @@
 | `docker/resta-restore.sh` | استرجاع قاعدة واحدة من نسخة، مع التحقق من سلامة الملفات |
 | `docker/resta-upgrade.sh` | تحديث موديولات على المنصة والقوالب وكل المطاعم |
 | `.env.example` | كل المتغيرات مع قيم مقترحة لسيرفر Contabo Cloud VPS 30 |
+| `docker/traefik-letsencrypt-dns.example.yml` | مقطع يُدمج في إعداد Traefik الثابت لإصدار شهادة wildcard من Let's Encrypt عبر Cloudflare DNS |
 
 ## الفرق عن ملف الـ compose المرفق
 
@@ -42,32 +43,69 @@
 
    | Type | Name | IPv4 address | Proxy status | TTL |
    |---|---|---|---|---|
-   | A | `@` | `SERVER_IP` | Proxied (برتقالي) | Auto |
-   | A | `*` | `SERVER_IP` | Proxied (برتقالي) | Auto |
+   | A | `@` | `SERVER_IP` | DNS only (رمادي) | Auto |
+   | A | `*` | `SERVER_IP` | DNS only (رمادي) | Auto |
 
    سجل `*` يغطي `test1.restaerp.com` وبقية العملاء؛ لا تحتاج سجل DNS لكل عميل. السجلات المحددة مثل `test1` تتقدم على wildcard، فراجع أي سجلات قديمة متعارضة.
-3. اختر طريقة واحدة للشهادة:
-   - **(أ) الأبسط: شهادة Cloudflare Origin.**
-     1. في Cloudflare: SSL/TLS ← Origin Server ← Create Certificate لـ `restaerp.com` و `*.restaerp.com`.
-     2. في Dokploy: Certificates ← أضف الشهادة بصيغة PEM والمفتاح على السيرفر الذي يعمل عليه Traefik. تأكد أن Traefik حمّل الشهادة؛ رفع الملفات وحده قد لا يفعّلها. إذا لم يُنشأ تعريفها تلقائياً، أضف ملفاً في مجلد إعداد Traefik الديناميكي الذي يراقبه file provider، بالقيم الفعلية لمسارات الشهادة داخل حاوية Traefik:
+3. **الطريقة المستخدمة في compose: Let's Encrypt بتحدي DNS-01.** تعمل مع السحابة الرمادية، وتصدر شهادة موثوقة للمتصفح تشمل `restaerp.com` و `*.restaerp.com`. نفّذ إعداد Traefik التالي **قبل نشر compose المحدّث**:
+   1. في Cloudflare ← My Profile ← API Tokens أنشئ Custom Token بصلاحيتَي **Zone / DNS / Edit** و **Zone / Zone / Read**، والنطاق المسموح **Include / Specific zone / restaerp.com**.
+   2. في Dokploy افتح إعداد **Traefik للسيرفر الذي يستضيف التطبيق**، ثم قسم Environment الخاص بـ Traefik، وأضف `CF_DNS_API_TOKEN=YOUR_TOKEN` مع الإبقاء على المتغيرات الموجودة. لا تضعه في Environment لخدمة Odoo؛ Traefik هو الذي يتصل بـ Cloudflare. لا تحفظ التوكن في Git أو ترسله في المحادثة.
+   3. افتح إعداد Traefik الثابت `traefik.yml` (عادةً `/etc/dokploy/traefik/traefik.yml` على السيرفر). ادمج محتوى [مثال DNS-01](docker/traefik-letsencrypt-dns.example.yml) تحت `certificatesResolvers` الموجود، واستبدل البريد ببريد مسؤول الشهادات:
 
-        ```yaml
-        tls:
-          certificates:
-            - certFile: /actual/path/to/chain.crt
-              keyFile: /actual/path/to/privkey.key
-        ```
+      ```yaml
+      certificatesResolvers:
+        # أبقِ letsencrypt وأي resolvers أخرى موجودة كما هي.
+        letsencrypt-dns:
+          acme:
+            email: YOUR_EMAIL@example.com
+            storage: /etc/dokploy/traefik/dynamic/acme-resta-dns.json
+            dnsChallenge:
+              provider: cloudflare
+              resolvers:
+                - "1.1.1.1:53"
+                - "8.8.8.8:53"
+      ```
 
-        راجع [شهادات Dokploy](https://docs.dokploy.com/docs/core/certificates) و[تعريف الشهادات في Traefik](https://doc.traefik.io/traefik/reference/routing-configuration/http/tls/tls-certificates/). لا تضع المفتاح الخاص في Git.
-     3. في Cloudflare: اجعل وضع SSL/TLS على **Full (strict)**، والسجلات مُفعّلاً عليها الوكيل (السحابة البرتقالية).
-   - **(ب) Let's Encrypt بتحدي DNS.**
-     1. أضف في إعداد Traefik داخل Dokploy مُصدِّر شهادات `letsencrypt-dns` يستخدم Cloudflare، مع متغير `CF_DNS_API_TOKEN`.
-     2. ألغِ التعليق عن الأسطر الثلاثة `tls.certresolver` و `tls.domains` في `docker-compose.yml`.
-4. في **SSL/TLS → Edge Certificates** انتظر تفعيل Universal SSL، وفعّل **Always Use HTTPS**. شهادة Universal SSL تغطي النطاق الرئيسي والمستوى الأول مثل `test1.restaerp.com` في إعداد nameservers الكامل. شهادة Origin تعمل بين Cloudflare والسيرفر، لذلك أبقِ الوكيل مفعّلاً.
+      لا تكرّر مفتاح `certificatesResolvers` ولا تستبدل الملف كاملاً؛ أبقِ إعدادات `entryPoints` و `providers` ومُصدِّر `letsencrypt` القديم. هذا إعداد **ثابت**؛ وضعه في ملف داخل مجلد `dynamic` لن يعرّف resolver.
+   4. تأكد أن مسار `storage` داخل حاوية Traefik مربوط بمجلد دائم على السيرفر وقابل للكتابة. في تثبيت Dokploy الافتراضي مجلد `/etc/dokploy/traefik/dynamic` مربوط بنفس المسار. تحقّق منه بأمر:
+
+      ```bash
+      docker inspect dokploy-traefik --format '{{json .Mounts}}'
+      ```
+
+      إذا كانت المسارات الافتراضية مطابقة، جهّز الملف على السيرفر دون مسح محتواه الموجود:
+
+      ```bash
+      touch /etc/dokploy/traefik/dynamic/acme-resta-dns.json
+      chmod 600 /etc/dokploy/traefik/dynamic/acme-resta-dns.json
+      ```
+
+      إذا كان Traefik يعمل بمستخدم مخصص، يجب أن يملك صلاحية الكتابة على الملف. لا تحذف ملف ACME القديم؛ الشهادات الحالية تعتمد عليه.
+   5. احفظ، ثم استخدم **Reload / Restart Traefik** في Dokploy حتى تُطبّق الإعدادات الثابتة ومتغيرات البيئة الجديدة. `docker restart` وحده لا يضيف متغير بيئة إلى حاوية موجودة. راقب السجل وتأكد من عدم وجود خطأ `nonexistent certificate resolver`.
+   6. انشر compose المحدّث؛ labels الشهادة مفعّلة بالفعل على `resta-web`. سيطلب الشهادة مرة واحدة، ويستخدمها أيضاً مسار `resta-ws` لنفس النطاق. تحدي HTTP الافتراضي لا يصدر wildcard، و`HostRegexp` وحده يوجّه الطلبات ولا يحدد أسماء الشهادات.
+4. يمكن الإبقاء على **DNS only**؛ المتصفح يتصل مباشرة بـ Traefik ويستخدم شهادة Let's Encrypt. إذا اخترت **Proxied** لاحقاً، اضبط Cloudflare على **Full (strict)** وانتظر تفعيل Universal SSL؛ الشهادة الصادرة هنا صالحة أيضاً للاتصال بين Cloudflare والسيرفر.
 5. **لا تضف** دومين المنصة من تبويب Domains في Dokploy: التوجيه معرَّف في الـ labels، وإضافته من التبويب تكرره. تأكد أن Cloudflare يستطيع الوصول إلى السيرفر على المنفذ `443`.
 6. في Environment ضع `RESTA_DOMAIN=restaerp.com` ثم أعد النشر. إذا كان النطاق غير `restaerp.com`، استبدله أيضاً في الـ labels الثلاثة وأسطر الشهادة في compose.
 
 المراجع: [Wildcard DNS](https://developers.cloudflare.com/dns/manage-dns-records/reference/wildcard-dns-records/)، [Origin CA](https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/)، [Full (strict)](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/)، [تغطية Universal SSL](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/limitations/).
+
+### تشخيص شهادة TRAEFIK DEFAULT CERT
+
+ظهورها يعني أن Traefik لم يحمّل شهادة تطابق اسم النطاق المطلوب. شهادة `restaerp.com` وحدها لا تغطي `r100001.restaerp.com`. اختبر بعد النشر من جهاز خارج السيرفر، **دون** `-k`:
+
+```bash
+curl -I https://restaerp.com/odoo/
+curl -I https://r100001.restaerp.com/odoo/
+docker logs --since 15m dokploy-traefik
+```
+
+يجب أن ينجح تحقق TLS على الرابطين. في تفاصيل شهادة العميل يجب أن يظهر `*.restaerp.com` ضمن Subject Alternative Names؛ لا تكتفِ باسم CN. استجابة HTTP من نوع 200 أو إعادة توجيه متوقعة تدل على وصول الطلب للتطبيق؛ 404/502 بعد نجاح TLS تحتاج فحص التوجيه أو صحة خدمة Odoo.
+
+إذا استمرت الشهادة الافتراضية، راجع في سجل Traefik: اسم resolver مطابق تماماً لـ `letsencrypt-dns`، صلاحيات التوكن على النطاق، إمكانية كتابة ملف التخزين، وأخطاء ACME أو انتشار TXT. تأكد أن عنوانَي A وAAAA (إن وُجدا) وأي سجل خاص بالعميل يشيران للسيرفر الصحيح. تغيير الشهادة لا يتطلب تعديل Dockerfile أو كود Odoo.
+
+**بديل عند استخدام Cloudflare Proxied فقط:** يمكنك استخدام شهادة Origin CA تشمل النطاق الرئيسي وwildcard، ثم رفعها في Dokploy ← Certificates وتسجيل `certFile` و`keyFile` في `tls.certificates` ضمن إعداد Traefik الديناميكي. عند اختيار هذا البديل، علّق labels الثلاثة `resta-web.tls.certresolver` و`resta-web.tls.domains` في compose، وأبقِ `tls=true`. يجب أن تكون السحابة برتقالية وSSL على **Full (strict)**؛ شهادة Origin CA غير موثوقة لدى المتصفح عند الاتصال المباشر بالسيرفر مع DNS only. رفع الشهادة في Dokploy وحده لا يضمن تحميلها في Traefik؛ راجع [شهادات Dokploy](https://docs.dokploy.com/docs/core/certificates).
+
+المراجع الفنية: [إصدار wildcard في Traefik](https://doc.traefik.io/traefik/https/acme/)، [صلاحيات توكن Cloudflare لـ DNS-01](https://go-acme.github.io/lego/dns/cloudflare/)، [إعداد ومتغيرات Traefik في Dokploy](https://docs.dokploy.com/docs/api/settings).
 
 ### نقل تثبيت قائم وفيه بيانات إلى النطاق الجديد
 

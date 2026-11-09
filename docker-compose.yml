@@ -89,26 +89,32 @@ services:
       - 'traefik.http.routers.resta-http.rule=Host(`restaerp.com`) || HostRegexp(`^[a-z0-9-]+\.restaerp\.com$$`)'
       - traefik.http.routers.resta-http.entrypoints=web
       - traefik.http.routers.resta-http.middlewares=resta-https
+      - traefik.http.routers.resta-http.service=resta-web
       - traefik.http.middlewares.resta-https.redirectscheme.scheme=https
       - traefik.http.middlewares.resta-https.redirectscheme.permanent=true
       # Web (port 8069)
       - 'traefik.http.routers.resta-web.rule=Host(`restaerp.com`) || HostRegexp(`^[a-z0-9-]+\.restaerp\.com$$`)'
       - traefik.http.routers.resta-web.entrypoints=websecure
       - traefik.http.routers.resta-web.tls=true
+      # Configure this DNS-01 resolver on Dokploy's Traefik BEFORE deploying.
+      # HostRegexp routes tenants but cannot request their certificates by itself.
+      # See docker/traefik-letsencrypt-dns.example.yml and DOKPLOY.md, section 3.
+      - traefik.http.routers.resta-web.tls.certresolver=letsencrypt-dns
+      - traefik.http.routers.resta-web.tls.domains[0].main=restaerp.com
+      - traefik.http.routers.resta-web.tls.domains[0].sans=*.restaerp.com
       - traefik.http.routers.resta-web.service=resta-web
       - traefik.http.services.resta-web.loadbalancer.server.port=8069
       # Live notifications / POS sync (websocket, port 8072)
       - 'traefik.http.routers.resta-ws.rule=(Host(`restaerp.com`) || HostRegexp(`^[a-z0-9-]+\.restaerp\.com$$`)) && PathPrefix(`/websocket`)'
       - traefik.http.routers.resta-ws.entrypoints=websecure
       - traefik.http.routers.resta-ws.tls=true
+      # Override Dokploy's entrypoint default (the HTTP-only letsencrypt resolver).
+      # Keep the same domain set as resta-web so both routers use the wildcard.
+      - traefik.http.routers.resta-ws.tls.certresolver=letsencrypt-dns
+      - traefik.http.routers.resta-ws.tls.domains[0].main=restaerp.com
+      - traefik.http.routers.resta-ws.tls.domains[0].sans=*.restaerp.com
       - traefik.http.routers.resta-ws.service=resta-ws
       - traefik.http.services.resta-ws.loadbalancer.server.port=8072
-      # Wildcard certificate by Let's Encrypt DNS challenge (only if Traefik has a
-      # Cloudflare DNS resolver configured - see DOKPLOY.md). Leave commented when
-      # using a Cloudflare Origin Certificate uploaded in Dokploy > Certificates.
-      # - traefik.http.routers.resta-web.tls.certresolver=letsencrypt-dns
-      # - traefik.http.routers.resta-web.tls.domains[0].main=restaerp.com
-      # - traefik.http.routers.resta-web.tls.domains[0].sans=*.restaerp.com
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS -m 5 http://localhost:8069/web/health || exit 1"]
       interval: 30s

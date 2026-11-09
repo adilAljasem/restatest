@@ -1,0 +1,17 @@
+# Merge letsencrypt-dns into certificatesResolvers in Dokploy's STATIC traefik.yml.
+# Preserve all existing resolvers, entryPoints and providers. This is a fragment,
+# not a replacement config, Compose file, or dynamic file-provider configuration.
+# Replace the email and confirm the storage directory is mounted persistently
+# inside dokploy-traefik (the path below is Dokploy's default dynamic mount).
+# Set CF_DNS_API_TOKEN in Dokploy's Traefik environment, then reload Traefik.
+# See DOKPLOY.md, section 3, for token permissions and deployment order.
+certificatesResolvers:
+  letsencrypt-dns:
+    acme:
+      email: replace-with-your-email@example.com
+      storage: /etc/dokploy/traefik/dynamic/acme-resta-dns.json
+      dnsChallenge:
+        provider: cloudflare
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
