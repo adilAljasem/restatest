@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Starting values. Calibrated later from the real data of our restaurants. -->
+<odoo noupdate="1">
+    <record id="type_burger" model="resta.growth.restaurant.type">
+        <field name="name">برجر</field><field name="code">burger</field><field name="sequence">1</field>
+        <field name="max_waste_pct">4</field><field name="min_margin_pct">62</field>
+        <field name="avg_ticket">48</field><field name="orders_per_day">140</field>
+    </record>
+    <record id="type_shawarma" model="resta.growth.restaurant.type">
+        <field name="name">شاورما</field><field name="code">shawarma</field><field name="sequence">2</field>
+        <field name="max_waste_pct">5</field><field name="min_margin_pct">60</field>
+        <field name="avg_ticket">32</field><field name="orders_per_day">220</field>
+    </record>
+    <record id="type_cafe" model="resta.growth.restaurant.type">
+        <field name="name">مقهى</field><field name="code">cafe</field><field name="sequence">3</field>
+        <field name="max_waste_pct">3</field><field name="min_margin_pct">70</field>
+        <field name="avg_ticket">27</field><field name="orders_per_day">180</field>
+    </record>
+    <record id="type_bakery" model="resta.growth.restaurant.type">
+        <field name="name">مخبز وحلويات</field><field name="code">bakery</field><field name="sequence">4</field>
+        <field name="max_waste_pct">7</field><field name="min_margin_pct">60</field>
+        <field name="avg_ticket">38</field><field name="orders_per_day">110</field>
+    </record>
+    <record id="type_dinein" model="resta.growth.restaurant.type">
+        <field name="name">مطعم جلوس</field><field name="code">dinein</field><field name="sequence">5</field>
+        <field name="max_waste_pct">5</field><field name="min_margin_pct">65</field>
+        <field name="avg_ticket">120</field><field name="orders_per_day">70</field>
+    </record>
+    <record id="type_qsr" model="resta.growth.restaurant.type">
+        <field name="name">وجبات سريعة</field><field name="code">qsr</field><field name="sequence">6</field>
+        <field name="max_waste_pct">4</field><field name="min_margin_pct">62</field>
+        <field name="avg_ticket">40</field><field name="orders_per_day">150</field>
+    </record>
+    <record id="type_pizza" model="resta.growth.restaurant.type">
+        <field name="name">بيتزا</field><field name="code">pizza</field><field name="sequence">7</field>
+        <field name="max_waste_pct">4</field><field name="min_margin_pct">65</field>
+        <field name="avg_ticket">55</field><field name="orders_per_day">100</field>
+    </record>
+    <record id="type_cloud" model="resta.growth.restaurant.type">
+        <field name="name">مطبخ سحابي</field><field name="code">cloud</field><field name="sequence">8</field>
+        <field name="max_waste_pct">4</field><field name="min_margin_pct">55</field>
+        <field name="avg_ticket">52</field><field name="orders_per_day">90</field>
+    </record>
+    <record id="type_foodtruck" model="resta.growth.restaurant.type">
+        <field name="name">عربة طعام</field><field name="code">foodtruck</field><field name="sequence">9</field>
+        <field name="max_waste_pct">5</field><field name="min_margin_pct">60</field>
+        <field name="avg_ticket">30</field><field name="orders_per_day">90</field>
+    </record>
+</odoo>

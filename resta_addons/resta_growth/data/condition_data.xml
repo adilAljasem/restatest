@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every number is a starting value, editable from Configuration > الشروط. -->
+<odoo noupdate="1">
+    <!-- Level 1: foundation -->
+    <record id="cond_pos_ready" model="resta.growth.condition">
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">1</field>
+        <field name="name">الكاشير مركّب</field>
+        <field name="description">نقطة بيع واحدة على الأقل بطرق دفع مفعّلة.</field>
+        <field name="compute_key">pos_ready</field>
+        <field name="target">1</field>
+        <field name="unit">نقطة بيع</field>
+        <field name="lesson_id" ref="lesson_l1_session"/>
+        <field name="tip">فعّل طرق الدفع (نقد، مدى) في إعدادات نقطة البيع.</field>
+    </record>
+    <record id="cond_menu_complete" model="resta.growth.condition">
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">2</field>
+        <field name="name">المنيو كامل</field>
+        <field name="description">15 صنفاً على الأقل متاحة في نقطة البيع، وكلها لها سعر وضريبة وتصنيف.</field>
+        <field name="compute_key">menu_complete</field>
+        <field name="target">15</field>
+        <field name="unit">صنف</field>
+        <field name="lesson_id" ref="lesson_l1_menu"/>
+        <field name="tip">أكمل السعر والضريبة والتصنيف لكل صنف ناقص.</field>
+    </record>
+    <record id="cond_daily_recording" model="resta.growth.condition">
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">3</field>
+        <field name="name">تسجيل المبيعات يومياً</field>
+        <field name="description">30 يوم تشغيل مسجّل (جلسة فُتحت وأُغلقت وفيها طلبات)، بتغطية 95% من أيام التشغيل المخططة. أيام العطلة المعلنة لا تُحسب.</field>
+        <field name="compute_key">daily_recording</field>
+        <field name="target">30</field>
+        <field name="param_1">95</field>
+        <field name="unit">يوم</field>
+        <field name="lesson_id" ref="lesson_l1_session"/>
+        <field name="tip">افتح وأغلق الجلسة كل يوم تشغيل، وأعلن العطلة مسبقاً.</field>
+    </record>
+    <record id="cond_zatca" model="resta.growth.condition">
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">4</field>
+        <field name="name">فواتير متوافقة مع هيئة الزكاة والضريبة والجمارك</field>
+        <field name="description">99% من الفواتير مقبولة أو مُبلّغ عنها في الربط الإلكتروني، ولا فاتورة معلقة أكثر من 48 ساعة.</field>
+        <field name="compute_key">zatca_compliance</field>
+        <field name="target">99</field>
+        <field name="window_days">30</field>
+        <field name="unit">%</field>
+        <field name="lesson_id" ref="lesson_l1_einvoice"/>
+        <field name="tip">راجع الفواتير المعلقة وأعد إرسالها.</field>
+    </record>
+
+    <!-- Level 2: discipline -->
+    <record id="cond_weekly_inventory" model="resta.growth.condition">
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">1</field>
+        <field name="name">جرد أسبوعي لـ 6 أسابيع متتالية</field>
+        <field name="description">كل جرد يغطي 80% على الأقل من قيمة المواد الخام النشطة. الأسبوع من الأحد إلى السبت.</field>
+        <field name="compute_key">weekly_inventory</field>
+        <field name="target">6</field>
+        <field name="param_1">80</field>
+        <field name="unit">أسبوع</field>
+        <field name="lesson_id" ref="lesson_l2_count"/>
+        <field name="tip">حدد يوماً ثابتاً للجرد كل أسبوع.</field>
+    </record>
+    <record id="cond_waste_ratio" model="resta.growth.condition">
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">2</field>
+        <field name="name">نسبة الهدر أقل من حد نوع مطعمك</field>
+        <field name="description">قيمة الإتلاف ÷ قيمة الاستهلاك خلال آخر 6 أسابيع، أقل من الحد المحدد لنوع المطعم.</field>
+        <field name="compute_key">waste_ratio</field>
+        <field name="target">4</field>
+        <field name="window_days">42</field>
+        <field name="unit">%</field>
+        <field name="lesson_id" ref="lesson_l2_waste"/>
+        <field name="tip">سجّل الهدر يومياً وراجع أعلى الأصناف هدراً.</field>
+    </record>
+    <record id="cond_cash_accuracy" model="resta.growth.condition">
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">3</field>
+        <field name="name">فروقات الكاشير قريبة من الصفر</field>
+        <field name="description">الفرق المطلق لا يزيد عن 10 ريال أو 0.5% من المبيعات النقدية (أيهما أكبر) في 90% من الجلسات خلال آخر 6 أسابيع.</field>
+        <field name="compute_key">cash_accuracy</field>
+        <field name="target">90</field>
+        <field name="window_days">42</field>
+        <field name="param_1">10</field>
+        <field name="param_2">0.5</field>
+        <field name="unit">%</field>
+        <field name="lesson_id" ref="lesson_l2_cash"/>
+        <field name="tip">سجّل كل سحب وإيداع نقدي، وعُدّ الصندوق بدقة.</field>
+    </record>
+</odoo>

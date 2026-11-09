@@ -1,0 +1,23 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_type_user,type user,model_resta_growth_restaurant_type,base.group_user,1,0,0,0
+access_type_support,type support,model_resta_growth_restaurant_type,group_resta_support,1,1,1,1
+access_level_user,level user,model_resta_growth_level,base.group_user,1,0,0,0
+access_level_support,level support,model_resta_growth_level,group_resta_support,1,1,1,0
+access_feature_user,feature user,model_resta_growth_feature,base.group_user,1,0,0,0
+access_feature_support,feature support,model_resta_growth_feature,group_resta_support,1,1,1,0
+access_condition_user,condition user,model_resta_growth_condition,base.group_user,1,0,0,0
+access_condition_support,condition support,model_resta_growth_condition,group_resta_support,1,1,1,1
+access_lesson_user,lesson user,model_resta_growth_lesson,base.group_user,1,0,0,0
+access_lesson_support,lesson support,model_resta_growth_lesson,group_resta_support,1,1,1,1
+access_progress_user,progress user,model_resta_growth_lesson_progress,base.group_user,1,1,1,0
+access_profile_manager,profile manager,model_resta_growth_profile,group_resta_manager,1,0,0,0
+access_profile_owner,profile owner,model_resta_growth_profile,group_resta_owner,1,1,0,0
+access_profile_support,profile support,model_resta_growth_profile,group_resta_support,1,1,1,0
+access_holiday_manager,holiday manager,model_resta_growth_holiday,group_resta_manager,1,0,0,0
+access_holiday_owner,holiday owner,model_resta_growth_holiday,group_resta_owner,1,1,1,1
+access_level_state_manager,level state manager,model_resta_growth_level_state,group_resta_manager,1,0,0,0
+access_status_manager,status manager,model_resta_growth_condition_status,group_resta_manager,1,0,0,0
+access_daily_manager,daily manager,model_resta_growth_daily,group_resta_manager,1,0,0,0
+access_snapshot_manager,snapshot manager,model_resta_growth_score_snapshot,group_resta_manager,1,0,0,0
+access_settings_owner,settings owner,base.model_res_config_settings,group_resta_owner,1,1,1,0
+access_act_window_owner,act window owner read,base.model_ir_actions_act_window,group_resta_owner,1,0,0,0

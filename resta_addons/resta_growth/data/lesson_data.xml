@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- First text of each lesson (3-6 practical points). Our team records the videos later;
+     in phase 3 the hub pushes new versions of this content. -->
+<odoo noupdate="1">
+    <record id="lesson_welcome" model="resta.growth.lesson">
+        <field name="key">welcome_tour</field>
+        <field name="name">جولة دقيقتين: شارة المستوى وصفحة رحلتي</field>
+        <field name="kind">tour</field>
+        <field name="minutes">2</field>
+        <field name="sequence">1</field>
+        <field name="tour_name">resta_growth_welcome</field>
+        <field name="content"><![CDATA[<ul>
+<li>الشارة أعلى الشاشة تعرض مستواك ونسبة تقدمك ومؤشر الانضباط.</li>
+<li>اضغطها لترى الشروط الباقية وزر «ماذا أفعل؟» لكل شرط.</li>
+<li>صفحة «رحلتي» فيها الخريطة الكاملة والمؤشر بالتفصيل.</li>
+</ul>]]></field>
+    </record>
+
+    <!-- Level 1 -->
+    <record id="lesson_l1_menu" model="resta.growth.lesson">
+        <field name="key">l1_menu</field>
+        <field name="name">إعداد المنيو الصحيح</field>
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">1</field>
+        <field name="kind">article</field>
+        <field name="minutes">3</field>
+        <field name="tour_name">resta_growth_l1_product</field>
+        <field name="content"><![CDATA[<ul>
+<li>كل صنف يُباع لازم يكون له: اسم واضح، سعر، ضريبة 15%، وتصنيف في نقطة البيع.</li>
+<li>رتّب التصنيفات كما يقرأها الزبون: وجبات، إضافات، مشروبات، حلويات.</li>
+<li>لا تكرر نفس الصنف بأسماء مختلفة؛ استخدم الإضافات والخيارات بدل ذلك.</li>
+<li>أوقف الأصناف غير المتوفرة بدل حذفها حتى تبقى تقاريرك صحيحة.</li>
+<li>الهدف في هذا المستوى: 15 صنفاً على الأقل وكلها مكتملة.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l1_pricing" model="resta.growth.lesson">
+        <field name="key">l1_pricing</field>
+        <field name="name">تسعير الأطباق</field>
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">2</field>
+        <field name="kind">article</field>
+        <field name="minutes">4</field>
+        <field name="content"><![CDATA[<ul>
+<li>ابدأ من تكلفة المكونات للطبق الواحد (الوصفة) لا من سعر المنافس.</li>
+<li>القاعدة البسيطة: تكلفة الطعام بين 28% و35% من سعر البيع قبل الضريبة.</li>
+<li>أضف تكلفة التغليف للطلبات الخارجية وعمولة تطبيقات التوصيل.</li>
+<li>راجع الأسعار كل ربع سنة أو عند تغيّر أسعار الموردين.</li>
+<li>الأسعار في ريستا تُدخل شاملة أو غير شاملة للضريبة حسب إعداد نقطة البيع: تأكد منه مرة واحدة.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l1_session" model="resta.growth.lesson">
+        <field name="key">l1_session</field>
+        <field name="name">فتح وإغلاق اليوم في الكاشير</field>
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">3</field>
+        <field name="kind">article</field>
+        <field name="minutes">3</field>
+        <field name="tour_name">resta_growth_l1_session</field>
+        <field name="content"><![CDATA[<ul>
+<li>افتح الجلسة صباحاً وسجّل النقد الافتتاحي في الصندوق.</li>
+<li>سجّل كل طلب وقت حدوثه، ولا تؤجل الإدخال لنهاية اليوم.</li>
+<li>عند الإغلاق: عُدّ النقد فعلياً وأدخل الرقم الحقيقي، حتى لو فيه فرق.</li>
+<li>أغلق الجلسة في نفس اليوم؛ الجلسة المفتوحة لليوم التالي تخلط الأرقام.</li>
+<li>أيام العطلة أعلنها مسبقاً من صفحة رحلتي حتى لا تُحسب عليك.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l1_einvoice" model="resta.growth.lesson">
+        <field name="key">l1_einvoice</field>
+        <field name="name">الفاتورة الإلكترونية ببساطة</field>
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">4</field>
+        <field name="kind">article</field>
+        <field name="minutes">3</field>
+        <field name="tour_name">resta_growth_l1_einvoice</field>
+        <field name="content"><![CDATA[<ul>
+<li>كل عملية بيع تصدر فاتورة مبسطة تُبلّغ لهيئة الزكاة والضريبة والجمارك تلقائياً.</li>
+<li>الفاتورة المقبولة لا تحتاج منك أي شيء.</li>
+<li>الفاتورة المعلقة أو المرفوضة تظهر في قائمة الطلبات؛ عالجها خلال 48 ساعة.</li>
+<li>أكثر سبب للرفض: بيانات المنشأة أو الضريبة ناقصة. تواصل مع الدعم مرة واحدة ويتصلح.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l1_holiday" model="resta.growth.lesson">
+        <field name="key">l1_holiday</field>
+        <field name="name">إعلان يوم عطلة</field>
+        <field name="level_id" ref="level_foundation"/>
+        <field name="sequence">5</field>
+        <field name="kind">tour</field>
+        <field name="minutes">1</field>
+        <field name="tour_name">resta_growth_l1_holiday</field>
+        <field name="content"><![CDATA[<ul>
+<li>أيام العطلة الأسبوعية تحددها مرة واحدة في ملف مطعمك.</li>
+<li>الإجازات المؤقتة (عيد، صيانة) أعلنها قبلها من صفحة رحلتي.</li>
+<li>الأيام المعلنة لا تكسر سلسلة التسجيل اليومي.</li>
+</ul>]]></field>
+    </record>
+
+    <!-- Level 2 -->
+    <record id="lesson_l2_count" model="resta.growth.lesson">
+        <field name="key">l2_count</field>
+        <field name="name">الجرد الأسبوعي خطوة بخطوة</field>
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">1</field>
+        <field name="kind">checklist</field>
+        <field name="minutes">4</field>
+        <field name="content"><![CDATA[<ul>
+<li>اختر يوماً ثابتاً (مثلاً صباح الأحد قبل الافتتاح).</li>
+<li>ابدأ بالمواد الأعلى قيمة: اللحوم، الدجاج، الأجبان، الزيوت.</li>
+<li>عُدّ الموجود فعلياً وأدخله في الجرد، ثم اضغط «تطبيق».</li>
+<li>الجرد يُحسب لك إذا غطى 80% من قيمة المواد الخام على الأقل.</li>
+<li>ستة أسابيع متتالية = نصف طريقك للمستوى 3.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l2_waste" model="resta.growth.lesson">
+        <field name="key">l2_waste</field>
+        <field name="name">تسجيل الهدر بشكل صحيح</field>
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">2</field>
+        <field name="kind">article</field>
+        <field name="minutes">3</field>
+        <field name="content"><![CDATA[<ul>
+<li>أي مادة تُرمى أو تتلف: سجّلها «إتلاف» في نفس اليوم بالكمية.</li>
+<li>اكتب السبب: انتهاء صلاحية، سقوط، خطأ تحضير.</li>
+<li>الهدر غير المسجّل يظهر فرقاً في الجرد ويخفض مؤشرك أكثر.</li>
+<li>نسبة الهدر = قيمة الإتلاف ÷ قيمة الاستهلاك.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l2_reduce" model="resta.growth.lesson">
+        <field name="key">l2_reduce</field>
+        <field name="name">تقليل الهدر</field>
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">3</field>
+        <field name="kind">article</field>
+        <field name="minutes">3</field>
+        <field name="content"><![CDATA[<ul>
+<li>اطلب من المورد بكميات أصغر وأكثر تكراراً للمواد سريعة التلف.</li>
+<li>طبّق «الأول دخولاً أولاً خروجاً» في الثلاجة.</li>
+<li>حضّر الكميات حسب مبيعات نفس اليوم من الأسبوع الماضي.</li>
+<li>راجع أعلى 5 أصناف هدراً كل أسبوع.</li>
+</ul>]]></field>
+    </record>
+    <record id="lesson_l2_cash" model="resta.growth.lesson">
+        <field name="key">l2_cash</field>
+        <field name="name">مطابقة الصندوق</field>
+        <field name="level_id" ref="level_discipline"/>
+        <field name="sequence">4</field>
+        <field name="kind">checklist</field>
+        <field name="minutes">3</field>
+        <field name="content"><![CDATA[<ul>
+<li>كل سحب أو إيداع نقدي من الدرج يُسجّل في الكاشير بسببه.</li>
+<li>الكاشير يعدّ النقد بنفسه عند الإغلاق دون أن يرى الرقم المتوقع.</li>
+<li>الفرق المقبول: حتى 10 ريال أو 0.5% من المبيعات النقدية.</li>
+<li>الهدف: 90% من الجلسات مطابقة خلال 6 أسابيع.</li>
+</ul>]]></field>
+    </record>
+</odoo>

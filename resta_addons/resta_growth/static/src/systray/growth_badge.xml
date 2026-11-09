@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_growth.Ring">
+        <svg class="o_growth_ring" t-att-width="props.size" t-att-height="props.size"
+             t-attf-viewBox="0 0 #{props.size} #{props.size}" aria-hidden="true">
+            <circle class="o_growth_ring_bg" t-att-cx="props.size / 2" t-att-cy="props.size / 2" t-att-r="r"
+                    fill="none" t-att-stroke-width="props.stroke"/>
+            <circle class="o_growth_ring_fg" t-att-cx="props.size / 2" t-att-cy="props.size / 2" t-att-r="r"
+                    fill="none" t-att-stroke-width="props.stroke" stroke-linecap="round"
+                    t-att-stroke-dasharray="c" t-att-stroke-dashoffset="offset"
+                    t-attf-style="stroke: #{props.color or 'var(--rs-primary, #FF5A1F)'}"
+                    t-attf-transform="rotate(-90 #{props.size / 2} #{props.size / 2})"/>
+        </svg>
+    </t>
+
+    <t t-name="resta_growth.Badge">
+        <div class="o_growth_systray d-flex align-items-center" t-if="data and data.visible and data.level">
+            <Dropdown state="dropdown" position="'bottom-end'" menuClass="'o_growth_panel p-0'">
+                <button t-attf-class="o_growth_btn d-flex align-items-center gap-2 #{data.level.state === 'ready' ? 'o_growth_pulse' : ''}"
+                        t-attf-title="رحلة النمو: المستوى {{level.seq}} - {{level.name}}">
+                    <span class="o_growth_mini position-relative" t-attf-style="--lvl: #{level.color}">
+                        <GrowthRing pct="data.progress" size="34" stroke="3" color="level.color"/>
+                        <span class="o_growth_shield o_growth_shield_sm">
+                            <span class="o_growth_shield_num" t-out="level.seq"/>
+                        </span>
+                    </span>
+                    <span class="o_growth_btn_score d-none d-md-flex align-items-center gap-1">
+                        <t t-if="!data.score.forming"><b t-out="data.score.value"/><i t-attf-class="fa #{trendIcon} small"/></t>
+                        <span t-else="" class="small opacity-75">قيد التكوين</span>
+                    </span>
+                </button>
+                <t t-set-slot="content">
+                    <div class="o_growth_head" t-attf-style="--lvl: #{level.color}">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="o_growth_shield o_growth_shield_md">
+                                <i t-attf-class="fa #{level.icon}"/>
+                                <span class="o_growth_shield_num" t-out="level.seq"/>
+                            </span>
+                            <div class="flex-grow-1">
+                                <div class="small opacity-75">المستوى <t t-out="level.seq"/> من 5</div>
+                                <div class="fs-5 fw-bold" t-out="level.name"/>
+                            </div>
+                            <div class="text-center">
+                                <div class="o_growth_score_big" t-out="scoreText"/>
+                                <div class="small opacity-75">مؤشر الانضباط</div>
+                            </div>
+                        </div>
+                        <div class="o_growth_progress mt-3">
+                            <div class="o_growth_progress_bar" t-attf-style="width: #{data.progress}%"/>
+                        </div>
+                        <div class="small mt-1 opacity-75"><t t-out="data.progress"/>% نحو المستوى التالي</div>
+                    </div>
+
+                    <div t-if="data.can_claim" class="o_growth_ready">
+                        <div class="fw-bold"><i class="fa fa-gift"/> أكملت كل الشروط!</div>
+                        <button class="btn btn-primary w-100 mt-2" t-on-click="claim">استلم جائزتك: <t t-out="level.reward"/></button>
+                    </div>
+
+                    <div class="o_growth_conds">
+                        <div t-if="!level.has_conditions" class="text-muted small p-2">شروط هذا المستوى تصلك قريباً.</div>
+                        <div t-foreach="data.conditions" t-as="cond" t-key="cond.id" class="o_growth_cond">
+                            <div class="d-flex align-items-center gap-2">
+                                <i t-attf-class="fa #{cond.met ? 'fa-check-circle text-success' : 'fa-circle-o opacity-50'}"/>
+                                <span class="flex-grow-1 fw-semibold" t-out="cond.name"/>
+                                <button t-if="!cond.met" class="btn btn-sm btn-link p-0 o_growth_todo" t-on-click="() => this.whatToDo(cond)">ماذا أفعل؟</button>
+                            </div>
+                            <div class="o_growth_progress o_growth_progress_sm my-1">
+                                <div class="o_growth_progress_bar" t-attf-style="width: #{cond.progress}%"/>
+                            </div>
+                            <div class="small text-muted" t-out="cond.summary"/>
+                        </div>
+                    </div>
+
+                    <div class="o_growth_lines">
+                        <div t-if="level.reward" class="o_growth_line">
+                            <i class="fa fa-gift"/><span>الجائزة القادمة: <b t-out="level.reward"/></span>
+                        </div>
+                        <div t-if="data.subscription" class="o_growth_line">
+                            <i class="fa fa-calendar-check-o"/><span><b t-out="data.subscription.title"/> · <t t-out="data.subscription.line"/></span>
+                        </div>
+                        <div t-if="data.league" class="o_growth_line">
+                            <i class="fa fa-trophy"/><span t-out="data.league.text"/>
+                        </div>
+                        <div class="o_growth_line">
+                            <i class="fa fa-lightbulb-o"/><span t-out="data.insight"/>
+                        </div>
+                    </div>
+                    <div class="p-3 pt-0">
+                        <button class="btn btn-secondary w-100" t-on-click="openJourney">رحلتي كاملة <i class="fa fa-arrow-left ms-1"/></button>
+                    </div>
+                </t>
+            </Dropdown>
+        </div>
+    </t>
+</templates>

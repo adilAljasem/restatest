@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- 03:00 Riyadh = 00:00 UTC -->
+    <record id="cron_growth_nightly" model="ir.cron">
+        <field name="name">رحلة النمو: الحساب الليلي (الحقائق اليومية، الشروط، المؤشر)</field>
+        <field name="model_id" ref="model_resta_growth_engine"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_nightly()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

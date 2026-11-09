@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_growth.Locked">
+        <div class="o_action o_growth_locked" dir="rtl">
+            <div class="o_growth_locked_card" t-attf-style="--lvl: #{levelColor}">
+                <div class="o_growth_locked_icon">
+                    <i t-attf-class="fa #{feature ? feature.icon : 'fa-lock'}"/>
+                    <span class="o_growth_locked_lock"><i class="fa fa-lock"/></span>
+                </div>
+                <h2 t-if="feature">هذه الميزة تُفتح بإكمال المستوى <t t-out="feature.level"/></h2>
+                <h2 t-else="">هذه الميزة مقفلة حالياً</h2>
+                <p t-if="feature" class="fs-5 fw-bold" t-out="feature.name"/>
+                <p t-if="feature and feature.teaser" class="text-muted" t-out="feature.teaser"/>
+                <p class="small text-muted">بياناتك تُجمع من الآن، فعندما تُفتح تجد تاريخاً جاهزاً تبدأ منه.</p>
+                <button class="btn btn-primary btn-lg" t-on-click="showHow">شوف كيف <i class="fa fa-arrow-left ms-1"/></button>
+            </div>
+        </div>
+    </t>
+</templates>

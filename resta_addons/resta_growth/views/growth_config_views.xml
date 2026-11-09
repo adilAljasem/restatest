@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Restaurant types -->
+    <record id="view_growth_type_list" model="ir.ui.view">
+        <field name="name">resta.growth.restaurant.type.list</field>
+        <field name="model">resta.growth.restaurant.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="max_waste_pct"/>
+                <field name="min_margin_pct"/>
+                <field name="avg_ticket" optional="hide"/>
+                <field name="orders_per_day" optional="hide"/>
+                <field name="active" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_growth_type" model="ir.actions.act_window">
+        <field name="name">أنواع المطاعم</field>
+        <field name="res_model">resta.growth.restaurant.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Levels -->
+    <record id="view_growth_level_list" model="ir.ui.view">
+        <field name="name">resta.growth.level.list</field>
+        <field name="model">resta.growth.level</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="reward"/>
+                <field name="color" widget="color"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_growth_level_form" model="ir.ui.view">
+        <field name="name">resta.growth.level.form</field>
+        <field name="model">resta.growth.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1><field name="subtitle"/></div>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="code" readonly="1"/>
+                            <field name="color" widget="color"/>
+                            <field name="icon"/>
+                        </group>
+                        <group>
+                            <field name="reward"/>
+                            <field name="reward_note"/>
+                        </group>
+                    </group>
+                    <group string="الرسائل">
+                        <field name="celebration"/>
+                        <field name="learning"/>
+                    </group>
+                    <notebook>
+                        <page string="الشروط">
+                            <field name="condition_ids">
+                                <list>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="compute_key"/>
+                                    <field name="target"/>
+                                    <field name="window_days"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="الميزات">
+                            <field name="feature_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="key"/>
+                                    <field name="unlocked"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_growth_level" model="ir.actions.act_window">
+        <field name="name">المستويات</field>
+        <field name="res_model">resta.growth.level</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Conditions -->
+    <record id="view_growth_condition_list" model="ir.ui.view">
+        <field name="name">resta.growth.condition.list</field>
+        <field name="model">resta.growth.condition</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="level_id"/>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="compute_key"/>
+                <field name="target"/>
+                <field name="window_days"/>
+                <field name="param_1"/>
+                <field name="param_2"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_growth_condition_form" model="ir.ui.view">
+        <field name="name">resta.growth.condition.form</field>
+        <field name="model">resta.growth.condition</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="level_id"/>
+                            <field name="compute_key"/>
+                            <field name="target"/>
+                            <field name="unit"/>
+                            <field name="window_days"/>
+                        </group>
+                        <group>
+                            <field name="param_1"/>
+                            <field name="param_2"/>
+                            <field name="lesson_id"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="الشرح الذي يراه صاحب المطعم"/>
+                    <field name="tip" placeholder="نصيحة قصيرة"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_growth_condition" model="ir.actions.act_window">
+        <field name="name">الشروط</field>
+        <field name="res_model">resta.growth.condition</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+
+    <!-- Features -->
+    <record id="view_growth_feature_list" model="ir.ui.view">
+        <field name="name">resta.growth.feature.list</field>
+        <field name="model">resta.growth.feature</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="level_id"/>
+                <field name="name"/>
+                <field name="key"/>
+                <field name="menu_ids" widget="many2many_tags"/>
+                <field name="unlocked"/>
+                <field name="unlocked_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_growth_feature_form" model="ir.ui.view">
+        <field name="name">resta.growth.feature.form</field>
+        <field name="model">resta.growth.feature</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="key"/>
+                            <field name="level_id"/>
+                            <field name="icon"/>
+                            <field name="teaser"/>
+                        </group>
+                        <group>
+                            <field name="unlocked"/>
+                            <field name="unlocked_date"/>
+                            <field name="entry_action_xmlid"/>
+                            <field name="tour_name"/>
+                        </group>
+                    </group>
+                    <field name="menu_ids" widget="many2many_tags"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_growth_feature" model="ir.actions.act_window">
+        <field name="name">الميزات</field>
+        <field name="res_model">resta.growth.feature</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Lessons -->
+    <record id="view_growth_lesson_list" model="ir.ui.view">
+        <field name="name">resta.growth.lesson.list</field>
+        <field name="model">resta.growth.lesson</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="level_id"/>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="kind"/>
+                <field name="minutes"/>
+                <field name="tour_name"/>
+                <field name="version" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_growth_lesson_form" model="ir.ui.view">
+        <field name="name">resta.growth.lesson.form</field>
+        <field name="model">resta.growth.lesson</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="key"/>
+                            <field name="level_id"/>
+                            <field name="kind"/>
+                            <field name="minutes"/>
+                        </group>
+                        <group>
+                            <field name="video_url" widget="url"/>
+                            <field name="tour_name"/>
+                            <field name="version"/>
+                        </group>
+                    </group>
+                    <field name="content"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_growth_lesson" model="ir.actions.act_window">
+        <field name="name">الدروس والجولات</field>
+        <field name="res_model">resta.growth.lesson</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

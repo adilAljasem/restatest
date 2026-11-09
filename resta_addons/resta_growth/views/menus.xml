@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_growth_root" name="رحلة النمو" sequence="1"
+              web_icon="resta_growth,static/description/icon.png"
+              action="action_growth_journey"
+              groups="resta_growth.group_resta_manager"/>
+    <menuitem id="menu_growth_journey" name="رحلتي" parent="menu_growth_root" sequence="1"
+              action="action_growth_journey"/>
+    <menuitem id="menu_growth_profile" name="ملف المطعم" parent="menu_growth_root" sequence="2"
+              action="action_growth_profile" groups="resta_growth.group_resta_owner"/>
+
+    <menuitem id="menu_growth_config" name="الإعدادات" parent="menu_growth_root" sequence="90"
+              groups="resta_growth.group_resta_support"/>
+    <menuitem id="menu_growth_levels" name="المستويات" parent="menu_growth_config" sequence="1" action="action_growth_level"/>
+    <menuitem id="menu_growth_conditions" name="الشروط" parent="menu_growth_config" sequence="2" action="action_growth_condition"/>
+    <menuitem id="menu_growth_features" name="الميزات" parent="menu_growth_config" sequence="3" action="action_growth_feature"/>
+    <menuitem id="menu_growth_types" name="أنواع المطاعم" parent="menu_growth_config" sequence="4" action="action_growth_type"/>
+    <menuitem id="menu_growth_lessons" name="الدروس والجولات" parent="menu_growth_config" sequence="5" action="action_growth_lesson"/>
+    <menuitem id="menu_growth_daily" name="الحقائق اليومية" parent="menu_growth_config" sequence="10" action="action_growth_daily"/>
+    <menuitem id="menu_growth_snapshots" name="لقطات المؤشر" parent="menu_growth_config" sequence="11" action="action_growth_snapshot"/>
+</odoo>

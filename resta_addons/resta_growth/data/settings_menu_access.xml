@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The owner is not a technical administrator but keeps the business settings pages. -->
+<odoo>
+    <record id="base_setup.menu_config" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+    <record id="point_of_sale.menu_pos_global_settings" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+    <record id="stock.menu_stock_general_settings" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+    <record id="purchase.menu_purchase_general_settings" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+    <record id="sale.menu_sale_general_settings" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+    <record id="mrp.menu_mrp_config" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+    <record id="account.menu_account_config" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
+</odoo>

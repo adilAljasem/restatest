@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_growth.CelebrationDialog">
+        <Dialog size="'md'" header="false" footer="false" contentClass="'o_growth_celebrate'">
+            <div class="o_growth_confetti" aria-hidden="true">
+                <i t-foreach="confetti" t-as="c" t-key="c_index"
+                   t-attf-style="left: #{c.left}%; animation-delay: #{c.delay}s; background: #{c.color}; transform: rotate(#{c.rotate}deg);"/>
+            </div>
+            <div class="o_growth_celebrate_body text-center">
+                <div class="o_growth_shield o_growth_shield_xl mx-auto" t-attf-style="--lvl: #{props.data.color}">
+                    <i t-attf-class="fa #{props.data.icon}"/>
+                    <span class="o_growth_shield_num" t-out="props.data.level"/>
+                </div>
+                <div class="o_growth_celebrate_kicker">أنهيت مستوى <t t-out="props.data.name"/></div>
+                <h2 class="o_growth_celebrate_title">مبروك!</h2>
+                <p class="o_growth_celebrate_msg" t-out="props.data.message"/>
+                <div t-if="props.data.feature" class="o_growth_unlocked">
+                    <i t-attf-class="fa #{props.data.feature.icon}"/>
+                    <div>
+                        <div class="fw-bold">فُتحت لك: <t t-out="props.data.feature.name"/></div>
+                        <div class="small opacity-75" t-out="props.data.feature.teaser"/>
+                    </div>
+                </div>
+                <div class="d-flex flex-column gap-2 mt-4">
+                    <button class="btn btn-primary btn-lg" t-on-click="discover">
+                        <i class="fa fa-rocket me-1"/> اكتشف ميزتك الجديدة
+                    </button>
+                    <button class="btn btn-link" t-on-click="props.close">لاحقاً</button>
+                </div>
+                <div t-if="props.preview" class="small text-muted mt-2">معاينة من المحاكي: لم يتغير شيء.</div>
+            </div>
+        </Dialog>
+    </t>
+</templates>

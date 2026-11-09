@@ -1,0 +1,3160 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* resta_growth
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 15:18+0000\n"
+"PO-Revision-Date: 2026-11-09 15:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "% نحو المستوى التالي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid ""
+"%(a)s%% من الفواتير مقبولة، %(p)s معلقة، والمرتجعات %(r)s%% من المبيعات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%(d)s يوم مسجّل من %(t)s، تغطية أيام التشغيل %(c)s%%"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%(n)s صنف متاح، %(bad)s منها ينقصه سعر أو ضريبة أو تصنيف"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%(ok)s من %(n)s جلسة مطابقة (%(r)s%%)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%(r)s%% من %(t)s فاتورة مقبولة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%s صنف متاح وكلها مكتملة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%s فاتورة معلقة أكثر من 48 ساعة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "%s نقطة بيع جاهزة بطرق دفع مفعّلة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "(يُحدّث كل ليلة)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "). تواصل معنا أو راجع الدرس."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_menu_complete
+msgid "15 صنفاً على الأقل متاحة في نقطة البيع، وكلها لها سعر وضريبة وتصنيف."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_daily_recording
+msgid ""
+"30 يوم تشغيل مسجّل (جلسة فُتحت وأُغلقت وفيها طلبات)، بتغطية 95% من أيام "
+"التشغيل المخططة. أيام العطلة المعلنة لا تُحسب."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_zatca
+msgid ""
+"99% من الفواتير مقبولة أو مُبلّغ عنها في الربط الإلكتروني، ولا فاتورة معلقة "
+"أكثر من 48 ساعة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid ""
+"<b>خريطة الرحلة</b>: خمس محطات، وكل محطة تفتح لك أداة جديدة. اضغط على أي "
+"محطة لتعرف جائزتها."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid ""
+"<b>شارة مستواك</b><br/>الرقم مستواك، والدائرة نسبة تقدمك للمستوى التالي. "
+"اضغطها."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__achieved_date
+msgid "Achieved Date"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__active
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__active
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__active
+msgid "Active"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__code
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__code
+msgid "Code"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__company_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__company_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__company_id
+msgid "Company"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__condition_id
+msgid "Condition"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__create_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__create_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__current_value
+msgid "Current Value"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__date
+msgid "Date"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__details
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__details
+msgid "Details"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_ir_ui_menu__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_res_users__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_engine__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_simulator__display_name
+#: model:ir.model.fields,field_description:resta_growth.field_web_tour_tour__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__done_date
+msgid "Done Date"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_ir_ui_menu__id
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__id
+#: model:ir.model.fields,field_description:resta_growth.field_res_users__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_engine__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_simulator__id
+#: model:ir.model.fields,field_description:resta_growth.field_web_tour_tour__id
+msgid "ID"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__icon
+msgid "Icon"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__key
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__key
+msgid "Key"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__last_compute
+msgid "Last Compute"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__write_uid
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__write_date
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__lesson_id
+msgid "Lesson"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__level_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__level_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__level_id
+msgid "Level"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_ir_ui_menu
+msgid "Menu"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__met
+msgid "Met"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__met_since
+msgid "Met Since"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__profile_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__profile_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__profile_id
+msgid "Profile"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__progress_pct
+msgid "Progress Pct"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__ready_since
+msgid "Ready Since"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__condition_sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__simulated
+msgid "Simulated"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__started_date
+msgid "Started Date"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__state
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__state
+msgid "State"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition_status__target
+msgid "Target"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_web_tour_tour
+msgid "Tours"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__tz
+msgid "Tz"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_res_users
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__user_id
+msgid "User"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__version
+msgid "Version"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__welcome_state
+msgid "Welcome State"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_level__celebration
+msgid "{days} تُستبدل بعدد أيام البيانات الجاهزة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "آخر 90 يوماً"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__last_compute
+msgid "آخر حساب"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "آخر حساب:"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/growth_service.js:0
+msgid "أحسنت! تم تسجيل الدرس كمكتمل."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "أدوات فريق الدعم"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,celebration:resta_growth.level_expansion
+msgid ""
+"أرقامك تقول إنك جاهز لفرع ثاني. فرعك الجديد عليه خصم، وصرت مؤهل للترشيح "
+"للتمويل عبر شركائنا."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_pricing
+msgid "أضف تكلفة التغليف للطلبات الخارجية وعمولة تطبيقات التوصيل."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "أعلن الإجازة"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_session
+msgid "أغلق الجلسة في نفس اليوم؛ الجلسة المفتوحة لليوم التالي تخلط الأرقام."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "أغلق الجلسة في نهاية نفس اليوم ولا تتركها مفتوحة لليوم التالي."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_einvoice
+msgid ""
+"أكثر سبب للرفض: بيانات المنشأة أو الضريبة ناقصة. تواصل مع الدعم مرة واحدة "
+"ويتصلح."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_menu_complete
+msgid "أكمل السعر والضريبة والتصنيف لكل صنف ناقص."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "أكملت كل الشروط!"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "أكملت كل شروط المستوى!"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_lesson_progress__state__done
+msgid "أنجز"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "أنجزت هذا المستوى."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "أنهيت الدرس"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/celebration/celebration_dialog.xml:0
+msgid "أنهيت مستوى"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_type
+#: model:ir.ui.menu,name:resta_growth.menu_growth_types
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "أنواع المطاعم"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "أهداف الشروط، نوافذ الأيام، حدود كل نوع مطعم"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "أهلاً فيك في ريستا يا"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "أوزان مؤشر الانضباط (المجموع 1000)"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_menu
+msgid "أوقف الأصناف غير المتوفرة بدل حذفها حتى تبقى تقاريرك صحيحة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "أول 3 شهور علينا… تعلّم براحتك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "أول حساب للمؤشر الليلة الساعة 3 فجراً."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_waste
+msgid "أي مادة تُرمى أو تتلف: سجّلها «إتلاف» في نفس اليوم بالكمية."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_session
+msgid "أيام العطلة أعلنها مسبقاً من صفحة رحلتي حتى لا تُحسب عليك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "أيام العطلة الأسبوعية"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_holiday
+msgid "أيام العطلة الأسبوعية تحددها مرة واحدة في ملف مطعمك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "أيام العطلة الأسبوعية:"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid ""
+"أيام العطلة لا تُحسب عليك في التسجيل اليومي. الإجازات المؤقتة تعلنها لاحقاً "
+"من صفحة رحلتي."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "أيام العطلة والإجازات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_forming_days
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "أيام تكوين المؤشر"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_holiday
+msgid "إجازة معلنة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.feature,name:resta_growth.feature_inventory
+msgid "إدارة المخزون"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "إعادة الضبط"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "إعادة شاشة الترحيب"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l1_menu
+msgid "إعداد المنيو الصحيح"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,learning:resta_growth.level_foundation
+msgid ""
+"إعداد المنيو الصحيح، تسعير الأطباق، فتح وإغلاق اليوم في الكاشير، الفاتورة "
+"الإلكترونية ببساطة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "إعلان إجازة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "إعلان الإجازة من «ملف مطعمك»."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l1_holiday
+msgid "إعلان يوم عطلة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__date_to
+msgid "إلى"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_count
+msgid "ابدأ بالمواد الأعلى قيمة: اللحوم، الدجاج، الأجبان، الزيوت."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "ابدأ بجرد أسبوعي للمواد الخام الأعلى قيمة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "ابدأ رحلتي"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_pricing
+msgid "ابدأ من تكلفة المكونات للطبق الواحد (الوصفة) لا من سعر المنافس."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "اجعل الجرد موعداً ثابتاً كل أسبوع (مثلاً صباح الأحد)."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "اجعل المستوى جاهزاً"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "احسب تكلفة كل طبق (وصفة) حتى يظهر هامشك الحقيقي."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "احفظ. كل صنف مكتمل يقربك من شرط «المنيو كامل»."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "اختر تصنيف الصنف (وجبات، مشروبات…) حتى يظهر في مكانه على الكاشير."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_count
+msgid "اختر يوماً ثابتاً (مثلاً صباح الأحد قبل الافتتاح)."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "اختر…"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid ""
+"ارفع مؤشر جودة الإدخالات إلى %(t)s ليصبح هذا الشهر مجانياً (الآن %(q)s)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__c_margin
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "استقرار الهامش والنمو"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_profile.py:0
+msgid "استلام الجائزة لصاحب الحساب فقط."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "استلم جائزتك"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "استلم جائزتك:"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "استمر: كل فاتورة تُرسل تلقائياً عند الدفع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__plan__standard
+msgid "اشتراك قياسي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "اشتراك كامل"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "اشتراك كامل، وانضباطك يحفظ لك المزايا"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "اشتراك مدفوع بالكامل"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "اشتراكك"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_welcome
+msgid "اضغطها لترى الشروط الباقية وزر «ماذا أفعل؟» لكل شرط."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_reduce
+msgid "اطلب من المورد بكميات أصغر وأكثر تكراراً للمواد سريعة التلف."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.feature,teaser:resta_growth.feature_inventory
+msgid "اعرف وين يروح كل كيلو: جرد، هدر، واستلام مشتريات."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "افتح أي طلب لترى فاتورته."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_session
+msgid "افتح الجلسة صباحاً وسجّل النقد الافتتاحي في الصندوق."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "افتح تبويب نقطة البيع لاختيار التصنيف."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_daily_recording
+msgid "افتح وأغلق الجلسة كل يوم تشغيل، وأعلن العطلة مسبقاً."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "افتح وأغلق جلسة الكاشير في كل يوم تشغيل، وأعلن أيام العطلة مسبقاً."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "اكتب اسم الصنف كما يقرأه الزبون."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+msgid "اكتب السبب وتاريخي البداية والنهاية."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_waste
+msgid "اكتب السبب: انتهاء صلاحية، سقوط، خطأ تحضير."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "اكتب السبب: عيد، صيانة، سفر…"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/celebration/celebration_dialog.xml:0
+msgid "اكتشف ميزتك الجديدة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_sun
+msgid "الأحد"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_wed
+msgid "الأربعاء"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "الأسبوع"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "الأسبوع %(s)s من %(t)s في الجرد"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_pricing
+msgid ""
+"الأسعار في ريستا تُدخل شاملة أو غير شاملة للضريبة حسب إعداد نقطة البيع: تأكد"
+" منه مرة واحدة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "الأشهر 1–3"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "الأشهر 4–6"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_holiday
+msgid "الأيام المعلنة لا تكسر سلسلة التسجيل اليومي."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__icon
+msgid "الأيقونة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_mon
+msgid "الإثنين"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_holiday
+msgid "الإجازات المؤقتة (عيد، صيانة) أعلنها قبلها من صفحة رحلتي."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__holiday_ids
+msgid "الإجازات المعلنة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__entry_action_xmlid
+msgid "الإجراء الذي يُفتح بعد الفتح"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_daily_list
+msgid "الإجمالي"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.ui.menu,name:resta_growth.menu_growth_config
+msgid "الإعدادات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+msgid "الاشتراك"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "الاشتراك والرحلة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,name:resta_growth.level_discipline
+msgid "الانضباط"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "البيانات الحالية من المحاكي."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,name:resta_growth.level_foundation
+msgid "التأسيس"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "التالي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_profile.py:0
+msgid "التخطي متاح للاشتراك المدفوع بالكامل فقط."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,reward_note:resta_growth.level_expansion
+msgid "الترشيح للتمويل عبر شركائنا، والقرار النهائي للشريك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,learning:resta_growth.level_growth
+msgid "التسويق المحلي، بناء الولاء، الاستفادة من التقييمات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__learning
+msgid "التعلم"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,name:resta_growth.level_expansion
+msgid "التوسع"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_tue
+msgid "الثلاثاء"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__reward
+msgid "الجائزة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "الجائزة القادمة:"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l2_count
+msgid "الجرد الأسبوعي خطوة بخطوة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,learning:resta_growth.level_discipline
+msgid ""
+"الجرد الأسبوعي خطوة بخطوة، تسجيل الهدر بشكل صحيح، تقليل الهدر، مطابقة "
+"الصندوق"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_count
+msgid "الجرد يُحسب لك إذا غطى 80% من قيمة المواد الخام على الأقل."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_fri
+msgid "الجمعة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__tour_name
+msgid "الجولة المرتبطة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__min_margin_pct
+msgid "الحد الأدنى للهامش الإجمالي %"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__max_waste_pct
+msgid "الحد الأعلى للهدر %"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "الحدود التفصيلية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_daily
+#: model:ir.ui.menu,name:resta_growth.menu_growth_daily
+msgid "الحقائق اليومية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__plan
+msgid "الخطة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_thu
+msgid "الخميس"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__lesson_id
+msgid "الدرس / الجولة المرتبطة («ماذا أفعل؟»)"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_lesson
+#: model:ir.ui.menu,name:resta_growth.menu_growth_lessons
+msgid "الدروس والجولات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "الدوريات الشهرية"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,name:resta_growth.level_profitability
+msgid "الربحية"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_level_form
+msgid "الرسائل"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__level_sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__level_sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__level_sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__sequence
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__level_sequence
+msgid "الرقم"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "السابق"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__name
+msgid "السبب"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "السبب (عيد، صيانة…)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "السبب:"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__off_sat
+msgid "السبت"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_welcome
+msgid "الشارة أعلى الشاشة تعرض مستواك ونسبة تقدمك ومؤشر الانضباط."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "الشرائح والحدود"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__description
+msgid "الشرح"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_condition_form
+msgid "الشرح الذي يراه صاحب المطعم"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__name
+msgid "الشرط"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_condition
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__condition_ids
+#: model:ir.ui.menu,name:resta_growth.menu_growth_conditions
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_level_form
+msgid "الشروط"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "الشروط والمستويات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__score_band
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__band
+msgid "الشريحة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "الشهر %(m)s من %(f)s المجانية"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "الشهر %s: خصم 50%%"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "الضريبة: اختر ضريبة القيمة المضافة 15%."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__orders
+msgid "الطلبات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__orders_per_day
+msgid "الطلبات اليومية المعتادة (للمحاكي)"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "العطلة الأسبوعية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__name
+msgid "العنوان"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l1_einvoice
+msgid "الفاتورة الإلكترونية ببساطة"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_einvoice
+msgid ""
+"الفاتورة المعلقة أو المرفوضة تظهر في قائمة الطلبات؛ عالجها خلال 48 ساعة."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_einvoice
+msgid "الفاتورة المقبولة لا تحتاج منك أي شيء."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_cash_accuracy
+msgid ""
+"الفرق المطلق لا يزيد عن 10 ريال أو 0.5% من المبيعات النقدية (أيهما أكبر) في "
+"90% من الجلسات خلال آخر 6 أسابيع."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_cash
+msgid "الفرق المقبول: حتى 10 ريال أو 0.5% من المبيعات النقدية."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__invoices_total
+msgid "الفواتير"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "الفيديو"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_pricing
+msgid "القاعدة البسيطة: تكلفة الطعام بين 28% و35% من سعر البيع قبل الضريبة."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__menu_ids
+msgid "القوائم الجذرية المقفلة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__target
+msgid "القيمة المستهدفة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_pos_ready
+msgid "الكاشير مركّب"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_cash
+msgid "الكاشير يعدّ النقد بنفسه عند الإغلاق دون أن يرى الرقم المتوقع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__color
+msgid "اللون"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__score
+msgid "المؤشر"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__cash_sales
+msgid "المبيعات النقدية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__sales_total
+msgid "المبيعات شامل الضريبة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__sales_untaxed
+msgid "المبيعات قبل الضريبة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.feature,name:resta_growth.feature_accounting
+msgid "المحاسبة والتقارير المالية"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "المحاكي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "المحاكي غير مفعّل لهذه القاعدة (الإعدادات ← رحلة النمو)."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_simulator.py:0
+msgid "المحاكي غير مفعّل لهذه القاعدة. فعّله من الإعدادات (ليس لقاعدة إنتاج)."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_simulator.py:0
+msgid "المحاكي لفريق الدعم فقط."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__content
+msgid "المحتوى"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__minutes
+msgid "المدة (دقائق)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__city
+msgid "المدينة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "المدينة:"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__refunds_total
+msgid "المرتجعات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__level_id
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__name
+msgid "المستوى"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__current_level_id
+msgid "المستوى الحالي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_profile.py:0
+msgid "المستوى لم يكتمل بعد."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_level
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__level_state_ids
+#: model:ir.ui.menu,name:resta_growth.menu_growth_levels
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "المستويات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__consent_league
+msgid "المشاركة في الدوريات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__consent_benchmark
+msgid "المشاركة في المقارنات المجهولة"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "المطعم"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "المقارنات المجهولة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "المنحنى يظهر بعد أول حساب ليلي."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__region
+msgid "المنطقة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__eastern
+msgid "المنطقة الشرقية"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_menu_complete
+msgid "المنيو كامل"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "الموافقات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_feature
+#: model:ir.ui.menu,name:resta_growth.menu_growth_features
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_level_form
+msgid "الميزات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__feature_ids
+msgid "الميزات التي تُفتح"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__name
+msgid "الميزة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid ""
+"الميزة اللي تُفتح ما تُقفل مرة ثانية أبداً، والبيانات تُجمع من اليوم الأول "
+"حتى قبل فتحها."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,name:resta_growth.level_growth
+msgid "النمو"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__kind
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__name
+msgid "النوع"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "النوع:"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "الهدر %(r)s%% والحد %(l)s%%"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_waste
+msgid "الهدر غير المسجّل يظهر فرقاً في الجرد ويخفض مؤشرك أكثر."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_menu
+msgid "الهدف في هذا المستوى: 15 صنفاً على الأقل وكلها مكتملة."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_cash
+msgid "الهدف: 90% من الجلسات مطابقة خلال 6 أسابيع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__unit
+msgid "الوحدة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__subtitle
+msgid "الوصف المختصر"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__c_sales
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "انتظام تسجيل المبيعات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "انضباطك يحفظ لك المزايا: رسوم أقل وخصومات الفروع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_lesson_progress__state__started
+msgid "بدأ"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_band_3
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "بداية «جاهز لفرع ثانٍ»"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_band_1
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "بداية «في الطريق»"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_band_2
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "بداية «منضبط»"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_burger
+msgid "برجر"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "بعد الشهر 6"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__simulated
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__simulated
+msgid "بيانات المحاكي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/locked/locked_action.xml:0
+msgid "بياناتك تُجمع من الآن، فعندما تُفتح تجد تاريخاً جاهزاً تبدأ منه."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_pizza
+msgid "بيتزا"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "تأكد أن الربط مع هيئة الزكاة والضريبة مفعّل لنقطة البيع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__activation_date
+msgid "تاريخ التفعيل"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__unlocked_date
+msgid "تاريخ الفتح"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__plan__trial
+msgid "تجربة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "تحديث الآن"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "تخطي المستوى الحالي"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "تخطي المستوى يفتح ميزاته، والرحلة والمؤشر يبقيان ظاهرين. متابعة؟"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "تخطي هذا المستوى (اشتراك مدفوع بالكامل)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "تذبذب الهامش %(v)s نقطة، والمبيعات %(g)s%% مقارنة بالشهر السابق"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "ترتيبك بين مطاعم مدينتك ونوعك، والمراكز الأولى تكسب شهراً مجانياً."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_daily_recording
+msgid "تسجيل المبيعات يومياً"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l2_waste
+msgid "تسجيل الهدر بشكل صحيح"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l1_pricing
+msgid "تسعير الأطباق"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,learning:resta_growth.level_expansion
+msgid "تشغيل الفروع المتعددة، توحيد الجودة، التخطيط المالي للتوسع"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "تعديل الملف والموافقات"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,celebration:resta_growth.level_profitability
+msgid ""
+"تعرف تكلفة كل طبق وهامشك ثابت. فتحنا لك الرواتب والورديات، وقتك الحين "
+"لفريقك."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__inventory_coverage
+msgid "تغطية الجرد %"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_simulator_enabled
+msgid "تفعيل المحاكي (ليس لقاعدة إنتاج)"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "تفعيل محاكي الرحلة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_lesson_progress
+msgid "تقدّم المستخدم في الدروس"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_condition_status
+msgid "تقدّم شرط"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_lesson_progress_uniq
+msgid "تقدّم مكرر."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l2_reduce
+msgid "تقليل الهدر"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,subtitle:resta_growth.level_profitability
+msgid "تكلفة كل طبق، متوسط فاتورة أعلى، هامش ثابت"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+msgid "تم إعلان الإجازة. هذه الأيام لن تُحسب عليك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "تم التخطي"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level_state__skipped
+msgid "تم التخطي (اشتراك كامل)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+msgid "تم تحديث الحسابات."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__inventory_count
+msgid "تم جرد"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+msgid "تم."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "توليد 120 يوماً"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__level_id
+msgid "تُفتح في المستوى"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid ""
+"تُفتح لك إدارة المخزون بإكمال المستوى 1، وبعدها جرد أسبوعي واحد يرفع هذا "
+"الجزء."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_feature__menu_ids
+msgid "تُقفل هذه القوائم وكل ما تحتها، والإجراءات المرتبطة بها."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "ثبّت أسعار الموردين وراجع تسعير الأطباق الأعلى مبيعاً."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "جاهز تبدأ؟"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,subtitle:resta_growth.level_expansion
+msgid "جاهز لفرع ثانٍ"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_level_state__state__ready
+msgid "جاهز للاستلام"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_weekly_inventory
+msgid "جرد أسبوعي لـ 6 أسابيع متتالية"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,subtitle:resta_growth.level_discipline
+msgid "جرد أسبوعي، هدر تحت السيطرة، كاشير مطابق"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "جردت في %(n)s من %(t)s أسابيع، وفروقات الجرد %(v)s%% من الاستهلاك"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__sessions_late
+msgid "جلسات أُغلقت متأخرة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__sessions_cash_checked
+msgid "جلسات بعدّ نقدي"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__sessions_cash_ok
+msgid "جلسات مطابقة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__sessions_closed
+msgid "جلسات مغلقة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "جودة الإدخالات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_lesson__kind__tour
+msgid "جولة إرشادية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__tour_name
+msgid "جولة الميزة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_welcome
+msgid "جولة دقيقتين: شارة المستوى وصفحة رحلتي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "جولة سريعة دقيقتين"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_condition_status_uniq
+msgid "حالة الشرط مكررة."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_level_state_uniq
+msgid "حالة المستوى مكررة."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_level_state
+msgid "حالة مستوى في رحلة المطعم"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "حد الشهر المجاني"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_quality_threshold
+msgid "حد الشهر المجاني (جودة الإدخالات)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "حدد التاريخين ثم اضغط «أعلن الإجازة». هذه الأيام لن تكسر سلسلة تسجيلك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_weekly_inventory
+msgid "حدد يوماً ثابتاً للجرد كل أسبوع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_condition__param_1
+msgid "حسب الشرط: نسبة التغطية، الحد الأدنى بالريال، ..."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_reduce
+msgid "حضّر الكميات حسب مبيعات نفس اليوم من الأسبوع الماضي."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_daily
+msgid "حقائق يومية لرحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "خصم 50%، والشهر مجاني بالكامل إذا تجاوز مؤشر جودة إدخالاتك"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "خصم 50%، ومجاني إذا جودة الإدخالات ≥"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__anomaly_deduction
+msgid "خصم التلاعب"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,reward:resta_growth.level_expansion
+msgid "خصم على أجهزة واشتراك الفرع الجديد + التأهل للترشيح للتمويل"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__avg_ticket_baseline
+msgid "خط أساس متوسط الفاتورة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__waste_pct_baseline
+msgid "خط أساس نسبة الهدر"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "د"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__compute_key
+msgid "دالة الحساب"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_lesson
+msgid "درس رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__c_inventory
+msgid "دقة الجرد"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "دقة الجرد ومطابقته"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson__video_url
+msgid "رابط الفيديو"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_reduce
+msgid "راجع أعلى 5 أصناف هدراً كل أسبوع."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_pricing
+msgid "راجع الأسعار كل ربع سنة أو عند تغيّر أسعار الموردين."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "راجع الفواتير المعلقة وأعد إرسالها خلال 48 ساعة."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_zatca
+msgid "راجع الفواتير المعلقة وأعد إرسالها."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_menu
+msgid "رتّب التصنيفات كما يقرأها الزبون: وجبات، إضافات، مشروبات، حلويات."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.module.category,name:resta_growth.module_category_resta_growth
+#: model:ir.ui.menu,name:resta_growth.menu_growth_root
+#: model:res.groups.privilege,name:resta_growth.res_groups_privilege_resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "رحلة النمو لصاحب الحساب ومدير الفرع."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.server,name:resta_growth.cron_growth_nightly_ir_actions_server
+msgid "رحلة النمو: الحساب الليلي (الحقائق اليومية، الشروط، المؤشر)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model:ir.actions.client,name:resta_growth.action_growth_journey
+#: model:ir.ui.menu,name:resta_growth.menu_growth_journey
+msgid "رحلتي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "رحلتي كاملة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__celebration
+msgid "رسالة الاحتفال"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_level_seq_uniq
+msgid "رقم المستوى مستخدم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_level_code_uniq
+msgid "رمز المستوى مستخدم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_restaurant_type_code_uniq
+msgid "رمز النوع مستخدم."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid ""
+"ريستا مو بس كاشير. ريستا رحلة نمو من خمس مستويات، كل مستوى يعلّمك شي جديد "
+"ويفتح لك أدوات تزيد ربحك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,celebration:resta_growth.level_growth
+msgid ""
+"زبائنك يرجعون لك وتقييماتك عالية. فتحنا لك نظام الولاء، وخفّضنا عليك رسوم "
+"الدفع الإلكتروني."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "سبب الإجازة"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_count
+msgid "ستة أسابيع متتالية = نصف طريقك للمستوى 3."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "سجّل الطلبات وقت حدوثها بدل إدخالها لاحقاً."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_waste_ratio
+msgid "سجّل الهدر يومياً وراجع أعلى الأصناف هدراً."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_cash_accuracy
+msgid "سجّل كل سحب وإيداع نقدي، وعُدّ الصندوق بدقة."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_session
+msgid "سجّل كل طلب وقت حدوثه، ولا تؤجل الإدخال لنهاية اليوم."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid ""
+"سجّلت مبيعات %(c)s%% من أيام التشغيل، وطابق الصندوق في %(k)s%% من الجلسات"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "سعر البيع. راجع درس تسعير الأطباق إن احتجت."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__c_invoices
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "سلامة الفواتير"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "سيناريو المحاكي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "شارة مستواك أعلى الشاشة. اضغطها في أي وقت لتعرف وش باقي عليك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_shawarma
+msgid "شاورما"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_condition
+msgid "شرط مستوى"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "شروط هذا المستوى تصلك قريباً."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.feature,teaser:resta_growth.feature_accounting
+msgid "شوف ربحك الحقيقي: أرباح وخسائر، مصروفات، وهامش."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/locked/locked_action.xml:0
+msgid "شوف كيف"
+msgstr ""
+
+#. module: resta_growth
+#: model:res.groups,name:resta_growth.group_resta_owner
+msgid "صاحب الحساب"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid ""
+"صباحاً: اضغط هنا لفتح الجلسة وأدخل النقد الافتتاحي.<br/>مساءً: من نفس المكان"
+" «إغلاق»، وعُدّ النقد الفعلي وأدخله كما هو."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_welcome
+msgid "صفحة «رحلتي» فيها الخريطة الكاملة والمؤشر بالتفصيل."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_reduce
+msgid "طبّق «الأول دخولاً أولاً خروجاً» في الثلاجة."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__backdated_orders
+msgid "طلبات بتاريخ رجعي"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_daily__recorded
+msgid "طلبات مدفوعة في جلسة مغلقة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__welcome_state__shown
+msgid "ظهر ولم يكتمل"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__branches
+msgid "عدد الفروع"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__seats
+msgid "عدد المقاعد"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_foodtruck
+msgid "عربة طعام"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,subtitle:resta_growth.level_growth
+msgid "عملاء يرجعون، تقييمات عالية، نمو ثابت"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_session
+msgid "عند الإغلاق: عُدّ النقد فعلياً وأدخل الرقم الحقيقي، حتى لو فيه فرق."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "عُدّ الصندوق بدقة عند الإغلاق وسجّل أي سحب أو إيداع نقدي."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_count
+msgid "عُدّ الموجود فعلياً وأدخله في الجرد، ثم اضغط «تطبيق»."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_lesson_progress__tour_offered
+msgid "عُرضت الجولة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,reward:resta_growth.level_foundation
+msgid "فتح إدارة المخزون"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,reward:resta_growth.level_discipline
+msgid "فتح المحاسبة والتقارير المالية"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,reward:resta_growth.level_profitability
+msgid "فتح الموارد البشرية والرواتب وإدارة الورديات"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l1_session
+msgid "فتح وإغلاق اليوم في الكاشير"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "فروقات الجرد عالية: سجّل الهدر فور حدوثه وراجع وصفات الأصناف."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_cash_accuracy
+msgid "فروقات الكاشير قريبة من الصفر"
+msgstr ""
+
+#. module: resta_growth
+#: model:res.groups,name:resta_growth.group_resta_support
+msgid "فريق بيسك سلوشن (الدعم)"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,tip:resta_growth.cond_pos_ready
+msgid "فعّل طرق الدفع (نقد، مدى) في إعدادات نقطة البيع."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "فقط عند طلبك تمويلاً لفرع جديد، وبموافقتك لكل طلب."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_zatca
+msgid "فواتير متوافقة مع هيئة الزكاة والضريبة والجمارك"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__invoices_pending_48h
+msgid "فواتير معلقة أكثر من 48 ساعة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__invoices_sent
+msgid "فواتير مقبولة/مُبلّغ عنها"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "في الجرد، لا تكسر سلسلتك"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_lesson__kind__video
+msgid "فيديو"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/celebration/celebration_dialog.xml:0
+msgid "فُتحت لك:"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_lesson__kind__checklist
+msgid "قائمة تحقق"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "قبلها يظهر المؤشر «قيد التكوين»"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_level_state__state__progress
+msgid "قيد التقدم"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.js:0
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__forming
+msgid "قيد التكوين"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_waste_ratio
+msgid ""
+"قيمة الإتلاف ÷ قيمة الاستهلاك خلال آخر 6 أسابيع، أقل من الحد المحدد لنوع "
+"المطعم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_restaurant_type__max_waste_pct
+msgid "قيمة الإتلاف ÷ قيمة الاستهلاك. يُستخدم في شرط المستوى 2."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__consumption_value
+msgid "قيمة الاستهلاك"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__waste_value
+msgid "قيمة الهدر (الإتلاف)"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__inventory_adjust_value
+msgid "قيمة فروقات الجرد"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,subtitle:resta_growth.level_foundation
+msgid "كاشير ومنيو وتسجيل يومي وفواتير سليمة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "كل الميزات مفتوحة، والرحلة والمؤشر مستمران معك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_weekly_inventory
+msgid ""
+"كل جرد يغطي 80% على الأقل من قيمة المواد الخام النشطة. الأسبوع من الأحد إلى "
+"السبت."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_cash
+msgid "كل سحب أو إيداع نقدي من الدرج يُسجّل في الكاشير بسببه."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_menu
+msgid ""
+"كل صنف يُباع لازم يكون له: اسم واضح، سعر، ضريبة 15%، وتصنيف في نقطة البيع."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_einvoice
+msgid ""
+"كل عملية بيع تصدر فاتورة مبسطة تُبلّغ لهيئة الزكاة والضريبة والجمارك "
+"تلقائياً."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid ""
+"كل ما انضبطت بياناتك ارتفع مؤشرك وقلّت تكلفة اشتراكك، وكل ما كبر مطعمك فتحنا"
+" لك أدوات أقوى: مخزون، محاسبة، رواتب، ولاء، وتمويل لفرعك الثاني."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "كيف تمشي الرحلة"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l1_menu
+msgid "لا تكرر نفس الصنف بأسماء مختلفة؛ استخدم الإضافات والخيارات بدل ذلك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "لا توجد أصناف متاحة في نقطة البيع بعد"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "لا توجد جلسات مغلقة بعدّ نقدي بعد"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "لا توجد حركة استهلاك مسجلة بعد"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "لا توجد فواتير إلكترونية في آخر %s يوم"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "لا توجد فواتير إلكترونية مسجّلة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_condition.py:0
+msgid "لا توجد نقطة بيع بطرق دفع مفعّلة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "لا يوجد جرد مسجّل في آخر 90 يوماً"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "لاحظنا فرقاً يحتاج مراجعة (−"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/celebration/celebration_dialog.xml:0
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "لاحقاً"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_profile.py:0
+msgid "لفريق الدعم فقط."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "لقطات الأيام السابقة غير قابلة للتعديل."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.ui.menu,name:resta_growth.menu_growth_snapshots
+msgid "لقطات المؤشر"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "لقطات المؤشر غير قابلة للتعديل."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "لقطات المؤشر غير قابلة للحذف."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.act_window,name:resta_growth.action_growth_snapshot
+msgid "لقطات مؤشر الانضباط"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_score_snapshot
+msgid "لقطة يومية لمؤشر الانضباط"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid ""
+"للقواعد التجريبية والعروض فقط. يكتب بيانات يومية تجريبية ويغيّر المستوى. لا "
+"تفعّله على قاعدة مطعم حقيقي."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__welcome_state__new
+msgid "لم يظهر"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "لم يُحسب بعد: يُحدّث كل ليلة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "م"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__score
+msgid "مؤشر الانضباط"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid ""
+"مؤشر جودة إدخالاتك %(q)s من %(t)s المطلوبة: هذا الشهر مجاني إن حافظت عليه"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مؤشر جودة إدخالاتك هذا الشهر:"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__quality_index
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_score_snapshot__quality_index
+msgid "مؤشر جودة الإدخالات"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.res_config_settings_view_form_resta_growth
+msgid "مؤشر جودة الإدخالات (0-100) المطلوب في الأشهر 4-6"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "مؤشرك ارتفع %s نقطة خلال أسبوع. استمر!"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "مؤشرك قيد التكوين: يظهر بعد 14 يوماً من البيانات (عندك %s)."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "مؤشرك نزل %s نقطة خلال أسبوع. شوف النصائح في صفحة الرحلة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "ماذا أفعل؟"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/celebration/celebration_dialog.xml:0
+msgid "مبروك!"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,celebration:resta_growth.level_foundation
+msgid ""
+"مبروك! أسّست مطعمك على أرض صلبة. فتحنا لك إدارة المخزون، وعندك بيانات {days}"
+" يوم جاهزة تبدأ منها."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_restaurant_type__avg_ticket
+msgid "متوسط الفاتورة المعتاد (للمحاكي)"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "مثل: «هدرك أقل من 70% من مطاعم البرجر في مدينتك». ما يظهر اسم أي مطعم."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مجانية للجميع"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "مجانية للجميع (مرحلة التعلم)"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__cash_diff_abs
+msgid "مجموع فروقات الصندوق المطلقة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_simulator
+msgid "محاكي رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_engine
+msgid "محرك رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_bakery
+msgid "مخبز وحلويات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__plan__paid_full
+msgid "مدفوع بالكامل"
+msgstr ""
+
+#. module: resta_growth
+#: model:res.groups,name:resta_growth.group_resta_manager
+msgid "مدير الفرع"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_ui.py:0
+msgid "مرحلة التعلم: باقي %s يوم مجانية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_level
+msgid "مستوى رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مستويات الرحلة"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__consent_financing
+msgid "مشاركة المؤشر مع شركاء التمويل"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.lesson,name:resta_growth.lesson_l2_cash
+msgid "مطابقة الصندوق"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_cloud
+msgid "مطبخ سحابي"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_dinein
+msgid "مطعم جلوس"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مطعم متعثر"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مطعم متوسط"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مطعم منضبط"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "مطعمك"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,celebration:resta_growth.level_discipline
+msgid ""
+"مطعمك صار منضبط: جرد كل أسبوع، هدر تحت السيطرة، وكاشير مطابق. فتحنا لك "
+"المحاسبة، الحين تشوف ربحك الحقيقي."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__param_1
+msgid "معامل 1"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__param_2
+msgid "معامل 2"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "معاينة الاحتفال"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/celebration/celebration_dialog.xml:0
+msgid "معاينة من المحاكي: لم يتغير شيء."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_lesson_key_uniq
+msgid "مفتاح الدرس مستخدم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_feature_key_uniq
+msgid "مفتاح الميزة مستخدم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__unlocked
+msgid "مفتوحة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_lesson__kind__article
+msgid "مقال"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_level_state__state__locked
+msgid "مقفل"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_cafe
+msgid "مقهى"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__welcome_state__done
+msgid "مكتمل"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_level__reward_note
+msgid "ملاحظة الجائزة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.actions.server,name:resta_growth.action_growth_profile
+#: model:ir.ui.menu,name:resta_growth.menu_growth_profile
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid "ملف المطعم"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_profile
+msgid "ملف المطعم في رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.js:0
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "ملف مطعمك"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "ممتاز. وسّع الجرد ليغطي كل المواد الخام."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_holiday__date_from
+msgid "من"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid ""
+"من 100. يُحسب من انتظام التسجيل، اكتمال الأصناف، الجرد في موعده، وسلامة "
+"الفواتير."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "من 1000"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/systray/growth_badge.xml:0
+msgid "من 5"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__baha
+msgid "منطقة الباحة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__jouf
+msgid "منطقة الجوف"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__northern
+msgid "منطقة الحدود الشمالية"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__riyadh
+msgid "منطقة الرياض"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__qassim
+msgid "منطقة القصيم"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__madinah
+msgid "منطقة المدينة المنورة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__tabuk
+msgid "منطقة تبوك"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__jazan
+msgid "منطقة جازان"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__hail
+msgid "منطقة حائل"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__asir
+msgid "منطقة عسير"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__makkah
+msgid "منطقة مكة المكرمة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_profile__region__najran
+msgid "منطقة نجران"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model,name:resta_growth.model_resta_growth_feature
+msgid "ميزة تُفتح في رحلة النمو"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields.selection,name:resta_growth.selection__resta_growth_level_state__state__achieved
+msgid "مُنجز"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__window_days
+msgid "نافذة الأيام"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "نبدأ بإضافة صنف جديد للمنيو."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_score.py:0
+msgid "نحتاج بيانات شهرين على الأقل بتكلفة محسوبة لقياس ثبات الهامش"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "نحو المستوى التالي"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid ""
+"نرسل للمنصة مجاميع ونسباً يومية فقط (مثل نسبة الهدر ومتوسط الفاتورة). لا "
+"أسماء، ولا أرقام جوالات، ولا بيانات زبائنك. تقدر تسحب أي موافقة متى ما بغيت."
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:resta.growth.lesson,content:resta_growth.lesson_l2_waste
+msgid "نسبة الهدر = قيمة الإتلاف ÷ قيمة الاستهلاك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,name:resta_growth.cond_waste_ratio
+msgid "نسبة الهدر أقل من حد نوع مطعمك"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_feature__teaser
+msgid "نص تشويقي"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_level__reward_note
+msgid "نص صادق يظهر تحت الجائزة (مثلاً: القرار النهائي للتمويل للشريك)."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_condition__tip
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_condition_form
+msgid "نصيحة قصيرة"
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,reward:resta_growth.level_growth
+msgid "نظام ولاء الزبائن + رسوم دفع إلكتروني أقل"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "نقارن هدرك وهامشك بمطاعم من نفس النوع."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.condition,description:resta_growth.cond_pos_ready
+msgid "نقطة بيع واحدة على الأقل بطرق دفع مفعّلة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+msgid "نموّك يولّد ربحك، ونموّنا معك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "نموّك يولّد ربحك… ونموّنا معك."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/welcome/welcome_dialog.xml:0
+#: model:ir.model,name:resta_growth.model_resta_growth_restaurant_type
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_profile__restaurant_type_id
+msgid "نوع المطعم"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "هذه <b>شروط مستواك</b>. كل شرط له زر «ماذا أفعل؟» يشرح لك الخطوة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-python
+#: code:addons/resta_growth/models/growth_profile.py:0
+msgid "هذه البيانات يغيّرها فريق ريستا فقط."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/locked/locked_action.xml:0
+msgid "هذه الميزة تُفتح بإكمال المستوى"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/locked/locked_action.xml:0
+msgid "هذه الميزة مقفلة حالياً"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "هذه بطاقة <b>الكاشير</b>. كل يوم تشغيل يبدأ بفتح جلسة وينتهي بإغلاقها."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "هذه قائمة طلباتك. ابحث برقم الطلب أو التاريخ."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid ""
+"هنا <b>الفاتورة</b>. افتحها لترى حالتها في الربط الإلكتروني: مقبولة أو تحتاج"
+" إعادة إرسال."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.level,learning:resta_growth.level_profitability
+msgid "هندسة المنيو، البيع الإضافي، قراءة القوائم المالية"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid ""
+"و<b>مؤشر الانضباط</b> من 1000: يرتفع كل ما انضبطت بياناتك، ومعه تقل تكلفة "
+"اشتراكك."
+msgstr ""
+
+#. module: resta_growth
+#: model:resta.growth.restaurant.type,name:resta_growth.type_qsr
+msgid "وجبات سريعة"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_w_margin
+msgid "وزن الهامش والنمو"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_w_sales
+msgid "وزن انتظام المبيعات"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_w_inventory
+msgid "وزن دقة الجرد"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_res_config_settings__resta_growth_w_invoices
+msgid "وزن سلامة الفواتير"
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/tours/growth_tours.js:0
+msgid "ومن هنا تفتح رحلتك كاملة."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid "يظهر المؤشر بعد 14 يوماً من البيانات."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_daily_company_date_uniq
+msgid "يوجد سجل لهذا اليوم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_score_snapshot_company_date_uniq
+msgid "يوجد لقطة لهذا اليوم."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.constraint,message:resta_growth.constraint_resta_growth_profile_company_uniq
+msgid "يوجد ملف لهذه الشركة."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__planned
+msgid "يوم تشغيل مخطط"
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,field_description:resta_growth.field_resta_growth_daily__recorded
+msgid "يوم مسجّل"
+msgstr ""
+
+#. module: resta_growth
+#: model_terms:ir.ui.view,arch_db:resta_growth.view_growth_profile_form
+msgid ""
+"يُرسل للمنصة مجاميع ونسب يومية فقط، بلا أسماء أو أرقام جوالات أو بيانات عملاء.\n"
+"                                كل موافقة مستقلة ويمكن سحبها في أي وقت."
+msgstr ""
+
+#. module: resta_growth
+#: model:ir.model.fields,help:resta_growth.field_resta_growth_restaurant_type__min_margin_pct
+msgid "يُستخدم في شرط المستوى 3 (المرحلة 2)."
+msgstr ""
+
+#. module: resta_growth
+#. odoo-javascript
+#: code:addons/resta_growth/static/src/journey/journey_action.xml:0
+msgid ""
+"يُفتح هذا المستوى بعد إكمال ما قبله. البيانات تُجمع من الآن، فعندما تصل له "
+"تجد تاريخاً جاهزاً."
+msgstr ""

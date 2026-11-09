@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_growth.Journey">
+        <div class="o_action o_growth_journey" dir="rtl">
+            <t t-if="d">
+                <!-- header -->
+                <header class="o_growth_jhead">
+                    <div class="o_growth_jtitle">
+                        <div class="small opacity-75" t-out="d.business_name"/>
+                        <h1>رحلتي</h1>
+                        <div class="o_growth_motto_sm">نموّك يولّد ربحك… ونموّنا معك.</div>
+                    </div>
+                    <div class="o_growth_jstats">
+                        <div class="o_growth_jstat">
+                            <span class="o_growth_jstat_v" t-out="d.score.forming ? '—' : d.score.value"/>
+                            <span class="o_growth_jstat_l">مؤشر الانضباط</span>
+                        </div>
+                        <div class="o_growth_jstat">
+                            <span class="o_growth_jstat_v"><t t-out="d.progress"/>%</span>
+                            <span class="o_growth_jstat_l">نحو المستوى التالي</span>
+                        </div>
+                        <div t-if="d.is_owner" class="o_growth_jstat">
+                            <span class="o_growth_jstat_v" t-out="d.quality"/>
+                            <span class="o_growth_jstat_l">جودة الإدخالات</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- roadmap: five stations, right to left -->
+                <nav class="o_growth_road" aria-label="مستويات الرحلة">
+                    <t t-foreach="d.levels" t-as="l" t-key="l.seq">
+                        <button type="button" t-attf-class="o_growth_station o_growth_st_#{l.state} #{state.focusLevel === l.seq ? 'focused' : ''}"
+                                t-attf-style="--lvl: #{l.color}" t-on-click="() => this.focus(l.seq)"
+                                t-att-aria-current="d.level and l.seq === d.level.seq ? 'step' : false">
+                            <span class="o_growth_station_icon">
+                                <t t-if="l.seq === (d.level and d.level.seq)">
+                                    <GrowthRing pct="d.progress" size="64" stroke="4" color="l.color"/>
+                                </t>
+                                <span class="o_growth_shield o_growth_shield_md">
+                                    <i t-if="l.state === 'locked'" class="fa fa-lock"/>
+                                    <i t-elif="l.state === 'achieved'" class="fa fa-check"/>
+                                    <i t-else="" t-attf-class="fa #{l.icon}"/>
+                                    <span class="o_growth_shield_num" t-out="l.seq"/>
+                                </span>
+                            </span>
+                            <span class="o_growth_station_name" t-out="l.name"/>
+                            <span class="o_growth_station_reward"><i class="fa fa-gift"/> <t t-out="l.reward"/></span>
+                            <span t-if="l.state === 'ready'" class="badge text-bg-success">جاهز للاستلام</span>
+                            <span t-if="l.skipped" class="badge text-bg-light">تم التخطي</span>
+                        </button>
+                        <span t-if="!l_last" t-attf-class="o_growth_road_link #{l.state === 'achieved' ? 'done' : ''}" aria-hidden="true"/>
+                    </t>
+                </nav>
+
+                <!-- tabs -->
+                <div class="o_growth_tabs" role="tablist">
+                    <t t-foreach="tabs" t-as="t" t-key="t.key">
+                        <button t-if="t.key !== 'plan' or d.is_owner" type="button" role="tab"
+                                t-attf-class="o_growth_tab #{state.tab === t.key ? 'active' : ''}"
+                                t-att-aria-selected="state.tab === t.key ? 'true' : 'false'"
+                                t-on-click="() => this.setTab(t.key)">
+                            <i t-attf-class="fa #{t.icon}"/> <t t-out="t.label"/>
+                        </button>
+                    </t>
+                </div>
+
+                <!-- tab: level -->
+                <section t-if="state.tab === 'level'" class="o_growth_panel_body">
+                    <t t-set="lv" t-value="focused"/>
+                    <div class="o_growth_card o_growth_level_card" t-attf-style="--lvl: #{lv.color}">
+                        <div class="d-flex flex-wrap align-items-center gap-3">
+                            <span class="o_growth_shield o_growth_shield_lg"><i t-attf-class="fa #{lv.icon}"/><span class="o_growth_shield_num" t-out="lv.seq"/></span>
+                            <div class="flex-grow-1">
+                                <div class="small opacity-75">المستوى <t t-out="lv.seq"/></div>
+                                <h2 class="m-0" t-out="lv.name"/>
+                                <div class="text-muted" t-out="lv.subtitle"/>
+                            </div>
+                            <div class="o_growth_reward_box">
+                                <div class="small opacity-75">الجائزة</div>
+                                <div class="fw-bold" t-out="lv.reward"/>
+                                <div t-if="lv.reward_note" class="small text-muted" t-out="lv.reward_note"/>
+                            </div>
+                        </div>
+                        <div t-if="isCurrentFocused and d.can_claim" class="o_growth_ready mt-3">
+                            <div class="fw-bold"><i class="fa fa-gift"/> أكملت كل شروط المستوى!</div>
+                            <button class="btn btn-primary btn-lg mt-2" t-on-click="claim">استلم جائزتك</button>
+                        </div>
+                        <div t-if="isCurrentFocused and d.can_skip and !d.can_claim" class="mt-3">
+                            <button class="btn btn-outline-secondary btn-sm" t-on-click="skip">تخطي هذا المستوى (اشتراك مدفوع بالكامل)</button>
+                        </div>
+                    </div>
+
+                    <t t-if="isCurrentFocused">
+                        <div t-if="!d.conditions.length" class="o_growth_card text-muted">شروط هذا المستوى تصلك قريباً.</div>
+                        <div class="o_growth_cond_grid">
+                            <div t-foreach="d.conditions" t-as="c" t-key="c.id" t-attf-class="o_growth_card o_growth_cond_card #{c.met ? 'met' : ''}">
+                                <div class="d-flex align-items-start gap-2">
+                                    <i t-attf-class="fa fa-lg mt-1 #{c.met ? 'fa-check-circle text-success' : 'fa-circle-o opacity-50'}"/>
+                                    <div class="flex-grow-1">
+                                        <div class="fw-bold" t-out="c.name"/>
+                                        <div class="small text-muted" t-out="c.description"/>
+                                    </div>
+                                    <span class="o_growth_pct"><t t-out="Math.round(c.progress)"/>%</span>
+                                </div>
+                                <div class="o_growth_progress my-2"><div class="o_growth_progress_bar" t-attf-style="width: #{c.progress}%"/></div>
+                                <div class="small" t-out="c.summary"/>
+                                <div t-if="!c.met and c.details and c.details.streak !== undefined and c.key === 'weekly_inventory'" class="o_growth_streak">
+                                    <i class="fa fa-fire"/> الأسبوع <t t-out="c.details.streak"/> من <t t-out="c.target"/> في الجرد، لا تكسر سلسلتك
+                                </div>
+                                <ul t-if="c.details and c.details.incomplete and c.details.incomplete.length" class="small text-muted mb-0 mt-1">
+                                    <li t-foreach="c.details.incomplete" t-as="p" t-key="p_index" t-out="p"/>
+                                </ul>
+                                <div t-if="!c.met" class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                                    <span t-if="c.tip" class="small o_growth_tip"><i class="fa fa-lightbulb-o"/> <t t-out="c.tip"/></span>
+                                    <button t-if="c.lesson" class="btn btn-sm btn-primary ms-auto" t-on-click="() => this.whatToDo(c.lesson)">ماذا أفعل؟</button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <div t-else="" class="o_growth_card">
+                        <t t-if="lv.state === 'achieved'"><i class="fa fa-check-circle text-success"/> أنجزت هذا المستوى.</t>
+                        <t t-else=""><i class="fa fa-lock"/> يُفتح هذا المستوى بعد إكمال ما قبله. البيانات تُجمع من الآن، فعندما تصل له تجد تاريخاً جاهزاً.</t>
+                        <div t-if="lv.features.length" class="o_growth_features mt-3">
+                            <div t-foreach="lv.features" t-as="f" t-key="f.key" class="o_growth_feature">
+                                <i t-attf-class="fa #{f.icon}"/>
+                                <div><div class="fw-bold" t-out="f.name"/><div class="small text-muted" t-out="f.teaser"/></div>
+                                <i t-attf-class="fa ms-auto #{f.unlocked ? 'fa-unlock text-success' : 'fa-lock opacity-50'}"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- tab: score -->
+                <section t-if="state.tab === 'score'" class="o_growth_panel_body">
+                    <div class="o_growth_score_grid">
+                        <div class="o_growth_card text-center">
+                            <svg class="o_growth_gauge" viewBox="0 0 200 115" role="img" t-att-aria-label="'مؤشر الانضباط ' + d.score.value">
+                                <path d="M10 105 A90 90 0 0 1 190 105" class="o_growth_gauge_bg" fill="none" stroke-width="14" stroke-linecap="round"/>
+                                <path t-if="!d.score.forming" d="M10 105 A90 90 0 0 1 190 105" class="o_growth_gauge_fg" fill="none" stroke-width="14"
+                                      stroke-linecap="round" t-att-stroke-dasharray="gaugeDash"/>
+                                <text x="100" y="88" text-anchor="middle" class="o_growth_gauge_v" t-out="d.score.forming ? '—' : d.score.value"/>
+                                <text x="100" y="108" text-anchor="middle" class="o_growth_gauge_l">من 1000</text>
+                            </svg>
+                            <div class="fs-5 fw-bold" t-out="d.score.forming ? 'قيد التكوين' : d.score.band"/>
+                            <div class="o_growth_bands">
+                                <span t-foreach="['يحتاج تأسيس', 'في الطريق', 'منضبط', 'جاهز لفرع ثانٍ']" t-as="b" t-key="b_index"
+                                      t-attf-class="o_growth_bandchip #{!d.score.forming and bandIndex === b_index ? 'active' : ''}" t-out="b"/>
+                            </div>
+                            <div t-if="d.score.forming" class="small text-muted mt-2">يظهر المؤشر بعد 14 يوماً من البيانات.</div>
+                            <div t-if="d.last_compute" class="small text-muted mt-2">آخر حساب: <t t-out="d.last_compute"/> (يُحدّث كل ليلة)</div>
+                        </div>
+                        <div class="o_growth_card">
+                            <div class="fw-bold mb-2">آخر 90 يوماً</div>
+                            <div class="o_growth_chart"><canvas t-ref="chart"/></div>
+                            <div t-if="!d.history.length" class="text-muted small">المنحنى يظهر بعد أول حساب ليلي.</div>
+                        </div>
+                    </div>
+                    <div class="o_growth_comp_grid">
+                        <div t-foreach="d.components" t-as="c" t-key="c.key" class="o_growth_card o_growth_comp">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <div class="fw-bold" t-out="c.label"/>
+                                <div><b class="fs-5" t-out="c.points"/><span class="text-muted"> / <t t-out="c.max"/></span></div>
+                            </div>
+                            <div class="o_growth_progress my-2"><div class="o_growth_progress_bar" t-attf-style="width: #{c.ratio * 100}%"/></div>
+                            <div class="small"><span class="text-muted">السبب: </span><t t-out="c.reason"/></div>
+                            <div class="small mt-1 o_growth_tip"><i class="fa fa-lightbulb-o"/> <t t-out="c.tip"/></div>
+                            <button t-if="c.lesson" class="btn btn-sm btn-link px-0 mt-1" t-on-click="() => this.whatToDo(c.lesson)">
+                                <i class="fa fa-graduation-cap"/> <t t-out="c.lesson.name"/>
+                            </button>
+                        </div>
+                    </div>
+                    <div t-if="d.anomaly_deduction" class="o_growth_card small">
+                        لاحظنا فرقاً يحتاج مراجعة (−<t t-out="d.anomaly_deduction"/>). تواصل معنا أو راجع الدرس.
+                    </div>
+                </section>
+
+                <!-- tab: learning -->
+                <section t-if="state.tab === 'learn'" class="o_growth_panel_body">
+                    <div class="o_growth_lessons">
+                        <div t-foreach="d.lessons" t-as="l" t-key="l.key" t-attf-class="o_growth_card o_growth_lesson #{l.done ? 'done' : ''}">
+                            <button type="button" class="o_growth_lesson_head" t-on-click="() => this.toggleLesson(l.key)"
+                                    t-att-aria-expanded="state.openLesson === l.key ? 'true' : 'false'">
+                                <i t-attf-class="fa #{l.done ? 'fa-check-circle text-success' : (l.kind === 'tour' ? 'fa-hand-pointer-o' : l.kind === 'video' ? 'fa-play-circle' : l.kind === 'checklist' ? 'fa-list-ul' : 'fa-file-text-o')}"/>
+                                <span class="flex-grow-1 text-start fw-semibold" t-out="l.name"/>
+                                <span class="small text-muted"><t t-out="l.minutes"/> د</span>
+                                <span t-if="l.level" class="small text-muted">المستوى <t t-out="l.level"/></span>
+                            </button>
+                            <div t-if="state.openLesson === l.key" class="o_growth_lesson_body">
+                                <div t-out="l.content"/>
+                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                    <button t-if="l.tour" class="btn btn-sm btn-primary" t-on-click="() => this.growth.startTour(l.tour)">
+                                        <i class="fa fa-hand-pointer-o"/> جولة إرشادية
+                                    </button>
+                                    <a t-if="l.video_url" class="btn btn-sm btn-secondary" t-att-href="l.video_url" target="_blank"><i class="fa fa-play"/> الفيديو</a>
+                                    <button t-if="!l.done" class="btn btn-sm btn-outline-success" t-on-click="() => this.lessonDone(l.key)">أنهيت الدرس</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- tab: subscription -->
+                <section t-if="state.tab === 'plan' and d.subscription" class="o_growth_panel_body">
+                    <div class="o_growth_card">
+                        <div class="fs-4 fw-bold" t-out="d.subscription.title"/>
+                        <div class="mt-1" t-out="d.subscription.line"/>
+                        <div class="o_growth_plan mt-3">
+                            <div t-attf-class="o_growth_plan_stage #{d.subscription.stage === 'free' ? 'active' : ''}"><b>الأشهر 1–3</b><span>مجانية للجميع</span></div>
+                            <div t-attf-class="o_growth_plan_stage #{d.subscription.stage === 'half' ? 'active' : ''}"><b>الأشهر 4–6</b><span>خصم 50%، ومجاني إذا جودة الإدخالات ≥ <t t-out="d.subscription.threshold"/></span></div>
+                            <div t-attf-class="o_growth_plan_stage #{d.subscription.stage === 'full' ? 'active' : ''}"><b>بعد الشهر 6</b><span>اشتراك كامل</span></div>
+                        </div>
+                        <div class="small text-muted mt-3">مؤشر جودة إدخالاتك هذا الشهر: <b t-out="d.quality"/> من 100. يُحسب من انتظام التسجيل، اكتمال الأصناف، الجرد في موعده، وسلامة الفواتير.</div>
+                    </div>
+                </section>
+
+                <!-- tab: profile -->
+                <section t-if="state.tab === 'profile'" class="o_growth_panel_body">
+                    <div class="o_growth_score_grid">
+                        <div class="o_growth_card">
+                            <div class="fw-bold mb-2">مطعمك</div>
+                            <div>النوع: <b t-out="d.profile.restaurant_type or '—'"/></div>
+                            <div>المدينة: <b t-out="d.profile.city or '—'"/></div>
+                            <div class="mt-2 small text-muted">أيام العطلة الأسبوعية:
+                                <t t-foreach="d.profile_options.weekdays" t-as="w" t-key="w.field"><span t-if="d.profile.off_days[w.field]" class="o_growth_chip active ms-1" t-out="w.name"/></t>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2 mt-3" t-if="d.is_owner">
+                                <button class="btn btn-sm btn-secondary" t-on-click="openProfileForm">تعديل الملف والموافقات</button>
+                                <button class="btn btn-sm btn-link" t-on-click="restartWelcome">إعادة شاشة الترحيب</button>
+                            </div>
+                        </div>
+                        <div class="o_growth_card" t-if="d.is_owner">
+                            <div class="fw-bold mb-2">إعلان إجازة</div>
+                            <div class="row g-2 o_growth_holiday_form">
+                                <div class="col-12"><input class="form-control" placeholder="السبب (عيد، صيانة…)" t-model="state.holiday.name" aria-label="سبب الإجازة"/></div>
+                                <div class="col-6"><label class="small">من</label><input type="date" class="form-control" t-model="state.holiday.from"/></div>
+                                <div class="col-6"><label class="small">إلى</label><input type="date" class="form-control" t-model="state.holiday.to"/></div>
+                                <div class="col-12"><button class="btn btn-primary w-100" t-on-click="addHoliday">أعلن الإجازة</button></div>
+                            </div>
+                            <ul t-if="d.profile.holidays.length" class="small mt-3 mb-0">
+                                <li t-foreach="d.profile.holidays" t-as="h" t-key="h_index"><t t-out="h.name"/>: <t t-out="h.from"/> ← <t t-out="h.to"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- support tools -->
+                <section t-if="d.is_support" class="o_growth_panel_body">
+                    <div class="o_growth_card o_growth_support">
+                        <div class="fw-bold mb-2"><i class="fa fa-wrench"/> أدوات فريق الدعم</div>
+                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                            <button class="btn btn-sm btn-secondary" t-att-disabled="state.busy" t-on-click="recompute">تحديث الآن</button>
+                            <t t-if="d.simulator">
+                                <span class="vr"/>
+                                <select class="form-select form-select-sm w-auto" t-model="state.scenario" aria-label="سيناريو المحاكي">
+                                    <option value="disciplined">مطعم منضبط</option>
+                                    <option value="average">مطعم متوسط</option>
+                                    <option value="struggling">مطعم متعثر</option>
+                                </select>
+                                <button class="btn btn-sm btn-primary" t-att-disabled="state.busy" t-on-click="() => this.sim('generate', [state.scenario])">توليد 120 يوماً</button>
+                                <t t-foreach="[1,2,3,4,5]" t-as="n" t-key="n">
+                                    <button class="btn btn-sm btn-outline-secondary" t-att-disabled="state.busy" t-on-click="() => this.sim('set_level', [n])">م<t t-out="n"/></button>
+                                </t>
+                                <button class="btn btn-sm btn-outline-secondary" t-att-disabled="state.busy" t-on-click="() => this.sim('set_level', [d.level.seq, true])">اجعل المستوى جاهزاً</button>
+                                <button class="btn btn-sm btn-outline-secondary" t-att-disabled="state.busy" t-on-click="() => this.sim('celebration', [state.focusLevel])">معاينة الاحتفال</button>
+                                <button class="btn btn-sm btn-outline-danger" t-att-disabled="state.busy" t-on-click="() => this.sim('reset')">إعادة الضبط</button>
+                            </t>
+                            <span t-else="" class="small text-muted">المحاكي غير مفعّل لهذه القاعدة (الإعدادات ← رحلة النمو).</span>
+                        </div>
+                        <div t-if="d.simulated" class="small text-warning mt-2"><i class="fa fa-exclamation-triangle"/> البيانات الحالية من المحاكي.</div>
+                    </div>
+                </section>
+            </t>
+        </div>
+    </t>
+</templates>

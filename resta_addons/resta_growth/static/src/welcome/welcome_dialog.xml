@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_growth.WelcomeDialog">
+        <Dialog size="'lg'" title="'أهلاً فيك في ريستا'" contentClass="'o_growth_welcome'">
+            <t t-if="state.data">
+                <div class="o_growth_steps mb-3" role="tablist">
+                    <button t-foreach="steps" t-as="s" t-key="s" type="button"
+                            t-attf-class="o_growth_step_dot #{s_index === state.step ? 'active' : ''} #{s_index &lt; state.step ? 'done' : ''}"
+                            t-att-aria-label="'الخطوة ' + (s_index + 1)" t-on-click="() => this.go(s_index)"/>
+                </div>
+
+                <!-- 1. welcome -->
+                <div t-if="step === 'welcome'" class="o_growth_wstep">
+                    <div class="o_growth_hero">
+                        <div class="o_growth_hero_badge"><i class="fa fa-road"/></div>
+                        <h2 class="mb-3">أهلاً فيك في ريستا يا <t t-out="state.data.owner_name"/></h2>
+                        <p>ريستا مو بس كاشير. ريستا رحلة نمو من خمس مستويات، كل مستوى يعلّمك شي جديد ويفتح لك أدوات تزيد ربحك.</p>
+                        <p>كل ما انضبطت بياناتك ارتفع مؤشرك وقلّت تكلفة اشتراكك، وكل ما كبر مطعمك فتحنا لك أدوات أقوى: مخزون، محاسبة، رواتب، ولاء، وتمويل لفرعك الثاني.</p>
+                        <p>أول 3 شهور علينا… تعلّم براحتك.</p>
+                        <p class="o_growth_motto">نموّك يولّد ربحك، ونموّنا معك.</p>
+                    </div>
+                </div>
+
+                <!-- 2. how the journey works -->
+                <div t-elif="step === 'journey'" class="o_growth_wstep">
+                    <h4 class="mb-3">كيف تمشي الرحلة</h4>
+                    <div class="o_growth_wlevels">
+                        <div t-foreach="state.data.levels" t-as="l" t-key="l.seq" class="o_growth_wlevel" t-attf-style="--lvl: #{l.color}">
+                            <span class="o_growth_shield o_growth_shield_md"><i t-attf-class="fa #{l.icon}"/><span class="o_growth_shield_num" t-out="l.seq"/></span>
+                            <div>
+                                <div class="fw-bold" t-out="l.name"/>
+                                <div class="small text-muted" t-out="l.subtitle"/>
+                                <div class="small"><i class="fa fa-gift"/> <t t-out="l.reward"/></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="small text-muted mt-3">الميزة اللي تُفتح ما تُقفل مرة ثانية أبداً، والبيانات تُجمع من اليوم الأول حتى قبل فتحها.</p>
+                </div>
+
+                <!-- 3. restaurant profile -->
+                <div t-elif="step === 'profile'" class="o_growth_wstep">
+                    <h4 class="mb-3">ملف مطعمك</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold" for="growth_type">نوع المطعم</label>
+                            <select id="growth_type" class="form-select" t-on-change="setType">
+                                <option value="">اختر…</option>
+                                <option t-foreach="state.data.options.types" t-as="t" t-key="t.id" t-att-value="t.id"
+                                        t-att-selected="t.id === state.form.restaurant_type_id" t-out="t.name"/>
+                            </select>
+                            <div class="form-text">نقارن هدرك وهامشك بمطاعم من نفس النوع.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold" for="growth_city">المدينة</label>
+                            <input id="growth_city" class="form-control" t-model="state.form.city"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold" for="growth_region">المنطقة</label>
+                            <select id="growth_region" class="form-select" t-on-change="setRegion">
+                                <option t-foreach="state.data.options.regions" t-as="r" t-key="r.id" t-att-value="r.id"
+                                        t-att-selected="r.id === state.form.region" t-out="r.name"/>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-label fw-semibold">أيام العطلة الأسبوعية</div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button t-foreach="state.data.options.weekdays" t-as="d" t-key="d.field" type="button"
+                                        t-attf-class="o_growth_chip #{state.form[d.field] ? 'active' : ''}"
+                                        t-att-aria-pressed="state.form[d.field] ? 'true' : 'false'"
+                                        t-on-click="() => this.toggleDay(d.field)" t-out="d.name"/>
+                            </div>
+                            <div class="form-text">أيام العطلة لا تُحسب عليك في التسجيل اليومي. الإجازات المؤقتة تعلنها لاحقاً من صفحة رحلتي.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. subscription -->
+                <div t-elif="step === 'plan'" class="o_growth_wstep">
+                    <h4 class="mb-3">اشتراكك</h4>
+                    <div class="o_growth_plan">
+                        <div t-attf-class="o_growth_plan_stage #{state.data.subscription.stage === 'free' ? 'active' : ''}">
+                            <b>الأشهر 1–3</b><span>مجانية للجميع (مرحلة التعلم)</span>
+                        </div>
+                        <div t-attf-class="o_growth_plan_stage #{state.data.subscription.stage === 'half' ? 'active' : ''}">
+                            <b>الأشهر 4–6</b><span>خصم 50%، والشهر مجاني بالكامل إذا تجاوز مؤشر جودة إدخالاتك <t t-out="state.data.subscription.threshold"/></span>
+                        </div>
+                        <div t-attf-class="o_growth_plan_stage #{state.data.subscription.stage === 'full' ? 'active' : ''}">
+                            <b>بعد الشهر 6</b><span>اشتراك كامل، وانضباطك يحفظ لك المزايا</span>
+                        </div>
+                    </div>
+                    <div class="alert alert-light mt-3 mb-0">
+                        <b t-out="state.data.subscription.title"/><br/><t t-out="state.data.subscription.line"/>
+                    </div>
+                </div>
+
+                <!-- 5. consents -->
+                <div t-elif="step === 'consents'" class="o_growth_wstep">
+                    <h4 class="mb-2">الموافقات</h4>
+                    <p class="text-muted">نرسل للمنصة مجاميع ونسباً يومية فقط (مثل نسبة الهدر ومتوسط الفاتورة). لا أسماء، ولا أرقام جوالات، ولا بيانات زبائنك. تقدر تسحب أي موافقة متى ما بغيت.</p>
+                    <label class="o_growth_consent">
+                        <input type="checkbox" class="form-check-input" t-model="state.form.consent_benchmark"/>
+                        <div><b>المقارنات المجهولة</b><div class="small text-muted">مثل: «هدرك أقل من 70% من مطاعم البرجر في مدينتك». ما يظهر اسم أي مطعم.</div></div>
+                    </label>
+                    <label class="o_growth_consent">
+                        <input type="checkbox" class="form-check-input" t-model="state.form.consent_league"/>
+                        <div><b>الدوريات الشهرية</b><div class="small text-muted">ترتيبك بين مطاعم مدينتك ونوعك، والمراكز الأولى تكسب شهراً مجانياً.</div></div>
+                    </label>
+                    <label class="o_growth_consent">
+                        <input type="checkbox" class="form-check-input" t-model="state.form.consent_financing"/>
+                        <div><b>مشاركة المؤشر مع شركاء التمويل</b><div class="small text-muted">فقط عند طلبك تمويلاً لفرع جديد، وبموافقتك لكل طلب.</div></div>
+                    </label>
+                </div>
+
+                <!-- 6. start -->
+                <div t-elif="step === 'start'" class="o_growth_wstep text-center">
+                    <div class="o_growth_hero_badge mx-auto"><i class="fa fa-flag-checkered"/></div>
+                    <h3 class="my-3">جاهز تبدأ؟</h3>
+                    <p>شارة مستواك أعلى الشاشة. اضغطها في أي وقت لتعرف وش باقي عليك.</p>
+                    <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center mt-3">
+                        <button class="btn btn-primary btn-lg" t-att-disabled="state.saving" t-on-click="start">ابدأ رحلتي</button>
+                        <button class="btn btn-secondary btn-lg" t-att-disabled="state.saving" t-on-click="quickTour"><i class="fa fa-play-circle"/> جولة سريعة دقيقتين</button>
+                    </div>
+                </div>
+            </t>
+            <t t-set-slot="footer">
+                <button class="btn btn-link me-auto" t-on-click="props.close">لاحقاً</button>
+                <button t-if="state.step > 0" class="btn btn-secondary" t-on-click="back">السابق</button>
+                <button t-if="!isLast" class="btn btn-primary" t-on-click="next">التالي</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

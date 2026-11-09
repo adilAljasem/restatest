@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Phase 1 locks inventory and accounting. HR and loyalty arrive in phase 2. -->
+    <record id="feature_inventory" model="resta.growth.feature">
+        <field name="key">inventory</field>
+        <field name="name">إدارة المخزون</field>
+        <field name="sequence">1</field>
+        <field name="level_id" ref="level_foundation"/>
+        <field name="icon">fa-cubes</field>
+        <field name="teaser">اعرف وين يروح كل كيلو: جرد، هدر، واستلام مشتريات.</field>
+        <field name="menu_ids" eval="[(6, 0, [ref('stock.menu_stock_root')])]"/>
+        <field name="entry_action_xmlid">stock.action_view_inventory_tree</field>
+    </record>
+    <record id="feature_accounting" model="resta.growth.feature">
+        <field name="key">accounting</field>
+        <field name="name">المحاسبة والتقارير المالية</field>
+        <field name="sequence">2</field>
+        <field name="level_id" ref="level_discipline"/>
+        <field name="icon">fa-calculator</field>
+        <field name="teaser">شوف ربحك الحقيقي: أرباح وخسائر، مصروفات، وهامش.</field>
+        <field name="menu_ids" eval="[(6, 0, [ref('account.menu_finance')])]"/>
+        <field name="entry_action_xmlid">account.action_move_out_invoice</field>
+    </record>
+    <function model="resta.growth.feature" name="_link_optional_menus"/>
+</odoo>

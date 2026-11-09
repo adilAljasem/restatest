@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="level_foundation" model="resta.growth.level">
+        <field name="sequence">1</field>
+        <field name="code">foundation</field>
+        <field name="name">التأسيس</field>
+        <field name="subtitle">كاشير ومنيو وتسجيل يومي وفواتير سليمة</field>
+        <field name="color">#F59E0B</field>
+        <field name="icon">fa-cube</field>
+        <field name="reward">فتح إدارة المخزون</field>
+        <field name="learning">إعداد المنيو الصحيح، تسعير الأطباق، فتح وإغلاق اليوم في الكاشير، الفاتورة الإلكترونية ببساطة</field>
+        <field name="celebration">مبروك! أسّست مطعمك على أرض صلبة. فتحنا لك إدارة المخزون، وعندك بيانات {days} يوم جاهزة تبدأ منها.</field>
+    </record>
+    <record id="level_discipline" model="resta.growth.level">
+        <field name="sequence">2</field>
+        <field name="code">discipline</field>
+        <field name="name">الانضباط</field>
+        <field name="subtitle">جرد أسبوعي، هدر تحت السيطرة، كاشير مطابق</field>
+        <field name="color">#10B981</field>
+        <field name="icon">fa-check-square-o</field>
+        <field name="reward">فتح المحاسبة والتقارير المالية</field>
+        <field name="learning">الجرد الأسبوعي خطوة بخطوة، تسجيل الهدر بشكل صحيح، تقليل الهدر، مطابقة الصندوق</field>
+        <field name="celebration">مطعمك صار منضبط: جرد كل أسبوع، هدر تحت السيطرة، وكاشير مطابق. فتحنا لك المحاسبة، الحين تشوف ربحك الحقيقي.</field>
+    </record>
+    <record id="level_profitability" model="resta.growth.level">
+        <field name="sequence">3</field>
+        <field name="code">profitability</field>
+        <field name="name">الربحية</field>
+        <field name="subtitle">تكلفة كل طبق، متوسط فاتورة أعلى، هامش ثابت</field>
+        <field name="color">#0EA5E9</field>
+        <field name="icon">fa-line-chart</field>
+        <field name="reward">فتح الموارد البشرية والرواتب وإدارة الورديات</field>
+        <field name="learning">هندسة المنيو، البيع الإضافي، قراءة القوائم المالية</field>
+        <field name="celebration">تعرف تكلفة كل طبق وهامشك ثابت. فتحنا لك الرواتب والورديات، وقتك الحين لفريقك.</field>
+    </record>
+    <record id="level_growth" model="resta.growth.level">
+        <field name="sequence">4</field>
+        <field name="code">growth</field>
+        <field name="name">النمو</field>
+        <field name="subtitle">عملاء يرجعون، تقييمات عالية، نمو ثابت</field>
+        <field name="color">#8B5CF6</field>
+        <field name="icon">fa-users</field>
+        <field name="reward">نظام ولاء الزبائن + رسوم دفع إلكتروني أقل</field>
+        <field name="learning">التسويق المحلي، بناء الولاء، الاستفادة من التقييمات</field>
+        <field name="celebration">زبائنك يرجعون لك وتقييماتك عالية. فتحنا لك نظام الولاء، وخفّضنا عليك رسوم الدفع الإلكتروني.</field>
+    </record>
+    <record id="level_expansion" model="resta.growth.level">
+        <field name="sequence">5</field>
+        <field name="code">expansion</field>
+        <field name="name">التوسع</field>
+        <field name="subtitle">جاهز لفرع ثانٍ</field>
+        <field name="color">#FF5A1F</field>
+        <field name="icon">fa-building</field>
+        <field name="reward">خصم على أجهزة واشتراك الفرع الجديد + التأهل للترشيح للتمويل</field>
+        <field name="reward_note">الترشيح للتمويل عبر شركائنا، والقرار النهائي للشريك.</field>
+        <field name="learning">تشغيل الفروع المتعددة، توحيد الجودة، التخطيط المالي للتوسع</field>
+        <field name="celebration">أرقامك تقول إنك جاهز لفرع ثاني. فرعك الجديد عليه خصم، وصرت مؤهل للترشيح للتمويل عبر شركائنا.</field>
+    </record>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_resta_growth" model="ir.ui.view">
+        <field name="name">res.config.settings.resta.growth</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="رحلة النمو" string="رحلة النمو" name="resta_growth" groups="resta_growth.group_resta_support">
+                    <block title="أوزان مؤشر الانضباط (المجموع 1000)">
+                        <setting string="انتظام تسجيل المبيعات"><field name="resta_growth_w_sales"/></setting>
+                        <setting string="دقة الجرد ومطابقته"><field name="resta_growth_w_inventory"/></setting>
+                        <setting string="سلامة الفواتير"><field name="resta_growth_w_invoices"/></setting>
+                        <setting string="استقرار الهامش والنمو"><field name="resta_growth_w_margin"/></setting>
+                    </block>
+                    <block title="الشرائح والحدود">
+                        <setting string="بداية «في الطريق»"><field name="resta_growth_band_1"/></setting>
+                        <setting string="بداية «منضبط»"><field name="resta_growth_band_2"/></setting>
+                        <setting string="بداية «جاهز لفرع ثانٍ»"><field name="resta_growth_band_3"/></setting>
+                        <setting string="حد الشهر المجاني" help="مؤشر جودة الإدخالات (0-100) المطلوب في الأشهر 4-6">
+                            <field name="resta_growth_quality_threshold"/>
+                        </setting>
+                        <setting string="أيام تكوين المؤشر" help="قبلها يظهر المؤشر «قيد التكوين»">
+                            <field name="resta_growth_forming_days"/>
+                        </setting>
+                    </block>
+                    <block title="المحاكي">
+                        <setting string="تفعيل محاكي الرحلة"
+                                 help="للقواعد التجريبية والعروض فقط. يكتب بيانات يومية تجريبية ويغيّر المستوى. لا تفعّله على قاعدة مطعم حقيقي.">
+                            <field name="resta_growth_simulator_enabled"/>
+                        </setting>
+                    </block>
+                    <block title="الشروط والمستويات">
+                        <setting string="الحدود التفصيلية" help="أهداف الشروط، نوافذ الأيام، حدود كل نوع مطعم">
+                            <button name="%(resta_growth.action_growth_condition)d" type="action" string="الشروط" class="btn-link" icon="oi-arrow-right"/>
+                            <button name="%(resta_growth.action_growth_type)d" type="action" string="أنواع المطاعم" class="btn-link" icon="oi-arrow-right"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
