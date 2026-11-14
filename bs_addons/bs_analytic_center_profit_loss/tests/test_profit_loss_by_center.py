@@ -1,18 +1,16 @@
 from odoo import Command
-from odoo.addons.account_reports.tests.common import TestAccountReportsCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.tests import tagged
 
 
 @tagged("post_install", "-at_install")
-class TestProfitLossByCenter(TestAccountReportsCommon):
+class TestProfitLossByCenter(AccountTestInvoicingCommon):
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env.user.group_ids += cls.env.ref("analytic.group_analytic_accounting")
-        cls.report = cls.env.ref(
-            "bs_analytic_center_profit_loss.profit_loss_by_center"
-        )
+        cls.report = cls.env["resta.account.report"]
 
         plan = cls.env["account.analytic.plan"].create({"name": "Centers"})
         cls.profit_center_a, cls.profit_center_b = cls.env[
@@ -105,41 +103,24 @@ class TestProfitLossByCenter(TestAccountReportsCommon):
         move.action_post()
 
     def test_center_columns_and_cost_allocation(self):
-        options = self._generate_options(
-            self.report,
-            "2026-09-01",
-            "2026-09-30",
-        )
+        data = self.report.get_report("pl_center", {"date_from": "2026-09-01", "date_to": "2026-09-30",
+                                                    "hide_zero": False})
         self.assertEqual(
-            [header["name"] for header in options["column_headers"][-1]],
-            ["Profit Center A", "Profit Center B", "Revenue Center", "Total"],
+            [col["label"] for col in data["columns"]][:3],
+            ["Profit Center A", "Profit Center B", "Revenue Center"],
         )
-
-        lines = self.report._get_lines(options)
-        revenue_line = next(line for line in lines if line["name"] == "Revenue")
-        cost_center_line = next(line for line in lines if line["name"] == "Main Kitchen")
-        final_net_profit_line = next(
-            line
-            for line in lines
-            if line["name"] == "Net Profit Left After Cost Center"
-        )
-
-        self.assertEqual(
-            [column["no_format"] for column in revenue_line["columns"]],
-            [500.0, 400.0, 1091.0, 2000.0],
-        )
-        cost_values = [column["no_format"] for column in cost_center_line["columns"]]
+        self.assertEqual(len(data["columns"]), 4)
+        rows = {row["key"]: row for row in data["rows"]}
+        self.assertEqual(rows["revenue"]["values"], [500.0, 400.0, 1091.0, 2000.0])
+        cost_values = rows["bs_cost_%d" % self.cost_center.id]["values"]
         self.assertAlmostEqual(cost_values[0], 100.0 / 400.0 * -3000.0)
         self.assertAlmostEqual(cost_values[1], 300.0 / 400.0 * -3000.0)
         self.assertEqual(cost_values[2], 0.0)
         self.assertEqual(cost_values[3], -3000.0)
-        final_values = [
-            column["no_format"]
-            for column in final_net_profit_line["columns"]
-        ]
+        final_values = rows["bs_final"]["values"]
         self.assertAlmostEqual(final_values[0], 500.0 + cost_values[0])
         self.assertAlmostEqual(final_values[1], 400.0 + cost_values[1])
         self.assertEqual(final_values[2], 1091.0)
         self.assertEqual(final_values[3], -4000.0)
-        self.assertEqual(lines[-2]["name"], "Main Kitchen")
-        self.assertEqual(lines[-1]["name"], "Net Profit Left After Cost Center")
+        self.assertEqual(data["rows"][-2]["name"], "Main Kitchen")
+        self.assertEqual(data["rows"][-1]["key"], "bs_final")

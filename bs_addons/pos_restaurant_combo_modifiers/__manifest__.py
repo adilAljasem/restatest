@@ -3,12 +3,13 @@
     "summary": "Restaurant combos, modifiers, and kitchen integration for Point of Sale",
     "version": "19.0.2.1.1",
     "category": "Sales/Point of Sale",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "point_of_sale",
         "pos_restaurant",
-        "pos_restaurant_preparation_display",
+        "resta_kds",
     ],
     "data": [
         "security/pos_modifier_security.xml",
@@ -26,9 +27,6 @@
         "point_of_sale._assets_pos": [
             "pos_restaurant_combo_modifiers/static/src/app/**/*",
         ],
-        "pos_preparation_display.assets": [
-            "pos_restaurant_combo_modifiers/static/src/kitchen/**/*",
-        ],
         "web.assets_unit_tests": [
             "pos_restaurant_combo_modifiers/static/tests/unit/**/*",
         ],
@@ -37,9 +35,6 @@
         ],
         "point_of_sale.assets_debug": [
             "pos_restaurant_combo_modifiers/static/tests/tours/**/*",
-        ],
-        "pos_preparation_display.assets_tour_tests": [
-            "pos_restaurant_combo_modifiers/static/tests/kitchen_tours/**/*",
         ],
     },
     "application": True,

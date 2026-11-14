@@ -11,7 +11,7 @@ class ResCompany(models.Model):
         domain="[('active', '=', True)]",
     )
     employee_loan_salary_input_type_id = fields.Many2one(
-        "hr.payslip.input.type",
+        "resta.payslip.input.type",
         string="Loan Salary Input Type",
-        domain="[('available_in_attachments', '=', True)]",
+        domain="[('kind', '=', 'deduction')]",
     )

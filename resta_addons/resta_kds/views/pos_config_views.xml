@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_resta_kds" model="ir.ui.view">
+        <field name="name">res.config.settings.resta.kds</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pos_preparation_section']" position="inside">
+                <setting string="شاشات المطبخ" help="الطلبات تظهر على هذه الشاشات عند الإرسال للمطبخ أو الدفع" id="resta_kds_displays">
+                    <field name="pos_resta_kds_display_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    <div>
+                        <button name="%(resta_kds.action_kds_display)d" type="action" string="إدارة شاشات المطبخ"
+                                class="btn-link" icon="oi-arrow-right"/>
+                    </div>
+                </setting>
+                <setting string="أرسل للمطبخ عند الدفع" help="الطلب المدفوع يصل للمطبخ تلقائياً حتى لو لم يُضغط «إرسال»" id="resta_kds_send_on_payment">
+                    <field name="pos_resta_kds_send_on_payment"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_form_resta_kds" model="ir.ui.view">
+        <field name="name">pos.order.form.resta.kds</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="المطبخ" name="resta_kds" invisible="not resta_kds_ticket_ids">
+                    <group><field name="resta_kds_status"/><field name="resta_kds_ready_date"/></group>
+                    <field name="resta_kds_ticket_ids" readonly="1">
+                        <list>
+                            <field name="create_date" string="وقت الإرسال"/>
+                            <field name="display_id"/>
+                            <field name="stage_id"/>
+                            <field name="ready_date"/>
+                            <field name="done"/>
+                            <field name="cancelled"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

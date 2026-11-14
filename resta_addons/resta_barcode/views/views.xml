@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_barcode_app" model="ir.actions.client">
+        <field name="name">الباركود</field>
+        <field name="tag">resta_barcode.app</field>
+        <field name="path">barcode</field>
+    </record>
+    <menuitem id="menu_barcode_root" name="الباركود" action="action_barcode_app" sequence="42"
+              web_icon="resta_barcode,static/description/icon.png" groups="stock.group_stock_user"/>
+    <menuitem id="menu_barcode_in_inventory" name="الباركود" parent="stock.menu_stock_warehouse_mgmt"
+              action="action_barcode_app" sequence="1" groups="stock.group_stock_user"/>
+</odoo>

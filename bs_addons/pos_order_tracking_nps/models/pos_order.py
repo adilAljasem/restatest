@@ -83,41 +83,37 @@ class PosOrder(models.Model):
         return bool(self.config_id) and self.config_id._tracking_order_eligible(self)
 
     # ------------------------------------------------------------------
-    # Status computation (driven by the preparation display stages)
+    # Status computation (driven by the Resta kitchen screen)
     # ------------------------------------------------------------------
     def _tracking_compute_state(self):
-        """Return the customer-facing status computed from the preparation display data.
+        """Return the customer-facing status computed from the kitchen screen tickets.
 
-        The order always starts as "preparing" while its items sit on the first stage of the
-        screen, whatever the number of stages: it only becomes "ready" from the ready stage and
-        "completed" (picked up) from a later, last stage. See pos.config._tracking_stage_levels.
+        The order starts as "preparing" while its tickets sit on the first stage of the screen;
+        it becomes "ready" from the ready stage (or when the cook taps «Done» on a one-column
+        screen) and "completed" (picked up) once it leaves the ready stage.
+        See pos.config._tracking_stage_levels.
         """
         self.ensure_one()
         if self.state == 'cancel':
             return 'cancelled'
-        displays = self.config_id._tracking_prep_displays()
-        prep_orders = self.env['pos.prep.order'].sudo().search([('pos_order_id', '=', self.id)])
-        if not displays or not prep_orders:
-            return 'received'
-
-        states = self.env['pos.prep.state'].sudo().search([
-            ('prep_line_id.prep_order_id', 'in', prep_orders.ids),
-            ('stage_id', 'in', displays.stage_ids.ids),
-        ])
-        # Ignore fully cancelled lines and combo parents (their children carry the work).
-        states = states.filtered(
-            lambda s: (s.prep_line_id.quantity - s.prep_line_id.cancelled) > 0
-        )
-        if not states:
+        if self.resta_kds_status == 'served':
+            return 'completed'
+        displays = self.config_id._tracking_kds_displays()
+        tickets = self.sudo().resta_kds_ticket_ids.filtered(
+            lambda t: t.display_id in displays and not t.cancelled)
+        if not tickets:
             return 'received'
 
         all_ready = True
         all_done = True
-        for display in displays:
+        for display in tickets.display_id:
             stage_ids, ready_index, done_index = self.config_id._tracking_stage_levels(display)
-            display_states = states.filtered(lambda s: s.stage_id.id in stage_ids)
-            for st in display_states:
-                index = stage_ids.index(st.stage_id.id)
+            for ticket in tickets.filtered(lambda t: t.display_id == display):
+                if ticket.done:
+                    if ready_index is None:
+                        all_done = False  # «Done» on a one-column screen means ready, not picked up
+                    continue
+                index = stage_ids.index(ticket.stage_id.id) if ticket.stage_id.id in stage_ids else 0
                 if ready_index is None or index < ready_index:
                     all_ready = False
                 if done_index is None or index < done_index:
@@ -127,6 +123,11 @@ class PosOrder(models.Model):
         if all_ready:
             return 'ready'
         return 'preparing'
+
+    def _resta_kds_on_change(self):
+        res = super()._resta_kds_on_change()
+        self._tracking_sync()
+        return res
 
     def _tracking_sync(self):
         """Recompute the status and react to transitions (notifications, dates)."""

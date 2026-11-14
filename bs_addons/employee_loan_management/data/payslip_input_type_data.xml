@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="input_loan" model="resta.payslip.input.type">
+        <field name="name">قسط سلفة موظف</field>
+        <field name="code">LOAN</field>
+        <field name="kind">deduction</field>
+        <field name="sequence">24</field>
+    </record>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- browser tab when a page has no title of its own -->
+    <template id="layout_title" inherit_id="web.layout" name="Resta: page title">
+        <xpath expr="//title" position="replace">
+            <title t-esc="title or 'Resta'"/>
+        </xpath>
+    </template>
+
+    <!-- «Powered by …» under the website, portal and shop -->
+    <template id="brand_promotion_message" inherit_id="web.brand_promotion_message" name="Resta: powered by">
+        <!-- no «Create a free website / The #1 Open Source eCommerce» links to odoo.com -->
+        <xpath expr="//t[@t-out]" position="replace">
+            <t t-out="final_message % (odoo_logo, '')"/>
+        </xpath>
+        <xpath expr="//t[@t-set='odoo_logo']" position="replace">
+            <t t-set="odoo_logo">
+                <a target="_blank" href="https://resta.sa" class="badge text-bg-light" title="Resta">
+                    <img alt="Resta" src="/resta_sidebar_theme/static/img/resta-wordmark-default.svg"
+                         style="width: auto; height: 1.6em; vertical-align: middle;"/>
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- sign-in pages (login, reset password, two-factor): Resta page, see auth_templates.xml -->
+    <template id="login_layout" inherit_id="web.login_layout" name="Resta: sign-in page">
+        <xpath expr="//t[@t-set='body_classname']" position="attributes">
+            <attribute name="t-value">'rs_auth_body'</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('container')]" position="replace">
+            <t t-call="resta_brand.auth_shell">
+                <t t-out="0"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- installed app (phone / desktop) -->
+    <template id="webclient_bootstrap" inherit_id="web.webclient_bootstrap" name="Resta: app icon">
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="href">/resta_sidebar_theme/static/img/resta-icon-ios.png</attribute>
+        </xpath>
+        <xpath expr="//meta[@name='theme-color']" position="attributes">
+            <attribute name="content">#FF5A1F</attribute>
+        </xpath>
+    </template>
+
+    <!-- emails -->
+    <template id="mail_notification_layout" inherit_id="mail.mail_notification_layout" name="Resta: email footer">
+        <xpath expr="//a[contains(@href, 'www.odoo.com')]" position="replace">
+            <a target="_blank" href="https://resta.sa"
+               t-att-style="'color: ' + (company.email_secondary_color or '#FF5A1F') + ';'">Resta</a>
+        </xpath>
+    </template>
+    <template id="mail_notification_light" inherit_id="mail.mail_notification_light" name="Resta: light email footer">
+        <xpath expr="//a[contains(@href, 'www.odoo.com')]" position="replace">
+            <a target="_blank" href="https://resta.sa"
+               t-att-style="'color: ' + (company.email_secondary_color or '#FF5A1F') + ';'">Resta</a>
+        </xpath>
+    </template>
+    <template id="reset_password_email" inherit_id="auth_signup.reset_password_email" name="Resta: password email">
+        <xpath expr="//a[contains(@href, 'www.odoo.com')]" position="replace">
+            <a target="_blank" href="https://resta.sa"
+               t-attf-style="color: {{object.company_id.email_secondary_color or '#FF5A1F'}};">Resta</a>
+        </xpath>
+    </template>
+
+    <!-- customer portal (invoices, orders) -->
+    <template id="portal_record_sidebar" inherit_id="portal.portal_record_sidebar" name="Resta: portal sidebar">
+        <xpath expr="//a[contains(@href, 'www.odoo.com')]" position="replace">
+            <a target="_blank" href="https://resta.sa" title="Resta">
+                <img src="/resta_sidebar_theme/static/img/resta-wordmark-default.svg" alt="Resta" height="20"/>
+            </a>
+        </xpath>
+    </template>
+
+    <!-- public discuss channel / meeting page -->
+    <template id="discuss_public_title" inherit_id="mail.discuss_public_channel_template" name="Resta: discuss title">
+        <xpath expr="//title" position="replace">
+            <title t-esc="title or 'Resta'"/>
+        </xpath>
+    </template>
+</odoo>

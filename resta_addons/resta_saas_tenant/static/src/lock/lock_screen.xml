@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_saas_tenant.LockScreen">
+        <t t-set="d" t-value="state.data"/>
+        <div t-if="d and d.blocked" class="o_resta_lock" dir="rtl" role="alertdialog" aria-modal="true">
+            <div class="o_resta_lock_card">
+                <img class="o_resta_lock_logo" src="/resta_sidebar_theme/static/img/resta-wordmark-default.svg" alt="Resta"/>
+                <span t-attf-class="o_resta_lock_badge #{d.state === 'suspended' ? 'is-suspended' : ''}">
+                    <i class="fa fa-lock" aria-hidden="true"/> <t t-out="d.title"/>
+                </span>
+                <p class="o_resta_lock_msg" t-out="d.message"/>
+                <div t-if="d.manager and d.manager.name" class="o_resta_lock_manager">
+                    <div class="text-muted small">مدير حسابك</div>
+                    <div class="fw-bold" t-out="d.manager.name"/>
+                    <div t-if="d.manager.phone" class="small" dir="ltr" t-out="d.manager.phone"/>
+                </div>
+                <div class="o_resta_lock_actions">
+                    <a t-if="whatsapp" class="btn btn-success" t-att-href="whatsapp" target="_blank" rel="noopener">
+                        <i class="fa fa-whatsapp"/> تواصل عبر واتساب
+                    </a>
+                    <a t-if="d.renew_url" class="btn btn-primary" t-att-href="d.renew_url" target="_blank" rel="noopener">تجديد الاشتراك</a>
+                </div>
+                <div class="o_resta_lock_foot">
+                    <span>رقم الحساب <b t-out="d.account"/></span>
+                    <a href="/web/session/logout">تسجيل الخروج</a>
+                </div>
+            </div>
+        </div>
+        <div t-elif="d and d.bypass and !state.dismissed" class="o_resta_lock_strip" dir="rtl">
+            <i class="fa fa-exclamation-triangle"/> <t t-out="d.title"/> — يعمل هذا الحساب لأنه حساب دعم ريستا.
+            <button class="btn btn-sm btn-link" t-on-click="() => this.state.dismissed = true">إخفاء</button>
+        </div>
+    </t>
+</templates>

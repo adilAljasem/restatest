@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Community keeps the full accounting features hidden; Resta makes them selectable levels -->
+    <record id="account.group_account_readonly" model="res.groups">
+        <field name="privilege_id" ref="account.res_groups_privilege_accounting"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="account.group_account_user" model="res.groups">
+        <field name="privilege_id" ref="account.res_groups_privilege_accounting"/>
+        <field name="sequence">30</field>
+        <field name="comment">محاسب: القيود، التسوية البنكية، الأصول، التقارير المالية.</field>
+    </record>
+    <record id="account.group_account_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('account.group_account_user'))]"/>
+    </record>
+
+    <record id="rule_resta_asset_company" model="ir.rule">
+        <field name="name">Resta asset: multi-company</field>
+        <field name="model_id" ref="model_resta_asset"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_resta_asset_type_company" model="ir.rule">
+        <field name="name">Resta asset type: multi-company</field>
+        <field name="model_id" ref="model_resta_asset_type"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_resta_asset_line_company" model="ir.rule">
+        <field name="name">Resta asset line: multi-company</field>
+        <field name="model_id" ref="model_resta_asset_line"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

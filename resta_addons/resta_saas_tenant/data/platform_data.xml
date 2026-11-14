@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_resta_commands" model="ir.cron">
+        <field name="name">Resta: تنفيذ أوامر المنصة</field>
+        <field name="model_id" ref="model_resta_platform_command"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_run()</field>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+    </record>
+</odoo>

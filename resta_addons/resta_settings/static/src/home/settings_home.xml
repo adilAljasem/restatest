@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_settings.Home">
+        <div class="o_rs_settings o_action" t-att-dir="dir">
+            <t t-if="state.data" t-set="d" t-value="state.data"/>
+            <div t-if="state.data" class="o_rs_set_inner">
+                <!-- header: like «رحلتي» -->
+                <header class="o_rs_set_head">
+                    <div>
+                        <div class="o_rs_set_company"><t t-out="d.company.name"/></div>
+                        <h1>الإعدادات</h1>
+                        <div class="o_rs_set_motto">اضبط مطعمك مرة… وتفرّغ للبيع.</div>
+                    </div>
+                    <div class="o_rs_set_stats">
+                        <div t-foreach="d.stats" t-as="s" t-key="s_index" class="o_rs_set_stat">
+                            <span class="o_rs_set_stat_v" t-out="s.value"/>
+                            <span class="o_rs_set_stat_l" t-out="s.label"/>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="o_rs_set_search">
+                    <i class="fa fa-search" aria-hidden="true"/>
+                    <input type="search" class="form-control" placeholder="ابحث في الإعدادات: الضريبة، الطابعة، مدى، الرواتب..."
+                           aria-label="بحث في الإعدادات" t-on-input="(ev) => this.state.search = ev.target.value"/>
+                </div>
+
+                <!-- growth level strip -->
+                <section t-if="d.growth and !query" class="o_rs_set_card o_rs_set_growth" t-attf-style="--lvl: #{d.growth.color or '#FF5A1F'}">
+                    <span class="o_growth_shield o_growth_shield_md" t-attf-style="--lvl: #{d.growth.color or '#FF5A1F'}">
+                        <i t-attf-class="fa #{d.growth.icon}"/><span class="o_growth_shield_num" t-out="d.growth.seq"/>
+                    </span>
+                    <div class="flex-grow-1">
+                        <div class="text-muted small">مستوى مطعمك</div>
+                        <div class="fw-bold fs-5" t-out="d.growth.name"/>
+                        <div class="o_rs_set_bar"><span t-attf-style="width: #{d.growth.progress}%"/></div>
+                    </div>
+                    <div class="text-center px-2">
+                        <div class="fw-bold fs-4" t-out="d.growth.score"/>
+                        <div class="text-muted small">مؤشر الانضباط</div>
+                    </div>
+                    <button class="btn btn-primary" t-on-click="openJourney">رحلتي <i class="fa fa-arrow-left"/></button>
+                </section>
+
+                <!-- setup checklist -->
+                <section t-if="d.checklist.length and checklist.length" class="o_rs_set_card o_rs_set_check">
+                    <div class="o_rs_set_check_head">
+                        <div>
+                            <h2>تجهيز المطعم</h2>
+                            <div class="text-muted small">أكملت <b t-out="d.done"/> من <b t-out="d.total"/> خطوات</div>
+                        </div>
+                        <div class="o_rs_set_ring" t-attf-style="--p: #{d.progress}">
+                            <span><t t-out="d.progress"/>%</span>
+                        </div>
+                    </div>
+                    <div class="o_rs_set_bar mb-3"><span t-attf-style="width: #{d.progress}%"/></div>
+                    <div class="o_rs_set_items">
+                        <button t-foreach="checklist" t-as="i" t-key="i.key" type="button"
+                                t-attf-class="o_rs_set_item #{i.done ? 'is-done' : ''}" t-on-click="() => this.run(i.action)">
+                            <i t-attf-class="fa #{i.done ? 'fa-check-circle' : 'fa-circle-thin'} o_rs_set_item_icon" aria-hidden="true"/>
+                            <span class="o_rs_set_item_text">
+                                <span class="fw-semibold" t-out="i.title"/>
+                                <small t-out="i.hint"/>
+                            </span>
+                            <span class="o_rs_set_item_go"><t t-if="i.done">تعديل</t><t t-else="">ابدأ</t></span>
+                        </button>
+                    </div>
+                    <button t-if="!query and d.done &gt; 2" class="btn btn-link btn-sm px-0 mt-2"
+                            t-on-click="() => this.state.showDone = !state.showDone">
+                        <t t-if="state.showDone">إخفاء الخطوات المكتملة</t><t t-else="">عرض كل الخطوات</t>
+                    </button>
+                </section>
+
+                <!-- one card per area, grouped like the side menu -->
+                <section t-foreach="sections" t-as="s" t-key="s.key" class="o_rs_set_section">
+                    <h3 class="o_rs_set_section_title" t-out="s.title"/>
+                    <div class="o_rs_set_grid">
+                        <article t-foreach="s.cards" t-as="c" t-key="c.key"
+                                 t-attf-class="o_rs_set_card o_rs_set_area #{c.locked ? 'is-locked' : ''}">
+                            <button type="button" class="o_rs_set_area_head" t-on-click="() => this.openTab(c)">
+                                <span class="o_rs_set_icon rs_glyph"><t t-out="icon(c.icon)"/></span>
+                                <span class="o_rs_set_area_text">
+                                    <span class="o_rs_set_area_title" t-out="c.title"/>
+                                    <span class="o_rs_set_area_desc" t-out="c.desc"/>
+                                </span>
+                                <i t-if="c.locked" class="fa fa-lock o_rs_set_lock" aria-hidden="true"/>
+                                <i t-else="" t-attf-class="fa #{dir === 'rtl' ? 'fa-angle-left' : 'fa-angle-right'} o_rs_set_chev" aria-hidden="true"/>
+                            </button>
+                            <div t-if="c.locked" class="o_rs_set_locked">
+                                <i class="fa fa-unlock-alt" aria-hidden="true"/>
+                                تُفتح بإكمال مستوى «<t t-out="c.locked.level"/>»<t t-if="c.locked.teaser"> · <t t-out="c.locked.teaser"/></t>
+                            </div>
+                            <div t-elif="c.links.length" class="o_rs_set_links">
+                                <button t-foreach="c.links" t-as="l" t-key="l_index" type="button" class="o_rs_set_chip"
+                                        t-on-click="() => this.openLink(c, l)" t-out="l.label"/>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <div t-if="!sections.length and !checklist.length" class="o_rs_set_empty">لا توجد نتائج لـ «<t t-out="state.search"/>»</div>
+
+                <footer class="o_rs_set_foot">
+                    <button class="btn btn-light" t-on-click="openAllSettings"><i class="fa fa-sliders"/> كل الإعدادات</button>
+                    <button t-if="d.is_admin" class="btn btn-link text-muted" t-on-click="openAdvanced">الإعدادات المتقدمة (للدعم الفني)</button>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -18,7 +18,8 @@ POS Call Center Dispatch
 * The cashier only collects the payment when the customer arrives.
 * Tracking of every call center order (dispatched, in kitchen, paid, cancelled).
     """,
-    'author': 'Custom',
+    'author': "Resta",
+    "website": "https://resta.sa",
     'license': 'LGPL-3',
     'depends': ['point_of_sale', 'pos_restaurant', 'mail'],
     'data': [

@@ -9,11 +9,11 @@ class BsHrPayslipObjection(models.Model):
     _ess_sequence_code = 'bs.hr.payslip.objection'
     _ess_auto_done = True
 
-    payslip_id = fields.Many2one('hr.payslip', string='Payslip', required=True, index=True,
+    payslip_id = fields.Many2one('resta.payslip', string='Payslip', required=True, index=True,
                                  ondelete='restrict', tracking=True)
     payslip_ref = fields.Char(compute='_compute_payslip_info', string='Payslip reference')
     payslip_period = fields.Char(compute='_compute_payslip_info', string='Period')
-    line_id = fields.Many2one('hr.payslip.line', string='Contested line', ondelete='set null',
+    line_id = fields.Many2one('resta.payslip.line', string='Contested line', ondelete='set null',
                               domain="[('slip_id', '=', payslip_id)]")
     line_amount = fields.Float(compute='_compute_payslip_info', string='Line amount')
     currency_id = fields.Many2one(related='company_id.currency_id')
@@ -38,7 +38,7 @@ class BsHrPayslipObjection(models.Model):
             slip = rec.payslip_id.sudo()
             rec.payslip_ref = compat._slip_reference(slip) if slip else False
             rec.payslip_period = '%s - %s' % (slip.date_from, slip.date_to) if slip else False
-            rec.line_amount = rec.line_id.sudo().total if rec.line_id else 0.0
+            rec.line_amount = rec.line_id.sudo().amount if rec.line_id else 0.0
 
     @api.constrains('payslip_id', 'employee_id', 'line_id')
     def _check_payslip(self):

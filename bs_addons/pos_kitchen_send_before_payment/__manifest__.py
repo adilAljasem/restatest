@@ -27,6 +27,7 @@ Enable it from: Point of Sale > Configuration > Settings > Preparation >
     },
     'installable': True,
     'application': False,
-    'author': 'Custom',
+    'author': "Resta",
+    "website": "https://resta.sa",
     'license': 'LGPL-3',
 }

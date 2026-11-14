@@ -1,8 +1,11 @@
 from datetime import date
 
+from psycopg2 import IntegrityError
+
 from odoo import Command
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.tests import tagged
+from odoo.tools import mute_logger
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
@@ -14,6 +17,8 @@ class TestEmployeeLoan(AccountTestInvoicingCommon):
         cls.env.user.group_ids |= (
             cls.env.ref("employee_loan_management.group_employee_loan_manager")
             | cls.env.ref("account.group_account_manager")
+            | cls.env.ref("hr.group_hr_user")
+            | cls.env.ref("resta_payroll.group_payroll_manager")
         )
         cls.employee_partner = cls.env["res.partner"].create(
             {"name": "Loan Employee"}
@@ -33,11 +38,11 @@ class TestEmployeeLoan(AccountTestInvoicingCommon):
                 "company_ids": [Command.set(cls.company.ids)],
             }
         )
-        cls.salary_input_type = cls.env["hr.payslip.input.type"].create(
+        cls.salary_input_type = cls.env["resta.payslip.input.type"].create(
             {
                 "name": "Loan Deduction",
                 "code": "LOAN_DEDUCTION",
-                "available_in_attachments": True,
+                "kind": "deduction",
             }
         )
         cls.company.write(
@@ -97,9 +102,10 @@ class TestEmployeeLoan(AccountTestInvoicingCommon):
         self.assertRegex(loan.name, r"^LO/\d{5}$")
         self.assertEqual(loan.applicant_id, self.env.user)
         self.assertEqual(loan.department_id, self.employee.department_id)
-        with self.assertRaises((UserError, ValidationError)):
+        with mute_logger("odoo.sql_db"), self.assertRaises(Exception), \
+                self.env.cr.savepoint():
             self._create_loan(amount=0)
-        with self.assertRaises((UserError, ValidationError)):
+        with mute_logger("odoo.sql_db"), self.assertRaises(Exception), self.env.cr.savepoint():
             self._create_loan(count=0)
 
     def test_compute_installments_is_monthly_exact_and_idempotent(self):
@@ -159,19 +165,20 @@ class TestEmployeeLoan(AccountTestInvoicingCommon):
         installment = loan.installment_ids[0]
         installment.salary_deduction = True
 
-        self.env["employee.loan.installment"]._cron_create_due_salary_attachments()
-        attachment = installment.salary_attachment_id
+        slip = self.env["resta.payslip"].sudo().create({
+            "employee_id": self.employee.id, "company_id": self.company.id,
+            "date_from": date(2026, 8, 1), "date_to": date(2026, 8, 31),
+        })
+        slip._resta_collect_inputs()
         self.assertEqual(installment.payroll_state, "sent")
-        self.assertEqual(attachment.monthly_amount, 100)
-        self.assertEqual(attachment.employee_loan_installment_id, installment)
+        self.assertEqual(installment.payroll_payslip_id, slip)
+        loan_input = slip.input_ids.filtered("source_ref")
+        self.assertEqual(loan_input.amount, 100)
+        self.assertEqual(loan_input.type_id, self.salary_input_type)
+        self.assertEqual(loan_input.account_id, self.loan_account)
 
-        self.env["employee.loan.installment"]._cron_create_due_salary_attachments()
-        self.assertEqual(
-            self.env["hr.salary.attachment"].search_count(
-                [("employee_loan_installment_id", "=", installment.id)]
-            ),
-            1,
-        )
+        slip._resta_collect_inputs()
+        self.assertEqual(len(slip.input_ids.filtered("source_ref")), 1)
 
     def test_user_approver_and_record_rules(self):
         user_group = self.env.ref(

@@ -629,7 +629,10 @@ class DeliveryOrderWorkflow(models.Model):
         # normally publishes a restaurant preparation ticket.  Let Odoo's
         # preparation service process the completed Core order once its
         # modifier and combo relations are in place.
-        if "pos.prep.order" in self.env:
+        if hasattr(pos_order, "_resta_kds_dispatch"):
+            # Resta kitchen screen (resta_kds): what is on the order goes to the kitchen now
+            pos_order.sudo().with_context(resta_kds_fire=True)._resta_kds_dispatch(paid_now=True)
+        elif "pos.prep.order" in self.env:
             self.env["pos.prep.order"].sudo().process_order(pos_order.id, {})
         return pos_order
 

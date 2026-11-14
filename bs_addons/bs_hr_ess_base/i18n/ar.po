@@ -80,7 +80,7 @@ msgstr "<i class=\"fa fa-pencil me-1\"/> طلب تحديث"
 #. module: bs_hr_ess_base
 #: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_profile
 msgid "<i class=\"fa fa-th me-1\"/> Back to Odoo"
-msgstr "<i class=\"fa fa-th me-1\"/> العودة إلى أودو"
+msgstr "<i class=\"fa fa-th me-1\"/> العودة إلى النظام"
 
 #. module: bs_hr_ess_base
 #: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.ess_team
@@ -1394,12 +1394,12 @@ msgstr "مصدر البوابة"
 #. module: bs_hr_ess_base
 #: model:ir.model.fields,help:bs_hr_ess_base.field_res_company__ess_portal_landing model:ir.model.fields,help:bs_hr_ess_base.field_res_config_settings__ess_portal_landing
 msgid "Portal employees (also in the Odoo iOS / Android app) open their self-service home after login."
-msgstr "يفتح موظفو البوابة (وكذلك في تطبيق أودو على iOS / Android) الصفحة الرئيسية للخدمة الذاتية بعد تسجيل الدخول."
+msgstr "يفتح موظفو البوابة (وكذلك في تطبيق الجوال على iOS / Android) الصفحة الرئيسية للخدمة الذاتية بعد تسجيل الدخول."
 
 #. module: bs_hr_ess_base
 #: model_terms:ir.ui.view,arch_db:bs_hr_ess_base.res_config_settings_view_form_ess
 msgid "Portal employees land on /my/hr, in the browser and in the Odoo iOS / Android app."
-msgstr "يُوجَّه موظفو البوابة إلى /my/hr في المتصفح وفي تطبيق أودو على iOS / Android."
+msgstr "يُوجَّه موظفو البوابة إلى /my/hr في المتصفح وفي تطبيق الجوال على iOS / Android."
 
 #. module: bs_hr_ess_base
 #: model:ir.model.fields.selection,name:bs_hr_ess_base.selection__hr_employee__ess_access__portal

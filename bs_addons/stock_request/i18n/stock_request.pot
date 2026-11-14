@@ -3733,3 +3733,307 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_template_form_v14
 msgid "e.g. Weekly Replenishment"
 msgstr ""
+
+#. module: stock_request
+msgid "New Template"
+msgstr ""
+
+#. module: stock_request
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_request_close_receipt_wizard_form
+msgid ""
+"Confirming will cancel the remaining quantities shown below. The actual "
+"received quantities will not be changed."
+msgstr ""
+
+#. module: stock_request
+msgid ""
+"Only a responsible user of the source warehouse can accept this Stock "
+"Request."
+msgstr ""
+
+#. module: stock_request
+msgid "Warehouse responsible users must have Inventory User access: %(users)s"
+msgstr ""
+
+#. module: stock_request
+msgid "Submit"
+msgstr ""
+
+#. module: stock_request
+msgid "Accept"
+msgstr ""
+
+#. module: stock_request
+msgid "Reject"
+msgstr ""
+
+#. module: stock_request
+msgid "Submitted"
+msgstr ""
+
+#. module: stock_request
+msgid ""
+"The receipt transfer cannot be validated before its delivery transfer is "
+"completed."
+msgstr ""
+
+#. module: stock_request
+msgid ""
+"The receipt transfer cannot be completed before its delivery transfer is "
+"completed."
+msgstr ""
+
+#. module: stock_request
+msgid ""
+"Delivery and receipt audit fields are filled automatically when their "
+"transfers are validated."
+msgstr ""
+
+#. module: stock_request
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_template__active
+msgid "Active"
+msgstr ""
+
+#. module: stock_request
+msgid "Total Requested"
+msgstr ""
+
+#. module: stock_request
+msgid "Total Delivered"
+msgstr ""
+
+#. module: stock_request
+msgid "Total Received"
+msgstr ""
+
+#. module: stock_request
+msgid "Total Remaining to Deliver"
+msgstr ""
+
+#. module: stock_request
+msgid "Total Remaining to Receive"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: model:ir.actions.client,name:stock_request.preparation_summary_action
+#: model:ir.ui.menu,name:stock_request.preparation_summary_menu
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+#: model:ir.actions.act_window,name:stock_request.preparation_summary_list_action
+#: model:ir.actions.report,name:stock_request.preparation_summary_pdf_action
+#: model:ir.model.fields,field_description:stock_request.field_res_config_settings__stock_request_preparation_summary_enabled
+#: model_terms:ir.ui.view,arch_db:stock_request.stock_transfer_res_config_settings_view_form
+msgid "Preparation Summary"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__warehouse_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Receiving Warehouse"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "All"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Request Date From"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Request Date To"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Refresh"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Reset Filters"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Loading…"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__code
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Internal Reference"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__product_uom_id
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__quantity
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Quantity to Prepare"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: model:ir.model.fields,field_description:stock_request.field_stock_request_preparation_summary__order_count
+#: model_terms:ir.ui.view,arch_db:stock_request.preparation_summary_search
+msgid "Orders"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "No quantities pending preparation."
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Only warehouse responsible users and managers can access this report."
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Invalid transfer flow."
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Print PDF"
+msgstr ""
+
+#. module: stock_request
+#. odoo-javascript
+#: code:addons/stock_request/models/preparation_summary.py:0
+#: code:addons/stock_request/static/src/preparation_summary.xml:0
+msgid "Export Excel"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Preparation Summary is disabled in Settings."
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Unsupported Preparation Summary filter: %s"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Unsupported report sort field: %s"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid ""
+"Group by Company, Source Warehouse, Product, Internal Reference or Unit of "
+"Measure."
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "AND"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "OR"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "NOT"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Companies: %s"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "All matching requests"
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Use the Preparation Summary report to read its data."
+msgstr ""
+
+#. module: stock_request
+#: code:addons/stock_request/models/preparation_summary.py:0
+msgid "Preparation Summary is read-only."
+msgstr ""
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid ""
+"Kit products cannot be added to stock requests or transfers. Add their "
+"components instead."
+msgstr ""
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request_order.py:0
+msgid ""
+"Only Requested Quantity changes and new product lines are allowed while a "
+"Stock Request is waiting for source warehouse review."
+msgstr ""
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid "Finish or cancel the pending receipt before changing this line."
+msgstr ""
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid ""
+"A line with a recorded receipt or receipt closure cannot be deleted or have "
+"its product or unit changed."
+msgstr ""
+
+#. module: stock_request
+#. odoo-python
+#: code:addons/stock_request/models/stock_request.py:0
+msgid ""
+"Requested Quantity cannot be less than the received and closed receipt "
+"quantities."
+msgstr ""

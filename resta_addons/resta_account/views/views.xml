@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= fixed assets ================= -->
+    <record id="view_resta_asset_type_list" model="ir.ui.view">
+        <field name="name">resta.asset.type.list</field>
+        <field name="model">resta.asset.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+                <field name="months"/>
+                <field name="prorata" optional="hide"/>
+                <field name="asset_account_id"/>
+                <field name="depreciation_account_id"/>
+                <field name="expense_account_id"/>
+                <field name="journal_id"/>
+                <field name="auto_from_bills"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_resta_asset_type" model="ir.actions.act_window">
+        <field name="name">أنواع الأصول</field>
+        <field name="res_model">resta.asset.type</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html"><p class="o_view_nocontent_smiling_face">أضف أنواع الأصول: معدات مطبخ (5 سنوات)، أثاث (5 سنوات)، ديكور وتجهيزات (10 سنوات)، سيارات (4 سنوات).</p></field>
+    </record>
+
+    <record id="view_resta_asset_list" model="ir.ui.view">
+        <field name="name">resta.asset.list</field>
+        <field name="model">resta.asset</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state in ('closed', 'disposed')" decoration-info="state == 'draft'">
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="acquisition_date"/>
+                <field name="original_value" sum="1"/>
+                <field name="depreciated_value" sum="1"/>
+                <field name="book_value" sum="1"/>
+                <field name="state" widget="badge" decoration-success="state == 'open'" decoration-info="state == 'draft'"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_resta_asset_form" model="ir.ui.view">
+        <field name="name">resta.asset.form</field>
+        <field name="model">resta.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="تأكيد وبدء الإهلاك" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_compute_board" type="object" string="حساب الجدول" invisible="state != 'draft'"/>
+                    <button name="action_open_dispose" type="object" string="بيع / استبعاد" invisible="state not in ('open', 'closed')"/>
+                    <button name="action_draft" type="object" string="إرجاع لمسودة" invisible="state != 'open'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" placeholder="مثال: فرن بيتزا - فرع العليا"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="type_id" readonly="state != 'draft'"/>
+                            <field name="acquisition_date" readonly="state != 'draft'"/>
+                            <field name="original_value" readonly="state != 'draft'"/>
+                            <field name="salvage_value" readonly="state != 'draft'"/>
+                            <field name="already_depreciated" readonly="state != 'draft'"/>
+                            <field name="months" readonly="state != 'draft'"/>
+                            <field name="prorata" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="book_value"/>
+                            <field name="depreciated_value"/>
+                            <field name="analytic_distribution" widget="analytic_distribution" readonly="state != 'draft'"/>
+                            <field name="partner_id"/>
+                            <field name="bill_line_id" invisible="not bill_line_id"/>
+                            <field name="code"/>
+                            <field name="disposal_date" invisible="not disposal_date"/>
+                            <field name="disposal_move_id" invisible="not disposal_move_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="جدول الإهلاك" name="board">
+                            <field name="line_ids" readonly="1">
+                                <list decoration-success="posted">
+                                    <field name="date"/>
+                                    <field name="amount" sum="1"/>
+                                    <field name="cumulative"/>
+                                    <field name="remaining"/>
+                                    <field name="move_id"/>
+                                    <field name="posted" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="الحسابات" name="accounts">
+                            <group>
+                                <field name="asset_account_id" readonly="state != 'draft'"/>
+                                <field name="depreciation_account_id" readonly="state != 'draft'"/>
+                                <field name="expense_account_id" readonly="state != 'draft'"/>
+                                <field name="journal_id" readonly="state != 'draft'"/>
+                            </group>
+                        </page>
+                        <page string="ملاحظات" name="note"><field name="note"/></page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_resta_asset_search" model="ir.ui.view">
+        <field name="name">resta.asset.search</field>
+        <field name="model">resta.asset</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="type_id"/>
+                <filter name="draft" string="للمراجعة" domain="[('state', '=', 'draft')]"/>
+                <filter name="running" string="قيد الإهلاك" domain="[('state', '=', 'open')]"/>
+                <group>
+                    <filter name="by_type" string="النوع" context="{'group_by': 'type_id'}"/>
+                    <filter name="by_state" string="الحالة" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_resta_asset" model="ir.actions.act_window">
+        <field name="name">الأصول</field>
+        <field name="res_model">resta.asset</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_running': 0}</field>
+        <field name="help" type="html"><p class="o_view_nocontent_smiling_face">سجّل أصول المطعم، أو اختر حساب الأصل في فاتورة المورد ليُنشأ الأصل تلقائياً.</p></field>
+    </record>
+
+    <record id="view_resta_asset_dispose_form" model="ir.ui.view">
+        <field name="name">resta.asset.dispose.form</field>
+        <field name="model">resta.asset.dispose</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="asset_id" readonly="1"/>
+                    <field name="date"/>
+                    <field name="mode" widget="radio"/>
+                    <field name="sale_amount" invisible="mode != 'sale'"/>
+                    <field name="sale_account_id" invisible="mode != 'sale'"/>
+                    <field name="loss_account_id"/>
+                </group>
+                <footer>
+                    <button name="action_dispose" type="object" string="تأكيد" class="btn-primary"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- bill: link to the assets it created -->
+    <record id="view_move_form_assets" model="ir.ui.view">
+        <field name="name">account.move.form.resta.assets</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_resta_assets" type="object" class="oe_stat_button" icon="fa-building"
+                        invisible="not resta_asset_ids">
+                    <span>الأصول</span>
+                    <field name="resta_asset_ids" invisible="1"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= bank statement lines ================= -->
+    <record id="view_statement_line_list" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.resta.list</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <list editable="top" decoration-muted="is_reconciled">
+                <field name="journal_id" domain="[('type', 'in', ('bank', 'cash', 'credit'))]"/>
+                <field name="date"/>
+                <field name="payment_ref" string="البيان"/>
+                <field name="partner_id"/>
+                <field name="amount" sum="1"/>
+                <field name="is_reconciled" string="مسوّى"/>
+                <field name="company_id" column_invisible="1"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ================= lock dates ================= -->
+    <record id="view_resta_lock_dates_form" model="ir.ui.view">
+        <field name="name">resta.lock.dates.form</field>
+        <field name="model">resta.lock.dates</field>
+        <field name="arch" type="xml">
+            <form>
+                <p class="text-muted">بعد إقفال فترة لا يمكن إضافة قيود أو تعديلها بتاريخ قبل تاريخ الإقفال.</p>
+                <group>
+                    <field name="company_id" invisible="1"/>
+                    <field name="sale_lock_date"/>
+                    <field name="purchase_lock_date"/>
+                    <field name="tax_lock_date"/>
+                    <field name="fiscalyear_lock_date"/>
+                    <field name="hard_lock_date"/>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object" string="حفظ" class="btn-primary"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

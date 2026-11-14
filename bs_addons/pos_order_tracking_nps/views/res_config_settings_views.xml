@@ -22,19 +22,19 @@
                                 </div>
                             </div>
                             <div class="row" invisible="not pos_tracking_pager_enabled">
-                                <label for="pos_tracking_prep_display_id" string="Tracking screen" class="col-lg-4 o_light_label"/>
-                                <field name="pos_tracking_prep_display_id" placeholder="All preparation screens of this POS"
+                                <label for="pos_tracking_kds_display_id" string="Tracking screen" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_kds_display_id" placeholder="All kitchen screens of this POS"
                                        options="{'no_create': True}"
-                                       domain="['|', ('pos_config_ids', '=', False), ('pos_config_ids', 'in', pos_config_id)]"/>
+                                       domain="[('pos_config_ids', 'in', pos_config_id)]"/>
                             </div>
-                            <div class="row" invisible="not pos_tracking_pager_enabled or not pos_tracking_prep_display_id">
+                            <div class="row" invisible="not pos_tracking_pager_enabled or not pos_tracking_kds_display_id">
                                 <field name="pos_tracking_stage_ids" invisible="1"/>
-                                <label for="pos_tracking_ready_stage_id" string="Ready stage" class="col-lg-4 o_light_label"/>
-                                <field name="pos_tracking_ready_stage_id" placeholder="Automatic"
+                                <label for="pos_tracking_kds_stage_id" string="Ready stage" class="col-lg-4 o_light_label"/>
+                                <field name="pos_tracking_kds_stage_id" placeholder="Automatic"
                                        options="{'no_create': True, 'no_open': True}"
                                        domain="[('id', 'in', pos_tracking_stage_ids)]"/>
                             </div>
-                            <div class="text-muted small mb8" invisible="not pos_tracking_pager_enabled">New orders are always shown as "preparing". The order is ready from the ready stage (automatic: the stage before the last one, or the last stage on a 2-stage screen) and picked up on the last stage after it. A single-stage screen cannot mark orders ready.</div>
+                            <div class="text-muted small mb8" invisible="not pos_tracking_pager_enabled">New orders are always shown as "preparing". The order is ready when the cook taps «Done» on the kitchen screen (or reaches its ready stage, when the screen has one) and picked up when it leaves the ready stage.</div>
                             <div class="row" invisible="not pos_use_presets">
                                 <label for="pos_tracking_preset_ids" string="Order types" class="col-lg-4 o_light_label"/>
                                 <field name="pos_tracking_preset_ids" widget="many2many_tags" placeholder="All order types"

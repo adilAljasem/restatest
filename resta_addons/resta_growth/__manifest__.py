@@ -10,7 +10,7 @@
 """,
     "version": "19.0.1.0.0",
     "category": "Productivity",
-    "author": "Basic Solution",
+    "author": "Resta",
     "website": "https://resta.sa",
     "license": "OPL-1",
     "depends": [
@@ -20,6 +20,7 @@
         "account",
         "web_tour",
         "bus",
+        "resta_settings",
     ],
     "data": [
         "security/resta_growth_security.xml",

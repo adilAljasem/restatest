@@ -23,16 +23,15 @@
     'name': 'Odoo POS Custom Branding',
     'version': '19.0.1.9.1',
     'category': 'Point of Sale',
-    'live_test_url': 'https://www.youtube.com/watch?v=sHQUam5F5Qs',
     'summary': "POS Custom Branding, Remove Odoo Branding, Custom POS Logo, "
                "POS Receipt Design, Custom Receipt, POS Branding, Odoo19",
     'description': "Remove Odoo branding from POS and customize with your own logo. "
                    "Upload custom logos for POS header, customer screen, and lock screen. "
                    "Also includes custom receipt design options.",
-    'author': 'Axiom Cloudnest Technologies',
-    'company': 'Axiom Cloudnest Technologies',
-    'maintainer': 'Axiom Cloudnest Technologies',
-    'website': 'https://www.cloudnest.com.ng',
+    'author': "Resta",
+    'company': "Resta",
+    'maintainer': "Resta",
+    'website': "https://resta.sa",
     'depends': ['base', 'point_of_sale', 'l10n_sa_pos'],
     'data': [
         'security/ir.model.access.csv',

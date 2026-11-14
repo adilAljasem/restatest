@@ -26,14 +26,13 @@ class PosConfig(models.Model):
     def load_onboarding_resta_qsr_scenario(self, with_demo_data=False):
         res = super().load_onboarding_resta_qsr_scenario(with_demo_data)
         config = self.browse(res["config_id"])
-        self.env["pos.prep.display"].search([("pos_config_ids", "in", config.ids)]).unlink()
-        # Kitchen and coffee bar get their own screens; "ready" orders feed the
-        # customer order-number board (pos_order_tracking_display), auto-cleared.
+        Display = self.env["resta.kds.display"].sudo()
+        Display.search([("pos_config_ids", "in", config.ids)]).unlink()
+        # Kitchen and coffee bar get their own screens; "ready" order numbers show on the
+        # customer order-status TV (resta_kds tracking page) for 5 minutes.
         self._resta_prep_displays(config, [
             (_("Kitchen"), self._resta_qsr_categ(FOOD)),
             (_("Coffee Bar"), self._resta_qsr_categ(BAR)),
         ])
-        self.env["pos.prep.display"].search([("pos_config_ids", "in", config.ids)]).write({
-            "auto_clear": True, "clear_time_interval": 5,
-        })
+        Display.search([("pos_config_ids", "in", config.ids)]).write({"tracking_ready_minutes": 5})
         return res

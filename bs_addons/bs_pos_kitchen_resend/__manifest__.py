@@ -2,7 +2,7 @@
     "name": "POS Kitchen Resend | إعادة إرسال للمطبخ",
     "version": "19.0.1.1.0",
     "summary": "Resend paid orders to the kitchen printer / preparation display, marked as RESEND",
-    "author": "Basic Solution",
+    "author": "Resta",
     "website": "https://resta.sa",
     "category": "Sales/Point of Sale",
     "license": "LGPL-3",

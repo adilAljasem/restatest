@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="resta_sidebar_theme.MenuHub">
+        <div class="o_action rs_hub_action">
+            <Layout display="{ controlPanel: {} }">
+                <div class="rs_hub">
+                    <div t-if="!menu" class="rs_hub_empty">This menu is not available.</div>
+                    <t t-else="">
+                        <div t-if="showSearch" class="rs_hub_head">
+                            <label class="rs_hub_search">
+                                <i class="oi oi-search" aria-hidden="true"/>
+                                <input type="search" class="rs_hub_search_input" placeholder="Search options…"
+                                       aria-label="Search options" t-att-value="state.query"
+                                       t-on-input="onSearchInput" t-on-keydown="onSearchKeydown"/>
+                            </label>
+                        </div>
+                        <t t-set="sectionList" t-value="sections"/>
+                        <t t-foreach="sectionList" t-as="section" t-key="section.key">
+                            <section class="rs_hub_section">
+                                <h2 t-if="section.title" class="rs_hub_section_title">
+                                    <span class="rs_dot"/><t t-esc="section.title"/>
+                                </h2>
+                                <div class="rs_hub_grid">
+                                    <t t-foreach="section.cards" t-as="card" t-key="card.menu.id">
+                                        <a class="rs_hub_card" t-att-href="href(card.menu)"
+                                           t-att-data-menu-xmlid="card.menu.xmlid"
+                                           t-on-click="(ev) => this.open(ev, card.menu)">
+                                            <span class="rs_hub_card_icon" aria-hidden="true">
+                                                <i t-att-class="'fa ' + card.icon"/>
+                                            </span>
+                                            <span class="rs_hub_card_body">
+                                                <span class="rs_hub_card_title" t-esc="card.menu.name"/>
+                                                <span t-if="card.path" class="rs_hub_card_path" t-esc="card.path"/>
+                                            </span>
+                                            <i class="oi oi-chevron-right rs_hub_card_chevron" aria-hidden="true"/>
+                                        </a>
+                                    </t>
+                                </div>
+                            </section>
+                        </t>
+                        <div t-if="!sectionList.length" class="rs_hub_empty">No matching option</div>
+                    </t>
+                </div>
+            </Layout>
+        </div>
+    </t>
+
+</templates>

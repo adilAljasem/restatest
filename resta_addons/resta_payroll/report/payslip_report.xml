@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_payslip" model="ir.actions.report">
+        <field name="name">قسيمة الراتب</field>
+        <field name="model">resta.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">resta_payroll.report_payslip</field>
+        <field name="report_file">resta_payroll.report_payslip</field>
+        <field name="print_report_name">'قسيمة - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_resta_payslip"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_payslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="slip">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="slip"/>
+                    <div class="page" dir="rtl" style="text-align: right;">
+                        <h3>قسيمة راتب <span t-out="slip.date_to.strftime('%m/%Y')"/></h3>
+                        <table class="table table-sm table-borderless">
+                            <tr><td style="width:25%">الموظف</td><td><b t-out="slip.employee_id.name"/></td>
+                                <td style="width:20%">الوظيفة</td><td t-out="slip.employee_id.job_title or ''"/></tr>
+                            <tr><td>الفترة</td><td><span t-out="slip.date_from"/> - <span t-out="slip.date_to"/></td>
+                                <td>أيام الاستحقاق</td><td t-out="'%g' % slip.paid_days"/></tr>
+                            <tr><td>رقم الهوية / الإقامة</td><td t-out="slip.employee_id.sudo().identification_id or ''"/>
+                                <td>القسم</td><td t-out="slip.employee_id.department_id.name or ''"/></tr>
+                        </table>
+                        <table class="table table-sm">
+                            <thead><tr><th>البند</th><th class="text-end">المستحقات</th><th class="text-end">الخصومات</th></tr></thead>
+                            <tbody>
+                                <tr t-foreach="slip.line_ids.filtered(lambda l: l.category not in ('net', 'gosi_employer', 'eosb'))" t-as="l">
+                                    <td t-out="l.name"/>
+                                    <td class="text-end"><span t-if="l.amount &gt; 0" t-out="l.amount" t-options="{'widget': 'monetary', 'display_currency': slip.currency_id}"/></td>
+                                    <td class="text-end"><span t-if="l.amount &lt; 0" t-out="-l.amount" t-options="{'widget': 'monetary', 'display_currency': slip.currency_id}"/></td>
+                                </tr>
+                                <tr class="fw-bold border-top">
+                                    <td>الإجمالي</td>
+                                    <td class="text-end" t-out="slip.gross" t-options="{'widget': 'monetary', 'display_currency': slip.currency_id}"/>
+                                    <td class="text-end" t-out="slip.deductions" t-options="{'widget': 'monetary', 'display_currency': slip.currency_id}"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4>صافي الراتب: <span t-out="slip.net" t-options="{'widget': 'monetary', 'display_currency': slip.currency_id}"/></h4>
+                        <p t-if="slip.note" t-out="slip.note"/>
+                        <div class="row mt-5">
+                            <div class="col-6">توقيع الموظف: ................</div>
+                            <div class="col-6">الموارد البشرية: ................</div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -291,7 +291,7 @@ class TestPosModifierTour(AccountTestInvoicingHttpCommon):
     def test_kitchen_display_nests_modifiers_under_parent(self):
         category = self.env["pos.category"].create({"name": "Modifier Display UAT"})
         self.tour_parent_product.pos_categ_ids = [Command.set(category.ids)]
-        display = self.env["pos.prep.display"].create({
+        self.env["resta.kds.display"].create({
             "name": "Modifier Display UAT",
             "pos_config_ids": [Command.link(self.main_pos_config.id)],
             "category_ids": [Command.link(category.id)],
@@ -302,18 +302,11 @@ class TestPosModifierTour(AccountTestInvoicingHttpCommon):
             "pos_combo_modifier_send_to_kitchen",
             login="modifier_tour_cashier",
         )
-
-        prep_lines = self.env["pos.prep.line"].search([
+        kitchen_lines = self.env["resta.kds.ticket.line"].search([
             ("product_id", "=", self.tour_parent_product.id),
         ])
-        self.assertTrue(prep_lines)
+        self.assertTrue(kitchen_lines)
         self.assertTrue(any(
-            {entry["name"] for entry in line.modifier_display_data or []}
-            >= {"Extra Cheese", "No Onion"}
-            for line in prep_lines
+            {entry["name"] for entry in line.modifiers or []} >= {"Extra Cheese", "No Onion"}
+            for line in kitchen_lines
         ))
-        self.start_tour(
-            f"/pos_preparation_display/web?display_id={display.id}",
-            "pos_combo_modifier_kitchen_display",
-            login="modifier_tour_cashier",
-        )

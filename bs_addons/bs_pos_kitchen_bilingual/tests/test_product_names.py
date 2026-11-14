@@ -41,7 +41,7 @@ class TestKitchenBilingualProductNames(TransactionCase):
         self.assertEqual(self.ptav.kitchen_name_en, "Large")
         self.assertEqual(self.ptav.kitchen_name_ar, "كبير")
 
-    def test_fields_are_loaded_for_pos_and_preparation_display(self):
+    def test_fields_are_loaded_for_pos(self):
         config = self.env["pos.config"].create({"name": "Bilingual Kitchen POS"})
         for model_name in (
             "product.product",
@@ -51,6 +51,4 @@ class TestKitchenBilingualProductNames(TransactionCase):
             model = self.env[model_name]
             self.assertIn("kitchen_name_ar", model._load_pos_data_fields(config))
             self.assertIn("kitchen_name_en", model._load_pos_data_fields(config))
-            self.assertIn("kitchen_name_ar", model._load_pos_preparation_data_fields())
-            self.assertIn("kitchen_name_en", model._load_pos_preparation_data_fields())
 

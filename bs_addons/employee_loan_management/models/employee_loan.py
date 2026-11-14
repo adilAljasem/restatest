@@ -378,14 +378,8 @@ class EmployeeLoanInstallment(models.Model):
         copy=False,
         check_company=True,
     )
-    salary_attachment_id = fields.Many2one(
-        "hr.salary.attachment",
-        string="Salary Adjustment",
-        readonly=True,
-        copy=False,
-    )
     payroll_payslip_id = fields.Many2one(
-        "hr.payslip",
+        "resta.payslip",
         string="Payroll Payslip",
         readonly=True,
         copy=False,
@@ -424,7 +418,7 @@ class EmployeeLoanInstallment(models.Model):
             raise UserError(_("Pay the loan to the employee before collecting installments."))
         if self.paid or self.payment_id:
             raise UserError(_("This installment has already been paid."))
-        if self.payroll_state != "none" or self.salary_attachment_id:
+        if self.payroll_state != "none":
             raise UserError(_("This installment is already being processed by Payroll."))
         return {
             "type": "ir.actions.act_window",
@@ -456,7 +450,7 @@ class EmployeeLoanInstallment(models.Model):
         self.ensure_one()
         if self.paid:
             return
-        if self.payroll_state != "sent" or not self.salary_attachment_id:
+        if self.payroll_state != "sent" or self.payroll_payslip_id != payslip:
             raise UserError(_("This installment was not sent to Payroll."))
         projected_total = self.loan_id.total_paid_amount + self.amount
         if float_compare(
@@ -465,70 +459,18 @@ class EmployeeLoanInstallment(models.Model):
             precision_rounding=self.currency_id.rounding,
         ) > 0:
             raise UserError(_("Total Paid Amount cannot exceed the Loan Amount."))
-        attachment = self.salary_attachment_id
-        if attachment in payslip.salary_attachment_ids and attachment.remaining_amount:
-            attachment.record_payment(self.amount)
-        self.write(
-            {
-                "paid": True,
-                "payroll_state": "processed",
-                "payroll_payslip_id": payslip.id,
-            }
-        )
-
-    def _create_salary_attachment(self):
-        self.ensure_one()
-        if self.paid:
-            raise UserError(_("Paid installments cannot be sent to Payroll."))
-        if self.payroll_state != "none" or self.salary_attachment_id:
-            raise UserError(_("This installment has already been sent to Payroll."))
-        input_type = self.company_id.employee_loan_salary_input_type_id
-        if not input_type:
-            raise UserError(
-                _("Configure the Loan Salary Input Type in Accounting Settings first.")
-            )
-        if not input_type.available_in_attachments:
-            raise UserError(
-                _("The selected Salary Input Type must be available in Salary Adjustments.")
-            )
-        attachment = self.env["hr.salary.attachment"].create(
-            {
-                "employee_ids": [Command.set(self.employee_id.ids)],
-                "company_id": self.company_id.id,
-                "description": _(
-                    "Loan %(loan)s - installment %(number)s",
-                    loan=self.loan_id.name,
-                    number=self.sequence,
-                ),
-                "other_input_type_id": input_type.id,
-                "duration_type": "one",
-                "monthly_amount": self.amount,
-                "total_amount": self.amount,
-                "date_start": self.payment_date,
-                "employee_loan_installment_id": self.id,
-            }
-        )
-        self.write(
-            {
-                "salary_attachment_id": attachment.id,
-                "payroll_state": "sent",
-            }
-        )
-        return attachment
+        self.write({"paid": True, "payroll_state": "processed"})
 
     @api.model
-    def _cron_create_due_salary_attachments(self):
-        due_installments = self.search(
-            [
-                ("salary_deduction", "=", True),
-                ("paid", "=", False),
-                ("payroll_state", "=", "none"),
-                ("payment_date", "<=", fields.Date.context_today(self)),
-                ("loan_id.state", "=", "approved"),
-                ("loan_id.is_disbursed", "=", True),
-            ]
-        )
-        for installment in due_installments:
-            if installment.company_id.employee_loan_salary_input_type_id:
-                installment._create_salary_attachment()
-        return True
+    def _due_for_payslip(self, payslip):
+        """Installments the payslip must deduct: due by the end of its period, not collected yet."""
+        return self.search([
+            ("employee_id", "=", payslip.employee_id.id),
+            ("salary_deduction", "=", True),
+            ("paid", "=", False),
+            ("payment_date", "<=", payslip.date_to),
+            ("loan_id.state", "=", "approved"),
+            ("loan_id.is_disbursed", "=", True),
+            "|", ("payroll_state", "=", "none"),
+            "&", ("payroll_state", "=", "sent"), ("payroll_payslip_id", "=", payslip.id),
+        ], order="payment_date, sequence")

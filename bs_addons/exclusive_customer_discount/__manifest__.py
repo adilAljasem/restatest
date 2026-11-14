@@ -3,7 +3,8 @@
     "version": "19.0.1.2.0",
     "category": "Sales/Point of Sale",
     "summary": "Limit exclusive-only POS promotions per exclusive and period",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["loyalty", "pos_loyalty"],
     "data": [

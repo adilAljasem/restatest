@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_settings_home" model="ir.actions.client">
+        <field name="name">الإعدادات</field>
+        <field name="tag">resta_settings.home</field>
+        <field name="path">settings-center</field>
+    </record>
+    <!-- first entry of the Settings app: opening «الإعدادات» lands on the settings centre -->
+    <menuitem id="menu_settings_home" name="مركز الإعدادات" parent="base.menu_administration"
+              action="action_settings_home" sequence="-10" groups="base.group_system"/>
+</odoo>

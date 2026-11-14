@@ -12,7 +12,8 @@ Replaces the design of the kitchen (preparation printer) ticket of Odoo 19.
 Every part of the ticket can be shown or hidden per Point of Sale in
 Point of Sale > Configuration > Kitchen Ticket.
 """,
-    'author': 'Maeen',
+    'author': "Resta",
+    "website": "https://resta.sa",
     'license': 'LGPL-3',
     'depends': ['point_of_sale'],
     'data': [

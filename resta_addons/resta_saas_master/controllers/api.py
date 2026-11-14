@@ -31,6 +31,7 @@ class RestaApi(http.Controller):
         if not tenant:
             return request.make_json_response({"error": "unauthorized"}, status=401)
         tenant._record_usage(data.get("usage"))
+        tenant._record_acks(data.get("acks"))
         return request.make_json_response(tenant._sync_response(data.get("last_id") or 0))
 
     @http.route("/resta/api/v1/feedback", type="http", auth="public", methods=["POST"], csrf=False,

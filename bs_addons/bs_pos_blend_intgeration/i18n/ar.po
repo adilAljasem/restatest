@@ -32,15 +32,26 @@ msgstr "تحذير إجمالي Blend"
 #. odoo-python
 #: code:addons/bs_pos_blend_intgeration/models/blend_order_totals.py:0
 #, python-format
-msgid "ZATCA submission is blocked for Blend order %(reference)s. The original Blend total or the Odoo total/currency is missing or invalid. Review and correct the order before submission."
-msgstr "إرسال طلب Blend رقم %(reference)s إلى الزكاة (ZATCA) موقوف. إجمالي Blend الأصلي أو إجمالي/عملة Odoo مفقود أو غير صالح. راجع الطلب وصححه قبل الإرسال."
+msgid ""
+"ZATCA submission is blocked for Blend order %(reference)s. The original "
+"Blend total or the Odoo total/currency is missing or invalid. Review and "
+"correct the order before submission."
+msgstr ""
+"إرسال طلب Blend رقم %(reference)s إلى الزكاة (ZATCA) موقوف. إجمالي Blend "
+"الأصلي أو إجمالي/عملة Odoo مفقود أو غير صالح. راجع الطلب وصححه قبل الإرسال."
 
 #. module: bs_pos_blend_intgeration
 #. odoo-python
 #: code:addons/bs_pos_blend_intgeration/models/blend_order_totals.py:0
 #, python-format
-msgid "Blend order %(reference)s has different totals. Odoo total: %(actual)s. Blend total: %(expected)s. Difference (Odoo - Blend): %(difference)s. Review the difference before ZATCA submission."
-msgstr "يوجد اختلاف في إجمالي طلب Blend رقم %(reference)s. إجمالي Odoo: %(actual)s. إجمالي Blend: %(expected)s. الفرق (Odoo - Blend): %(difference)s. راجع الاختلاف قبل الإرسال إلى الزكاة (ZATCA)."
+msgid ""
+"Blend order %(reference)s has different totals. Odoo total: %(actual)s. "
+"Blend total: %(expected)s. Difference (Odoo - Blend): %(difference)s. Review"
+" the difference before ZATCA submission."
+msgstr ""
+"يوجد اختلاف في إجمالي طلب Blend رقم %(reference)s. إجمالي Odoo: %(actual)s. "
+"إجمالي Blend: %(expected)s. الفرق (Odoo - Blend): %(difference)s. راجع "
+"الاختلاف قبل الإرسال إلى الزكاة (ZATCA)."
 
 #. module: bs_pos_blend_intgeration
 #. odoo-javascript
@@ -102,8 +113,12 @@ msgstr "إعادة محاولة الطباعة"
 
 #. module: bs_pos_blend_intgeration
 #: model_terms:ir.ui.view,arch_db:bs_pos_blend_intgeration.view_pos_pos_form_blend
-msgid "Check the printer first. An unconfirmed receipt may already have printed. Retry can produce a duplicate."
-msgstr "راجع الطابعة أولًا؛ قد تكون الورقة طُبعت بالفعل دون وصول التأكيد. إعادة المحاولة قد تطبع نسخة مكررة."
+msgid ""
+"Check the printer first. An unconfirmed receipt may already have printed. "
+"Retry can produce a duplicate."
+msgstr ""
+"راجع الطابعة أولًا؛ قد تكون الورقة طُبعت بالفعل دون وصول التأكيد. إعادة "
+"المحاولة قد تطبع نسخة مكررة."
 
 #. module: bs_pos_blend_intgeration
 #: model:ir.model.fields,field_description:bs_pos_blend_intgeration.field_pos_order__blend_kitchen_print_warning
@@ -134,8 +149,12 @@ msgstr "فشلت الطباعة"
 #. odoo-javascript
 #: code:addons/bs_pos_blend_intgeration/static/src/js/blend_kitchen_print.js:0
 #, python-format
-msgid "Blend kitchen printing needs review for %(reference)s. Open the order's Blend Kitchen Printing section before retrying. %(message)s"
-msgstr "طباعة طلب Blend تحتاج مراجعة: %(reference)s. افتح قسم طباعة طلب Blend للمطبخ داخل الطلب قبل إعادة المحاولة. %(message)s"
+msgid ""
+"Blend kitchen printing needs review for %(reference)s. Open the order's "
+"Blend Kitchen Printing section before retrying. %(message)s"
+msgstr ""
+"طباعة طلب Blend تحتاج مراجعة: %(reference)s. افتح قسم طباعة طلب Blend للمطبخ"
+" داخل الطلب قبل إعادة المحاولة. %(message)s"
 
 #. module: bs_pos_blend_intgeration
 #. odoo-javascript
@@ -146,14 +165,20 @@ msgstr "الطلبات المنتظرة"
 #. module: bs_pos_blend_intgeration
 #. odoo-javascript
 #: code:addons/bs_pos_blend_intgeration/static/src/js/blend_kitchen_print.js:0
-msgid "Connection to Odoo was interrupted. Checking Blend kitchen printing will resume automatically when the connection returns."
-msgstr "تعذر الاتصال بسيرفر Odoo. سيُستأنف التحقق من طباعة طلبات Blend تلقائيًا عند عودة الاتصال."
+msgid ""
+"Connection to Odoo was interrupted. Checking Blend kitchen printing will "
+"resume automatically when the connection returns."
+msgstr ""
+"تعذر الاتصال بسيرفر Odoo. سيُستأنف التحقق من طباعة طلبات Blend تلقائيًا عند "
+"عودة الاتصال."
 
 #. module: bs_pos_blend_intgeration
 #: code:addons/bs_pos_blend_intgeration/models/blend_kitchen_print.py:0
 #, python-format
-msgid "No kitchen printer is configured for: %s. Check the POS printer categories."
-msgstr "لا توجد طابعة مطبخ مخصصة للأصناف: %s. راجع تصنيفات الطابعات في نقطة البيع."
+msgid ""
+"No kitchen printer is configured for: %s. Check the POS printer categories."
+msgstr ""
+"لا توجد طابعة مطبخ مخصصة للأصناف: %s. راجع تصنيفات الطابعات في نقطة البيع."
 
 #. module: bs_pos_blend_intgeration
 #: model:ir.model.fields,field_description:bs_pos_blend_intgeration.field_pos_order__blend_tax_warning
@@ -174,14 +199,22 @@ msgstr "محاسبة طلب Blend"
 #. module: bs_pos_blend_intgeration
 #. odoo-javascript
 #: code:addons/bs_pos_blend_intgeration/static/src/js/blend_pos_store.js:0
-msgid "Complete this Blend order using its acceptance action in the order form. If accounting failed, review the Blend Accounting Error before retrying."
-msgstr "أكمل طلب Blend من إجراء القبول في نموذج الطلب. إذا فشلت المحاسبة، راجع خطأ محاسبة Blend قبل إعادة المحاولة."
+msgid ""
+"Complete this Blend order using its acceptance action in the order form. If "
+"accounting failed, review the Blend Accounting Error before retrying."
+msgstr ""
+"أكمل طلب Blend من إجراء القبول في نموذج الطلب. إذا فشلت المحاسبة، راجع خطأ "
+"محاسبة Blend قبل إعادة المحاولة."
 
 #. module: bs_pos_blend_intgeration
 #: code:addons/bs_pos_blend_intgeration/models/blend_order_accounting.py:0
 #, python-format
-msgid "Complete Blend order %(reference)s using its acceptance action in the order form. Cashier payment cannot finalize this order. No payment was recorded."
-msgstr "أكمل طلب Blend %(reference)s من إجراء القبول في نموذج الطلب. لا يمكن إنهاء هذا الطلب من دفع الكاشير. لم يتم تسجيل أي دفعة."
+msgid ""
+"Complete Blend order %(reference)s using its acceptance action in the order "
+"form. Cashier payment cannot finalize this order. No payment was recorded."
+msgstr ""
+"أكمل طلب Blend %(reference)s من إجراء القبول في نموذج الطلب. لا يمكن إنهاء "
+"هذا الطلب من دفع الكاشير. لم يتم تسجيل أي دفعة."
 
 #. module: bs_pos_blend_intgeration
 #: code:addons/bs_pos_blend_intgeration/models/blend_order_accounting.py:0
@@ -202,3 +235,18 @@ msgstr ""
 "الفرق (Odoo ناقص Blend): %(difference)s\n"
 "إجمالي الطلب: %(total)s\n"
 "تعتمد المحاسبة ضريبة Odoo مع الاحتفاظ بأسعار Blend الشاملة للضريبة. راجع حساب الضريبة في Blend وإعدادات الضرائب في Odoo لتحديد السبب."
+
+#. module: bs_pos_blend_intgeration
+#: model:ir.ui.menu,name:bs_pos_blend_intgeration.menu_blend_integration_root
+msgid "Blend Integration"
+msgstr "ربط Blend"
+
+#. module: bs_pos_blend_intgeration
+#: model:ir.ui.menu,name:bs_pos_blend_intgeration.menu_blend_integration_log
+msgid "Integration Logs"
+msgstr "سجل الربط"
+
+#. module: bs_pos_blend_intgeration
+#: model:ir.actions.act_window,name:bs_pos_blend_intgeration.action_blend_integration_log
+msgid "Blend Integration Logs"
+msgstr "سجل ربط Blend"

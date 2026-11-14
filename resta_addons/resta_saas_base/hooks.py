@@ -19,8 +19,6 @@ COMMON_BS_MODULES = [
     "pos_config_controls",
     "dk_pos_employee_access_rights",
     "employee_loyalty_limit",
-    "kds_order_timer",
-    "pos_kds_sound",
     "l10n_sa_edi_pos_async",
     "pos_analytic_account",
     "hide_menu_user",
@@ -38,22 +36,55 @@ def _param_list(env, key, default):
     return list(default)
 
 
+def _installable(modules):
+    """Split modules into (installable, blocked): blocked ones need a module that is not in
+    the addons path (e.g. an Enterprise module on a Community-only image)."""
+    ok, blocked, cache = modules.browse(), {}, {}
+
+    def missing_deps(module, seen):
+        if module.id in cache:
+            return cache[module.id]
+        if module.state == "uninstallable":
+            cache[module.id] = {module.name}
+            return cache[module.id]
+        missing = set()
+        for dep in module.dependencies_id:
+            if not dep.depend_id:
+                missing.add(dep.name)
+            elif dep.depend_id.id not in seen:
+                missing |= missing_deps(dep.depend_id, seen | {module.id})
+        cache[module.id] = missing
+        return missing
+
+    for module in modules:
+        missing = missing_deps(module, frozenset())
+        if missing:
+            blocked[module.name] = sorted(missing)
+        else:
+            ok |= module
+    return ok, blocked
+
+
 def soft_install(env, names, label):
     """Mark the given modules 'to install' when available; log the missing ones.
 
     The Odoo 19 loader loops while modules are 'to install', so modules marked
-    from a post_init_hook are installed in the same run.
+    from a post_init_hook are installed in the same run. A module that needs a
+    module missing from the image (e.g. Enterprise) is skipped, never blocking.
     """
     Module = env["ir.module.module"].sudo()
     found = Module.search([("name", "in", names)])
-    to_install = found.filtered(lambda m: m.state == "uninstalled")
+    to_install, blocked = _installable(found.filtered(lambda m: m.state == "uninstalled"))
     missing = sorted(set(names) - set(found.mapped("name")))
     if to_install:
         to_install.button_install()
         _logger.info("Resta %s: installing %s", label, ", ".join(to_install.mapped("name")))
     if missing:
         _logger.warning("Resta %s: modules not in addons path, skipped: %s", label, ", ".join(missing))
-    env["ir.config_parameter"].sudo().set_param("resta.missing_modules.%s" % label, ",".join(missing))
+    for name, deps in blocked.items():
+        _logger.warning("Resta %s: %s skipped, it needs %s", label, name, ", ".join(deps))
+    env["ir.config_parameter"].sudo().set_param(
+        "resta.missing_modules.%s" % label, ",".join(missing + sorted(blocked)))
     return missing
 
 

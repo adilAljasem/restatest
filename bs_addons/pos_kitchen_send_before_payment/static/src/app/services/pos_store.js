@@ -15,7 +15,8 @@ patch(PosStore.prototype, {
     /** True when a kitchen printer or a preparation display is linked to this POS. */
     get kitchenHasDevice() {
         return Boolean(
-            this.config.printerCategories?.size || this.models["pos.prep.display"]?.length
+            this.config.printerCategories?.size || this.models["pos.prep.display"]?.length ||
+                this.models["resta.kds.display"]?.length
         );
     },
 
@@ -66,7 +67,7 @@ patch(PosStore.prototype, {
             return;
         }
         const categoryCount = this.getKitchenCategoryCount(order);
-        const hasPrepDisplay = Boolean(this.models["pos.prep.display"]?.length);
+        const hasPrepDisplay = Boolean(this.models["pos.prep.display"]?.length || this.models["resta.kds.display"]?.length);
         if (!categoryCount.length && !hasPrepDisplay) {
             this.dialog.add(AlertDialog, {
                 title: _t("Nothing to send"),

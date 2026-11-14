@@ -21,7 +21,8 @@ All labels follow the user interface language (English / Arabic).
     'version': '19.0.2.0.0',
     'category': 'Sales/Point of Sale',
     'license': 'LGPL-3',
-    'author': "Custom Development",
+    'author': "Resta",
+    "website": "https://resta.sa",
     'depends': ['point_of_sale', 'pos_hr'],
     'data': [
         'views/res_config_settings_views.xml',

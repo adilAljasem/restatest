@@ -3,7 +3,8 @@
     "version": "19.0.1.2.0",
     "category": "Sales/Point of Sale",
     "summary": "Limit employee-only POS promotions per employee and period",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["hr", "loyalty", "pos_loyalty"],
     "data": [

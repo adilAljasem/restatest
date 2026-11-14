@@ -3,7 +3,8 @@
     "version": "19.0.1.0.0",
     "category": "Accounting/Accounting",
     "summary": "Refresh analytic distribution rates from analytic line amounts",
-    "author": "Bunbastic",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["account"],
     "data": [

@@ -22,12 +22,12 @@
                     <setting
                         string="Salary Input Type"
                         company_dependent="1"
-                        help="Salary Adjustment input type used to deduct loan installments from payroll."
+                        help="Payslip deduction item used for loan installments (Resta payroll)."
                         groups="account.group_account_manager"
                     >
                         <field
                             name="employee_loan_salary_input_type_id"
-                            domain="[('available_in_attachments', '=', True)]"
+                            domain="[('kind', '=', 'deduction')]"
                             options="{'no_create': True}"
                         />
                     </setting>

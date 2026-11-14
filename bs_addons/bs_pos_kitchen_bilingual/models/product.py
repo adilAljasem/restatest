@@ -45,14 +45,6 @@ class ProductProduct(models.Model):
                 result.append(field_name)
         return result
 
-    @api.model
-    def _load_pos_preparation_data_fields(self):
-        result = super()._load_pos_preparation_data_fields()
-        for field_name in ("kitchen_name_ar", "kitchen_name_en"):
-            if field_name not in result:
-                result.append(field_name)
-        return result
-
 
 class ProductAttribute(models.Model):
     _inherit = "product.attribute"
@@ -83,14 +75,6 @@ class ProductAttribute(models.Model):
                 result.append(field_name)
         return result
 
-    @api.model
-    def _load_pos_preparation_data_fields(self):
-        result = super()._load_pos_preparation_data_fields()
-        for field_name in ("kitchen_name_ar", "kitchen_name_en"):
-            if field_name not in result:
-                result.append(field_name)
-        return result
-
 
 class ProductTemplateAttributeValue(models.Model):
     _inherit = "product.template.attribute.value"
@@ -116,14 +100,6 @@ class ProductTemplateAttributeValue(models.Model):
     @api.model
     def _load_pos_data_fields(self, config):
         result = super()._load_pos_data_fields(config)
-        for field_name in ("kitchen_name_ar", "kitchen_name_en"):
-            if field_name not in result:
-                result.append(field_name)
-        return result
-
-    @api.model
-    def _load_pos_preparation_data_fields(self):
-        result = super()._load_pos_preparation_data_fields()
         for field_name in ("kitchen_name_ar", "kitchen_name_en"):
             if field_name not in result:
                 result.append(field_name)

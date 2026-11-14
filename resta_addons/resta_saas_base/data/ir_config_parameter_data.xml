@@ -5,7 +5,7 @@
              (if present in the addons path). Edit before installing to change the bundle. -->
         <record id="param_common_modules" model="ir.config_parameter">
             <field name="key">resta.common_modules</field>
-            <field name="value">pos_business_day,pos_closing_report,pos_closing_report_hr,pos_kitchen_ticket_custom,pino_pos_receipt,odoo_pos_custom_branding,bi_pos_multi_layout,pos_control_button_resize,pos_ticket_pager_ipad,pos_set_default_customer,pos_config_controls,dk_pos_employee_access_rights,employee_loyalty_limit,kds_order_timer,pos_kds_sound,l10n_sa_edi_pos_async,pos_analytic_account,hide_menu_user,inventory_stock_adjustments,stock_request,the_dash,bs_hr_ess</field>
+            <field name="value">pos_business_day,pos_closing_report,pos_closing_report_hr,pos_kitchen_ticket_custom,pino_pos_receipt,odoo_pos_custom_branding,bi_pos_multi_layout,pos_control_button_resize,pos_ticket_pager_ipad,pos_set_default_customer,pos_config_controls,dk_pos_employee_access_rights,employee_loyalty_limit,l10n_sa_edi_pos_async,pos_analytic_account,hide_menu_user,inventory_stock_adjustments,stock_request,the_dash,bs_hr_ess</field>
         </record>
     </data>
 </odoo>

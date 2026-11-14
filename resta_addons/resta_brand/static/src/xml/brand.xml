@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_brand.Dialog" t-inherit="web.Dialog" t-inherit-mode="extension">
+        <xpath expr="//h4[hasclass('modal-title')]/t[@t-esc='props.title']" position="attributes">
+            <attribute name="t-esc">restaTitle</attribute>
+        </xpath>
+    </t>
+    <t t-name="resta_brand.InstallScopedApp" t-inherit="web.InstallScopedApp" t-inherit-mode="extension">
+        <xpath expr="//a[@href='https://odoo.com']" position="replace">
+            <a class="text-primary text-decoration-none" href="https://resta.sa" target="_blank">Resta</a>
+        </xpath>
+    </t>
+</templates>

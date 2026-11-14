@@ -3,7 +3,8 @@
     "summary": "Show each reward's order description on the loyalty program card",
     "version": "19.0.1.0.0",
     "category": "Sales",
-    "author": "M-Malky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["loyalty"],
     "data": [

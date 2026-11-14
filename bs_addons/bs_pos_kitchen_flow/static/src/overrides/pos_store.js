@@ -1,5 +1,5 @@
 import "@pos_restaurant/app/services/pos_store";
-import "@pos_enterprise/override/point_of_sale/pos_store";
+import "@resta_kds/pos/pos_config_kds";
 import { PosStore } from "@point_of_sale/app/services/pos_store";
 import { _t } from "@web/core/l10n/translation";
 import { patch } from "@web/core/utils/patch";
@@ -13,7 +13,6 @@ import {
 
 const PRE_DISPLAY_PHASE = "bs_kitchen_display_first";
 const PARALLEL_PREFLIGHT_PHASE = "bs_kitchen_parallel_preflight";
-const FINAL_SNAPSHOT_PHASE = "bs_kitchen_final_snapshot";
 
 function printerDetails(printer) {
     return {
@@ -39,14 +38,9 @@ function printResultDetails(result) {
     };
 }
 
-function preparationOptions(order, opts) {
-    return {
-        general_customer_note: order.general_customer_note || "",
-        internal_note: order.internal_note || "",
-        note_history: order.uiState.noteHistory,
-        cancelled: opts.cancelled,
-        fired_course_id: opts.firedCourseId,
-    };
+function hasKitchenScreen(config) {
+    // Resta kitchen screens (resta_kds) linked to this point of sale
+    return (config.restaKdsCategories?.size || 0) > 0;
 }
 
 patch(PosStore.prototype, {
@@ -175,7 +169,7 @@ patch(PosStore.prototype, {
         }
 
         const priority = this.config.kitchen_flow_priority || "printer_first";
-        const hasDisplay = (this.config.preparationDisplayCategories?.size || 0) > 0;
+        const hasDisplay = hasKitchenScreen(this.config);
         const canPreSendDisplay = hasDisplay && !opts.cancelled && priority !== "printer_first";
         const token = trace.begin("send_to_kitchen_tools", "Send to kitchen tools", {
             category: "kitchen",
@@ -236,38 +230,22 @@ patch(PosStore.prototype, {
     async bsSendToPreparationDisplayFirst(order, opts, trace) {
         const token = trace.begin(
             "kitchen_display_pre_send",
-            "Send to preparation display before final snapshot",
+            "Send to the kitchen screen before the printers",
             {
                 category: "kitchen_display",
                 details: { priority: this.config.kitchen_flow_priority },
             }
         );
         try {
-            const notesToken = trace.begin(
-                "prepare_display_notes",
-                "Prepare kitchen note quantities",
-                { category: "client" }
-            );
-            for (const note of Object.values(order.uiState.noteHistory || {})) {
-                for (const item of note) {
-                    const line = order.getOrderline(item.lineId);
-                    item.qty = line?.getQuantity();
-                }
-            }
-            trace.end(notesToken, "success");
-
             await this.syncAllOrders({
                 orders: [order],
                 force: true,
                 throw: true,
                 context: {
-                    preparation: {
-                        process_order_options: preparationOptions(order, opts),
-                    },
+                    resta_kds_fire: true,
                     bs_kitchen_flow_phase: PRE_DISPLAY_PHASE,
                 },
             });
-            order.updateSavedQuantity();
             trace.runtime.preDisplaySucceeded = true;
             trace.end(token, "success");
             return true;
@@ -288,21 +266,8 @@ patch(PosStore.prototype, {
             }
         );
         try {
-            const notesToken = trace.begin(
-                "prepare_parallel_display_notes",
-                "Prepare parallel kitchen note quantities",
-                { category: "client" }
-            );
-            for (const note of Object.values(order.uiState.noteHistory || {})) {
-                for (const item of note) {
-                    const line = order.getOrderline(item.lineId);
-                    item.qty = line?.getQuantity();
-                }
-            }
-            trace.end(notesToken, "success");
-
-            // Complete this synchronization before starting the parallel operations. It prevents
-            // an in-flight sync response from overwriting the snapshot updated after printing.
+            // Complete this synchronization before starting the parallel operations, so the
+            // kitchen screen call below works on the order as it is on the POS now.
             await this.syncAllOrders({
                 orders: [order],
                 force: true,
@@ -321,18 +286,14 @@ patch(PosStore.prototype, {
     async bsProcessPreparationDisplayInParallel(order, opts, trace) {
         const token = trace.begin(
             "display_process_parallel",
-            "Process preparation display in parallel with printing",
+            "Send to the kitchen screen in parallel with printing",
             {
                 category: "kitchen_display",
                 details: { order_server_id: order.id },
             }
         );
         try {
-            await this.data.call("pos.prep.order", "process_order", [
-                order.id,
-                preparationOptions(order, opts),
-            ]);
-            order.updateSavedQuantity();
+            await this.data.call("pos.order", "resta_kds_fire", [[order.id]]);
             trace.runtime.preDisplaySucceeded = true;
             trace.end(token, "success");
             return true;
@@ -349,42 +310,26 @@ patch(PosStore.prototype, {
             return await super.syncAllOrders(...arguments);
         }
 
-        const phase = options.context?.bs_kitchen_flow_phase;
-        const hasPreparationContext = Boolean(options.context?.preparation);
-
-        if (
-            hasPreparationContext &&
-            trace.runtime.preDisplayAttempted &&
-            phase !== PRE_DISPLAY_PHASE
-        ) {
-            const preDisplaySucceeded = await trace.runtime.preDisplayPromise;
-            if (preDisplaySucceeded) {
-                const { preparation, ...contextWithoutPreparation } = options.context;
-                options = {
-                    ...options,
-                    context: {
-                        ...contextWithoutPreparation,
-                        bs_kitchen_flow_phase: FINAL_SNAPSHOT_PHASE,
-                    },
-                };
-            }
-        }
-
         const operationPhase = options.context?.bs_kitchen_flow_phase;
         let code = "sync_orders";
         let name = "Synchronize POS order";
         let category = "network";
-        if (options.context?.preparation) {
-            code = operationPhase === PRE_DISPLAY_PHASE ? "display_sync_first" : "display_sync";
-            name = "Synchronize order with preparation display";
+        if (operationPhase === PRE_DISPLAY_PHASE) {
+            code = "display_sync_first";
+            name = "Send order to the kitchen screen first";
             category = "kitchen_display";
-        } else if (operationPhase === FINAL_SNAPSHOT_PHASE) {
-            code = "final_snapshot_sync";
-            name = "Synchronize final preparation snapshot";
-            category = "snapshot";
         } else if (operationPhase === PARALLEL_PREFLIGHT_PHASE) {
             code = "parallel_preflight_sync";
             name = "Synchronize order before parallel kitchen delivery";
+        } else if (trace.runtime.preDisplayAttempted) {
+            // the screen already has the dishes: this sync only stores the POS snapshot
+            code = "final_snapshot_sync";
+            name = "Synchronize final preparation snapshot";
+            category = "snapshot";
+        } else if (hasKitchenScreen(this.config)) {
+            code = "display_sync";
+            name = "Synchronize order with the kitchen screen";
+            category = "kitchen_display";
         }
 
         const token = trace.begin(code, name, {

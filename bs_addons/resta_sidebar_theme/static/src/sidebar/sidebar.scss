@@ -372,6 +372,27 @@
     }
 }
 
+// Entries of an app (one level). While searching they carry their path.
+.rs_item_text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.rs_item_path {
+    overflow: hidden;
+    color: var(--rs-text-subtle);
+    font-size: .72rem;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.rs_items_search .rs_item {
+    padding-block: 6px;
+}
+
 // Sub-items
 .rs_items {
     position: relative;
@@ -428,15 +449,6 @@
     &:focus-visible {
         outline: 2px solid var(--rs-primary);
         outline-offset: -2px;
-    }
-
-    &.rs_has_children {
-        color: var(--rs-text);
-        font-weight: 600;
-    }
-
-    &.rs_contains_active:not(.rs_open) {
-        color: var(--rs-primary-fg);
     }
 
     &.rs_active {

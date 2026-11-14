@@ -3,8 +3,6 @@ from . import res_config_settings
 from . import pos_modifier
 from . import pos_order
 from . import pos_order_kitchen
-from . import pos_prep_line
-from . import pos_prep_state
 from . import pos_session
 from . import product_combo
 from . import product_combo_item

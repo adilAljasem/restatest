@@ -25,7 +25,8 @@ POS Closing Report
 * Fully translated (English / Arabic).
 """,
     "category": "Sales/Point of Sale",
-    "author": "Custom",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["point_of_sale", "pos_kitchen_ticket_custom", "pos_business_day"],
     "data": [

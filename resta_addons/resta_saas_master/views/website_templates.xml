@@ -48,7 +48,7 @@
                     <a href="mailto:support@restaerp.com">support@restaerp.com</a>
                 </div>
             </div>
-            <div class="rs-container rs-copy">© ريستا · بيسك سلوشن</div>
+            <div class="rs-container rs-copy">© <span t-out="datetime.date.today().year"/> ريستا · <a href="https://resta.sa">resta.sa</a> · جميع الحقوق محفوظة</div>
         </footer>
     </template>
 
@@ -297,25 +297,48 @@
     </template>
 
     <template id="page_login" name="Resta - Login">
-        <t t-call="resta_saas_master.resta_auth_card">
-            <t t-set="title">الدخول إلى حسابك</t>
-            <form class="rs-form rs-login" method="post" action="#" novalidate="1">
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                <div class="rs-alert" t-att-class="'rs-alert' if error else 'rs-alert d-none'" t-out="error or ''"/>
-                <label>رقم الحساب</label>
-                <input name="account" t-att-value="account" inputmode="numeric" required="1" dir="ltr"/>
-                <label>البريد الإلكتروني</label>
-                <input name="login" type="email" t-att-value="email" required="1" dir="ltr" placeholder="address@restaurant.com" autocomplete="username"/>
-                <label>كلمة المرور</label>
-                <div class="rs-pw">
-                    <input name="password" type="password" required="1" dir="ltr" autocomplete="current-password"/>
-                    <button type="button" class="rs-pw-toggle" aria-label="إظهار"><i class="fa fa-eye"/></button>
-                </div>
-                <button type="submit" class="rs-btn rs-btn-primary rs-btn-block">الدخول</button>
-            </form>
-            <t t-set="links">
-                <a href="#" class="rs-forgot">نسيت كلمة المرور؟</a>
-                <span>ليس لديك حساب؟ <a href="/resta/signup">جرّب ريستا مجاناً</a></span>
+        <!-- Unified sign-in like Foodics: account number + username + password, then the restaurant's system -->
+        <t t-call="web.frontend_layout">
+            <t t-set="title">تسجيل الدخول | ريستا</t>
+            <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+            <t t-set="body_classname" t-value="'rs_auth_body'"/>
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-call="resta_brand.auth_shell">
+                <t t-set="auth_logo" t-value="'/resta_sidebar_theme/static/img/resta-wordmark-default.svg'"/>
+                <t t-set="auth_title">تسجيل الدخول</t>
+                <t t-set="auth_subtitle">أدخل رقم حساب مطعمك واسم المستخدم وكلمة المرور.</t>
+                <form class="rs-login" method="post" action="#" novalidate="1">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div t-att-class="'rs-alert alert alert-danger' if error else 'rs-alert alert alert-danger d-none'" role="alert" t-out="error or ''"/>
+                    <div class="mb-3">
+                        <label for="rs_account" class="form-label">رقم الحساب</label>
+                        <input id="rs_account" name="account" class="form-control" t-att-value="account" inputmode="numeric"
+                               required="1" dir="ltr" placeholder="100245" autocomplete="organization"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rs_login" class="form-label">اسم المستخدم</label>
+                        <input id="rs_login" name="login" class="form-control" t-att-value="email" required="1" dir="ltr"
+                               placeholder="البريد الإلكتروني أو اسم المستخدم" autocomplete="username" autocapitalize="off"/>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="rs_password" class="form-label">كلمة المرور</label>
+                            <a href="#" class="rs-forgot small mb-1">نسيت كلمة المرور؟</a>
+                        </div>
+                        <div class="input-group">
+                            <input id="rs_password" name="password" type="password" class="form-control" required="1" dir="ltr"
+                                   placeholder="••••••••" autocomplete="current-password"/>
+                            <button type="button" class="btn rs-pw-toggle" aria-label="إظهار كلمة المرور"><i class="fa fa-eye"/></button>
+                        </div>
+                    </div>
+                    <div class="d-grid pt-2">
+                        <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                    </div>
+                </form>
+                <t t-set="auth_links">
+                    <span>ليس لديك حساب؟ <a href="/resta/signup">جرّب ريستا مجاناً</a></span>
+                </t>
             </t>
         </t>
     </template>

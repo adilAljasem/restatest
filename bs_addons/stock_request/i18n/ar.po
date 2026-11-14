@@ -663,7 +663,7 @@ msgstr "موقع تحويل مخصص للمخزن"
 #. module: stock_request
 #: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_transit_mode__odoo_default
 msgid "Odoo Default Transit"
-msgstr "موقع التحويل الافتراضي في أودو"
+msgstr "موقع التحويل الافتراضي في النظام"
 
 #. module: stock_request
 #: model:ir.model.fields.selection,name:stock_request.selection__stock_warehouse__stock_request_transit_mode__missing
@@ -706,7 +706,7 @@ msgstr "موقع التحويل"
 
 #. module: stock_request
 msgid "No transit location is configured for the receiving warehouse, and the company does not have an Odoo default internal transit location."
-msgstr "لم يتم إعداد موقع تحويل للمخزن المستلم، ولا يوجد لدى الشركة موقع التحويل الداخلي الافتراضي في أودو."
+msgstr "لم يتم إعداد موقع تحويل للمخزن المستلم، ولا يوجد لدى الشركة موقع التحويل الداخلي الافتراضي في النظام."
 
 #. module: stock_request
 msgid "The transit location must be active."
@@ -1888,7 +1888,7 @@ msgid ""
 "Odoo's company Internal Transit Location is used when this field is empty."
 msgstr ""
 "موقع تحويل اختياري يُستخدم للتحويلات التي يستلمها هذا المخزن. عند ترك الحقل "
-"فارغًا، يُستخدم موقع التحويل الداخلي الافتراضي للشركة في أودو."
+"فارغًا، يُستخدم موقع التحويل الداخلي الافتراضي للشركة في النظام."
 
 
 #. module: stock_request

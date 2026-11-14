@@ -143,7 +143,6 @@
                                     <field name="paid" widget="boolean_toggle" readonly="1"/>
                                     <field name="salary_deduction" readonly="paid or payroll_state != 'none'"/>
                                     <field name="payroll_state" widget="badge" optional="show"/>
-                                    <field name="salary_attachment_id" optional="hide"/>
                                     <field name="payroll_payslip_id" optional="hide"/>
                                     <field name="payment_id" optional="hide"/>
                                     <button

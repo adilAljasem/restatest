@@ -3,7 +3,8 @@
     "summary": "Show the customer's phone number under the customer name in the POS orders list, and search orders by phone.",
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
-    "author": "Basic Solution",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["point_of_sale"],
     "assets": {

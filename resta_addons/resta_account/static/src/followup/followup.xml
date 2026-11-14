@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_account.Followup">
+        <div class="o_resta_report o_resta_followup o_action" t-att-dir="dir">
+            <div class="o_rr_bar">
+                <div class="o_rr_title"><h2>متابعة التحصيل</h2></div>
+                <div class="o_rr_filters">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="عرض">
+                        <button t-attf-class="btn #{state.filter === 'late' ? 'btn-dark' : 'btn-light'}" t-on-click="() => this.setFilter('late')">المتأخرون</button>
+                        <button t-attf-class="btn #{state.filter === 'due' ? 'btn-dark' : 'btn-light'}" t-on-click="() => this.setFilter('due')">إجراء مستحق اليوم</button>
+                        <button t-attf-class="btn #{state.filter === 'all' ? 'btn-dark' : 'btn-light'}" t-on-click="() => this.setFilter('all')">كل الأرصدة</button>
+                    </div>
+                    <input class="form-control form-control-sm" placeholder="بحث بالاسم أو الجوال" aria-label="بحث"
+                           t-on-input="(ev) => this.state.search = ev.target.value"/>
+                </div>
+                <div class="o_rr_actions">
+                    <button class="btn btn-sm btn-primary" t-att-disabled="!state.selected.length or state.busy" t-on-click="sendSelected">
+                        <i class="fa fa-paper-plane"/> إرسال للمحددين (<t t-out="state.selected.length"/>)
+                    </button>
+                    <button class="btn btn-sm btn-light" t-on-click="openLevels"><i class="fa fa-sliders"/> المستويات</button>
+                </div>
+            </div>
+
+            <div class="o_fu_kpis">
+                <div class="o_fu_kpi"><span>إجمالي المستحق</span><b t-out="fmt(state.data.kpi.total)"/></div>
+                <div class="o_fu_kpi o_fu_kpi_late"><span>متأخر السداد</span><b t-out="fmt(state.data.kpi.overdue)"/></div>
+                <div class="o_fu_kpi"><span>عملاء متأخرون</span><b t-out="state.data.kpi.late_customers or 0"/></div>
+                <div class="o_fu_kpi o_fu_kpi_due"><span>تذكيرات مستحقة</span><b t-out="state.data.kpi.actions_due or 0"/></div>
+            </div>
+
+            <div class="o_rr_sheet o_fu_sheet">
+                <table class="o_rr_table o_fu_table">
+                    <thead>
+                        <tr>
+                            <th class="o_fu_check"><input type="checkbox" class="form-check-input" aria-label="تحديد الكل" t-on-change="toggleAll"/></th>
+                            <th class="o_rr_name">العميل</th>
+                            <th class="o_rr_num">المستحق</th>
+                            <th class="o_rr_num">المتأخر</th>
+                            <th class="o_rr_num">أقدم تأخير</th>
+                            <th>آخر متابعة</th>
+                            <th>الإجراء التالي</th>
+                            <th/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="rows" t-as="r" t-key="r.id">
+                            <tr t-attf-class="o_fu_row o_fu_#{lateClass(r)} #{state.open === r.id ? 'o_fu_open' : ''}">
+                                <td class="o_fu_check"><input type="checkbox" class="form-check-input" t-att-aria-label="r.name"
+                                    t-att-checked="state.selected.includes(r.id)" t-on-change="() => this.toggleSelect(r.id)"/></td>
+                                <td class="o_rr_name" role="button" t-on-click="() => this.state.open = state.open === r.id ? false : r.id">
+                                    <div class="fw-semibold" t-out="r.name"/>
+                                    <small class="text-muted"><t t-out="r.phone"/><t t-if="r.user"> · <t t-out="r.user"/></t></small>
+                                </td>
+                                <td class="o_rr_num o_rr_link" t-on-click="() => this.openItems(r)" t-out="fmt(r.total)"/>
+                                <td class="o_rr_num fw-bold o_fu_overdue" t-out="r.overdue ? fmt(r.overdue) : '-'"/>
+                                <td class="o_rr_num"><span t-if="r.max_days" class="o_fu_days"><t t-out="r.max_days"/> يوم</span></td>
+                                <td><small t-if="r.level"><t t-out="r.level"/><br/><span class="text-muted" t-out="r.last_date"/></small></td>
+                                <td>
+                                    <span t-if="r.blocked" class="badge text-bg-secondary">موقوفة</span>
+                                    <span t-elif="r.postponed_until" class="badge text-bg-light">مؤجل حتى <t t-out="r.postponed_until"/></span>
+                                    <span t-elif="r.action_due" class="badge o_fu_badge_due" t-out="r.next_level"/>
+                                    <span t-elif="r.overdue" class="text-muted small">لا شيء الآن</span>
+                                </td>
+                                <td class="o_fu_actions">
+                                    <button class="btn btn-sm btn-primary" t-att-disabled="!r.overdue or state.busy" t-on-click="() => this.send([r.id])" title="إرسال التذكير"><i class="fa fa-paper-plane"/></button>
+                                    <a t-if="r.whatsapp" class="btn btn-sm btn-success" t-att-href="r.whatsapp" target="_blank" rel="noopener" title="واتساب"><i class="fa fa-whatsapp"/></a>
+                                    <button class="btn btn-sm btn-light" t-on-click="() => this.statement(r)" title="كشف الحساب"><i class="fa fa-file-pdf-o"/></button>
+                                </td>
+                            </tr>
+                            <tr t-if="state.open === r.id" class="o_rr_detail">
+                                <td colspan="8">
+                                    <div class="o_fu_panel">
+                                        <div>
+                                            <label class="form-label small text-muted">ملاحظات التحصيل</label>
+                                            <textarea class="form-control form-control-sm" rows="2" t-att-value="r.note"
+                                                      placeholder="مثال: وعد بالسداد يوم 25" t-on-change="(ev) => this.saveNote(r, ev)"/>
+                                        </div>
+                                        <div>
+                                            <label class="form-label small text-muted">لا تذكير قبل</label>
+                                            <div class="d-flex gap-2">
+                                                <input type="date" class="form-control form-control-sm" t-on-change="(ev) => this.state.postpone = ev.target.value"/>
+                                                <button class="btn btn-sm btn-light" t-on-click="() => this.postpone(r)">تأجيل</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2 align-items-end">
+                                            <t t-foreach="state.data.levels" t-as="lv" t-key="lv.id">
+                                                <button class="btn btn-sm btn-outline-secondary" t-att-disabled="!r.overdue or state.busy"
+                                                        t-on-click="() => this.send([r.id], lv.id)">إرسال «<t t-out="lv.name"/>»</button>
+                                            </t>
+                                            <button class="btn btn-sm btn-light" t-on-click="() => this.toggleBlocked(r)">
+                                                <t t-if="r.blocked">استئناف المتابعة</t><t t-else="">إيقاف المتابعة</t>
+                                            </button>
+                                            <button class="btn btn-sm btn-link" t-on-click="() => this.openPartner(r)">بطاقة العميل</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div t-if="!rows.length" class="o_rr_empty"><i class="fa fa-check-circle fa-2x d-block mb-2 text-success"/>لا يوجد عملاء متأخرون في السداد.</div>
+            </div>
+        </div>
+    </t>
+</templates>

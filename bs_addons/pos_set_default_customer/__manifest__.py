@@ -4,9 +4,8 @@
     'summary': "Set Default Customer in POS",
     'description': 'Set Default Customer in POS',
 
-    'author': 'iPredict IT Solutions Pvt. Ltd.',
-    'website': 'http://ipredictitsolutions.com',
-    "support": "ipredictitsolutions@gmail.com",
+    'author': "Resta",
+    'website': "https://resta.sa",
 
     'category': 'Point of Sale',
     'version': '19.0.1.0.0',

@@ -35,24 +35,3 @@ class AccountJournal(models.Model):
                     raise ValidationError(
                         _("Only one Temporary Petty Cash journal is allowed per company.")
                     )
-class AccountMoveLine(models.Model):
-    _inherit = 'account.move.line'
-
-    # NOTE (upgrade review): this stub was already present in the Odoo 17
-    # version and is kept as-is so the upgrade does not change behaviour.
-    # `has_abnormal_deferred_dates` does not exist anywhere in Odoo 19
-    # Community - it is an Enterprise (account_accountant) field used by the
-    # Deferred Entries feature. Because petty_cash depends on
-    # account_accountant, this definition loads last and overrides the
-    # Enterprise compute with a constant False. If Deferred Entries are used on
-    # the target database, delete this class: nothing else in this module
-    # references the field.
-    has_abnormal_deferred_dates = fields.Boolean(
-        string='Has Abnormal Deferred Dates',
-        compute='_compute_has_abnormal_deferred_dates',
-        store=False,
-    )
-
-    def _compute_has_abnormal_deferred_dates(self):
-        for line in self:
-            line.has_abnormal_deferred_dates = False

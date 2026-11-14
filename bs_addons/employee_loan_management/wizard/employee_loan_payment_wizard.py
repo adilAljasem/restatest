@@ -133,7 +133,7 @@ class EmployeeLoanPaymentWizard(models.TransientModel):
                 )
             if installment.paid or installment.payment_id:
                 raise UserError(_("This installment has already been paid."))
-            if installment.payroll_state != "none" or installment.salary_attachment_id:
+            if installment.payroll_state != "none":
                 raise UserError(
                     _("This installment is already being processed by Payroll.")
                 )

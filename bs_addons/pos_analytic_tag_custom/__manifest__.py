@@ -2,7 +2,8 @@
     'name': "PoS Analytic Tag (DIS)",
     'version': '19.0.1.0.1',
     'category': 'Point of Sale',
-    'author': "Mohamed Saied",
+    'author': "Resta",
+    "website": "https://resta.sa",
     'depends': ['point_of_sale', 'analytic', 'account'],
     'data': [
         'views/res_config_settings_views.xml',

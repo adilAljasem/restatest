@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= payslip ================= -->
+    <record id="view_payslip_list" model="ir.ui.view">
+        <field name="name">resta.payslip.list</field>
+        <field name="model">resta.payslip</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancel'" decoration-info="state in ('draft', 'computed')">
+                <field name="employee_id"/>
+                <field name="date_to" string="الشهر" widget="date"/>
+                <field name="paid_days" optional="hide"/>
+                <field name="gross" sum="1"/>
+                <field name="deductions" sum="1"/>
+                <field name="net" sum="1"/>
+                <field name="employer_cost" sum="1" optional="hide"/>
+                <field name="published" optional="show"/>
+                <field name="state" widget="badge" decoration-success="state in ('confirmed', 'paid')"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_payslip_form" model="ir.ui.view">
+        <field name="name">resta.payslip.form</field>
+        <field name="model">resta.payslip</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="compute_sheet" type="object" string="حساب" class="btn-primary" invisible="state not in ('draft', 'computed')"/>
+                    <button name="action_confirm" type="object" string="اعتماد" invisible="state != 'computed' or batch_id"/>
+                    <button name="action_print" type="object" string="طباعة" invisible="state in ('draft', 'cancel')"/>
+                    <button name="action_cancel" type="object" string="إلغاء" invisible="state in ('cancel', 'paid')"/>
+                    <button name="action_draft" type="object" string="إرجاع لمسودة" invisible="state not in ('cancel', 'computed')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,computed,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" readonly="1"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state not in ('draft', 'computed')"/>
+                            <label for="date_from" string="الفترة"/>
+                            <div class="o_row">
+                                <field name="date_from" readonly="state not in ('draft', 'computed')"/> -
+                                <field name="date_to" readonly="state not in ('draft', 'computed')"/>
+                            </div>
+                            <field name="batch_id" readonly="1" invisible="not batch_id"/>
+                            <field name="version_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="paid_days"/>
+                            <field name="unpaid_leave_days" invisible="not unpaid_leave_days"/>
+                            <field name="net" class="fs-4 fw-bold"/>
+                            <field name="employer_cost"/>
+                            <field name="published"/>
+                            <field name="move_id" invisible="not move_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="البنود المتغيرة لهذا الشهر" name="inputs">
+                            <field name="input_ids" readonly="state not in ('draft', 'computed')">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="type_id"/>
+                                    <field name="unit" column_invisible="1"/>
+                                    <field name="quantity" invisible="unit == 'amount'"/>
+                                    <field name="amount" readonly="unit != 'amount'"/>
+                                    <field name="name"/>
+                                    <field name="source_ref" optional="hide"/>
+                                </list>
+                            </field>
+                            <p class="text-muted small">العمل الإضافي يُدخل بالساعات والغياب بالأيام، وتُحسب القيمة من راتب الموظف عند الضغط على «حساب».</p>
+                        </page>
+                        <page string="تفاصيل الراتب" name="lines">
+                            <field name="line_ids">
+                                <list decoration-bf="category == 'net'" decoration-danger="amount &lt; 0" decoration-muted="category in ('gosi_employer', 'eosb')">
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                    <field name="quantity" optional="hide"/>
+                                    <field name="amount"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="gross"/>
+                                <field name="deductions"/>
+                                <field name="net" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="ملاحظات" name="note"><field name="note"/></page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_payslip_search" model="ir.ui.view">
+        <field name="name">resta.payslip.search</field>
+        <field name="model">resta.payslip</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="batch_id"/>
+                <filter name="todo" string="للحساب والمراجعة" domain="[('state', 'in', ('draft', 'computed'))]"/>
+                <filter name="done" string="معتمدة ومصروفة" domain="[('state', 'in', ('confirmed', 'paid'))]"/>
+                <filter name="date_to" string="الشهر" date="date_to"/>
+                <group>
+                    <filter name="by_employee" string="الموظف" context="{'group_by': 'employee_id'}"/>
+                    <filter name="by_month" string="الشهر" context="{'group_by': 'date_to:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_payslip" model="ir.actions.act_window">
+        <field name="name">قسائم الرواتب</field>
+        <field name="res_model">resta.payslip</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ================= batch ================= -->
+    <record id="view_batch_list" model="ir.ui.view">
+        <field name="name">resta.payslip.batch.list</field>
+        <field name="model">resta.payslip.batch</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="slip_count" string="الموظفون"/>
+                <field name="total_net" sum="1"/>
+                <field name="total_cost" sum="1"/>
+                <field name="state" widget="badge" decoration-success="state in ('confirmed', 'paid')" decoration-info="state in ('draft', 'computed')"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_batch_form" model="ir.ui.view">
+        <field name="name">resta.payslip.batch.form</field>
+        <field name="model">resta.payslip.batch</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate" type="object" string="إنشاء القسائم وحسابها" class="btn-primary" invisible="state not in ('draft', 'computed')"/>
+                    <button name="action_compute" type="object" string="إعادة الحساب" invisible="state != 'computed'"/>
+                    <button name="action_confirm" type="object" string="اعتماد وترحيل القيد" class="btn-primary" invisible="state != 'computed'"
+                            groups="resta_payroll.group_payroll_manager"/>
+                    <button name="action_open_payment" type="object" string="تسجيل الصرف" class="btn-primary" invisible="state != 'confirmed'"
+                            groups="resta_payroll.group_payroll_manager"/>
+                    <button name="action_bank_sheet" type="object" string="ملف التحويل البنكي (Excel)" invisible="state in ('draft', 'cancel')"/>
+                    <button name="action_print" type="object" string="طباعة القسائم" invisible="state in ('draft', 'cancel')"/>
+                    <button name="action_cancel" type="object" string="إلغاء" invisible="state in ('cancel', 'paid')"
+                            groups="resta_payroll.group_payroll_manager" confirm="سيُلغى قيد الرواتب وكل القسائم. متابعة؟"/>
+                    <button name="action_draft" type="object" string="إرجاع لمسودة" invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,computed,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_slips" type="object" class="oe_stat_button" icon="fa-file-text-o">
+                            <field name="slip_count" widget="statinfo" string="قسيمة"/>
+                        </button>
+                    </div>
+                    <div class="oe_title"><h1><field name="name" readonly="state not in ('draft', 'computed')"/></h1></div>
+                    <group>
+                        <group>
+                            <label for="date_from" string="الفترة"/>
+                            <div class="o_row">
+                                <field name="date_from" readonly="state not in ('draft', 'computed')"/> -
+                                <field name="date_to" readonly="state not in ('draft', 'computed')"/>
+                            </div>
+                            <field name="department_id" readonly="state not in ('draft', 'computed')"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="total_gross"/>
+                            <field name="total_net" class="fw-bold"/>
+                            <field name="total_cost"/>
+                            <field name="move_id" invisible="not move_id"/>
+                            <field name="payment_move_id" invisible="not payment_move_id"/>
+                        </group>
+                    </group>
+                    <field name="slip_ids" readonly="state not in ('draft', 'computed')"
+                           context="{'default_date_from': date_from, 'default_date_to': date_to, 'default_company_id': company_id}">
+                        <list decoration-muted="state == 'cancel'">
+                            <field name="employee_id"/>
+                            <field name="paid_days"/>
+                            <field name="gross" sum="1"/>
+                            <field name="deductions" sum="1"/>
+                            <field name="net" sum="1"/>
+                            <field name="state" widget="badge"/>
+                        </list>
+                    </field>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_batch" model="ir.actions.act_window">
+        <field name="name">رواتب الشهر</field>
+        <field name="res_model">resta.payslip.batch</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html"><p class="o_view_nocontent_smiling_face">أنشئ رواتب الشهر: القسائم تُنشأ لكل موظف له عقد ساري، وتُحسب منها البدلات والتأمينات والخصومات.</p></field>
+    </record>
+
+    <!-- ================= wizards ================= -->
+    <record id="view_eosb_form" model="ir.ui.view">
+        <field name="name">resta.eosb.form</field>
+        <field name="model">resta.eosb</field>
+        <field name="arch" type="xml">
+            <form string="مكافأة نهاية الخدمة">
+                <group>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="unpaid_days"/>
+                        <field name="reason"/>
+                        <field name="wage"/>
+                    </group>
+                    <group>
+                        <field name="service_text"/>
+                        <field name="years"/>
+                        <field name="amount" class="fs-3 fw-bold"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
+                    </group>
+                </group>
+                <field name="breakdown" readonly="1" nolabel="1"/>
+                <p class="text-muted small">حسب المادتين 84 و85 من نظام العمل السعودي. راجع الحالات الخاصة (المادة 87) قبل الصرف.</p>
+                <footer>
+                    <button name="action_add_to_payslip" type="object" string="إضافتها لقسيمة الشهر" class="btn-primary"/>
+                    <button special="cancel" string="إغلاق"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_eosb" model="ir.actions.act_window">
+        <field name="name">حاسبة نهاية الخدمة</field>
+        <field name="res_model">resta.eosb</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_payroll_payment_form" model="ir.ui.view">
+        <field name="name">resta.payroll.payment.form</field>
+        <field name="model">resta.payroll.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="batch_id" readonly="1"/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_pay" type="object" string="ترحيل قيد الصرف" class="btn-primary"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================= configuration ================= -->
+    <record id="view_input_type_list" model="ir.ui.view">
+        <field name="name">resta.payslip.input.type.list</field>
+        <field name="model">resta.payslip.input.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="kind"/>
+                <field name="unit"/>
+                <field name="account_id"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_input_type" model="ir.actions.act_window">
+        <field name="name">بنود الراتب المتغيرة</field>
+        <field name="res_model">resta.payslip.input.type</field>
+        <field name="view_mode">list</field>
+    </record>
+    <record id="view_gosi_rate_list" model="ir.ui.view">
+        <field name="name">resta.gosi.rate.list</field>
+        <field name="model">resta.gosi.rate</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="scheme"/>
+                <field name="date_from"/>
+                <field name="employee_rate"/>
+                <field name="employer_rate"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_gosi_rate" model="ir.actions.act_window">
+        <field name="name">نسب التأمينات الاجتماعية</field>
+        <field name="res_model">resta.gosi.rate</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="view_payroll_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.resta.payroll</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority">90</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="الرواتب" string="الرواتب" name="resta_payroll" groups="resta_payroll.group_payroll_manager">
+                    <block title="الحسابات" name="resta_payroll_accounts">
+                        <setting string="يومية وحسابات الرواتب" help="تُستخدم في قيد الرواتب الشهري">
+                            <div class="content-group">
+                                <div class="row"><label for="resta_payroll_journal_id" class="col-lg-5 o_light_label"/><field name="resta_payroll_journal_id"/></div>
+                                <div class="row"><label for="resta_salary_account_id" class="col-lg-5 o_light_label"/><field name="resta_salary_account_id"/></div>
+                                <div class="row"><label for="resta_allowance_account_id" class="col-lg-5 o_light_label"/><field name="resta_allowance_account_id"/></div>
+                                <div class="row"><label for="resta_salary_payable_account_id" class="col-lg-5 o_light_label"/><field name="resta_salary_payable_account_id"/></div>
+                                <div class="row"><label for="resta_gosi_expense_account_id" class="col-lg-5 o_light_label"/><field name="resta_gosi_expense_account_id"/></div>
+                                <div class="row"><label for="resta_gosi_payable_account_id" class="col-lg-5 o_light_label"/><field name="resta_gosi_payable_account_id"/></div>
+                                <div class="row"><label for="resta_eosb_expense_account_id" class="col-lg-5 o_light_label"/><field name="resta_eosb_expense_account_id"/></div>
+                                <div class="row"><label for="resta_eosb_provision_account_id" class="col-lg-5 o_light_label"/><field name="resta_eosb_provision_account_id"/></div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="الحساب" name="resta_payroll_rules">
+                        <setting string="أجر اليوم والساعة">
+                            <div class="content-group">
+                                <div class="row"><label for="resta_daily_divisor" class="col-lg-5 o_light_label"/><field name="resta_daily_divisor"/></div>
+                                <div class="row"><label for="resta_hours_per_day" class="col-lg-5 o_light_label"/><field name="resta_hours_per_day"/></div>
+                                <div class="row"><label for="resta_overtime_method" class="col-lg-5 o_light_label"/><field name="resta_overtime_method"/></div>
+                                <div class="row"><label for="resta_gosi_cap" class="col-lg-5 o_light_label"/><field name="resta_gosi_cap"/></div>
+                            </div>
+                        </setting>
+                        <setting string="مكافأة نهاية الخدمة">
+                            <field name="resta_eosb_accrual"/>
+                            <div class="content-group">
+                                <div class="row"><label for="resta_eosb_include_allowances" class="col-lg-8 o_light_label"/><field name="resta_eosb_include_allowances"/></div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_payroll_settings" model="ir.actions.act_window">
+        <field name="name">الإعدادات</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module': 'resta_payroll', 'bin_size': False}</field>
+    </record>
+
+    <!-- ================= employee / contract / leave type ================= -->
+    <record id="view_employee_form_payroll" model="ir.ui.view">
+        <field name="name">hr.employee.form.resta.payroll</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="الرواتب" name="resta_payroll" groups="hr.group_hr_manager">
+                    <group>
+                        <group string="العقد الحالي">
+                            <field name="wage" string="الراتب الأساسي"/>
+                            <field name="resta_housing_allowance"/>
+                            <field name="resta_transport_allowance"/>
+                            <field name="resta_food_allowance"/>
+                            <field name="resta_other_allowance"/>
+                            <field name="resta_total_package"/>
+                            <button name="action_resta_default_allowances" type="object" string="سكن 25% ونقل 10%" class="btn-link"/>
+                        </group>
+                        <group string="التأمينات والصرف">
+                            <field name="resta_gosi_scheme"/>
+                            <field name="resta_gosi_date"/>
+                            <field name="resta_gosi_number"/>
+                            <field name="resta_payment_method"/>
+                            <field name="resta_analytic_account_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_leave_type_form_payroll" model="ir.ui.view">
+        <field name="name">hr.leave.type.form.resta.payroll</field>
+        <field name="model">hr.leave.type</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='leave_validation_type']" position="after">
+                <field name="resta_unpaid"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= menus ================= -->
+    <menuitem id="menu_payroll_root" name="الرواتب" sequence="76" web_icon="resta_payroll,static/description/icon.png"
+              groups="group_payroll_user"/>
+    <menuitem id="menu_batches" parent="menu_payroll_root" action="action_batch" sequence="1"/>
+    <menuitem id="menu_payslips" parent="menu_payroll_root" action="action_payslip" sequence="2"/>
+    <menuitem id="menu_eosb" parent="menu_payroll_root" action="action_eosb" sequence="3"/>
+    <menuitem id="menu_payroll_config" name="الإعدادات" parent="menu_payroll_root" sequence="90" groups="group_payroll_manager">
+        <menuitem id="menu_payroll_settings" action="action_payroll_settings" sequence="1"/>
+        <menuitem id="menu_input_types" action="action_input_type" sequence="2"/>
+        <menuitem id="menu_gosi_rates" action="action_gosi_rate" sequence="3"/>
+    </menuitem>
+</odoo>

@@ -42,9 +42,9 @@ install_db() {  # $1 = database, $2 = modules
 
 install_db "$MASTER_DB" "resta_saas_master,l10n_sa" &
 p1=$!
-install_db "$TPL_DINEIN" "resta_edition_dinein,resta_saas_tenant" &
+install_db "$TPL_DINEIN" "resta_edition_dinein,resta_saas_tenant,resta_growth" &
 p2=$!
-install_db "$TPL_QSR" "resta_edition_qsr,resta_saas_tenant" &
+install_db "$TPL_QSR" "resta_edition_qsr,resta_saas_tenant,resta_growth" &
 p3=$!
 status=0
 for p in $p1 $p2 $p3; do wait "$p" || status=1; done

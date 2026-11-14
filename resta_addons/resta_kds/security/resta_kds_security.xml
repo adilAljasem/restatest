@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_kds_user" model="res.groups">
+        <field name="name">مستخدم شاشة المطبخ</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">حساب للطاقم في المطبخ: يفتح شاشة المطبخ ويحدّث حالة الطلبات فقط.</field>
+    </record>
+    <record id="point_of_sale.group_pos_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('resta_kds.group_kds_user'))]"/>
+    </record>
+
+    <record id="rule_kds_display_company" model="ir.rule">
+        <field name="name">Kitchen screens: own companies</field>
+        <field name="model_id" ref="model_resta_kds_display"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_kds_ticket_company" model="ir.rule">
+        <field name="name">Kitchen tickets: own companies</field>
+        <field name="model_id" ref="model_resta_kds_ticket"/>
+        <field name="domain_force">[('display_id.company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

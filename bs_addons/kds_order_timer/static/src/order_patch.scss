@@ -1,8 +1,5 @@
-.o_pdis_order_card .kds-order-no {
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-}
-.o_pdis_order_card .kds-timer {
+.o_kds_ticket .kds-order-no,
+.o_kds_ticket .o_kds_timer {
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }

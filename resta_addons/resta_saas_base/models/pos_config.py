@@ -30,11 +30,12 @@ class PosConfig(models.Model):
     # Onboarding scenarios (cards on the empty POS dashboard)
     # ------------------------------------------------------------------
     def _resta_prep_displays(self, config, displays):
-        """displays: list of (name, [pos.category ids])"""
-        PrepDisplay = self.env["pos.prep.display"]
+        """Resta kitchen screens (resta_kds). displays: list of (name, [pos.category ids])"""
+        Display = self.env["resta.kds.display"].sudo()
         for name, categ_ids in displays:
-            PrepDisplay.create({
+            Display.create({
                 "name": name,
+                "company_id": config.company_id.id,
                 "pos_config_ids": [(6, 0, config.ids)],
                 "category_ids": [(6, 0, categ_ids)],
             })

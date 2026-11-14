@@ -31,6 +31,9 @@ class BlendAccountingCommon(CommonPosTest):
             "blend_finalize_on_accept": True, "blend_sync_images": False,
             "blend_invoice_partner_id": self.partner_mobt.id,
         })
+        # Resta kitchen screen for the branch (every category)
+        self.kitchen = self.env["resta.kds.display"].create({
+            "name": "Blend kitchen (all)", "pos_config_ids": [Command.set(self.config.ids)]})
         self.mapping = self.env["blend.payment.mapping"].create({
             "pos_config_id": self.config.id, "aggregator": "Jahez",
             "payment_method_id": self.bank_payment_method.id,
@@ -174,11 +177,10 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
         order = self._create(payload)
         self._assert_done(order)
         self.assertEqual(order.blend_schedule_at, payload["schedule_at"])
-        tickets = self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)])
+        tickets = self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)])
         self.assertEqual(len(tickets), 1)
-        self.assertIn("blend_schedule_at", order._load_pos_preparation_data_fields())
-        self.assertIn("Extra napkins", tickets.pdis_general_customer_note)
-        self.assertIn(payload["schedule_at"], tickets.pdis_general_customer_note)
+        self.assertIn("Extra napkins", tickets.note)
+        self.assertIn(payload["schedule_at"][:16], tickets.info)
         payment, invoice = order.payment_ids, order.account_move
         self.assertEqual(self._create(payload), order)
         order._blend_auto_accept()
@@ -188,7 +190,8 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
 
     def test_auto_accept_progressed_order_accounts_and_prepares_once(self):
         self.config.blend_auto_accept = True
-        display = self.env["pos.prep.display"].create({
+        self.kitchen.unlink()
+        display = self.env["resta.kds.display"].create({
             "name": "Blend kitchen", "pos_config_ids": [Command.set(self.config.ids)],
             "category_ids": [Command.set(self.item.pos_categ_ids.ids)],
         })
@@ -206,20 +209,16 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
                 self.assertEqual(order.amount_paid, 62)
                 self.assertEqual(order.account_move.amount_residual, 0)
                 self.assertFalse(self._logs(order))  # Never send an older ACCEPTED status.
-                tickets = self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)])
+                tickets = self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)])
                 self.assertEqual(len(tickets), 1)
-                self.assertEqual(sum(tickets.prep_line_ids.mapped("quantity")), 2)
-                states = self.env["pos.prep.state"].search([
-                    ("prep_line_id", "in", tickets.prep_line_ids.ids),
-                    ("stage_id", "in", display.stage_ids.ids),
-                ])
-                self.assertTrue(states)
+                self.assertEqual(tickets.display_id, display)
+                self.assertTrue(tickets.line_ids)
                 payment, invoice = order.payment_ids, order.account_move
                 self.assertEqual(self._create(payload), order)
                 order._blend_auto_accept()
                 order.action_blend_accept_order()
                 self.assertEqual((order.payment_ids, order.account_move), (payment, invoice))
-                self.assertEqual(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]), tickets)
+                self.assertEqual(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]), tickets)
 
     def test_advanced_delivery_status_accounts_without_kitchen_dispatch(self):
         self.config.blend_auto_accept = True
@@ -234,7 +233,7 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
                 self.assertEqual(order.amount_paid, 62)
                 self.assertEqual(order.account_move.state, "posted")
                 self.assertFalse(self._logs(order))
-                self.assertFalse(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]))
+                self.assertFalse(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]))
                 payment, invoice = order.payment_ids, order.account_move
                 self.assertEqual(self._create(payload), order)
                 self.assertEqual((order.payment_ids, order.account_move), (payment, invoice))
@@ -243,7 +242,7 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
         self.config.blend_auto_accept = True
         order = self._create()
         self._assert_done(order)
-        self.assertEqual(self.env["pos.prep.order"].search_count([("pos_order_id", "=", order.id)]), 1)
+        self.assertEqual(self.env["resta.kds.ticket"].search_count([("pos_order_id", "=", order.id)]), 1)
 
     def test_progressed_order_respects_disabled_auto_accept(self):
         self.config.blend_auto_accept = False
@@ -253,7 +252,7 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
         self.assertEqual(order.state, "draft")
         self.assertFalse(order.payment_ids)
         self.assertFalse(order.account_move)
-        self.assertFalse(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]))
+        self.assertFalse(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]))
 
     def test_terminal_orders_are_not_paid_or_sent_to_preparation(self):
         self.config.blend_auto_accept = True
@@ -265,18 +264,18 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
                 self.assertEqual(order.state, "cancel")
                 self.assertFalse(order.payment_ids)
                 self.assertFalse(order.account_move)
-                self.assertFalse(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]))
+                self.assertFalse(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]))
 
     def test_failed_accounting_does_not_send_preparation(self):
         self.config.blend_auto_accept = True
         self.mapping.active = False
         order = self._create()
         self._assert_pending_failure(order)
-        self.assertFalse(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]))
+        self.assertFalse(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]))
 
     def test_preparation_failure_rolls_back_accounting_then_retry(self):
         self.config.blend_auto_accept = True
-        with patch.object(type(self.env["pos.prep.order"]), "process_order",
+        with patch.object(type(self.env["pos.order"]), "_resta_kds_dispatch_one",
                           side_effect=UserError("Preparation unavailable")):
             order = self._create()
         self._assert_pending_failure(order)
@@ -284,7 +283,7 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
         order.action_blend_accept_order()
         self._assert_done(order)
         self.assertEqual(len(order.payment_ids), 1)
-        self.assertEqual(self.env["pos.prep.order"].search_count([("pos_order_id", "=", order.id)]), 1)
+        self.assertEqual(self.env["resta.kds.ticket"].search_count([("pos_order_id", "=", order.id)]), 1)
 
     def test_global_blend_tax_with_native_per_line_rounding(self):
         self.config.blend_auto_accept = True
@@ -303,7 +302,7 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
         self._assert_done(order, 76, 9.92)
         self.assertIn("9.90", order.with_context(lang="en_US").blend_tax_warning)
         self.assertIn("9.92", order.with_context(lang="en_US").blend_tax_warning)
-        self.assertTrue(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]))
+        self.assertTrue(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]))
 
     def test_six_line_blend_tax_warning_preserves_gross_and_completes_once(self):
         self.config.blend_auto_accept = True
@@ -336,14 +335,14 @@ class TestBlendOrderAccounting(BlendAccountingCommon):
         self.assertTrue(order.blend_total_matches)
         self.assertFalse(order.blend_total_warning)
         self.assertFalse(order.message_ids.filtered(lambda message: "payload.tax" in str(message.body)))
-        tickets = self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)])
+        tickets = self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)])
         self.assertEqual(len(tickets), 1)
         payment, invoice = order.payment_ids, order.account_move
         self.assertEqual(self._create(payload), order)
         order.action_blend_accept_order()
         self.assertEqual((order.payment_ids, order.account_move), (payment, invoice))
         self.assertFalse(order.message_ids.filtered(lambda message: "payload.tax" in str(message.body)))
-        self.assertEqual(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]), tickets)
+        self.assertEqual(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]), tickets)
 
     def test_matching_taxes_have_no_warning(self):
         self.config.blend_auto_accept = True

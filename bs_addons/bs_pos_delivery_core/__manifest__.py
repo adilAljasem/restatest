@@ -3,7 +3,8 @@
     "summary": "Extensible delivery-provider framework for Odoo Point of Sale",
     "version": "19.0.2.30.0",
     "category": "Point of Sale",
-    "author": "Bunbastic",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "mail",

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_pl" model="ir.actions.client">
+        <field name="name">قائمة الدخل</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">profit-and-loss</field>
+        <field name="params" eval="{'kind': 'pl'}"/>
+    </record>
+    <menuitem id="menu_report_pl" parent="account.account_reports_legal_statements_menu" action="action_report_pl" sequence="1"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_bs" model="ir.actions.client">
+        <field name="name">الميزانية العمومية</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">balance-sheet</field>
+        <field name="params" eval="{'kind': 'bs'}"/>
+    </record>
+    <menuitem id="menu_report_bs" parent="account.account_reports_legal_statements_menu" action="action_report_bs" sequence="2"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_pl_branch" model="ir.actions.client">
+        <field name="name">قائمة الدخل حسب الفرع</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">profit-and-loss-by-branch</field>
+        <field name="params" eval="{'kind': 'pl_branch'}"/>
+    </record>
+    <menuitem id="menu_report_pl_branch" parent="account.account_reports_legal_statements_menu" action="action_report_pl_branch" sequence="3"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_tb" model="ir.actions.client">
+        <field name="name">ميزان المراجعة</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">trial-balance</field>
+        <field name="params" eval="{'kind': 'tb'}"/>
+    </record>
+    <menuitem id="menu_report_tb" parent="account.account_reports_legal_statements_menu" action="action_report_tb" sequence="4"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_gl" model="ir.actions.client">
+        <field name="name">دفتر الأستاذ العام</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">general-ledger</field>
+        <field name="params" eval="{'kind': 'gl'}"/>
+    </record>
+    <menuitem id="menu_report_gl" parent="account.account_reports_legal_statements_menu" action="action_report_gl" sequence="5"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_partner" model="ir.actions.client">
+        <field name="name">كشف حساب العملاء والموردين</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">partner-ledger</field>
+        <field name="params" eval="{'kind': 'partner'}"/>
+    </record>
+    <menuitem id="menu_report_partner" parent="account.account_reports_partners_reports_menu" action="action_report_partner" sequence="1"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_aged" model="ir.actions.client">
+        <field name="name">أعمار الذمم</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">aged-balances</field>
+        <field name="params" eval="{'kind': 'aged'}"/>
+    </record>
+    <menuitem id="menu_report_aged" parent="account.account_reports_partners_reports_menu" action="action_report_aged" sequence="2"
+              groups="account.group_account_readonly"/>
+    <record id="action_report_tax" model="ir.actions.client">
+        <field name="name">إقرار ضريبة القيمة المضافة</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">vat-return</field>
+        <field name="params" eval="{'kind': 'tax'}"/>
+    </record>
+    <menuitem id="menu_report_tax" parent="account.account_reports_taxes_and_fiscal_menu" action="action_report_tax" sequence="1"
+              groups="account.group_account_readonly"/>
+
+    <record id="action_bank_rec" model="ir.actions.client">
+        <field name="name">التسوية البنكية</field>
+        <field name="tag">resta_account.bank_rec</field>
+        <field name="path">bank-reconciliation</field>
+    </record>
+    <menuitem id="menu_bank_rec" parent="account.account_transactions_menu" action="action_bank_rec" sequence="5"
+              groups="account.group_account_user"/>
+
+    <record id="action_statement_lines" model="ir.actions.act_window">
+        <field name="name">حركات البنك</field>
+        <field name="res_model">account.bank.statement.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_statement_line_list"/>
+        <field name="help" type="html"><p class="o_view_nocontent_smiling_face">أضف حركات كشف الحساب البنكي هنا، أو استوردها من ملف Excel (القائمة ⚙ ← استيراد).</p></field>
+    </record>
+    <menuitem id="menu_statement_lines" parent="account.account_transactions_menu" action="action_statement_lines"
+              sequence="6" groups="account.group_account_user"/>
+
+    <menuitem id="menu_assets_root" name="الأصول الثابتة" parent="account.menu_finance_entries" sequence="10"
+              groups="account.group_account_readonly"/>
+    <menuitem id="menu_assets" parent="menu_assets_root" action="action_resta_asset" sequence="1"/>
+    <menuitem id="menu_asset_types" parent="account.account_account_menu" action="action_resta_asset_type" sequence="20"
+              groups="account.group_account_manager"/>
+
+    <record id="action_lock_dates" model="ir.actions.act_window">
+        <field name="name">إقفال الفترات</field>
+        <field name="res_model">resta.lock.dates</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_lock_dates" parent="account.account_closing_menu" action="action_lock_dates" sequence="10"
+              groups="account.group_account_manager"/>
+
+    <menuitem id="menu_report_cf" parent="account.account_reports_legal_statements_menu" action="action_report_cf" sequence="4"
+              groups="account.group_account_readonly"/>
+    <menuitem id="menu_report_budget" parent="account.account_reports_management_menu" action="action_report_budget" sequence="1"
+              groups="account.group_account_readonly"/>
+    <menuitem id="menu_budgets" parent="account.menu_finance_entries" action="action_resta_budget" sequence="12"
+              groups="account.group_account_user"/>
+    <menuitem id="menu_followup" parent="account.menu_finance_receivables" action="action_followup" sequence="20"
+              groups="account.group_account_invoice"/>
+    <menuitem id="menu_followup_levels" parent="account.account_invoicing_menu" action="action_followup_levels" sequence="40"
+              groups="account.group_account_manager"/>
+    <menuitem id="menu_bank_import" parent="account.account_transactions_menu" action="action_bank_import" sequence="7"
+              groups="account.group_account_user"/>
+
+    <!-- Community calls the app "Invoicing"; with the full features it is the accounting app -->
+    <function model="resta.account.report" name="_resta_rename_menus"/>
+</odoo>

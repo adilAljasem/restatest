@@ -3,7 +3,8 @@
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
     "summary": "Hide products from direct POS selection while keeping combo and kitchen flows",
-    "author": "M-Malky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["pos_self_order"],
     "data": [

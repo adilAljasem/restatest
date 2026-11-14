@@ -17,19 +17,18 @@ class PosConfig(models.Model):
         string="Rating (NPS)", default=True,
         help="Ask the customer to rate the visit (0-10) and store the answer in Odoo.",
     )
-    tracking_prep_display_id = fields.Many2one(
-        'pos.prep.display',
+    tracking_kds_display_id = fields.Many2one(
+        'resta.kds.display',
         string="Tracking Screen",
-        help="Kitchen / preparation screen that drives the customer status. When the order reaches the "
-             "'Ready' stage of this screen the customer is notified. Leave empty to follow every "
-             "preparation screen linked to this point of sale (the order is ready when all of them are).",
+        help="Kitchen screen that drives the customer status. When the order is ready on this screen "
+             "the customer is notified. Leave empty to follow every kitchen screen linked to this "
+             "point of sale (the order is ready when all of them are).",
     )
-    tracking_ready_stage_id = fields.Many2one(
-        'pos.prep.stage',
+    tracking_kds_stage_id = fields.Many2one(
+        'resta.kds.stage',
         string="Ready Stage",
         help="Stage of the tracking screen from which the order is shown as ready to the customer. "
-             "Leave empty: the stage before the last one (3 stages or more) or the last stage "
-             "(2 stages). The first stage is always 'preparing'.",
+             "Leave empty: the screen's own 'ready' stage, or the «Done» tap on a one-stage screen.",
     )
     tracking_preset_ids = fields.Many2many(
         'pos.preset', 'pos_config_tracking_preset_rel', 'config_id', 'preset_id',
@@ -74,13 +73,13 @@ class PosConfig(models.Model):
             if config.tracking_enabled and not (config.tracking_pager_enabled or config.tracking_nps_enabled):
                 raise ValidationError(_("Order tracking needs the pager, the rating (NPS), or both."))
 
-    @api.constrains('tracking_ready_stage_id', 'tracking_prep_display_id')
+    @api.constrains('tracking_kds_stage_id', 'tracking_kds_display_id')
     def _check_tracking_ready_stage(self):
         for config in self:
-            stage = config.tracking_ready_stage_id
+            stage = config.tracking_kds_stage_id
             if not stage:
                 continue
-            display = config.tracking_prep_display_id
+            display = config.tracking_kds_display_id
             if not display:
                 raise ValidationError(_("Choose the tracking screen before its ready stage."))
             stage_ids = self._tracking_sorted_stages(display).ids
@@ -92,32 +91,30 @@ class PosConfig(models.Model):
 
     @api.model
     def _tracking_sorted_stages(self, display):
-        stages = display.stage_ids
-        if 'sequence' in stages._fields:
-            stages = stages.sorted(lambda s: (s.sequence, s.id))
-        return stages
+        return display.stage_ids.sorted(lambda s: (s.sequence, s.id))
 
     def _tracking_stage_levels(self, display):
-        """(ordered stage ids, ready index, completed index) for one preparation display.
+        """(ordered stage ids, ready index, picked-up index) for one kitchen screen.
 
-        * index 0 (where new orders arrive) is never ready nor completed;
-        * ready: the configured ready stage, else the stage before the last one (3+ stages)
-          or the last stage (2 stages); a single-stage screen cannot mark orders ready
-          (use "Mark as Ready" or add a stage);
-        * completed (picked up): the last stage, only when it comes after the ready stage.
+        * index 0 (where new orders arrive) is never ready nor picked up;
+        * ready: the configured ready stage, else the screen's first «ready» stage; when there is
+          none (the simple one-column screen) the order is ready when the cook taps «Done»;
+        * picked up: a last stage after the ready stage, or «Done» tapped on the ready stage.
         """
         self.ensure_one()
-        stage_ids = self._tracking_sorted_stages(display).ids
-        count = len(stage_ids)
+        stages = self._tracking_sorted_stages(display)
+        stage_ids = stages.ids
         ready_index = None
-        configured = self.tracking_ready_stage_id
+        configured = self.tracking_kds_stage_id
         if configured and configured.id in stage_ids and stage_ids.index(configured.id) > 0:
             ready_index = stage_ids.index(configured.id)
-        elif count >= 3:
-            ready_index = count - 2
-        elif count == 2:
-            ready_index = 1
-        done_index = count - 1 if ready_index is not None and count - 1 > ready_index else None
+        else:
+            for index, stage in enumerate(stages):
+                if index and stage.is_ready:
+                    ready_index = index
+                    break
+        last = len(stage_ids) - 1
+        done_index = last if ready_index is not None and last > ready_index else None
         return stage_ids, ready_index, done_index
 
     def _tracking_order_eligible(self, order):
@@ -138,11 +135,9 @@ class PosConfig(models.Model):
             return True
         return not self.tracking_user_ids or order.user_id in self.tracking_user_ids
 
-    def _tracking_prep_displays(self):
-        """Preparation displays whose stages decide the customer-facing status."""
+    def _tracking_kds_displays(self):
+        """Kitchen screens whose tickets decide the customer-facing status."""
         self.ensure_one()
-        if self.tracking_prep_display_id:
-            return self.tracking_prep_display_id
-        return self.env['pos.prep.display'].sudo().search([
-            '|', ('pos_config_ids', '=', False), ('pos_config_ids', 'in', self.id),
-        ])
+        if self.tracking_kds_display_id:
+            return self.tracking_kds_display_id
+        return self.env['resta.kds.display'].sudo().search([('pos_config_ids', 'in', self.id)])

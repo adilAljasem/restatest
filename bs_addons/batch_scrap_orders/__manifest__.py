@@ -4,7 +4,8 @@
     "version": "19.0.1.2.0",
     "category": "Inventory/Inventory",
     "license": "LGPL-3",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "depends": ["stock_account", "mrp"],
     "data": [
         "security/batch_scrap_security.xml",

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- «طلبك جاهز»: customer TV screen. Plain page, no Odoo bundles: loads fast on any TV browser. -->
+    <template id="tracking_page" name="Resta order status screen">
+        <html lang="ar" dir="rtl">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="robots" content="noindex"/>
+                <title t-out="title"/>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@500;700&amp;display=swap" rel="stylesheet"/>
+                <style>
+                    :root { --primary: #FF5A1F; --ink: #161616; --muted: #706D69; --bg: #F9F7F3; --card: #FFFFFF; --ready: #10B981; --line: #DED9D3; }
+                    @media (prefers-color-scheme: dark) { :root { --ink: #F4F1EC; --muted: #A8A39C; --bg: #121110; --card: #1D1B19; --line: #34302C; } }
+                    * { box-sizing: border-box; }
+                    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+                        font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif; }
+                    body { display: flex; flex-direction: column; overflow: hidden; }
+                    header { display: flex; align-items: center; justify-content: space-between; padding: 2vh 3vw; }
+                    header h1 { margin: 0; font-size: clamp(22px, 3.2vw, 48px); font-weight: 700; }
+                    header .clock { font-size: clamp(18px, 2.4vw, 36px); color: var(--muted); font-variant-numeric: tabular-nums; }
+                    main { flex: 1; display: grid; grid-template-columns: 1fr 1.4fr; gap: 2vw; padding: 0 3vw 3vh; min-height: 0; }
+                    section { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 2.5vh 2vw; display: flex; flex-direction: column; min-height: 0; }
+                    section h2 { margin: 0 0 2vh; font-size: clamp(20px, 2.6vw, 40px); display: flex; align-items: center; gap: .6em; }
+                    section h2 .dot { width: .6em; height: .6em; border-radius: 50%; background: var(--muted); }
+                    #ready h2 .dot { background: var(--ready); }
+                    .nums { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 1.4vw; overflow: hidden; }
+                    .num { font-weight: 700; font-variant-numeric: tabular-nums; border-radius: 14px; text-align: center; }
+                    #preparing .num { font-size: clamp(26px, 3.6vw, 64px); min-width: 3.2em; padding: .2em .5em; background: var(--bg); color: var(--muted); }
+                    #ready .num { font-size: clamp(40px, 6vw, 112px); min-width: 2.8em; padding: .1em .45em; background: var(--ready); color: #fff; }
+                    #ready .num.fresh { animation: pop 1.2s ease-out 3; }
+                    @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+                    .empty { color: var(--muted); font-size: clamp(16px, 1.8vw, 28px); }
+                    footer { padding: 0 3vw 2vh; color: var(--muted); font-size: clamp(12px, 1.2vw, 18px); display: flex; justify-content: space-between; }
+                    .offline { color: #E9430A; }
+                    @media (max-width: 760px) { main { grid-template-columns: 1fr; } }
+                    @media (prefers-reduced-motion: reduce) { #ready .num.fresh { animation: none; } }
+                </style>
+            </head>
+            <body>
+                <header>
+                    <h1><t t-out="title"/> · <span t-out="company.name"/></h1>
+                    <div class="clock" id="clock"></div>
+                </header>
+                <main>
+                    <section id="preparing" aria-live="polite">
+                        <h2><span class="dot"></span>قيد التحضير</h2>
+                        <div class="nums"></div>
+                    </section>
+                    <section id="ready" aria-live="assertive">
+                        <h2><span class="dot"></span>جاهز للاستلام</h2>
+                        <div class="nums"></div>
+                    </section>
+                </main>
+                <footer><span>ريستا</span><span id="status"></span></footer>
+                <script t-att-data-url="'/resta/order-status/%s/data' % token" id="resta-tracking">
+                    (function () {
+                        "use strict";
+                        var url = document.getElementById("resta-tracking").getAttribute("data-url");
+                        var known = null, audio = null;
+                        function chime() {
+                            try {
+                                audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+                                [880, 1175].forEach(function (f, i) {
+                                    var o = audio.createOscillator(), g = audio.createGain();
+                                    o.frequency.value = f; o.connect(g); g.connect(audio.destination);
+                                    var t = audio.currentTime + i * 0.22;
+                                    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.3, t + 0.02);
+                                    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35); o.start(t); o.stop(t + 0.4);
+                                });
+                            } catch (e) { /* no audio on this device */ }
+                        }
+                        function render(box, list, fresh) {
+                            var el = document.querySelector("#" + box + " .nums");
+                            el.innerHTML = "";
+                            if (!list.length) {
+                                var p = document.createElement("div"); p.className = "empty";
+                                p.textContent = box === "ready" ? "لا توجد طلبات جاهزة الآن" : "لا توجد طلبات قيد التحضير";
+                                el.appendChild(p); return;
+                            }
+                            list.forEach(function (n) {
+                                var d = document.createElement("div"); d.className = "num" + (fresh &amp;&amp; fresh.indexOf(n) &gt;= 0 ? " fresh" : "");
+                                d.textContent = n; el.appendChild(d);
+                            });
+                        }
+                        function tick() {
+                            fetch(url, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (data) {
+                                var fresh = known ? data.ready.filter(function (n) { return known.indexOf(n) &lt; 0; }) : [];
+                                render("preparing", data.preparing); render("ready", data.ready, fresh);
+                                if (fresh.length) { chime(); }
+                                known = data.ready;
+                                document.getElementById("status").textContent = "";
+                            }).catch(function () {
+                                var s = document.getElementById("status"); s.className = "offline"; s.textContent = "جاري إعادة الاتصال…";
+                            });
+                        }
+                        function clock() {
+                            document.getElementById("clock").textContent = new Date().toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit" });
+                        }
+                        document.addEventListener("click", function () { chime(); }, { once: true });
+                        tick(); clock(); setInterval(tick, 3000); setInterval(clock, 15000);
+                    })();
+                </script>
+            </body>
+        </html>
+    </template>
+</odoo>

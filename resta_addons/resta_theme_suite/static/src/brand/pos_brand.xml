@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- the logo Odoo shows in the POS and on the customer display -->
+    <t t-name="resta_theme_suite.OdooLogo" t-inherit="point_of_sale.OdooLogo" t-inherit-mode="extension">
+        <xpath expr="//svg" position="replace">
+            <img t-if="props.monochrome" src="/resta_sidebar_theme/static/img/resta-wordmark-white.svg" alt="Resta"
+                 style="width: 100%; height: auto;"/>
+            <img t-else="" src="/resta_sidebar_theme/static/img/resta-wordmark-default.svg" alt="Resta"
+                 style="width: 100%; height: auto;"/>
+        </xpath>
+    </t>
+</templates>

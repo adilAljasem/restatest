@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Language: ar\n"
@@ -48,6 +49,8 @@ msgid "Cancel"
 msgstr "إلغاء"
 
 #. module: exclusive_customer_discount
+#: model:ir.ui.menu,name:exclusive_customer_discount.usage_menu
+#: model:ir.actions.act_window,name:exclusive_customer_discount.usage_action
 msgid "Exclusive Customer Discounts"
 msgstr "خصومات العملاء الحصريين"
 

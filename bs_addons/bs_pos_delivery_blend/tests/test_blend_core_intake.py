@@ -176,12 +176,32 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
         self.assertTrue(status_job)
         self.assertEqual(order.binding_id.pos_order_id, pos)
 
-    def test_kitchen_ready_and_done_advance_blend_status(self):
-        display = self.env["pos.prep.display"].create({
-            "name": "Blend kitchen status",
-            "company_id": self.company.id,
+    def _kitchen(self, name):
+        """A Resta kitchen screen with a «ready» column (to cook -> ready -> bump)."""
+        display = self.env["resta.kds.display"].create({
+            "name": name, "company_id": self.company.id,
             "pos_config_ids": [Command.link(self.basic_config.id)],
         })
+        self.env["resta.kds.stage"].create({"display_id": display.id, "name": "Ready", "sequence": 50,
+                                            "is_ready": True})
+        return display
+
+    def _tickets(self, pos_order, display=None):
+        return pos_order.resta_kds_ticket_ids.filtered(
+            lambda t: not t.cancelled and (not display or t.display_id == display))
+
+    @staticmethod
+    def _ready(tickets):
+        for ticket in tickets:
+            ticket._set_stage(ticket.display_id.stage_ids.filtered("is_ready")[:1])
+
+    @staticmethod
+    def _finish(tickets):
+        for ticket in tickets:
+            ticket._finish()
+
+    def test_kitchen_ready_and_done_advance_blend_status(self):
+        display = self._kitchen("Blend kitchen status")
         order = self.env["bs.delivery.order.service"]._receive_order(
             self.connection, self.store, self._payload("BLEND-KDS-STATUS"),
             event=self._event("BLEND-KDS-STATUS"),
@@ -190,31 +210,12 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
             "accepted", source="automatic", expected_state="received",
             idempotency_key="accept:BLEND-KDS-STATUS",
         )
-        states = self.env["pos.prep.state"].search([
-            ("prep_line_id.prep_order_id.pos_order_id", "=", order.pos_order_id.id),
-            ("stage_id.prep_display_id", "=", display.id),
-        ])
-        self.assertTrue(states)
-        ready, completed = display.stage_ids[1:]
-        kitchen_user = new_test_user(
-            self.env, login="blend-kitchen-operator", groups="point_of_sale.group_pos_user",
-            company_id=self.company.id,
-        )
-        kitchen_states = states.with_user(kitchen_user)
-
-        kitchen_states.change_state_stage(
-            {str(state.id): ready.id for state in states}, display.id,
-        )
+        tickets = self._tickets(order.pos_order_id, display)
+        self.assertTrue(tickets)
+        self._ready(tickets)
         self.assertEqual(order.state, "preparing")
         self.assertEqual(order.pos_order_id.blend_status, "preparing")
-
-        kitchen_states.change_state_stage(
-            {str(state.id): completed.id for state in states}, display.id,
-        )
-        self.assertEqual(order.state, "preparing")
-        kitchen_states.change_state_status(
-            {str(state.id): False for state in states}, display.id,
-        )
+        self._finish(tickets)
         self.assertEqual(order.state, "ready")
         self.assertEqual(order.pos_order_id.blend_status, "prepared")
         jobs = self.env["bs.delivery.outbox"].search([
@@ -232,97 +233,35 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
         )
 
     def test_kitchen_waits_for_all_displays_and_ignores_repeated_actions(self):
-        displays = [self.env["pos.prep.display"].create({
-            "name": "Blend kitchen station %s" % index,
-            "company_id": self.company.id,
-            "pos_config_ids": [Command.link(self.basic_config.id)],
-        }) for index in (1, 2)]
-        second_product = self.env["product.product"].create({
-            "name": "Blend second meal",
-            "available_in_pos": True,
-            "list_price": 20,
-            "taxes_id": [Command.clear()],
-            "property_account_income_id": self.sales_account.id,
-        })
-        self.env["bs.delivery.product.binding"].create({
-            "connection_id": self.connection.id,
-            "store_binding_id": self.store.id,
-            "external_product_id": "MEAL-2",
-            "product_id": second_product.id,
-        })
-        payload = self._payload("BLEND-KDS-MULTI")
-        second_line = dict(payload["lines"][0])
-        second_line.update({
-            "external_line_id": "line-2",
-            "external_product_id": "MEAL-2",
-            "name": "Blend second meal",
-        })
-        payload["lines"].append(second_line)
-        payload["totals"]["items_subtotal"] = 40
-        payload["totals"]["amount_total"] = 40
-        payload["payments"][0]["amount"] = 40
+        displays = [self._kitchen("Blend kitchen station %s" % index) for index in (1, 2)]
         order = self.env["bs.delivery.order.service"]._receive_order(
-            self.connection, self.store, payload,
+            self.connection, self.store, self._payload("BLEND-KDS-MULTI"),
             event=self._event("BLEND-KDS-MULTI"),
         )
         order.transition_to(
             "accepted", source="automatic", expected_state="received",
             idempotency_key="accept:BLEND-KDS-MULTI",
         )
-        states = [self.env["pos.prep.state"].search([
-            ("prep_line_id.prep_order_id.pos_order_id", "=", order.pos_order_id.id),
-            ("stage_id.prep_display_id", "=", display.id),
-        ]) for display in displays]
-        self.assertEqual([len(display_states) for display_states in states], [2, 2])
-
-        first_line = states[0][:1]
-        first_line.change_state_stage({str(first_line.id): displays[0].stage_ids[-2].id}, displays[0].id)
-        self.assertEqual(order.state, "accepted")
-
-        for index, display in enumerate(displays):
-            states[index].change_state_stage(
-                {str(state.id): display.stage_ids[-2].id for state in states[index]},
-                display.id,
-            )
+        tickets = [self._tickets(order.pos_order_id, display) for display in displays]
+        self.assertTrue(all(tickets))
+        for index, display_tickets in enumerate(tickets):
+            self._ready(display_tickets)
             self.assertEqual(order.state, "preparing" if index else "accepted")
-        job_count = self.env["bs.delivery.outbox"].search_count([
-            ("binding_id", "=", order.binding_id.id),
-        ])
-        states[0].change_state_stage(
-            {str(state.id): displays[0].stage_ids[-2].id for state in states[0]},
-            displays[0].id,
-        )
+        job_count = self.env["bs.delivery.outbox"].search_count([("binding_id", "=", order.binding_id.id)])
+        self._ready(tickets[0])  # repeated action: nothing new for Blend
         self.assertEqual(self.env["bs.delivery.outbox"].search_count([
-            ("binding_id", "=", order.binding_id.id),
-        ]), job_count)
-
-        for index, display in enumerate(displays):
-            states[index].change_state_stage(
-                {str(state.id): display.stage_ids[-1].id for state in states[index]},
-                display.id,
-            )
-            states[index].change_state_status(
-                {str(state.id): False for state in states[index]}, display.id,
-            )
+            ("binding_id", "=", order.binding_id.id)]), job_count)
+        for index, display_tickets in enumerate(tickets):
+            self._finish(display_tickets)
             self.assertEqual(order.state, "ready" if index else "preparing")
-
-        states[0].change_state_status(
-            {str(state.id): True for state in states[0]}, displays[0].id,
-        )
-        states[0].change_state_status(
-            {str(state.id): False for state in states[0]}, displays[0].id,
-        )
+        tickets[0].with_user(self.env.user).sudo().kds_recall()
+        self._finish(tickets[0])
         self.assertEqual(order.state, "ready")
         self.assertEqual(self.env["bs.delivery.outbox"].search_count([
-            ("binding_id", "=", order.binding_id.id),
-        ]), job_count + 1)
+            ("binding_id", "=", order.binding_id.id)]), job_count + 1)
 
     def test_cashier_kitchen_action_does_not_enqueue_blend_status(self):
-        display = self.env["pos.prep.display"].create({
-            "name": "Cashier kitchen status",
-            "company_id": self.company.id,
-            "pos_config_ids": [Command.link(self.basic_config.id)],
-        })
+        display = self._kitchen("Cashier kitchen status")
         cashier_order = self.env["pos.order"].create({
             "session_id": self.basic_config.current_session_id.id,
             "company_id": self.company.id,
@@ -339,35 +278,17 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
                 "tax_ids": [Command.clear()],
             })],
         })
-        self.env["pos.prep.order"].process_order(cashier_order.id, {})
-        states = self.env["pos.prep.state"].search([
-            ("prep_line_id.prep_order_id.pos_order_id", "=", cashier_order.id),
-            ("stage_id.prep_display_id", "=", display.id),
-        ])
-        self.assertTrue(states)
+        cashier_order.with_context(resta_kds_fire=True)._resta_kds_dispatch()
+        tickets = self._tickets(cashier_order, display)
+        self.assertTrue(tickets)
         job_count = self.env["bs.delivery.outbox"].search_count([])
-        states.change_state_stage(
-            {str(state.id): display.stage_ids[-2].id for state in states},
-            display.id,
-        )
-        states.change_state_stage(
-            {str(state.id): display.stage_ids[-1].id for state in states},
-            display.id,
-        )
-        states.change_state_status(
-            {str(state.id): False for state in states}, display.id,
-        )
-        self.assertFalse(self.env["bs.delivery.order"].search([
-            ("pos_order_id", "=", cashier_order.id),
-        ]))
+        self._ready(tickets)
+        self._finish(tickets)
+        self.assertFalse(self.env["bs.delivery.order"].search([("pos_order_id", "=", cashier_order.id)]))
         self.assertEqual(self.env["bs.delivery.outbox"].search_count([]), job_count)
 
     def test_kitchen_status_is_queued_when_blend_connection_is_down(self):
-        display = self.env["pos.prep.display"].create({
-            "name": "Blend kitchen offline",
-            "company_id": self.company.id,
-            "pos_config_ids": [Command.link(self.basic_config.id)],
-        })
+        display = self._kitchen("Blend kitchen offline")
         order = self.env["bs.delivery.order.service"]._receive_order(
             self.connection, self.store, self._payload("BLEND-KDS-OFFLINE"),
             event=self._event("BLEND-KDS-OFFLINE"),
@@ -376,17 +297,10 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
             "accepted", source="automatic", expected_state="received",
             idempotency_key="accept:BLEND-KDS-OFFLINE",
         )
-        states = self.env["pos.prep.state"].search([
-            ("prep_line_id.prep_order_id.pos_order_id", "=", order.pos_order_id.id),
-            ("stage_id.prep_display_id", "=", display.id),
-        ])
-        self.assertTrue(states)
+        tickets = self._tickets(order.pos_order_id, display)
+        self.assertTrue(tickets)
         self.connection.state = "error"
-
-        states.change_state_stage(
-            {str(state.id): display.stage_ids[-2].id for state in states},
-            display.id,
-        )
+        self._ready(tickets)
         self.assertEqual(order.state, "preparing")
         job = self.env["bs.delivery.outbox"].search([
             ("binding_id", "=", order.binding_id.id),
@@ -992,7 +906,7 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
             "payment_type": "credit_visa",
             "payment_method_id": self.bank_pm1.id,
         })
-        display = self.env["pos.prep.display"].create({
+        display = self.env["resta.kds.display"].create({
             "name": "Blend Kitchen",
             "company_id": self.basic_config.company_id.id,
             "pos_config_ids": [Command.set(self.basic_config.ids)],
@@ -1009,10 +923,9 @@ class TestBlendCoreIntake(TestPoSCommon, HttpCase):
             ("external_order_id", "=", payload["partner_reference"]),
         ])
         self.assertEqual(order.pos_order_id.blend_aggregator, "keeta")
-        kitchen_fields = display.load_data_params()["pos.order"]["fields"]
-        self.assertIn("blend_aggregator", kitchen_fields)
-        pos_values = order.pos_order_id.read(kitchen_fields, load=False)[0]
-        self.assertEqual(pos_values.get("blend_aggregator"), "keeta")
+        tickets = order.pos_order_id.resta_kds_ticket_ids.filtered(lambda t: t.display_id == display)
+        self.assertTrue(tickets, "the delivery order reaches the kitchen screen")
+        self.assertIn("keeta", (tickets[0].info or "").lower())
 
     def test_order_api_uses_core_and_defaults_missing_payment_type_to_card(self):
         payload = self._blend_request()

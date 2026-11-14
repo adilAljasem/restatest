@@ -6,6 +6,7 @@ import { user } from "@web/core/user";
 import { useBus, useService } from "@web/core/utils/hooks";
 import { getCurrentScheme, getThemeSettings, toggleScheme } from "../js/theme_scheme";
 import { iconKeyFor, iconMarkup } from "../icons/icons";
+import { MENU_HUB_TAG, collectLeaves, menuHref, normalize } from "../menu_hub/menu_utils";
 
 const LS_COLLAPSED = "rs_sidebar_collapsed";
 const LS_OPEN = "rs_sidebar_open";
@@ -73,16 +74,6 @@ function sectionKeyForXmlid(xmlid) {
         return "sales";
     }
     return "other";
-}
-
-function normalize(str) {
-    // Lowercase + strip Arabic diacritics/tatweel and unify alef/yaa/taa forms
-    return (str || "")
-        .toLowerCase()
-        .replace(/[ً-ٟـ]/g, "")
-        .replace(/[أإآ]/g, "ا")
-        .replace(/ى/g, "ي")
-        .replace(/ة/g, "ه");
 }
 
 export class RestaSidebar extends Component {
@@ -205,10 +196,37 @@ export class RestaSidebar extends Component {
     }
 
     getMenuItemHref(menu) {
-        if (!menu.actionID) {
-            return "#";
+        return menuHref(menu);
+    }
+
+    /**
+     * Entries shown under an app: one level only (its sections). A section
+     * that groups several screens opens the section page with option cards.
+     * While searching, matching entries of any depth are listed with their path.
+     */
+    subItems(app) {
+        const q = normalize(this.state.query.trim());
+        if (!q) {
+            return (app.childrenTree || []).map((menu) => ({ menu, path: "" }));
         }
-        return `/odoo/${menu.actionPath || "action-" + menu.actionID}`;
+        const results = [];
+        const walk = (menu, trail) => {
+            for (const child of menu.childrenTree || []) {
+                if (normalize(child.name).includes(q) && (child.actionID || child.childrenTree?.length)) {
+                    results.push({ menu: child, path: trail.join(" › ") });
+                }
+                walk(child, [...trail, child.name]);
+            }
+        };
+        walk(app, []);
+        if (!results.length && normalize(app.name).includes(q)) {
+            return (app.childrenTree || []).map((menu) => ({ menu, path: "" }));
+        }
+        return results.slice(0, 40);
+    }
+
+    isItemActive(menu) {
+        return this.state.activeMenuId === menu.id || this.containsActive(menu);
     }
 
     getAppIcon(app) {
@@ -310,9 +328,14 @@ export class RestaSidebar extends Component {
         this.state.version++;
         const app = this.menuService.getCurrentApp();
         this.state.currentAppId = app ? app.id : null;
-        const actionId = this.actionService.currentController?.action?.id;
+        const action = this.actionService.currentController?.action;
+        const actionId = action?.id;
         let active = null;
-        if (app && actionId) {
+        if (action?.tag === MENU_HUB_TAG) {
+            // section page: the section itself is the active entry
+            const hubId = parseInt(action.context?.active_id || action.params?.active_id);
+            active = hubId ? { id: hubId, depth: 1 } : null;
+        } else if (app && actionId) {
             const walk = (menu, depth) => {
                 if (menu.actionID === actionId && menu.id !== app.id) {
                     if (!active || depth > active.depth) {
@@ -333,13 +356,6 @@ export class RestaSidebar extends Component {
                 this._lastAppId = app.id;
             }
             this.state.open.add(app.id);
-            const reveal = (menu) => {
-                if (this.containsActive(menu) && menu.childrenTree?.length) {
-                    this.state.open.add(menu.id);
-                    menu.childrenTree.forEach(reveal);
-                }
-            };
-            this.menuService.getMenuAsTree(app.id).childrenTree.forEach(reveal);
             this.persistOpen();
         }
     }
@@ -427,10 +443,32 @@ export class RestaSidebar extends Component {
         }
         ev.preventDefault();
         if (item.childrenTree.length) {
-            this.toggleOpen(item);
+            this.openSection(item);
         } else {
             this.navigate(item);
         }
+    }
+
+    /** A section with one screen opens it; with several, the section page. */
+    async openSection(section) {
+        const leaves = collectLeaves(section);
+        if (leaves.length === 1) {
+            return this.navigate(leaves[0].menu);
+        }
+        if (!leaves.length) {
+            return;
+        }
+        this.state.flyout = null;
+        this.closeMobile();
+        await this.actionService.doAction(
+            {
+                type: "ir.actions.client",
+                tag: MENU_HUB_TAG,
+                name: section.name,
+                context: { active_id: section.id },
+            },
+            { clearBreadcrumbs: true }
+        );
     }
 
     get flyoutApp() {

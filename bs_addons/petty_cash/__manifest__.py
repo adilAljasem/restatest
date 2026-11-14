@@ -5,9 +5,9 @@
     'sequence': 7,
     'category': 'Accounting',
     'summary': 'Petty cash transaction management',
-    'author': 'Al-haj Hashim',
-    'website': 'https://www.linkedin.com/in/alhaj-hashim',
-    'depends': ['account_accountant', 'analytic', 'hr', 'hr_expense'],
+    'author': "Resta",
+    'website': "https://resta.sa",
+    'depends': ['resta_account', 'analytic', 'hr', 'hr_expense'],
     'data': [
             'security/ir.model.access.csv',
             'security/petty_cash_security.xml',

@@ -1508,7 +1508,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <div class="card-head">
     <div>
       <div class="card-title nomb">العمليات: المخزون · المشتريات · المحاسبة · الإنتاج · الموظفون · رضا الضيوف</div>
-      <div class="card-sub">من تطبيقات أودو المثبتة فقط، للفترة والفروع المحددة</div>
+      <div class="card-sub">من التطبيقات المثبتة فقط، للفترة والفروع المحددة</div>
     </div>
     <div class="ops-tabs" id="opsTabs"></div>
     <button class="btn btn-accent" id="opsRefreshBtn" type="button">تحديث العمليات</button>

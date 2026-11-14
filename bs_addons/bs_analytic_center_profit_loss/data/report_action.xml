@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_profit_loss_by_center" model="ir.actions.client">
+        <field name="name">قائمة الدخل حسب المراكز</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">profit-and-loss-by-center</field>
+        <field name="params" eval="{'kind': 'pl_center'}"/>
+    </record>
+    <menuitem id="menu_profit_loss_by_center" parent="account.account_reports_legal_statements_menu"
+              action="action_profit_loss_by_center" sequence="4" groups="account.group_account_readonly"/>
+</odoo>

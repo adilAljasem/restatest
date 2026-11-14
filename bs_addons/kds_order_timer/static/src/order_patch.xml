@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="kds_order_timer.Order" t-inherit="pos_enterprise.Order" t-inherit-mode="extension">
-        <!-- رقم الطلب بين قوسين بجوار رقم الطاولة -->
-        <xpath expr="//div[hasclass('o_pdis_tracking_number')]" position="attributes">
-            <attribute name="class" add="d-flex align-items-center gap-1" separator=" "/>
-        </xpath>
-        <xpath expr="//div[hasclass('o_pdis_tracking_number')]" position="inside">
-            <span t-if="kdsShortNumber" class="kds-order-no">(<t t-esc="kdsShortNumber"/>)</span>
-        </xpath>
-        <!-- استبدال الدقائق بعدّاد دقائق:ثواني -->
-        <xpath expr="//div[hasclass('o_pdis_alert-timer')]//span" position="attributes">
-            <attribute name="t-esc">isLastStage ? this.props.order.prepOrder.completion_time : kdsDurationDisplay</attribute>
-            <attribute name="class">kds-timer</attribute>
+    <t t-name="kds_order_timer.Screen" t-inherit="resta_kds.Screen" t-inherit-mode="extension">
+        <!-- the short number (last 3 digits) on every ticket -->
+        <xpath expr="//div[hasclass('o_kds_num')]" position="replace">
+            <div class="o_kds_num kds-order-no">#<t t-out="kdsShortNumber(t)"/></div>
         </xpath>
     </t>
 </templates>

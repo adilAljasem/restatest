@@ -1,5 +1,6 @@
 import logging
 import re
+from urllib.parse import urlencode
 from datetime import timedelta
 
 from odoo import fields, http
@@ -120,9 +121,15 @@ class RestaWebsite(http.Controller):
         return request.render("resta_saas_master.page_terms", self._values())
 
     # --------------------------------------------------------------- login
+    @http.route(["/login", "/signin"], type="http", auth="public", website=True, sitemap=False)
+    def login_short(self, **kw):
+        """Short link for the Resta site's «تسجيل الدخول» button (keeps ?account=)."""
+        query = {k: v for k, v in kw.items() if k in ("account", "email")}
+        return request.redirect("/resta/login" + ("?" + urlencode(query) if query else ""))
+
     @http.route("/resta/login", type="http", auth="public", website=True, sitemap=True)
     def login(self, account=None, email=None, error=None, **kw):
-        messages = {"auth": "البريد الإلكتروني أو كلمة المرور غير صحيحة.", "expired": "انتهت صلاحية الطلب، حاول مرة أخرى.",
+        messages = {"auth": "اسم المستخدم أو كلمة المرور غير صحيحة.", "expired": "انتهت صلاحية الطلب، حاول مرة أخرى.",
                     "state": "الحساب غير متاح حالياً، تواصل مع مدير حسابك."}
         return request.render("resta_saas_master.page_login",
                               self._values(account=account or "", email=email or "", error=messages.get(error)))

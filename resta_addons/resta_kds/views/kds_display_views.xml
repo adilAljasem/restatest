@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kds_display_list" model="ir.ui.view">
+        <field name="name">resta.kds.display.list</field>
+        <field name="model">resta.kds.display</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="pos_config_ids" widget="many2many_tags"/>
+                <field name="category_ids" widget="many2many_tags" optional="show"/>
+                <field name="open_count"/>
+                <button name="action_open_screen" type="object" string="فتح الشاشة" icon="fa-desktop" class="btn-link"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kds_display_form" model="ir.ui.view">
+        <field name="name">resta.kds.display.form</field>
+        <field name="model">resta.kds.display</field>
+        <field name="arch" type="xml">
+            <form string="شاشة المطبخ">
+                <header>
+                    <button name="action_open_screen" type="object" string="فتح شاشة المطبخ" class="btn-primary" icon="fa-desktop"/>
+                    <button name="action_open_tracking" type="object" string="شاشة «طلبك جاهز» للزبائن" icon="fa-tv"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="مثلاً: المطبخ، الشواية، المشروبات"/></h1>
+                    </div>
+                    <group>
+                        <group string="ماذا تستقبل الشاشة">
+                            <field name="pos_config_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                            <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"
+                                   placeholder="كل الأصناف"/>
+                        </group>
+                        <group string="التنبيهات">
+                            <field name="warn_minutes"/>
+                            <field name="late_minutes"/>
+                            <field name="sound"/>
+                            <field name="auto_advance"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="المراحل" name="stages">
+                            <div class="text-muted mb-2">
+                                الافتراضي مرحلة واحدة: الطاهي يضغط «تم» والطلب يصير جاهزاً.
+                                أضف مراحل فقط إذا تحتاجها (مثلاً عمود «جاهز» لموظف التسليم).
+                            </div>
+                            <field name="stage_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="color" widget="color"/>
+                                    <field name="is_ready"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="الأسماء واللغة" name="lang">
+                            <group>
+                                <field name="main_lang_id" options="{'no_create': True}"/>
+                                <field name="secondary_lang_id" options="{'no_create': True}"/>
+                            </group>
+                        </page>
+                        <page string="شاشة الزبائن" name="tracking">
+                            <group>
+                                <field name="tracking_title"/>
+                                <field name="tracking_ready_minutes"/>
+                            </group>
+                            <div class="text-muted">
+                                افتح الرابط من زر «شاشة طلبك جاهز» على أي شاشة تلفزيون عند الكاونتر. لا تحتاج تسجيل دخول.
+                            </div>
+                            <button name="action_regenerate_token" type="object" string="تغيير الرابط السري"
+                                    class="btn-link mt-2" icon="fa-refresh"
+                                    confirm="الرابط القديم للشاشة سيتوقف. متابعة؟"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kds_display" model="ir.actions.act_window">
+        <field name="name">شاشات المطبخ</field>
+        <field name="res_model">resta.kds.display</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">أضف شاشة مطبخ</p>
+            <p>شاشة لكل محطة (المطبخ، الشواية، المشروبات)، أو شاشة واحدة لكل شيء.</p>
+        </field>
+    </record>
+
+    <record id="action_kds_screen" model="ir.actions.client">
+        <field name="name">شاشة المطبخ</field>
+        <field name="tag">resta_kds.screen</field>
+        <field name="target">fullscreen</field>
+        <field name="path">kitchen</field>
+    </record>
+</odoo>

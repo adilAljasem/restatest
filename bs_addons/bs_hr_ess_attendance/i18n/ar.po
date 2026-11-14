@@ -1264,7 +1264,7 @@ msgstr "جارٍ الإرسال..."
 #. module: bs_hr_ess_attendance
 #: model:ir.model.fields,help:bs_hr_ess_attendance.field_res_company__ess_face_photo_fallback model:ir.model.fields,help:bs_hr_ess_attendance.field_res_config_settings__ess_face_photo_fallback
 msgid "Some phone apps (e.g. the Odoo iOS / Android app) may block live camera streams. The employee then takes a selfie: the face is still matched but liveness cannot be checked, so the attendance is flagged as suspicious for HR review."
-msgstr "قد تمنع بعض تطبيقات الجوال (مثل تطبيق أودو على iOS / Android) بث الكاميرا المباشر. عندها يلتقط الموظف صورة سيلفي: تتم مطابقة الوجه لكن لا يمكن التحقق من الحيوية، فيُعلَّم الحضور كمشبوه لمراجعة الموارد البشرية."
+msgstr "قد تمنع بعض تطبيقات الجوال (مثل تطبيق الجوال على iOS / Android) بث الكاميرا المباشر. عندها يلتقط الموظف صورة سيلفي: تتم مطابقة الوجه لكن لا يمكن التحقق من الحيوية، فيُعلَّم الحضور كمشبوه لمراجعة الموارد البشرية."
 
 #. module: bs_hr_ess_attendance
 #. odoo-javascript

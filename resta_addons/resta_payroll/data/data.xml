@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- GOSI: annuities + SANED for Saudis (+2% occupational hazards on the employer), 2% employer only for non-Saudis.
+             New law (first registered from 3 July 2024): annuities +0.5% each 1 July from 2025 to 2028. -->
+        <record id="gosi_old" model="resta.gosi.rate"><field name="scheme">old</field><field name="date_from">2000-01-01</field>
+            <field name="employee_rate">9.75</field><field name="employer_rate">11.75</field>
+            <field name="note">معاشات 9% + ساند 0.75% لكل طرف، وأخطار مهنية 2% على المنشأة</field></record>
+        <record id="gosi_new_2024" model="resta.gosi.rate"><field name="scheme">new</field><field name="date_from">2024-07-03</field>
+            <field name="employee_rate">9.75</field><field name="employer_rate">11.75</field><field name="note">معاشات 9%</field></record>
+        <record id="gosi_new_2025" model="resta.gosi.rate"><field name="scheme">new</field><field name="date_from">2025-07-01</field>
+            <field name="employee_rate">10.25</field><field name="employer_rate">12.25</field><field name="note">معاشات 9.5%</field></record>
+        <record id="gosi_new_2026" model="resta.gosi.rate"><field name="scheme">new</field><field name="date_from">2026-07-01</field>
+            <field name="employee_rate">10.75</field><field name="employer_rate">12.75</field><field name="note">معاشات 10%</field></record>
+        <record id="gosi_new_2027" model="resta.gosi.rate"><field name="scheme">new</field><field name="date_from">2027-07-01</field>
+            <field name="employee_rate">11.25</field><field name="employer_rate">13.25</field><field name="note">معاشات 10.5%</field></record>
+        <record id="gosi_new_2028" model="resta.gosi.rate"><field name="scheme">new</field><field name="date_from">2028-07-01</field>
+            <field name="employee_rate">11.75</field><field name="employer_rate">13.75</field><field name="note">معاشات 11%</field></record>
+        <record id="gosi_non_saudi" model="resta.gosi.rate"><field name="scheme">non_saudi</field><field name="date_from">2000-01-01</field>
+            <field name="employee_rate">0</field><field name="employer_rate">2</field><field name="note">أخطار مهنية فقط</field></record>
+    </data>
+
+    <record id="input_overtime" model="resta.payslip.input.type">
+        <field name="name">عمل إضافي (ساعات)</field><field name="code">OT</field><field name="kind">addition</field>
+        <field name="unit">overtime_hours</field><field name="sequence">1</field></record>
+    <record id="input_bonus" model="resta.payslip.input.type">
+        <field name="name">مكافأة / حافز</field><field name="code">BONUS</field><field name="kind">addition</field><field name="sequence">2</field></record>
+    <record id="input_commission" model="resta.payslip.input.type">
+        <field name="name">عمولة / بقشيش موزع</field><field name="code">COMMISSION</field><field name="kind">addition</field><field name="sequence">3</field></record>
+    <record id="input_other_add" model="resta.payslip.input.type">
+        <field name="name">إضافة أخرى</field><field name="code">ADD_OTHER</field><field name="kind">addition</field><field name="sequence">9</field></record>
+    <record id="input_eosb" model="resta.payslip.input.type">
+        <field name="name">مكافأة نهاية الخدمة</field><field name="code">EOSB_PAY</field><field name="kind">addition</field><field name="sequence">10</field></record>
+    <record id="input_absence" model="resta.payslip.input.type">
+        <field name="name">غياب (أيام)</field><field name="code">ABSENCE</field><field name="kind">deduction</field>
+        <field name="unit">absence_days</field><field name="sequence">20</field></record>
+    <record id="input_late" model="resta.payslip.input.type">
+        <field name="name">خصم تأخير</field><field name="code">LATE</field><field name="kind">deduction</field><field name="sequence">21</field></record>
+    <record id="input_penalty" model="resta.payslip.input.type">
+        <field name="name">جزاء</field><field name="code">PENALTY</field><field name="kind">deduction</field><field name="sequence">22</field></record>
+    <record id="input_advance" model="resta.payslip.input.type">
+        <field name="name">سلفة / قسط</field><field name="code">ADVANCE</field><field name="kind">deduction</field><field name="sequence">23</field></record>
+    <record id="input_other_ded" model="resta.payslip.input.type">
+        <field name="name">خصم آخر</field><field name="code">DED_OTHER</field><field name="kind">deduction</field><field name="sequence">29</field></record>
+</odoo>

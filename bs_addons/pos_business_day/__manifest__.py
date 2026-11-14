@@ -24,7 +24,8 @@ Business Day (Operational Day) for POS & Inventory
 
 متوافق مع Odoo 19.0.
 """,
-    'author': 'Custom Development',
+    'author': "Resta",
+    "website": "https://resta.sa",
     'license': 'LGPL-3',
     'depends': ['point_of_sale', 'stock'],
     'data': [

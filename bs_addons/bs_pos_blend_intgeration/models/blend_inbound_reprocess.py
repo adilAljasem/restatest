@@ -167,17 +167,15 @@ class PosOrder(models.Model):
         if not self.blend_recovered_fulfilled:
             return super()._blend_send_to_preparation()
 
-    def _process_preparation_changes(self, options):
+    def _resta_kds_targets(self, paid_now=False):
         self.ensure_one()
         if (self.blend_recovered_fulfilled
                 or (self.env.context.get("blend_financial_processing")
                     and self.blend_partner_reference
                     and self.blend_status in ("ready_to_pick_up", "at_pick_up", "on_the_way", "completed"))):
-            # Native backend payments and cashier sync can also dispatch through
-            # pos.prep.order, independently of the Blend acceptance hook.
-            # A remotely progressed order must not create a new kitchen ticket.
-            return {"change": False}
-        return super()._process_preparation_changes(options)
+            # A remotely progressed or recovered order must not create a new kitchen ticket.
+            return None
+        return super()._resta_kds_targets(paid_now)
 
     def _blend_queue_kitchen_print(self):
         self.ensure_one()

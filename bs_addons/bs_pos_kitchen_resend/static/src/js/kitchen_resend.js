@@ -16,9 +16,9 @@ patch(PosStore.prototype, {
         return Boolean(this.unwatched?.printers?.length);
     },
 
-    /** Preparation display (Enterprise pos_preparation_display) configured. */
+    /** Kitchen screen configured (Resta kitchen screen, or Odoo's preparation display). */
     bsHasKitchenDisplay() {
-        return Boolean(this.models["pos.prep.display"]?.length);
+        return Boolean(this.models["resta.kds.display"]?.length || this.models["pos.prep.display"]?.length);
     },
 
     /** Paid order that can be resent. */
@@ -92,6 +92,11 @@ patch(PosStore.prototype, {
     /** Re-send the whole order to the preparation display. */
     async bsResendToKitchenDisplay(order) {
         const count = await this.bsRegisterResend(order, "display");
+        if (this.models["resta.kds.display"]?.length && typeof order.id === "number") {
+            // Resta kitchen screen: the server sends a marked copy of the whole order
+            await this.data.call("pos.order", "resta_kds_resend", [[order.id], `إعادة إرسال ${count || ""}`.trim()]);
+            return;
+        }
         const saved = JSON.parse(JSON.stringify(order.last_order_preparation_change || {}));
         order.uiState.bsResend = { count: count || "" };
         // Empty snapshot → every line is seen as "new" by the standard flow

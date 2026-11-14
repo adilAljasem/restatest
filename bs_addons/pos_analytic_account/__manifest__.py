@@ -4,7 +4,8 @@
     "version": "19.0.1.1.0",
     "category": "Sales/Point of Sale",
     "license": "LGPL-3",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "depends": ["point_of_sale", "analytic"],
     "data": [
         "views/pos_config_views.xml",

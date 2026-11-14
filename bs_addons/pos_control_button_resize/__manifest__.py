@@ -14,7 +14,8 @@
 بل أصبحت أزرار Bootstrap عادية (btn btn-secondary btn-lg) داخل الحاوية
 ".control-buttons"، لذلك تم تحديث المُحدّدات (selectors) في هذا الإصدار.
 """,
-    'author': 'Custom',
+    'author': "Resta",
+    "website": "https://resta.sa",
     'depends': ['point_of_sale'],
     'assets': {
         'point_of_sale._assets_pos': [

@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 import requests
 
-from odoo import Command, fields
+from odoo import Command, _, fields
 
 from .exceptions import BlendAPIError
 

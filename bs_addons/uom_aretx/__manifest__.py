@@ -11,8 +11,8 @@
         moves, or elsewhere. Use with care: historical documents keep their original UoM
         on the lines; only the product's default UoM is updated for future use.
     """,
-    'author': 'Areterix Technologies',
-    'website': '',
+    'author': "Resta",
+    'website': "https://resta.sa",
     'license': 'LGPL-3',
     'depends': ['account'],
     'data': [],

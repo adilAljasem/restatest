@@ -3,7 +3,8 @@
     "summary": "Create scheduled purchase orders from blanket agreements",
     "version": "19.0.1.0.0",
     "category": "Purchases/Purchases",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["stock_request"],
     "data": [

@@ -64,7 +64,7 @@
             form.addEventListener("submit", function (ev) {
                 ev.preventDefault();
                 if (!form.account.value || !form.login.value || !form.password.value) {
-                    showError("أدخل رقم الحساب والبريد وكلمة المرور.");
+                    showError("أدخل رقم الحساب واسم المستخدم وكلمة المرور.");
                     return;
                 }
                 var btn = form.querySelector("button[type=submit]");
@@ -79,7 +79,9 @@
                         var i = document.createElement("input");
                         i.type = "hidden"; i.name = k; i.value = v; post.appendChild(i);
                     };
-                    add("login", form.login.value.trim().toLowerCase());
+                    // emails are stored in lower case; a username is kept as typed
+                    var login = form.login.value.trim();
+                    add("login", login.indexOf("@") > -1 ? login.toLowerCase() : login);
                     add("password", form.password.value);
                     add("account", d.account);
                     add("ts", d.ts);

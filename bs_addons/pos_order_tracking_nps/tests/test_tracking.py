@@ -15,24 +15,37 @@ class TestPosOrderTracking(TestPoSCommon):
         super().setUpClass()
         cls.config = cls.basic_config
         cls.config.write({'tracking_enabled': True, 'tracking_nps_delay': 30})
-        cls.display = cls.env['pos.prep.display'].create({
-            'name': 'Kitchen',
+        cls.display = cls._kitchen_screen('Kitchen')
+
+    @classmethod
+    def _kitchen_screen(cls, name):
+        """A Resta kitchen screen with 3 columns: to cook / ready (expo) / picked up."""
+        display = cls.env['resta.kds.display'].create({
+            'name': name,
             'pos_config_ids': [Command.link(cls.config.id)],
         })
+        cls.env['resta.kds.stage'].create([
+            {'display_id': display.id, 'name': 'Ready', 'sequence': 20, 'is_ready': True},
+            {'display_id': display.id, 'name': 'Picked up', 'sequence': 30},
+        ])
+        return display
 
     def _new_order(self):
+        """A paid order: the kitchen screens receive it on payment."""
         self.open_new_session()
-        order = next(iter(self._create_orders([{'pos_order_lines_ui_args': [(self.product, 2)]}]).values()))
-        self.env['pos.prep.order'].process_order(order.id)
-        return order
+        return next(iter(self._create_orders([{'pos_order_lines_ui_args': [(self.product, 2)]}]).values()))
 
     def _states(self, order):
-        return self.env['pos.prep.state'].search([('prep_line_id.prep_order_id.pos_order_id', '=', order.id)])
+        return order.resta_kds_ticket_ids.filtered(lambda t: not t.cancelled)
 
-    def _move(self, states, stage, display=None):
-        states.change_state_stage({str(s.id): stage.id for s in states}, (display or self.display).id)
+    def _move(self, tickets, stage, display=None):
+        """What the cook does on the screen (bump / recall to a column)."""
+        for ticket in tickets.filtered(lambda t: t.display_id == stage.display_id):
+            if ticket.done:
+                ticket.write({'done': False, 'done_date': False})
+            ticket._set_stage(stage)
 
-    def test_status_follows_preparation_display(self):
+    def test_status_follows_kitchen_screen(self):
         order = self._new_order()
         self.assertTrue(order.tracking_token)
         self.assertEqual(order.tracking_state, 'preparing')
@@ -42,7 +55,7 @@ class TestPosOrderTracking(TestPoSCommon):
             'endpoint': 'https://push.example.com/abc',
             'keys': '{"p256dh": "x", "auth": "y"}',
         })
-        to_cook, ready, done = self.display.stage_ids
+        to_cook, ready, done = self.display.stage_ids.sorted('sequence')
         self._move(self._states(order), ready)
         self.assertEqual(order.tracking_state, 'ready')
         self.assertTrue(order.tracking_ready_date)
@@ -63,23 +76,41 @@ class TestPosOrderTracking(TestPoSCommon):
 
     def test_two_stage_screen_starts_preparing(self):
         """Regression: a 2-stage screen showed new orders as ready right away."""
-        self.display.stage_ids[2:].unlink()
+        self.display.stage_ids.sorted('sequence')[2:].unlink()
         order = self._new_order()
         self.assertEqual(order.tracking_state, 'preparing')
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         self.assertEqual(order.tracking_state, 'ready')
 
     def test_single_stage_screen_never_jumps_to_picked_up(self):
-        """Regression: a 1-stage screen showed new orders as picked up right away."""
-        self.display.stage_ids[1:].unlink()
+        """The simple one-column screen: «Done» means ready (not picked up)."""
+        self.display.stage_ids.sorted('sequence')[1:].unlink()
         order = self._new_order()
         self.assertEqual(order.tracking_state, 'preparing')
+        self._states(order)._finish()
+        self.assertEqual(order.tracking_state, 'ready')
+
+    def test_done_on_ready_stage_means_picked_up(self):
+        self.display.stage_ids.sorted('sequence')[2:].unlink()
+        order = self._new_order()
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
+        self.assertEqual(order.tracking_state, 'ready')
+        self._states(order)._finish()
+        self.assertEqual(order.tracking_state, 'completed')
+
+    def test_served_by_integration_is_picked_up(self):
+        order = self._new_order()
+        order.resta_kds_status = 'served'
+        self.assertEqual(order._tracking_compute_state(), 'completed')
+
+    def test_manual_mark_ready(self):
+        order = self._new_order()
         order.action_tracking_mark_ready()
         self.assertEqual(order.tracking_state, 'ready')
 
     def test_configured_ready_stage(self):
-        to_cook, ready, done = self.display.stage_ids
-        self.config.write({'tracking_prep_display_id': self.display.id, 'tracking_ready_stage_id': done.id})
+        to_cook, ready, done = self.display.stage_ids.sorted('sequence')
+        self.config.write({'tracking_kds_display_id': self.display.id, 'tracking_kds_stage_id': done.id})
         order = self._new_order()
         self.assertEqual(order.tracking_state, 'preparing')
         self._move(self._states(order), ready)
@@ -88,41 +119,35 @@ class TestPosOrderTracking(TestPoSCommon):
         self.assertEqual(order.tracking_state, 'ready', "Last stage is the ready stage: not picked up")
 
     def test_ready_stage_cannot_be_the_first_stage(self):
-        self.config.tracking_prep_display_id = self.display
+        self.config.tracking_kds_display_id = self.display
         with self.assertRaises(ValidationError):
-            self.config.tracking_ready_stage_id = self.display.stage_ids[0]
+            self.config.tracking_kds_stage_id = self.display.stage_ids.sorted('sequence')[0]
 
     def test_specific_screen_only(self):
-        bar = self.env['pos.prep.display'].create({
-            'name': 'Bar',
-            'pos_config_ids': [Command.link(self.config.id)],
-        })
-        self.config.tracking_prep_display_id = self.display
+        bar = self._kitchen_screen('Bar')
+        self.config.tracking_kds_display_id = self.display
         order = self._new_order()
-        bar_states = self._states(order).filtered(lambda s: s.stage_id in bar.stage_ids)
-        kitchen_states = self._states(order).filtered(lambda s: s.stage_id in self.display.stage_ids)
+        bar_states = self._states(order).filtered(lambda t: t.display_id == bar)
+        kitchen_states = self._states(order).filtered(lambda t: t.display_id == self.display)
         self.assertTrue(bar_states and kitchen_states)
-        self._move(bar_states, bar.stage_ids[1], bar)
+        self._move(bar_states, bar.stage_ids.sorted('sequence')[1], bar)
         self.assertEqual(order.tracking_state, 'preparing', "The other screen must not drive the status")
-        self._move(kitchen_states, self.display.stage_ids[1])
+        self._move(kitchen_states, self.display.stage_ids.sorted('sequence')[1])
         self.assertEqual(order.tracking_state, 'ready')
 
     def test_all_screens_when_none_selected(self):
-        bar = self.env['pos.prep.display'].create({
-            'name': 'Bar',
-            'pos_config_ids': [Command.link(self.config.id)],
-        })
+        bar = self._kitchen_screen('Bar')
         order = self._new_order()
-        kitchen_states = self._states(order).filtered(lambda s: s.stage_id in self.display.stage_ids)
-        bar_states = self._states(order).filtered(lambda s: s.stage_id in bar.stage_ids)
-        self._move(kitchen_states, self.display.stage_ids[1])
+        kitchen_states = self._states(order).filtered(lambda t: t.display_id == self.display)
+        bar_states = self._states(order).filtered(lambda t: t.display_id == bar)
+        self._move(kitchen_states, self.display.stage_ids.sorted('sequence')[1])
         self.assertEqual(order.tracking_state, 'preparing')
-        self._move(bar_states, bar.stage_ids[1], bar)
+        self._move(bar_states, bar.stage_ids.sorted('sequence')[1], bar)
         self.assertEqual(order.tracking_state, 'ready')
 
     def test_frontend_sync_cannot_overwrite_status(self):
         order = self._new_order()
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         token = order.tracking_token
         vals = {'tracking_state': 'received', 'tracking_ready_date': False, 'nps_score': 10,
                 'tracking_token': 'forged-token-forged-token', 'uuid': order.uuid,
@@ -140,7 +165,7 @@ class TestPosOrderTracking(TestPoSCommon):
     def test_nps_submission(self):
         order = self._new_order()
         self.assertFalse(order._tracking_submit_nps(10), "No survey before the order is ready")
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         self.assertFalse(order._tracking_submit_nps(10), "No survey before the delay")
         self.assertFalse(order._tracking_public_data()['nps']['available'])
 
@@ -162,7 +187,7 @@ class TestPosOrderTracking(TestPoSCommon):
             'endpoint': 'https://push.example.com/def',
             'keys': '{"p256dh": "x", "auth": "y"}',
         })
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         order.tracking_ready_date = fields.Datetime.now() - timedelta(minutes=31)
         self.env['pos.order']._cron_tracking_nps_reminder()
         self.assertTrue(order.tracking_nps_reminder_sent)
@@ -187,7 +212,7 @@ class TestPosOrderTracking(TestPoSCommon):
         order = self._new_order()
         order.preset_id = takeaway
         self.assertFalse(order._tracking_is_eligible())
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         self.assertEqual(order.tracking_state, 'preparing', "Excluded order types are not updated")
 
         order.preset_id = dine_in
@@ -216,7 +241,7 @@ class TestPosOrderTracking(TestPoSCommon):
         self.env['pos.tracking.subscription'].sudo().create({
             'order_id': order.id, 'endpoint': 'https://push.example.com/x', 'keys': '{"p256dh": "x", "auth": "y"}',
         })
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         self.assertEqual(order.tracking_state, 'received', "No live status when the pager is off")
         self.assertFalse(self.env['pos.tracking.push'].search_count([('subscription_id.order_id', '=', order.id)]))
         data = order._tracking_public_data()
@@ -231,7 +256,7 @@ class TestPosOrderTracking(TestPoSCommon):
     def test_pager_only_without_rating(self):
         self.config.tracking_nps_enabled = False
         order = self._new_order()
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         self.assertEqual(order.tracking_state, 'ready')
         order.tracking_ready_date = fields.Datetime.now() - timedelta(hours=2)
         data = order._tracking_public_data()
@@ -250,7 +275,7 @@ class TestPosOrderTracking(TestPoSCommon):
             'order_id': order.id, 'endpoint': 'https://push.example.com/r', 'keys': '{"p256dh": "x", "auth": "y"}',
         })
         Push = self.env['pos.tracking.push'].sudo()
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         first = Push.search([('subscription_id', '=', sub.id)])
         self.assertEqual(len(first), 1)
         self.assertEqual((first.urgency, first.ttl), ('high', 900), "Ready alerts must wake a locked phone")
@@ -272,12 +297,12 @@ class TestPosOrderTracking(TestPoSCommon):
         self.env['pos.tracking.subscription'].sudo().create({
             'order_id': order.id, 'endpoint': 'https://push.example.com/s', 'keys': '{"p256dh": "x", "auth": "y"}',
         })
-        self._move(self._states(order), self.display.stage_ids[1])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[1])
         order._tracking_ack_ready()
         self.assertTrue(order.tracking_ready_ack)
         order.sudo().tracking_ready_last_push = fields.Datetime.now() - timedelta(seconds=70)
         self.env['pos.order']._cron_tracking_ready_repeat()
         self.assertEqual(order.tracking_ready_push_count, 1)
         # Back to preparing (new items) then ready again: alerts start over
-        self._move(self._states(order), self.display.stage_ids[0])
+        self._move(self._states(order), self.display.stage_ids.sorted('sequence')[0])
         self.assertFalse(order.tracking_ready_ack)

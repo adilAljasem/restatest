@@ -229,7 +229,7 @@ class TestPosModifierUAT(CommonPosTest):
         self.assertEqual(parent._modifier_kitchen_snapshot()[0]["name"], "Burger Cheese Kitchen")
 
         paid.price_unit = 5
-        with self.assertRaisesRegex(ValidationError, "modifier price"):
+        with self.assertRaisesRegex(ValidationError, "(?i)modifier price"):
             order._validate_and_reprice_modifiers()
 
     def test_product_specific_disabled_option_is_rejected(self):

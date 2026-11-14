@@ -54,6 +54,7 @@ COPY docker/resta-init.sh /usr/local/bin/resta-init
 COPY docker/resta-backup.sh /usr/local/bin/resta-backup
 COPY docker/resta-restore.sh /usr/local/bin/resta-restore
 COPY docker/resta-upgrade.sh /usr/local/bin/resta-upgrade
+COPY docker/resta-enterprise-report.sh /usr/local/bin/resta-enterprise-report
 RUN chmod 755 /usr/local/bin/resta-*
 
 USER odoo

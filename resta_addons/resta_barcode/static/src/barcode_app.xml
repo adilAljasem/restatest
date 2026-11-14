@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_barcode.App">
+        <div class="o_resta_bc o_action" t-att-dir="dir">
+            <header class="o_bc_top">
+                <button t-if="state.screen !== 'home'" class="o_bc_icon" t-on-click="back" aria-label="رجوع">
+                    <i t-attf-class="fa #{dir === 'rtl' ? 'fa-arrow-right' : 'fa-arrow-left'}"/>
+                </button>
+                <div class="o_bc_title">
+                    <t t-if="state.screen === 'home'">الباركود والمخزون</t>
+                    <t t-elif="state.screen === 'list'" t-out="(state.home.operations.find((o) => o.code === state.listCode) || {}).label"/>
+                    <t t-elif="state.screen === 'picking'" t-out="state.picking.name"/>
+                    <t t-elif="state.screen === 'locations'">اختر المخزن للجرد</t>
+                    <t t-elif="state.screen === 'count'">جرد: <t t-out="state.count.location.name"/></t>
+                </div>
+                <button class="o_bc_icon" t-on-click="() => state.camera ? this.stopCamera() : this.startCamera()" aria-label="الكاميرا">
+                    <i t-attf-class="fa #{state.camera ? 'fa-times' : 'fa-camera'}"/>
+                </button>
+            </header>
+
+            <div class="o_bc_scanbar">
+                <i class="fa fa-barcode"/>
+                <input t-ref="scan" class="form-control" placeholder="امسح الباركود أو اكتبه ثم Enter" t-on-keydown="onManual"
+                       inputmode="text" autocomplete="off" aria-label="الباركود"/>
+            </div>
+            <div t-if="state.camera" class="o_bc_camera"><video t-ref="video" playsinline="" muted=""/><div class="o_bc_aim"/></div>
+
+            <main class="o_bc_body">
+                <!-- home -->
+                <t t-if="state.screen === 'home' and state.home">
+                    <div class="o_bc_tiles">
+                        <button t-foreach="state.home.operations" t-as="op" t-key="op.code" class="o_bc_tile" t-on-click="() => this.openList(op.code)">
+                            <i t-attf-class="fa #{op.icon}"/>
+                            <span t-out="op.label"/>
+                            <b t-if="op.todo" t-out="op.todo"/>
+                        </button>
+                        <button t-if="state.home.can_count" class="o_bc_tile" t-on-click="openCountPicker">
+                            <i class="fa fa-clipboard"/><span>جرد المخزون</span>
+                        </button>
+                    </div>
+                    <p class="o_bc_hint">امسح رقم الحركة (مثل WH/IN/00012) لفتحها مباشرة، أو باركود الموقع لبدء جرده.</p>
+                </t>
+
+                <!-- list of transfers -->
+                <t t-if="state.screen === 'list'">
+                    <input class="form-control mb-2" placeholder="بحث بالرقم أو المورد" t-on-input="searchList" aria-label="بحث"/>
+                    <div t-if="!state.list.length" class="o_bc_empty">لا توجد حركات بانتظار التنفيذ.</div>
+                    <button t-foreach="state.list" t-as="p" t-key="p.id" class="o_bc_card" t-on-click="() => this.openPicking(p.id)">
+                        <div class="d-flex justify-content-between"><b t-out="p.name"/><span class="text-muted" t-out="p.date"/></div>
+                        <div t-if="p.partner" t-out="p.partner"/>
+                        <div class="small text-muted"><t t-out="p.from"/> ← <t t-out="p.to"/> · <t t-out="p.lines"/> صنف</div>
+                    </button>
+                </t>
+
+                <!-- one transfer -->
+                <t t-if="state.screen === 'picking' and state.picking">
+                    <div class="o_bc_meta">
+                        <div><t t-out="state.picking.partner"/> <span t-if="state.picking.origin" class="text-muted">(<t t-out="state.picking.origin"/>)</span></div>
+                        <div class="small text-muted"><t t-out="state.picking.from"/> ← <t t-out="state.picking.to"/></div>
+                    </div>
+                    <div t-foreach="state.picking.moves" t-as="m" t-key="m.id"
+                         t-attf-class="o_bc_line #{m.complete ? 'is-done' : (m.done ? 'is-partial' : '')}">
+                        <div class="o_bc_line_main" t-on-click="() => this.editMove(m)">
+                            <div class="fw-bold" t-out="m.product"/>
+                            <div class="small text-muted"><t t-out="m.barcode"/></div>
+                            <div t-if="m.lots.length" class="small">
+                                <span t-foreach="m.lots" t-as="l" t-key="l_index" class="badge text-bg-light me-1"><t t-out="l.name"/> × <t t-out="fmt(l.qty)"/></span>
+                            </div>
+                        </div>
+                        <div class="o_bc_qty">
+                            <button class="o_bc_step" t-on-click="() => this.step(m, -1)" aria-label="ناقص">−</button>
+                            <span><b t-out="fmt(m.done)"/> / <t t-out="fmt(m.demand)"/> <small t-out="m.uom"/></span>
+                            <button class="o_bc_step" t-on-click="() => this.step(m, 1)" aria-label="زائد">+</button>
+                        </div>
+                    </div>
+                    <div class="o_bc_actions">
+                        <button class="btn btn-light" t-on-click="fillAll">الكل كما هو متوقع</button>
+                        <button class="btn btn-primary" t-att-disabled="!state.picking.any_done" t-on-click="askValidate"><i class="fa fa-check"/> اعتماد</button>
+                    </div>
+                </t>
+
+                <!-- locations to count -->
+                <t t-if="state.screen === 'locations'">
+                    <button t-foreach="state.locations" t-as="l" t-key="l.id" class="o_bc_card" t-on-click="() => this.openCount(l.id)">
+                        <b t-out="l.name"/>
+                        <div class="small text-muted" t-out="l.barcode"/>
+                    </button>
+                </t>
+
+                <!-- inventory count -->
+                <t t-if="state.screen === 'count' and state.count">
+                    <p class="o_bc_hint">امسح كل صنف، كل مسحة تضيف 1. أو اكتب العدد مباشرة.</p>
+                    <div t-if="!state.count.lines.length" class="o_bc_empty">لم يُعدّ أي صنف بعد.</div>
+                    <div t-foreach="state.count.lines" t-as="l" t-key="l.id" class="o_bc_line">
+                        <div class="o_bc_line_main">
+                            <div class="fw-bold" t-out="l.product"/>
+                            <div class="small text-muted">في النظام: <t t-out="fmt(l.system)"/> <t t-out="l.uom"/>
+                                <t t-if="l.lot"> · <t t-out="l.lot"/></t>
+                                <span t-if="l.diff" t-attf-class="ms-2 #{l.diff &lt; 0 ? 'text-danger' : 'text-success'}">(<t t-out="l.diff &gt; 0 ? '+' : ''"/><t t-out="fmt(l.diff)"/>)</span>
+                            </div>
+                        </div>
+                        <input type="number" class="form-control o_bc_count_input" step="any" t-att-value="l.counted"
+                               t-on-change="(ev) => this.setCount(l, ev)" aria-label="العدد"/>
+                    </div>
+                    <div class="o_bc_actions">
+                        <button class="btn btn-primary" t-att-disabled="!state.count.lines.length" t-on-click="applyCount"><i class="fa fa-check"/> اعتماد الجرد</button>
+                    </div>
+                </t>
+            </main>
+
+            <!-- quantity editor -->
+            <div t-if="state.editMove" class="o_bc_sheet" t-on-click.self="() => this.state.editMove = null">
+                <div class="o_bc_sheet_box">
+                    <b>الكمية</b>
+                    <input type="number" class="form-control form-control-lg my-3" step="any" t-model.number="state.editQty" aria-label="الكمية"/>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary flex-fill" t-on-click="saveQty">حفظ</button>
+                        <button class="btn btn-light flex-fill" t-on-click="() => this.state.editMove = null">إلغاء</button>
+                    </div>
+                </div>
+            </div>
+            <!-- lot / expiry -->
+            <div t-if="state.lotFor" class="o_bc_sheet">
+                <div class="o_bc_sheet_box">
+                    <b t-out="state.lotFor.product"/>
+                    <input class="form-control form-control-lg my-3" placeholder="رقم التشغيلة / الصلاحية" t-model="state.lotValue"
+                           t-on-keydown="(ev) => ev.key === 'Enter' and this.submitLot()" aria-label="رقم التشغيلة"/>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary flex-fill" t-on-click="submitLot">إضافة</button>
+                        <button class="btn btn-light flex-fill" t-on-click="() => this.state.lotFor = null">إلغاء</button>
+                    </div>
+                </div>
+            </div>
+            <!-- validate with missing quantities -->
+            <div t-if="state.confirmValidate" class="o_bc_sheet">
+                <div class="o_bc_sheet_box">
+                    <b>بعض الأصناف لم تكتمل</b>
+                    <p class="text-muted my-2">هل تنتظر الكمية الباقية؟</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" t-on-click="() => this.validate(true)">نعم، أنشئ حركة بالمتبقي</button>
+                        <button class="btn btn-light" t-on-click="() => this.validate(false)">لا، أغلق بدون المتبقي</button>
+                        <button class="btn btn-link" t-on-click="() => this.state.confirmValidate = false">رجوع</button>
+                    </div>
+                </div>
+            </div>
+            <div t-if="state.toast" t-attf-class="o_bc_toast is-#{state.toast.kind}" t-out="state.toast.message"/>
+        </div>
+    </t>
+</templates>

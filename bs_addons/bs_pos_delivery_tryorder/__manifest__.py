@@ -4,10 +4,9 @@
     'version': '19.0.1.3.0',
     'category': 'Point of Sale',
     'summary': 'TryOrder adapter for the BS POS Delivery framework',
-    'author': 'TryOrder',
-    'maintainer': 'TryOrder',
-    'website': 'https://tryorder.com',
-    'support': 'support@tryorder.com',
+    'author': "Resta",
+    'maintainer': "Resta",
+    'website': "https://resta.sa",
     'license': 'LGPL-3',
     'depends': [
         'bs_pos_delivery_core', 'pos_restaurant_combo_modifiers',

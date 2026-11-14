@@ -13,7 +13,7 @@ class EssPayrollPortal(EssPortalBase):
 
     def _ess_get_own_payslip(self, slip_id, employee):
         """The employee's payslip if it is visible in the portal (confirmed or published draft)."""
-        slip = request.env['hr.payslip'].sudo().browse(int(slip_id)).exists()
+        slip = request.env['resta.payslip'].sudo().browse(int(slip_id)).exists()
         if not slip or slip.employee_id != employee or not slip._ess_portal_visible():
             raise NotFound()
         return slip
@@ -35,7 +35,7 @@ class EssPayrollPortal(EssPortalBase):
         employee = self._ess_employee()
         if not employee:
             return self._ess_no_employee()
-        Payslip = request.env['hr.payslip'].sudo()
+        Payslip = request.env['resta.payslip'].sudo()
         compat = request.env['bs.hr.payroll.compat']
         slips = Payslip.search(Payslip._ess_portal_domain(employee), order='date_to desc, id desc', limit=200)
         years = sorted({s.date_to.year for s in slips if s.date_to}, reverse=True)

@@ -79,9 +79,43 @@ class PosOrder(models.Model):
     blend_car_plate_letters = fields.Char(string="Car Plate Letters", copy=False)
     blend_car_brand = fields.Char(string="Car Brand", copy=False)
 
-    @api.model
-    def _load_pos_preparation_data_fields(self):
-        return [*super()._load_pos_preparation_data_fields(), "blend_aggregator"]
+    # ------------------------------------------------------------------ Resta kitchen screen (resta_kds)
+    def _resta_kds_on_change(self):
+        res = super()._resta_kds_on_change()
+        self._blend_sync_kitchen_status()
+        return res
+
+    def _blend_sync_kitchen_status(self):
+        """Kitchen screen -> Blend: «preparing» once every screen shows the order ready (or done),
+        «ready» once every screen has finished it. Each step is sent once."""
+        DeliveryOrder = self.env["bs.delivery.order"].sudo()
+        for pos_order in self.sudo().sorted("id"):
+            order = DeliveryOrder.search([
+                ("pos_order_id", "=", pos_order.id), ("provider_id.code", "=", "blend"),
+                ("company_id", "=", pos_order.company_id.id), ("pos_config_id", "=", pos_order.config_id.id),
+            ], limit=1)
+            if not order:
+                continue
+            # Serialize concurrent kitchen stations before reading their tickets.
+            self.env.cr.execute("SELECT id FROM bs_delivery_order WHERE id = %s FOR UPDATE", [order.id])
+            order.invalidate_recordset(["state"])
+            if order.state not in ("accepted", "preparing"):
+                continue
+            tickets = pos_order.resta_kds_ticket_ids.filtered(lambda t: not t.cancelled)
+            if not tickets or not all(t.done or t.stage_id.is_ready for t in tickets):
+                continue
+            if order.state == "accepted":
+                order.transition_to(
+                    "preparing", source="system", expected_state="accepted",
+                    idempotency_key="blend-kitchen:%s:preparing" % order.id,
+                    reason="Kitchen Display: Ready",
+                )
+            if all(t.done for t in tickets) and order.state == "preparing":
+                order.transition_to(
+                    "ready", source="system", expected_state="preparing",
+                    idempotency_key="blend-kitchen:%s:ready" % order.id,
+                    reason="Kitchen Display: Done",
+                )
 
     def write(self, vals):
         result = super().write(vals)

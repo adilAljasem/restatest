@@ -10,7 +10,8 @@ Adds "Employees Allowed to Print the Business Day Report" to the closing report
 settings of each Point of Sale.
 """,
     "category": "Sales/Point of Sale",
-    "author": "Custom",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["pos_closing_report", "pos_hr"],
     "data": ["views/pos_config_closing_views.xml"],

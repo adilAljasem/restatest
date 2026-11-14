@@ -15,7 +15,6 @@ OWNER_GROUPS = [
     "sales_team.group_sale_manager",
     "mrp.group_mrp_manager",
     "hr.group_hr_manager",
-    "website.group_website_designer",   # website pages and the related settings
 ]
 SUPPORT_LOGIN = "resta-support"
 
@@ -55,6 +54,8 @@ class ResUsers(models.Model):
         phone = admin.partner_id.phone
         admin.write({"login": SUPPORT_LOGIN, "name": "دعم ريستا", "email": False})
         admin.partner_id.phone = False
+        # free the login in the database before the owner takes it (unique login)
+        admin.flush_recordset(["login"])
         owner = self.with_context(no_reset_password=True).create(owner_vals)
         owner.write({"group_ids": [Command.set(self._resta_owner_group_ids())]})
         owner.partner_id.phone = phone
@@ -107,6 +108,9 @@ class ResConfigSettings(models.TransientModel):
         if not self.env.su and not user.has_group("base.group_system") \
                 and user.has_group("resta_growth.group_resta_owner"):
             self.check_access("write")
+            if hasattr(self, "_resta_keep_modules_as_installed"):
+                # apps are added by the Resta platform only (resta_saas_tenant)
+                self._resta_keep_modules_as_installed()
             # some set_values() overrides drop sudo(); run as the superuser instead
             return super(ResConfigSettings, self.with_user(SUPERUSER_ID)).execute()
         return super().execute()

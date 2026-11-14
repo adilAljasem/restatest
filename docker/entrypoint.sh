@@ -21,9 +21,15 @@ export PGHOST="$DB_HOST" PGPORT="$DB_PORT" PGUSER="$DB_USER" PGPASSWORD="$DB_PAS
 
 write_conf() {
     mkdir -p "$(dirname "$ODOO_RC")"
+    # Odoo Enterprise is optional: RESTA_ENTERPRISE=0 (or an enterprise folder without modules)
+    # runs Community + Resta only. Run resta-enterprise-report before switching an existing server.
+    local enterprise_addons=""
+    if [ "${RESTA_ENTERPRISE:-1}" != "0" ] && ls "${ODOO_ROOT}"/enterprise/*/__manifest__.py >/dev/null 2>&1; then
+        enterprise_addons="${ODOO_ROOT}/enterprise,"
+    fi
     cat > "$ODOO_RC" <<EOF
 [options]
-addons_path = ${ODOO_ROOT}/odoo/addons,${ODOO_ROOT}/enterprise,${ODOO_ROOT}/resta_addons,${ODOO_ROOT}/bs_addons
+addons_path = ${ODOO_ROOT}/odoo/addons,${enterprise_addons}${ODOO_ROOT}/resta_addons,${ODOO_ROOT}/bs_addons
 data_dir = ${DATA_DIR}
 db_host = ${DB_HOST}
 db_port = ${DB_PORT}

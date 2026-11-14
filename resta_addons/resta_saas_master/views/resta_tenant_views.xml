@@ -54,6 +54,8 @@
                 <header>
                     <button name="%(resta_saas_master.action_resta_subscription_wizard)d" type="action" string="تفعيل / تجديد الاشتراك" class="btn-primary" invisible="state in ('provisioning','failed','cancelled')"/>
                     <button name="action_extend_trial" type="object" string="تمديد التجربة 7 أيام" invisible="state not in ('trial','expired')"/>
+                    <button name="action_open_command_wizard" type="object" string="إدارة الميزات" invisible="state in ('provisioning','failed','cancelled')"/>
+                    <button name="action_sync_now" type="object" string="مزامنة الآن" invisible="state in ('provisioning','failed','cancelled')"/>
                     <button name="action_suspend" type="object" string="إيقاف" invisible="state not in ('trial','active','expired')" confirm="سيتوقف النظام لدى المطعم. متابعة؟"/>
                     <button name="action_reactivate" type="object" string="إعادة تفعيل" invisible="state != 'suspended'"/>
                     <button name="action_retry_provision" type="object" string="إعادة التجهيز" invisible="state != 'failed'" groups="resta_saas_master.group_resta_manager"/>
@@ -120,6 +122,29 @@
                                 </list>
                             </field>
                         </page>
+                        <page string="الميزات والأوامر" name="commands">
+                            <group>
+                                <group string="استثناءات لهذا المطعم">
+                                    <field name="growth_plan_override"/>
+                                    <field name="max_users_override"/>
+                                    <field name="max_pos_override"/>
+                                </group>
+                                <group string="المعلق">
+                                    <field name="pending_commands"/>
+                                </group>
+                            </group>
+                            <field name="command_ids" readonly="1">
+                                <list decoration-success="state == 'done'" decoration-danger="state == 'failed'" decoration-muted="state == 'sent'">
+                                    <field name="create_date" string="التاريخ"/>
+                                    <field name="summary"/>
+                                    <field name="kind" optional="hide"/>
+                                    <field name="state" widget="badge" decoration-success="state == 'done'" decoration-danger="state == 'failed'" decoration-info="state in ('pending','sent')"/>
+                                    <field name="result" optional="show"/>
+                                    <field name="done_date" optional="hide"/>
+                                    <button name="action_retry" type="object" string="إعادة" icon="fa-repeat" invisible="state != 'failed'"/>
+                                </list>
+                            </field>
+                        </page>
                         <page string="ملاحظات" name="notes"><field name="notes"/></page>
                         <page string="تقني" name="technical" groups="resta_saas_master.group_resta_manager">
                             <group>
@@ -135,6 +160,30 @@
                     </notebook>
                 </sheet>
                 <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="resta_tenant_command_wizard_form" model="ir.ui.view">
+        <field name="name">resta.tenant.command.wizard.form</field>
+        <field name="model">resta.tenant.command.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p class="text-muted">المطعم لا يثبّت التطبيقات بنفسه. الميزات تُفتح بمستويات رحلة النمو، أو بأمر من هنا يصل لنظام المطعم مع المزامنة.</p>
+                <group>
+                    <field name="tenant_id" readonly="1"/>
+                    <field name="kind" widget="radio"/>
+                    <field name="features" invisible="kind != 'unlock_features'" required="kind == 'unlock_features'"/>
+                    <field name="level" invisible="kind != 'achieve_level'" required="kind == 'achieve_level'"/>
+                    <field name="app" invisible="kind != 'install_modules'"/>
+                    <field name="app_other" invisible="kind != 'install_modules'" placeholder="مثال: hr_attendance"/>
+                    <field name="growth_plan" invisible="kind != 'set_growth_plan'" required="kind == 'set_growth_plan'"/>
+                    <field name="sync_now"/>
+                </group>
+                <footer>
+                    <button name="action_send" type="object" string="إرسال للمطعم" class="btn-primary"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
             </form>
         </field>
     </record>

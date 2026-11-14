@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_account.Report">
+        <div class="o_resta_report o_action" t-att-dir="dir">
+            <div class="o_rr_bar d-print-none">
+                <div class="o_rr_title">
+                    <h2 t-out="state.data ? state.data.title : ''"/>
+                    <span t-if="state.data and state.data.kind === 'bs'"
+                          t-attf-class="badge #{state.data.balanced ? 'text-bg-success' : 'text-bg-danger'}">
+                        <t t-if="state.data.balanced">متوازنة ✓</t><t t-else="">غير متوازنة</t>
+                    </span>
+                </div>
+                <div class="o_rr_filters">
+                    <select class="form-select form-select-sm" t-on-change="setPreset" aria-label="الفترة">
+                        <option t-foreach="presets" t-as="p" t-key="p[0]" t-att-value="p[0]" t-att-selected="state.preset === p[0]" t-out="p[1]"/>
+                    </select>
+                    <t t-if="state.preset === 'custom'">
+                        <input t-if="!asOf" type="date" class="form-control form-control-sm" t-att-value="state.options.date_from"
+                               t-on-change="(ev) => this.setDate('date_from', ev)" aria-label="من"/>
+                        <input type="date" class="form-control form-control-sm" t-att-value="state.options.date_to"
+                               t-on-change="(ev) => this.setDate('date_to', ev)" aria-label="إلى"/>
+                    </t>
+                    <select t-if="canCompare" class="form-select form-select-sm" aria-label="مقارنة"
+                            t-on-change="(ev) => this.setOption('compare', ev.target.value)">
+                        <option value="none" t-att-selected="state.options.compare === 'none'">بدون مقارنة</option>
+                        <option value="previous_period" t-att-selected="state.options.compare === 'previous_period'">مقارنة بالفترة السابقة</option>
+                        <option value="previous_year" t-att-selected="state.options.compare === 'previous_year'">مقارنة بالسنة الماضية</option>
+                    </select>
+                    <div t-if="state.filters.analytic.length and showBranch" class="o_rr_branch">
+                        <button class="btn btn-sm btn-light" t-on-click="() => this.state.branchOpen = !this.state.branchOpen">
+                            <i class="fa fa-map-marker"/> <t t-out="branchLabel"/> <i class="fa fa-caret-down"/>
+                        </button>
+                        <div t-if="state.branchOpen" class="o_rr_branch_menu">
+                            <a href="#" class="dropdown-item" t-on-click.prevent="clearBranches">كل الفروع</a>
+                            <label t-foreach="state.filters.analytic" t-as="a" t-key="a.id" class="dropdown-item">
+                                <input type="checkbox" class="form-check-input me-2"
+                                       t-att-checked="state.options.analytic_ids.includes(a.id)" t-on-change="() => this.toggleBranch(a.id)"/>
+                                <t t-out="a.name"/>
+                            </label>
+                        </div>
+                    </div>
+                    <select t-if="kind === 'partner' or kind === 'aged'" class="form-select form-select-sm" aria-label="النوع"
+                            t-on-change="(ev) => this.setOption('partner_type', ev.target.value)">
+                        <option value="receivable" t-att-selected="state.options.partner_type === 'receivable'">العملاء (مدينون)</option>
+                        <option value="payable" t-att-selected="state.options.partner_type === 'payable'">الموردون (دائنون)</option>
+                        <option t-if="kind === 'partner'" value="both" t-att-selected="state.options.partner_type === 'both'">الكل</option>
+                    </select>
+                    <select t-if="kind === 'budget' and state.filters.budgets and state.filters.budgets.length" class="form-select form-select-sm"
+                            aria-label="الموازنة" t-on-change="(ev) => this.setOption('budget_id', parseInt(ev.target.value))">
+                        <option t-foreach="state.filters.budgets" t-as="b" t-key="b.id" t-att-value="b.id"
+                                t-att-selected="state.options.budget_id === b.id" t-out="b.name"/>
+                    </select>
+                    <select t-if="kind === 'tax' and state.filters.tax_reports.length &gt; 1" class="form-select form-select-sm"
+                            aria-label="الإقرار" t-on-change="(ev) => this.setOption('tax_report_id', parseInt(ev.target.value))">
+                        <option t-foreach="state.filters.tax_reports" t-as="r" t-key="r.id" t-att-value="r.id"
+                                t-att-selected="state.options.tax_report_id === r.id" t-out="r.name"/>
+                    </select>
+                    <label class="o_rr_check">
+                        <input type="checkbox" class="form-check-input" t-att-checked="!state.options.posted_only"
+                               t-on-change="(ev) => this.setOption('posted_only', !ev.target.checked)"/> تشمل المسودات
+                    </label>
+                    <label t-if="['tb', 'gl', 'pl', 'bs', 'pl_branch'].includes(kind)" class="o_rr_check">
+                        <input type="checkbox" class="form-check-input" t-att-checked="!state.options.hide_zero"
+                               t-on-change="(ev) => this.setOption('hide_zero', !ev.target.checked)"/> إظهار الحسابات الصفرية
+                    </label>
+                </div>
+                <div class="o_rr_actions">
+                    <button class="btn btn-sm btn-primary" t-on-click="exportXlsx"><i class="fa fa-file-excel-o"/> Excel</button>
+                    <button class="btn btn-sm btn-secondary" t-on-click="print"><i class="fa fa-print"/> طباعة / PDF</button>
+                </div>
+            </div>
+
+            <div t-if="state.data" class="o_rr_sheet" t-att-class="{ 'opacity-50': state.loading }">
+                <div class="o_rr_print_head">
+                    <h3 t-out="state.data.title"/>
+                    <div t-out="state.data.company"/>
+                    <div class="text-muted">
+                        <t t-if="asOf">كما في <t t-out="state.data.options.date_to"/></t>
+                        <t t-else="">من <t t-out="state.data.options.date_from"/> إلى <t t-out="state.data.options.date_to"/></t>
+                        <t t-if="state.data.tax_report"> · <t t-out="state.data.tax_report"/></t>
+                        <t t-if="state.data.budget"> · <t t-out="state.data.budget.name"/></t>
+                    </div>
+                </div>
+                <table class="o_rr_table">
+                    <thead>
+                        <tr>
+                            <th class="o_rr_name"/>
+                            <th t-foreach="state.data.columns" t-as="c" t-key="c_index" class="o_rr_num" t-out="c.label"/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.data.rows" t-as="row" t-key="row.key">
+                            <tr t-att-class="rowClass(row)" t-att-data-status="row.status or null">
+                                <td class="o_rr_name" t-on-click="() => this.toggle(row)" t-att-role="row.expandable ? 'button' : null">
+                                    <i t-if="row.expandable" t-attf-class="fa fa-fw #{state.expanded[row.key] ? 'fa-caret-down' : (dir === 'rtl' ? 'fa-caret-left' : 'fa-caret-right')}"/>
+                                    <t t-out="row.name"/>
+                                </td>
+                                <td t-foreach="row.values" t-as="v" t-key="v_index"
+                                    t-attf-class="o_rr_num #{v &lt; 0 ? 'o_rr_neg' : ''} #{canDrill(row, v_index) ? 'o_rr_link' : ''}"
+                                    t-on-click="() => this.drill(row, v_index)" t-out="fmt(v, state.data.columns[v_index])"/>
+                            </tr>
+                            <tr t-if="state.expanded[row.key]" class="o_rr_detail">
+                                <td t-att-colspan="state.data.columns.length + 1">
+                                    <div t-if="state.expanded[row.key].loading" class="p-2 text-muted">...</div>
+                                    <table t-else="" class="o_rr_lines">
+                                        <t t-if="kind === 'aged'">
+                                            <tr><th>التاريخ</th><th>القيد</th><th>البيان</th><th>الاستحقاق</th><th>أيام التأخير</th><th class="o_rr_num">المبلغ المفتوح</th></tr>
+                                            <tr t-foreach="state.expanded[row.key].lines" t-as="l" t-key="l.id">
+                                                <td t-out="l.date"/>
+                                                <td><a href="#" t-on-click.prevent="() => this.openMove(l.move_id)" t-out="l.move"/></td>
+                                                <td t-out="l.label"/><td t-out="l.due"/><td t-out="l.days"/>
+                                                <td class="o_rr_num" t-out="fmt(l.amount)"/>
+                                            </tr>
+                                        </t>
+                                        <t t-else="">
+                                            <tr><th>التاريخ</th><th>القيد</th><th>اليومية</th><th>الشريك</th><th>البيان</th>
+                                                <th class="o_rr_num">مدين</th><th class="o_rr_num">دائن</th><th class="o_rr_num">الرصيد</th></tr>
+                                            <tr class="o_rr_opening"><td colspan="7">الرصيد الافتتاحي</td>
+                                                <td class="o_rr_num" t-out="fmt(state.expanded[row.key].opening)"/></tr>
+                                            <tr t-foreach="state.expanded[row.key].lines" t-as="l" t-key="l.id">
+                                                <td t-out="l.date"/>
+                                                <td><a href="#" t-on-click.prevent="() => this.openMove(l.move_id)" t-out="l.move"/></td>
+                                                <td t-out="l.journal"/><td t-out="l.partner"/><td t-out="l.label"/>
+                                                <td class="o_rr_num" t-out="fmt(l.debit)"/>
+                                                <td class="o_rr_num" t-out="fmt(l.credit)"/>
+                                                <td class="o_rr_num" t-out="fmt(l.balance)"/>
+                                            </tr>
+                                        </t>
+                                        <tr t-if="state.expanded[row.key].more"><td colspan="8" class="text-muted">
+                                            تُعرض أول 2000 حركة. اضغط على المبلغ لعرض كل الحركات.</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div t-if="!state.data.rows.length" class="o_rr_empty" t-out="state.data.message or 'لا توجد حركات في هذه الفترة.'"/>
+            </div>
+        </div>
+    </t>
+</templates>

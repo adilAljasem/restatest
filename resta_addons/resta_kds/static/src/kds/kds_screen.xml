@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_kds.Screen">
+        <div class="o_resta_kds" t-att-dir="dir" t-on-click="unlockAudio">
+            <!-- choose a screen -->
+            <div t-if="!state.data" class="o_kds_pick">
+                <h1>اختر شاشة المطبخ</h1>
+                <div t-if="state.displays and !state.displays.length" class="text-muted">
+                    لا توجد شاشات. أضفها من نقطة البيع ← الإعدادات ← شاشات المطبخ.
+                </div>
+                <div class="o_kds_pick_grid">
+                    <button t-foreach="state.displays or []" t-as="d" t-key="d.id" class="o_kds_pick_btn" t-on-click="() => this.choose(d.id)">
+                        <i class="fa fa-cutlery"/>
+                        <span class="fw-bold" t-out="d.name"/>
+                        <span class="small opacity-75"><t t-out="d.open"/> طلب مفتوح</span>
+                    </button>
+                </div>
+                <button class="btn btn-link mt-4" t-on-click="exit">رجوع</button>
+            </div>
+
+            <t t-else="">
+                <header class="o_kds_bar">
+                    <div class="o_kds_title">
+                        <i class="fa fa-cutlery"/>
+                        <span t-out="display.name"/>
+                        <span class="o_kds_count" t-out="state.data.tickets.length"/>
+                    </div>
+                    <nav class="o_kds_tabs" t-if="multiStage" aria-label="المراحل">
+                        <button t-foreach="stages" t-as="s" t-key="s.id"
+                                t-attf-class="o_kds_chip #{state.stageFilter === s.id ? 'active' : ''}"
+                                t-attf-style="--chip: #{s.color}" t-on-click="() => this.setStage(s.id)">
+                            <t t-out="s.name"/> <b t-out="countForStage(s.id)"/>
+                        </button>
+                    </nav>
+                    <div class="o_kds_actions">
+                        <span t-if="avgMinutes" class="o_kds_avg" title="متوسط وقت التحضير">
+                            <i class="fa fa-clock-o"/> <t t-out="avgMinutes"/>
+                        </span>
+                        <button t-attf-class="o_kds_btn #{state.view === 'allday' ? 'active' : ''}"
+                                t-on-click="() => this.setView(state.view === 'allday' ? 'tickets' : 'allday')">
+                            <i class="fa fa-list-ol"/><span>إجمالي الأصناف</span>
+                        </button>
+                        <button t-attf-class="o_kds_btn #{state.showRecent ? 'active' : ''}" t-on-click="toggleRecent">
+                            <i class="fa fa-history"/><span>المنتهية</span>
+                        </button>
+                        <button class="o_kds_btn o_kds_icon" t-on-click="toggleSound" t-att-title="state.soundOn ? 'إيقاف الصوت' : 'تشغيل الصوت'">
+                            <i t-attf-class="fa #{state.soundOn ? 'fa-volume-up' : 'fa-volume-off'}"/>
+                        </button>
+                        <button class="o_kds_btn o_kds_icon" t-on-click="fullscreen" title="ملء الشاشة"><i class="fa fa-expand"/></button>
+                        <button class="o_kds_btn o_kds_icon" t-on-click="changeDisplay" title="تغيير الشاشة"><i class="fa fa-exchange"/></button>
+                    </div>
+                </header>
+
+                <div t-if="display.categories.length &gt; 1" class="o_kds_cats">
+                    <button t-attf-class="o_kds_chip #{!state.catFilter ? 'active' : ''}" t-on-click="() => this.setCat(false)">الكل</button>
+                    <button t-foreach="display.categories" t-as="c" t-key="c.id"
+                            t-attf-class="o_kds_chip #{state.catFilter === c.id ? 'active' : ''}" t-on-click="() => this.setCat(c.id)"
+                            t-out="c.name"/>
+                </div>
+
+                <div t-if="state.soundOn and state.audioLocked" class="o_kds_unlock">
+                    <i class="fa fa-volume-up"/> اضغط في أي مكان لتفعيل صوت الطلبات الجديدة
+                </div>
+
+                <main class="o_kds_body">
+                    <!-- all day: totals to prepare -->
+                    <section t-if="state.view === 'allday'" class="o_kds_allday">
+                        <div t-if="!allDay.length" class="o_kds_empty"><i class="fa fa-check-circle"/> لا يوجد شيء للتحضير</div>
+                        <div t-foreach="allDay" t-as="it" t-key="it_index" class="o_kds_allday_row">
+                            <span class="o_kds_allday_qty" t-out="qty(it.qty)"/>
+                            <div>
+                                <div class="fw-bold" t-out="it.name"/>
+                                <div t-if="it.name2" class="o_kds_name2" t-out="it.name2"/>
+                                <div t-if="it.attributes" class="o_kds_attr" t-out="it.attributes"/>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- tickets -->
+                    <section t-else="" class="o_kds_grid">
+                        <div t-if="!tickets.length" class="o_kds_empty">
+                            <i class="fa fa-check-circle"/>
+                            <div>لا توجد طلبات الآن</div>
+                        </div>
+                        <article t-foreach="tickets" t-as="t" t-key="t.id"
+                                 t-attf-class="o_kds_ticket #{timerClass(t)} #{typeClass(t)}"
+                                 t-attf-style="--stage: #{stageById[t.stage_id] ? stageById[t.stage_id].color : '#FF5A1F'}">
+                            <header class="o_kds_thead">
+                                <div class="o_kds_num">#<t t-out="t.number or t.order_name"/></div>
+                                <div class="o_kds_timer"><i class="fa fa-clock-o"/> <t t-out="elapsedText(t)"/></div>
+                                <div class="o_kds_meta">
+                                    <span t-if="t.table" class="o_kds_tag"><i class="fa fa-cutlery"/> طاولة <t t-out="t.table"/></span>
+                                    <span t-if="t.type" class="o_kds_tag" t-out="t.type"/>
+                                    <span t-if="t.source === 'kiosk'" class="o_kds_tag"><i class="fa fa-tablet"/> كشك</span>
+                                    <span t-if="t.source === 'mobile'" class="o_kds_tag"><i class="fa fa-mobile"/> طلب ذاتي</span>
+                                    <span t-if="t.send_index &gt; 1" class="o_kds_tag o_kds_tag_add">إضافة <t t-out="t.send_index - 1"/></span>
+                                    <span t-if="t.cancelled" class="o_kds_tag o_kds_tag_cancel">ملغي</span>
+                                    <span t-if="t.info" class="o_kds_tag" t-out="t.info"/>
+                                    <span t-if="multiStage and stageById[t.stage_id]" class="o_kds_tag o_kds_tag_stage" t-out="stageById[t.stage_id].name"/>
+                                </div>
+                                <div t-if="t.customer" class="o_kds_customer"><i class="fa fa-user"/> <t t-out="t.customer"/></div>
+                            </header>
+                            <div t-if="t.note" class="o_kds_note"><i class="fa fa-sticky-note"/> <t t-out="t.note"/></div>
+                            <ul class="o_kds_lines">
+                                <t t-foreach="groupedLines(t)" t-as="g" t-key="g.line.id">
+                                    <t t-call="resta_kds.Line"><t t-set="l" t-value="g.line"/></t>
+                                    <li t-if="g.children.length" class="o_kds_children">
+                                        <ul>
+                                            <t t-foreach="g.children" t-as="c" t-key="c.id">
+                                                <t t-call="resta_kds.Line"><t t-set="l" t-value="c"/></t>
+                                            </t>
+                                        </ul>
+                                    </li>
+                                </t>
+                            </ul>
+                            <footer class="o_kds_tfoot">
+                                <button class="o_kds_bump" t-att-disabled="state.busy['t' + t.id]" t-on-click="() => this.bump(t)">
+                                    <i class="fa fa-check"/> <t t-out="nextLabel(t)"/>
+                                </button>
+                            </footer>
+                        </article>
+                    </section>
+
+                    <!-- recently finished + recall -->
+                    <aside t-if="state.showRecent" class="o_kds_recent">
+                        <div class="o_kds_recent_head">
+                            <b>المنتهية مؤخراً</b>
+                            <button class="o_kds_btn o_kds_icon" t-on-click="toggleRecent" aria-label="إغلاق"><i class="fa fa-times"/></button>
+                        </div>
+                        <div t-if="!state.data.recent.length" class="text-muted p-3">لا يوجد</div>
+                        <div t-foreach="state.data.recent" t-as="r" t-key="r.id" class="o_kds_recent_row">
+                            <span class="fw-bold">#<t t-out="r.number or r.order_name"/></span>
+                            <span class="small opacity-75" t-out="r.table ? 'طاولة ' + r.table : (r.type or '')"/>
+                            <button class="o_kds_btn ms-auto" t-on-click="() => this.recall(r)"><i class="fa fa-undo"/><span>استرجاع</span></button>
+                        </div>
+                    </aside>
+                </main>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="resta_kds.Line">
+        <li t-attf-class="o_kds_line #{l.done ? 'is-done' : ''} #{l.cancelled &gt;= l.qty ? 'is-cancelled' : ''}"
+            t-on-click="() => this.toggleLine(l)" role="button" t-att-aria-pressed="l.done ? 'true' : 'false'">
+            <span class="o_kds_qty"><t t-out="qty(l.qty - l.cancelled &gt; 0 ? l.qty - l.cancelled : l.qty)"/></span>
+            <div class="o_kds_lname">
+                <div class="o_kds_name" t-out="l.name"/>
+                <div t-if="l.name2" class="o_kds_name2" t-out="l.name2"/>
+                <div t-if="l.attributes" class="o_kds_attr" t-out="l.attributes"/>
+                <ul t-if="l.modifiers and l.modifiers.length" class="o_kds_mods">
+                    <li t-foreach="l.modifiers" t-as="m" t-key="m_index"
+                        t-attf-class="o_kds_mod is-#{m.kind or 'add'} #{m.status ? 'st-' + m.status : ''}">
+                        <span class="o_kds_mod_sign" t-out="m.kind === 'remove' ? 'بدون' : (m.kind === 'instruction' ? '•' : '+')"/>
+                        <t t-out="m.name"/><t t-if="m.qty and m.qty !== 1"> ×<t t-out="m.qty"/></t>
+                        <span t-if="m.status === 'added'" class="o_kds_badge">جديد</span>
+                        <span t-elif="m.status === 'updated'" class="o_kds_badge">تعديل</span>
+                        <span t-elif="m.status === 'removed'" class="o_kds_badge">أُلغي</span>
+                    </li>
+                </ul>
+                <div t-if="l.changed" class="o_kds_lchanged"><i class="fa fa-exclamation-circle"/> عُدّل بعد الإرسال</div>
+                <div t-if="l.note" class="o_kds_lnote"><i class="fa fa-comment"/> <t t-out="l.note"/></div>
+                <div t-if="l.cancelled &gt; 0" class="o_kds_lcancel">
+                    <t t-if="l.cancelled &gt;= l.qty">ملغي</t>
+                    <t t-else="">أُلغي <t t-out="qty(l.cancelled)"/></t>
+                </div>
+            </div>
+            <i t-if="l.done" class="fa fa-check-circle o_kds_check"/>
+        </li>
+    </t>
+</templates>

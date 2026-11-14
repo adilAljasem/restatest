@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================= budgets ================= -->
+    <record id="view_resta_budget_list" model="ir.ui.view">
+        <field name="name">resta.budget.list</field>
+        <field name="model">resta.budget</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'cancel'" decoration-info="state == 'draft'">
+                <field name="name"/>
+                <field name="analytic_account_id" optional="show"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="planned_revenue" sum="1"/>
+                <field name="planned_expense" sum="1"/>
+                <field name="planned_profit" sum="1"/>
+                <field name="state" widget="badge" decoration-success="state == 'confirmed'" decoration-info="state == 'draft'"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_resta_budget_form" model="ir.ui.view">
+        <field name="name">resta.budget.form</field>
+        <field name="model">resta.budget</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_fill" type="object" string="تعبئة تلقائية" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_confirm" type="object" string="اعتماد" invisible="state != 'draft'"/>
+                    <button name="action_open_report" type="object" string="الموازنة مقابل الفعلي" class="btn-primary" invisible="state == 'draft'"/>
+                    <button name="action_draft" type="object" string="إرجاع لمسودة" invisible="state == 'draft'"/>
+                    <button name="action_cancel" type="object" string="إلغاء" invisible="state == 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" placeholder="مثال: موازنة 2027 - فرع العليا" readonly="state != 'draft'"/></h1></div>
+                    <group>
+                        <group>
+                            <label for="date_from" string="المدة"/>
+                            <div class="o_row">
+                                <field name="date_from" readonly="state != 'draft'"/> - <field name="date_to" readonly="state != 'draft'"/>
+                            </div>
+                            <field name="analytic_account_id" readonly="state != 'draft'" groups="analytic.group_analytic_accounting"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="planned_revenue"/>
+                            <field name="planned_expense"/>
+                            <field name="planned_profit" class="fw-bold"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="البنود" name="lines">
+                            <field name="line_ids" readonly="state != 'draft'" context="{'default_date_from': date_from, 'default_date_to': date_to}">
+                                <list editable="bottom" decoration-success="achievement &gt;= 100 and planned_amount &gt; 0">
+                                    <field name="account_id"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="planned_amount" sum="1"/>
+                                    <field name="actual_amount" sum="1"/>
+                                    <field name="achievement" widget="progressbar"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="ملاحظات" name="note"><field name="note"/></page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="view_resta_budget_line_pivot" model="ir.ui.view">
+        <field name="name">resta.budget.line.list</field>
+        <field name="model">resta.budget.line</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="budget_id"/>
+                <field name="account_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="planned_amount" sum="1"/>
+                <field name="actual_amount" sum="1"/>
+                <field name="achievement" widget="progressbar"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_resta_budget" model="ir.actions.act_window">
+        <field name="name">الموازنات</field>
+        <field name="res_model">resta.budget</field>
+        <field name="view_mode">list,form</field>
+        <field name="path">budgets</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">أنشئ موازنة السنة لكل فرع</p>
+            <p>اكتب المبيعات المتوقعة وحدود المصروفات لكل شهر، أو اضغط «تعبئة تلقائية» لنسخ فعلي السنة الماضية مع نسبة نمو، ثم تابع «الموازنة مقابل الفعلي».</p>
+        </field>
+    </record>
+    <record id="view_resta_budget_fill_form" model="ir.ui.view">
+        <field name="name">resta.budget.fill.form</field>
+        <field name="model">resta.budget.fill</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="budget_id" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="method" widget="radio"/>
+                    <field name="growth" invisible="method != 'last_year'"/>
+                    <field name="amount" invisible="method != 'amount'"/>
+                    <field name="account_ids" widget="many2many_tags" required="method == 'amount'"/>
+                    <field name="replace"/>
+                </group>
+                <footer>
+                    <button name="action_fill" type="object" string="تعبئة" class="btn-primary"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_report_budget" model="ir.actions.client">
+        <field name="name">الموازنة مقابل الفعلي</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">budget-vs-actual</field>
+        <field name="params" eval="{'kind': 'budget'}"/>
+    </record>
+    <record id="action_report_cf" model="ir.actions.client">
+        <field name="name">قائمة التدفقات النقدية</field>
+        <field name="tag">resta_account.report</field>
+        <field name="path">cash-flow</field>
+        <field name="params" eval="{'kind': 'cf'}"/>
+    </record>
+
+    <!-- ================= payment follow-up ================= -->
+    <record id="action_followup" model="ir.actions.client">
+        <field name="name">متابعة التحصيل</field>
+        <field name="tag">resta_account.followup</field>
+        <field name="path">payment-follow-up</field>
+    </record>
+    <record id="view_followup_level_list" model="ir.ui.view">
+        <field name="name">resta.followup.level.list</field>
+        <field name="model">resta.followup.level</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="delay"/>
+                <field name="name"/>
+                <field name="send_email"/>
+                <field name="attach_statement"/>
+                <field name="create_activity"/>
+                <field name="auto"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_followup_level_form" model="ir.ui.view">
+        <field name="name">resta.followup.level.form</field>
+        <field name="model">resta.followup.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" placeholder="مثال: تذكير ودي"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="delay"/>
+                            <field name="auto"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="send_email"/>
+                            <field name="attach_statement" invisible="not send_email"/>
+                            <field name="create_activity"/>
+                            <field name="activity_note" invisible="not create_activity"/>
+                        </group>
+                    </group>
+                    <p class="text-muted">المتغيرات المتاحة في النصوص: {partner} {company} {overdue} {total} {days}</p>
+                    <group invisible="not send_email">
+                        <field name="email_subject"/>
+                        <field name="email_body"/>
+                    </group>
+                    <group>
+                        <field name="whatsapp_text" placeholder="مرحباً {partner}، نذكّركم بمبلغ {overdue} متأخر السداد..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_followup_levels" model="ir.actions.act_window">
+        <field name="name">مستويات متابعة التحصيل</field>
+        <field name="res_model">resta.followup.level</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_partner_form_followup" model="ir.ui.view">
+        <field name="name">res.partner.form.resta.followup</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="التحصيل" name="resta_followup" groups="account.group_account_invoice"
+                      invisible="not is_company and parent_id">
+                    <group>
+                        <group>
+                            <field name="resta_followup_user_id"/>
+                            <field name="resta_followup_level_id" readonly="1"/>
+                            <field name="resta_followup_date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="resta_followup_next_date"/>
+                            <field name="resta_followup_blocked"/>
+                        </group>
+                    </group>
+                    <field name="resta_followup_note" placeholder="مثال: وعد بالسداد نهاية الشهر"/>
+                    <div class="d-flex gap-2 mt-2">
+                        <button name="action_resta_followup_open" type="object" string="شاشة التحصيل" class="btn-primary"/>
+                        <button name="action_resta_statement" type="object" string="كشف الحساب (PDF)" class="btn-secondary"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ================= bank statement import ================= -->
+    <record id="view_bank_import_form" model="ir.ui.view">
+        <field name="name">resta.bank.import.form</field>
+        <field name="model">resta.bank.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="state" invisible="1"/>
+                <div invisible="state != 'upload'">
+                    <p class="text-muted">حمّل كشف الحساب من بوابة البنك (Excel أو CSV)، أو ملف CAMT.053 / OFX / MT940. تُتعرَّف الأعمدة تلقائياً بالعربي أو الإنجليزي.</p>
+                    <group>
+                        <field name="journal_id" options="{'no_create': True}"/>
+                        <field name="data_file" filename="filename" string="ملف الكشف"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                </div>
+                <div invisible="state != 'preview'">
+                    <group>
+                        <group>
+                            <field name="journal_id" readonly="1"/>
+                            <field name="file_format"/>
+                        </group>
+                        <group>
+                            <field name="count_new"/>
+                            <field name="count_duplicate" invisible="not count_duplicate"/>
+                            <field name="total_in"/>
+                            <field name="total_out"/>
+                        </group>
+                    </group>
+                    <group string="الأعمدة" invisible="file_format != 'table'">
+                        <group>
+                            <field name="header_row"/>
+                            <field name="date_col_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="day_first"/>
+                            <field name="label_col_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="amount_col_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="debit_col_id" options="{'no_create': True, 'no_open': True}" invisible="amount_col_id"/>
+                            <field name="credit_col_id" options="{'no_create': True, 'no_open': True}" invisible="amount_col_id"/>
+                            <field name="ref_col_id" options="{'no_create': True, 'no_open': True}"/>
+                            <button name="action_refresh" type="object" string="تحديث المعاينة" class="btn-secondary" icon="fa-refresh"/>
+                        </group>
+                    </group>
+                    <field name="line_ids">
+                        <list editable="bottom" create="0" decoration-muted="skip" decoration-warning="duplicate"
+                              decoration-success="amount &gt; 0 and not skip" decoration-danger="amount &lt; 0 and not skip">
+                            <field name="skip"/>
+                            <field name="date"/>
+                            <field name="label"/>
+                            <field name="ref" optional="show"/>
+                            <field name="amount" sum="1"/>
+                            <field name="duplicate"/>
+                        </list>
+                    </field>
+                </div>
+                <footer>
+                    <button name="action_read" type="object" string="قراءة الملف" class="btn-primary" invisible="state != 'upload'"/>
+                    <button name="action_import" type="object" string="استيراد الحركات" class="btn-primary" invisible="state != 'preview'"/>
+                    <button name="action_back" type="object" string="ملف آخر" invisible="state != 'preview'"/>
+                    <button special="cancel" string="إلغاء"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_bank_import" model="ir.actions.act_window">
+        <field name="name">استيراد كشف حساب بنكي</field>
+        <field name="res_model">resta.bank.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- ================= deferred expenses / revenue ================= -->
+    <record id="view_move_form_deferred" model="ir.ui.view">
+        <field name="name">account.move.form.resta.deferred</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="resta_deferred_enabled" invisible="1"/>
+                <field name="resta_deferred_origin_id" invisible="1"/>
+                <button name="action_open_resta_deferrals" type="object" class="oe_stat_button" icon="fa-calendar"
+                        invisible="not resta_deferred_count">
+                    <field name="resta_deferred_count" widget="statinfo" string="قيود التأجيل"/>
+                </button>
+                <button name="action_open_resta_deferred_origin" type="object" class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="not resta_deferred_origin_id" string="الفاتورة الأصلية"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='account_id']" position="after">
+                <field name="resta_deferred_start" optional="show" string="من (تأجيل)"
+                       column_invisible="not parent.resta_deferred_enabled"/>
+                <field name="resta_deferred_end" optional="show" string="إلى (تأجيل)"
+                       column_invisible="not parent.resta_deferred_enabled"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_resta_account" model="ir.ui.view">
+        <field name="name">res.config.settings.resta.account</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="ريستا: المحاسبة المتقدمة" name="resta_account_settings">
+                    <setting string="المصروفات والإيرادات المؤجلة"
+                             help="ضع تاريخ بداية ونهاية على سطر الفاتورة (مثل إيجار سنة مدفوع مقدماً) فيُوزّع على الأشهر تلقائياً.">
+                        <field name="resta_deferred_enabled"/>
+                        <div class="content-group mt-2" invisible="not resta_deferred_enabled">
+                            <div class="row"><label for="resta_deferred_expense_account_id" class="col-lg-5 o_light_label"/>
+                                <field name="resta_deferred_expense_account_id" placeholder="يُنشأ تلقائياً"/></div>
+                            <div class="row"><label for="resta_deferred_revenue_account_id" class="col-lg-5 o_light_label"/>
+                                <field name="resta_deferred_revenue_account_id" placeholder="يُنشأ تلقائياً"/></div>
+                            <div class="row"><label for="resta_deferred_journal_id" class="col-lg-5 o_light_label"/>
+                                <field name="resta_deferred_journal_id"/></div>
+                        </div>
+                    </setting>
+                    <setting string="متابعة التحصيل" help="مستويات التذكير بالمبالغ المتأخرة: بريد مع كشف الحساب، واتساب، أو مهمة اتصال.">
+                        <button name="%(action_followup_levels)d" type="action" string="المستويات" class="btn-link" icon="oi-arrow-right"/>
+                        <button name="%(action_followup)d" type="action" string="شاشة التحصيل" class="btn-link" icon="oi-arrow-right"/>
+                    </setting>
+                    <setting string="استيراد كشوف البنك" help="Excel و CSV من بوابة البنك، و CAMT.053 و OFX و MT940.">
+                        <button name="%(action_bank_import)d" type="action" string="استيراد كشف" class="btn-link" icon="oi-arrow-right"/>
+                    </setting>
+                    <setting string="الموازنات" help="المبيعات المتوقعة وحدود المصروفات لكل فرع، ومقارنتها بالفعلي.">
+                        <button name="%(action_resta_budget)d" type="action" string="الموازنات" class="btn-link" icon="oi-arrow-right"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

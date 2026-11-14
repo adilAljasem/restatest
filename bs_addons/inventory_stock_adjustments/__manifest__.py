@@ -22,9 +22,8 @@
     'category': 'Inventory/Inventory',
     'license' : 'LGPL-3',
     'version' : '19.0.1.7',
-    'website' : "https://khichdiinfotech.com/",
-    "support" : "contact@khichdiinfotech.com",
-    'author'  : "Khichdi InfoTech",
+    'website' : "https://resta.sa",
+    'author'  : "Resta",
     'depends' : ['stock', 'stock_account'],
     'data' : [
         'security/ir.model.access.csv',

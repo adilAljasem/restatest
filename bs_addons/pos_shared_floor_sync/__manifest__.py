@@ -1,6 +1,7 @@
 {
     "name": "POS Shared Floor Sync",
-    "author": "Pino",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "summary": "مشاركة الطاولات المشغولة بين عدة نقاط بيع مرتبطة بنفس الصالة",
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",

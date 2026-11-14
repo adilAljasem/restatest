@@ -1,14 +1,14 @@
 {
     "name": "POS Kitchen Flow Monitor",
-    "version": "19.0.1.0.1",
+    "version": "19.0.2.0.0",
     "category": "Point of Sale",
     "summary": "Trace and control POS kitchen delivery flow",
-    "author": "Pino",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "pos_restaurant",
-        "pos_enterprise",
-        "pos_restaurant_preparation_display",
+        "resta_kds",
     ],
     "data": [
         "security/kitchen_flow_security.xml",

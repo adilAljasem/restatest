@@ -1,5 +1,5 @@
-// Login page (frontend bundle)
-body:has(.oe_login_form) {
+// Login page (frontend bundle); the Resta sign-in page (resta_brand) has its own styles
+body:not(.rs_auth_body):has(.oe_login_form) {
     font-family: "IBM Plex Sans Arabic", -apple-system, "Segoe UI", Arial, sans-serif;
     background-color: #F9F7F3 !important;
     background-image: none !important;   // Enterprise wallpaper

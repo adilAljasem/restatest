@@ -4,8 +4,8 @@
                'objective attendance KPIs, probation reviews, goals and peer kudos',
     'version': '19.0.1.0.0',
     'category': 'Human Resources/Appraisals',
-    'author': 'Basic Solution',
-    'website': 'https://resta.sa',
+    'author': "Resta",
+    'website': "https://resta.sa",
     'license': 'LGPL-3',
     'depends': ['bs_hr_ess_base', 'hr_attendance'],
     'data': [

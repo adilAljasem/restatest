@@ -1,0 +1,59 @@
+.o_resta_lock {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    background: var(--rs-page-bg, #F7F4F0);
+    .o_resta_lock_card {
+        width: 100%;
+        max-width: 460px;
+        background: var(--rs-surface, #fff);
+        border: 1px solid var(--rs-border-soft, #F0EBE5);
+        border-radius: 18px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, .08);
+        padding: 28px 24px 18px;
+        text-align: center;
+    }
+    .o_resta_lock_logo { height: 64px; width: auto; margin-bottom: 14px; }
+    .o_resta_lock_badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: #FEE2E2;
+        color: #991B1B;
+        font-weight: 700;
+        &.is-suspended { background: #FEF3C7; color: #92400E; }
+    }
+    .o_resta_lock_msg { margin: 14px 0; color: var(--rs-text-muted, #6B625B); line-height: 1.7; }
+    .o_resta_lock_manager {
+        border: 1px dashed var(--rs-border, #E7E1DA);
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 14px;
+    }
+    .o_resta_lock_actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .o_resta_lock_foot {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid var(--rs-border-soft, #F0EBE5);
+        font-size: 12px;
+        color: var(--rs-text-muted, #6B625B);
+    }
+}
+.o_resta_lock_strip {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1100;
+    background: #FEF3C7;
+    color: #92400E;
+    padding: 6px 16px;
+    font-size: 13px;
+    text-align: center;
+}

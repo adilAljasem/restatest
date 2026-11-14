@@ -5,17 +5,17 @@ from odoo.exceptions import UserError
 class BsHrPayrollAdjustment(models.Model):
     _inherit = 'bs.hr.payroll.adjustment'
 
-    payslip_id = fields.Many2one('hr.payslip', string='Payslip', readonly=True, copy=False, index=True,
+    payslip_id = fields.Many2one('resta.payslip', string='Payslip', readonly=True, copy=False, index=True,
                                  ondelete='set null',
                                  help='Payslip in which this adjustment was injected as an input line.')
-    payslip_input_id = fields.Many2one('hr.payslip.input', string='Payslip input', readonly=True, copy=False,
+    payslip_input_id = fields.Many2one('resta.payslip.input', string='Payslip input', readonly=True, copy=False,
                                        ondelete='set null')
 
     def action_open_payslip(self):
         self.ensure_one()
         if not self.payslip_id:
             return False
-        return {'type': 'ir.actions.act_window', 'res_model': 'hr.payslip', 'res_id': self.payslip_id.id,
+        return {'type': 'ir.actions.act_window', 'res_model': 'resta.payslip', 'res_id': self.payslip_id.id,
                 'view_mode': 'form'}
 
     def action_cancel(self):

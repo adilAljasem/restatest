@@ -59,7 +59,7 @@ LABELS = {
     "closed": ("Closed", "مغلقة"),
     "retro_note": (
         "* Counted amount not stored in Odoo: assumed equal to expected.",
-        "* المبلغ الفعلي غير محفوظ في أودو: اعتُبر مساوياً للمتوقع.",
+        "* المبلغ الفعلي غير محفوظ في النظام: اعتُبر مساوياً للمتوقع.",
     ),
     "open_note": (
         "Session still open: counted amounts are not available yet.",

@@ -216,7 +216,7 @@
             لمزيد من التفاصيل نسعد بزيارة موقعنا الإلكتروني
             <div class="pino-website" dir="ltr" t-esc="p.website"/>
         </div>
-        <div class="pino-powered" dir="ltr" t-translation="off">Powered by basicsolution.net</div>
+        <div class="pino-powered" dir="ltr" t-translation="off">Powered by resta.sa</div>
     </div>
 </div>
         ]]></field>

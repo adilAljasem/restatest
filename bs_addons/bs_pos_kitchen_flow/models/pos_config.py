@@ -3,8 +3,8 @@ from odoo import fields, models
 
 KITCHEN_FLOW_PRIORITIES = [
     ("printer_first", "Kitchen Printers First"),
-    ("display_first", "Kitchen Display First"),
-    ("parallel", "Display and Printers in Parallel"),
+    ("display_first", "Kitchen Screen First"),
+    ("parallel", "Kitchen Screen and Printers in Parallel"),
 ]
 
 
@@ -27,7 +27,7 @@ class PosConfig(models.Model):
         required=True,
         default="printer_first",
         help=(
-            "Choose whether physical kitchen printers or the preparation display are handled "
+            "Choose whether physical kitchen printers or the Resta kitchen screen are handled "
             "first, or run both operations in parallel."
         ),
     )

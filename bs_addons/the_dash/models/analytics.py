@@ -636,7 +636,9 @@ GROUP BY 1, 2
         its items being finished, per order and display."""
         rows = None
         source = None
-        if 'pos.prep.order' in self.env and 'pos.prep.state' in self.env:
+        if 'resta.kds.ticket' in self.env:
+            rows, source = self._kitchen_resta(scope), 'resta_kds (Resta kitchen screen)'
+        elif 'pos.prep.order' in self.env and 'pos.prep.state' in self.env:
             rows, source = self._kitchen_19(scope), 'pos.prep (Odoo 19)'
         elif 'pos_preparation_display.order.stage' in self.env:
             rows, source = self._kitchen_18(scope), 'pos_preparation_display (Odoo 17-18)'
@@ -732,6 +734,31 @@ GROUP BY 1, 2
     def _is_translated(self, model, fname):
         f = self._field(model, fname)
         return bool(f is not None and getattr(f, 'translate', False))
+
+    @api.model
+    def _kitchen_resta(self, scope):
+        """Resta kitchen screen: one ticket per send and screen; an order is done on a screen
+        when all its tickets there are done, at the last done time."""
+        where, params = self._order_where(scope, paid=False)
+        params.update(lang=self.env.lang or 'en_US', tz=self._scope_tz(scope))
+        display = self._display_name_sql('dsp', 'resta.kds.display')
+        query = """
+WITH per_display AS (
+    SELECT t.pos_order_id, t.display_id, MIN(t.create_date) AS start_at,
+           BOOL_AND(t.done) AS done, MAX(t.done_date) AS end_at
+    FROM resta_kds_ticket t
+    JOIN pos_order o ON o.id = t.pos_order_id
+    WHERE {where} AND NOT COALESCE(t.cancelled, FALSE) AND NOT COALESCE(t.is_resend, FALSE)
+    GROUP BY t.pos_order_id, t.display_id
+)
+SELECT pd.pos_order_id, o.pos_reference AS order_ref, o.config_id,
+       {display} AS display, pd.done, pd.start_at, pd.end_at,
+       EXTRACT(HOUR FROM (pd.start_at AT TIME ZONE 'UTC' AT TIME ZONE %(tz)s)) AS local_hour
+FROM per_display pd
+JOIN pos_order o ON o.id = pd.pos_order_id
+LEFT JOIN resta_kds_display dsp ON dsp.id = pd.display_id
+""".format(where=where, display=display)
+        return self._kitchen_rows(query, params)
 
     @api.model
     def _kitchen_19(self, scope):

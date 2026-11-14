@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Resta sign-in page, shared by the restaurant system (/web/login, reset password, two-factor)
+        and the platform's unified sign-in (/resta/login): the form on one side, the brand on the other.
+        Variables: auth_title, auth_subtitle, auth_logo, auth_links (markup under the form).
+    -->
+    <template id="auth_shell" name="Resta: sign-in page">
+        <div class="rs_auth">
+            <main class="rs_auth_main">
+                <div class="rs_auth_card">
+                    <a href="/" class="rs_auth_logo_link">
+                        <img class="rs_auth_logo" t-att-src="auth_logo or '/resta_theme/login_logo'" alt="Logo"/>
+                    </a>
+                    <h1 t-if="auth_title" class="rs_auth_title" t-out="auth_title"/>
+                    <p t-if="auth_subtitle" class="rs_auth_sub" t-out="auth_subtitle"/>
+                    <t t-out="0"/>
+                    <div t-if="auth_links" class="rs_auth_links" t-out="auth_links"/>
+                </div>
+                <div class="rs_auth_foot">
+                    <a href="https://resta.sa" target="_blank" rel="noopener">مشغّل بواسطة <span>Resta</span></a>
+                </div>
+            </main>
+            <aside class="rs_auth_brand">
+                <a href="https://resta.sa" target="_blank" rel="noopener" class="rs_auth_brand_logo">
+                    <img src="/resta_sidebar_theme/static/img/resta-wordmark-white.svg" alt="Resta"/>
+                </a>
+                <div class="rs_auth_pitch">
+                    <h2>نظام واحد يدير مطعمك</h2>
+                    <p>نقاط البيع والمطبخ، المخزون والمشتريات، المحاسبة والموظفين، في مكان واحد.</p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"/>يعمل على الجوال والتابلت والكمبيوتر</li>
+                        <li><i class="fa fa-check" aria-hidden="true"/>الفوترة الإلكترونية (فاتورة) جاهزة</li>
+                        <li><i class="fa fa-check" aria-hidden="true"/>دعم عربي من فريق ريستا</li>
+                    </ul>
+                </div>
+                <div class="rs_auth_brand_foot">resta.sa</div>
+            </aside>
+        </div>
+    </template>
+
+    <!-- login form: page title, «username» (email or login) -->
+    <template id="login_form" inherit_id="web.login" name="Resta: sign-in form">
+        <xpath expr="//t[@t-call='web.login_layout']" position="inside">
+            <t t-set="auth_title">تسجيل الدخول</t>
+        </xpath>
+        <xpath expr="//label[@for='login']" position="replace">
+            <label for="login" class="form-label">اسم المستخدم</label>
+        </xpath>
+        <xpath expr="//input[@name='login']" position="attributes">
+            <attribute name="placeholder">البريد الإلكتروني أو اسم المستخدم</attribute>
+            <attribute name="dir">ltr</attribute>
+        </xpath>
+        <xpath expr="//input[@name='password']" position="attributes">
+            <attribute name="placeholder">••••••••</attribute>
+            <attribute name="dir">ltr</attribute>
+        </xpath>
+    </template>
+</odoo>

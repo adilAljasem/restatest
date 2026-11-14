@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payslip_user,payslip user,model_resta_payslip,group_payroll_user,1,1,1,1
+access_payslip_line_user,payslip line user,model_resta_payslip_line,group_payroll_user,1,1,1,1
+access_payslip_input_user,payslip input user,model_resta_payslip_input,group_payroll_user,1,1,1,1
+access_payslip_input_type_user,input type user,model_resta_payslip_input_type,group_payroll_user,1,0,0,0
+access_payslip_input_type_manager,input type manager,model_resta_payslip_input_type,group_payroll_manager,1,1,1,1
+access_payslip_batch_user,batch user,model_resta_payslip_batch,group_payroll_user,1,1,1,1
+access_gosi_rate_user,gosi rate user,model_resta_gosi_rate,group_payroll_user,1,0,0,0
+access_gosi_rate_manager,gosi rate manager,model_resta_gosi_rate,group_payroll_manager,1,1,1,1
+access_eosb_user,eosb user,model_resta_eosb,group_payroll_user,1,1,1,1
+access_payroll_payment,payroll payment,model_resta_payroll_payment,group_payroll_manager,1,1,1,1

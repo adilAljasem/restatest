@@ -33,7 +33,7 @@ class PosConfig(models.Model):
         res = super().load_onboarding_resta_dinein_scenario(with_demo_data)
         config = self.browse(res["config_id"])
         # Replace the generic display created by the base with kitchen + drinks bar
-        self.env["pos.prep.display"].search([("pos_config_ids", "in", config.ids)]).unlink()
+        self.env["resta.kds.display"].sudo().search([("pos_config_ids", "in", config.ids)]).unlink()
         self._resta_prep_displays(config, [
             (_("Kitchen"), self._resta_dinein_categ(FOOD)),
             (_("Drinks Bar"), self._resta_dinein_categ(DRINKS)),

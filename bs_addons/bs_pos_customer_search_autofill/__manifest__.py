@@ -3,7 +3,8 @@
     "version": "19.0.1.0.0",
     "category": "Point of Sale",
     "summary": "Prefill new POS customers from the customer search term",
-    "author": "Pino",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "point_of_sale",

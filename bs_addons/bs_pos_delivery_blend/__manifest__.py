@@ -3,7 +3,8 @@
     "summary": "Blend adapter for the BS POS Delivery integration framework",
     "version": "19.0.1.18.0",
     "category": "Point of Sale",
-    "author": "Bunbastic",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "icon": "/bs_pos_delivery_blend/static/description/icon.png",
     "depends": [
@@ -31,9 +32,6 @@
             "bs_pos_delivery_blend/static/src/js/blend_combo_limits.js",
             "bs_pos_delivery_blend/static/src/js/blend_order_receipt.js",
             "bs_pos_delivery_blend/static/src/xml/blend_order_receipt.xml",
-        ],
-        "pos_preparation_display.assets": [
-            "bs_pos_delivery_blend/static/src/xml/blend_scheduled_kitchen.xml",
         ],
     },
     "post_init_hook": "post_init_hook",

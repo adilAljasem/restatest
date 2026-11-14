@@ -6,7 +6,7 @@ class HrEmployee(models.Model):
 
     def _ess_last_payslip(self):
         self.ensure_one()
-        Payslip = self.env['hr.payslip'].sudo()
+        Payslip = self.env['resta.payslip'].sudo()
         compat = self.env['bs.hr.payroll.compat']
         return Payslip.search([('employee_id', '=', self.id), ('state', 'in', compat._confirmed_states())],
                               order='date_to desc, id desc', limit=1)

@@ -1,0 +1,298 @@
+// Resta sign-in page (restaurant system and platform): form + brand panel
+$rs-auth-orange: #FF5A1F;
+$rs-auth-orange-dark: #E9430A;
+$rs-auth-ink: #161616;
+$rs-auth-paper: #F9F7F3;
+$rs-auth-line: #E4DED7;
+$rs-auth-muted: #6E6862;
+
+body.rs_auth_body {
+    min-height: 100%;
+    margin: 0;
+    background: $rs-auth-paper !important;
+    background-image: none !important;
+    color: $rs-auth-ink;
+    font-family: "IBM Plex Sans Arabic", -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+.rs_auth {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 100vh;
+
+    @media (max-width: 991.98px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ---- form side ----------------------------------------------------------------------
+.rs_auth_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px 28px;
+    background: #FFFFFF;
+
+    @media (max-width: 991.98px) {
+        justify-content: flex-start;
+        padding: 40px 16px 24px;
+        background: $rs-auth-paper;
+    }
+}
+
+.rs_auth_card {
+    width: 100%;
+    max-width: 400px;
+    margin-block: auto;
+
+    @media (max-width: 991.98px) {
+        margin-block: 0;
+        padding: 28px 20px;
+        border: 1px solid $rs-auth-line;
+        border-radius: 16px;
+        background: #FFFFFF;
+        box-shadow: 0 10px 30px rgba(22, 22, 22, .05);
+    }
+
+    .form-label {
+        margin-bottom: 6px;
+        color: #2B2724;
+        font-size: .9rem;
+        font-weight: 600;
+    }
+
+    .form-control {
+        height: 48px;
+        padding-inline: 14px;
+        border: 1px solid $rs-auth-line;
+        border-radius: 12px;
+        background: #FFFFFF;
+        font-size: 1rem;
+
+        &::placeholder {
+            color: #A8A19A;
+        }
+
+        &:focus {
+            border-color: $rs-auth-orange;
+            box-shadow: 0 0 0 3px rgba($rs-auth-orange, .14);
+        }
+    }
+
+    // password + eye button drawn as one field (no corner juggling in either direction)
+    .input-group {
+        flex-wrap: nowrap;
+        overflow: hidden;
+        border: 1px solid $rs-auth-line;
+        border-radius: 12px;
+        background: #FFFFFF;
+
+        &:focus-within {
+            border-color: $rs-auth-orange;
+            box-shadow: 0 0 0 3px rgba($rs-auth-orange, .14);
+        }
+
+        > .form-control {
+            height: 46px;
+            border: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        > .btn {
+            flex: 0 0 48px;
+            margin: 0 !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            background: transparent;
+            color: $rs-auth-muted;
+        }
+    }
+
+    .btn-primary {
+        height: 50px;
+        border: 0;
+        border-radius: 12px;
+        background: $rs-auth-orange;
+        font-size: 1rem;
+        font-weight: 700;
+
+        &:hover, &:focus, &:active {
+            background: $rs-auth-orange-dark !important;
+            box-shadow: 0 10px 24px rgba($rs-auth-orange, .25);
+        }
+    }
+
+    .btn-link, a {
+        color: #C2410C;
+        text-decoration: none;
+    }
+
+    .alert {
+        border: 0;
+        border-radius: 12px;
+        font-size: .9rem;
+    }
+
+    .oe_login_buttons {
+        padding-top: 8px !important;
+    }
+
+    // «or use a passkey» separator and button
+    .o_login_auth {
+        margin-top: 8px;
+
+        .list-group-item {
+            border: 1px solid $rs-auth-line;
+            border-radius: 12px !important;
+            color: $rs-auth-ink;
+        }
+    }
+}
+
+.rs_auth_logo_link {
+    display: inline-block;
+    margin-bottom: 28px;
+}
+
+.rs_auth_logo {
+    display: block;
+    width: auto;
+    max-width: 200px;
+    height: 46px;
+    object-fit: contain;
+}
+
+.rs_auth_title {
+    margin: 0 0 6px;
+    color: $rs-auth-ink;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.rs_auth_sub {
+    margin: 0 0 24px;
+    color: $rs-auth-muted;
+}
+
+.rs_auth_title + form,
+.rs_auth_title + .oe_login_form,
+.rs_auth_title + owl-component {
+    margin-top: 22px;
+}
+
+.rs_auth_links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    color: $rs-auth-muted;
+    font-size: .9rem;
+    text-align: center;
+}
+
+.rs_auth_foot {
+    display: flex;
+    gap: 16px;
+    margin-top: 28px;
+    color: #8A847E;
+    font-size: .85rem;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    span {
+        color: $rs-auth-ink;
+        font-weight: 700;
+    }
+}
+
+// ---- brand side ----------------------------------------------------------------------
+.rs_auth_brand {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 56px;
+    overflow: hidden;
+    background: $rs-auth-ink;
+    color: #FFFFFF;
+
+    // warm glow in the brand orange
+    &::before {
+        content: "";
+        position: absolute;
+        inset-block-end: -220px;
+        inset-inline-start: -180px;
+        width: 620px;
+        height: 620px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba($rs-auth-orange, .55) 0%, rgba($rs-auth-orange, 0) 68%);
+        pointer-events: none;
+    }
+
+    > * {
+        position: relative;
+    }
+
+    @media (max-width: 991.98px) {
+        display: none;
+    }
+}
+
+.rs_auth_brand_logo img {
+    width: auto;
+    height: 46px;
+}
+
+.rs_auth_pitch {
+    max-width: 440px;
+
+    h2 {
+        margin: 0 0 14px;
+        font-size: 2.25rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    p {
+        margin: 0;
+        color: rgba(255, 255, 255, .72);
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    ul {
+        margin: 28px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+        color: rgba(255, 255, 255, .9);
+
+        .fa {
+            display: grid;
+            place-items: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba($rs-auth-orange, .18);
+            color: $rs-auth-orange;
+            font-size: .75rem;
+        }
+    }
+}
+
+.rs_auth_brand_foot {
+    color: rgba(255, 255, 255, .5);
+    font-size: .9rem;
+    letter-spacing: .04em;
+}

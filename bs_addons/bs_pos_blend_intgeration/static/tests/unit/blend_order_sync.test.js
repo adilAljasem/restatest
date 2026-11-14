@@ -24,7 +24,7 @@ function pendingOrders() {
     const store = Object.create(PosStore.prototype);
     const values = {
         config: { id: 1 },
-        device: { identifier: "blend-regression" },
+        device: { identifier: "blend-regression", removeUsedNumbers: () => {} },
         getOrder: () => orders[1],
         syncingOrders: new Set(),
         pendingOrder: {

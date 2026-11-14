@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
-    <!--
-        Fallback input types, used only when hr_payroll does not provide the standard
-        "Deduction" (DEDUCTION) / "Reimbursement" (REIMBURSEMENT) input types.
-        They must be used by a salary rule of the structure to reach the net
-        (e.g. result = -inputs['BSDED'].amount if 'BSDED' in inputs else 0).
-    -->
-    <record id="input_type_bs_deduction" model="hr.payslip.input.type">
+    <!-- Input types for the employee self-service adjustments (Resta payroll). -->
+    <record id="input_type_bs_deduction" model="resta.payslip.input.type">
         <field name="name">ESS Deduction</field>
         <field name="code">BSDED</field>
+        <field name="kind">deduction</field>
     </record>
-    <record id="input_type_bs_addition" model="hr.payslip.input.type">
+    <record id="input_type_bs_addition" model="resta.payslip.input.type">
         <field name="name">ESS Addition</field>
         <field name="code">BSADD</field>
+        <field name="kind">addition</field>
     </record>
 </odoo>

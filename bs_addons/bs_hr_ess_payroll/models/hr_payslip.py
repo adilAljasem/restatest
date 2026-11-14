@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 
 class HrPayslipInput(models.Model):
-    _inherit = 'hr.payslip.input'
+    _inherit = 'resta.payslip.input'
 
     ess_adjustment_id = fields.Many2one('bs.hr.payroll.adjustment', string='ESS adjustment', index=True,
                                         ondelete='set null', copy=False,
@@ -17,7 +17,7 @@ class HrPayslipInput(models.Model):
 
 
 class HrPayslip(models.Model):
-    _inherit = 'hr.payslip'
+    _inherit = 'resta.payslip'
 
     ess_adjustment_ids = fields.One2many('bs.hr.payroll.adjustment', 'payslip_id', string='ESS adjustments')
     ess_published = fields.Boolean(
@@ -41,12 +41,12 @@ class HrPayslip(models.Model):
 
     def _ess_input_vals(self, adjustment, input_type):
         vals = {
-            'payslip_id': self.id,
-            'input_type_id': input_type.id,
+            'slip_id': self.id,
+            'type_id': input_type.id,
             'amount': adjustment.amount,
             'ess_adjustment_id': adjustment.id,
         }
-        Input = self.env['hr.payslip.input']
+        Input = self.env['resta.payslip.input']
         label = adjustment.name
         if adjustment.source_ref:
             label = '%s (%s)' % (adjustment.name, adjustment.source_ref)
@@ -62,9 +62,9 @@ class HrPayslip(models.Model):
         compat = self.env['bs.hr.payroll.compat']
         draft_states = compat._draft_states()
         Adjustment = self.env['bs.hr.payroll.adjustment'].sudo().with_context(ess_payroll_sync=True)
-        Input = self.env['hr.payslip.input'].sudo()
+        Input = self.env['resta.payslip.input'].sudo()
         for slip in self.sudo().filtered(lambda s: s.state in draft_states and s.employee_id and s.date_to):
-            existing = Input.search([('payslip_id', '=', slip.id), ('ess_adjustment_id', '!=', False)])
+            existing = Input.search([('slip_id', '=', slip.id), ('ess_adjustment_id', '!=', False)])
             wanted = Adjustment.search(slip._ess_adjustment_domain())
             # adjustments no longer applicable (cancelled, moved, amount changed) -> drop their input
             stale = existing.filtered(
@@ -125,10 +125,6 @@ class HrPayslip(models.Model):
                 self.filtered('ess_published').write({'ess_published': False})
         return res
 
-    def action_payslip_done(self):
-        res = super().action_payslip_done()
-        self._ess_sync_adjustment_states()
-        return res
 
     def unlink(self):
         adjustments = self.env['bs.hr.payroll.adjustment'].sudo().search([('payslip_id', 'in', self.ids)])

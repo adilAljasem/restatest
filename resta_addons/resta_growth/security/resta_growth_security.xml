@@ -26,9 +26,9 @@
         <field name="implied_ids" eval="[(4, ref('group_resta_manager'))]"/>
     </record>
 
-    <!-- Basic Solution team: sees everything, bypasses feature locks, simulator -->
+    <!-- Resta team: sees everything, bypasses feature locks, simulator -->
     <record id="group_resta_support" model="res.groups">
-        <field name="name">فريق بيسك سلوشن (الدعم)</field>
+        <field name="name">فريق ريستا (الدعم)</field>
         <field name="sequence">30</field>
         <field name="privilege_id" ref="res_groups_privilege_resta_growth"/>
         <field name="implied_ids" eval="[(4, ref('group_resta_owner'))]"/>

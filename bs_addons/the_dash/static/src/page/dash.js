@@ -1851,7 +1851,7 @@
     var foot = [];
     if (s.note) { foot.push(esc(s.note)); }
     if (s.link) {
-      foot.push('<a class="linkbtn" target="_top" href="' + esc(s.link) + '">فتح في أودو ↗</a>');
+      foot.push('<a class="linkbtn" target="_top" href="' + esc(s.link) + '">فتح في النظام ↗</a>');
     }
     if (foot.length) { html += '<div class="card-note mt10">' + foot.join(" · ") + "</div>"; }
     $("opsContent").innerHTML = html;

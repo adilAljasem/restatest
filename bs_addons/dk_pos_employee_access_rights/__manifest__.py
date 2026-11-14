@@ -2,7 +2,8 @@
 {
     'name': 'POS Employee Access Rights',
     'version': '19.0.1.4.0',
-    'author': 'Ahmed Eldweek',
+    'author': "Resta",
+    "website": "https://resta.sa",
     'category': 'Point of Sale',
     'summary': 'Configure granular POS permissions per employee and cashier.',
     'description': """

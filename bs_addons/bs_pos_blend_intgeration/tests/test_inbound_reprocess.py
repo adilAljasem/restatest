@@ -147,10 +147,8 @@ class TestBlendInboundReprocess(BlendAccountingCommon):
     def test_recovered_order_stays_silent_after_manual_accounting(self):
         self._wizard().action_reprocess()
         order = self.log.order_id
-        with patch.object(type(self.env["pos.prep.display"]), "_send_load_orders_message",
-                          side_effect=AssertionError("Historical order must not notify preparation")):
-            order.action_blend_accept_order()
-            self.env["pos.prep.order"].process_order(order.id)
+        order.action_blend_accept_order()
+        order.with_context(resta_kds_fire=True, blend_kitchen_send=True)._resta_kds_dispatch(paid_now=True)
         self.assertEqual(order.blend_financial_state, "done", order.blend_financial_error)
         self.assertEqual(order.state, "done")
         self.assertEqual(order.account_move.state, "posted")
@@ -162,7 +160,7 @@ class TestBlendInboundReprocess(BlendAccountingCommon):
         order._blend_enqueue_status("prepared")
         order._blend_queue_kitchen_print()
         self.assertFalse(self._logs(order) or order.blend_kitchen_print_ids)
-        self.assertFalse(self.env["pos.prep.order"].search([("pos_order_id", "=", order.id)]))
+        self.assertFalse(self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)]))
 
     def test_recovery_marker_cannot_be_supplied_by_cashier_clients(self):
         self._wizard().action_reprocess()

@@ -9,13 +9,17 @@ class EssPayrollCommon:
 
     @classmethod
     def _slip(cls, employee, **vals):
-        Payslip = cls.env['hr.payslip']
-        base = {'name': 'Slip %s' % employee.name, 'employee_id': employee.id,
-                'date_from': date(2026, 1, 1), 'date_to': date(2026, 1, 31)}
-        # Enterprise hr_payroll 19 links the payslip to the employee version (assumed field name)
-        if 'version_id' in Payslip._fields:
-            base['version_id'] = employee.sudo().version_id.id
+        Payslip = cls.env['resta.payslip']
+        if not employee.sudo().contract_date_start:
+            employee.sudo().write({'wage': employee.sudo().wage or 5000, 'contract_date_start': date(2025, 1, 1)})
+        base = {'employee_id': employee.id, 'date_from': date(2026, 1, 1), 'date_to': date(2026, 1, 31),
+                'version_id': employee.sudo().version_id.id}
         return Payslip.create({**base, **vals})
+
+    @staticmethod
+    def _done(slip):
+        """Payslip confirmed (the accounting entry itself is covered by resta_payroll's tests)."""
+        slip.write({'state': 'confirmed'})
 
 
 @tagged('post_install', '-at_install', 'bs_hr_ess')
@@ -32,34 +36,34 @@ class TestEssPayrollBridge(EssCommon, EssPayrollCommon):
         later.date = date(2026, 2, 10)
         slip = self._slip(self.emp_employee)
         slip.compute_sheet()
-        inputs = slip.input_line_ids.filtered('ess_adjustment_id')
+        inputs = slip.input_ids.filtered('ess_adjustment_id')
         self.assertEqual(inputs.ess_adjustment_id, ded | add)
         self.assertEqual(ded.payslip_id, slip)
         self.assertFalse(later.payslip_id)
         # recompute: no duplicates
         slip.write({'state': 'draft'})
         slip.compute_sheet()
-        self.assertEqual(len(slip.input_line_ids.filtered('ess_adjustment_id')), 2)
+        self.assertEqual(len(slip.input_ids.filtered('ess_adjustment_id')), 2)
         # amount changed -> input replaced
         ded.amount = 250
         slip.write({'state': 'draft'})
         slip.compute_sheet()
-        self.assertEqual(slip.input_line_ids.filtered(lambda i: i.ess_adjustment_id == ded).amount, 250)
+        self.assertEqual(slip.input_ids.filtered(lambda i: i.ess_adjustment_id == ded).amount, 250)
         # deduction / addition input types
-        self.assertEqual(ded.payslip_input_id.input_type_id,
+        self.assertEqual(ded.payslip_input_id.type_id,
                          self.env['bs.hr.payroll.compat']._input_type('deduction'))
-        slip.action_payslip_done()
+        self._done(slip)
         self.assertEqual((ded | add).mapped('state'), ['applied', 'applied'])
         # another payslip of the same period does not take them again
         slip2 = self._slip(self.emp_employee)
         slip2._ess_sync_adjustment_inputs()
-        self.assertFalse(slip2.input_line_ids)
+        self.assertFalse(slip2.input_ids)
 
     def test_cancel_and_reset(self):
         ded = self._adj(300)
         slip = self._slip(self.emp_employee)
         slip.compute_sheet()
-        slip.action_payslip_done()
+        self._done(slip)
         self.assertEqual(ded.state, 'applied')
         slip.write({'state': 'draft'})
         self.assertEqual(ded.state, 'pending')
@@ -74,12 +78,12 @@ class TestEssPayrollBridge(EssCommon, EssPayrollCommon):
         slip3._ess_sync_adjustment_inputs()
         self.assertTrue(ded2.payslip_input_id)
         ded2.action_cancel()
-        self.assertFalse(slip3.input_line_ids.filtered(lambda i: i.ess_adjustment_id == ded2))
+        self.assertFalse(slip3.input_ids.filtered(lambda i: i.ess_adjustment_id == ded2))
 
     def test_objection_creates_adjustment(self):
         slip = self._slip(self.emp_employee)
         slip.compute_sheet()
-        slip.action_payslip_done()
+        self._done(slip)
         payroll_user = new_test_user(self.env, login='ess_payroll',
                                      groups='bs_hr_ess_base.group_ess_payroll_officer')
         objection = self.env['bs.hr.payslip.objection'].create({
@@ -98,19 +102,19 @@ class TestEssPayrollBridge(EssCommon, EssPayrollCommon):
         # it reaches the next payslip
         next_slip = self._slip(self.emp_employee, date_from=date(2026, 11, 1), date_to=date(2026, 12, 31))
         next_slip._ess_sync_adjustment_inputs()
-        self.assertEqual(next_slip.input_line_ids.ess_adjustment_id, adj)
+        self.assertEqual(next_slip.input_ids.ess_adjustment_id, adj)
 
     def test_publish_run_and_dashboard(self):
-        run = self.env['hr.payslip.run'].create({'name': 'Jan'})
-        slip = self._slip(self.emp_employee, payslip_run_id=run.id)
+        run = self.env['resta.payslip.batch'].create({'name': 'Jan'})
+        slip = self._slip(self.emp_employee, batch_id=run.id)
         self.assertFalse(slip._ess_portal_visible())
         run.action_ess_publish()
         self.assertTrue(slip.ess_published)
         self.assertTrue(slip._ess_portal_visible())
         self.assertTrue(self.env['bs.hr.notification'].search_count([
-            ('employee_id', '=', self.emp_employee.id), ('res_model', '=', 'hr.payslip')]))
+            ('employee_id', '=', self.emp_employee.id), ('res_model', '=', 'resta.payslip')]))
         slip.compute_sheet()
-        slip.action_payslip_done()
+        self._done(slip)
         self.assertFalse(slip.ess_published)
         card = [c for c in self.emp_employee._ess_dashboard_cards() if c['key'] == 'payslip'][0]
         self.assertEqual(card['url'], '/my/hr/payslip/%s' % slip.id)
@@ -128,11 +132,11 @@ class TestEssPayrollPortal(HttpCase, EssPayrollCommon):
         cls.emp_b = cls.env['hr.employee'].create({'name': 'Pay B', 'user_id': cls.user_b.id, 'wage': 5000})
         cls.slip_a = cls._slip(cls.emp_a)
         cls.slip_a.compute_sheet()
-        cls.slip_a.action_payslip_done()
+        cls._done(cls.slip_a)
         cls.draft_a = cls._slip(cls.emp_a, date_from=date(2026, 2, 1), date_to=date(2026, 2, 28))
         cls.slip_b = cls._slip(cls.emp_b)
         cls.slip_b.compute_sheet()
-        cls.slip_b.action_payslip_done()
+        cls._done(cls.slip_b)
 
     def csrf_token(self):
         return self.opener.get(self.base_url() + '/my/hr').text.split('csrf_token: "')[1].split('"')[0]

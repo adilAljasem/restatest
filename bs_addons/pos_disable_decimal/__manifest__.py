@@ -1,4 +1,6 @@
 {
+    "author": "Resta",
+    "website": "https://resta.sa",
     "name": "POS Disable Decimal Quantity",
     "summary": "يعطّل زر الفاصلة في نقطة البيع عند إدخال الكمية لمنع البيع المجزأ",
     "version": "19.0.1.0.0",

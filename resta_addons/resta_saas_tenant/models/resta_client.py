@@ -86,9 +86,11 @@ class RestaSaasClient(models.AbstractModel):
     @api.model
     def sync(self):
         icp = self._icp()
+        Command = self.env["resta.platform.command"].sudo()
+        acked, acks = Command._acks()
         try:
             last_id = int(icp.get_param("resta.last_update_id", "0") or 0)
-            data = self._post("/resta/api/v1/sync", {"last_id": last_id, "usage": self._usage()})
+            data = self._post("/resta/api/v1/sync", {"last_id": last_id, "usage": self._usage(), "acks": acks})
         except Exception as exc:  # noqa: BLE001 - never break the UI on a sync failure
             _logger.warning("Resta: sync with platform failed: %s", exc)
             icp.set_param("resta.last_sync_error", str(exc)[:500])
@@ -111,6 +113,10 @@ class RestaSaasClient(models.AbstractModel):
                            "date": a.get("date")})
             last_id = max(last_id, int(a["id"]))
         icp.set_param("resta.last_update_id", str(last_id))
+        acked.write({"acked": True})
+        if "entitlements" in data:
+            Command._apply_entitlements(data.get("entitlements"))
+        Command._receive(data.get("commands"))
         return True
 
     def _sync_if_stale(self):
@@ -176,3 +182,32 @@ class RestaSaasClient(models.AbstractModel):
     @api.model
     def blocked_state(self):
         return self._icp().get_param("resta.subscription_state") in ("expired", "suspended")
+
+    @api.model
+    def get_lock_state(self):
+        """Full-screen notice in the back office when the subscription has ended or the account is suspended.
+        The Resta support account keeps working (to help the restaurant)."""
+        conf = self._conf()
+        icp = self._icp()
+        state = icp.get_param("resta.subscription_state") or ""
+        if not conf["account"] or state not in ("expired", "suspended"):
+            return {"blocked": False}
+        try:
+            manager = json.loads(icp.get_param("resta.account_manager") or "{}")
+            support = json.loads(icp.get_param("resta.support") or "{}")
+        except ValueError:
+            manager, support = {}, {}
+        is_support = self.env.user.has_group("base.group_system")
+        expired = state == "expired"
+        return {
+            "blocked": not is_support,
+            "bypass": is_support,
+            "state": state,
+            "title": _("انتهى اشتراك ريستا") if expired else _("حساب ريستا موقوف"),
+            "message": _("لتجديد الاشتراك ومواصلة استخدام النظام تواصل مع مدير حسابك. بياناتك محفوظة كاملة.")
+            if expired else _("تم إيقاف الحساب مؤقتاً. تواصل مع مدير حسابك لإعادة التفعيل. بياناتك محفوظة كاملة."),
+            "manager": manager,
+            "support": support,
+            "account": conf["account"],
+            "renew_url": "%s/resta/login?account=%s" % (conf["master"], conf["account"]) if conf["master"] else "",
+        }

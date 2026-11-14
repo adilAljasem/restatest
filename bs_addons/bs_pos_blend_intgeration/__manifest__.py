@@ -3,14 +3,15 @@
     "version": "19.0.1.37.0",
     "category": "Point of Sale",
     "summary": "Secure Blend menu, availability, and order synchronization",
-    "author": "Basic Solutions",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "mail",
         "point_of_sale",
         "stock",
         "pos_restaurant",
-        "pos_enterprise",
+        "resta_kds",
         "product_modifiers",
     ],
     "data": [
@@ -25,9 +26,6 @@
         "views/blend_integration_log_views.xml",
     ],
     "assets": {
-        "pos_preparation_display.assets": [
-            "bs_pos_blend_intgeration/static/src/xml/blend_scheduled_kitchen.xml",
-        ],
         "point_of_sale._assets_pos": [
             "bs_pos_blend_intgeration/static/src/js/blend_pos_store.js",
             "bs_pos_blend_intgeration/static/src/js/blend_discount_refund.js",

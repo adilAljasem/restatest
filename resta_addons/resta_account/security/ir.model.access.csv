@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_resta_asset_type_ro,resta.asset.type ro,model_resta_asset_type,account.group_account_readonly,1,0,0,0
+access_resta_asset_type_manager,resta.asset.type manager,model_resta_asset_type,account.group_account_manager,1,1,1,1
+access_resta_asset_ro,resta.asset ro,model_resta_asset,account.group_account_readonly,1,0,0,0
+access_resta_asset_user,resta.asset user,model_resta_asset,account.group_account_user,1,1,1,1
+access_resta_asset_line_ro,resta.asset.line ro,model_resta_asset_line,account.group_account_readonly,1,0,0,0
+access_resta_asset_line_user,resta.asset.line user,model_resta_asset_line,account.group_account_user,1,1,1,1
+access_resta_asset_dispose,resta.asset.dispose,model_resta_asset_dispose,account.group_account_user,1,1,1,1
+access_resta_lock_dates,resta.lock.dates,model_resta_lock_dates,account.group_account_manager,1,1,1,1
+access_resta_budget_ro,resta.budget ro,model_resta_budget,account.group_account_readonly,1,0,0,0
+access_resta_budget_user,resta.budget user,model_resta_budget,account.group_account_user,1,1,1,1
+access_resta_budget_line_ro,resta.budget.line ro,model_resta_budget_line,account.group_account_readonly,1,0,0,0
+access_resta_budget_line_user,resta.budget.line user,model_resta_budget_line,account.group_account_user,1,1,1,1
+access_resta_budget_fill,resta.budget.fill,model_resta_budget_fill,account.group_account_user,1,1,1,1
+access_resta_followup_level_read,resta.followup.level read,model_resta_followup_level,account.group_account_invoice,1,0,0,0
+access_resta_followup_level_ro,resta.followup.level ro,model_resta_followup_level,account.group_account_readonly,1,0,0,0
+access_resta_followup_level_manager,resta.followup.level manager,model_resta_followup_level,account.group_account_manager,1,1,1,1
+access_resta_bank_import,resta.bank.import,model_resta_bank_import,account.group_account_user,1,1,1,1
+access_resta_bank_import_column,resta.bank.import.column,model_resta_bank_import_column,account.group_account_user,1,1,1,1
+access_resta_bank_import_line,resta.bank.import.line,model_resta_bank_import_line,account.group_account_user,1,1,1,1

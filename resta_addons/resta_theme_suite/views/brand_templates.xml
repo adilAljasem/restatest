@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- POS, self-order and customer display pages: Resta tab title and icon -->
+    <template id="pos_index_brand" inherit_id="point_of_sale.index" name="Resta: POS page">
+        <xpath expr="//head/title" position="replace">
+            <title>Resta</title>
+        </xpath>
+        <xpath expr="//head/link[@rel='icon']" position="replace">
+            <link rel="icon" type="image/svg+xml" href="/resta_sidebar_theme/static/img/favicon.svg"/>
+        </xpath>
+    </template>
+    <template id="customer_display_brand" inherit_id="point_of_sale.customer_display_index" name="Resta: customer display page">
+        <xpath expr="//link[@rel='icon']" position="replace">
+            <link rel="icon" type="image/svg+xml" href="/resta_sidebar_theme/static/img/favicon.svg"/>
+        </xpath>
+    </template>
+    <template id="self_order_index_brand" inherit_id="pos_self_order.index" name="Resta: self-order page">
+        <xpath expr="//head/title" position="replace">
+            <title>Resta</title>
+        </xpath>
+    </template>
+</odoo>

@@ -62,7 +62,8 @@ msgstr "استعراض اللغة الإنجليزية لمجاميع الطلب
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_show_totals_english
-msgid "Print English labels under the totals, VAT, payment lines and the title."
+msgid ""
+"Print English labels under the totals, VAT, payment lines and the title."
 msgstr "طباعة العناوين الإنجليزية تحت المجاميع والضريبة والدفع والعنوان."
 
 #. module: odoo_pos_custom_branding
@@ -72,8 +73,12 @@ msgstr "استعراض الجمل أعلى الفاتورة"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_show_header_text
-msgid "Print the lines above the invoice (company name / header text and customer service phone). The VAT and CR numbers are always printed."
-msgstr "طباعة الجمل أعلى الفاتورة (اسم الشركة أو النص المخصص ورقم خدمة العملاء). الرقم الضريبي والسجل التجاري يُطبعان دائماً."
+msgid ""
+"Print the lines above the invoice (company name / header text and customer "
+"service phone). The VAT and CR numbers are always printed."
+msgstr ""
+"طباعة الجمل أعلى الفاتورة (اسم الشركة أو النص المخصص ورقم خدمة العملاء). "
+"الرقم الضريبي والسجل التجاري يُطبعان دائماً."
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,field_description:odoo_pos_custom_branding.field_pos_config__receipt_top_text
@@ -82,7 +87,9 @@ msgstr "الجمل أعلى الفاتورة"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_top_text
-msgid "Lines printed under the logo. Empty: the POS receipt header or the company name."
+msgid ""
+"Lines printed under the logo. Empty: the POS receipt header or the company "
+"name."
 msgstr "الجمل التي تُطبع تحت الشعار. إذا تُركت فارغة يُطبع اسم الشركة."
 
 #. module: odoo_pos_custom_branding
@@ -107,8 +114,12 @@ msgstr "الجمل التي تُطبع أسفل الفاتورة، كل جملة
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
-msgid "Changes apply to the Arabic thermal receipt design. Reload the Point of Sale after saving."
-msgstr "تُطبَّق هذه الإعدادات على تصميم الفاتورة الحرارية العربية. أعد تحميل نقطة البيع بعد الحفظ."
+msgid ""
+"Changes apply to the Arabic thermal receipt design. Reload the Point of Sale"
+" after saving."
+msgstr ""
+"تُطبَّق هذه الإعدادات على تصميم الفاتورة الحرارية العربية. أعد تحميل نقطة "
+"البيع بعد الحفظ."
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
@@ -142,8 +153,13 @@ msgstr "استعراض بيانات طلب التوصيل"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_show_delivery
-msgid "On delivery orders, print a delivery card with the platform name and the platform (external) order ID. Nothing is printed on dine-in or takeaway orders."
-msgstr "في طلبات التوصيل تُطبع بطاقة توصيل فيها اسم المنصة ورقم طلب المنصة. لا يُطبع شيء في طلبات المحلي أو السفري."
+msgid ""
+"On delivery orders, print a delivery card with the platform name and the "
+"platform (external) order ID. Nothing is printed on dine-in or takeaway "
+"orders."
+msgstr ""
+"في طلبات التوصيل تُطبع بطاقة توصيل فيها اسم المنصة ورقم طلب المنصة. لا يُطبع"
+" شيء في طلبات المحلي أو السفري."
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,field_description:odoo_pos_custom_branding.field_pos_config__receipt_show_pattern
@@ -182,8 +198,12 @@ msgstr "صورة نقشة مخصصة"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_pattern_image
-msgid "Optional. A wide horizontal band (PNG with a transparent or white background, dark ink). Empty: the built-in identity pattern."
-msgstr "اختياري. شريط أفقي عريض (PNG بخلفية شفافة أو بيضاء ونقش داكن). إذا تُرك فارغاً تُستخدم نقشة الهوية المدمجة."
+msgid ""
+"Optional. A wide horizontal band (PNG with a transparent or white "
+"background, dark ink). Empty: the built-in identity pattern."
+msgstr ""
+"اختياري. شريط أفقي عريض (PNG بخلفية شفافة أو بيضاء ونقش داكن). إذا تُرك "
+"فارغاً تُستخدم نقشة الهوية المدمجة."
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
@@ -212,15 +232,17 @@ msgstr "عرض كامل – 576 نقطة (طابعات 80 مم بعرض طباع
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_print_width
-msgid "Width of the receipt image sent to the receipt printer. If the right side of the receipt is cut off, use Standard."
-msgstr "عرض صورة الفاتورة المرسلة للطابعة. إذا انقطع الجزء الأيمن من الفاتورة اختر قياسي."
+msgid ""
+"Width of the receipt image sent to the receipt printer. If the right side of"
+" the receipt is cut off, use Standard."
+msgstr ""
+"عرض صورة الفاتورة المرسلة للطابعة. إذا انقطع الجزء الأيمن من الفاتورة اختر "
+"قياسي."
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
 msgid "Printer"
 msgstr "الطابعة"
-
-
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,field_description:odoo_pos_custom_branding.field_pos_config__order_number_range_enabled
@@ -229,8 +251,13 @@ msgstr "نطاق أرقام الطلبات"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__order_number_range_enabled
-msgid "Order numbers run from the start number to the end number, then start again from the start number. The same number is shown on the POS screen, the customer receipt and the kitchen ticket."
-msgstr "تبدأ أرقام الطلبات من رقم البداية حتى رقم النهاية ثم تبدأ من جديد من رقم البداية. يظهر نفس الرقم في شاشة نقطة البيع وفاتورة العميل وتذكرة المطبخ."
+msgid ""
+"Order numbers run from the start number to the end number, then start again "
+"from the start number. The same number is shown on the POS screen, the "
+"customer receipt and the kitchen ticket."
+msgstr ""
+"تبدأ أرقام الطلبات من رقم البداية حتى رقم النهاية ثم تبدأ من جديد من رقم "
+"البداية. يظهر نفس الرقم في شاشة نقطة البيع وفاتورة العميل وتذكرة المطبخ."
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,field_description:odoo_pos_custom_branding.field_pos_config__order_number_start
@@ -244,12 +271,18 @@ msgstr "رقم الطلب إلى"
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
-msgid "Example: from 1 to 100 gives 001, 002 ... 100, then 001 again. Numbering starts again from the start number at each new session."
-msgstr "مثال: من 1 إلى 100 يعطي 001، 002 ... 100 ثم يرجع 001. يتصفر الترقيم ويبدأ من رقم البداية مع كل جلسة جديدة."
+msgid ""
+"Example: from 1 to 100 gives 001, 002 ... 100, then 001 again. Numbering "
+"starts again from the start number at each new session."
+msgstr ""
+"مثال: من 1 إلى 100 يعطي 001، 002 ... 100 ثم يرجع 001. يتصفر الترقيم ويبدأ من"
+" رقم البداية مع كل جلسة جديدة."
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
-msgid "The same number is shown on the POS screen, the customer receipt and the kitchen ticket."
+msgid ""
+"The same number is shown on the POS screen, the customer receipt and the "
+"kitchen ticket."
 msgstr "يظهر نفس الرقم في شاشة نقطة البيع وفاتورة العميل وتذكرة المطبخ."
 
 #. module: odoo_pos_custom_branding
@@ -271,8 +304,12 @@ msgstr "تسلسل أول طلب من السيرفر"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_session__order_number_backend_base
-msgid "Invoice sequence of the first order created on the server in this session, used to start the order numbers again at each session."
-msgstr "تسلسل الفاتورة لأول طلب أُنشئ في السيرفر في هذه الجلسة، ويُستخدم لتصفير أرقام الطلبات مع كل جلسة."
+msgid ""
+"Invoice sequence of the first order created on the server in this session, "
+"used to start the order numbers again at each session."
+msgstr ""
+"تسلسل الفاتورة لأول طلب أُنشئ في السيرفر في هذه الجلسة، ويُستخدم لتصفير "
+"أرقام الطلبات مع كل جلسة."
 
 #. module: odoo_pos_custom_branding
 #. odoo-python
@@ -283,12 +320,14 @@ msgstr "يجب أن يكون رقم البداية 1 أو أكثر."
 #. module: odoo_pos_custom_branding
 #. odoo-python
 #: code:addons/odoo_pos_custom_branding/models/order_number_range.py:0
-msgid "The order number has 3 digits: the end order number cannot be more than 999."
+msgid ""
+"The order number has 3 digits: the end order number cannot be more than 999."
 msgstr "رقم الطلب من 3 خانات: لا يمكن أن يزيد رقم النهاية عن 999."
 
 #. module: odoo_pos_custom_branding
 #: model_terms:ir.ui.view,arch_db:odoo_pos_custom_branding.pos_receipt_settings_view_form
-msgid "The order number always has 3 digits: the end number can be 999 at most."
+msgid ""
+"The order number always has 3 digits: the end number can be 999 at most."
 msgstr "رقم الطلب دائماً من 3 خانات: أقصى رقم للنهاية هو 999."
 
 #. module: odoo_pos_custom_branding
@@ -329,7 +368,7 @@ msgstr "80 مم – 576 نقطة (Epson TM-T20III / TM-T82 / TM-T88)"
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields.selection,name:odoo_pos_custom_branding.selection__pos_config__receipt_print_width__512
 msgid "80 mm – 512 dots (Odoo default)"
-msgstr "80 مم – 512 نقطة (افتراضي أودو)"
+msgstr "80 مم – 512 نقطة (الافتراضي)"
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields.selection,name:odoo_pos_custom_branding.selection__pos_config__receipt_print_width__420
@@ -346,7 +385,9 @@ msgstr "إظهار جوال العميل"
 msgid ""
 "Print the phone number of the customer under the customer name. Hidden by "
 "default: the customer name is printed without the phone."
-msgstr "طباعة رقم جوال العميل تحت اسمه. مخفي افتراضياً: يُطبع اسم العميل بدون رقم الجوال."
+msgstr ""
+"طباعة رقم جوال العميل تحت اسمه. مخفي افتراضياً: يُطبع اسم العميل بدون رقم "
+"الجوال."
 
 #. module: odoo_pos_custom_branding
 #: model:ir.model.fields,field_description:odoo_pos_custom_branding.field_pos_config__receipt_show_opened_by
@@ -374,6 +415,12 @@ msgstr "طباعة اسم الكاشير الذي أنشأ الطلب، بجان
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_pos_config__receipt_show_closed_by
 #: model:ir.model.fields,help:odoo_pos_custom_branding.field_res_config_settings__pos_receipt_show_closed_by
 msgid ""
-"Print the name of the cashier who took the payment and closed the order, next"
-" to the point of sale."
+"Print the name of the cashier who took the payment and closed the order, "
+"next to the point of sale."
 msgstr "طباعة اسم الكاشير الذي استلم الدفع وأغلق الطلب، بجانب نقطة البيع."
+
+#. module: odoo_pos_custom_branding
+#: model:ir.ui.menu,name:odoo_pos_custom_branding.pos_receipt_menu_action
+#: model:ir.actions.act_window,name:odoo_pos_custom_branding.pos_receipt_action
+msgid "Receipt Designs"
+msgstr "تصاميم الإيصال"

@@ -9,7 +9,6 @@ from . import delivery_order
 from . import delivery_outbox
 from . import pos_config
 from . import pos_order
-from . import pos_prep_state
 from . import product
 
 from . import blend_modifier_identity

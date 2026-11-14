@@ -2,12 +2,12 @@
     "name": "Resta SaaS - Platform (Master)",
     "summary": "Resta marketing site, self-service trial signup that provisions one database per restaurant, "
                "account-number login, subscriptions, account managers and announcements to every tenant",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Services/SaaS",
-    "author": "Basic Solution",
-    "website": "https://restaerp.com",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "OPL-1",
-    "depends": ["website", "mail", "account", "resta_sidebar_theme"],
+    "depends": ["website", "mail", "account", "resta_sidebar_theme", "resta_brand"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
@@ -25,6 +25,7 @@
         "views/res_config_settings_views.xml",
         "views/menus.xml",
         "views/website_templates.xml",
+        "views/brand_templates.xml",
         "data/website_data.xml",
     ],
     "assets": {

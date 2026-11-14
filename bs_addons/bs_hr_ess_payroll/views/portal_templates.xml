@@ -59,7 +59,7 @@
                         <div class="small text-muted" t-out="line.code"/>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <span t-attf-class="fw-semibold #{'text-danger' if line.total &lt; 0 else ''}" t-out="'{:,.2f}'.format(line.total)"/>
+                        <span t-attf-class="fw-semibold #{'text-danger' if line.amount &lt; 0 else ''}" t-out="'{:,.2f}'.format(line.amount)"/>
                         <a t-attf-href="/my/hr/payslip/#{slip.id}/objection?line=#{line.id}" class="text-muted" title="Object to this line">
                             <i class="fa fa-question-circle-o"/>
                         </a>
@@ -124,7 +124,7 @@
                     <option value="">Whole payslip</option>
                     <t t-foreach="lines" t-as="line">
                         <option t-att-value="line.id" t-att-selected="str(line.id) == str(selected)">
-                            <t t-out="line.name"/> (<t t-out="'{:,.2f}'.format(line.total)"/>)
+                            <t t-out="line.name"/> (<t t-out="'{:,.2f}'.format(line.amount)"/>)
                         </option>
                     </t>
                 </select>

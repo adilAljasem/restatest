@@ -1,105 +1,65 @@
-from pathlib import Path
-from types import SimpleNamespace
+import json
+import uuid
 
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.resta_kds.models.pos_order import _modifier_delta
 
+
+@tagged("post_install", "-at_install")
 class TestKitchenFoundation(TransactionCase):
-    def test_preparation_display_uses_standard_model(self):
-        self.assertIn("pos.prep.display", self.env)
-
-    def test_modifier_snapshot_is_stored_on_standard_preparation_line(self):
-        fields_by_name = self.env["pos.prep.line"]._fields
-        self.assertIn("modifier_snapshot_initialized", fields_by_name)
-        self.assertEqual(fields_by_name["modifier_snapshot_data"].type, "json")
-        self.assertEqual(fields_by_name["modifier_acknowledged_data"].type, "json")
-        self.assertEqual(fields_by_name["modifier_display_data"].type, "json")
-
-        loaded_fields = self.env["pos.prep.line"]._load_pos_preparation_data_fields()
-        data_fields = self.env["pos.session"]._load_pos_data_relations(
-            "pos.prep.line", loaded_fields
-        )
-        for field_name in (
-            "prep_order_id",
-            "product_id",
-            "modifier_snapshot_initialized",
-            "modifier_snapshot_data",
-            "modifier_display_data",
-        ):
-            self.assertIn(field_name, data_fields)
-
-    def test_kitchen_header_uses_standard_order(self):
-        loaded_fields = self.env["pos.order"]._load_pos_preparation_data_fields()
-        for field_name in (
-            "name",
-            "date_order",
-            "kitchen_cashier_name",
-            "kitchen_table_name",
-            "kitchen_delivery_app",
-            "kitchen_delivery_ref",
-        ):
-            self.assertIn(field_name, loaded_fields)
-
-    def test_no_parallel_kitchen_model_is_created(self):
-        module_path = Path(__file__).parents[1]
-        model_sources = "\n".join(
-            path.read_text(encoding="utf-8")
-            for path in (module_path / "models").glob("*.py")
-        )
-        self.assertNotIn('_name = "pos.prep', model_sources)
-
     def test_modifier_delta_reports_added_removed_and_updated_once(self):
-        previous_snapshot = [
-            {
-                "key": "product:1",
-                "option_id": 1,
-                "name": "Extra Cheese",
-                "kind": "product",
-                "operation": "add",
-                "quantity": 1.0,
-            },
-            {
-                "key": "instruction:2",
-                "option_id": 2,
-                "name": "No Onion",
-                "kind": "instruction",
-                "operation": "remove",
-                "quantity": 1.0,
-            },
+        previous = [
+            {"key": "product:1", "name": "Extra Cheese", "kind": "add", "qty": 1.0},
+            {"key": "instruction:2", "name": "No Onion", "kind": "remove", "qty": 1.0},
         ]
-        current_snapshot = [
-            {
-                "key": "product:1",
-                "option_id": 1,
-                "name": "Extra Cheese",
-                "kind": "product",
-                "operation": "add",
-                "quantity": 2.0,
-            },
-            {
-                "key": "instruction:3",
-                "option_id": 3,
-                "name": "Well Done",
-                "kind": "instruction",
-                "operation": "note",
-                "quantity": 1.0,
-            },
+        current = [
+            {"key": "product:1", "name": "Extra Cheese", "kind": "add", "qty": 2.0},
+            {"key": "instruction:3", "name": "Well Done", "kind": "instruction", "qty": 1.0},
         ]
-
-        delta = self.env["pos.order"]._modifier_display_delta(
-            SimpleNamespace(modifier_acknowledged_data=previous_snapshot),
-            current_snapshot,
-        )
-
+        delta = _modifier_delta(previous, current)
         self.assertEqual(len(delta), 3)
-        self.assertEqual(
-            {entry["key"]: entry["change_status"] for entry in delta},
-            {
-                "product:1": "updated",
-                "instruction:3": "added",
-                "instruction:2": "removed",
-            },
-        )
+        self.assertEqual({entry["key"]: entry["status"] for entry in delta},
+                         {"product:1": "updated", "instruction:3": "added", "instruction:2": "removed"})
+
+    def test_kitchen_screen_nests_modifiers_under_parent(self):
+        category = self.env["pos.category"].create({"name": "Grill"})
+        parent_product = self.env["product.product"].create({
+            "name": "Burger", "available_in_pos": True, "pos_categ_ids": [(6, 0, category.ids)]})
+        cheese = self.env["product.product"].create({"name": "Cheese", "available_in_pos": True})
+        group = self.env["pos.modifier.group"].create({"name": "Burger extras", "selection_type": "multiple",
+                                                       "max_qty": 3})
+        option = self.env["pos.modifier.option"].create({
+            "name": "Extra Cheese", "kitchen_name": "Cheese", "group_id": group.id, "option_type": "product",
+            "operation": "add", "product_id": cheese.id})
+        config = self.env["pos.config"].create({"name": "Modifiers KDS", "module_pos_restaurant": True})
+        display = self.env["resta.kds.display"].create({"name": "Grill", "pos_config_ids": [(6, 0, config.ids)],
+                                                        "category_ids": [(6, 0, category.ids)]})
+        self.env["pos.session"].create({"config_id": config.id})  # no UI checks (ZATCA onboarding)
+        order = self.env["pos.order"].create({
+            "session_id": config.current_session_id.id, "config_id": config.id,
+            "amount_tax": 0, "amount_total": 0, "amount_paid": 0, "amount_return": 0,
+            "lines": [(0, 0, {"product_id": parent_product.id, "qty": 1, "price_unit": 20, "price_subtotal": 20,
+                              "price_subtotal_incl": 20, "uuid": str(uuid.uuid4()),
+                              "modifier_selection_data": {str(option.id): 1}})]})
+        parent = order.lines
+
+        def send():
+            order.write({"last_order_preparation_change": json.dumps({
+                "lines": {l.uuid + "-": {"uuid": l.uuid, "quantity": l.qty} for l in order.lines},
+                "metadata": {"serverDate": "2026-01-01 00:00:00"}})})
+
+        send()
+        line = order.resta_kds_ticket_ids.line_ids
+        self.assertEqual(line.product_id, parent_product)
+        self.assertEqual([m["name"] for m in line.modifiers], ["Cheese"])
+        # the cashier adds a second cheese after sending: the kitchen sees it as changed
+        order.write({"lines": [(1, parent.id, {"modifier_selection_data": {str(option.id): 2}})]})
+        line = order.resta_kds_ticket_ids.line_ids
+        self.assertTrue(line.changed)
+        self.assertEqual(line.modifiers[0]["status"], "updated")
+        self.assertEqual(len(order.resta_kds_ticket_ids), 1)
 
     def test_kitchen_snapshot_matches_product_modifiers_and_instructions(self):
         modifier_product = self.env["product.product"].create({

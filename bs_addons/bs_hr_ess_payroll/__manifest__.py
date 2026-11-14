@@ -5,10 +5,10 @@
     'description': 'Payslips in the employee portal, payroll adjustments into payslip inputs, payslip objections. See README.md.',
     'version': '19.0.1.0.0',
     'category': 'Human Resources/Payroll',
-    'author': 'Basic Solution',
-    'website': 'https://resta.sa',
+    'author': "Resta",
+    'website': "https://resta.sa",
     'license': 'LGPL-3',
-    'depends': ['bs_hr_ess_base', 'hr_payroll'],
+    'depends': ['bs_hr_ess_base', 'resta_payroll'],
     'data': [
         'security/ir.model.access.csv',
         'security/payroll_rules.xml',
@@ -22,5 +22,5 @@
         'views/portal_templates.xml',
     ],
     'installable': True,
-    'auto_install': ['bs_hr_ess_base', 'hr_payroll'],
+    'auto_install': ['bs_hr_ess_base', 'resta_payroll'],
 }

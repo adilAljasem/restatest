@@ -106,7 +106,7 @@ class ReceiptRootTest(unittest.TestCase):
         qr = receipt.xpath("//*[contains(@class, 'pino-qr')][img]")[0]
         self.assertEqual(len(qr), 1, 'QR block must hold only the QR image')
         self.assertNotIn('هيئة الزكاة', template)
-        self.assertEqual(receipt.xpath("string(//*[contains(@class, 'pino-powered')])"), 'Powered by basicsolution.net')
+        self.assertEqual(receipt.xpath("string(//*[contains(@class, 'pino-powered')])"), 'Powered by resta.sa')
         head = receipt.xpath("//*[contains(@class, 'pino-line-head')]")[0]
         self.assertEqual(
             [span.get('class') for span in head],

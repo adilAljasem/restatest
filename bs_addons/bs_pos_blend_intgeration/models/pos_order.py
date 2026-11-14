@@ -141,8 +141,19 @@ class PosOrder(models.Model):
                 })
         return True
 
-    def _load_pos_preparation_data_fields(self):
-        return super()._load_pos_preparation_data_fields() + ["blend_schedule_at"]
+    # ------------------------------------------------------------------ Resta kitchen screen (resta_kds)
+    def _resta_kds_targets(self, paid_now=False):
+        if self.blend_partner_reference and not self.env.context.get("blend_kitchen_send"):
+            return None  # Blend decides when its orders reach the kitchen (_blend_send_to_preparation)
+        return super()._resta_kds_targets(paid_now)
+
+    def _resta_kds_header(self):
+        vals = super()._resta_kds_header()
+        if self.blend_schedule_at:
+            # Blend gives the time already in the branch's local time
+            info = _("مجدول %s", self.blend_schedule_at[:16])
+            vals["info"] = " · ".join(x for x in (info, vals.get("info")) if x)
+        return vals
 
     def _blend_validate_pending_decision(self, decision=None):
         self.ensure_one()
@@ -493,7 +504,8 @@ class PosOrder(models.Model):
         """Use native quantity tracking and category routing inside acceptance."""
         self.ensure_one()
         if self.blend_partner_reference and self.state != "cancel":
-            self.env["pos.prep.order"].process_order(self.id)
+            self.with_context(blend_kitchen_send=True, resta_kds_fire=True,
+                              resta_kds_raise=True)._resta_kds_dispatch(paid_now=True)
             self._blend_queue_kitchen_print()
 
     def _blend_auto_accept(self):

@@ -11,7 +11,8 @@
 - زر عائم على الشاشة لتفعيل/كتم الصوت
 """,
     "category": "Sales/Point of Sale",
-    "author": "Custom",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["point_of_sale"],
     "data": [

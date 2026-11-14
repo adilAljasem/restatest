@@ -287,6 +287,10 @@ class RestaTenant(models.Model):
         }
         for key, value in params.items():
             env["ir.config_parameter"].set_param(key, value or "")
+        if "resta.growth.profile" in env:
+            # growth journey: a separate owner user (no technical admin rights);
+            # the template administrator becomes the hidden support account
+            env["res.users"]._resta_growth_setup_owner(self.business_type)
         self.sudo().write({"signup_password_hash": False})
 
     # Hash (Odoo crypt context) of the password typed at signup. Never the clear

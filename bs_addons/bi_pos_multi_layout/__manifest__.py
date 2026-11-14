@@ -14,10 +14,8 @@
         Multi Column Option in odoo,
 
     """,
-    "author": "BROWSEINFO",
-    "price": 15,
-    "currency": 'EUR',
-    "website": "https://www.browseinfo.com/demo-request?app=bi_pos_multi_layout&version=19&edition=Community",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "depends": ['base', 'sale', 'point_of_sale'],
     "data": [
         'views/custom_pos_view.xml',
@@ -32,6 +30,5 @@
     'license': 'OPL-1',
     "auto_install": False,
     "installable": True,
-    "live_test_url": "https://www.browseinfo.com/demo-request?app=bi_pos_multi_layout&version=19&edition=Community",
     "images": ['static/description/Banner.gif'],
 }

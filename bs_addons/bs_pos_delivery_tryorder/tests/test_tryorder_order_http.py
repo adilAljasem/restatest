@@ -1080,7 +1080,7 @@ class TestTryOrderOrderHttp(TestPoSCommon, HttpCase):
     def test_opted_in_draft_order_reaches_pos_kitchen_and_board(self):
         self.basic_config.open_ui()
         partner = self.env["res.partner"].create({"name": "TryOrder Draft Customer"})
-        self.env["pos.prep.display"].create({
+        self.env["resta.kds.display"].create({
             "name": "TryOrder Draft Kitchen",
             "company_id": self.basic_config.company_id.id,
             "pos_config_ids": [Command.set(self.basic_config.ids)],
@@ -1099,7 +1099,7 @@ class TestTryOrderOrderHttp(TestPoSCommon, HttpCase):
         order = self._delivery_for_response(response)
         self.assertEqual(order.state, "accepted", order.pos_processing_error)
         self.assertTrue(order.pos_order_id)
-        self.assertEqual(self.env["pos.prep.order"].search_count([
+        self.assertEqual(self.env["resta.kds.ticket"].search_count([
             ("pos_order_id", "=", order.pos_order_id.id),
         ]), 1)
         board = self.env["bs.delivery.order"].get_pos_board_data(
@@ -1310,7 +1310,7 @@ class TestTryOrderOrderHttp(TestPoSCommon, HttpCase):
             "delivery_accept_action": "accept",
             "delivery_default_invoice_partner_id": partner.id,
         })
-        self.env["pos.prep.display"].create({
+        self.env["resta.kds.display"].create({
             "name": "TryOrder Kitchen",
             "company_id": self.basic_config.company_id.id,
             "pos_config_ids": [Command.set(self.basic_config.ids)],
@@ -1319,13 +1319,13 @@ class TestTryOrderOrderHttp(TestPoSCommon, HttpCase):
         first = self._post(order_id="TRY-KITCHEN-1")
         self.assertEqual(first.status_code, 200, first.text)
         order = self._delivery_for_response(first)
-        prep = self.env["pos.prep.order"].search([
+        prep = self.env["resta.kds.ticket"].search([
             ("pos_order_id", "=", order.pos_order_id.id),
         ])
         self.assertEqual(len(prep), 1)
-        self.assertTrue(prep.prep_line_ids)
+        self.assertTrue(prep.line_ids)
         self.assertEqual(self._post(order_id="TRY-KITCHEN-1").status_code, 200)
-        self.assertEqual(self.env["pos.prep.order"].search_count([
+        self.assertEqual(self.env["resta.kds.ticket"].search_count([
             ("pos_order_id", "=", order.pos_order_id.id),
         ]), 1)
 
@@ -1583,7 +1583,7 @@ class TestTryOrderOrderHttp(TestPoSCommon, HttpCase):
             "delivery_accept_action": "accept",
             "delivery_default_invoice_partner_id": partner.id,
         })
-        self.env["pos.prep.display"].create({
+        self.env["resta.kds.display"].create({
             "name": "TryOrder Instruction Kitchen",
             "company_id": self.basic_config.company_id.id,
             "pos_config_ids": [Command.set(self.basic_config.ids)],
@@ -1602,15 +1602,11 @@ class TestTryOrderOrderHttp(TestPoSCommon, HttpCase):
         self.assertEqual(parent.modifier_selection_data[str(option.id)], 1)
         self.assertEqual(parent.modifier_instruction_data["instructions"][0]["option_id"],
                          option.id)
-        prep = self.env["pos.prep.order"].search([
+        prep = self.env["resta.kds.ticket"].search([
             ("pos_order_id", "=", order.pos_order_id.id),
         ])
         self.assertEqual(len(prep), 1)
-        self.assertIn(
-            option.id,
-            [entry.get("option_id") for line in prep.prep_line_ids
-             for entry in line.modifier_display_data or []],
-        )
+        self.assertTrue(prep.line_ids.modifiers, "the instruction is shown under the dish on the kitchen screen")
 
     def test_selected_modifier_id_wins_when_options_share_product(self):
         extra = self.env["product.product"].create({

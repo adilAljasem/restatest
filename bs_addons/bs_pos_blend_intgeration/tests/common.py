@@ -98,6 +98,8 @@ class BlendTransactionCase(TransactionCase):
                 "payment_method_ids": [(6, 0, [])],
             }
         )
+        self.env["resta.kds.display"].create(
+            {"name": "Blend kitchen (all)", "pos_config_ids": [(6, 0, self.config.ids)]})
 
         configure_blend_preset(self.config)
 

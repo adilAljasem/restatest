@@ -32,9 +32,8 @@ app, repackaged as an importable module so it can be installed on Odoo Online
 Requires an active Bonat subscription. Turn on Demo Mode to try the full POS
 flow with no API key.
 """,
-    'author': 'Bonat',
-    'website': 'https://bonat.io',
-    'support': 'odoo@bonat.io',
+    'author': "Resta",
+    'website': "https://resta.sa",
     'depends': ['point_of_sale'],
     'data': [
         'data/bonat_company_fields.xml',

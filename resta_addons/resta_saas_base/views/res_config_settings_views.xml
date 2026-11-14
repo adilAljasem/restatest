@@ -44,17 +44,4 @@
             </xpath>
         </field>
     </record>
-
-    <record id="res_config_settings_view_form_resta_enterprise" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.resta.enterprise</field>
-        <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="pos_enterprise.res_config_settings_view_form"/>
-        <field name="priority">99</field>
-        <field name="arch" type="xml">
-            <!-- Urban Piper is replaced by Basic Solution's Connect (Blend / FeedUs / TryOrder) -->
-            <xpath expr="//block[@id='pos_urban_piper_section']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
-    </record>
 </odoo>

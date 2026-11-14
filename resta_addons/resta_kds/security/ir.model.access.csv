@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kds_display_user,kds display user,model_resta_kds_display,group_kds_user,1,0,0,0
+access_kds_display_manager,kds display manager,model_resta_kds_display,point_of_sale.group_pos_manager,1,1,1,1
+access_kds_stage_user,kds stage user,model_resta_kds_stage,group_kds_user,1,0,0,0
+access_kds_stage_manager,kds stage manager,model_resta_kds_stage,point_of_sale.group_pos_manager,1,1,1,1
+access_kds_ticket_user,kds ticket user,model_resta_kds_ticket,group_kds_user,1,0,0,0
+access_kds_ticket_manager,kds ticket manager,model_resta_kds_ticket,point_of_sale.group_pos_manager,1,1,0,1
+access_kds_line_user,kds line user,model_resta_kds_ticket_line,group_kds_user,1,0,0,0
+access_kds_line_manager,kds line manager,model_resta_kds_ticket_line,point_of_sale.group_pos_manager,1,1,0,1

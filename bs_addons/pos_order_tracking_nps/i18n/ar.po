@@ -71,7 +71,7 @@ msgstr "اطلب التقييم بعد (دقيقة)"
 #: model:ir.model.fields,help:pos_order_tracking_nps.field_res_config_settings__pos_tracking_nps_enabled
 msgid ""
 "Ask the customer to rate the visit (0-10) and store the answer in Odoo."
-msgstr "اسأل العميل يقيّم الزيارة من 0 إلى 10 واحفظ الإجابة في أودو."
+msgstr "اسأل العميل يقيّم الزيارة من 0 إلى 10 واحفظ الإجابة في النظام."
 
 #. module: pos_order_tracking_nps
 #: model:ir.model.fields.selection,name:pos_order_tracking_nps.selection__pos_order__tracking_state__cancelled

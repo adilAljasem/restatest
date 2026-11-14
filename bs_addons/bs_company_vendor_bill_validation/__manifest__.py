@@ -3,7 +3,8 @@
     "summary": "Validate company addresses and vendor bill dates",
     "version": "19.0.1.0.3",
     "category": "Accounting/Localizations",
-    "author": "Mohamed Elmalky",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "contacts",

@@ -14,32 +14,26 @@
         </span>
     </t>
 
-    <!-- Recursive sub-menu list -->
+    <!-- Entries of an app: one level (sections open a page of option cards) -->
     <t t-name="resta_sidebar_theme.Sidebar.Items">
-        <ul class="rs_items" t-att-data-depth="depth">
-            <t t-foreach="filterTree(items)" t-as="item" t-key="item.id">
+        <ul class="rs_items" t-att-class="{'rs_items_search': state.query.trim()}">
+            <t t-foreach="subItems(app)" t-as="entry" t-key="entry.menu.id">
+                <t t-set="item" t-value="entry.menu"/>
                 <li class="rs_item_wrap">
                     <a t-att-href="getMenuItemHref(item)"
                        class="rs_item"
                        t-att-class="{
-                           'rs_active': isActive(item),
-                           'rs_has_children': item.childrenTree.length,
-                           'rs_open': item.childrenTree.length and isOpen(item),
-                           'rs_contains_active': item.childrenTree.length and containsActive(item),
+                           'rs_active': isItemActive(item),
+                           'rs_section': item.childrenTree.length,
                        }"
                        t-att-data-menu-xmlid="item.xmlid"
-                       t-att-aria-current="isActive(item) ? 'page' : undefined"
-                       t-att-aria-expanded="item.childrenTree.length ? (isOpen(item) ? 'true' : 'false') : undefined"
+                       t-att-aria-current="isItemActive(item) ? 'page' : undefined"
                        t-on-click="(ev) => this.onItemClick(ev, item)">
-                        <span class="rs_item_label" t-esc="item.name"/>
-                        <i t-if="item.childrenTree.length" class="rs_chevron oi oi-chevron-down" aria-hidden="true"/>
+                        <span class="rs_item_text">
+                            <span class="rs_item_label" t-esc="item.name"/>
+                            <span t-if="entry.path" class="rs_item_path" t-esc="entry.path"/>
+                        </span>
                     </a>
-                    <t t-if="item.childrenTree.length and isOpen(item)">
-                        <t t-call="resta_sidebar_theme.Sidebar.Items">
-                            <t t-set="items" t-value="item.childrenTree"/>
-                            <t t-set="depth" t-value="depth + 1"/>
-                        </t>
-                    </t>
                 </li>
             </t>
         </ul>
@@ -123,10 +117,7 @@
                                         <i t-if="app.childrenTree.length" class="rs_chevron oi oi-chevron-down" aria-hidden="true"/>
                                     </a>
                                     <t t-if="!isCollapsed and app.childrenTree.length and isOpen(app)">
-                                        <t t-call="resta_sidebar_theme.Sidebar.Items">
-                                            <t t-set="items" t-value="app.childrenTree"/>
-                                            <t t-set="depth" t-value="1"/>
-                                        </t>
+                                        <t t-call="resta_sidebar_theme.Sidebar.Items"/>
                                     </t>
                                 </li>
                             </t>
@@ -160,8 +151,7 @@
             <div class="rs_flyout" t-attf-style="top: {{state.flyout.top}}px">
                 <div class="rs_flyout_title" t-esc="flyoutApp.name"/>
                 <t t-call="resta_sidebar_theme.Sidebar.Items">
-                    <t t-set="items" t-value="flyoutApp.childrenTree"/>
-                    <t t-set="depth" t-value="1"/>
+                    <t t-set="app" t-value="flyoutApp"/>
                 </t>
             </div>
         </t>

@@ -661,3 +661,33 @@ msgstr ""
 #: model:ir.model.fields.selection,name:resta_sidebar_theme.selection__ir_ui_menu__rs_icon__wrench
 msgid "Wrench"
 msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/menu_hub/menu_hub.js:0
+msgid "Options"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/menu_hub/menu_hub.xml:0
+msgid "This menu is not available."
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/menu_hub/menu_hub.xml:0
+msgid "Search options…"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/menu_hub/menu_hub.xml:0
+msgid "Search options"
+msgstr ""
+
+#. module: resta_sidebar_theme
+#. odoo-javascript
+#: code:addons/resta_sidebar_theme/static/src/menu_hub/menu_hub.xml:0
+msgid "No matching option"
+msgstr ""

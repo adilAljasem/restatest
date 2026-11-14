@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_partner_statement" model="ir.actions.report">
+        <field name="name">كشف حساب</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">resta_account.report_partner_statement</field>
+        <field name="report_file">resta_account.report_partner_statement</field>
+        <field name="print_report_name">'كشف حساب - %s' % object.name</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_partner_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="partner">
+                <t t-call="web.external_layout">
+                    <t t-set="currency" t-value="company.currency_id"/>
+                    <t t-set="items" t-value="lines.get(partner.id, [])"/>
+                    <div class="page" dir="rtl" style="text-align: right;">
+                        <h3 class="mb-1">كشف حساب</h3>
+                        <div class="row mb-3">
+                            <div class="col-7">
+                                <strong t-out="partner.display_name"/>
+                                <div t-if="partner.vat">الرقم الضريبي: <span t-out="partner.vat"/></div>
+                                <div t-if="partner.phone" t-out="partner.phone"/>
+                            </div>
+                            <div class="col-5 text-start">
+                                <div>التاريخ: <span t-out="today"/></div>
+                            </div>
+                        </div>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>المستند</th>
+                                    <th>التاريخ</th>
+                                    <th>الاستحقاق</th>
+                                    <th>البيان</th>
+                                    <th class="text-end">أيام التأخير</th>
+                                    <th class="text-end">المبلغ المتبقي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="items" t-as="it" t-att-style="'color:#B91C1C' if it['days'] and it['residual'] &gt; 0 else None">
+                                    <td t-out="it['move']"/>
+                                    <td t-out="it['date']"/>
+                                    <td t-out="it['due']"/>
+                                    <td t-out="it['label'] or ''"/>
+                                    <td class="text-end" t-out="it['days'] or ''"/>
+                                    <td class="text-end" t-out="currency.format(it['residual'])"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <t t-set="total" t-value="sum(it['residual'] for it in items)"/>
+                        <t t-set="overdue" t-value="sum(it['residual'] for it in items if it['days'] and it['residual'] &gt; 0)"/>
+                        <div class="row justify-content-start">
+                            <div class="col-5">
+                                <table class="table table-sm">
+                                    <tr><td>إجمالي المستحق</td><td class="text-end fw-bold" t-out="currency.format(total)"/></tr>
+                                    <tr t-if="overdue"><td>منه متأخر السداد</td><td class="text-end fw-bold" style="color:#B91C1C" t-out="currency.format(overdue)"/></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <p t-if="overdue" class="mt-3">نرجو التكرم بسداد المبالغ المتأخرة. إن كنتم قد سددتم مؤخراً فنرجو تجاهل هذا الكشف، ولكم جزيل الشكر.</p>
+                        <p t-if="not items">لا توجد مبالغ مستحقة. شكراً لكم.</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

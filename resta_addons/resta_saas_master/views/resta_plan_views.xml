@@ -24,6 +24,10 @@
                     <group><field name="tagline"/><field name="price_monthly"/><field name="price_yearly"/><field name="currency_id"/></group>
                     <group><field name="max_branches"/><field name="extra_branch_price"/><field name="highlighted"/><field name="published"/><field name="product_id"/></group>
                 </group>
+                <group string="ما يحصل عليه المطعم">
+                    <group><field name="growth_plan"/><field name="max_users"/><field name="max_pos"/></group>
+                    <group><field name="app_names" placeholder="hr_attendance, pos_loyalty"/></group>
+                </group>
                 <field name="features" placeholder="ميزة في كل سطر"/>
             </sheet></form>
         </field>

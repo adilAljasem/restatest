@@ -1,0 +1,60 @@
+.o_resta_bc {
+    --bc-accent: #FF5A1F;
+    --bc-ink: #1F2328;
+    --bc-line: #E7E5E4;
+    height: 100%;
+    overflow: auto;
+    background: #F6F5F3;
+    color: var(--bc-ink);
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    .o_bc_top {
+        position: sticky; top: 0; z-index: 3;
+        display: flex; align-items: center; gap: 8px;
+        padding: 10px 14px; background: var(--bc-ink); color: #fff;
+        .o_bc_title { flex: 1; font-weight: 700; font-size: 1.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    }
+    .o_bc_icon { background: transparent; border: 0; color: #fff; font-size: 1.25rem; width: 40px; height: 40px; border-radius: 10px;
+        &:active { background: rgba(255, 255, 255, .12); } }
+    .o_bc_scanbar {
+        display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fff; border-bottom: 1px solid var(--bc-line);
+        i { font-size: 1.4rem; color: var(--bc-accent); }
+        input { font-size: 1rem; }
+    }
+    .o_bc_camera { position: relative; background: #000; video { width: 100%; max-height: 38vh; object-fit: cover; display: block; }
+        .o_bc_aim { position: absolute; inset: 30% 12%; border: 2px solid rgba(255, 90, 31, .9); border-radius: 12px; } }
+    .o_bc_body { flex: 1; padding: 14px; max-width: 760px; width: 100%; margin: 0 auto; }
+    .o_bc_tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .o_bc_tile {
+        position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+        min-height: 130px; background: #fff; border: 1px solid var(--bc-line); border-radius: 16px; font-weight: 700; font-size: 1.05rem;
+        i { font-size: 2rem; color: var(--bc-accent); }
+        b { position: absolute; top: 10px; inset-inline-end: 12px; background: var(--bc-accent); color: #fff; border-radius: 999px; padding: 2px 9px; font-size: .85rem; }
+        &:active { transform: scale(.98); }
+    }
+    .o_bc_hint { color: #78716C; font-size: .9rem; margin: 14px 2px; }
+    .o_bc_empty { text-align: center; color: #78716C; padding: 36px 0; }
+    .o_bc_card { display: block; width: 100%; text-align: start; background: #fff; border: 1px solid var(--bc-line); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; }
+    .o_bc_meta { background: #fff; border: 1px solid var(--bc-line); border-radius: 14px; padding: 10px 14px; margin-bottom: 10px; }
+    .o_bc_line {
+        display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--bc-line); border-radius: 14px;
+        padding: 10px 12px; margin-bottom: 8px; border-inline-start: 5px solid #D6D3D1;
+        &.is-partial { border-inline-start-color: #F59E0B; }
+        &.is-done { border-inline-start-color: #16A34A; background: #F0FDF4; }
+        .o_bc_line_main { flex: 1; min-width: 0; }
+    }
+    .o_bc_qty { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .o_bc_step { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--bc-line); background: #FAFAF9; font-size: 1.3rem; line-height: 1; }
+    .o_bc_count_input { width: 96px; text-align: center; font-size: 1.1rem; }
+    .o_bc_actions { position: sticky; bottom: 0; display: flex; gap: 10px; padding: 12px 0; background: linear-gradient(transparent, #F6F5F3 30%);
+        .btn { flex: 1; padding: 12px; font-size: 1.05rem; border-radius: 12px; } }
+    .o_bc_sheet { position: fixed; inset: 0; z-index: 10; background: rgba(0, 0, 0, .35); display: flex; align-items: flex-end; justify-content: center; }
+    .o_bc_sheet_box { width: 100%; max-width: 520px; background: #fff; border-radius: 18px 18px 0 0; padding: 18px; }
+    .o_bc_toast {
+        position: fixed; bottom: 18px; inset-inline: 16px; z-index: 20; margin: 0 auto; max-width: 520px;
+        padding: 12px 16px; border-radius: 12px; color: #fff; font-weight: 600; text-align: center; box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+        &.is-ok { background: #16A34A; } &.is-warn { background: #D97706; } &.is-error { background: #DC2626; }
+    }
+}
+@media (min-width: 768px) { .o_resta_bc .o_bc_tiles { grid-template-columns: repeat(4, 1fr); } }

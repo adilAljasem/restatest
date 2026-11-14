@@ -4,7 +4,8 @@
     "summary": "Transfer unpaid restaurant table orders between POS cashier sessions.",
     "version": "19.0.1.3.0",
     "category": "Point of Sale",
-    "author": "Pino",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": [
         "pos_hr",

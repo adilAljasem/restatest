@@ -128,7 +128,8 @@ class RestaGrowthFeature(models.Model):
 
     OPTIONAL_MENUS = {
         # other apps that belong to the same feature, linked only when installed
-        "inventory": ["stock_barcode.stock_barcode_menu", "stock_request.menu_stock_request_root"],
+        "inventory": ["resta_barcode.menu_barcode_root", "stock_barcode.stock_barcode_menu",
+                      "stock_request.menu_stock_request_root"],
         "accounting": ["accountant.menu_accounting"],
     }
 

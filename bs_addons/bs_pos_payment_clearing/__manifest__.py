@@ -2,7 +2,8 @@
     "name": "POS Payment Clearing",
     "summary": "Cash and bank clearing accounts with centralized POS journal entries",
 
-    'author': 'Ahmed Eldweek',
+    'author': "Resta",
+    "website": "https://resta.sa",
 
     "version": "19.0.1.4.0",
     "category": "Sales/Point of Sale",

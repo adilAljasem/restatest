@@ -2,16 +2,19 @@
     "name": "Resta Sidebar Theme",
     "summary": "Foodics-style side navigation with Resta brand colors, light and dark modes",
     "description": """
-Replaces Odoo's app-grid navigation with a persistent side menu inspired by
-Foodics Console, styled with the Resta brand (resta.sa):
+Replaces the app-grid navigation with a persistent side menu inspired by
+Foodics Console, styled with the Resta brand (resta.sa).
+
 - Collapsible, searchable sidebar grouped into sections, RTL-first
+- One inner level per app: a section with several screens opens a page of
+  option cards; a section with one screen opens it directly
 - Clean top bar (breadcrumb title, systray, light/dark toggle)
 - Resta palette (#FF5A1F orange, warm neutrals), IBM Plex Sans Arabic bundled locally
-- Light and dark modes (dark uses Odoo's own dark asset bundle)
+- Light and dark modes
 - Logos (light / dark / collapsed mark) configurable from Settings
 - Monochrome Resta line icons for every app (black in light, white in dark)
 """,
-    "version": "19.0.1.5.1",
+    "version": "19.0.1.6.0",
     "category": "Themes/Backend",
     "author": "Resta",
     "website": "https://resta.sa",
@@ -41,6 +44,10 @@ Foodics Console, styled with the Resta brand (resta.sa):
             "resta_sidebar_theme/static/src/js/theme_scheme.js",
             "resta_sidebar_theme/static/src/icons/icons.js",
             "resta_sidebar_theme/static/src/icons/settings_icons.js",
+            "resta_sidebar_theme/static/src/menu_hub/menu_utils.js",
+            "resta_sidebar_theme/static/src/menu_hub/menu_hub.js",
+            "resta_sidebar_theme/static/src/menu_hub/menu_hub.xml",
+            "resta_sidebar_theme/static/src/menu_hub/menu_hub.scss",
             "resta_sidebar_theme/static/src/sidebar/sidebar.js",
             "resta_sidebar_theme/static/src/sidebar/sidebar.xml",
             "resta_sidebar_theme/static/src/sidebar/sidebar.scss",

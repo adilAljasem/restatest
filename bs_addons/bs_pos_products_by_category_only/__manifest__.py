@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Pino POS Products By Category Only",
-    "author": "Pino",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "version": "19.0.1.0.3",
     "category": "Point of Sale",
     "license": "LGPL-3",

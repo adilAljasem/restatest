@@ -70,43 +70,39 @@ class TestBlendFinancialSync(BlendAccountingCommon):
         self.assertEqual({row["id"] for row in data["pos.order"]}, {incoming.id, ordinary.id})
         self.assertEqual(next(row for row in data["pos.order"] if row["id"] == incoming.id)["amount_total"], incoming.amount_total)
 
-    def test_financial_snapshot_does_not_apply_preparation_context(self):
+    def _tickets(self, order):
+        return self.env["resta.kds.ticket"].search([("pos_order_id", "=", order.id)])
+
+    def test_financial_snapshot_does_not_reach_the_kitchen(self):
         incoming = self._create()
         before = self._snapshot(incoming)
         stale = self._ui(incoming)
         stale["lines"] = [Command.clear()]
         original_payload = copy.deepcopy(stale)
-        with patch.object(type(self.env["pos.prep.order"]), "process_order") as process:
-            data = self.env["pos.order"].with_user(self.operator).with_context(
-                preparation={"process_order_options": {"cancelled": True}},
-            ).sync_from_ui([stale])
-            process.assert_not_called()
+        data = self.env["pos.order"].with_user(self.operator).sync_from_ui([stale])
         self.assertEqual(stale, original_payload)
         self.assertEqual(self._snapshot(incoming), before)
         self.assertEqual(data["pos.order"][0]["id"], incoming.id)
+        self.assertFalse(self._tickets(incoming))
 
-    def test_mixed_preparation_context_applies_only_to_cashier(self):
+    def test_mixed_sync_sends_only_the_cashier_order_to_the_kitchen(self):
         incoming = self._create()
-        cashier = self._ui()
-        options = {"internal_note": "Bar"}
-        with patch.object(type(self.env["pos.prep.order"]), "process_order") as process:
-            data = self.env["pos.order"].with_user(self.operator).with_context(
-                preparation={"process_order_options": options},
-            ).sync_from_ui([self._ui(incoming), cashier])
-            ordinary_id = next(row["id"] for row in data["pos.order"] if row["uuid"] == cashier["uuid"])
-            process.assert_called_once_with(ordinary_id, options)
+        cashier = self._ui(paid=True)
+        data = self.env["pos.order"].with_user(self.operator).sync_from_ui([self._ui(incoming), cashier])
+        ordinary = self.env["pos.order"].browse(
+            next(row["id"] for row in data["pos.order"] if row["uuid"] == cashier["uuid"]))
+        self.assertTrue(self._tickets(ordinary), "a paid cashier order reaches the kitchen")
+        self.assertFalse(self._tickets(incoming), "the Blend order waits for its own acceptance")
 
     def test_completed_financial_order_refresh_does_not_duplicate_money_or_prep(self):
         incoming = self._create()
         incoming.action_blend_accept_order()
         before = self._snapshot(incoming)
-        with patch.object(type(self.env["pos.prep.order"]), "process_order") as process:
-            data = self.env["pos.order"].with_user(self.operator).with_context(
-                preparation={"process_order_options": {}},
-            ).sync_from_ui([self._ui(incoming)])
-            process.assert_not_called()
+        tickets = self._tickets(incoming)
+        data = self.env["pos.order"].with_user(self.operator).sync_from_ui([self._ui(incoming)])
         self.assertEqual(self._snapshot(incoming), before)
         self.assertEqual(data["pos.order"][0]["state"], "done")
+        self.assertEqual(self._tickets(incoming), tickets)
 
     def test_direct_financial_payment_is_rejected_with_actionable_message(self):
         incoming = self._create()

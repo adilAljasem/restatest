@@ -5,7 +5,7 @@ from odoo.exceptions import UserError
 
 
 class HrPayslipRun(models.Model):
-    _inherit = 'hr.payslip.run'
+    _inherit = 'resta.payslip.batch'
 
     ess_published = fields.Boolean(string='Published for review', copy=False)
     ess_review_days = fields.Integer(string='Review period (days)', default=3)
@@ -14,7 +14,7 @@ class HrPayslipRun(models.Model):
         """Payslips of the batch; ``slip_ids`` is the historical field name (guarded)."""
         if 'slip_ids' in self._fields:
             return self.slip_ids
-        return self.env['hr.payslip'].search([('payslip_run_id', 'in', self.ids)])
+        return self.env['resta.payslip'].search([('batch_id', 'in', self.ids)])
 
     def action_ess_publish(self):
         compat = self.env['bs.hr.payroll.compat']
@@ -37,7 +37,7 @@ class HrPayslipRun(models.Model):
                     'title': lang_env._('Your payslip draft is available'),
                     'body': lang_env._('Please review it before %s and raise an objection if something is wrong.',
                                        until),
-                    'url': '/my/hr/payslip/%s' % slip.id, 'res_model': 'hr.payslip', 'res_id': slip.id,
+                    'url': '/my/hr/payslip/%s' % slip.id, 'res_model': 'resta.payslip', 'res_id': slip.id,
                 })
         return True
 

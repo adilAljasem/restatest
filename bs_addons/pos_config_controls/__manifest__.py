@@ -3,7 +3,8 @@
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
     "summary": "Per-POS invoice, customer, and user access controls",
-    "author": "Custom Development",
+    "author": "Resta",
+    "website": "https://resta.sa",
     "license": "LGPL-3",
     "depends": ["point_of_sale"],
     "data": [

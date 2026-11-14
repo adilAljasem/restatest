@@ -15,7 +15,8 @@
 بنية مسطحة: كل ملفات الموديول في جذره عدا مجلد static، حتى لا يضيع أي
 مجلد فرعي أثناء النسخ أو الرفع إلى المستودع.
 """,
-    'author': "Waleed",
+    'author': "Resta",
+    "website": "https://resta.sa",
     'category': 'Sales/Point of Sale',
     'version': '19.0.2.0.1',
     'license': 'LGPL-3',

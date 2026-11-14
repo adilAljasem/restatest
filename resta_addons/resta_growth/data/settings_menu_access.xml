@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- The owner is not a technical administrator but keeps the business settings pages. -->
 <odoo>
+    <record id="resta_settings.menu_settings_home" model="ir.ui.menu">
+        <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
+    </record>
     <record id="base_setup.menu_config" model="ir.ui.menu">
         <field name="group_ids" eval="[(4, ref('resta_growth.group_resta_owner'))]"/>
     </record>

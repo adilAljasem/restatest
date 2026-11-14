@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Unified sign-in: account number above the username (restaurant systems linked to the platform) -->
+    <template id="login_account_number" inherit_id="web.login" name="Resta: account number on sign-in">
+        <xpath expr="//div[hasclass('field-login')]" position="before">
+            <div class="mb-3 field-account" t-if="resta_account_number">
+                <label for="account" class="form-label">رقم الحساب</label>
+                <input type="text" name="account" id="account" class="form-control" dir="ltr" inputmode="numeric"
+                       autocomplete="off" required="required" placeholder="100245"
+                       t-att-value="resta_account or resta_account_number"/>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- accounts are created by the restaurant's manager or the platform, not by self sign-up -->
+    <template id="login_no_self_signup" inherit_id="auth_signup.login" name="Resta: no self sign-up link">
+        <xpath expr="//a[contains(@t-attf-href, '/web/signup')]" position="attributes">
+            <attribute name="t-if">signup_enabled and not resta_account_number</attribute>
+        </xpath>
+    </template>
+</odoo>

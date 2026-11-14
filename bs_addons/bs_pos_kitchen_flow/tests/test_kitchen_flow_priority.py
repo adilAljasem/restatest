@@ -1,51 +1,73 @@
-from odoo.addons.pos_enterprise.tests.test_frontend import TestPreparationDisplayHttpCommon
-from odoo.addons.pos_restaurant.tests.test_frontend import TestFrontendCommon
-from odoo.tests import tagged
+import json
+import uuid
+
+from odoo.tests import TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestKitchenFlowPriority(TestFrontendCommon, TestPreparationDisplayHttpCommon):
-    def _run_priority_tour(self, priority):
-        self.pdis.write({"pos_config_ids": [(4, self.pos_config.id)]})
-        self.pos_config.write({"kitchen_flow_priority": priority})
-        self.pos_config.printer_ids.unlink()
-        self.pos_config.with_user(self.pos_user).open_ui()
+class TestKitchenFlowPriority(TransactionCase):
+    """«Kitchen screen first» and «in parallel» on the Resta kitchen screen (resta_kds)."""
 
-        self.start_pos_tour("PreparationDisplayTourResto")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        env = cls.env
+        cls.category = env["pos.category"].create({"name": "Kitchen"})
+        cls.burger = env["product.product"].create({
+            "name": "Burger", "available_in_pos": True, "list_price": 20,
+            "pos_categ_ids": [(6, 0, cls.category.ids)],
+        })
+        cls.config = env["pos.config"].create({"name": "Flow POS", "module_pos_restaurant": True})
+        cls.display = env["resta.kds.display"].create({
+            "name": "Kitchen", "pos_config_ids": [(6, 0, cls.config.ids)],
+        })
+        cls.env["pos.session"].create({"config_id": cls.config.id})  # no UI checks (ZATCA onboarding)
 
-        logs = self.env["bs.pos.kitchen.flow.log"].search(
-            [("config_id", "=", self.pos_config.id)]
-        )
-        self.assertTrue(logs, "The kitchen delivery tour must create diagnostic traces")
-        self.assertEqual(set(logs.mapped("priority")), {priority})
-        expected_step = (
-            "display_sync_first" if priority == "display_first" else "display_process_parallel"
-        )
-        self.assertTrue(
-            any(expected_step in log.step_ids.mapped("code") for log in logs),
-            "The trace must prove that the selected preparation-display flow ran",
-        )
-        self.assertFalse(
-            logs.filtered(lambda log: log.status == "failed"),
-            "No kitchen delivery trace may fail",
-        )
+    def _order(self, qty=1):
+        self.line_uuid = str(uuid.uuid4())
+        return self.env["pos.order"].create({
+            "session_id": self.config.current_session_id.id,
+            "config_id": self.config.id,
+            "amount_tax": 0, "amount_total": 0, "amount_paid": 0, "amount_return": 0,
+            "lines": [(0, 0, {
+                "product_id": self.burger.id, "qty": qty, "price_unit": 20,
+                "price_subtotal": 20 * qty, "price_subtotal_incl": 20 * qty,
+                "uuid": self.line_uuid, "full_product_name": "Burger",
+            })],
+        })
 
-        first_order = self.env["pos.order"].search(
-            [("pos_reference", "ilike", "%-000001")],
-            limit=1,
-        )
-        prep_order = self.env["pos.prep.order"].search(
-            [("pos_order_id", "=", first_order.id)],
-            limit=1,
-        )
-        self.assertEqual(
-            len(prep_order.prep_line_ids),
-            2,
-            "One click must send both order lines to the preparation display",
-        )
+    def _snapshot(self, order, qty):
+        """What the POS stores after printing: the final snapshot sync."""
+        order.write({"last_order_preparation_change": json.dumps({
+            "lines": {self.line_uuid + "-": {"uuid": self.line_uuid, "quantity": qty}},
+            "metadata": {"serverDate": "2026-01-01 00:00:00"},
+        })})
 
-    def test_display_first_flow(self):
-        self._run_priority_tour("display_first")
+    def test_default_priority(self):
+        self.assertEqual(self.config.kitchen_flow_priority, "printer_first")
 
-    def test_parallel_flow(self):
-        self._run_priority_tour("parallel")
+    def test_screen_first_sync_reaches_the_kitchen_before_the_snapshot(self):
+        order = self._order(2)
+        self.assertFalse(order.resta_kds_ticket_ids, "a draft order waits for «Send»")
+        line = order.lines
+        # the pre-send sync carries the flag: the screen gets the dishes on the POS right now
+        order.with_context(resta_kds_fire=True).write({"lines": [(1, line.id, {"qty": 2})]})
+        self.assertEqual(order.resta_kds_ticket_ids.line_ids.qty, 2)
+        # the printers run, then the snapshot sync arrives: nothing is sent twice
+        self._snapshot(order, 2)
+        self.assertEqual(len(order.resta_kds_ticket_ids), 1)
+        self.assertEqual(order.resta_kds_ticket_ids.line_ids.qty, 2)
+
+    def test_parallel_call_is_idempotent(self):
+        order = self._order(1)
+        order.resta_kds_fire()
+        order.resta_kds_fire()
+        self._snapshot(order, 1)
+        self.assertEqual(len(order.resta_kds_ticket_ids), 1)
+
+    def test_fire_ignores_paid_orders(self):
+        self.config.resta_kds_send_on_payment = False
+        order = self._order(1)
+        order.write({"state": "paid"})
+        order.resta_kds_fire()
+        self.assertFalse(order.resta_kds_ticket_ids)

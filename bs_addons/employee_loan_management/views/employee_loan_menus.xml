@@ -18,9 +18,9 @@
     <menuitem
         id="menu_accounting_employee_loans"
         name="Employee Loans"
-        parent="accountant.account_assets_liabilities_menu"
+        parent="resta_payroll.menu_payroll_root"
         action="action_accounting_employee_loans"
         sequence="25"
-        groups="account.group_account_user"
+        groups="account.group_account_user,resta_payroll.group_payroll_user"
     />
 </odoo>

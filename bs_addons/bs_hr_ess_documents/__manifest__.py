@@ -4,8 +4,8 @@
                'expiry alerts, renewal requests from the portal, contract renewal workflow on hr.version',
     'version': '19.0.1.0.0',
     'category': 'Human Resources/Employees',
-    'author': 'Basic Solution',
-    'website': 'https://resta.sa',
+    'author': "Resta",
+    'website': "https://resta.sa",
     'license': 'LGPL-3',
     'depends': ['bs_hr_ess_base', 'hr'],
     'data': [

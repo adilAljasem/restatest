@@ -12,3 +12,6 @@ access_fb_mgr,fb mgr,model_resta_feedback,group_resta_manager,1,1,1,1
 access_demo_am,demo am,model_resta_demo_request,group_resta_account_manager,1,1,1,0
 access_demo_mgr,demo mgr,model_resta_demo_request,group_resta_manager,1,1,1,1
 access_subwiz_am,subwiz am,model_resta_subscription_wizard,group_resta_account_manager,1,1,1,1
+access_cmd_am,cmd am,model_resta_tenant_command,group_resta_account_manager,1,1,1,0
+access_cmd_mgr,cmd mgr,model_resta_tenant_command,group_resta_manager,1,1,1,1
+access_cmdwiz_am,cmdwiz am,model_resta_tenant_command_wizard,group_resta_account_manager,1,1,1,1

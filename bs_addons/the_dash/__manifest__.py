@@ -144,11 +144,10 @@ with the generated SQL for administrators - instead of a blank panel.
 
     'version': '19.0.4.0.0',
     'category': 'Point of Sale',
-    'author': 'BASIC Solution',
-    'maintainer': 'BASIC Solution',
-    'support': '',   # TODO: support e-mail
+    'author': "Resta",
+    'maintainer': "Resta",
     'license': 'LGPL-3',
-    'website': '',   # TODO: company website
+    'website': "https://resta.sa",
 
     'depends': ['point_of_sale', 'web', 'analytic'],
 

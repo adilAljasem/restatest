@@ -409,7 +409,7 @@ msgid ""
 msgstr ""
 "حساب المصروف %(acc)s يتبع الشركة %(acc_co)s بينما طلب العهدة هذا يخص "
 "%(req_co)s. اختر حساب مصروف يتبع نفس شركة الطلب، أو قم بتغيير الشركة النشطة "
-"في أودو."
+"في النظام."
 
 #. module: petty_cash
 #: model:ir.model.fields,field_description:petty_cash.field_petty_cash_settlement__attachment_status

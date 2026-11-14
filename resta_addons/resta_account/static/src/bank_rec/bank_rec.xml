@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="resta_account.BankRec">
+        <div class="o_resta_bankrec o_action" t-att-dir="dir">
+            <div class="o_br_top">
+                <h2>التسوية البنكية</h2>
+                <div class="o_br_journals">
+                    <button t-foreach="state.journals" t-as="j" t-key="j.id"
+                            t-attf-class="o_br_chip #{state.journalId === j.id ? 'active' : ''}" t-on-click="() => this.chooseJournal(j.id)">
+                        <t t-out="j.name"/><b t-if="j.todo" t-out="j.todo"/>
+                    </button>
+                </div>
+                <input class="form-control form-control-sm ms-auto" style="max-width:220px" placeholder="بحث في الحركات"
+                       t-on-change="onSearch" aria-label="بحث"/>
+                <label class="o_rr_check"><input type="checkbox" class="form-check-input" t-att-checked="state.showDone" t-on-change="toggleDone"/> المسوّاة أيضاً</label>
+                <button class="btn btn-sm btn-primary" t-on-click="importFile"><i class="fa fa-upload"/> استيراد كشف البنك</button>
+                <button class="btn btn-sm btn-light" t-on-click="addLines"><i class="fa fa-plus"/> إضافة يدوية</button>
+            </div>
+            <div t-if="!state.journals.length" class="o_br_empty">لا توجد يوميات بنك أو نقد.</div>
+            <div t-else="" class="o_br_body">
+                <div class="o_br_list">
+                    <div t-if="!state.lines.length" class="o_br_empty">
+                        <i class="fa fa-check-circle fa-2x d-block mb-2"/>لا توجد حركات للتسوية.
+                    </div>
+                    <div t-foreach="state.lines" t-as="l" t-key="l.id"
+                         t-attf-class="o_br_item #{state.line and state.line.id === l.id ? 'active' : ''}" t-on-click="() => this.selectLine(l)">
+                        <div class="text-truncate" t-out="l.label or '—'"/>
+                        <div t-attf-class="o_br_amount #{l.amount &gt;= 0 ? 'o_br_in' : 'o_br_out'}" t-out="fmt(l.amount)"/>
+                        <small><t t-out="l.date"/><t t-if="l.partner"> · <t t-out="l.partner"/></t></small>
+                        <small t-if="l.reconciled" class="text-success text-end">مسوّى ✓</small>
+                        <small t-elif="l.open !== l.amount" class="text-end">متبقٍ <t t-out="fmt(l.open)"/></small>
+                    </div>
+                </div>
+
+                <div class="o_br_panel">
+                    <t t-if="state.line">
+                        <div class="o_br_summary">
+                            <div>
+                                <div class="text-muted small" t-out="state.line.date"/>
+                                <div class="fw-bold" t-out="state.line.label"/>
+                                <div class="small" t-out="state.line.partner"/>
+                            </div>
+                            <div class="o_br_big" t-out="fmt(state.line.amount)"/>
+                            <div t-if="!state.line.reconciled">المختار: <b t-out="fmt(selectedTotal)"/></div>
+                            <div t-if="!state.line.reconciled">المتبقي: <span class="o_br_left" t-out="fmt(leftAfter)"/></div>
+                            <div class="ms-auto d-flex gap-2">
+                                <button class="btn btn-sm btn-light" t-on-click="openMove">القيد</button>
+                                <button t-if="state.line.reconciled or state.line.matched.length" class="btn btn-sm btn-outline-danger" t-on-click="unreconcile">إلغاء التسوية</button>
+                            </div>
+                        </div>
+
+                        <t t-if="state.line.reconciled">
+                            <table class="o_br_table">
+                                <tr><th>القيد</th><th>الحساب</th><th class="num">المبلغ</th></tr>
+                                <tr t-foreach="state.line.matched" t-as="m" t-key="m_index">
+                                    <td t-out="m.move"/><td t-out="m.account"/><td class="num" t-out="fmt(m.amount)"/>
+                                </tr>
+                            </table>
+                        </t>
+                        <t t-else="">
+                            <input class="form-control" placeholder="ابحث برقم الفاتورة أو اسم العميل/المورد أو المبلغ"
+                                   t-on-change="onCandSearch" t-att-value="state.candSearch" aria-label="بحث عن فواتير"/>
+                            <div style="overflow:auto; max-height: 52vh">
+                                <table class="o_br_table">
+                                    <tr><th>القيد</th><th>الشريك</th><th>البيان</th><th>الاستحقاق</th><th class="num">المفتوح</th></tr>
+                                    <tr t-foreach="state.candidates" t-as="c" t-key="c.id"
+                                        t-attf-class="#{state.selected.includes(c.id) ? 'selected' : ''} #{c.score &gt;= 4 ? 'suggested' : ''}"
+                                        t-on-click="() => this.toggleCandidate(c)">
+                                        <td><input type="checkbox" class="form-check-input me-1" t-att-checked="state.selected.includes(c.id)"/> <t t-out="c.move"/></td>
+                                        <td t-out="c.partner"/><td t-out="c.label"/><td t-out="c.due"/>
+                                        <td class="num" t-out="fmt(c.residual)"/>
+                                    </tr>
+                                    <tr t-if="!state.candidates.length"><td colspan="5" class="o_br_empty">لا توجد فواتير أو دفعات مفتوحة مطابقة. ابحث أو سجّل المبلغ على حساب.</td></tr>
+                                </table>
+                            </div>
+                            <div class="o_br_writeoff">
+                                <button class="btn btn-sm btn-light" t-on-click="openWriteoff">
+                                    <i class="fa fa-pencil"/> تسجيل المبلغ المتبقي على حساب (رسوم بنكية، مصروف…)
+                                </button>
+                                <t t-if="state.writeoff.open">
+                                    <input class="form-control form-control-sm" style="max-width:160px" placeholder="بحث عن حساب" t-on-change="searchAccounts" aria-label="بحث عن حساب"/>
+                                    <select class="form-select form-select-sm" style="max-width:280px" aria-label="الحساب"
+                                            t-on-change="(ev) => this.state.writeoff.account_id = ev.target.value">
+                                        <option value="">— الحساب —</option>
+                                        <option t-foreach="state.writeoff.accounts" t-as="a" t-key="a.id" t-att-value="a.id" t-out="a.name"/>
+                                    </select>
+                                    <input class="form-control form-control-sm" style="max-width:220px" t-att-value="state.writeoff.label"
+                                           t-on-change="(ev) => this.state.writeoff.label = ev.target.value" aria-label="البيان"/>
+                                </t>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" t-att-disabled="state.busy" t-on-click="reconcile">
+                                    <i class="fa fa-check"/> تسوية
+                                </button>
+                            </div>
+                        </t>
+                    </t>
+                    <div t-else="" class="o_br_empty">اختر حركة من القائمة.</div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

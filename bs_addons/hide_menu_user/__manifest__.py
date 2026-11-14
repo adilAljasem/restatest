@@ -38,10 +38,10 @@
     - Copy one user's hidden menus onto other users in a single click.
     - Cascade a menu's restrictions to all of its sub-menus.
     """,
-    'author': 'Cybrosys Techno Solutions',
-    'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
-    'website': "https://www.cybrosys.com",
+    'author': "Resta",
+    'company': "Resta",
+    'maintainer': "Resta",
+    'website': "https://resta.sa",
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
